@@ -92,7 +92,7 @@ export class Lock {
     if (options.retries) {
       await Delay(options.delay);
       options.retries--;
-      return await this.read(p, options);
+      return await this.read(path, options);
     }
     throw new UnableToReadLockException(path);
   }
