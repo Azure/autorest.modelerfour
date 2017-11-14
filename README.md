@@ -5,8 +5,11 @@ This package contains common code for the developer tools for generating Azure S
 Including:
 - AutoRest
 
+
 ### Description
 Async IO wrappers
+
+### Contents
 
 ----
 
