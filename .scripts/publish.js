@@ -11,7 +11,7 @@ async function main() {
   const version = `${semver.major(baseVersion)}.${semver.minor(baseVersion)}.${v}`
 
   console.log(`Using version ${version}`);
-  process.argv.push(`publish`,`--access`,`public`,`--tag`,`preview`,`--new-version`,`${version}`);
+  process.argv.push(`publish`,`--access`,`public`,`--tag`,`preview`,`--new-version`,`${version}`, `--no-git-tag-version`);
   // now, on with the publish...
   require( "yarn/lib/cli.js" );
 }
