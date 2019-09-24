@@ -1,9 +1,9 @@
-import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat } from '@azure-tools/openapi'
+import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length } from '@azure-tools/linq';
 import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ObjectSchemas, ObjectSchemaTypes, HttpWithBodyRequest, HttpStreamRequest, HttpParameter } from '@azure-tools/codemodel';
 import { Host, Session } from '@azure-tools/autorest-extension-base';
-import { Interpretations } from './interpretations'
+import { Interpretations } from './interpretations';
 import { fail } from '@azure-tools/codegen';
 
 
@@ -42,7 +42,7 @@ export class ModelerFour {
   private should<T, O>(original: T | undefined, processIt: (orig: T) => O): O | undefined {
     if (original) {
       const result: O = this.processed.get(original) || processIt(original);
-      this.processed.set(original, result)
+      this.processed.set(original, result);
       return result;
     }
     return undefined;
@@ -55,14 +55,14 @@ export class ModelerFour {
   private use<T, Q = void>(item: Refable<T> | undefined, action: (name: string | undefined, instance: T) => Q): Q {
     const i = dereference(this.input, item);
     if (i.instance) {
-      return action(i.name, i.instance)
+      return action(i.name, i.instance);
     }
     throw ('Unresolved item.');
   }
 
 
-  resolveArray<T>(source?: Refable<T>[]) {
-    return values(source).select(each => dereference(this.input, each).instance)
+  resolveArray<T>(source?: Array<Refable<T>>) {
+    return values(source).select(each => dereference(this.input, each).instance);
   }
 
   resolveDictionary<T>(source?: Dictionary<Refable<T>>) {
@@ -108,22 +108,22 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.addPrimitive(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-      extensions: this.interpret.getExtensionProperties(schema),
-      summary: schema.title,
-      defaultValue: schema.default,
-      deprecated: this.interpret.getDeprecation(schema),
-      apiVersions: this.interpret.getApiVersions(schema),
-      example: this.interpret.getExample(schema),
-      externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
-      maximum: schema.maximum,
-      minimum: schema.minimum,
-      multipleOf: schema.multipleOf,
-      exclusiveMaximum: schema.exclusiveMaximum,
-      exclusiveMinimum: schema.exclusiveMinimum
-    }));
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: {
+          xml: this.interpret.getXmlSerialization(schema)
+        },
+        maximum: schema.maximum,
+        minimum: schema.minimum,
+        multipleOf: schema.multipleOf,
+        exclusiveMaximum: schema.exclusiveMaximum,
+        exclusiveMinimum: schema.exclusiveMinimum
+      }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.addPrimitive(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -268,7 +268,7 @@ export class ModelerFour {
       this.session.error(`Array schema '${name}' is missing schema for items`, ['Modeler', 'MissingArrayElementType'], schema);
       throw Error();
     }
-    const elementType = this.processSchema(itemSchema.name || 'array:itemschema', itemSchema.instance)
+    const elementType = this.processSchema(itemSchema.name || 'array:itemschema', itemSchema.instance);
     return this.codeModel.schemas.addPrimitive(new ArraySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA', schema), elementType, {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
@@ -318,7 +318,7 @@ export class ModelerFour {
       elementSchema = new ObjectSchema('any', 'any');
     } else {
       const eschema = this.resolve(schema.additionalProperties);
-      elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance)
+      elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance);
     }
     const dict = new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA', schema), elementSchema, {
       //extensions: this.interpret.getExtensionProperties(schema),
@@ -372,14 +372,14 @@ export class ModelerFour {
 
   processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AndSchema {
     let i = 0;
-    const andTypes: Schema<ObjectSchemaTypes>[] = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
-      return this.processSchema(n || `${name}.allOf.${i++}`, s)
+    const andTypes: Array<Schema<ObjectSchemaTypes>> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
+      return this.processSchema(n || `${name}.allOf.${i++}`, s);
     })).toArray();
     const orTypes = values(aSchema.anyOf).select(sch => this.use(sch, (n, s) => {
-      return this.processSchema(n || `${name}.anyOf.${i++}`, s)
+      return this.processSchema(n || `${name}.anyOf.${i++}`, s);
     })).toArray();
     const xorTypes = values(aSchema.oneOf).select(sch => this.use(sch, (n, s) => {
-      return this.processSchema(n || `${name}.oneOf.${i++}`, s)
+      return this.processSchema(n || `${name}.oneOf.${i++}`, s);
     })).toArray();
 
     const dictionaryDef = aSchema.additionalProperties;
@@ -397,7 +397,7 @@ export class ModelerFour {
       // it's an empty object? 
       this.session.warning(`Schema '${name}' is an empty object without properties or modifiers.`, ['Modeler', 'EmptyObject'], aSchema);
     }
-    let objectSchema = hasProperties ? this.createObjectSchema(name, schema) : undefined;
+    const objectSchema = hasProperties ? this.createObjectSchema(name, schema) : undefined;
 
     if (!isMoreThanObject && objectSchema) {
       return this.codeModel.schemas.addObject(objectSchema);
@@ -453,9 +453,9 @@ export class ModelerFour {
 
     return this.should(schema, (schema) => {
 
-      console.log(`Process Schema ${this.interpret.getName(name, schema)}/${schema.description}`);
+      //console.error(`Process Schema ${this.interpret.getName(name, schema)}/${schema.description}`);
       if (this.trap.has(schema)) {
-        throw new Error('RECURSING!')
+        throw new Error('RECURSING!');
       }
       this.trap.add(schema);
 
@@ -606,8 +606,8 @@ export class ModelerFour {
           }
       }
       this.session.error(`The model ${name} does not have a recognized schema type '${schema.type}'`, ['Modeler', 'UnknownSchemaType']);
-      throw new Error(`Unrecognized schema type '${schema.type}'`)
-    }) || fail(`Unable to process schema.`);
+      throw new Error(`Unrecognized schema type '${schema.type}'`);
+    }) || fail('Unable to process schema.');
   }
 
   processRequestBody(mediaType: string, request: OpenAPI.RequestBody) {
@@ -619,7 +619,7 @@ export class ModelerFour {
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.
-      const opGroup = this.codeModel.getOperationGroup(group)
+      const opGroup = this.codeModel.getOperationGroup(group);
       const op = opGroup.addOperation(new Operation(member, this.interpret.getDescription('MISSING-OPERATION-DESCRIPTION', operation)));
 
       const httpRequest = op.request.protocol.http = SetType(HttpRequest, {
@@ -650,7 +650,7 @@ export class ModelerFour {
             // a single type request body 
             const requestSchema = this.resolve(contents[0].value.schema);
             if (!requestSchema.instance) {
-              throw new Error(`Missing schema on request.`);
+              throw new Error('Missing schema on request.');
             }
 
             // set the media type to the content type.
@@ -666,14 +666,14 @@ export class ModelerFour {
                 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                protocol: {
-                  http: SetType(HttpParameter, {
-                    in: ParameterLocation.Body,
-                    style: SerializationStyle.Json,
-                    implementation: ImplementationLocation.Client
-                  })
-                }
-              }));
+                  protocol: {
+                    http: SetType(HttpParameter, {
+                      in: ParameterLocation.Body,
+                      style: SerializationStyle.Json,
+                      implementation: ImplementationLocation.Client
+                    })
+                  }
+                }));
             }
             break;
 
@@ -692,7 +692,7 @@ export class ModelerFour {
           for (const httpMethod of [HttpMethod.Delete, HttpMethod.Get, HttpMethod.Head, HttpMethod.Options, HttpMethod.Patch, HttpMethod.Post, HttpMethod.Put, HttpMethod.Trace]) {
             this.processOperation(pathItem[httpMethod], httpMethod, path, pathItem);
           }
-        })
+        });
       }
     }
     if (this.input.components) {
