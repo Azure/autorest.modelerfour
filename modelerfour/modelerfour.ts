@@ -1,9 +1,9 @@
-import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat } from '@azure-tools/openapi';
+import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ObjectSchemas, ObjectSchemaTypes, HttpWithBodyRequest, HttpStreamRequest, HttpParameter } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ObjectSchemas, ObjectSchemaTypes, HttpWithBodyRequest, HttpStreamRequest, HttpParameter, Response, HttpResponse, HttpStreamResponse, SchemaResponse, SealedChoiceSchema } from '@azure-tools/codemodel';
 import { Host, Session } from '@azure-tools/autorest-extension-base';
-import { Interpretations } from './interpretations';
+import { Interpretations, XMSEnum } from './interpretations';
 import { fail } from '@azure-tools/codegen';
 
 
@@ -287,8 +287,29 @@ export class ModelerFour {
   }
 
 
-  processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema {
-    return this.codeModel.schemas.addChoice(new ChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+  processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema | SealedChoiceSchema {
+    const xmse = <XMSEnum>schema['x-ms-enum'];
+    name = xmse && xmse.name;
+    const sealed = xmse && !(xmse.modelAsString);
+
+    if (sealed) {
+      return this.codeModel.schemas.addChoice(new ChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: {
+          xml: this.interpret.getXmlSerialization(schema)
+        },
+        choiceType: new StringSchema('choice', 'choice'),
+        choices: this.interpret.getEnumChoices(schema)
+      }));
+    }
+
+    return this.codeModel.schemas.addSealedChoice(new SealedChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -359,10 +380,11 @@ export class ModelerFour {
     for (const { key: propertyName, value: property } of this.resolveDictionary(schema.properties)) {
       this.use(<OpenAPI.Refable<OpenAPI.Schema>>property, (pSchemaName, pSchema) => {
         const pType = this.processSchema(pSchemaName || `typeFor${propertyName}`, pSchema);
-        const prop = objectSchema.addProperty(new Property(propertyName, this.interpret.getDescription('PROPERTY-DESCRIPTION-MISSING', property), pType, {
+        const prop = objectSchema.addProperty(new Property(this.interpret.getName(propertyName, property), this.interpret.getDescription('PROPERTY-DESCRIPTION-MISSING', property), pType, {
           readOnly: property.readOnly,
           nullable: property.nullable,
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
+          serializedName: propertyName,
         }));
       });
     }
@@ -372,7 +394,7 @@ export class ModelerFour {
 
   processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AndSchema {
     let i = 0;
-    const andTypes: Array<Schema<ObjectSchemaTypes>> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
+    const andTypes: Array<ObjectSchemas> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
       return this.processSchema(n || `${name}.allOf.${i++}`, s);
     })).toArray();
     const orTypes = values(aSchema.anyOf).select(sch => this.use(sch, (n, s) => {
@@ -420,7 +442,7 @@ export class ModelerFour {
       const finalType = new AndSchema(this.interpret.getName(name, schema), schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
         allOf: andTypes
       });
-      return this.codeModel.schemas.addCompound(finalType);
+      return this.codeModel.schemas.addAndSchema(finalType);
     }
     // const andSchemas = andTypes.map( each => this.processSchema(''| each.) )
 
@@ -513,6 +535,7 @@ export class ModelerFour {
             default:
               this.session.error(`Array schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
+          break;
 
         case JsonType.Boolean:
           switch (schema.format) {
@@ -521,6 +544,7 @@ export class ModelerFour {
             default:
               this.session.error(`Boolean schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
+          break;
 
         case JsonType.Integer:
           switch (schema.format) {
@@ -536,6 +560,7 @@ export class ModelerFour {
             default:
               this.session.error(`Integer schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
+          break;
 
         case JsonType.Number:
           switch (schema.format) {
@@ -549,6 +574,7 @@ export class ModelerFour {
             default:
               this.session.error(`Number schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
+          break;
 
         case JsonType.Object:
           return this.processObjectSchema(name, schema);
@@ -611,7 +637,7 @@ export class ModelerFour {
   }
 
   processRequestBody(mediaType: string, request: OpenAPI.RequestBody) {
-
+    /// ?
   }
 
   processOperation(operation: OpenAPI.HttpOperation | undefined, httpMethod: string, path: string, pathItem: OpenAPI.PathItem) {
@@ -619,9 +645,13 @@ export class ModelerFour {
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.
+      console.error(group);
       const opGroup = this.codeModel.getOperationGroup(group);
-      const op = opGroup.addOperation(new Operation(member, this.interpret.getDescription('MISSING-OPERATION-DESCRIPTION', operation)));
+      const op = opGroup.addOperation(new Operation(member, this.interpret.getDescription('MISSING-OPERATION-DESCRIPTION', operation), {
+        extensions: this.interpret.getExtensionProperties(operation)
+      }));
 
+      // === Request === 
       const httpRequest = op.request.protocol.http = SetType(HttpRequest, {
         method: httpMethod,
         path: this.interpret.getPath(pathItem, operation, path),
@@ -631,7 +661,12 @@ export class ModelerFour {
       // get all the parameters for the operation
       this.resolveArray(operation.parameters).select(parameter => {
         this.use(parameter.schema, (name, schema) => {
-          op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING-PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema)));
+          const param = op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING-PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
+            implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
+            extensions: this.interpret.getExtensionProperties(parameter)
+          }));
+
+          param.protocol.http = new HttpParameter(parameter.in);
         });
       }).toArray();
 
@@ -646,7 +681,7 @@ export class ModelerFour {
             // why?
             break;
 
-          case 1:
+          case 1: {
             // a single type request body 
             const requestSchema = this.resolve(contents[0].value.schema);
             if (!requestSchema.instance) {
@@ -666,22 +701,59 @@ export class ModelerFour {
                 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
                   protocol: {
-                    http: SetType(HttpParameter, {
-                      in: ParameterLocation.Body,
+                    http: new HttpParameter(ParameterLocation.Body, {
                       style: SerializationStyle.Json,
                       implementation: ImplementationLocation.Client
                     })
                   }
                 }));
             }
+          }
             break;
 
           default:
             // multipart request body.
             throw new Error('multipart not implemented yet');
         }
+
+
       }
+
+      // === Response === 
+      for (const { key: responseCode, value: response } of this.resolveDictionary(operation.responses)) {
+
+        for (const { key: mediaType, value: content } of this.resolveDictionary(response.content)) {
+          const { name, instance: schema } = this.resolve(content.schema);
+          console.error(`${responseCode},${mediaType},${name} `);
+          const isErr = responseCode === 'default' || response['x-ms-error-response'];
+          if (schema) {
+            const s = this.processSchema('xxx', schema);
+            const rsp = new SchemaResponse(s, {
+              extensions: this.interpret.getExtensionProperties(response)
+            });
+
+            for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
+              // const schema: hh.schema
+            }
+
+            rsp.protocol.http = SetType(HttpResponse, {
+              statusCodes: [responseCode],
+              mediaTypes: [mediaType],
+              headers: [],
+              //headers: Array<Schema>;
+            });
+            if (isErr) {
+              op.addException(rsp);
+            } else {
+              op.addResponse(rsp);
+            }
+          }
+        }
+      }
+      //op.addResponse()
+      //op.addException();
     });
   }
 

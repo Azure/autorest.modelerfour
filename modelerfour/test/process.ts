@@ -19,7 +19,7 @@ require('source-map-support').install();
 
 const resources = `${__dirname}/../../test/resources/process`;
 
-async function readData(...files: Array<string>): Promise<Array<{ model: any, filename: string, content: string }>> {
+async function readData(...files: Array<string>): Promise<Array<{ model: any; filename: string; content: string }>> {
   const results = [];
   for (const filename of files) {
     const content = await readFile(`${resources}/${filename}`);
@@ -28,7 +28,7 @@ async function readData(...files: Array<string>): Promise<Array<{ model: any, fi
       model,
       filename,
       content
-    })
+    });
   }
   return results;
 }
@@ -67,9 +67,8 @@ async function createTestSession<TInputModel>(config: any, inputs: Array<string>
 @suite class Process {
 
 
-
   @test async 'simple model test'() {
-    const session = await createTestSession<Model>({}, ['input2.yaml'], ['output1.yaml'])
+    const session = await createTestSession<Model>({}, ['input2.yaml'], ['output1.yaml']);
 
     // process OAI model
     const modeler = new ModelerFour(session);

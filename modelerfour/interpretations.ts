@@ -3,18 +3,80 @@ import * as OpenAPI from '@azure-tools/openapi';
 import { values, length, items, ToDictionary, Dictionary } from '@azure-tools/linq';
 import { CodeModel, HttpServer, ServerVariable, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
 import { StringFormat } from '@azure-tools/openapi';
+import { getPascalIdentifier } from '@azure-tools/codegen';
+
+export interface XMSEnum {
+  modelAsString?: boolean;
+  values: [{ value: any; description?: string; name?: string }];
+  name: string;
+}
+
+// ref: https://www.w3schools.com/charsets/ref_html_ascii.asp
+const specialCharacterMapping: { [character: string]: string } = {
+  '!': 'exclamation mark',
+  '"': 'quotation mark',
+  '#': 'number sign',
+  '$': 'dollar sign',
+  '%': 'percent sign',
+  '&': 'ampersand',
+  '\'': 'apostrophe',
+  '(': 'left parenthesis',
+  ')': 'right parenthesis',
+  '*': 'asterisk',
+  '+': 'plus sign',
+  ',': 'comma',
+  '-': 'hyphen',
+  '.': 'period',
+  '/': 'slash',
+  ':': 'colon',
+  ';': 'semicolon',
+  '<': 'less-than',
+  '=': 'equals-to',
+  '>': 'greater-than',
+  '?': 'question mark',
+  '@': 'at sign',
+  '[': 'left square bracket',
+  '\\': 'backslash',
+  ']': 'right square bracket',
+  '^': 'caret',
+  '_': 'underscore',
+  '`': 'grave accent',
+  '{': 'left curly brace',
+  '|': 'vertical bar',
+  '}': 'right curly brace',
+  '~': 'tilde'
+};
+
+export function getValidEnumValueName(originalString: string): string {
+  return !originalString.match(/[A-Za-z0-9]/g) ?
+    getPascalIdentifier(originalString.split('').map(x => specialCharacterMapping[x]).join(' '))
+    : originalString;
+}
 
 export class Interpretations {
   getEnumChoices(schema: OpenAPI.Schema): Array<ChoiceValue> {
-    return values(schema.enum).select(each => SetType(ChoiceValue, {
-      //  $type: 'ChoiceValue',
-      value: each,
-      name: '-each',
-      description: 'description'
-    })).toArray()
+    if (schema && schema.enum) {
+      const xmse = <XMSEnum>schema['x-ms-enum'];
 
+      return xmse && xmse.values ?
+        xmse.values.map((each) => new ChoiceValue(`${getValidEnumValueName((each.name !== undefined) ? each.name : each.value)}`, each.description || '', each.value)) :
+        schema.enum.map(each => new ChoiceValue(getValidEnumValueName(each), '', each));
+    }
+    return [];
   }
+
+
   getXmlSerialization(schema: OpenAPI.Schema): XmlSerlializationFormat | undefined {
+    if (schema.xml) {
+      return {
+        attribute: schema.xml.attribute || false,
+        wrapped: schema.xml.wrapped || false,
+        name: schema.xml.name || undefined,
+        namespace: schema.xml.namespace || undefined,
+        prefix: schema.xml.prefix || undefined,
+        extensions: this.getExtensionProperties(schema.xml)
+      };
+    }
     return undefined;
   }
   getExternalDocs(schema: OpenAPI.Schema): ExternalDocumentation | undefined {
@@ -23,7 +85,7 @@ export class Interpretations {
   getExample(schema: OpenAPI.Schema): any {
     return {};
   }
-  getApiVersions(schema: OpenAPI.Schema): ApiVersion[] | undefined {
+  getApiVersions(schema: OpenAPI.Schema): Array<ApiVersion> | undefined {
     if (schema['x-ms-metadata'] && schema['x-ms-metadata']['apiVersions']) {
       const v = values(<Array<string>>schema['x-ms-metadata']['apiVersions']).select(each => SetType(ApiVersion, {
         version: each.replace(/^-/, '').replace(/\+$/, ''),
@@ -55,9 +117,9 @@ export class Interpretations {
       group: opId.substr(0, p),
       member: opId.substr(p + 1)
     } : {
-        group: '',
-        member: opId
-      }
+      group: '',
+      member: opId
+    };
   }
 
   isStreamSchema(schema: OpenAPI.Schema) {
@@ -96,7 +158,8 @@ export class Interpretations {
   }
 
   getName(defaultValue: string, original: any): string {
-    return (original['x-ms-metadata'] && original['x-ms-metadata']['name']) ? original['x-ms-metadata']['name'] : defaultValue;
+
+    return original['x-ms-client-name'] || ((original['x-ms-metadata'] && original['x-ms-metadata']['name']) ? original['x-ms-metadata']['name'] : defaultValue);
   }
 
   /** gets the operation path from metadata, falls back to the OAI3 path key */
@@ -112,14 +175,14 @@ export class Interpretations {
 
     return values(operation.servers).select(server => {
       const p = <HttpModel>this.codeModel.protocol.http;
-      const f = p && p.servers.find(each => each.url === server.url)
+      const f = p && p.servers.find(each => each.url === server.url);
       if (f) {
         return f;
       }
       const s = new HttpServer(server.url, this.getDescription('MISSING-SERVER-DESCRIPTION', server));
       if (server.variables && length(server.variables) > 0) {
         s.variables = items(server.variables).select(each => {
-          const description = this.getDescription("MISSING-SERVER_VARIABLE-DESCRIPTION", each.value)
+          const description = this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', each.value);
 
           const variable = each.value;
 
@@ -129,7 +192,7 @@ export class Interpretations {
 
           const serverVariable = new ServerVariable(
             each.key,
-            this.getDescription("MISSING-SERVER_VARIABLE-DESCRIPTION", variable),
+            this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', variable),
             schema,
             {
               default: variable.default,
@@ -142,12 +205,12 @@ export class Interpretations {
       (<HttpModel>this.codeModel.protocol.http).servers.push(s);
       return s;
 
-    }).toArray()
+    }).toArray();
   }
 
 
   getEnumSchemaForVarible(name: string, somethingWithEnum: { enum?: Array<string> }): ChoiceSchema {
-    return new ChoiceSchema(name, this.getDescription("MISSING-SERVER-VARIABLE-ENUM-DESCRIPTION", somethingWithEnum))
+    return new ChoiceSchema(name, this.getDescription('MISSING-SERVER-VARIABLE-ENUM-DESCRIPTION', somethingWithEnum));
   }
 
   getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> {
