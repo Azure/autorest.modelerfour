@@ -25,7 +25,8 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 pipeline-model: v3
 modelerfour-loaded: true
 ```
-``` text
+
+``` yaml
 pipeline:
   modelerfour:
     input: openapi-document/multi-api/identity  
@@ -34,11 +35,20 @@ pipeline:
     input: modelerfour
     scope: scope-modelerfour/emitter
 
-scope-modelerfour/emitter:
-  input-artifact: code-model-v4
-  is-object: true
+  modelerfour/notags/emitter:
+    input: modelerfour
+    scope: scope-modelerfour/notags/emitter
 
-  output-uri-expr: |
-    "code-model-v4"
+scope-modelerfour/emitter: # writing to disk settings
+  input-artifact: code-model-v4
+  is-object: true # tells autorest that it is an object graph instead of a text document
+  output-uri-expr: | # forces filename if it gets written to disk.
+    "code-model-v4.yaml"  
+    
+scope-modelerfour/notags/emitter: # writing to disk settings
+  input-artifact: code-model-v4-no-tags
+  is-object: true # tells autorest that it is an object graph instead of a text document
+  output-uri-expr: | # forces filename if it gets written to disk.
+    "code-model-v4-no-tags.yaml"  
 
 ```
