@@ -48,9 +48,12 @@ const specialCharacterMapping: { [character: string]: string } = {
 };
 
 export function getValidEnumValueName(originalString: string): string {
-  return !originalString.match(/[A-Za-z0-9]/g) ?
-    getPascalIdentifier(originalString.split('').map(x => specialCharacterMapping[x]).join(' '))
-    : originalString;
+  if (typeof originalString === 'string') {
+    return !originalString.match(/[A-Za-z0-9]/g) ?
+      getPascalIdentifier(originalString.split('').map(x => specialCharacterMapping[x]).join(' '))
+      : originalString;
+  }
+  return originalString;
 }
 
 export class Interpretations {
@@ -188,7 +191,7 @@ export class Interpretations {
 
           const schema = variable.enum ?
             this.getEnumSchemaForVarible(each.key, variable) :
-            this.codeModel.schemas.addPrimitive(new StringSchema(`ServerVariable/${each.key}`, description));
+            this.codeModel.schemas.add(new StringSchema(`ServerVariable/${each.key}`, description));
 
           const serverVariable = new ServerVariable(
             each.key,

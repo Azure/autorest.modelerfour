@@ -1,10 +1,10 @@
 import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ObjectSchemas, ObjectSchemaTypes, HttpWithBodyRequest, HttpStreamRequest, HttpParameter, Response, HttpResponse, HttpStreamResponse, SchemaResponse, SealedChoiceSchema } from '@azure-tools/codemodel';
-import { Host, Session } from '@azure-tools/autorest-extension-base';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpStreamRequest, HttpParameter, Response, HttpResponse, HttpStreamResponse, SchemaResponse, SealedChoiceSchema } from '@azure-tools/codemodel';
+import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
-import { fail } from '@azure-tools/codegen';
+import { fail, minimum, pascalCase } from '@azure-tools/codegen';
 
 
 export class ModelerFour {
@@ -73,7 +73,7 @@ export class ModelerFour {
   }
 
   processBooleanSchema(name: string, schema: OpenAPI.Schema): BooleanSchema {
-    return this.codeModel.schemas.addPrimitive(new BooleanSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-BOOLEAN', schema), {
+    return this.codeModel.schemas.add(new BooleanSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-BOOLEAN', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -87,7 +87,7 @@ export class ModelerFour {
     }));
   }
   processIntegerSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
-    return this.codeModel.schemas.addPrimitive(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-INTEGER', schema), SchemaType.Integer, schema.format === IntegerFormat.Int64 ? 64 : 32, {
+    return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-INTEGER', schema), SchemaType.Integer, schema.format === IntegerFormat.Int64 ? 64 : 32, {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -106,7 +106,7 @@ export class ModelerFour {
     }));
   }
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
-    return this.codeModel.schemas.addPrimitive(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
+    return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
         extensions: this.interpret.getExtensionProperties(schema),
         summary: schema.title,
@@ -126,7 +126,7 @@ export class ModelerFour {
       }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
-    return this.codeModel.schemas.addPrimitive(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
+    return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -143,7 +143,7 @@ export class ModelerFour {
     }));
   }
   processCredentialSchema(name: string, schema: OpenAPI.Schema): CredentialSchema {
-    return this.codeModel.schemas.addPrimitive(new CredentialSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CREDENTIAL', schema), {
+    return this.codeModel.schemas.add(new CredentialSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CREDENTIAL', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -160,7 +160,7 @@ export class ModelerFour {
     }));
   }
   processUriSchema(name: string, schema: OpenAPI.Schema): UriSchema {
-    return this.codeModel.schemas.addPrimitive(new UriSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-URI', schema), {
+    return this.codeModel.schemas.add(new UriSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-URI', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -177,7 +177,7 @@ export class ModelerFour {
     }));
   }
   processUuidSchema(name: string, schema: OpenAPI.Schema): UuidSchema {
-    return this.codeModel.schemas.addPrimitive(new UuidSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-UUID', schema), {
+    return this.codeModel.schemas.add(new UuidSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-UUID', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -191,7 +191,7 @@ export class ModelerFour {
     }));
   }
   processDurationSchema(name: string, schema: OpenAPI.Schema): DurationSchema {
-    return this.codeModel.schemas.addPrimitive(new DurationSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-DURATION', schema), {
+    return this.codeModel.schemas.add(new DurationSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-DURATION', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -205,7 +205,7 @@ export class ModelerFour {
     }));
   }
   processDateTimeSchema(name: string, schema: OpenAPI.Schema): DateTimeSchema {
-    return this.codeModel.schemas.addPrimitive(new DateTimeSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-DATETIME', schema), {
+    return this.codeModel.schemas.add(new DateTimeSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-DATETIME', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -220,7 +220,7 @@ export class ModelerFour {
     }));
   }
   processDateSchema(name: string, schema: OpenAPI.Schema): DateSchema {
-    return this.codeModel.schemas.addPrimitive(new DateSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-DATE', schema), {
+    return this.codeModel.schemas.add(new DateSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-DATE', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -234,7 +234,7 @@ export class ModelerFour {
     }));
   }
   processCharacterSchema(name: string, schema: OpenAPI.Schema): CharSchema {
-    return this.codeModel.schemas.addPrimitive(new CharSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHAR', schema), {
+    return this.codeModel.schemas.add(new CharSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHAR', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -248,7 +248,7 @@ export class ModelerFour {
     }));
   }
   processByteArraySchema(name: string, schema: OpenAPI.Schema): ByteArraySchema {
-    return this.codeModel.schemas.addPrimitive(new ByteArraySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-BYTEARRAY', schema), {
+    return this.codeModel.schemas.add(new ByteArraySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-BYTEARRAY', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -269,7 +269,7 @@ export class ModelerFour {
       throw Error();
     }
     const elementType = this.processSchema(itemSchema.name || 'array:itemschema', itemSchema.instance);
-    return this.codeModel.schemas.addPrimitive(new ArraySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA', schema), elementType, {
+    return this.codeModel.schemas.add(new ArraySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA', schema), elementType, {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -293,7 +293,7 @@ export class ModelerFour {
     const sealed = xmse && !(xmse.modelAsString);
 
     if (sealed) {
-      return this.codeModel.schemas.addChoice(new ChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+      return this.codeModel.schemas.add(new ChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
         extensions: this.interpret.getExtensionProperties(schema),
         summary: schema.title,
         defaultValue: schema.default,
@@ -309,7 +309,7 @@ export class ModelerFour {
       }));
     }
 
-    return this.codeModel.schemas.addSealedChoice(new SealedChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+    return this.codeModel.schemas.add(new SealedChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -354,12 +354,12 @@ export class ModelerFour {
       //},
 
     });
-    this.codeModel.schemas.addDictionary(dict);
+    this.codeModel.schemas.add(dict);
     return dict;
   }
 
   createObjectSchema(name: string, schema: OpenAPI.Schema) {
-    const objectSchema = this.codeModel.schemas.addObject(new ObjectSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA', schema), {
+    const objectSchema = this.codeModel.schemas.add(new ObjectSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -394,7 +394,7 @@ export class ModelerFour {
 
   processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AndSchema {
     let i = 0;
-    const andTypes: Array<ObjectSchemas> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
+    const andTypes: Array<ComplexSchema> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
       return this.processSchema(n || `${name}.allOf.${i++}`, s);
     })).toArray();
     const orTypes = values(aSchema.anyOf).select(sch => this.use(sch, (n, s) => {
@@ -421,14 +421,22 @@ export class ModelerFour {
     }
     const objectSchema = hasProperties ? this.createObjectSchema(name, schema) : undefined;
 
-    if (!isMoreThanObject && objectSchema) {
-      return this.codeModel.schemas.addObject(objectSchema);
+    if (objectSchema) {
+      //  return this.codeModel.schemas.add(objectSchema);
     }
 
     const dictionarySchema = dictionaryDef ? this.processDictionarySchema(name, aSchema) : undefined;
 
     if (objectSchema) {
+      // add it to the upcoming and schema set
       andTypes.unshift(objectSchema);
+
+      // set the apiversion namespace
+      const m = minimum(values(objectSchema.apiVersions).select(each => each.version).toArray());
+      objectSchema.language.default.namespace = pascalCase(`Api ${m}`);
+
+      // tell it should be internal if possible
+      objectSchema.language.default.internal = true;
     }
     if (dictionarySchema) {
       if (andTypes.length === 0 && xorTypes.length === 0 && orTypes.length === 0) {
@@ -440,9 +448,11 @@ export class ModelerFour {
     if (xorTypes.length === 0 && orTypes.length === 0) {
       // craft the and type for the model.
       const finalType = new AndSchema(this.interpret.getName(name, schema), schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
-        allOf: andTypes
+        allOf: andTypes,
+        apiVersions: this.interpret.getApiVersions(schema),
       });
-      return this.codeModel.schemas.addAndSchema(finalType);
+      finalType.language.default.namespace = pascalCase(`Api ${minimum(values(finalType.apiVersions).select(each => each.version).toArray())}`);
+      return this.codeModel.schemas.add(finalType);
     }
     // const andSchemas = andTypes.map( each => this.processSchema(''| each.) )
 
@@ -455,7 +465,7 @@ export class ModelerFour {
   }
 
   processUnixTimeSchema(name: string, schema: OpenAPI.Schema): UnixTimeSchema {
-    return this.codeModel.schemas.addPrimitive(new UnixTimeSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-UNIXTIME', schema), {
+    return this.codeModel.schemas.add(new UnixTimeSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-UNIXTIME', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -645,7 +655,7 @@ export class ModelerFour {
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.
-      console.error(group);
+
       const opGroup = this.codeModel.getOperationGroup(group);
       const op = opGroup.addOperation(new Operation(member, this.interpret.getDescription('MISSING-OPERATION-DESCRIPTION', operation), {
         extensions: this.interpret.getExtensionProperties(operation)
@@ -726,7 +736,7 @@ export class ModelerFour {
 
         for (const { key: mediaType, value: content } of this.resolveDictionary(response.content)) {
           const { name, instance: schema } = this.resolve(content.schema);
-          console.error(`${responseCode},${mediaType},${name} `);
+          //console.error(`${responseCode},${mediaType},${name} `);
           const isErr = responseCode === 'default' || response['x-ms-error-response'];
           if (schema) {
             const s = this.processSchema('xxx', schema);
