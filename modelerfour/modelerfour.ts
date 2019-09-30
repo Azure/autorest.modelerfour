@@ -52,7 +52,7 @@ export class ModelerFour {
     return dereference(this.input, item);
   }
 
-  private use<T, Q = void>(item: Refable<T> | undefined, action: (name: string | undefined, instance: T) => Q): Q {
+  private use<T, Q = void>(item: Refable<T> | undefined, action: (name: string, instance: T) => Q): Q {
     const i = dereference(this.input, item);
     if (i.instance) {
       return action(i.name, i.instance);
@@ -108,22 +108,22 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-        extensions: this.interpret.getExtensionProperties(schema),
-        summary: schema.title,
-        defaultValue: schema.default,
-        deprecated: this.interpret.getDeprecation(schema),
-        apiVersions: this.interpret.getApiVersions(schema),
-        example: this.interpret.getExample(schema),
-        externalDocs: this.interpret.getExternalDocs(schema),
-        serialization: {
-          xml: this.interpret.getXmlSerialization(schema)
-        },
-        maximum: schema.maximum,
-        minimum: schema.minimum,
-        multipleOf: schema.multipleOf,
-        exclusiveMaximum: schema.exclusiveMaximum,
-        exclusiveMinimum: schema.exclusiveMinimum
-      }));
+      extensions: this.interpret.getExtensionProperties(schema),
+      summary: schema.title,
+      defaultValue: schema.default,
+      deprecated: this.interpret.getDeprecation(schema),
+      apiVersions: this.interpret.getApiVersions(schema),
+      example: this.interpret.getExample(schema),
+      externalDocs: this.interpret.getExternalDocs(schema),
+      serialization: {
+        xml: this.interpret.getXmlSerialization(schema)
+      },
+      maximum: schema.maximum,
+      minimum: schema.minimum,
+      multipleOf: schema.multipleOf,
+      exclusiveMaximum: schema.exclusiveMaximum,
+      exclusiveMinimum: schema.exclusiveMinimum
+    }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -711,14 +711,14 @@ export class ModelerFour {
                 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                  protocol: {
-                    http: new HttpParameter(ParameterLocation.Body, {
-                      style: SerializationStyle.Json,
-                      implementation: ImplementationLocation.Client
-                    })
-                  }
-                }));
+                extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                protocol: {
+                  http: new HttpParameter(ParameterLocation.Body, {
+                    style: SerializationStyle.Json,
+                    implementation: ImplementationLocation.Client
+                  })
+                }
+              }));
             }
           }
             break;
@@ -736,7 +736,7 @@ export class ModelerFour {
 
         for (const { key: mediaType, value: content } of this.resolveDictionary(response.content)) {
           const { name, instance: schema } = this.resolve(content.schema);
-          //console.error(`${responseCode},${mediaType},${name} `);
+
           const isErr = responseCode === 'default' || response['x-ms-error-response'];
           if (schema) {
             const s = this.processSchema('xxx', schema);
@@ -744,16 +744,22 @@ export class ModelerFour {
               extensions: this.interpret.getExtensionProperties(response)
             });
 
+            const headers = new Array<Schema>();
+
             for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
-              // const schema: hh.schema
+              this.use(hh.schema, (n, sch) => {
+                const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
+                hsch.language.default.header = header;
+                headers.push(hsch);
+              });
             }
 
             rsp.protocol.http = SetType(HttpResponse, {
               statusCodes: [responseCode],
               mediaTypes: [mediaType],
-              headers: [],
-              //headers: Array<Schema>;
+              headers: headers.length ? headers : undefined,
             });
+
             if (isErr) {
               op.addException(rsp);
             } else {
