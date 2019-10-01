@@ -1,6 +1,6 @@
 import { Session } from '@azure-tools/autorest-extension-base';
 import * as OpenAPI from '@azure-tools/openapi';
-import { values, length, items, ToDictionary, Dictionary } from '@azure-tools/linq';
+import { values, length, items, ToDictionary, Dictionary, keys } from '@azure-tools/linq';
 import { CodeModel, HttpServer, ServerVariable, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
 import { StringFormat } from '@azure-tools/openapi';
 import { getPascalIdentifier } from '@azure-tools/codegen';
@@ -68,6 +68,15 @@ export class Interpretations {
     return [];
   }
 
+  getSerialization(schema: OpenAPI.Schema): any | undefined {
+    const xml = this.getXmlSerialization(schema);
+    if (xml) {
+      return {
+        xml
+      };
+    }
+    return undefined;
+  }
 
   getXmlSerialization(schema: OpenAPI.Schema): XmlSerlializationFormat | undefined {
     if (schema.xml) {
@@ -86,7 +95,7 @@ export class Interpretations {
     return undefined;
   }
   getExample(schema: OpenAPI.Schema): any {
-    return {};
+    return undefined;
   }
   getApiVersions(schema: OpenAPI.Schema): Array<ApiVersion> | undefined {
     if (schema['x-ms-metadata'] && schema['x-ms-metadata']['apiVersions']) {
@@ -216,12 +225,18 @@ export class Interpretations {
     return new ChoiceSchema(name, this.getDescription('MISSING-SERVER-VARIABLE-ENUM-DESCRIPTION', somethingWithEnum));
   }
 
-  getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> {
+  getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     return Interpretations.getExtensionProperties(dictionary);
   }
-  static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> {
+  static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     const result = ToDictionary(OpenAPI.includeXDash(dictionary), each => dictionary[each]);
-    result['x-ms-metadata'] = undefined;
+    delete result['x-ms-metadata'];
+    console.error(length(result));
+    console.error(keys(result).toArray());
+    if (length(result) === 0) {
+
+      return undefined;
+    }
     return result;
   }
 }

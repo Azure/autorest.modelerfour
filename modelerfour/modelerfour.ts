@@ -81,9 +81,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      }
+      serialization: this.interpret.getSerialization(schema)
     }));
   }
   processIntegerSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
@@ -95,9 +93,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       maximum: schema.maximum,
       minimum: schema.minimum,
       multipleOf: schema.multipleOf,
@@ -108,22 +104,20 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-      extensions: this.interpret.getExtensionProperties(schema),
-      summary: schema.title,
-      defaultValue: schema.default,
-      deprecated: this.interpret.getDeprecation(schema),
-      apiVersions: this.interpret.getApiVersions(schema),
-      example: this.interpret.getExample(schema),
-      externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
-      maximum: schema.maximum,
-      minimum: schema.minimum,
-      multipleOf: schema.multipleOf,
-      exclusiveMaximum: schema.exclusiveMaximum,
-      exclusiveMinimum: schema.exclusiveMinimum
-    }));
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: this.interpret.getSerialization(schema),
+        maximum: schema.maximum,
+        minimum: schema.minimum,
+        multipleOf: schema.multipleOf,
+        exclusiveMaximum: schema.exclusiveMaximum,
+        exclusiveMinimum: schema.exclusiveMinimum
+      }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -134,9 +128,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       maxLength: schema.maxLength ? Number(schema.maxLength) : undefined,
       minLength: schema.minLength ? Number(schema.minLength) : undefined,
       pattern: schema.pattern ? String(schema.pattern) : undefined
@@ -151,9 +143,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       maxLength: schema.maxLength ? Number(schema.maxLength) : undefined,
       minLength: schema.minLength ? Number(schema.minLength) : undefined,
       pattern: schema.pattern ? String(schema.pattern) : undefined
@@ -168,9 +158,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       maxLength: schema.maxLength ? Number(schema.maxLength) : undefined,
       minLength: schema.minLength ? Number(schema.minLength) : undefined,
       pattern: schema.pattern ? String(schema.pattern) : undefined
@@ -185,9 +173,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      }
+      serialization: this.interpret.getSerialization(schema)
     }));
   }
   processDurationSchema(name: string, schema: OpenAPI.Schema): DurationSchema {
@@ -199,9 +185,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
     }));
   }
   processDateTimeSchema(name: string, schema: OpenAPI.Schema): DateTimeSchema {
@@ -213,9 +197,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       format: schema.format === StringFormat.DateTimeRfc1123 ? StringFormat.DateTimeRfc1123 : StringFormat.DateTime,
     }));
   }
@@ -228,9 +210,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
     }));
   }
   processCharacterSchema(name: string, schema: OpenAPI.Schema): CharSchema {
@@ -242,9 +222,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
     }));
   }
   processByteArraySchema(name: string, schema: OpenAPI.Schema): ByteArraySchema {
@@ -256,9 +234,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       format: schema.format === StringFormat.Base64Url ? StringFormat.Base64Url : StringFormat.Byte
     }));
   }
@@ -277,9 +253,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       maxItems: schema.maxItems ? Number(schema.maxItems) : undefined,
       minItems: schema.minItems ? Number(schema.minItems) : undefined,
       uniqueItems: schema.uniqueItems ? true : undefined
@@ -301,9 +275,7 @@ export class ModelerFour {
         apiVersions: this.interpret.getApiVersions(schema),
         example: this.interpret.getExample(schema),
         externalDocs: this.interpret.getExternalDocs(schema),
-        serialization: {
-          xml: this.interpret.getXmlSerialization(schema)
-        },
+        serialization: this.interpret.getSerialization(schema),
         choiceType: new StringSchema('choice', 'choice'),
         choices: this.interpret.getEnumChoices(schema)
       }));
@@ -317,9 +289,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       choiceType: new StringSchema('choice', 'choice'),
       choices: this.interpret.getEnumChoices(schema)
     }));
@@ -349,9 +319,7 @@ export class ModelerFour {
       //apiVersions: this.interpret.getApiVersions(schema),
       //example: this.interpret.getExample(schema),
       //externalDocs: this.interpret.getExternalDocs(schema),
-      //serialization: {
-      //xml: this.interpret.getXmlSerialization(schema)
-      //},
+      //serialization: this.interpret.getSerialization(schema),
 
     });
     this.codeModel.schemas.add(dict);
@@ -367,9 +335,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      },
+      serialization: this.interpret.getSerialization(schema),
       minProperties: schema.minProperties ? Number(schema.minProperties) : undefined,
       maxProperties: schema.maxProperties ? Number(schema.maxProperties) : undefined,
     }));
@@ -473,9 +439,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: {
-        xml: this.interpret.getXmlSerialization(schema)
-      }
+      serialization: this.interpret.getSerialization(schema)
     }));
   }
 
@@ -711,14 +675,14 @@ export class ModelerFour {
                 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Json,
-                    implementation: ImplementationLocation.Client
-                  })
-                }
-              }));
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Json,
+                      implementation: ImplementationLocation.Client
+                    })
+                  }
+                }));
             }
           }
             break;
