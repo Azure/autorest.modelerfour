@@ -129,9 +129,9 @@ export class Interpretations {
       group: opId.substr(0, p),
       member: opId.substr(p + 1)
     } : {
-      group: '',
-      member: opId
-    };
+        group: '',
+        member: opId
+      };
   }
 
   isStreamSchema(schema: OpenAPI.Schema) {
@@ -231,10 +231,7 @@ export class Interpretations {
   static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     const result = ToDictionary(OpenAPI.includeXDash(dictionary), each => dictionary[each]);
     delete result['x-ms-metadata'];
-    console.error(length(result));
-    console.error(keys(result).toArray());
     if (length(result) === 0) {
-
       return undefined;
     }
     return result;
