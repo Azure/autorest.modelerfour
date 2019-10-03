@@ -104,20 +104,20 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-      extensions: this.interpret.getExtensionProperties(schema),
-      summary: schema.title,
-      defaultValue: schema.default,
-      deprecated: this.interpret.getDeprecation(schema),
-      apiVersions: this.interpret.getApiVersions(schema),
-      example: this.interpret.getExample(schema),
-      externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: this.interpret.getSerialization(schema),
-      maximum: schema.maximum,
-      minimum: schema.minimum,
-      multipleOf: schema.multipleOf,
-      exclusiveMaximum: schema.exclusiveMaximum,
-      exclusiveMinimum: schema.exclusiveMinimum
-    }));
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: this.interpret.getSerialization(schema),
+        maximum: schema.maximum,
+        minimum: schema.minimum,
+        multipleOf: schema.multipleOf,
+        exclusiveMaximum: schema.exclusiveMaximum,
+        exclusiveMinimum: schema.exclusiveMinimum
+      }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -675,14 +675,14 @@ export class ModelerFour {
                 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Json,
-                    implementation: ImplementationLocation.Client
-                  })
-                }
-              }));
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Json,
+                      implementation: ImplementationLocation.Client
+                    })
+                  }
+                }));
             }
           }
             break;
@@ -732,6 +732,7 @@ export class ModelerFour {
           }
         }
       }
+
       //op.addResponse()
       //op.addException();
     });
