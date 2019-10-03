@@ -1,0 +1,537 @@
+!<!CodeModel> 
+schemas: !<!Schemas> 
+  objects:
+    - !<!ObjectSchema> &ref_2
+      $key: Error
+      type: object
+      description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      properties:
+        - !<!Property> 
+          $key: status
+          schema: !<!NumberSchema> &ref_0
+            $key: typeForstatus
+            type: integer
+            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+            precision: 32
+            language: !<!Languages> 
+              default:
+                name: typeForstatus
+                description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: status
+          language: !<!Languages> 
+            default:
+              name: status
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:433'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          $key: Error-message
+          schema: !<!StringSchema> &ref_1
+            $key: Error-message
+            type: string
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+            apiVersions:
+              - !<!ApiVersion> 
+                version: 1.0.0
+            language: !<!Languages> 
+              default:
+                name: Error-message
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: message
+          language: !<!Languages> 
+            default:
+              name: Error-message
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:434'
+          protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: Error
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+          internal: true
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  ands:
+    - !<!AndSchema> &ref_5
+      $key: Error
+      type: and
+      description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+      allOf:
+        - *ref_2
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: Error
+          description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  dates:
+    - !<!DateSchema> &ref_4
+      $key: paths·date-null·get·responses·200·content·application-json·schema
+      type: date
+      description: MISSING-SCHEMA-DESCRIPTION-DATE
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·date-null·get·responses·200·content·application-json·schema
+          description: MISSING-SCHEMA-DESCRIPTION-DATE
+      protocol: !<!Protocols> {}
+    - !<!DateSchema> &ref_6
+      $key: paths·date-invaliddate·get·responses·200·content·application-json·schema
+      type: date
+      description: MISSING-SCHEMA-DESCRIPTION-DATE
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·date-invaliddate·get·responses·200·content·application-json·schema
+          description: MISSING-SCHEMA-DESCRIPTION-DATE
+      protocol: !<!Protocols> {}
+    - !<!DateSchema> &ref_7
+      $key: paths·date-overflowdate·get·responses·200·content·application-json·schema
+      type: date
+      description: MISSING-SCHEMA-DESCRIPTION-DATE
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·date-overflowdate·get·responses·200·content·application-json·schema
+          description: MISSING-SCHEMA-DESCRIPTION-DATE
+      protocol: !<!Protocols> {}
+    - !<!DateSchema> &ref_8
+      $key: paths·date-underflowdate·get·responses·200·content·application-json·schema
+      type: date
+      description: MISSING-SCHEMA-DESCRIPTION-DATE
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·date-underflowdate·get·responses·200·content·application-json·schema
+          description: MISSING-SCHEMA-DESCRIPTION-DATE
+      protocol: !<!Protocols> {}
+    - !<!DateSchema> &ref_9
+      $key: paths·date-max·get·responses·200·content·application-json·schema
+      type: date
+      description: MISSING-SCHEMA-DESCRIPTION-DATE
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·date-max·get·responses·200·content·application-json·schema
+          description: MISSING-SCHEMA-DESCRIPTION-DATE
+      protocol: !<!Protocols> {}
+  numbers;:
+    - *ref_0
+  sealedChoices:
+    - !<!SealedChoiceSchema> &ref_10
+      $key: paths·date-min·get·responses·200·content·application-json·schema
+      choices:
+        - !<!ChoiceValue> 
+          value: '0000-01-01'
+          language:
+            default:
+              name: '0000-01-01'
+              description: ''
+      type: sealed-choice
+      description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      choiceType: !<!StringSchema> 
+        $key: choice
+        type: string
+        description: choice
+        language: !<!Languages> 
+          default:
+            name: choice
+            description: choice
+        protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: paths·date-min·get·responses·200·content·application-json·schema
+          description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+      protocol: !<!Protocols> {}
+  strings:
+    - *ref_1
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: body-date
+operationGroups:
+  - !<!OperationGroup> 
+    $key: date
+    operations:
+      - !<!Operation> 
+        $key: getNull
+        description: Get null date value
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /date/null
+              method: get
+              servers:
+                - !<!HttpServer> &ref_3
+                  url: 'http://localhost:3000/'
+                  language:
+                    default:
+                      name: server-name
+                      description: MISSING-SERVER-DESCRIPTION
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_4
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getNull
+            description: Get null date value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: getInvalidDate
+        description: Get invalid date value
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /date/invaliddate
+              method: get
+              servers:
+                - *ref_3
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_6
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getInvalidDate
+            description: Get invalid date value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: getOverflowDate
+        description: Get overflow date value
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /date/overflowdate
+              method: get
+              servers:
+                - *ref_3
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_7
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getOverflowDate
+            description: Get overflow date value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: getUnderflowDate
+        description: Get underflow date value
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /date/underflowdate
+              method: get
+              servers:
+                - *ref_3
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_8
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getUnderflowDate
+            description: Get underflow date value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: putMaxDate
+        description: Put max date value 9999-12-31
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpStreamRequest> 
+              path: /date/max
+              method: put
+              mediaType: application/json
+              servers:
+                - *ref_3
+              stream: true
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        extensions:
+          x-ms-requestBody-index: 0
+        language: !<!Languages> 
+          default:
+            name: putMaxDate
+            description: Put max date value 9999-12-31
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: getMaxDate
+        description: Get max date value 9999-12-31
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /date/max
+              method: get
+              servers:
+                - *ref_3
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_9
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getMaxDate
+            description: Get max date value 9999-12-31
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: putMinDate
+        description: Put min date value 0000-01-01
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpStreamRequest> 
+              path: /date/min
+              method: put
+              mediaType: application/json
+              servers:
+                - *ref_3
+              stream: true
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        extensions:
+          x-ms-requestBody-index: 0
+        language: !<!Languages> 
+          default:
+            name: putMinDate
+            description: Put min date value 0000-01-01
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: getMinDate
+        description: Get min date value 0000-01-01
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /date/min
+              method: get
+              servers:
+                - *ref_3
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_10
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getMinDate
+            description: Get min date value 0000-01-01
+        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: ''
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> 
+    servers:
+      - *ref_3

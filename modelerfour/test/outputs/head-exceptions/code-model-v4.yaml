@@ -1,0 +1,84 @@
+!<!CodeModel> 
+schemas: !<!Schemas> {}
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: head-exceptions
+operationGroups:
+  - !<!OperationGroup> 
+    $key: headException
+    operations:
+      - !<!Operation> 
+        $key: head200
+        description: Return 200 status code if successful
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /http/success/200
+              method: head
+              servers:
+                - !<!HttpServer> &ref_0
+                  url: 'http://localhost:3000/'
+                  language:
+                    default:
+                      name: server-name
+                      description: MISSING-SERVER-DESCRIPTION
+        language: !<!Languages> 
+          default:
+            name: head200
+            description: Return 200 status code if successful
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: head204
+        description: Return 204 status code if successful
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /http/success/204
+              method: head
+              servers:
+                - *ref_0
+        language: !<!Languages> 
+          default:
+            name: head204
+            description: Return 204 status code if successful
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: head404
+        description: Return 404 status code if successful
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /http/success/404
+              method: head
+              servers:
+                - *ref_0
+        language: !<!Languages> 
+          default:
+            name: head404
+            description: Return 404 status code if successful
+        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: ''
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> 
+    servers:
+      - *ref_0

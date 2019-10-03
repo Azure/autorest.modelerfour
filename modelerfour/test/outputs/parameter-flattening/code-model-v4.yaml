@@ -1,0 +1,178 @@
+!<!CodeModel> 
+schemas: !<!Schemas> 
+  objects:
+    - !<!ObjectSchema> &ref_2
+      $key: AvailabilitySetUpdateParameters
+      type: object
+      description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      properties:
+        - !<!Property> 
+          $key: AvailabilitySetUpdateParameters-tags
+          schema: !<!DictionarySchema> &ref_1
+            $key: AvailabilitySetUpdateParameters-tags
+            type: dictionary
+            description: A description about the set of tags.
+            elementType: !<!StringSchema> &ref_0
+              $key: components·schemas·availabilitysetupdateparameters·properties·tags·additionalproperties
+              type: string
+              description: MISSING-SCHEMA-DESCRIPTION-STRING
+              apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+              language: !<!Languages> 
+                default:
+                  name: components·schemas·availabilitysetupdateparameters·properties·tags·additionalproperties
+                  description: MISSING-SCHEMA-DESCRIPTION-STRING
+              protocol: !<!Protocols> {}
+            language: !<!Languages> 
+              default:
+                name: AvailabilitySetUpdateParameters-tags
+                description: A description about the set of tags.
+            protocol: !<!Protocols> {}
+          description: A description about the set of tags.
+          required: true
+          serializedName: tags
+          language: !<!Languages> 
+            default:
+              name: AvailabilitySetUpdateParameters-tags
+              description: A description about the set of tags.
+              uid: 'property:603'
+          protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: AvailabilitySetUpdateParameters
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+          internal: true
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  dictionaries:
+    - *ref_1
+  ands:
+    - !<!AndSchema> 
+      $key: AvailabilitySetUpdateParameters
+      type: and
+      description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+      allOf:
+        - *ref_2
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: AvailabilitySetUpdateParameters
+          description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  strings:
+    - !<!StringSchema> &ref_4
+      $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_5
+      $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      maxLength: 80
+      language: !<!Languages> 
+        default:
+          name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+    - *ref_0
+info: !<!Info> 
+  description: Resource Flattening for AutoRest
+  title: parameter-flattening
+  extensions:
+    x-ms-code-generation-settings:
+      ft: 2
+operationGroups:
+  - !<!OperationGroup> 
+    $key: AvailabilitySets
+    operations:
+      - !<!Operation> 
+        $key: Update
+        description: Updates the tags for an availability set.
+        request: !<!Request> 
+          parameters:
+            - !<!Parameter> 
+              $key: resourceGroupName
+              schema: *ref_4
+              description: The name of the resource group.
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: resourceGroupName
+                  description: The name of the resource group.
+                  uid: 'parameter:601'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            - !<!Parameter> 
+              $key: availabilitySetName
+              schema: *ref_5
+              description: The name of the storage availability set.
+              implementation: Method
+              extensions:
+                x-ms-client-name: avset
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: availabilitySetName
+                  description: The name of the storage availability set.
+                  uid: 'parameter:602'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpStreamRequest> 
+              path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
+              method: patch
+              mediaType: application/json
+              servers:
+                - !<!HttpServer> &ref_3
+                  url: 'http://localhost:3000/'
+                  language:
+                    default:
+                      name: server-name
+                      description: MISSING-SERVER-DESCRIPTION
+              stream: true
+        extensions:
+          x-ms-requestBody-index: 2
+        language: !<!Languages> 
+          default:
+            name: Update
+            description: Updates the tags for an availability set.
+        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: ''
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> 
+    servers:
+      - *ref_3

@@ -18,7 +18,7 @@
     "watch": "tsc -p . --watch",
     "build": "tsc -p .",
     "prepare": "npm run build",
-    "test": "npm run build && mocha dist/test"
+    "test": "start-autorest-testserver & npm run build && mocha dist/test & stop-autorest-testserver"
   },
   "repository": {
     "type": "git",
@@ -46,7 +46,9 @@
     "@typescript-eslint/parser": "~2.0.0",
     "eslint": "~6.2.2",
     "@azure-tools/async-io": "~3.0.0",
-    "source-map-support": "0.5.13"
+    "source-map-support": "0.5.13",
+    "@autorest/test-server": "~3.0.26",
+    "@azure-tools/uri": "~3.0.0"
   },
   "dependencies": {
     "js-yaml": "3.13.1",

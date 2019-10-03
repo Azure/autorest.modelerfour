@@ -1,0 +1,300 @@
+!<!CodeModel> 
+schemas: !<!Schemas> 
+  objects:
+    - !<!ObjectSchema> &ref_2
+      $key: Error
+      type: object
+      description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      properties:
+        - !<!Property> 
+          $key: status
+          schema: !<!NumberSchema> &ref_1
+            $key: typeForstatus
+            type: integer
+            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+            precision: 32
+            language: !<!Languages> 
+              default:
+                name: typeForstatus
+                description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: status
+          language: !<!Languages> 
+            default:
+              name: status
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:485'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          $key: Error-message
+          schema: !<!StringSchema> &ref_0
+            $key: Error-message
+            type: string
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+            apiVersions:
+              - !<!ApiVersion> 
+                version: 1.0.0
+            language: !<!Languages> 
+              default:
+                name: Error-message
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: message
+          language: !<!Languages> 
+            default:
+              name: Error-message
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:486'
+          protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: Error
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+          internal: true
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  ands:
+    - !<!AndSchema> &ref_7
+      $key: Error
+      type: and
+      description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+      allOf:
+        - *ref_2
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: Error
+          description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  numbers;:
+    - *ref_1
+  strings:
+    - !<!StringSchema> 
+      $key: ServerVariable/vault
+      type: string
+      description: 'The vault name, e.g. https://myvault'
+      language: !<!Languages> 
+        default:
+          name: ServerVariable/vault
+          description: 'The vault name, e.g. https://myvault'
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> 
+      $key: ServerVariable/secret
+      type: string
+      description: Secret value.
+      language: !<!Languages> 
+        default:
+          name: ServerVariable/secret
+          description: Secret value.
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> 
+      $key: ServerVariable/dnsSuffix
+      type: string
+      description: A string value that is used as a global part of the parameterized host. Default value 'host'.
+      language: !<!Languages> 
+        default:
+          name: ServerVariable/dnsSuffix
+          description: A string value that is used as a global part of the parameterized host. Default value 'host'.
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> 
+      $key: ServerVariable/
+      type: string
+      description: MISSING-SERVER_VARIABLE-DESCRIPTION
+      language: !<!Languages> 
+        default:
+          name: ServerVariable/
+          description: MISSING-SERVER_VARIABLE-DESCRIPTION
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_4
+      $key: paths·customuri-subscriptionid-keyname·get·parameters·0·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·customuri-subscriptionid-keyname·get·parameters·0·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_5
+      $key: components·parameters·subscriptionidparameter·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: components·parameters·subscriptionidparameter·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_6
+      $key: paths·customuri-subscriptionid-keyname·get·parameters·2·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      defaultValue: v1
+      language: !<!Languages> 
+        default:
+          name: paths·customuri-subscriptionid-keyname·get·parameters·2·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+    - *ref_0
+    - !<!StringSchema> 
+      $key: components·parameters·dnssuffix·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      defaultValue: host
+      language: !<!Languages> 
+        default:
+          name: components·parameters·dnssuffix·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: custom-baseUrl-more-options
+operationGroups:
+  - !<!OperationGroup> 
+    $key: paths
+    operations:
+      - !<!Operation> 
+        $key: getEmpty
+        description: Get a 200 to test a valid base uri
+        request: !<!Request> 
+          parameters:
+            - !<!Parameter> 
+              $key: keyName
+              schema: *ref_4
+              description: The key name with value 'key1'.
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: keyName
+                  description: The key name with value 'key1'.
+                  uid: 'parameter:482'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            - !<!Parameter> 
+              $key: subscriptionId
+              schema: *ref_5
+              description: The subscription id with value 'test12'.
+              implementation: Method
+              language: !<!Languages> 
+                default:
+                  name: subscriptionId
+                  description: The subscription id with value 'test12'.
+                  uid: 'parameter:483'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            - !<!Parameter> 
+              $key: keyVersion
+              schema: *ref_6
+              description: The key version. Default value 'v1'.
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: keyVersion
+                  description: The key version. Default value 'v1'.
+                  uid: 'parameter:484'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: query
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: '/customuri/{subscriptionId}/{keyName}'
+              method: get
+              servers:
+                - !<!HttpServer> &ref_3
+                  url: '{vault}{secret}{dnsSuffix}'
+                  variables:
+                    - !<!ServerVariable> 
+                      $key: vault
+                      description: 'The vault name, e.g. https://myvault'
+                      default: ''
+                      language:
+                        default:
+                          name: vault
+                          description: 'The vault name, e.g. https://myvault'
+                    - !<!ServerVariable> 
+                      $key: secret
+                      description: Secret value.
+                      default: ''
+                      language:
+                        default:
+                          name: secret
+                          description: Secret value.
+                    - !<!ServerVariable> 
+                      $key: dnsSuffix
+                      description: A string value that is used as a global part of the parameterized host. Default value 'host'.
+                      default: host
+                      language:
+                        default:
+                          name: dnsSuffix
+                          description: A string value that is used as a global part of the parameterized host. Default value 'host'.
+                    - !<!ServerVariable> 
+                      $key: ''
+                      description: MISSING-SERVER_VARIABLE-DESCRIPTION
+                      default: ''
+                      language:
+                        default:
+                          name: ''
+                          description: MISSING-SERVER_VARIABLE-DESCRIPTION
+                  language:
+                    default:
+                      name: server-name
+                      description: MISSING-SERVER-DESCRIPTION
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_7
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getEmpty
+            description: Get a 200 to test a valid base uri
+        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: ''
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> 
+    servers:
+      - *ref_3

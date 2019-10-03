@@ -1,0 +1,325 @@
+!<!CodeModel> 
+schemas: !<!Schemas> 
+  objects:
+    - !<!ObjectSchema> &ref_5
+      $key: Error
+      type: object
+      description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      properties:
+        - !<!Property> 
+          $key: status
+          schema: !<!NumberSchema> &ref_4
+            $key: typeForstatus
+            type: integer
+            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+            precision: 32
+            language: !<!Languages> 
+              default:
+                name: typeForstatus
+                description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: status
+          language: !<!Languages> 
+            default:
+              name: status
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:717'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          $key: Error-message
+          schema: !<!StringSchema> &ref_3
+            $key: Error-message
+            type: string
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+            apiVersions:
+              - !<!ApiVersion> 
+                version: 1.0.0
+            language: !<!Languages> 
+              default:
+                name: Error-message
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: message
+          language: !<!Languages> 
+            default:
+              name: Error-message
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:718'
+          protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: Error
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+          internal: true
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  ands:
+    - !<!AndSchema> &ref_8
+      $key: Error
+      type: and
+      description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+      allOf:
+        - *ref_5
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: Error
+          description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+          namespace: Api10
+      protocol: !<!Protocols> {}
+  arrays:
+    - !<!ArraySchema> &ref_7
+      $key: paths·queries-array-multi-string-null·get·parameters·0·schema
+      type: array
+      description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      elementType: !<!StringSchema> &ref_0
+        $key: get-0-itemsItem
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: get-0-itemsItem
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: paths·queries-array-multi-string-null·get·parameters·0·schema
+          description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+      protocol: !<!Protocols> {}
+    - !<!ArraySchema> &ref_9
+      $key: paths·queries-array-multi-string-empty·get·parameters·0·schema
+      type: array
+      description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      elementType: !<!StringSchema> &ref_1
+        $key: paths·queries-array-multi-string-empty·get·parameters·0·schema·items
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: paths·queries-array-multi-string-empty·get·parameters·0·schema·items
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: paths·queries-array-multi-string-empty·get·parameters·0·schema
+          description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+      protocol: !<!Protocols> {}
+    - !<!ArraySchema> &ref_10
+      $key: paths·queries-array-multi-string-valid·get·parameters·0·schema
+      type: array
+      description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      elementType: !<!StringSchema> &ref_2
+        $key: paths·queries-array-multi-string-valid·get·parameters·0·schema·items
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: paths·queries-array-multi-string-valid·get·parameters·0·schema·items
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: paths·queries-array-multi-string-valid·get·parameters·0·schema
+          description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+      protocol: !<!Protocols> {}
+  numbers;:
+    - *ref_4
+  strings:
+    - *ref_0
+    - *ref_3
+    - *ref_1
+    - *ref_2
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: url-multi-collectionFormat
+operationGroups:
+  - !<!OperationGroup> 
+    $key: queries
+    operations:
+      - !<!Operation> 
+        $key: ArrayStringMultiNull
+        description: Get a null array of string using the multi-array format
+        request: !<!Request> 
+          parameters:
+            - !<!Parameter> 
+              $key: arrayQuery
+              schema: *ref_7
+              description: a null array of string using the multi-array format
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: arrayQuery
+                  description: a null array of string using the multi-array format
+                  uid: 'parameter:716'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: query
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /queries/array/multi/string/null
+              method: get
+              servers:
+                - !<!HttpServer> &ref_6
+                  url: 'http://localhost:3000/'
+                  language:
+                    default:
+                      name: server-name
+                      description: MISSING-SERVER-DESCRIPTION
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_8
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: ArrayStringMultiNull
+            description: Get a null array of string using the multi-array format
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: ArrayStringMultiEmpty
+        description: 'Get an empty array [] of string using the multi-array format'
+        request: !<!Request> 
+          parameters:
+            - !<!Parameter> 
+              $key: arrayQuery
+              schema: *ref_9
+              description: 'an empty array [] of string using the multi-array format'
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: arrayQuery
+                  description: 'an empty array [] of string using the multi-array format'
+                  uid: 'parameter:719'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: query
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /queries/array/multi/string/empty
+              method: get
+              servers:
+                - *ref_6
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_8
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: ArrayStringMultiEmpty
+            description: 'Get an empty array [] of string using the multi-array format'
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: ArrayStringMultiValid
+        description: 'Get an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
+        request: !<!Request> 
+          parameters:
+            - !<!Parameter> 
+              $key: arrayQuery
+              schema: *ref_10
+              description: 'an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: arrayQuery
+                  description: 'an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
+                  uid: 'parameter:720'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: query
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: /queries/array/multi/string/valid
+              method: get
+              servers:
+                - *ref_6
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_8
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: ArrayStringMultiValid
+            description: 'Get an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
+        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: ''
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> 
+    servers:
+      - *ref_6

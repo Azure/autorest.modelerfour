@@ -1,0 +1,338 @@
+!<!CodeModel> 
+schemas: !<!Schemas> 
+  objects:
+    - !<!ObjectSchema> &ref_3
+      $key: Pet
+      type: object
+      description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+      apiVersions:
+        - !<!ApiVersion> 
+          version: '2016-07-07'
+      properties:
+        - !<!Property> 
+          $key: Pet-name
+          schema: !<!StringSchema> &ref_0
+            $key: Pet-name
+            type: string
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+            apiVersions:
+              - !<!ApiVersion> 
+                version: '2016-07-07'
+            language: !<!Languages> 
+              default:
+                name: Pet-name
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          required: false
+          serializedName: name
+          language: !<!Languages> 
+            default:
+              name: Pet-name
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:488'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          $key: DaysOfWeekExtensibleEnum
+          schema: !<!SealedChoiceSchema> &ref_1
+            $key: DaysOfWeekExtensibleEnum
+            choices:
+              - !<!ChoiceValue> 
+                value: Monday
+                language:
+                  default:
+                    name: Monday
+                    description: ''
+              - !<!ChoiceValue> 
+                value: Tuesday
+                language:
+                  default:
+                    name: Tuesday
+                    description: ''
+              - !<!ChoiceValue> 
+                value: Wednesday
+                language:
+                  default:
+                    name: Wednesday
+                    description: ''
+              - !<!ChoiceValue> 
+                value: Thursday
+                language:
+                  default:
+                    name: Thursday
+                    description: ''
+              - !<!ChoiceValue> 
+                value: Friday
+                language:
+                  default:
+                    name: Friday
+                    description: ''
+              - !<!ChoiceValue> 
+                value: Saturday
+                language:
+                  default:
+                    name: Saturday
+                    description: ''
+              - !<!ChoiceValue> 
+                value: Sunday
+                language:
+                  default:
+                    name: Sunday
+                    description: ''
+            type: sealed-choice
+            description: Type of Pet
+            apiVersions:
+              - !<!ApiVersion> 
+                version: '2016-07-07'
+            choiceType: !<!StringSchema> 
+              $key: choice
+              type: string
+              description: choice
+              language: !<!Languages> 
+                default:
+                  name: choice
+                  description: choice
+              protocol: !<!Protocols> {}
+            defaultValue: Friday
+            extensions:
+              x-ms-enum:
+                name: DaysOfWeekExtensibleEnum
+                modelAsString: true
+            language: !<!Languages> 
+              default:
+                name: DaysOfWeekExtensibleEnum
+                description: Type of Pet
+            protocol: !<!Protocols> {}
+          description: Type of Pet
+          required: false
+          serializedName: DaysOfWeek
+          language: !<!Languages> 
+            default:
+              name: DaysOfWeekExtensibleEnum
+              description: Type of Pet
+              uid: 'property:489'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          $key: IntEnum
+          schema: !<!SealedChoiceSchema> &ref_2
+            $key: IntEnum
+            choices:
+              - !<!ChoiceValue> 
+                value: '1'
+                language:
+                  default:
+                    name: '1'
+                    description: one
+              - !<!ChoiceValue> 
+                value: '2'
+                language:
+                  default:
+                    name: '2'
+                    description: two
+              - !<!ChoiceValue> 
+                value: '3'
+                language:
+                  default:
+                    name: '3'
+                    description: three
+            type: sealed-choice
+            description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+            apiVersions:
+              - !<!ApiVersion> 
+                version: '2016-07-07'
+            choiceType: !<!StringSchema> 
+              $key: choice
+              type: string
+              description: choice
+              language: !<!Languages> 
+                default:
+                  name: choice
+                  description: choice
+              protocol: !<!Protocols> {}
+            extensions:
+              x-ms-enum:
+                name: IntEnum
+                modelAsString: true
+                values:
+                  - name: '1'
+                    description: one
+                    allowedValues:
+                      - '1.1'
+                      - '1.2'
+                      - '1.3'
+                    value: '1'
+                  - name: '2'
+                    description: two
+                    allowedValues:
+                      - '2.1'
+                      - '2.2'
+                    value: '2'
+                  - name: '3'
+                    description: three
+                    allowedValues:
+                      - '3.1'
+                      - '3.3'
+                    value: '3'
+            language: !<!Languages> 
+              default:
+                name: IntEnum
+                description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          required: true
+          serializedName: IntEnum
+          language: !<!Languages> 
+            default:
+              name: IntEnum
+              description: PROPERTY-DESCRIPTION-MISSING
+              uid: 'property:490'
+          protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: Pet
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+          internal: true
+          namespace: Api201607
+      protocol: !<!Protocols> {}
+  ands:
+    - !<!AndSchema> &ref_6
+      $key: Pet
+      type: and
+      description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+      allOf:
+        - *ref_3
+      apiVersions:
+        - !<!ApiVersion> 
+          version: '2016-07-07'
+      language: !<!Languages> 
+        default:
+          name: Pet
+          description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+          namespace: Api201607
+      protocol: !<!Protocols> {}
+  sealedChoices:
+    - *ref_1
+    - *ref_2
+  strings:
+    - !<!StringSchema> &ref_5
+      $key: components·parameters·petid·schema
+      type: string
+      description: MISSING-SCHEMA-DESCRIPTION-STRING
+      apiVersions:
+        - !<!ApiVersion> 
+          version: '2016-07-07'
+      language: !<!Languages> 
+        default:
+          name: components·parameters·petid·schema
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+      protocol: !<!Protocols> {}
+    - *ref_0
+info: !<!Info> 
+  description: PetStore
+  title: extensible-enums-swagger
+operationGroups:
+  - !<!OperationGroup> 
+    $key: Pet
+    operations:
+      - !<!Operation> 
+        $key: GetByPetId
+        description: MISSING-OPERATION-DESCRIPTION
+        request: !<!Request> 
+          parameters:
+            - !<!Parameter> 
+              $key: petId
+              schema: *ref_5
+              description: Pet id
+              implementation: Method
+              extensions:
+                x-ms-parameter-location: method
+              language: !<!Languages> 
+                default:
+                  name: petId
+                  description: Pet id
+                  uid: 'parameter:487'
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpRequest> 
+              path: '/extensibleenums/pet/{petId}'
+              method: get
+              servers:
+                - !<!HttpServer> &ref_4
+                  url: 'http://localhost:3000/'
+                  language:
+                    default:
+                      name: server-name
+                      description: MISSING-SERVER-DESCRIPTION
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_6
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        language: !<!Languages> 
+          default:
+            name: GetByPetId
+            description: MISSING-OPERATION-DESCRIPTION
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        $key: AddPet
+        description: MISSING-OPERATION-DESCRIPTION
+        request: !<!Request> 
+          language: !<!Languages> 
+            default:
+              name: ''
+              description: ''
+          protocol: !<!Protocols> 
+            http: !<!HttpStreamRequest> 
+              path: /extensibleenums/pet/addPet
+              method: post
+              mediaType: application/json
+              servers:
+                - *ref_4
+              stream: true
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_6
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        extensions:
+          x-ms-requestBody-index: 0
+        language: !<!Languages> 
+          default:
+            name: AddPet
+            description: MISSING-OPERATION-DESCRIPTION
+        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: ''
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> 
+    servers:
+      - *ref_4
