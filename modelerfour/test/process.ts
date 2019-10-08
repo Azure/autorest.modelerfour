@@ -13,13 +13,10 @@ import { values } from '@azure-tools/linq';
 import { CodeModel } from '@azure-tools/codemodel';
 import { Model } from '@azure-tools/openapi';
 import { codeModelSchema } from '@azure-tools/codemodel';
-import { ReadUri } from "@azure-tools/uri";
+import { ReadUri } from '@azure-tools/uri';
 
 
 require('source-map-support').install();
-
-
-
 
 
 const resources = `${__dirname}/../../test/resources/process`;
@@ -118,7 +115,7 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
     // console.log(serialize(codeModel))
     const yaml = serialize(codeModel, codeModelSchema);
 
-    await (writeFile(`${__dirname}/../../output.yaml`, yaml));
+    //await (writeFile(`${__dirname}/../../output.yaml`, yaml));
 
     const cms = deserialize<CodeModel>(yaml, 'foo.yaml', codeModelSchema);
 
@@ -127,20 +124,19 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
 
   @test async 'acceptance-suite'() {
     const folders = await readdir(`${__dirname}/../../test/inputs/`);
-
-
     for (const each of folders) {
-
       if ([
         'body-file',
         'body-formdata',
         'lro',
         'storage',
         'xml-service',
+        'datalake-storage',
       ].indexOf(each) > -1) {
         console.log(`Skipping: ${each}`);
         continue;
       }
+      console.log(`Processing: ${each}`);
       const session = await createTestSession<Model>({}, `${__dirname}/../../test/inputs/${each}`, ['openapi-document.json'], []);
 
       // process OAI model
