@@ -647,6 +647,7 @@ export class ModelerFour {
       // what to do about the body?
       const requestBody = this.resolve(operation.requestBody);
       if (requestBody.instance) {
+
         const contents = items(requestBody.instance.content).toArray();
 
         switch (contents.length) {

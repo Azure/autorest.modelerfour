@@ -58,6 +58,7 @@ function run-autorest($src) {
 }
 
 
+
 $inputs |% {
   if ( $_.length -gt 0 ) {
     if ($_.startsWith('azure')) {
@@ -74,3 +75,5 @@ $success.Keys |% {
 $errors.Keys |% {
     write-host -fore RED $_  # : $each
 }
+
+autorest-beta --version:c:\work\2019\autorest.megarepo\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:C:\work\2019\autorest.megarepo\autorest.modelerfour\modelerfour\test\inputs/datalake-storage  --output-artifact:openapi-document --verbose --debug --no-network-check 

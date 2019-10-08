@@ -1,1019 +1,1019 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-    - !<!ObjectSchema> &ref_17
-      $key: Product
-      type: object
-      description: The product documentation.
-      apiVersions:
+  - !<!ObjectSchema> &ref_17
+    $key: Product
+    type: object
+    description: The product documentation.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      $key: Product-display_names
+      schema: !<!ArraySchema> &ref_9
+        $key: Product-display_names
+        type: array
+        description: Non required array of unique items from 0 to 6 elements.
+        apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-      properties:
-        - !<!Property> 
-          $key: Product-display_names
-          schema: !<!ArraySchema> &ref_9
-            $key: Product-display_names
-            type: array
-            description: Non required array of unique items from 0 to 6 elements.
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            elementType: !<!StringSchema> &ref_0
-              $key: Product-display_namesItem
-              type: string
+        elementType: !<!StringSchema> &ref_0
+          $key: Product-display_namesItem
+          type: string
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+          apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+          language: !<!Languages> 
+            default:
+              name: Product-display_namesItem
               description: MISSING-SCHEMA-DESCRIPTION-STRING
-              apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-              language: !<!Languages> 
-                default:
-                  name: Product-display_namesItem
-                  description: MISSING-SCHEMA-DESCRIPTION-STRING
-              protocol: !<!Protocols> {}
-            maxItems: 6
-            uniqueItems: true
-            language: !<!Languages> 
-              default:
-                name: Product-display_names
-                description: Non required array of unique items from 0 to 6 elements.
-            protocol: !<!Protocols> {}
+          protocol: !<!Protocols> {}
+        maxItems: 6
+        uniqueItems: true
+        language: !<!Languages> 
+          default:
+            name: Product-display_names
+            description: Non required array of unique items from 0 to 6 elements.
+        protocol: !<!Protocols> {}
+      description: Non required array of unique items from 0 to 6 elements.
+      required: false
+      serializedName: display_names
+      language: !<!Languages> 
+        default:
+          name: Product-display_names
           description: Non required array of unique items from 0 to 6 elements.
-          required: false
-          serializedName: display_names
-          language: !<!Languages> 
-            default:
-              name: Product-display_names
-              description: Non required array of unique items from 0 to 6 elements.
-              uid: 'property:725'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: capacity
-          schema: !<!NumberSchema> &ref_1
-            $key: typeForcapacity
-            type: integer
+          uid: 'property:725'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: capacity
+      schema: !<!NumberSchema> &ref_1
+        $key: typeForcapacity
+        type: integer
+        description: Non required int betwen 0 and 100 exclusive.
+        exclusiveMaximum: true
+        exclusiveMinimum: true
+        maximum: 100
+        minimum: 0
+        precision: 32
+        language: !<!Languages> 
+          default:
+            name: typeForcapacity
             description: Non required int betwen 0 and 100 exclusive.
-            exclusiveMaximum: true
-            exclusiveMinimum: true
-            maximum: 100
-            minimum: 0
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: typeForcapacity
-                description: Non required int betwen 0 and 100 exclusive.
-            protocol: !<!Protocols> {}
+        protocol: !<!Protocols> {}
+      description: Non required int betwen 0 and 100 exclusive.
+      required: false
+      serializedName: capacity
+      language: !<!Languages> 
+        default:
+          name: capacity
           description: Non required int betwen 0 and 100 exclusive.
-          required: false
-          serializedName: capacity
-          language: !<!Languages> 
-            default:
-              name: capacity
-              description: Non required int betwen 0 and 100 exclusive.
-              uid: 'property:726'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: Product-image
-          schema: !<!StringSchema> &ref_2
-            $key: Product-image
-            type: string
+          uid: 'property:726'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: Product-image
+      schema: !<!StringSchema> &ref_2
+        $key: Product-image
+        type: string
+        description: Image URL representing the product.
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        pattern: 'http://\w+'
+        language: !<!Languages> 
+          default:
+            name: Product-image
             description: Image URL representing the product.
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            pattern: 'http://\w+'
-            language: !<!Languages> 
-              default:
-                name: Product-image
-                description: Image URL representing the product.
-            protocol: !<!Protocols> {}
+        protocol: !<!Protocols> {}
+      description: Image URL representing the product.
+      required: false
+      serializedName: image
+      language: !<!Languages> 
+        default:
+          name: Product-image
           description: Image URL representing the product.
-          required: false
-          serializedName: image
-          language: !<!Languages> 
-            default:
-              name: Product-image
-              description: Image URL representing the product.
-              uid: 'property:727'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
+          uid: 'property:727'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: ChildProduct
+      schema: !<!AndSchema> &ref_15
+        $key: ChildProduct
+        type: and
+        description: The product documentation.
+        allOf:
+        - !<!ObjectSchema> &ref_4
           $key: ChildProduct
-          schema: !<!AndSchema> &ref_15
-            $key: ChildProduct
-            type: and
-            description: The product documentation.
-            allOf:
-              - !<!ObjectSchema> &ref_4
-                $key: ChildProduct
-                type: object
-                description: The product documentation.
-                apiVersions:
-                  - !<!ApiVersion> 
-                    version: 1.0.0
-                properties:
-                  - !<!Property> 
-                    $key: ChildProduct-constProperty
-                    schema: !<!SealedChoiceSchema> &ref_10
-                      $key: ChildProduct-constProperty
-                      choices:
-                        - !<!ChoiceValue> 
-                          value: constant
-                          language:
-                            default:
-                              name: constant
-                              description: ''
-                      type: sealed-choice
-                      description: Constant string
-                      apiVersions:
-                        - !<!ApiVersion> 
-                          version: 1.0.0
-                      choiceType: !<!StringSchema> 
-                        $key: choice
-                        type: string
-                        description: choice
-                        language: !<!Languages> 
-                          default:
-                            name: choice
-                            description: choice
-                        protocol: !<!Protocols> {}
-                      language: !<!Languages> 
-                        default:
-                          name: ChildProduct-constProperty
-                          description: Constant string
-                      protocol: !<!Protocols> {}
-                    description: Constant string
-                    required: true
-                    serializedName: constProperty
-                    language: !<!Languages> 
-                      default:
-                        name: ChildProduct-constProperty
-                        description: Constant string
-                        uid: 'property:728'
-                    protocol: !<!Protocols> {}
-                  - !<!Property> 
-                    $key: count
-                    schema: !<!NumberSchema> &ref_3
-                      $key: typeForcount
-                      type: integer
-                      description: Count
-                      precision: 32
-                      language: !<!Languages> 
-                        default:
-                          name: typeForcount
-                          description: Count
-                      protocol: !<!Protocols> {}
-                    description: Count
-                    required: false
-                    serializedName: count
-                    language: !<!Languages> 
-                      default:
-                        name: count
-                        description: Count
-                        uid: 'property:729'
-                    protocol: !<!Protocols> {}
-                language: !<!Languages> 
-                  default:
-                    name: ChildProduct
-                    description: The product documentation.
-                    internal: true
-                    namespace: Api10
-                protocol: !<!Protocols> {}
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: ChildProduct
-                description: The product documentation.
-                namespace: Api10
-            protocol: !<!Protocols> {}
+          type: object
           description: The product documentation.
-          required: true
-          serializedName: child
-          language: !<!Languages> 
-            default:
-              name: ChildProduct
-              description: The product documentation.
-              uid: 'property:730'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: ConstantProduct
-          schema: !<!AndSchema> &ref_16
-            $key: ConstantProduct
-            type: and
-            description: The product documentation.
-            allOf:
-              - !<!ObjectSchema> &ref_5
-                $key: ConstantProduct
-                type: object
-                description: The product documentation.
-                apiVersions:
-                  - !<!ApiVersion> 
-                    version: 1.0.0
-                properties:
-                  - !<!Property> 
-                    $key: ConstantProduct-constProperty
-                    schema: !<!SealedChoiceSchema> &ref_11
-                      $key: ConstantProduct-constProperty
-                      choices:
-                        - !<!ChoiceValue> 
-                          value: constant
-                          language:
-                            default:
-                              name: constant
-                              description: ''
-                      type: sealed-choice
-                      description: Constant string
-                      apiVersions:
-                        - !<!ApiVersion> 
-                          version: 1.0.0
-                      choiceType: !<!StringSchema> 
-                        $key: choice
-                        type: string
-                        description: choice
-                        language: !<!Languages> 
-                          default:
-                            name: choice
-                            description: choice
-                        protocol: !<!Protocols> {}
-                      language: !<!Languages> 
-                        default:
-                          name: ConstantProduct-constProperty
-                          description: Constant string
-                      protocol: !<!Protocols> {}
-                    description: Constant string
-                    required: true
-                    serializedName: constProperty
-                    language: !<!Languages> 
-                      default:
-                        name: ConstantProduct-constProperty
-                        description: Constant string
-                        uid: 'property:731'
-                    protocol: !<!Protocols> {}
-                  - !<!Property> 
-                    $key: ConstantProduct-constProperty2
-                    schema: !<!SealedChoiceSchema> &ref_12
-                      $key: ConstantProduct-constProperty2
-                      choices:
-                        - !<!ChoiceValue> 
-                          value: constant2
-                          language:
-                            default:
-                              name: constant2
-                              description: ''
-                      type: sealed-choice
-                      description: Constant string2
-                      apiVersions:
-                        - !<!ApiVersion> 
-                          version: 1.0.0
-                      choiceType: !<!StringSchema> 
-                        $key: choice
-                        type: string
-                        description: choice
-                        language: !<!Languages> 
-                          default:
-                            name: choice
-                            description: choice
-                        protocol: !<!Protocols> {}
-                      language: !<!Languages> 
-                        default:
-                          name: ConstantProduct-constProperty2
-                          description: Constant string2
-                      protocol: !<!Protocols> {}
-                    description: Constant string2
-                    required: true
-                    serializedName: constProperty2
-                    language: !<!Languages> 
-                      default:
-                        name: ConstantProduct-constProperty2
-                        description: Constant string2
-                        uid: 'property:732'
-                    protocol: !<!Protocols> {}
-                language: !<!Languages> 
-                  default:
-                    name: ConstantProduct
-                    description: The product documentation.
-                    internal: true
-                    namespace: Api10
-                protocol: !<!Protocols> {}
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: ConstantProduct
-                description: The product documentation.
-                namespace: Api10
-            protocol: !<!Protocols> {}
-          description: The product documentation.
-          required: true
-          serializedName: constChild
-          language: !<!Languages> 
-            default:
-              name: ConstantProduct
-              description: The product documentation.
-              uid: 'property:733'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: constInt
-          schema: !<!SealedChoiceSchema> &ref_13
-            choices:
-              - !<!ChoiceValue> 
-                value: 0
-                language:
-                  default:
-                    name: 0
-                    description: ''
-            type: sealed-choice
-            description: Constant int
-            choiceType: !<!StringSchema> 
-              $key: choice
-              type: string
-              description: choice
-              language: !<!Languages> 
-                default:
-                  name: choice
-                  description: choice
-              protocol: !<!Protocols> {}
-            language: !<!Languages> 
-              default:
-                description: Constant int
-            protocol: !<!Protocols> {}
-          description: Constant int
-          required: true
-          serializedName: constInt
-          language: !<!Languages> 
-            default:
-              name: constInt
-              description: Constant int
-              uid: 'property:734'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: Product-constString
-          schema: !<!SealedChoiceSchema> &ref_14
-            $key: Product-constString
-            choices:
+          apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+          properties:
+          - !<!Property> 
+            $key: ChildProduct-constProperty
+            schema: !<!SealedChoiceSchema> &ref_10
+              $key: ChildProduct-constProperty
+              choices:
               - !<!ChoiceValue> 
                 value: constant
                 language:
                   default:
                     name: constant
                     description: ''
-            type: sealed-choice
-            description: Constant string
-            apiVersions:
+              type: sealed-choice
+              description: Constant string
+              apiVersions:
               - !<!ApiVersion> 
                 version: 1.0.0
-            choiceType: !<!StringSchema> 
-              $key: choice
-              type: string
-              description: choice
+              choiceType: !<!StringSchema> 
+                $key: choice
+                type: string
+                description: choice
+                language: !<!Languages> 
+                  default:
+                    name: choice
+                    description: choice
+                protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
-                  name: choice
-                  description: choice
+                  name: ChildProduct-constProperty
+                  description: Constant string
               protocol: !<!Protocols> {}
+            description: Constant string
+            required: true
+            serializedName: constProperty
             language: !<!Languages> 
               default:
-                name: Product-constString
+                name: ChildProduct-constProperty
                 description: Constant string
+                uid: 'property:728'
             protocol: !<!Protocols> {}
-          description: Constant string
-          required: true
-          serializedName: constString
+          - !<!Property> 
+            $key: count
+            schema: !<!NumberSchema> &ref_3
+              $key: typeForcount
+              type: integer
+              description: Count
+              precision: 32
+              language: !<!Languages> 
+                default:
+                  name: typeForcount
+                  description: Count
+              protocol: !<!Protocols> {}
+            description: Count
+            required: false
+            serializedName: count
+            language: !<!Languages> 
+              default:
+                name: count
+                description: Count
+                uid: 'property:729'
+            protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
-              name: Product-constString
-              description: Constant string
-              uid: 'property:735'
+              name: ChildProduct
+              description: The product documentation.
+              internal: true
+              namespace: Api10
           protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: EnumConst
-          schema: !<!ChoiceSchema> &ref_19
-            $key: EnumConst
-            choices:
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: ChildProduct
+            description: The product documentation.
+            namespace: Api10
+        protocol: !<!Protocols> {}
+      description: The product documentation.
+      required: true
+      serializedName: child
+      language: !<!Languages> 
+        default:
+          name: ChildProduct
+          description: The product documentation.
+          uid: 'property:730'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: ConstantProduct
+      schema: !<!AndSchema> &ref_16
+        $key: ConstantProduct
+        type: and
+        description: The product documentation.
+        allOf:
+        - !<!ObjectSchema> &ref_5
+          $key: ConstantProduct
+          type: object
+          description: The product documentation.
+          apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+          properties:
+          - !<!Property> 
+            $key: ConstantProduct-constProperty
+            schema: !<!SealedChoiceSchema> &ref_11
+              $key: ConstantProduct-constProperty
+              choices:
               - !<!ChoiceValue> 
-                value: constant_string_as_enum
+                value: constant
                 language:
                   default:
-                    name: constant_string_as_enum
+                    name: constant
                     description: ''
-            type: choice
-            description: Constant string as Enum
-            apiVersions:
+              type: sealed-choice
+              description: Constant string
+              apiVersions:
               - !<!ApiVersion> 
                 version: 1.0.0
-            choiceType: !<!StringSchema> 
-              $key: choice
-              type: string
-              description: choice
+              choiceType: !<!StringSchema> 
+                $key: choice
+                type: string
+                description: choice
+                language: !<!Languages> 
+                  default:
+                    name: choice
+                    description: choice
+                protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
-                  name: choice
-                  description: choice
+                  name: ConstantProduct-constProperty
+                  description: Constant string
               protocol: !<!Protocols> {}
-            extensions:
-              x-ms-enum:
-                name: EnumConst
-                modelAsString: false
+            description: Constant string
+            required: true
+            serializedName: constProperty
             language: !<!Languages> 
               default:
-                name: EnumConst
-                description: Constant string as Enum
+                name: ConstantProduct-constProperty
+                description: Constant string
+                uid: 'property:731'
             protocol: !<!Protocols> {}
-          description: Constant string as Enum
-          required: false
-          serializedName: constStringAsEnum
+          - !<!Property> 
+            $key: ConstantProduct-constProperty2
+            schema: !<!SealedChoiceSchema> &ref_12
+              $key: ConstantProduct-constProperty2
+              choices:
+              - !<!ChoiceValue> 
+                value: constant2
+                language:
+                  default:
+                    name: constant2
+                    description: ''
+              type: sealed-choice
+              description: Constant string2
+              apiVersions:
+              - !<!ApiVersion> 
+                version: 1.0.0
+              choiceType: !<!StringSchema> 
+                $key: choice
+                type: string
+                description: choice
+                language: !<!Languages> 
+                  default:
+                    name: choice
+                    description: choice
+                protocol: !<!Protocols> {}
+              language: !<!Languages> 
+                default:
+                  name: ConstantProduct-constProperty2
+                  description: Constant string2
+              protocol: !<!Protocols> {}
+            description: Constant string2
+            required: true
+            serializedName: constProperty2
+            language: !<!Languages> 
+              default:
+                name: ConstantProduct-constProperty2
+                description: Constant string2
+                uid: 'property:732'
+            protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
-              name: EnumConst
-              description: Constant string as Enum
-              uid: 'property:736'
+              name: ConstantProduct
+              description: The product documentation.
+              internal: true
+              namespace: Api10
           protocol: !<!Protocols> {}
-      language: !<!Languages> 
-        default:
-          name: Product
-          description: The product documentation.
-          internal: true
-          namespace: Api10
-      protocol: !<!Protocols> {}
-    - *ref_4
-    - *ref_5
-    - !<!ObjectSchema> &ref_18
-      $key: Error
-      type: object
-      description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-      apiVersions:
+        apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-      properties:
-        - !<!Property> 
-          $key: code
-          schema: !<!NumberSchema> &ref_6
-            $key: typeForcode
-            type: integer
-            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: typeForcode
-                description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-            protocol: !<!Protocols> {}
-          description: PROPERTY-DESCRIPTION-MISSING
-          serializedName: code
-          language: !<!Languages> 
-            default:
-              name: code
-              description: PROPERTY-DESCRIPTION-MISSING
-              uid: 'property:737'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: Error-message
-          schema: !<!StringSchema> &ref_7
-            $key: Error-message
-            type: string
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: Error-message
-                description: MISSING-SCHEMA-DESCRIPTION-STRING
-            protocol: !<!Protocols> {}
-          description: PROPERTY-DESCRIPTION-MISSING
-          serializedName: message
-          language: !<!Languages> 
-            default:
-              name: Error-message
-              description: PROPERTY-DESCRIPTION-MISSING
-              uid: 'property:738'
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          $key: Error-fields
-          schema: !<!StringSchema> &ref_8
-            $key: Error-fields
-            type: string
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: Error-fields
-                description: MISSING-SCHEMA-DESCRIPTION-STRING
-            protocol: !<!Protocols> {}
-          description: PROPERTY-DESCRIPTION-MISSING
-          serializedName: fields
-          language: !<!Languages> 
-            default:
-              name: Error-fields
-              description: PROPERTY-DESCRIPTION-MISSING
-              uid: 'property:739'
-          protocol: !<!Protocols> {}
-      language: !<!Languages> 
-        default:
-          name: Error
-          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-          internal: true
-          namespace: Api10
-      protocol: !<!Protocols> {}
-  choices:
-    - *ref_19
-  ands:
-    - *ref_15
-    - *ref_16
-    - !<!AndSchema> &ref_25
-      $key: Product
-      type: and
+        language: !<!Languages> 
+          default:
+            name: ConstantProduct
+            description: The product documentation.
+            namespace: Api10
+        protocol: !<!Protocols> {}
       description: The product documentation.
-      allOf:
-        - *ref_17
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
+      required: true
+      serializedName: constChild
       language: !<!Languages> 
         default:
-          name: Product
+          name: ConstantProduct
           description: The product documentation.
-          namespace: Api10
+          uid: 'property:733'
       protocol: !<!Protocols> {}
-    - !<!AndSchema> &ref_26
-      $key: Error
-      type: and
-      description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-      allOf:
-        - *ref_18
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
+    - !<!Property> 
+      $key: constInt
+      schema: !<!SealedChoiceSchema> &ref_13
+        choices:
+        - !<!ChoiceValue> 
+          value: 0
+          language:
+            default:
+              name: 0
+              description: ''
+        type: sealed-choice
+        description: Constant int
+        choiceType: !<!StringSchema> 
+          $key: choice
+          type: string
+          description: choice
+          language: !<!Languages> 
+            default:
+              name: choice
+              description: choice
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            description: Constant int
+        protocol: !<!Protocols> {}
+      description: Constant int
+      required: true
+      serializedName: constInt
       language: !<!Languages> 
         default:
-          name: Error
-          description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-          namespace: Api10
+          name: constInt
+          description: Constant int
+          uid: 'property:734'
       protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: Product-constString
+      schema: !<!SealedChoiceSchema> &ref_14
+        $key: Product-constString
+        choices:
+        - !<!ChoiceValue> 
+          value: constant
+          language:
+            default:
+              name: constant
+              description: ''
+        type: sealed-choice
+        description: Constant string
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        choiceType: !<!StringSchema> 
+          $key: choice
+          type: string
+          description: choice
+          language: !<!Languages> 
+            default:
+              name: choice
+              description: choice
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            name: Product-constString
+            description: Constant string
+        protocol: !<!Protocols> {}
+      description: Constant string
+      required: true
+      serializedName: constString
+      language: !<!Languages> 
+        default:
+          name: Product-constString
+          description: Constant string
+          uid: 'property:735'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: EnumConst
+      schema: !<!ChoiceSchema> &ref_19
+        $key: EnumConst
+        choices:
+        - !<!ChoiceValue> 
+          value: constant_string_as_enum
+          language:
+            default:
+              name: constant_string_as_enum
+              description: ''
+        type: choice
+        description: Constant string as Enum
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        choiceType: !<!StringSchema> 
+          $key: choice
+          type: string
+          description: choice
+          language: !<!Languages> 
+            default:
+              name: choice
+              description: choice
+          protocol: !<!Protocols> {}
+        extensions:
+          x-ms-enum:
+            name: EnumConst
+            modelAsString: false
+        language: !<!Languages> 
+          default:
+            name: EnumConst
+            description: Constant string as Enum
+        protocol: !<!Protocols> {}
+      description: Constant string as Enum
+      required: false
+      serializedName: constStringAsEnum
+      language: !<!Languages> 
+        default:
+          name: EnumConst
+          description: Constant string as Enum
+          uid: 'property:736'
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Product
+        description: The product documentation.
+        internal: true
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - *ref_4
+  - *ref_5
+  - !<!ObjectSchema> &ref_18
+    $key: Error
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      $key: code
+      schema: !<!NumberSchema> &ref_6
+        $key: typeForcode
+        type: integer
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+        precision: 32
+        language: !<!Languages> 
+          default:
+            name: typeForcode
+            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: code
+      language: !<!Languages> 
+        default:
+          name: code
+          description: PROPERTY-DESCRIPTION-MISSING
+          uid: 'property:737'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: Error-message
+      schema: !<!StringSchema> &ref_7
+        $key: Error-message
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Error-message
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: Error-message
+          description: PROPERTY-DESCRIPTION-MISSING
+          uid: 'property:738'
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: Error-fields
+      schema: !<!StringSchema> &ref_8
+        $key: Error-fields
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Error-fields
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: fields
+      language: !<!Languages> 
+        default:
+          name: Error-fields
+          description: PROPERTY-DESCRIPTION-MISSING
+          uid: 'property:739'
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        internal: true
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  choices:
+  - *ref_19
+  ands:
+  - *ref_15
+  - *ref_16
+  - !<!AndSchema> &ref_25
+    $key: Product
+    type: and
+    description: The product documentation.
+    allOf:
+    - *ref_17
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Product
+        description: The product documentation.
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!AndSchema> &ref_26
+    $key: Error
+    type: and
+    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+    allOf:
+    - *ref_18
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
   arrays:
-    - *ref_9
+  - *ref_9
   numbers:
-    - !<!NumberSchema> &ref_23
-      $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·2·schema
-      type: integer
-      description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      maximum: 1000
-      minimum: 100
-      multipleOf: 10
-      precision: 32
-      language: !<!Languages> 
-        default:
-          name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·2·schema
-          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-      protocol: !<!Protocols> {}
-    - *ref_1
-    - *ref_3
-    - *ref_6
-    - !<!NumberSchema> &ref_28
-      $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
-      type: integer
-      description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      maximum: 1000
-      minimum: 100
-      multipleOf: 10
-      precision: 32
-      language: !<!Languages> 
-        default:
-          name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
-          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-      protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_23
+    $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·2·schema
+    type: integer
+    description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maximum: 1000
+    minimum: 100
+    multipleOf: 10
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·2·schema
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    protocol: !<!Protocols> {}
+  - *ref_1
+  - *ref_3
+  - *ref_6
+  - !<!NumberSchema> &ref_28
+    $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
+    type: integer
+    description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maximum: 1000
+    minimum: 100
+    multipleOf: 10
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    protocol: !<!Protocols> {}
   sealedChoices:
-    - *ref_10
-    - *ref_11
-    - *ref_12
-    - *ref_13
-    - *ref_14
-    - !<!SealedChoiceSchema> &ref_29
-      choices:
-        - !<!ChoiceValue> 
-          value: constant
-          language:
-            default:
-              name: constant
-              description: ''
-      type: sealed-choice
-      description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-      choiceType: !<!StringSchema> 
-        $key: choice
-        type: string
-        description: choice
-        language: !<!Languages> 
-          default:
-            name: choice
-            description: choice
-        protocol: !<!Protocols> {}
+  - *ref_10
+  - *ref_11
+  - *ref_12
+  - *ref_13
+  - *ref_14
+  - !<!SealedChoiceSchema> &ref_29
+    choices:
+    - !<!ChoiceValue> 
+      value: constant
+      language:
+        default:
+          name: constant
+          description: ''
+    type: sealed-choice
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
       language: !<!Languages> 
         default:
-          description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+          name: choice
+          description: choice
       protocol: !<!Protocols> {}
-    - !<!SealedChoiceSchema> &ref_30
-      choices:
-        - !<!ChoiceValue> 
-          value: constant
-          language:
-            default:
-              name: constant
-              description: ''
-      type: sealed-choice
-      description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-      choiceType: !<!StringSchema> 
-        $key: choice
-        type: string
-        description: choice
-        language: !<!Languages> 
-          default:
-            name: choice
-            description: choice
-        protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_30
+    choices:
+    - !<!ChoiceValue> 
+      value: constant
+      language:
+        default:
+          name: constant
+          description: ''
+    type: sealed-choice
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
       language: !<!Languages> 
         default:
-          description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+          name: choice
+          description: choice
       protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   strings:
-    - !<!StringSchema> &ref_21
-      $key: components·parameters·subscriptionidparamterer·schema
-      type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: components·parameters·subscriptionidparamterer·schema
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_22
-      $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
-      type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      maxLength: 10
-      minLength: 3
-      pattern: '[a-zA-Z0-9]+'
-      language: !<!Languages> 
-        default:
-          name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_24
-      $key: components·parameters·apiversionparameter·schema
-      type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      pattern: '\d{2}-\d{2}-\d{4}'
-      language: !<!Languages> 
-        default:
-          name: components·parameters·apiversionparameter·schema
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
-      protocol: !<!Protocols> {}
-    - *ref_0
-    - *ref_2
-    - *ref_7
-    - *ref_8
-    - !<!StringSchema> &ref_27
-      $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
-      type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      maxLength: 10
-      minLength: 3
-      pattern: '[a-zA-Z0-9]+'
-      language: !<!Languages> 
-        default:
-          name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
-      protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_21
+    $key: components·parameters·subscriptionidparamterer·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: components·parameters·subscriptionidparamterer·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_22
+    $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maxLength: 10
+    minLength: 3
+    pattern: '[a-zA-Z0-9]+'
+    language: !<!Languages> 
+      default:
+        name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_24
+    $key: components·parameters·apiversionparameter·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    pattern: '\d{2}-\d{2}-\d{4}'
+    language: !<!Languages> 
+      default:
+        name: components·parameters·apiversionparameter·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - *ref_0
+  - *ref_2
+  - *ref_7
+  - *ref_8
+  - !<!StringSchema> &ref_27
+    $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maxLength: 10
+    minLength: 3
+    pattern: '[a-zA-Z0-9]+'
+    language: !<!Languages> 
+      default:
+        name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
 operationGroups:
-  - !<!OperationGroup> 
-    $key: ''
-    operations:
-      - !<!Operation> 
-        $key: validationOfMethodParameters
-        description: Validates input parameters on the method. See swagger for details.
-        request: !<!Request> 
-          parameters:
-            - !<!Parameter> 
-              $key: subscriptionId
-              schema: *ref_21
-              description: Subscription ID.
-              implementation: Method
-              language: !<!Languages> 
-                default:
-                  name: subscriptionId
-                  description: Subscription ID.
-                  uid: 'parameter:721'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-            - !<!Parameter> 
-              $key: resourceGroupName
-              schema: *ref_22
-              description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-              implementation: Method
-              extensions:
-                x-ms-parameter-location: method
-              language: !<!Languages> 
-                default:
-                  name: resourceGroupName
-                  description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-                  uid: 'parameter:722'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-            - !<!Parameter> 
-              $key: id
-              schema: *ref_23
-              description: Required int multiple of 10 from 100 to 1000.
-              implementation: Method
-              extensions:
-                x-ms-parameter-location: method
-              language: !<!Languages> 
-                default:
-                  name: id
-                  description: Required int multiple of 10 from 100 to 1000.
-                  uid: 'parameter:723'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-            - !<!Parameter> 
-              $key: apiVersion
-              schema: *ref_24
-              description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
-              implementation: Method
-              language: !<!Languages> 
-                default:
-                  name: apiVersion
-                  description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
-                  uid: 'parameter:724'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: query
-          language: !<!Languages> 
-            default:
-              name: ''
-              description: ''
-          protocol: !<!Protocols> 
-            http: !<!HttpRequest> 
-              path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
-              method: get
-              servers:
-                - !<!HttpServer> &ref_20
-                  url: 'http://localhost:3000/'
-                  language:
-                    default:
-                      name: server-name
-                      description: MISSING-SERVER-DESCRIPTION
-        responses:
-          - !<!SchemaResponse> 
-            schema: *ref_25
-            language: !<!Languages> 
-              default:
-                name: ''
-                description: ''
-            protocol: !<!Protocols> 
-              http: !<!HttpResponse> 
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !<!SchemaResponse> 
-            schema: *ref_26
-            language: !<!Languages> 
-              default:
-                name: ''
-                description: ''
-            protocol: !<!Protocols> 
-              http: !<!HttpResponse> 
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
+- !<!OperationGroup> 
+  $key: ''
+  operations:
+  - !<!Operation> 
+    $key: validationOfMethodParameters
+    description: Validates input parameters on the method. See swagger for details.
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: subscriptionId
+        schema: *ref_21
+        description: Subscription ID.
+        implementation: Method
         language: !<!Languages> 
           default:
-            name: validationOfMethodParameters
-            description: Validates input parameters on the method. See swagger for details.
-        protocol: !<!Protocols> {}
-      - !<!Operation> 
-        $key: validationOfBody
-        description: Validates body parameters on the method. See swagger for details.
-        request: !<!Request> 
-          parameters:
-            - !<!Parameter> 
-              $key: subscriptionId
-              schema: *ref_21
-              description: Subscription ID.
-              implementation: Method
-              language: !<!Languages> 
-                default:
-                  name: subscriptionId
-                  description: Subscription ID.
-                  uid: 'parameter:740'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-            - !<!Parameter> 
-              $key: resourceGroupName
-              schema: *ref_27
-              description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-              implementation: Method
-              extensions:
-                x-ms-parameter-location: method
-              language: !<!Languages> 
-                default:
-                  name: resourceGroupName
-                  description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-                  uid: 'parameter:741'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-            - !<!Parameter> 
-              $key: id
-              schema: *ref_28
-              description: Required int multiple of 10 from 100 to 1000.
-              implementation: Method
-              extensions:
-                x-ms-parameter-location: method
-              language: !<!Languages> 
-                default:
-                  name: id
-                  description: Required int multiple of 10 from 100 to 1000.
-                  uid: 'parameter:742'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-            - !<!Parameter> 
-              $key: apiVersion
-              schema: *ref_24
-              description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
-              implementation: Method
-              language: !<!Languages> 
-                default:
-                  name: apiVersion
-                  description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
-                  uid: 'parameter:743'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: query
-          language: !<!Languages> 
-            default:
-              name: ''
-              description: ''
-          protocol: !<!Protocols> 
-            http: !<!HttpStreamRequest> 
-              path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
-              method: put
-              mediaType: application/json
-              servers:
-                - *ref_20
-              stream: true
-        responses:
-          - !<!SchemaResponse> 
-            schema: *ref_25
-            language: !<!Languages> 
-              default:
-                name: ''
-                description: ''
-            protocol: !<!Protocols> 
-              http: !<!HttpResponse> 
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !<!SchemaResponse> 
-            schema: *ref_26
-            language: !<!Languages> 
-              default:
-                name: ''
-                description: ''
-            protocol: !<!Protocols> 
-              http: !<!HttpResponse> 
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
+            name: subscriptionId
+            description: Subscription ID.
+            uid: 'parameter:721'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: resourceGroupName
+        schema: *ref_22
+        description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+        implementation: Method
         extensions:
-          x-ms-requestBody-index: 3
+          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
-            name: validationOfBody
-            description: Validates body parameters on the method. See swagger for details.
-        protocol: !<!Protocols> {}
-      - !<!Operation> 
-        $key: getWithConstantInPath
-        description: MISSING-OPERATION-DESCRIPTION
-        request: !<!Request> 
-          parameters:
-            - !<!Parameter> 
-              $key: constantParam
-              schema: *ref_29
-              description: MISSING-PARAMETER-DESCRIPTION
-              implementation: Method
-              extensions:
-                x-ms-parameter-location: method
-              language: !<!Languages> 
-                default:
-                  name: constantParam
-                  description: MISSING-PARAMETER-DESCRIPTION
-                  uid: 'parameter:744'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-          language: !<!Languages> 
-            default:
-              name: ''
-              description: ''
-          protocol: !<!Protocols> 
-            http: !<!HttpRequest> 
-              path: '/validation/constantsInPath/{constantParam}/value'
-              method: get
-              servers:
-                - *ref_20
-        language: !<!Languages> 
-          default:
-            name: getWithConstantInPath
-            description: MISSING-OPERATION-DESCRIPTION
-        protocol: !<!Protocols> {}
-      - !<!Operation> 
-        $key: postWithConstantInBody
-        description: MISSING-OPERATION-DESCRIPTION
-        request: !<!Request> 
-          parameters:
-            - !<!Parameter> 
-              $key: constantParam
-              schema: *ref_30
-              description: MISSING-PARAMETER-DESCRIPTION
-              implementation: Method
-              extensions:
-                x-ms-parameter-location: method
-              language: !<!Languages> 
-                default:
-                  name: constantParam
-                  description: MISSING-PARAMETER-DESCRIPTION
-                  uid: 'parameter:745'
-              protocol: !<!Protocols> 
-                http: !<!HttpParameter> 
-                  in: path
-          language: !<!Languages> 
-            default:
-              name: ''
-              description: ''
-          protocol: !<!Protocols> 
-            http: !<!HttpStreamRequest> 
-              path: '/validation/constantsInPath/{constantParam}/value'
-              method: post
-              mediaType: application/json
-              servers:
-                - *ref_20
-              stream: true
-        responses:
-          - !<!SchemaResponse> 
-            schema: *ref_25
-            language: !<!Languages> 
-              default:
-                name: ''
-                description: ''
-            protocol: !<!Protocols> 
-              http: !<!HttpResponse> 
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - '200'
+            name: resourceGroupName
+            description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+            uid: 'parameter:722'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: id
+        schema: *ref_23
+        description: Required int multiple of 10 from 100 to 1000.
+        implementation: Method
         extensions:
-          x-ms-requestBody-index: 1
+          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
-            name: postWithConstantInBody
-            description: MISSING-OPERATION-DESCRIPTION
-        protocol: !<!Protocols> {}
+            name: id
+            description: Required int multiple of 10 from 100 to 1000.
+            uid: 'parameter:723'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: apiVersion
+        schema: *ref_24
+        description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: apiVersion
+            description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
+            uid: 'parameter:724'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
+          method: get
+          servers:
+          - !<!HttpServer> &ref_20
+            url: 'http://localhost:3000/'
+            language:
+              default:
+                name: server-name
+                description: MISSING-SERVER-DESCRIPTION
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_25
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_26
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
     language: !<!Languages> 
       default:
-        name: ''
-        description: ''
+        name: validationOfMethodParameters
+        description: Validates input parameters on the method. See swagger for details.
     protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: validationOfBody
+    description: Validates body parameters on the method. See swagger for details.
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: subscriptionId
+        schema: *ref_21
+        description: Subscription ID.
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: subscriptionId
+            description: Subscription ID.
+            uid: 'parameter:740'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: resourceGroupName
+        schema: *ref_27
+        description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+        implementation: Method
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: resourceGroupName
+            description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+            uid: 'parameter:741'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: id
+        schema: *ref_28
+        description: Required int multiple of 10 from 100 to 1000.
+        implementation: Method
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: id
+            description: Required int multiple of 10 from 100 to 1000.
+            uid: 'parameter:742'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: apiVersion
+        schema: *ref_24
+        description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: apiVersion
+            description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
+            uid: 'parameter:743'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpStreamRequest> 
+          path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
+          method: put
+          mediaType: application/json
+          servers:
+          - *ref_20
+          stream: true
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_25
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_26
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    extensions:
+      x-ms-requestBody-index: 3
+    language: !<!Languages> 
+      default:
+        name: validationOfBody
+        description: Validates body parameters on the method. See swagger for details.
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: getWithConstantInPath
+    description: MISSING-OPERATION-DESCRIPTION
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: constantParam
+        schema: *ref_29
+        description: MISSING-PARAMETER-DESCRIPTION
+        implementation: Method
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: constantParam
+            description: MISSING-PARAMETER-DESCRIPTION
+            uid: 'parameter:744'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: '/validation/constantsInPath/{constantParam}/value'
+          method: get
+          servers:
+          - *ref_20
+    language: !<!Languages> 
+      default:
+        name: getWithConstantInPath
+        description: MISSING-OPERATION-DESCRIPTION
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: postWithConstantInBody
+    description: MISSING-OPERATION-DESCRIPTION
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: constantParam
+        schema: *ref_30
+        description: MISSING-PARAMETER-DESCRIPTION
+        implementation: Method
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: constantParam
+            description: MISSING-PARAMETER-DESCRIPTION
+            uid: 'parameter:745'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpStreamRequest> 
+          path: '/validation/constantsInPath/{constantParam}/value'
+          method: post
+          mediaType: application/json
+          servers:
+          - *ref_20
+          stream: true
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_25
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    extensions:
+      x-ms-requestBody-index: 1
+    language: !<!Languages> 
+      default:
+        name: postWithConstantInBody
+        description: MISSING-OPERATION-DESCRIPTION
+    protocol: !<!Protocols> {}
+  language: !<!Languages> 
+    default:
+      name: ''
+      description: ''
+  protocol: !<!Protocols> {}
 language: !<!Languages> 
   default:
     name: ''
@@ -1021,4 +1021,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-      - *ref_20
+    - *ref_20
