@@ -87,6 +87,16 @@ schemas: !<!Schemas>
         description: Non-ascii base-64 encoded byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     protocol: !<!Protocols> {}
   - !<!ByteArraySchema> &ref_8
+    $key: rqsch
+    type: byte-array
+    format: byte
+    description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+    protocol: !<!Protocols> {}
+  - !<!ByteArraySchema> &ref_9
     $key: paths·byte-invalid·get·responses·200·content·application-json·schema
     type: byte-array
     format: byte
@@ -195,6 +205,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -208,6 +219,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -240,6 +252,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -253,6 +266,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -285,6 +299,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -298,6 +313,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -311,18 +327,45 @@ operationGroups:
     $key: putNonAscii
     description: Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: byteBody
+        schema: *ref_8
+        description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+        extensions:
+          x-ms-requestBody-name: byteBody
+        language: !<!Languages> 
+          default:
+            name: byteBody
+            description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /byte/nonAscii
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -332,6 +375,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -359,13 +403,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_9
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -379,6 +424,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

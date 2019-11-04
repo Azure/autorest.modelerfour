@@ -122,6 +122,15 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-DATE
     protocol: !<!Protocols> {}
   - !<!DateSchema> &ref_9
+    $key: rqsch
+    type: date
+    description: MISSING-SCHEMA-DESCRIPTION-DATE
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-DATE
+    protocol: !<!Protocols> {}
+  - !<!DateSchema> &ref_10
     $key: paths·date-max·get·responses·200·content·application-json·schema
     type: date
     description: MISSING-SCHEMA-DESCRIPTION-DATE
@@ -133,10 +142,19 @@ schemas: !<!Schemas>
         name: paths·date-max·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DATE
     protocol: !<!Protocols> {}
+  - !<!DateSchema> &ref_11
+    $key: rqsch
+    type: date
+    description: MISSING-SCHEMA-DESCRIPTION-DATE
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-DATE
+    protocol: !<!Protocols> {}
   numbers:
   - *ref_0
   sealedChoices:
-  - !<!SealedChoiceSchema> &ref_10
+  - !<!SealedChoiceSchema> &ref_12
     $key: paths·date-min·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -201,6 +219,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -214,6 +233,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -246,6 +266,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -259,6 +280,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -291,6 +313,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -304,6 +327,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -336,6 +360,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -349,6 +374,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -362,18 +388,45 @@ operationGroups:
     $key: putMaxDate
     description: Put max date value 9999-12-31
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: dateBody
+        schema: *ref_9
+        description: ''
+        extensions:
+          x-ms-requestBody-name: dateBody
+        language: !<!Languages> 
+          default:
+            name: dateBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /date/max
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -383,6 +436,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -410,13 +464,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -430,6 +485,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -443,18 +499,45 @@ operationGroups:
     $key: putMinDate
     description: Put min date value 0000-01-01
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: dateBody
+        schema: *ref_11
+        description: ''
+        extensions:
+          x-ms-requestBody-name: dateBody
+        language: !<!Languages> 
+          default:
+            name: dateBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /date/min
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -464,6 +547,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -491,13 +575,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -511,6 +596,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

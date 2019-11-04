@@ -126,6 +126,16 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-DATETIME
     protocol: !<!Protocols> {}
   - !<!DateTimeSchema> &ref_9
+    $key: rqsch
+    type: date-time
+    format: date-time-rfc1123
+    description: MISSING-SCHEMA-DESCRIPTION-DATETIME
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-DATETIME
+    protocol: !<!Protocols> {}
+  - !<!DateTimeSchema> &ref_10
     $key: paths·datetimerfc1123-max-lowercase·get·responses·200·content·application-json·schema
     type: date-time
     format: date-time-rfc1123
@@ -138,7 +148,7 @@ schemas: !<!Schemas>
         name: paths·datetimerfc1123-max-lowercase·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DATETIME
     protocol: !<!Protocols> {}
-  - !<!DateTimeSchema> &ref_10
+  - !<!DateTimeSchema> &ref_11
     $key: paths·datetimerfc1123-max-uppercase·get·responses·200·content·application-json·schema
     type: date-time
     format: date-time-rfc1123
@@ -151,10 +161,20 @@ schemas: !<!Schemas>
         name: paths·datetimerfc1123-max-uppercase·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DATETIME
     protocol: !<!Protocols> {}
+  - !<!DateTimeSchema> &ref_12
+    $key: rqsch
+    type: date-time
+    format: date-time-rfc1123
+    description: MISSING-SCHEMA-DESCRIPTION-DATETIME
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-DATETIME
+    protocol: !<!Protocols> {}
   numbers:
   - *ref_0
   sealedChoices:
-  - !<!SealedChoiceSchema> &ref_11
+  - !<!SealedChoiceSchema> &ref_13
     $key: paths·datetimerfc1123-min·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -219,6 +239,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -232,6 +253,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -264,6 +286,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -277,6 +300,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -309,6 +333,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -322,6 +347,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -354,6 +380,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -367,6 +394,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -380,18 +408,45 @@ operationGroups:
     $key: putUtcMaxDateTime
     description: 'Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT'
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: datetimeBody
+        schema: *ref_9
+        description: ''
+        extensions:
+          x-ms-requestBody-name: datetimeBody
+        language: !<!Languages> 
+          default:
+            name: datetimeBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /datetimerfc1123/max
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -401,6 +456,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -428,13 +484,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -448,6 +505,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -473,13 +531,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -493,6 +552,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -506,18 +566,45 @@ operationGroups:
     $key: putUtcMinDateTime
     description: 'Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT'
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: datetimeBody
+        schema: *ref_12
+        description: ''
+        extensions:
+          x-ms-requestBody-name: datetimeBody
+        language: !<!Languages> 
+          default:
+            name: datetimeBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /datetimerfc1123/min
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -527,6 +614,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -554,13 +642,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_13
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -574,6 +663,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

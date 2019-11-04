@@ -136,7 +136,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_16
+  - !<!ChoiceSchema> &ref_21
     $key: Colors
     choices:
     - !<!ChoiceValue> 
@@ -180,6 +180,47 @@ schemas: !<!Schemas>
         name: Colors
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
+  - !<!ChoiceSchema> &ref_22
+    $key: Colors
+    choices:
+    - !<!ChoiceValue> 
+      value: red color
+      language:
+        default:
+          name: red color
+          description: ''
+    - !<!ChoiceValue> 
+      value: green-color
+      language:
+        default:
+          name: green-color
+          description: ''
+    - !<!ChoiceValue> 
+      value: blue_color
+      language:
+        default:
+          name: blue_color
+          description: ''
+    type: choice
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    extensions:
+      x-ms-enum:
+        name: Colors
+        modelAsString: false
+    language: !<!Languages> 
+      default:
+        name: Colors
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   - *ref_5
   ands:
   - !<!AndSchema> &ref_8
@@ -197,7 +238,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!AndSchema> &ref_17
+  - !<!AndSchema> &ref_23
     $key: RefColorConstant
     type: and
     description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
@@ -213,7 +254,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   byteArrays:
-  - !<!ByteArraySchema> &ref_13
+  - !<!ByteArraySchema> &ref_17
     $key: paths·string-base64encoding·get·responses·200·content·application-json·schema
     type: byte-array
     format: base64url
@@ -226,7 +267,7 @@ schemas: !<!Schemas>
         name: paths·string-base64encoding·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
     protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_14
+  - !<!ByteArraySchema> &ref_18
     $key: paths·string-base64urlencoding·get·responses·200·content·application-json·schema
     type: byte-array
     format: base64url
@@ -239,7 +280,17 @@ schemas: !<!Schemas>
         name: paths·string-base64urlencoding·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
     protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_15
+  - !<!ByteArraySchema> &ref_19
+    $key: rqsch
+    type: byte-array
+    format: base64url
+    description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
+    protocol: !<!Protocols> {}
+  - !<!ByteArraySchema> &ref_20
     $key: paths·string-nullbase64urlencoding·get·responses·200·content·application-json·schema
     type: byte-array
     format: base64url
@@ -283,7 +334,7 @@ schemas: !<!Schemas>
         name: paths·string-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_9
+  - !<!SealedChoiceSchema> &ref_10
     $key: paths·string-empty·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -311,7 +362,7 @@ schemas: !<!Schemas>
         name: paths·string-empty·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_10
+  - !<!SealedChoiceSchema> &ref_12
     $key: paths·string-mbcs·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -339,7 +390,7 @@ schemas: !<!Schemas>
         name: paths·string-mbcs·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_11
+  - !<!SealedChoiceSchema> &ref_14
     $key: paths·string-whitespace·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -369,8 +420,44 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   strings:
   - *ref_1
+  - !<!StringSchema> &ref_9
+    $key: rqsch
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    $key: rqsch
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_13
+    $key: rqsch
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_15
+    $key: rqsch
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
   - *ref_2
-  - !<!StringSchema> &ref_12
+  - !<!StringSchema> &ref_16
     $key: paths·string-notprovided·get·responses·200·content·application-json·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -417,6 +504,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -430,6 +518,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -443,18 +532,45 @@ operationGroups:
     $key: putNull
     description: Set string value null
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: stringBody
+        schema: *ref_9
+        description: ''
+        extensions:
+          x-ms-requestBody-name: stringBody
+        language: !<!Languages> 
+          default:
+            name: stringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/null
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -464,6 +580,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -491,13 +608,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -511,6 +629,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -524,18 +643,45 @@ operationGroups:
     $key: putEmpty
     description: Set string value empty ''
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: stringBody
+        schema: *ref_11
+        description: ''
+        extensions:
+          x-ms-requestBody-name: stringBody
+        language: !<!Languages> 
+          default:
+            name: stringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/empty
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -545,6 +691,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -572,13 +719,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -592,6 +740,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -605,18 +754,45 @@ operationGroups:
     $key: putMbcs
     description: Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: stringBody
+        schema: *ref_13
+        description: ''
+        extensions:
+          x-ms-requestBody-name: stringBody
+        language: !<!Languages> 
+          default:
+            name: stringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/mbcs
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -626,6 +802,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -653,13 +830,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_14
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -673,6 +851,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -686,18 +865,45 @@ operationGroups:
     $key: putWhitespace
     description: Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>'
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: stringBody
+        schema: *ref_15
+        description: ''
+        extensions:
+          x-ms-requestBody-name: stringBody
+        language: !<!Languages> 
+          default:
+            name: stringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/whitespace
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -707,6 +913,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -734,13 +941,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -754,6 +962,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -779,13 +988,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_17
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -799,6 +1009,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -824,13 +1035,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -844,6 +1056,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -857,18 +1070,45 @@ operationGroups:
     $key: putBase64UrlEncoded
     description: Put value that is base64url encoded
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: stringBody
+        schema: *ref_19
+        description: ''
+        extensions:
+          x-ms-requestBody-name: stringBody
+        language: !<!Languages> 
+          default:
+            name: stringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/base64UrlEncoding
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -878,6 +1118,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -905,13 +1146,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -925,6 +1167,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -958,13 +1201,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -978,6 +1222,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -991,18 +1236,45 @@ operationGroups:
     $key: putNotExpandable
     description: 'Sends value ''red color'' from enumeration of ''red color'', ''green-color'', ''blue_color'''
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: stringBody
+        schema: *ref_22
+        description: ''
+        extensions:
+          x-ms-requestBody-name: stringBody
+        language: !<!Languages> 
+          default:
+            name: stringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/enum/notExpandable
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1012,6 +1284,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -1039,13 +1312,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -1059,6 +1333,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -1072,18 +1347,45 @@ operationGroups:
     $key: putReferenced
     description: 'Sends value ''red color'' from enumeration of ''red color'', ''green-color'', ''blue_color'''
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: enumStringBody
+        schema: *ref_21
+        description: ''
+        extensions:
+          x-ms-requestBody-name: enumStringBody
+        language: !<!Languages> 
+          default:
+            name: enumStringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/enum/Referenced
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1093,6 +1395,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -1120,13 +1423,14 @@ operationGroups:
           - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_23
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -1140,6 +1444,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -1153,18 +1458,45 @@ operationGroups:
     $key: putReferencedConstant
     description: Sends value 'green-color' from a constant
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: enumStringBody
+        schema: *ref_23
+        description: ''
+        extensions:
+          x-ms-requestBody-name: enumStringBody
+        language: !<!Languages> 
+          default:
+            name: enumStringBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /string/enum/ReferencedConstant
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_6
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1174,6 +1506,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

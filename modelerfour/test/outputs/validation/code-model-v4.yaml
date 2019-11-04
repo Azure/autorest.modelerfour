@@ -704,6 +704,7 @@ operationGroups:
         schema: *ref_21
         description: Subscription ID.
         implementation: Method
+        required: true
         language: !<!Languages> 
           default:
             name: subscriptionId
@@ -716,6 +717,7 @@ operationGroups:
         schema: *ref_22
         description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -730,6 +732,7 @@ operationGroups:
         schema: *ref_23
         description: Required int multiple of 10 from 100 to 1000.
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -744,6 +747,7 @@ operationGroups:
         schema: *ref_24
         description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
         implementation: Method
+        required: true
         language: !<!Languages> 
           default:
             name: apiVersion
@@ -775,6 +779,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -788,6 +793,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -807,6 +813,7 @@ operationGroups:
         schema: *ref_21
         description: Subscription ID.
         implementation: Method
+        required: true
         language: !<!Languages> 
           default:
             name: subscriptionId
@@ -819,6 +826,7 @@ operationGroups:
         schema: *ref_27
         description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -833,6 +841,7 @@ operationGroups:
         schema: *ref_28
         description: Required int multiple of 10 from 100 to 1000.
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -847,6 +856,7 @@ operationGroups:
         schema: *ref_24
         description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
         implementation: Method
+        required: true
         language: !<!Languages> 
           default:
             name: apiVersion
@@ -854,18 +864,34 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      - !<!Parameter> 
+        $key: body
+        schema: *ref_25
+        description: ''
+        extensions:
+          x-ms-requestBody-name: body
+        language: !<!Languages> 
+          default:
+            name: body
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_20
-          stream: true
     responses:
     - !<!SchemaResponse> 
       schema: *ref_25
@@ -875,6 +901,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -888,6 +915,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -909,6 +937,7 @@ operationGroups:
         schema: *ref_29
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -928,6 +957,16 @@ operationGroups:
           method: get
           servers:
           - *ref_20
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     language: !<!Languages> 
       default:
         name: getWithConstantInPath
@@ -943,6 +982,7 @@ operationGroups:
         schema: *ref_30
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -952,18 +992,34 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      - !<!Parameter> 
+        $key: body
+        schema: *ref_25
+        description: ''
+        extensions:
+          x-ms-requestBody-name: body
+        language: !<!Languages> 
+          default:
+            name: body
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: '/validation/constantsInPath/{constantParam}/value'
           method: post
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_20
-          stream: true
     responses:
     - !<!SchemaResponse> 
       schema: *ref_25
@@ -973,6 +1029,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

@@ -86,6 +86,15 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-DURATION
     protocol: !<!Protocols> {}
   - !<!DurationSchema> &ref_6
+    $key: rqsch
+    type: duration
+    description: MISSING-SCHEMA-DESCRIPTION-DURATION
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-DURATION
+    protocol: !<!Protocols> {}
+  - !<!DurationSchema> &ref_7
     $key: paths·duration-positiveduration·get·responses·200·content·application-json·schema
     type: duration
     description: MISSING-SCHEMA-DESCRIPTION-DURATION
@@ -97,7 +106,7 @@ schemas: !<!Schemas>
         name: paths·duration-positiveduration·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DURATION
     protocol: !<!Protocols> {}
-  - !<!DurationSchema> &ref_7
+  - !<!DurationSchema> &ref_8
     $key: paths·duration-invalid·get·responses·200·content·application-json·schema
     type: duration
     description: MISSING-SCHEMA-DESCRIPTION-DURATION
@@ -148,6 +157,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -161,6 +171,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -174,18 +185,45 @@ operationGroups:
     $key: putPositiveDuration
     description: Put a positive duration value
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: durationBody
+        schema: *ref_6
+        description: ''
+        extensions:
+          x-ms-requestBody-name: durationBody
+        language: !<!Languages> 
+          default:
+            name: durationBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /duration/positiveduration
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -195,6 +233,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -222,13 +261,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -242,6 +282,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -267,13 +308,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -287,6 +329,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

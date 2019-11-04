@@ -1,10 +1,11 @@
 import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, excludeXDash, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
-import { items, values, Dictionary, ToDictionary, length } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpStreamRequest, HttpParameter, Response, HttpResponse, HttpStreamResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation } from '@azure-tools/codemodel';
+import { items, values, Dictionary, ToDictionary, length, keys } from '@azure-tools/linq';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
-import { fail, minimum, pascalCase } from '@azure-tools/codegen';
+import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
+import { mkdirSync } from 'fs';
 
 
 export class ModelerFour {
@@ -451,10 +452,19 @@ export class ModelerFour {
     }));
   }
 
+  processBinarySchema(name: string, schema: OpenAPI.Schema): BinarySchema {
+    return this.codeModel.schemas.add(new BinarySchema(this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-BINARY', schema), {
+      extensions: this.interpret.getExtensionProperties(schema),
+      summary: schema.title,
+      deprecated: this.interpret.getDeprecation(schema),
+      apiVersions: this.interpret.getApiVersions(schema),
+      example: this.interpret.getExample(schema),
+      externalDocs: this.interpret.getExternalDocs(schema),
+    }));
+  }
+
   trap = new Set();
   processSchema(name: string, schema: OpenAPI.Schema): Schema {
-
-
     return this.should(schema, (schema) => {
 
       //console.error(`Process Schema ${this.interpret.getName(name, schema)}/${schema.description}`);
@@ -469,7 +479,7 @@ export class ModelerFour {
         return this.processChoiceSchema(name, schema);
       }
 
-      if (schema.format === 'file') {
+      if (<any>schema.type === 'file') {
         // handle inconsistency in file format handling.
         this.session.warning(
           'The schema type \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'',
@@ -477,6 +487,16 @@ export class ModelerFour {
         schema.type = OpenAPI.JsonType.String;
         schema.format = StringFormat.Binary;
       }
+
+      if (<any>schema.format === 'file') {
+        // handle inconsistency in file format handling.
+        this.session.warning(
+          'The schema format  \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'',
+          ['Modeler', 'TypeFileNotValid'], schema);
+        schema.type = OpenAPI.JsonType.String;
+        schema.format = StringFormat.Binary;
+      }
+
 
       // if they haven't set the schema.type then we're going to have to guess what
       // they meant to do.
@@ -571,12 +591,11 @@ export class ModelerFour {
               return this.processByteArraySchema(name, schema);
 
             case StringFormat.Binary:
-              // represent as a stream
+              // represent as a binary
               // wire format is stream of bytes
               // This is actually a different kind of response or request
               // and should not be treated as a trivial 'type'
-              // TODO: 
-              break;
+              return this.processBinarySchema(name, schema);
 
             case StringFormat.Char:
               // a single character
@@ -610,16 +629,64 @@ export class ModelerFour {
               return this.processStringSchema(name, schema);
 
             default:
-              this.session.error(`String schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+              // console.error(`String schema '${name}' with unknown format: '${schema.format}' is treated as simple string.`);
+              return this.processStringSchema(name, schema);
+
+            //              this.session.error(`String schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
       }
       this.session.error(`The model ${name} does not have a recognized schema type '${schema.type}'`, ['Modeler', 'UnknownSchemaType']);
-      throw new Error(`Unrecognized schema type '${schema.type}'`);
+      throw new Error(`Unrecognized schema type:'${schema.type}' / format: ${schema.format}`);
     }) || fail('Unable to process schema.');
   }
 
   processRequestBody(mediaType: string, request: OpenAPI.RequestBody) {
     /// ?
+  }
+
+  filterMediaTypes(mm: Dictionary<MediaType> | undefined) {
+    const mediaTypeGroups = items(mm).groupBy(
+      each => knownMediaType(each.key),
+      each => ({
+        mediaType: each.key,
+        schema: this.resolve(each.value.schema),
+      }));
+
+    // filter out invalid combinations
+    //if (length(mediaTypeGroups.keys()) > 0) {
+    // because the oai2-to-oai3 conversion doesn't have good logic to know
+    // which produces type maps to each operation response,
+    // we have to go thru the possible combinations 
+    // and eliminate ones that don't make sense.
+    // (ie, a binary media type should have a binary response type, a json or xml media type should have a <not binary> type ).
+    for (const [knownMediaType, mt] of [...mediaTypeGroups.entries()]) {
+      for (const fmt of mt) {
+        switch (knownMediaType) {
+          case KnownMediaType.Json:
+          case KnownMediaType.Xml:
+          case KnownMediaType.Form:
+            if (this.interpret.isBinarySchema(fmt.schema.instance)) {
+              // bad combo, remove.
+              mediaTypeGroups.delete(knownMediaType);
+              continue;
+            }
+            break;
+          case KnownMediaType.Binary:
+          case KnownMediaType.Text:
+            if (!this.interpret.isBinarySchema(fmt.schema.instance)) {
+              // bad combo, remove.
+              mediaTypeGroups.delete(knownMediaType);
+              continue;
+            }
+            break;
+
+          default:
+            throw new Error(`Not able to process media type ${fmt.mediaType} at this moment.`);
+        }
+      }
+    }
+    // }
+    return mediaTypeGroups;
   }
 
   processOperation(operation: OpenAPI.HttpOperation | undefined, httpMethod: string, path: string, pathItem: OpenAPI.PathItem) {
@@ -644,8 +711,10 @@ export class ModelerFour {
       this.resolveArray(operation.parameters).select(parameter => {
         this.use(parameter.schema, (name, schema) => {
           const param = op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING-PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
+            required: parameter.required ? true : undefined,
             implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
             extensions: this.interpret.getExtensionProperties(parameter)
+
           }));
 
           param.protocol.http = new HttpParameter(parameter.in);
@@ -655,33 +724,56 @@ export class ModelerFour {
       // what to do about the body?
       const requestBody = this.resolve(operation.requestBody);
       if (requestBody.instance) {
+        const mediaTypeGroups = this.filterMediaTypes(requestBody.instance.content);
 
-        const contents = items(requestBody.instance.content).toArray();
 
-        switch (contents.length) {
+        switch (length(mediaTypeGroups.keys())) {
           case 0:
-            // no body (ie, GET?)
-            // why?
+            // no request body (ie, GET?)
             break;
 
           case 1: {
             // a single type request body 
-            const requestSchema = this.resolve(contents[0].value.schema);
+            const mediaTypes = values(mediaTypeGroups).first();
+            const kmt = keys(mediaTypeGroups).first() || KnownMediaType.Unknown;
+
+            const mediaType = values(mediaTypes).first();
+            if (!mediaType) {
+              throw new Error('??.');
+            }
+
+            const requestSchema = mediaType.schema;
             if (!requestSchema.instance) {
               throw new Error('Missing schema on request.');
             }
 
             // set the media type to the content type.
-            SetType(HttpWithBodyRequest, httpRequest).mediaType = contents[0].key;
+            const httpReq = SetType(HttpWithBodyRequest, httpRequest);
 
-            if (this.interpret.isStreamSchema(requestSchema.instance)) {
+            httpReq.knownMediaType = kmt;
+            httpReq.mediaTypes = values(mediaTypes).select(each => each.mediaType).toArray();
+
+            if (this.interpret.isBinarySchema(requestSchema.instance)) {
               // the request body is a stream. 
-              SetType(HttpStreamRequest, httpRequest).stream = true;
+              SetType(HttpBinaryRequest, httpRequest).binary = true;
+              op.request.addParameter(new Parameter(
+                requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
+                this.interpret.getDescription('', requestBody.instance),
+                this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Binary,
+                      implementation: ImplementationLocation.Client
+                    })
+                  }
+                }));
+
             } else {
               // it has a body parameter, and we're going to use a schema for it.
               // add it as the last parameter 
               op.request.addParameter(new Parameter(
-                'body',
+                requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
                   extensions: this.interpret.getExtensionProperties(requestBody.instance),
@@ -697,28 +789,44 @@ export class ModelerFour {
             break;
 
           default:
-            // multipart request body.
-            throw new Error('multipart not implemented yet');
+            // invalid combinations should have been filtered, so WTH?
+            throw new Error(`Requests with multiple unrelated body types not implemented yet. ${[...mediaTypeGroups.keys()]}`);
         }
-
-
       }
 
       // === Response === 
       for (const { key: responseCode, value: response } of this.resolveDictionary(operation.responses)) {
 
-        for (const { key: mediaType, value: content } of this.resolveDictionary(response.content)) {
-          const { name, instance: schema } = this.resolve(content.schema);
+        const isErr = responseCode === 'default' || response['x-ms-error-response'];
+        const knownMediaTypes = this.filterMediaTypes(response.content);
 
-          const isErr = responseCode === 'default' || response['x-ms-error-response'];
-          if (schema) {
-            const s = this.processSchema('xxx', schema);
-            const rsp = new SchemaResponse(s, {
-              extensions: this.interpret.getExtensionProperties(response)
+        if (length(knownMediaTypes) === 0) {
+          // it has no actual response *payload*
+          // so we just want to create a simple response .
+          const rsp = new Response({
+            extensions: this.interpret.getExtensionProperties(response)
+          });
+          const headers = new Array<Schema>();
+          for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
+            this.use(hh.schema, (n, sch) => {
+              const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
+              hsch.language.default.header = header;
+              headers.push(hsch);
             });
-
+          }
+          rsp.protocol.http = SetType(HttpResponse, {
+            statusCodes: [responseCode],
+            headers: headers.length ? headers : undefined,
+          });
+          if (isErr) {
+            op.addException(rsp);
+          } else {
+            op.addResponse(rsp);
+          }
+        } else {
+          for (const { key: knownMediaType, value: mediatypes } of items(knownMediaTypes)) {
+            const allMt = mediatypes.map(each => each.mediaType);
             const headers = new Array<Schema>();
-
             for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
               this.use(hh.schema, (n, sch) => {
                 const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
@@ -727,16 +835,49 @@ export class ModelerFour {
               });
             }
 
-            rsp.protocol.http = SetType(HttpResponse, {
-              statusCodes: [responseCode],
-              mediaTypes: [mediaType],
-              headers: headers.length ? headers : undefined,
-            });
+            if (knownMediaType === KnownMediaType.Binary) {
+              // binary response needs different response type.
+              const rsp = new BinaryResponse({
+                extensions: this.interpret.getExtensionProperties(response)
+              });
+              rsp.protocol.http = SetType(HttpBinaryResponse, {
+                statusCodes: [responseCode],
+                knownMediaType: knownMediaType,
+                mediaTypes: allMt,
+                headers: headers.length ? headers : undefined,
+              });
+              if (isErr) {
+                //op.addException(rsp);
+                // errors should not be binary streams!
+                throw new Error(`The response body should not be a binary! ${operation.operationId}/${responseCode}`);
 
-            if (isErr) {
-              op.addException(rsp);
-            } else {
-              op.addResponse(rsp);
+              } else {
+                op.addResponse(rsp);
+              }
+              continue;
+            }
+
+            const schema = mediatypes[0].schema.instance;
+
+            if (schema) {
+              const s = this.processSchema('response', schema);
+              const rsp = new SchemaResponse(s, {
+                extensions: this.interpret.getExtensionProperties(response)
+              });
+
+
+              rsp.protocol.http = SetType(HttpResponse, {
+                statusCodes: [responseCode],
+                knownMediaType: knownMediaType,
+                mediaTypes: allMt,
+                headers: headers.length ? headers : undefined,
+              });
+
+              if (isErr) {
+                op.addException(rsp);
+              } else {
+                op.addResponse(rsp);
+              }
             }
           }
         }
@@ -771,7 +912,9 @@ export class ModelerFour {
 
       }
       for (const { key: name, value: schema } of this.resolveDictionary(this.input.components.schemas).where(each => !this.processed.has(each.value))) {
-        this.processSchema(name, schema);
+        if (!this.interpret.isBinarySchema(schema)) {
+          this.processSchema(name, schema);
+        }
 
       }
 

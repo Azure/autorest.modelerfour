@@ -126,12 +126,8 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
     const folders = await readdir(`${__dirname}/../../test/inputs/`);
     for (const each of folders) {
       if ([
-        'body-file',
         'body-formdata',
-        'lro',
-        'storage',
-        'xml-service',
-        'datalake-storage',
+        'lro'
       ].indexOf(each) > -1) {
         console.log(`Skipping: ${each}`);
         continue;

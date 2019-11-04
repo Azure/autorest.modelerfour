@@ -50,7 +50,7 @@ schemas: !<!Schemas>
   dictionaries:
   - *ref_1
   ands:
-  - !<!AndSchema> 
+  - !<!AndSchema> &ref_6
     $key: AvailabilitySetUpdateParameters
     type: and
     description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
@@ -112,6 +112,7 @@ operationGroups:
         schema: *ref_4
         description: The name of the resource group.
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -126,6 +127,7 @@ operationGroups:
         schema: *ref_5
         description: The name of the storage availability set.
         implementation: Method
+        required: true
         extensions:
           x-ms-client-name: avset
           x-ms-parameter-location: method
@@ -136,15 +138,32 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      - !<!Parameter> 
+        $key: tags
+        schema: *ref_6
+        description: The tags.
+        extensions:
+          x-ms-requestBody-name: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: The tags.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
           method: patch
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - !<!HttpServer> &ref_3
             url: 'http://localhost:3000/'
@@ -152,7 +171,16 @@ operationGroups:
               default:
                 name: server-name
                 description: MISSING-SERVER-DESCRIPTION
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     extensions:
       x-ms-requestBody-index: 2
     language: !<!Languages> 

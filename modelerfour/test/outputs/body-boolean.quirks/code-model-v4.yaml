@@ -86,6 +86,15 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
   - !<!BooleanSchema> &ref_6
+    $key: rqsch
+    type: boolean
+    description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_7
     $key: paths·bool-false·get·responses·200·content·application-json·schema
     type: boolean
     description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -97,7 +106,16 @@ schemas: !<!Schemas>
         name: paths·bool-false·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_7
+  - !<!BooleanSchema> &ref_8
+    $key: rqsch
+    type: boolean
+    description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_9
     $key: paths·bool-null·get·responses·200·content·application-json·schema
     type: boolean
     description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -109,7 +127,7 @@ schemas: !<!Schemas>
         name: paths·bool-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_8
+  - !<!BooleanSchema> &ref_10
     $key: paths·bool-invalid·get·responses·200·content·application-json·schema
     type: boolean
     description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -160,6 +178,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -173,6 +192,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -186,18 +206,45 @@ operationGroups:
     $key: putTrue
     description: Set Boolean value true
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: boolBody
+        schema: *ref_6
+        description: ''
+        extensions:
+          x-ms-requestBody-name: boolBody
+        language: !<!Languages> 
+          default:
+            name: boolBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /bool/true
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -207,6 +254,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -234,13 +282,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -254,6 +303,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -267,18 +317,45 @@ operationGroups:
     $key: putFalse
     description: Set Boolean value false
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: boolBody
+        schema: *ref_8
+        description: ''
+        extensions:
+          x-ms-requestBody-name: boolBody
+        language: !<!Languages> 
+          default:
+            name: boolBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /bool/false
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -288,6 +365,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -315,13 +393,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_9
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -335,6 +414,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -360,13 +440,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -380,6 +461,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

@@ -241,6 +241,7 @@ operationGroups:
         schema: *ref_5
         description: Pet id
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -274,6 +275,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -287,18 +289,35 @@ operationGroups:
     $key: AddPet
     description: MISSING-OPERATION-DESCRIPTION
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: petParam
+        schema: *ref_6
+        description: ''
+        extensions:
+          x-ms-requestBody-name: petParam
+        language: !<!Languages> 
+          default:
+            name: petParam
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /extensibleenums/pet/addPet
           method: post
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_4
-          stream: true
     responses:
     - !<!SchemaResponse> 
       schema: *ref_6
@@ -308,6 +327,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_3
+  - !<!ObjectSchema> &ref_2
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_1
+      schema: !<!NumberSchema> &ref_0
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_2
+      schema: !<!StringSchema> &ref_1
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -56,36 +56,13 @@ schemas: !<!Schemas>
         internal: true
         namespace: Api10
     protocol: !<!Protocols> {}
-  dictionaries:
-  - !<!DictionarySchema> &ref_6
-    $key: paths·report-azure·get·responses·200·content·application-json·schema
-    type: dictionary
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    elementType: !<!NumberSchema> &ref_0
-      $key: paths·report-azure·get·responses·200·content·application-json·schema·additionalproperties
-      type: integer
-      description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 32
-      language: !<!Languages> 
-        default:
-          name: paths·report-azure·get·responses·200·content·application-json·schema·additionalproperties
-          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: paths·report-azure·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    protocol: !<!Protocols> {}
   ands:
-  - !<!AndSchema> &ref_7
+  - !<!AndSchema> &ref_4
     $key: Error
     type: and
     description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
     allOf:
-    - *ref_3
+    - *ref_2
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -97,79 +74,51 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   numbers:
   - *ref_0
-  - *ref_1
   strings:
-  - !<!StringSchema> &ref_5
-    $key: paths·report-azure·get·parameters·0·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·report-azure·get·parameters·0·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - *ref_2
+  - *ref_1
 info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: azure-report
+  description: Test Infrastructure for AutoRest Swagger BAT
+  title: body-file
 operationGroups:
 - !<!OperationGroup> 
-  $key: ''
+  $key: files
   operations:
   - !<!Operation> 
-    $key: getReport
-    description: Get test coverage report
+    $key: GetFile
+    description: Get file
     request: !<!Request> 
-      parameters:
-      - !<!Parameter> 
-        $key: qualifier
-        schema: *ref_5
-        description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
-        implementation: Method
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: qualifier
-            description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /report/azure
+          path: /files/stream/nonempty
           method: get
           servers:
-          - !<!HttpServer> &ref_4
+          - !<!HttpServer> &ref_3
             url: 'http://localhost:3000/'
             language:
               default:
                 name: server-name
                 description: MISSING-SERVER-DESCRIPTION
     responses:
-    - !<!SchemaResponse> 
-      schema: *ref_6
+    - !<!BinaryResponse> 
+      binary: true
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
-          knownMediaType: json
+          knownMediaType: binary
           mediaTypes:
-          - application/json
+          - image/png
           statusCodes:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -183,8 +132,102 @@ operationGroups:
           - default
     language: !<!Languages> 
       default:
-        name: getReport
-        description: Get test coverage report
+        name: GetFile
+        description: Get file
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: GetFileLarge
+    description: Get a large file
+    request: !<!Request> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: /files/stream/verylarge
+          method: get
+          servers:
+          - *ref_3
+    responses:
+    - !<!BinaryResponse> 
+      binary: true
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: binary
+          mediaTypes:
+          - image/png
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_4
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: GetFileLarge
+        description: Get a large file
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: GetEmptyFile
+    description: Get empty file
+    request: !<!Request> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: /files/stream/empty
+          method: get
+          servers:
+          - *ref_3
+    responses:
+    - !<!BinaryResponse> 
+      binary: true
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: binary
+          mediaTypes:
+          - image/png
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_4
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: GetEmptyFile
+        description: Get empty file
     protocol: !<!Protocols> {}
   language: !<!Languages> 
     default:
@@ -198,4 +241,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_4
+    - *ref_3

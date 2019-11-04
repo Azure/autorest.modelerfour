@@ -129,13 +129,13 @@ export class Interpretations {
       group: opId.substr(0, p),
       member: opId.substr(p + 1)
     } : {
-        group: '',
-        member: opId
-      };
+      group: '',
+      member: opId
+    };
   }
 
-  isStreamSchema(schema: OpenAPI.Schema) {
-    return (schema.format === StringFormat.Binary || 'file');
+  isBinarySchema(schema: OpenAPI.Schema | undefined) {
+    return !!(schema && (schema.format === StringFormat.Binary || schema.format === 'file' || <any>schema.type === 'file'));
   }
 
   getOperationId(httpMethod: string, path: string, original: OpenAPI.HttpOperation) {

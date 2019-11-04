@@ -152,10 +152,50 @@ schemas: !<!Schemas>
         name: paths·int-underflowint64·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_11
+    $key: rqsch
+    type: integer
+    description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_12
+    $key: rqsch
+    type: integer
+    description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_13
+    $key: rqsch
+    type: integer
+    description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_14
+    $key: rqsch
+    type: integer
+    description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+    protocol: !<!Protocols> {}
   strings:
   - *ref_1
   unixtimes:
-  - !<!UnixTimeSchema> &ref_11
+  - !<!UnixTimeSchema> &ref_15
     $key: paths·int-unixtime·get·responses·200·content·application-json·schema
     type: unixtime
     description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
@@ -167,7 +207,16 @@ schemas: !<!Schemas>
         name: paths·int-unixtime·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
     protocol: !<!Protocols> {}
-  - !<!UnixTimeSchema> &ref_12
+  - !<!UnixTimeSchema> &ref_16
+    $key: rqsch
+    type: unixtime
+    description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
+    language: !<!Languages> 
+      default:
+        name: rqsch
+        description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
+    protocol: !<!Protocols> {}
+  - !<!UnixTimeSchema> &ref_17
     $key: paths·int-invalidunixtime·get·responses·200·content·application-json·schema
     type: unixtime
     description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
@@ -179,7 +228,7 @@ schemas: !<!Schemas>
         name: paths·int-invalidunixtime·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
     protocol: !<!Protocols> {}
-  - !<!UnixTimeSchema> &ref_13
+  - !<!UnixTimeSchema> &ref_18
     $key: paths·int-nullunixtime·get·responses·200·content·application-json·schema
     type: unixtime
     description: MISSING-SCHEMA-DESCRIPTION-UNIXTIME
@@ -226,6 +275,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -239,6 +289,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -271,6 +322,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -284,6 +336,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -316,6 +369,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -329,6 +383,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -361,6 +416,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -374,6 +430,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -406,6 +463,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -419,6 +477,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -451,6 +510,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -464,6 +524,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -477,18 +538,45 @@ operationGroups:
     $key: putMax32
     description: Put max int32 value
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: intBody
+        schema: *ref_11
+        description: ''
+        extensions:
+          x-ms-requestBody-name: intBody
+        language: !<!Languages> 
+          default:
+            name: intBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /int/max/32
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -498,6 +586,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -513,18 +602,45 @@ operationGroups:
     $key: putMax64
     description: Put max int64 value
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: intBody
+        schema: *ref_12
+        description: ''
+        extensions:
+          x-ms-requestBody-name: intBody
+        language: !<!Languages> 
+          default:
+            name: intBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /int/max/64
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -534,6 +650,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -549,18 +666,45 @@ operationGroups:
     $key: putMin32
     description: Put min int32 value
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: intBody
+        schema: *ref_13
+        description: ''
+        extensions:
+          x-ms-requestBody-name: intBody
+        language: !<!Languages> 
+          default:
+            name: intBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /int/min/32
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -570,6 +714,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -585,18 +730,45 @@ operationGroups:
     $key: putMin64
     description: Put min int64 value
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: intBody
+        schema: *ref_14
+        description: ''
+        extensions:
+          x-ms-requestBody-name: intBody
+        language: !<!Languages> 
+          default:
+            name: intBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /int/min/64
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -606,6 +778,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -633,13 +806,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_15
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -653,6 +827,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -666,18 +841,45 @@ operationGroups:
     $key: putUnixTimeDate
     description: Put datetime encoded as Unix time
     request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: intBody
+        schema: *ref_16
+        description: ''
+        extensions:
+          x-ms-requestBody-name: intBody
+        language: !<!Languages> 
+          default:
+            name: intBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            implementation: Client
+            in: body
+            style: json
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpStreamRequest> 
+        http: !<!HttpWithBodyRequest> 
           path: /int/unixtime
           method: put
-          mediaType: application/json
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           servers:
           - *ref_3
-          stream: true
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -687,6 +889,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -714,13 +917,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_17
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -734,6 +938,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -759,13 +964,14 @@ operationGroups:
           - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
@@ -779,6 +985,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:

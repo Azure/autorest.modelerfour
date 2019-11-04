@@ -179,6 +179,7 @@ operationGroups:
         schema: *ref_4
         description: The key name with value 'key1'.
         implementation: Method
+        required: true
         extensions:
           x-ms-parameter-location: method
         language: !<!Languages> 
@@ -193,6 +194,7 @@ operationGroups:
         schema: *ref_5
         description: The subscription id with value 'test12'.
         implementation: Method
+        required: true
         language: !<!Languages> 
           default:
             name: subscriptionId
@@ -262,6 +264,16 @@ operationGroups:
               default:
                 name: server-name
                 description: MISSING-SERVER-DESCRIPTION
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_7
@@ -271,6 +283,7 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
+          knownMediaType: json
           mediaTypes:
           - application/json
           statusCodes:
