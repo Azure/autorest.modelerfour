@@ -424,7 +424,7 @@ export class ModelerFour {
       const finalType = new AndSchema(this.interpret.getName(name, schema), schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
         allOf: andTypes,
         apiVersions: this.interpret.getApiVersions(schema),
-        discriminatorValue: schema['x-ms-discriminator-value'],
+        discriminatorValue: schema['x-ms-discriminator-value'] || name,
       });
       finalType.language.default.namespace = pascalCase(`Api ${minimum(values(finalType.apiVersions).select(each => each.version).toArray())}`);
       return this.codeModel.schemas.add(finalType);
