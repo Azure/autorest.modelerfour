@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_2
+  - !<!ObjectSchema> &ref_4
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -53,27 +53,10 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_5
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_2
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   byteArrays:
-  - !<!ByteArraySchema> &ref_7
+  - !<!ByteArraySchema> &ref_6
     $key: paths·byte-nonascii·get·responses·200·content·application-json·schema
     type: byte-array
     format: byte
@@ -86,7 +69,7 @@ schemas: !<!Schemas>
         name: paths·byte-nonascii·get·responses·200·content·application-json·schema
         description: Non-ascii base-64 encoded byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_8
+  - !<!ByteArraySchema> &ref_7
     $key: rqsch
     type: byte-array
     format: byte
@@ -96,7 +79,7 @@ schemas: !<!Schemas>
         name: rqsch
         description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_9
+  - !<!ByteArraySchema> &ref_8
     $key: paths·byte-invalid·get·responses·200·content·application-json·schema
     type: byte-array
     format: byte
@@ -112,7 +95,7 @@ schemas: !<!Schemas>
   numbers:
   - *ref_0
   sealedChoices:
-  - !<!SealedChoiceSchema> &ref_4
+  - !<!SealedChoiceSchema> &ref_3
     $key: paths·byte-null·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -140,7 +123,7 @@ schemas: !<!Schemas>
         name: paths·byte-null·get·responses·200·content·application-json·schema
         description: The null byte value
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_6
+  - !<!SealedChoiceSchema> &ref_5
     $key: paths·byte-empty·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -190,7 +173,7 @@ operationGroups:
           path: /byte/null
           method: get
           servers:
-          - !<!HttpServer> &ref_3
+          - !<!HttpServer> &ref_2
             url: 'http://localhost:3000/'
             language:
               default:
@@ -198,7 +181,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -212,7 +195,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -242,10 +225,10 @@ operationGroups:
           path: /byte/empty
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -259,7 +242,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -289,10 +272,10 @@ operationGroups:
           path: /byte/nonAscii
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -306,7 +289,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -330,7 +313,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: byteBody
-        schema: *ref_8
+        schema: *ref_7
         description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
         implementation: Client
         extensions:
@@ -355,7 +338,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -368,7 +351,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -400,10 +383,10 @@ operationGroups:
           path: /byte/invalid
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -417,7 +400,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -446,4 +429,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_3
+    - *ref_2

@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_2
+  - !<!ObjectSchema> &ref_4
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -53,27 +53,10 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_5
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_2
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   durations:
-  - !<!DurationSchema> &ref_4
+  - !<!DurationSchema> &ref_3
     $key: paths·duration-null·get·responses·200·content·application-json·schema
     type: duration
     description: MISSING-SCHEMA-DESCRIPTION-DURATION
@@ -85,7 +68,7 @@ schemas: !<!Schemas>
         name: paths·duration-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DURATION
     protocol: !<!Protocols> {}
-  - !<!DurationSchema> &ref_6
+  - !<!DurationSchema> &ref_5
     $key: rqsch
     type: duration
     description: MISSING-SCHEMA-DESCRIPTION-DURATION
@@ -94,7 +77,7 @@ schemas: !<!Schemas>
         name: rqsch
         description: MISSING-SCHEMA-DESCRIPTION-DURATION
     protocol: !<!Protocols> {}
-  - !<!DurationSchema> &ref_7
+  - !<!DurationSchema> &ref_6
     $key: paths·duration-positiveduration·get·responses·200·content·application-json·schema
     type: duration
     description: MISSING-SCHEMA-DESCRIPTION-DURATION
@@ -106,7 +89,7 @@ schemas: !<!Schemas>
         name: paths·duration-positiveduration·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DURATION
     protocol: !<!Protocols> {}
-  - !<!DurationSchema> &ref_8
+  - !<!DurationSchema> &ref_7
     $key: paths·duration-invalid·get·responses·200·content·application-json·schema
     type: duration
     description: MISSING-SCHEMA-DESCRIPTION-DURATION
@@ -142,7 +125,7 @@ operationGroups:
           path: /duration/null
           method: get
           servers:
-          - !<!HttpServer> &ref_3
+          - !<!HttpServer> &ref_2
             url: 'http://localhost:3000/'
             language:
               default:
@@ -150,7 +133,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -164,7 +147,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -188,7 +171,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: durationBody
-        schema: *ref_6
+        schema: *ref_5
         description: ''
         implementation: Client
         extensions:
@@ -213,7 +196,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -226,7 +209,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -258,10 +241,10 @@ operationGroups:
           path: /duration/positiveduration
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -275,7 +258,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -305,10 +288,10 @@ operationGroups:
           path: /duration/invalid
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -322,7 +305,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -351,4 +334,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_3
+    - *ref_2

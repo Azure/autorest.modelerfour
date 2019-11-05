@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_2
+  - !<!ObjectSchema> &ref_3
     $key: rqsch
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -48,24 +48,10 @@ schemas: !<!Schemas>
       default:
         name: rqsch
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_4
-    $key: rqsch
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_2
-    language: !<!Languages> 
-      default:
-        name: rqsch
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api
     protocol: !<!Protocols> {}
   strings:
-  - !<!StringSchema> &ref_3
+  - !<!StringSchema> &ref_2
     $key: paths·get·parameters·0·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -93,7 +79,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: petId
-        schema: *ref_3
+        schema: *ref_2
         description: ID of pet that needs to be updated
         implementation: Method
         required: true
@@ -108,7 +94,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: status
-        schema: *ref_4
+        schema: *ref_3
         description: ''
         implementation: Client
         extensions:

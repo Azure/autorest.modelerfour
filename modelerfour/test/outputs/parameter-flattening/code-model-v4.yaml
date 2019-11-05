@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_2
+  - !<!ObjectSchema> &ref_5
     $key: AvailabilitySetUpdateParameters
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -44,29 +44,26 @@ schemas: !<!Schemas>
       default:
         name: AvailabilitySetUpdateParameters
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> 
+    $key: AvailabilitySetUpdateParameters-tags
+    type: object
+    description: A description about the set of tags.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    summary: A set of tags.
+    language: !<!Languages> 
+      default:
+        name: AvailabilitySetUpdateParameters-tags
+        description: A description about the set of tags.
         namespace: Api10
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_1
-  ands:
-  - !<!AndSchema> &ref_6
-    $key: AvailabilitySetUpdateParameters
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_2
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: AvailabilitySetUpdateParameters
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
   strings:
-  - !<!StringSchema> &ref_4
+  - !<!StringSchema> &ref_3
     $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -78,7 +75,7 @@ schemas: !<!Schemas>
         name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_5
+  - !<!StringSchema> &ref_4
     $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -109,7 +106,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_4
+        schema: *ref_3
         description: The name of the resource group.
         implementation: Method
         required: true
@@ -124,7 +121,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: availabilitySetName
-        schema: *ref_5
+        schema: *ref_4
         description: The name of the storage availability set.
         implementation: Method
         required: true
@@ -140,7 +137,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: tags
-        schema: *ref_6
+        schema: *ref_5
         description: The tags.
         implementation: Client
         extensions:
@@ -165,7 +162,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - !<!HttpServer> &ref_3
+          - !<!HttpServer> &ref_2
             url: 'http://localhost:3000/'
             language:
               default:
@@ -200,4 +197,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_3
+    - *ref_2

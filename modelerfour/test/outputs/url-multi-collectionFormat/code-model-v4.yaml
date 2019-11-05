@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_5
+  - !<!ObjectSchema> &ref_7
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -53,27 +53,10 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_8
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_5
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   arrays:
-  - !<!ArraySchema> &ref_7
+  - !<!ArraySchema> &ref_6
     $key: paths·queries-array-multi-string-null·get·parameters·0·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -97,7 +80,7 @@ schemas: !<!Schemas>
         name: paths·queries-array-multi-string-null·get·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_9
+  - !<!ArraySchema> &ref_8
     $key: paths·queries-array-multi-string-empty·get·parameters·0·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -121,7 +104,7 @@ schemas: !<!Schemas>
         name: paths·queries-array-multi-string-empty·get·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_10
+  - !<!ArraySchema> &ref_9
     $key: paths·queries-array-multi-string-valid·get·parameters·0·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -166,7 +149,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: arrayQuery
-        schema: *ref_7
+        schema: *ref_6
         description: a null array of string using the multi-array format
         implementation: Method
         extensions:
@@ -187,7 +170,7 @@ operationGroups:
           path: /queries/array/multi/string/null
           method: get
           servers:
-          - !<!HttpServer> &ref_6
+          - !<!HttpServer> &ref_5
             url: 'http://localhost:3000/'
             language:
               default:
@@ -205,7 +188,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -229,7 +212,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: arrayQuery
-        schema: *ref_9
+        schema: *ref_8
         description: 'an empty array [] of string using the multi-array format'
         implementation: Method
         extensions:
@@ -250,7 +233,7 @@ operationGroups:
           path: /queries/array/multi/string/empty
           method: get
           servers:
-          - *ref_6
+          - *ref_5
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -263,7 +246,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -287,7 +270,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: arrayQuery
-        schema: *ref_10
+        schema: *ref_9
         description: 'an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
         implementation: Method
         extensions:
@@ -308,7 +291,7 @@ operationGroups:
           path: /queries/array/multi/string/valid
           method: get
           servers:
-          - *ref_6
+          - *ref_5
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -321,7 +304,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -350,4 +333,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_6
+    - *ref_5

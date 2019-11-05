@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, excludeXDash, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, AndSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -298,9 +298,6 @@ export class ModelerFour {
   processOrSchema(name: string, schema: OpenAPI.Schema): OrSchema {
     throw new Error('Method not implemented.');
   }
-  processAndSchema(name: string, schema: OpenAPI.Schema): AndSchema {
-    throw new Error('Method not implemented.');
-  }
   processXorSchema(name: string, schema: OpenAPI.Schema): XorSchema {
     throw new Error('Method not implemented.');
   }
@@ -369,7 +366,7 @@ export class ModelerFour {
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
         }));
         if (prop.isDiscriminator) {
-          objectSchema.discriminatorProperty = prop;
+          objectSchema.discriminator = new Discriminator(prop);
         }
       });
     }
@@ -377,9 +374,9 @@ export class ModelerFour {
     return objectSchema;
   }
 
-  processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AndSchema {
+  processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema {
     let i = 0;
-    const andTypes: Array<ComplexSchema> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
+    const parents: Array<ComplexSchema> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
       return this.processSchema(n || `${name}.allOf.${i++}`, s);
     })).toArray();
     const orTypes = values(aSchema.anyOf).select(sch => this.use(sch, (n, s) => {
@@ -395,7 +392,7 @@ export class ModelerFour {
 
 
     // is this more than a straightforward object?
-    const isMoreThanObject = (andTypes.length + orTypes.length + xorTypes.length) > 0 || !!dictionaryDef;
+    const isMoreThanObject = (parents.length + orTypes.length + xorTypes.length) > 0 || !!dictionaryDef;
 
     // do we have properties at all?
     const hasProperties = length(schema.properties) > 0;
@@ -404,48 +401,87 @@ export class ModelerFour {
       // it's an empty object? 
       this.session.warning(`Schema '${name}' is an empty object without properties or modifiers.`, ['Modeler', 'EmptyObject'], aSchema);
     }
-    const objectSchema = hasProperties ? this.createObjectSchema(name, schema) : undefined;
-
-    if (objectSchema) {
-      //  return this.codeModel.schemas.add(objectSchema);
-    }
+    const objectSchema = this.createObjectSchema(name, schema);
 
     const dictionarySchema = dictionaryDef ? this.processDictionarySchema(name, aSchema) : undefined;
 
-    if (objectSchema) {
-      // add it to the upcoming and schema set
-      andTypes.unshift(objectSchema);
+    // add it to the upcoming and schema set
+    // andTypes.unshift(objectSchema);
 
-      // set the apiversion namespace
-      const m = minimum(values(objectSchema.apiVersions).select(each => each.version).toArray());
-      objectSchema.language.default.namespace = pascalCase(`Api ${m}`);
+    // set the apiversion namespace
+    const m = minimum(values(objectSchema.apiVersions).select(each => each.version).toArray());
+    objectSchema.language.default.namespace = pascalCase(`Api ${m}`);
 
-      // tell it should be internal if possible
-      objectSchema.language.default.internal = true;
-    }
+    // tell it should be internal if possible
+    // objectSchema.language.default.internal = true;
+
     if (dictionarySchema) {
-      if (andTypes.length === 0 && xorTypes.length === 0 && orTypes.length === 0) {
+      if (!hasProperties && parents.length === 0 && xorTypes.length === 0 && orTypes.length === 0) {
         return dictionarySchema;
       }
       // otherwise, we're combining
-      andTypes.push(dictionarySchema);
+      parents.push(dictionarySchema);
     }
-    if (xorTypes.length === 0 && orTypes.length === 0) {
+
+    if (parents.length > 0 && xorTypes.length === 0 && orTypes.length === 0) {
       // craft the and type for the model.
       const n = this.interpret.getName(name, schema);
-      const finalType = new AndSchema(n, schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
+      const isPolymorphic = this.isSchemaPolymorphic(schema);
+      objectSchema.discriminatorValue = isPolymorphic ? schema['x-ms-discriminator-value'] || n : undefined;
+
+      objectSchema.parents = new Relations();
+      objectSchema.parents.immediate = parents;
+
+      for (const p of parents) {
+        if (p.type === SchemaType.Object) {
+          const parent = (<ObjectSchema>p);
+          const grandparents = parent.parents?.all || [];
+          const allParents = [...parents, ...grandparents];
+
+          objectSchema.parents.all.push(...allParents);
+          parent.children = parent.children || new Relations();
+          parent.children.immediate.push(objectSchema);
+          parent.children.all.push(objectSchema);
+
+
+          for (const pp of grandparents) {
+            if (pp.type === SchemaType.Object) {
+              const pparent = (<ObjectSchema>pp);
+              pparent.children = pparent.children || new Relations();
+              pparent.children.all.push(objectSchema);
+              if (pparent.discriminator && objectSchema.discriminatorValue) {
+                pparent.discriminator.all[objectSchema.discriminatorValue] = objectSchema;
+                // make sure parent has a discriminator, because grandparent does.
+                parent.discriminator = parent.discriminator || new Discriminator(pparent.discriminator.property);
+              }
+            }
+          }
+
+          if (parent.discriminator && objectSchema.discriminatorValue) {
+            parent.discriminator.immediate[objectSchema.discriminatorValue] = objectSchema;
+            parent.discriminator.all[objectSchema.discriminatorValue] = objectSchema;
+          }
+        }
+      }
+
+
+      //objectSchema
+      /* const finalType = new AndSchema(n, schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
         allOf: andTypes,
         apiVersions: this.interpret.getApiVersions(schema),
-        discriminatorValue: this.isSchemaPolymorphic(schema) ? schema['x-ms-discriminator-value'] || n : undefined,
+        discriminatorValue,
       });
+
       finalType.language.default.namespace = pascalCase(`Api ${minimum(values(finalType.apiVersions).select(each => each.version).toArray())}`);
       return this.codeModel.schemas.add(finalType);
+      */
     }
+    return objectSchema;
     // const andSchemas = andTypes.map( each => this.processSchema(''| each.) )
 
     // [<I> and <B>] OR <C>
 
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
   processOdataSchema(name: string, schema: OpenAPI.Schema): ODataQuerySchema {
     throw new Error('Method not implemented.');
@@ -927,8 +963,8 @@ export class ModelerFour {
         if (!this.interpret.isBinarySchema(schema)) {
           this.processSchema(name, schema);
         }
-
       }
+
 
     }
     return this.codeModel;

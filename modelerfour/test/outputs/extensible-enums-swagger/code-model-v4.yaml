@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_3
+  - !<!ObjectSchema> &ref_5
     $key: Pet
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -188,30 +188,13 @@ schemas: !<!Schemas>
       default:
         name: Pet
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api201607
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_6
-    $key: Pet
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_3
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2016-07-07'
-    language: !<!Languages> 
-      default:
-        name: Pet
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api201607
     protocol: !<!Protocols> {}
   sealedChoices:
   - *ref_1
   - *ref_2
   strings:
-  - !<!StringSchema> &ref_5
+  - !<!StringSchema> &ref_4
     $key: components·parameters·petid·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -238,7 +221,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: petId
-        schema: *ref_5
+        schema: *ref_4
         description: Pet id
         implementation: Method
         required: true
@@ -260,7 +243,7 @@ operationGroups:
           path: '/extensibleenums/pet/{petId}'
           method: get
           servers:
-          - !<!HttpServer> &ref_4
+          - !<!HttpServer> &ref_3
             url: 'http://localhost:3000/'
             language:
               default:
@@ -268,7 +251,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -292,7 +275,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: petParam
-        schema: *ref_6
+        schema: *ref_5
         description: ''
         implementation: Client
         extensions:
@@ -317,10 +300,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_4
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -351,4 +334,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_4
+    - *ref_3

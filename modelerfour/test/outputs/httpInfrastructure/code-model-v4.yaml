@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_6
+  - !<!ObjectSchema> &ref_11
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_0
+      schema: !<!NumberSchema> &ref_2
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_1
+      schema: !<!StringSchema> &ref_3
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -53,20 +53,63 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_0
     $key: MyException
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
+    children: !<!Relations> 
+      all:
+      - !<!ObjectSchema> &ref_1
+        $key: B
+        type: object
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        parents: !<!Relations> 
+          all:
+          - *ref_0
+          immediate:
+          - *ref_0
+        properties:
+        - !<!Property> 
+          $key: textStatusCode
+          schema: !<!StringSchema> &ref_5
+            $key: B-textStatusCode
+            type: string
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+            apiVersions:
+            - !<!ApiVersion> 
+              version: 1.0.0
+            language: !<!Languages> 
+              default:
+                name: B-textStatusCode
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: textStatusCode
+          language: !<!Languages> 
+            default:
+              name: textStatusCode
+              description: PROPERTY-DESCRIPTION-MISSING
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            name: B
+            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+            namespace: Api10
+        protocol: !<!Protocols> {}
+      immediate:
+      - *ref_1
     properties:
     - !<!Property> 
       $key: statusCode
-      schema: !<!StringSchema> &ref_2
+      schema: !<!StringSchema> &ref_4
         $key: A-statusCode
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -91,46 +134,10 @@ schemas: !<!Schemas>
       default:
         name: MyException
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_8
-    $key: B
-    type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      $key: textStatusCode
-      schema: !<!StringSchema> &ref_3
-        $key: B-textStatusCode
-        type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: B-textStatusCode
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-        protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: textStatusCode
-      language: !<!Languages> 
-        default:
-          name: textStatusCode
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: B
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_10
+  - *ref_1
+  - !<!ObjectSchema> &ref_76
     $key: C
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -140,7 +147,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: httpCode
-      schema: !<!StringSchema> &ref_4
+      schema: !<!StringSchema> &ref_6
         $key: C-httpCode
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -163,10 +170,9 @@ schemas: !<!Schemas>
       default:
         name: C
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_11
+  - !<!ObjectSchema> &ref_77
     $key: D
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -176,7 +182,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: httpStatusCode
-      schema: !<!StringSchema> &ref_5
+      schema: !<!StringSchema> &ref_7
         $key: D-httpStatusCode
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -199,95 +205,17 @@ schemas: !<!Schemas>
       default:
         name: D
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_15
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_6
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!AndSchema> &ref_9
-    $key: MyException
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_7
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: MyException
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!AndSchema> &ref_80
-    $key: B
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_8
-    - *ref_9
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: B
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!AndSchema> &ref_81
-    $key: C
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_10
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: C
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!AndSchema> &ref_82
-    $key: D
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_11
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: D
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   arrays:
-  - !<!ArraySchema> &ref_36
+  - !<!ArraySchema> &ref_32
     $key: paths·http-redirect-300·get·responses·300·content·application-json·schema
     type: array
     description: 'A list of location options for the request [''/http/success/get/200'']'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: !<!StringSchema> &ref_12
+    elementType: !<!StringSchema> &ref_8
       $key: get-300-application-json-itemsItem
       type: string
       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -305,9 +233,9 @@ schemas: !<!Schemas>
         description: 'A list of location options for the request [''/http/success/get/200'']'
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_0
+  - *ref_2
   sealedChoices:
-  - !<!SealedChoiceSchema> &ref_14
+  - !<!SealedChoiceSchema> &ref_10
     $key: paths·http-failure-emptybody-error·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -335,7 +263,7 @@ schemas: !<!Schemas>
         name: paths·http-failure-emptybody-error·get·responses·200·content·application-json·schema
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_16
+  - !<!SealedChoiceSchema> &ref_12
     $key: paths·http-failure-nomodel-error·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -363,7 +291,7 @@ schemas: !<!Schemas>
         name: paths·http-failure-nomodel-error·get·responses·200·content·application-json·schema
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_17
+  - !<!SealedChoiceSchema> &ref_13
     $key: paths·http-failure-nomodel-empty·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -391,7 +319,7 @@ schemas: !<!Schemas>
         name: paths·http-failure-nomodel-empty·get·responses·200·content·application-json·schema
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_18
+  - !<!SealedChoiceSchema> &ref_14
     $key: paths·http-success-200·get·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -419,7 +347,7 @@ schemas: !<!Schemas>
         name: paths·http-success-200·get·responses·200·content·application-json·schema
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_19
+  - !<!SealedChoiceSchema> &ref_15
     $key: paths·http-success-200·options·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
@@ -445,6 +373,98 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: paths·http-success-200·options·responses·200·content·application-json·schema
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_16
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_17
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_18
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_19
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_20
@@ -631,29 +651,6 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_28
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_29
     choices:
     - !<!ChoiceValue> 
@@ -677,99 +674,30 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_28
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_30
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_31
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_33
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_32
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_34
     $key: paths·http-redirect-300·head·responses·300·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -798,7 +726,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_35
+  - !<!SealedChoiceSchema> &ref_31
     $key: paths·http-redirect-300·get·responses·300·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -827,7 +755,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_37
+  - !<!SealedChoiceSchema> &ref_33
     $key: paths·http-redirect-301·head·responses·301·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -856,7 +784,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_38
+  - !<!SealedChoiceSchema> &ref_34
     $key: paths·http-redirect-301·get·responses·301·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -885,7 +813,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_39
+  - !<!SealedChoiceSchema> &ref_35
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -908,7 +836,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_40
+  - !<!SealedChoiceSchema> &ref_36
     $key: paths·http-redirect-301·put·responses·301·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -937,7 +865,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_41
+  - !<!SealedChoiceSchema> &ref_37
     $key: paths·http-redirect-302·head·responses·302·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -966,7 +894,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_42
+  - !<!SealedChoiceSchema> &ref_38
     $key: paths·http-redirect-302·get·responses·302·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -995,7 +923,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_43
+  - !<!SealedChoiceSchema> &ref_39
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1018,7 +946,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_44
+  - !<!SealedChoiceSchema> &ref_40
     $key: paths·http-redirect-302·patch·responses·302·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1047,7 +975,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_45
+  - !<!SealedChoiceSchema> &ref_41
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1070,7 +998,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_46
+  - !<!SealedChoiceSchema> &ref_42
     $key: paths·http-redirect-303·post·responses·303·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1099,7 +1027,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_47
+  - !<!SealedChoiceSchema> &ref_43
     $key: paths·http-redirect-307·head·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1128,7 +1056,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_48
+  - !<!SealedChoiceSchema> &ref_44
     $key: paths·http-redirect-307·get·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1157,7 +1085,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_49
+  - !<!SealedChoiceSchema> &ref_45
     $key: paths·http-redirect-307·options·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1186,7 +1114,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_56
+  - !<!SealedChoiceSchema> &ref_52
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1209,7 +1137,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_57
+  - !<!SealedChoiceSchema> &ref_53
     $key: paths·http-redirect-307·put·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1238,7 +1166,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_50
+  - !<!SealedChoiceSchema> &ref_46
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1261,7 +1189,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_51
+  - !<!SealedChoiceSchema> &ref_47
     $key: paths·http-redirect-307·patch·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1290,7 +1218,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_52
+  - !<!SealedChoiceSchema> &ref_48
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1313,7 +1241,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_53
+  - !<!SealedChoiceSchema> &ref_49
     $key: paths·http-redirect-307·post·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1342,7 +1270,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_54
+  - !<!SealedChoiceSchema> &ref_50
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1365,7 +1293,7 @@ schemas: !<!Schemas>
       default:
         description: Simple boolean value true
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_55
+  - !<!SealedChoiceSchema> &ref_51
     $key: paths·http-redirect-307·delete·responses·307·headers·location·schema
     choices:
     - !<!ChoiceValue> 
@@ -1393,6 +1321,98 @@ schemas: !<!Schemas>
         name: paths·http-redirect-307·delete·responses·307·headers·location·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         header: Location
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_54
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_55
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_56
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_57
+    choices:
+    - !<!ChoiceValue> 
+      value: true
+      language:
+        default:
+          name: true
+          description: ''
+    type: sealed-choice
+    description: Simple boolean value true
+    choiceType: !<!StringSchema> 
+      $key: choice
+      type: string
+      description: choice
+      language: !<!Languages> 
+        default:
+          name: choice
+          description: choice
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: Simple boolean value true
     protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_58
     choices:
@@ -1694,6 +1714,7 @@ schemas: !<!Schemas>
         description: Simple boolean value true
     protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_71
+    $key: paths·http-retry-502·options·responses·200·content·application-json·schema
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1703,6 +1724,9 @@ schemas: !<!Schemas>
           description: ''
     type: sealed-choice
     description: Simple boolean value true
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     choiceType: !<!StringSchema> 
       $key: choice
       type: string
@@ -1714,6 +1738,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
+        name: paths·http-retry-502·options·responses·200·content·application-json·schema
         description: Simple boolean value true
     protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_72
@@ -1786,103 +1811,6 @@ schemas: !<!Schemas>
         description: Simple boolean value true
     protocol: !<!Protocols> {}
   - !<!SealedChoiceSchema> &ref_75
-    $key: paths·http-retry-502·options·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: paths·http-retry-502·options·responses·200·content·application-json·schema
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_76
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_77
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_78
-    choices:
-    - !<!ChoiceValue> 
-      value: true
-      language:
-        default:
-          name: true
-          description: ''
-    type: sealed-choice
-    description: Simple boolean value true
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: Simple boolean value true
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_79
     choices:
     - !<!ChoiceValue> 
       value: true
@@ -1906,12 +1834,12 @@ schemas: !<!Schemas>
         description: Simple boolean value true
     protocol: !<!Protocols> {}
   strings:
-  - *ref_1
-  - *ref_12
-  - *ref_2
   - *ref_3
+  - *ref_8
   - *ref_4
   - *ref_5
+  - *ref_6
+  - *ref_7
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: httpInfrastructure
@@ -1932,7 +1860,7 @@ operationGroups:
           path: /http/failure/emptybody/error
           method: get
           servers:
-          - !<!HttpServer> &ref_13
+          - !<!HttpServer> &ref_9
             url: 'http://localhost:3000/'
             language:
               default:
@@ -1940,7 +1868,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1954,7 +1882,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -1984,10 +1912,10 @@ operationGroups:
           path: /http/failure/nomodel/error
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -2017,10 +1945,10 @@ operationGroups:
           path: /http/failure/nomodel/empty
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_13
       language: !<!Languages> 
         default:
           name: ''
@@ -2058,7 +1986,7 @@ operationGroups:
           path: /http/success/200
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2071,7 +1999,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2101,10 +2029,10 @@ operationGroups:
           path: /http/success/200
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_14
       language: !<!Languages> 
         default:
           name: ''
@@ -2118,7 +2046,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2148,10 +2076,10 @@ operationGroups:
           path: /http/success/200
           method: options
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -2165,7 +2093,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2189,7 +2117,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_20
+        schema: *ref_16
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2214,7 +2142,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2227,7 +2155,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2253,7 +2181,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_21
+        schema: *ref_17
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2278,7 +2206,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2291,7 +2219,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2317,7 +2245,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_22
+        schema: *ref_18
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2342,7 +2270,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2355,7 +2283,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2381,7 +2309,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_23
+        schema: *ref_19
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2406,7 +2334,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2419,7 +2347,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2445,7 +2373,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_24
+        schema: *ref_20
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2470,7 +2398,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2483,7 +2411,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2509,7 +2437,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_25
+        schema: *ref_21
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2534,7 +2462,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2547,7 +2475,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2573,7 +2501,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_26
+        schema: *ref_22
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2598,7 +2526,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2611,7 +2539,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2637,7 +2565,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_27
+        schema: *ref_23
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2662,7 +2590,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2675,7 +2603,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2701,7 +2629,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_28
+        schema: *ref_24
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2726,7 +2654,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2739,7 +2667,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2765,7 +2693,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_29
+        schema: *ref_25
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2790,7 +2718,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2803,7 +2731,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2835,7 +2763,7 @@ operationGroups:
           path: /http/success/204
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2848,7 +2776,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2872,7 +2800,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_30
+        schema: *ref_26
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2897,7 +2825,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2910,7 +2838,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -2936,7 +2864,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_31
+        schema: *ref_27
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -2961,7 +2889,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2974,7 +2902,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3000,7 +2928,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_32
+        schema: *ref_28
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3025,7 +2953,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3038,7 +2966,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3070,7 +2998,7 @@ operationGroups:
           path: /http/success/404
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3092,7 +3020,7 @@ operationGroups:
           - '404'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3124,7 +3052,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_33
+        schema: *ref_29
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3149,7 +3077,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3162,7 +3090,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3202,7 +3130,7 @@ operationGroups:
           path: /http/redirect/300
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3221,12 +3149,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_34
+          - *ref_30
           statusCodes:
           - '300'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3256,7 +3184,7 @@ operationGroups:
           path: /http/redirect/300
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3268,7 +3196,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_32
       language: !<!Languages> 
         default:
           name: ''
@@ -3276,7 +3204,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_35
+          - *ref_31
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -3284,7 +3212,7 @@ operationGroups:
           - '300'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3314,7 +3242,7 @@ operationGroups:
           path: /http/redirect/301
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3333,12 +3261,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_37
+          - *ref_33
           statusCodes:
           - '301'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3368,7 +3296,7 @@ operationGroups:
           path: /http/redirect/301
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3387,12 +3315,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_38
+          - *ref_34
           statusCodes:
           - '301'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3416,7 +3344,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_39
+        schema: *ref_35
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3441,7 +3369,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3451,12 +3379,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_40
+          - *ref_36
           statusCodes:
           - '301'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3488,7 +3416,7 @@ operationGroups:
           path: /http/redirect/302
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3507,12 +3435,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_41
+          - *ref_37
           statusCodes:
           - '302'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3542,7 +3470,7 @@ operationGroups:
           path: /http/redirect/302
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3561,12 +3489,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_42
+          - *ref_38
           statusCodes:
           - '302'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3590,7 +3518,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_43
+        schema: *ref_39
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3615,7 +3543,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3625,12 +3553,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_44
+          - *ref_40
           statusCodes:
           - '302'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3656,7 +3584,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_45
+        schema: *ref_41
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3681,7 +3609,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3700,12 +3628,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_46
+          - *ref_42
           statusCodes:
           - '303'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3737,7 +3665,7 @@ operationGroups:
           path: /http/redirect/307
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3756,12 +3684,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_47
+          - *ref_43
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3791,7 +3719,7 @@ operationGroups:
           path: /http/redirect/307
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3810,12 +3738,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_48
+          - *ref_44
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3845,7 +3773,7 @@ operationGroups:
           path: /http/redirect/307
           method: options
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3864,12 +3792,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_49
+          - *ref_45
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3893,7 +3821,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_50
+        schema: *ref_46
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3918,7 +3846,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3937,12 +3865,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_51
+          - *ref_47
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -3968,7 +3896,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_52
+        schema: *ref_48
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -3993,7 +3921,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4012,12 +3940,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_53
+          - *ref_49
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4043,7 +3971,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_54
+        schema: *ref_50
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4068,7 +3996,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4087,12 +4015,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_55
+          - *ref_51
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4126,7 +4054,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_56
+        schema: *ref_52
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4151,7 +4079,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4170,12 +4098,12 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_57
+          - *ref_53
           statusCodes:
           - '307'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4215,10 +4143,10 @@ operationGroups:
           path: /http/failure/client/400
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4248,10 +4176,10 @@ operationGroups:
           path: /http/failure/client/400
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4281,10 +4209,10 @@ operationGroups:
           path: /http/failure/client/400
           method: options
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4308,7 +4236,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_58
+        schema: *ref_54
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4333,10 +4261,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4362,7 +4290,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_59
+        schema: *ref_55
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4387,10 +4315,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4416,7 +4344,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_60
+        schema: *ref_56
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4441,10 +4369,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4470,7 +4398,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_61
+        schema: *ref_57
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4495,10 +4423,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4530,10 +4458,10 @@ operationGroups:
           path: /http/failure/client/401
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4563,10 +4491,10 @@ operationGroups:
           path: /http/failure/client/402
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4596,10 +4524,10 @@ operationGroups:
           path: /http/failure/client/403
           method: options
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4629,10 +4557,10 @@ operationGroups:
           path: /http/failure/client/403
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4656,7 +4584,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_62
+        schema: *ref_58
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4681,10 +4609,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4710,7 +4638,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_63
+        schema: *ref_59
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4735,10 +4663,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4764,7 +4692,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_64
+        schema: *ref_60
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4789,10 +4717,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4818,7 +4746,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_65
+        schema: *ref_61
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4843,10 +4771,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4872,7 +4800,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_66
+        schema: *ref_62
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -4897,10 +4825,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4932,10 +4860,10 @@ operationGroups:
           path: /http/failure/client/410
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4965,10 +4893,10 @@ operationGroups:
           path: /http/failure/client/411
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -4998,10 +4926,10 @@ operationGroups:
           path: /http/failure/client/412
           method: options
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5031,10 +4959,10 @@ operationGroups:
           path: /http/failure/client/412
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5058,7 +4986,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_67
+        schema: *ref_63
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5083,10 +5011,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5112,7 +5040,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_68
+        schema: *ref_64
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5137,10 +5065,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5166,7 +5094,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_69
+        schema: *ref_65
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5191,10 +5119,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5226,10 +5154,10 @@ operationGroups:
           path: /http/failure/client/416
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5253,7 +5181,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_70
+        schema: *ref_66
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5278,10 +5206,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5313,10 +5241,10 @@ operationGroups:
           path: /http/failure/client/429
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5354,10 +5282,10 @@ operationGroups:
           path: /http/failure/server/501
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5387,10 +5315,10 @@ operationGroups:
           path: /http/failure/server/501
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5414,7 +5342,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_71
+        schema: *ref_67
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5439,10 +5367,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5468,7 +5396,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_72
+        schema: *ref_68
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5493,10 +5421,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5536,7 +5464,7 @@ operationGroups:
           path: /http/retry/408
           method: head
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5549,7 +5477,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5573,7 +5501,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_73
+        schema: *ref_69
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5598,7 +5526,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5611,7 +5539,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5637,7 +5565,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_74
+        schema: *ref_70
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5662,7 +5590,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5675,7 +5603,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5707,7 +5635,7 @@ operationGroups:
           path: /http/retry/502
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5720,7 +5648,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5750,10 +5678,10 @@ operationGroups:
           path: /http/retry/502
           method: options
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_75
+      schema: *ref_71
       language: !<!Languages> 
         default:
           name: ''
@@ -5767,7 +5695,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5791,7 +5719,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_76
+        schema: *ref_72
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5816,7 +5744,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5829,7 +5757,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5855,7 +5783,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_77
+        schema: *ref_73
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5880,7 +5808,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5893,7 +5821,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5919,7 +5847,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_78
+        schema: *ref_74
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -5944,7 +5872,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5957,7 +5885,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -5983,7 +5911,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: booleanValue
-        schema: *ref_79
+        schema: *ref_75
         description: Simple boolean value true
         implementation: Client
         extensions:
@@ -6008,7 +5936,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6021,7 +5949,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6061,10 +5989,10 @@ operationGroups:
           path: /http/payloads/200/A/204/none/default/Error/response/200/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6087,7 +6015,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6117,10 +6045,10 @@ operationGroups:
           path: /http/payloads/200/A/204/none/default/Error/response/204/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6143,7 +6071,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6173,10 +6101,10 @@ operationGroups:
           path: /http/payloads/200/A/204/none/default/Error/response/201/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6199,7 +6127,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6229,10 +6157,10 @@ operationGroups:
           path: /http/payloads/200/A/204/none/default/Error/response/202/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6255,7 +6183,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6285,10 +6213,10 @@ operationGroups:
           path: /http/payloads/200/A/204/none/default/Error/response/400/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6311,7 +6239,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6341,10 +6269,10 @@ operationGroups:
           path: /http/payloads/200/A/201/B/default/Error/response/200/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6357,7 +6285,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_80
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -6371,7 +6299,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6401,10 +6329,10 @@ operationGroups:
           path: /http/payloads/200/A/201/B/default/Error/response/201/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6417,7 +6345,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_80
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -6431,7 +6359,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6461,10 +6389,10 @@ operationGroups:
           path: /http/payloads/200/A/201/B/default/Error/response/400/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6477,7 +6405,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_80
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -6491,7 +6419,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6521,10 +6449,10 @@ operationGroups:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/200/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6537,7 +6465,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_81
+      schema: *ref_76
       language: !<!Languages> 
         default:
           name: ''
@@ -6550,7 +6478,7 @@ operationGroups:
           statusCodes:
           - '201'
     - !<!SchemaResponse> 
-      schema: *ref_82
+      schema: *ref_77
       language: !<!Languages> 
         default:
           name: ''
@@ -6564,7 +6492,7 @@ operationGroups:
           - '404'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6594,10 +6522,10 @@ operationGroups:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/201/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6610,7 +6538,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_81
+      schema: *ref_76
       language: !<!Languages> 
         default:
           name: ''
@@ -6623,7 +6551,7 @@ operationGroups:
           statusCodes:
           - '201'
     - !<!SchemaResponse> 
-      schema: *ref_82
+      schema: *ref_77
       language: !<!Languages> 
         default:
           name: ''
@@ -6637,7 +6565,7 @@ operationGroups:
           - '404'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6667,10 +6595,10 @@ operationGroups:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/404/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6683,7 +6611,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_81
+      schema: *ref_76
       language: !<!Languages> 
         default:
           name: ''
@@ -6696,7 +6624,7 @@ operationGroups:
           statusCodes:
           - '201'
     - !<!SchemaResponse> 
-      schema: *ref_82
+      schema: *ref_77
       language: !<!Languages> 
         default:
           name: ''
@@ -6710,7 +6638,7 @@ operationGroups:
           - '404'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6740,10 +6668,10 @@ operationGroups:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/400/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -6756,7 +6684,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_81
+      schema: *ref_76
       language: !<!Languages> 
         default:
           name: ''
@@ -6769,7 +6697,7 @@ operationGroups:
           statusCodes:
           - '201'
     - !<!SchemaResponse> 
-      schema: *ref_82
+      schema: *ref_77
       language: !<!Languages> 
         default:
           name: ''
@@ -6783,7 +6711,7 @@ operationGroups:
           - '404'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6813,7 +6741,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/Error/response/202/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6835,7 +6763,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6865,7 +6793,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/Error/response/204/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6887,7 +6815,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6917,7 +6845,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/Error/response/400/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6939,7 +6867,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -6969,7 +6897,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/none/response/202/invalid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -7017,7 +6945,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/none/response/204/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -7065,7 +6993,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/none/response/400/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -7113,7 +7041,7 @@ operationGroups:
           path: /http/payloads/202/none/204/none/default/none/response/400/invalid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -7161,10 +7089,10 @@ operationGroups:
           path: /http/payloads/default/A/response/200/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7194,10 +7122,10 @@ operationGroups:
           path: /http/payloads/default/A/response/200/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7227,10 +7155,10 @@ operationGroups:
           path: /http/payloads/default/A/response/400/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7260,10 +7188,10 @@ operationGroups:
           path: /http/payloads/default/A/response/400/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7293,7 +7221,7 @@ operationGroups:
           path: /http/payloads/default/none/response/200/invalid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!Response> 
       language: !<!Languages> 
@@ -7322,7 +7250,7 @@ operationGroups:
           path: /http/payloads/default/none/response/200/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!Response> 
       language: !<!Languages> 
@@ -7351,7 +7279,7 @@ operationGroups:
           path: /http/payloads/default/none/response/400/invalid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!Response> 
       language: !<!Languages> 
@@ -7380,7 +7308,7 @@ operationGroups:
           path: /http/payloads/default/none/response/400/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     exceptions:
     - !<!Response> 
       language: !<!Languages> 
@@ -7409,10 +7337,10 @@ operationGroups:
           path: /http/payloads/200/A/response/200/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7442,10 +7370,10 @@ operationGroups:
           path: /http/payloads/200/A/response/200/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7475,10 +7403,10 @@ operationGroups:
           path: /http/payloads/200/A/response/200/invalid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7508,10 +7436,10 @@ operationGroups:
           path: /http/payloads/200/A/response/400/none
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7541,10 +7469,10 @@ operationGroups:
           path: /http/payloads/200/A/response/400/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7574,10 +7502,10 @@ operationGroups:
           path: /http/payloads/200/A/response/400/invalid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7607,10 +7535,10 @@ operationGroups:
           path: /http/payloads/200/A/response/202/valid
           method: get
           servers:
-          - *ref_13
+          - *ref_9
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -7639,4 +7567,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_13
+    - *ref_9

@@ -1,7 +1,20 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_3
+  - !<!ObjectSchema> 
+    $key: paths·report-azure·get·responses·200·content·application-json·schema
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·report-azure·get·responses·200·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_6
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -30,7 +43,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_2
+      schema: !<!StringSchema> &ref_0
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -53,15 +66,14 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
         namespace: Api10
     protocol: !<!Protocols> {}
   dictionaries:
-  - !<!DictionarySchema> &ref_6
+  - !<!DictionarySchema> &ref_5
     $key: paths·report-azure·get·responses·200·content·application-json·schema
     type: dictionary
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    elementType: !<!NumberSchema> &ref_0
+    elementType: !<!NumberSchema> &ref_2
       $key: paths·report-azure·get·responses·200·content·application-json·schema·additionalproperties
       type: integer
       description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -79,27 +91,11 @@ schemas: !<!Schemas>
         name: paths·report-azure·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_7
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_3
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
   numbers:
-  - *ref_0
+  - *ref_2
   - *ref_1
   strings:
-  - !<!StringSchema> &ref_5
+  - !<!StringSchema> &ref_4
     $key: paths·report-azure·get·parameters·0·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -111,7 +107,7 @@ schemas: !<!Schemas>
         name: paths·report-azure·get·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - *ref_2
+  - *ref_0
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: azure-report
@@ -126,7 +122,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: qualifier
-        schema: *ref_5
+        schema: *ref_4
         description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
         implementation: Method
         extensions:
@@ -147,7 +143,7 @@ operationGroups:
           path: /report/azure
           method: get
           servers:
-          - !<!HttpServer> &ref_4
+          - !<!HttpServer> &ref_3
             url: 'http://localhost:3000/'
             language:
               default:
@@ -155,7 +151,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -169,7 +165,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -198,4 +194,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_4
+    - *ref_3

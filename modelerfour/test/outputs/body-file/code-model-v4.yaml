@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_2
+  - !<!ObjectSchema> &ref_3
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -53,23 +53,6 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_4
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_2
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   numbers:
@@ -96,7 +79,7 @@ operationGroups:
           path: /files/stream/nonempty
           method: get
           servers:
-          - !<!HttpServer> &ref_3
+          - !<!HttpServer> &ref_2
             url: 'http://localhost:3000/'
             language:
               default:
@@ -118,7 +101,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -148,7 +131,7 @@ operationGroups:
           path: /files/stream/verylarge
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -165,7 +148,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -195,7 +178,7 @@ operationGroups:
           path: /files/stream/empty
           method: get
           servers:
-          - *ref_3
+          - *ref_2
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -212,7 +195,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -241,4 +224,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_3
+    - *ref_2

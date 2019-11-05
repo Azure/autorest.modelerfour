@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_2
+  - !<!ObjectSchema> &ref_6
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -53,23 +53,6 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_7
-    $key: Error
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_2
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   numbers:
@@ -111,7 +94,7 @@ schemas: !<!Schemas>
         name: ServerVariable/
         description: MISSING-SERVER_VARIABLE-DESCRIPTION
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_4
+  - !<!StringSchema> &ref_3
     $key: paths·customuri-subscriptionid-keyname·get·parameters·0·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -123,7 +106,7 @@ schemas: !<!Schemas>
         name: paths·customuri-subscriptionid-keyname·get·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_5
+  - !<!StringSchema> &ref_4
     $key: components·parameters·subscriptionidparameter·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -135,7 +118,7 @@ schemas: !<!Schemas>
         name: components·parameters·subscriptionidparameter·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_6
+  - !<!StringSchema> &ref_5
     $key: paths·customuri-subscriptionid-keyname·get·parameters·2·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -176,7 +159,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: keyName
-        schema: *ref_4
+        schema: *ref_3
         description: The key name with value 'key1'.
         implementation: Method
         required: true
@@ -191,7 +174,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_5
+        schema: *ref_4
         description: The subscription id with value 'test12'.
         implementation: Method
         required: true
@@ -204,7 +187,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: keyVersion
-        schema: *ref_6
+        schema: *ref_5
         description: The key version. Default value 'v1'.
         implementation: Method
         extensions:
@@ -225,7 +208,7 @@ operationGroups:
           path: '/customuri/{subscriptionId}/{keyName}'
           method: get
           servers:
-          - !<!HttpServer> &ref_3
+          - !<!HttpServer> &ref_2
             url: '{vault}{secret}{dnsSuffix}'
             variables:
             - !<!ServerVariable> 
@@ -276,7 +259,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -305,4 +288,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_3
+    - *ref_2

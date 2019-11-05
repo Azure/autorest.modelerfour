@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_11
+  - !<!ObjectSchema> &ref_12
     $key: comic
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -242,28 +242,11 @@ schemas: !<!Schemas>
       default:
         name: comic
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        internal: true
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  ands:
-  - !<!AndSchema> &ref_13
-    $key: comic
-    type: and
-    description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
-    allOf:
-    - *ref_11
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: comic
-        description: MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   numbers:
   - *ref_10
-  - !<!NumberSchema> &ref_14
+  - !<!NumberSchema> &ref_13
     $key: paths·comicid-info-0-json·get·parameters·0·schema
     type: number
     description: MISSING-SCHEMA-DESCRIPTION-NUMBER
@@ -324,7 +307,7 @@ operationGroups:
           path: /info.0.json
           method: get
           servers:
-          - !<!HttpServer> &ref_12
+          - !<!HttpServer> &ref_11
             url: 'http://xkcd.com/'
             language:
               default:
@@ -332,7 +315,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -358,7 +341,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: comicId
-        schema: *ref_14
+        schema: *ref_13
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -380,10 +363,10 @@ operationGroups:
           path: '/{comicId}/info.0.json'
           method: get
           servers:
-          - *ref_12
+          - *ref_11
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -413,4 +396,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_12
+    - *ref_11
