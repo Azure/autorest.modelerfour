@@ -327,6 +327,17 @@ export class ModelerFour {
     return dict;
   }
 
+  isSchemaPolymorphic(schema: OpenAPI.Schema | undefined): boolean {
+    if (schema) {
+      if (schema.type === JsonType.Object) {
+        if (schema.discriminator) {
+          return true;
+        }
+        return this.resolveArray(schema.allOf).any(each => this.isSchemaPolymorphic(each));
+      }
+    }
+    return false;
+  }
 
   createObjectSchema(name: string, schema: OpenAPI.Schema) {
     const discriminatorProperty = schema?.discriminator?.propertyName ? schema.discriminator.propertyName : undefined;
@@ -421,10 +432,11 @@ export class ModelerFour {
     }
     if (xorTypes.length === 0 && orTypes.length === 0) {
       // craft the and type for the model.
-      const finalType = new AndSchema(this.interpret.getName(name, schema), schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
+      const n = this.interpret.getName(name, schema);
+      const finalType = new AndSchema(n, schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
         allOf: andTypes,
         apiVersions: this.interpret.getApiVersions(schema),
-        discriminatorValue: schema['x-ms-discriminator-value'] || name,
+        discriminatorValue: this.isSchemaPolymorphic(schema) ? schema['x-ms-discriminator-value'] || n : undefined,
       });
       finalType.language.default.namespace = pascalCase(`Api ${minimum(values(finalType.apiVersions).select(each => each.version).toArray())}`);
       return this.codeModel.schemas.add(finalType);
@@ -764,9 +776,9 @@ export class ModelerFour {
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Body, {
                       style: SerializationStyle.Binary,
-                      implementation: ImplementationLocation.Client
                     })
-                  }
+                  },
+                  implementation: ImplementationLocation.Client
                 }));
 
             } else {
@@ -780,9 +792,9 @@ export class ModelerFour {
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Body, {
                       style: SerializationStyle.Json,
-                      implementation: ImplementationLocation.Client
                     })
-                  }
+                  },
+                  implementation: ImplementationLocation.Client
                 }));
             }
           }
