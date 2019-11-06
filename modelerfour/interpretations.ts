@@ -231,6 +231,7 @@ export class Interpretations {
   static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     const result = ToDictionary(OpenAPI.includeXDash(dictionary), each => dictionary[each]);
     delete result['x-ms-metadata'];
+    //delete result['x-ms-enum'];
     if (length(result) === 0) {
       return undefined;
     }
