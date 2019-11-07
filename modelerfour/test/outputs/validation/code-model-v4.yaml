@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_21
+  - !<!ObjectSchema> &ref_18
     $key: Product
     type: object
     description: The product documentation.
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: display_names
-      schema: !<!ArraySchema> &ref_9
+      schema: !<!ArraySchema> &ref_7
         $key: Product-display_names
         type: array
         description: Non required array of unique items from 0 to 6 elements.
@@ -104,28 +104,22 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: constProperty
-          schema: !<!SealedChoiceSchema> &ref_10
+          schema: !<!ConstantSchema> &ref_8
             $key: ChildProduct-constProperty
-            choices:
-            - !<!ChoiceValue> 
-              value: constant
-              language:
-                default:
-                  name: constant
-                  description: ''
-            type: sealed-choice
+            type: constant
             description: Constant string
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            choiceType: !<!StringSchema> 
-              $key: choice
+            value: constant
+            valueType: !<!StringSchema> 
+              $key: constant
               type: string
-              description: choice
+              description: constant
               language: !<!Languages> 
                 default:
-                  name: choice
-                  description: choice
+                  name: constant
+                  description: constant
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -186,28 +180,22 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: constProperty
-          schema: !<!SealedChoiceSchema> &ref_11
+          schema: !<!ConstantSchema> &ref_9
             $key: ConstantProduct-constProperty
-            choices:
-            - !<!ChoiceValue> 
-              value: constant
-              language:
-                default:
-                  name: constant
-                  description: ''
-            type: sealed-choice
+            type: constant
             description: Constant string
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            choiceType: !<!StringSchema> 
-              $key: choice
+            value: constant
+            valueType: !<!StringSchema> 
+              $key: constant
               type: string
-              description: choice
+              description: constant
               language: !<!Languages> 
                 default:
-                  name: choice
-                  description: choice
+                  name: constant
+                  description: constant
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -224,28 +212,22 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: constProperty2
-          schema: !<!SealedChoiceSchema> &ref_12
+          schema: !<!ConstantSchema> &ref_10
             $key: ConstantProduct-constProperty2
-            choices:
-            - !<!ChoiceValue> 
-              value: constant2
-              language:
-                default:
-                  name: constant2
-                  description: ''
-            type: sealed-choice
+            type: constant
             description: Constant string2
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            choiceType: !<!StringSchema> 
-              $key: choice
+            value: constant2
+            valueType: !<!StringSchema> 
+              $key: constant
               type: string
-              description: choice
+              description: constant
               language: !<!Languages> 
                 default:
-                  name: choice
-                  description: choice
+                  name: constant
+                  description: constant
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -276,24 +258,17 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: constInt
-      schema: !<!SealedChoiceSchema> &ref_13
-        choices:
-        - !<!ChoiceValue> 
-          value: 0
-          language:
-            default:
-              name: 0
-              description: ''
-        type: sealed-choice
+      schema: !<!ConstantSchema> &ref_11
+        type: constant
         description: Constant int
-        choiceType: !<!StringSchema> 
-          $key: choice
+        valueType: !<!StringSchema> 
+          $key: constant
           type: string
-          description: choice
+          description: constant
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: constant
+              description: constant
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -309,28 +284,22 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: constString
-      schema: !<!SealedChoiceSchema> &ref_14
+      schema: !<!ConstantSchema> &ref_12
         $key: Product-constString
-        choices:
-        - !<!ChoiceValue> 
-          value: constant
-          language:
-            default:
-              name: constant
-              description: ''
-        type: sealed-choice
+        type: constant
         description: Constant string
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        choiceType: !<!StringSchema> 
-          $key: choice
+        value: constant
+        valueType: !<!StringSchema> 
+          $key: constant
           type: string
-          description: choice
+          description: constant
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: constant
+              description: constant
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -347,28 +316,22 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: constStringAsEnum
-      schema: !<!ChoiceSchema> &ref_15
+      schema: !<!ConstantSchema> &ref_13
         $key: EnumConst
-        choices:
-        - !<!ChoiceValue> 
-          value: constant_string_as_enum
-          language:
-            default:
-              name: constant_string_as_enum
-              description: ''
-        type: choice
+        type: constant
         description: Constant string as Enum
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        choiceType: !<!StringSchema> 
-          $key: choice
+        value: constant_string_as_enum
+        valueType: !<!StringSchema> 
+          $key: constant
           type: string
-          description: choice
+          description: constant
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: constant
+              description: constant
           protocol: !<!Protocols> {}
         extensions:
           x-ms-enum:
@@ -395,7 +358,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_4
   - *ref_5
-  - !<!ObjectSchema> &ref_22
+  - !<!ObjectSchema> &ref_19
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -424,18 +387,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_7
-        $key: Error-message
-        type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -445,18 +397,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: fields
-      schema: !<!StringSchema> &ref_8
-        $key: Error-fields
-        type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-fields
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: fields
       language: !<!Languages> 
@@ -470,12 +411,51 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  choices:
-  - *ref_15
   arrays:
+  - *ref_7
+  constants:
+  - *ref_8
   - *ref_9
+  - *ref_10
+  - *ref_11
+  - *ref_12
+  - *ref_13
+  - !<!ConstantSchema> &ref_21
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: constant
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_22
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: constant
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   numbers:
-  - !<!NumberSchema> &ref_19
+  - !<!NumberSchema> &ref_16
     $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·2·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -494,7 +474,7 @@ schemas: !<!Schemas>
   - *ref_1
   - *ref_3
   - *ref_6
-  - !<!NumberSchema> &ref_24
+  - !<!NumberSchema> &ref_20
     $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -510,72 +490,9 @@ schemas: !<!Schemas>
         name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
-  sealedChoices:
-  - *ref_10
-  - *ref_11
-  - *ref_12
-  - *ref_13
-  - *ref_14
-  - !<!SealedChoiceSchema> &ref_25
-    choices:
-    - !<!ChoiceValue> 
-      value: constant
-      language:
-        default:
-          name: constant
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_26
-    choices:
-    - !<!ChoiceValue> 
-      value: constant
-      language:
-        default:
-          name: constant
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   strings:
-  - !<!StringSchema> &ref_17
-    $key: components·parameters·subscriptionidparamterer·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: components·parameters·subscriptionidparamterer·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_18
+  - *ref_0
+  - !<!StringSchema> &ref_15
     $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -590,7 +507,7 @@ schemas: !<!Schemas>
         name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_20
+  - !<!StringSchema> &ref_17
     $key: components·parameters·apiversionparameter·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -603,25 +520,7 @@ schemas: !<!Schemas>
         name: components·parameters·apiversionparameter·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - *ref_0
   - *ref_2
-  - *ref_7
-  - *ref_8
-  - !<!StringSchema> &ref_23
-    $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maxLength: 10
-    minLength: 3
-    pattern: '[a-zA-Z0-9]+'
-    language: !<!Languages> 
-      default:
-        name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
@@ -636,7 +535,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_17
+        schema: *ref_0
         description: Subscription ID.
         implementation: Method
         required: true
@@ -649,7 +548,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_18
+        schema: *ref_15
         description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
         implementation: Method
         required: true
@@ -664,7 +563,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: id
-        schema: *ref_19
+        schema: *ref_16
         description: Required int multiple of 10 from 100 to 1000.
         implementation: Method
         required: true
@@ -679,7 +578,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: apiVersion
-        schema: *ref_20
+        schema: *ref_17
         description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
         implementation: Method
         required: true
@@ -699,7 +598,7 @@ operationGroups:
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
           method: get
           servers:
-          - !<!HttpServer> &ref_16
+          - !<!HttpServer> &ref_14
             url: 'http://localhost:3000/'
             language:
               default:
@@ -707,7 +606,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -721,7 +620,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -745,7 +644,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_17
+        schema: *ref_0
         description: Subscription ID.
         implementation: Method
         required: true
@@ -758,7 +657,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_23
+        schema: *ref_15
         description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
         implementation: Method
         required: true
@@ -773,7 +672,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: id
-        schema: *ref_24
+        schema: *ref_20
         description: Required int multiple of 10 from 100 to 1000.
         implementation: Method
         required: true
@@ -788,7 +687,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: apiVersion
-        schema: *ref_20
+        schema: *ref_17
         description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
         implementation: Method
         required: true
@@ -801,7 +700,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: body
-        schema: *ref_21
+        schema: *ref_18
         description: ''
         implementation: Client
         extensions:
@@ -826,10 +725,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_16
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -843,7 +742,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -869,7 +768,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: constantParam
-        schema: *ref_25
+        schema: *ref_21
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -891,7 +790,7 @@ operationGroups:
           path: '/validation/constantsInPath/{constantParam}/value'
           method: get
           servers:
-          - *ref_16
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -914,7 +813,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: constantParam
-        schema: *ref_26
+        schema: *ref_22
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -929,7 +828,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: body
-        schema: *ref_21
+        schema: *ref_18
         description: ''
         implementation: Client
         extensions:
@@ -954,10 +853,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_16
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -988,4 +887,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_16
+    - *ref_14

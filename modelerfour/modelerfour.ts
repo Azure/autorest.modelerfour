@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, excludeXDash, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -105,20 +105,20 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-      extensions: this.interpret.getExtensionProperties(schema),
-      summary: schema.title,
-      defaultValue: schema.default,
-      deprecated: this.interpret.getDeprecation(schema),
-      apiVersions: this.interpret.getApiVersions(schema),
-      example: this.interpret.getExample(schema),
-      externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: this.interpret.getSerialization(schema),
-      maximum: schema.maximum,
-      minimum: schema.minimum,
-      multipleOf: schema.multipleOf,
-      exclusiveMaximum: schema.exclusiveMaximum,
-      exclusiveMinimum: schema.exclusiveMinimum
-    }));
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: this.interpret.getSerialization(schema),
+        maximum: schema.maximum,
+        minimum: schema.minimum,
+        multipleOf: schema.multipleOf,
+        exclusiveMaximum: schema.exclusiveMaximum,
+        exclusiveMinimum: schema.exclusiveMinimum
+      }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -261,11 +261,44 @@ export class ModelerFour {
     }));
   }
 
+  getPrimitiveSchemaForEnum(schema: OpenAPI.Schema) {
+    switch (schema.type) {
 
-  processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema | SealedChoiceSchema {
+      case JsonType.String:
+        return new StringSchema('string', schema.description || '');
+      case JsonType.Boolean:
+        return new BooleanSchema('boolean', schema.description || '');
+      case JsonType.Number:
+      case JsonType.Integer:
+        return this.processNumberSchema('number', schema);
+    }
+    throw Error('Uh oh.');
+  }
+
+  processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema | SealedChoiceSchema | ConstantSchema {
     const xmse = <XMSEnum>schema['x-ms-enum'];
     name = xmse && xmse.name;
     const sealed = xmse && !(xmse.modelAsString);
+
+    switch (schema.type) {
+      case JsonType.String:
+    }
+
+    if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
+      return this.codeModel.schemas.add(new ConstantSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: this.interpret.getSerialization(schema),
+        valueType: new StringSchema('constant', 'constant'),
+        value: schema?.enum?.[0] || xmse?.values[0]?.value
+      }));
+
+    }
 
     if (sealed) {
       return this.codeModel.schemas.add(new ChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
@@ -815,14 +848,14 @@ export class ModelerFour {
                 requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Binary,
-                  })
-                },
-                implementation: ImplementationLocation.Client
-              }));
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Binary,
+                    })
+                  },
+                  implementation: ImplementationLocation.Client
+                }));
 
             } else {
               // it has a body parameter, and we're going to use a schema for it.
@@ -831,14 +864,14 @@ export class ModelerFour {
                 requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Json,
-                  })
-                },
-                implementation: ImplementationLocation.Client
-              }));
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Json,
+                    })
+                  },
+                  implementation: ImplementationLocation.Client
+                }));
             }
           }
             break;

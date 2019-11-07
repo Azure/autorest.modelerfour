@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_0
+      schema: !<!NumberSchema> &ref_1
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_1
+      schema: !<!StringSchema> &ref_2
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -55,7 +55,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_21
+  - !<!ObjectSchema> &ref_12
     $key: RefColorConstant
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -65,28 +65,22 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: ColorConstant
-      schema: !<!ChoiceSchema> &ref_3
+      schema: !<!ConstantSchema> &ref_0
         $key: ColorConstant
-        choices:
-        - !<!ChoiceValue> 
-          value: green-color
-          language:
-            default:
-              name: green-color
-              description: ''
-        type: choice
+        type: constant
         description: Referenced Color Constant Description.
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        choiceType: !<!StringSchema> 
-          $key: choice
+        value: green-color
+        valueType: !<!StringSchema> 
+          $key: constant
           type: string
-          description: choice
+          description: constant
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: constant
+              description: constant
           protocol: !<!Protocols> {}
         extensions:
           x-ms-enum:
@@ -107,7 +101,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: field1
-      schema: !<!StringSchema> &ref_2
+      schema: !<!StringSchema> &ref_3
         $key: RefColorConstant-field1
         type: string
         description: Sample string.
@@ -134,7 +128,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_19
+  - !<!ChoiceSchema> &ref_11
     $key: Colors
     choices:
     - !<!ChoiceValue> 
@@ -178,50 +172,8 @@ schemas: !<!Schemas>
         name: Colors
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_20
-    $key: Colors
-    choices:
-    - !<!ChoiceValue> 
-      value: red color
-      language:
-        default:
-          name: red color
-          description: ''
-    - !<!ChoiceValue> 
-      value: green-color
-      language:
-        default:
-          name: green-color
-          description: ''
-    - !<!ChoiceValue> 
-      value: blue_color
-      language:
-        default:
-          name: blue_color
-          description: ''
-    type: choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: Colors
-        modelAsString: false
-    language: !<!Languages> 
-      default:
-        name: Colors
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - *ref_3
   byteArrays:
-  - !<!ByteArraySchema> &ref_15
+  - !<!ByteArraySchema> &ref_10
     $key: paths·string-base64encoding·get·responses·200·content·application-json·schema
     type: byte-array
     format: base64url
@@ -234,264 +186,99 @@ schemas: !<!Schemas>
         name: paths·string-base64encoding·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
     protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_16
-    $key: paths·string-base64urlencoding·get·responses·200·content·application-json·schema
-    type: byte-array
-    format: base64url
-    description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·string-base64urlencoding·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
-    protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_17
-    $key: rqsch
-    type: byte-array
-    format: base64url
-    description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
-    language: !<!Languages> 
-      default:
-        name: rqsch
-        description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
-    protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_18
-    $key: paths·string-nullbase64urlencoding·get·responses·200·content·application-json·schema
-    type: byte-array
-    format: base64url
-    description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·string-nullbase64urlencoding·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
-    protocol: !<!Protocols> {}
-  numbers:
-  - *ref_0
-  sealedChoices:
-  - !<!SealedChoiceSchema> &ref_5
+  constants:
+  - !<!ConstantSchema> &ref_5
     $key: paths·string-null·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: null
-      language:
-        default:
-          name: null
-          description: ''
-    type: sealed-choice
+    type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
+    valueType: !<!StringSchema> 
+      $key: constant
       type: string
-      description: choice
+      description: constant
       language: !<!Languages> 
         default:
-          name: choice
-          description: choice
+          name: constant
+          description: constant
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·string-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_7
-    choices:
-    - !<!ChoiceValue> 
-      value: null
-      language:
-        default:
-          name: null
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_8
+  - !<!ConstantSchema> &ref_7
     $key: paths·string-empty·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: ''
-      language:
-        default:
-          name: ''
-          description: ''
-    type: sealed-choice
+    type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
+    valueType: !<!StringSchema> 
+      $key: constant
       type: string
-      description: choice
+      description: constant
       language: !<!Languages> 
         default:
-          name: choice
-          description: choice
+          name: constant
+          description: constant
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·string-empty·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_9
-    choices:
-    - !<!ChoiceValue> 
-      value: ''
-      language:
-        default:
-          name: ''
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_10
+  - !<!ConstantSchema> &ref_8
     $key: paths·string-mbcs·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: 啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
-      language:
-        default:
-          name: ''
-          description: ''
-    type: sealed-choice
+    type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
+    value: 啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
+    valueType: !<!StringSchema> 
+      $key: constant
       type: string
-      description: choice
+      description: constant
       language: !<!Languages> 
         default:
-          name: choice
-          description: choice
+          name: constant
+          description: constant
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·string-mbcs·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_11
-    choices:
-    - !<!ChoiceValue> 
-      value: 啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
-      language:
-        default:
-          name: ''
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_12
+  - !<!ConstantSchema> &ref_9
     $key: paths·string-whitespace·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: '    Now is the time for all good men to come to the aid of their country    '
-      language:
-        default:
-          name: '    Now is the time for all good men to come to the aid of their country    '
-          description: ''
-    type: sealed-choice
+    type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
+    value: '    Now is the time for all good men to come to the aid of their country    '
+    valueType: !<!StringSchema> 
+      $key: constant
       type: string
-      description: choice
+      description: constant
       language: !<!Languages> 
         default:
-          name: choice
-          description: choice
+          name: constant
+          description: constant
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·string-whitespace·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_13
-    choices:
-    - !<!ChoiceValue> 
-      value: '    Now is the time for all good men to come to the aid of their country    '
-      language:
-        default:
-          name: '    Now is the time for all good men to come to the aid of their country    '
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  strings:
+  - *ref_0
+  numbers:
   - *ref_1
+  strings:
   - *ref_2
-  - !<!StringSchema> &ref_14
-    $key: paths·string-notprovided·get·responses·200·content·application-json·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·string-notprovided·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
+  - *ref_3
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-string
@@ -558,7 +345,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_7
+        schema: *ref_5
         description: ''
         implementation: Client
         extensions:
@@ -631,7 +418,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -669,7 +456,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_9
+        schema: *ref_7
         description: ''
         implementation: Client
         extensions:
@@ -742,7 +529,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -780,7 +567,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_11
+        schema: *ref_8
         description: ''
         implementation: Client
         extensions:
@@ -853,7 +640,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -891,7 +678,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_13
+        schema: *ref_9
         description: ''
         implementation: Client
         extensions:
@@ -964,7 +751,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1011,7 +798,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1058,7 +845,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1096,7 +883,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_17
+        schema: *ref_10
         description: ''
         implementation: Client
         extensions:
@@ -1169,7 +956,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1224,7 +1011,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -1262,7 +1049,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_20
+        schema: *ref_11
         description: ''
         implementation: Client
         extensions:
@@ -1335,7 +1122,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -1373,7 +1160,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: enumStringBody
-        schema: *ref_19
+        schema: *ref_11
         description: ''
         implementation: Client
         extensions:
@@ -1446,7 +1233,7 @@ operationGroups:
           - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -1484,7 +1271,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: enumStringBody
-        schema: *ref_21
+        schema: *ref_12
         description: ''
         implementation: Client
         extensions:

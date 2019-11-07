@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_113
+  - !<!ObjectSchema> &ref_112
     $key: RootWithRefAndNoMeta
     type: object
     description: 'I am root, and I ref a model with no meta'
@@ -21,7 +21,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: ID
-          schema: !<!StringSchema> &ref_18
+          schema: !<!StringSchema> &ref_3
             $key: ComplexTypeNoMeta-ID
             type: string
             description: The id of the res
@@ -32,6 +32,7 @@ schemas: !<!Schemas>
               default:
                 name: ComplexTypeNoMeta-ID
                 description: The id of the res
+                header: Custom-Header
             protocol: !<!Protocols> {}
           description: The id of the res
           serializedName: ID
@@ -81,7 +82,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - *ref_0
-  - !<!ObjectSchema> &ref_114
+  - !<!ObjectSchema> &ref_113
     $key: RootWithRefAndMeta
     type: object
     description: 'I am root, and I ref a model WITH meta'
@@ -166,7 +167,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - *ref_1
-  - !<!ObjectSchema> &ref_115
+  - !<!ObjectSchema> &ref_114
     $key: Slideshow
     type: object
     description: Data about a slideshow
@@ -251,7 +252,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: slides
-      schema: !<!ArraySchema> &ref_71
+      schema: !<!ArraySchema> &ref_70
         $key: Slideshow-slides
         type: array
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -314,7 +315,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: items
-            schema: !<!ArraySchema> &ref_70
+            schema: !<!ArraySchema> &ref_69
               $key: Slide-items
               type: array
               description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -385,7 +386,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - *ref_2
-  - !<!ObjectSchema> &ref_116
+  - !<!ObjectSchema> &ref_115
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -395,7 +396,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_80
+      schema: !<!NumberSchema> &ref_79
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -439,7 +440,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_117
+  - !<!ObjectSchema> &ref_116
     $key: AppleBarrel
     type: object
     description: A barrel of apples.
@@ -449,7 +450,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: GoodApples
-      schema: !<!ArraySchema> &ref_72
+      schema: !<!ArraySchema> &ref_71
         $key: AppleBarrel-GoodApples
         type: array
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -491,7 +492,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: BadApples
-      schema: !<!ArraySchema> &ref_73
+      schema: !<!ArraySchema> &ref_72
         $key: AppleBarrel-BadApples
         type: array
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
@@ -537,7 +538,7 @@ schemas: !<!Schemas>
         description: A barrel of apples.
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_74
+  - !<!ObjectSchema> &ref_73
     $key: Banana
     type: object
     description: A banana.
@@ -599,7 +600,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: expiration
-      schema: !<!DateTimeSchema> &ref_90
+      schema: !<!DateTimeSchema> &ref_89
         $key: Banana-expiration
         type: date-time
         format: date-time
@@ -635,7 +636,7 @@ schemas: !<!Schemas>
         description: A banana.
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_126
+  - !<!ObjectSchema> &ref_124
     $key: ListContainersResponse
     type: object
     description: An enumeration of containers
@@ -715,7 +716,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: MaxResults
-      schema: !<!NumberSchema> &ref_81
+      schema: !<!NumberSchema> &ref_80
         $key: typeForMaxResults
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -735,14 +736,14 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: Containers
-      schema: !<!ArraySchema> &ref_75
+      schema: !<!ArraySchema> &ref_74
         $key: ListContainersResponse-Containers
         type: array
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: !<!ObjectSchema> &ref_3
+        elementType: !<!ObjectSchema> &ref_4
           $key: Container
           type: object
           description: An Azure Storage container
@@ -774,7 +775,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: Properties
-            schema: !<!ObjectSchema> &ref_4
+            schema: !<!ObjectSchema> &ref_5
               $key: ContainerProperties
               type: object
               description: Properties of a container
@@ -784,7 +785,7 @@ schemas: !<!Schemas>
               properties:
               - !<!Property> 
                 $key: Last-Modified
-                schema: !<!DateTimeSchema> &ref_91
+                schema: !<!DateTimeSchema> &ref_90
                   $key: ContainerProperties-Last-Modified
                   type: date-time
                   format: date-time-rfc1123
@@ -829,7 +830,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: LeaseStatus
-                schema: !<!ChoiceSchema> &ref_10
+                schema: !<!ChoiceSchema> &ref_11
                   $key: LeaseStatusType
                   choices:
                   - !<!ChoiceValue> 
@@ -877,7 +878,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: LeaseState
-                schema: !<!ChoiceSchema> &ref_11
+                schema: !<!ChoiceSchema> &ref_12
                   $key: LeaseStateType
                   choices:
                   - !<!ChoiceValue> 
@@ -943,7 +944,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: LeaseDuration
-                schema: !<!ChoiceSchema> &ref_12
+                schema: !<!ChoiceSchema> &ref_13
                   $key: LeaseDurationType
                   choices:
                   - !<!ChoiceValue> 
@@ -991,7 +992,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: PublicAccess
-                schema: !<!SealedChoiceSchema> &ref_97
+                schema: !<!SealedChoiceSchema> &ref_98
                   $key: PublicAccessType
                   choices:
                   - !<!ChoiceValue> 
@@ -1053,22 +1054,11 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: Metadata
-            schema: !<!DictionarySchema> &ref_13
+            schema: !<!DictionarySchema> &ref_14
               $key: Metadata
               type: dictionary
               description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-              elementType: !<!StringSchema> &ref_38
-                $key: components·schemas·metadata·additionalproperties
-                type: string
-                description: MISSING-SCHEMA-DESCRIPTION-STRING
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-                language: !<!Languages> 
-                  default:
-                    name: components·schemas·metadata·additionalproperties
-                    description: MISSING-SCHEMA-DESCRIPTION-STRING
-                protocol: !<!Protocols> {}
+              elementType: *ref_3
               language: !<!Languages> 
                 default:
                   name: Metadata
@@ -1107,7 +1097,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: NextMarker
-      schema: !<!StringSchema> &ref_39
+      schema: !<!StringSchema> &ref_38
         $key: ListContainersResponse-NextMarker
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1138,8 +1128,8 @@ schemas: !<!Schemas>
         description: An enumeration of containers
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_3
   - *ref_4
+  - *ref_5
   - !<!ObjectSchema> 
     $key: Metadata
     type: object
@@ -1153,7 +1143,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_129
+  - !<!ObjectSchema> &ref_127
     $key: StorageServiceProperties
     type: object
     description: Storage Service Properties.
@@ -1163,7 +1153,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: Logging
-      schema: !<!ObjectSchema> &ref_7
+      schema: !<!ObjectSchema> &ref_8
         $key: Logging
         type: object
         description: Azure Analytics Logging settings.
@@ -1173,7 +1163,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: Version
-          schema: !<!StringSchema> &ref_40
+          schema: !<!StringSchema> &ref_39
             $key: Logging-Version
             type: string
             description: The version of Storage Analytics to configure.
@@ -1195,7 +1185,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Delete
-          schema: !<!BooleanSchema> &ref_102
+          schema: !<!BooleanSchema> &ref_101
             $key: typeForDelete
             type: boolean
             description: Indicates whether all delete requests should be logged.
@@ -1214,7 +1204,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Read
-          schema: !<!BooleanSchema> &ref_103
+          schema: !<!BooleanSchema> &ref_102
             $key: typeForRead
             type: boolean
             description: Indicates whether all read requests should be logged.
@@ -1233,7 +1223,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Write
-          schema: !<!BooleanSchema> &ref_104
+          schema: !<!BooleanSchema> &ref_103
             $key: typeForWrite
             type: boolean
             description: Indicates whether all write requests should be logged.
@@ -1252,7 +1242,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: RetentionPolicy
-          schema: !<!ObjectSchema> &ref_5
+          schema: !<!ObjectSchema> &ref_6
             $key: RetentionPolicy
             type: object
             description: the retention policy
@@ -1262,7 +1252,7 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: Enabled
-              schema: !<!BooleanSchema> &ref_105
+              schema: !<!BooleanSchema> &ref_104
                 $key: typeForEnabled
                 type: boolean
                 description: Indicates whether a retention policy is enabled for the storage service
@@ -1281,7 +1271,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: Days
-              schema: !<!NumberSchema> &ref_82
+              schema: !<!NumberSchema> &ref_81
                 $key: typeForDays
                 type: integer
                 description: Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted
@@ -1329,7 +1319,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: HourMetrics
-      schema: !<!ObjectSchema> &ref_6
+      schema: !<!ObjectSchema> &ref_7
         $key: Metrics
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -1339,7 +1329,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: Version
-          schema: !<!StringSchema> &ref_41
+          schema: !<!StringSchema> &ref_40
             $key: Metrics-Version
             type: string
             description: The version of Storage Analytics to configure.
@@ -1361,7 +1351,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Enabled
-          schema: !<!BooleanSchema> &ref_106
+          schema: !<!BooleanSchema> &ref_105
             $key: typeForEnabled
             type: boolean
             description: Indicates whether metrics are enabled for the Blob service.
@@ -1380,7 +1370,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: IncludeAPIs
-          schema: !<!BooleanSchema> &ref_107
+          schema: !<!BooleanSchema> &ref_106
             $key: typeForIncludeAPIs
             type: boolean
             description: Indicates whether metrics should generate summary statistics for called API operations.
@@ -1399,7 +1389,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: RetentionPolicy
-          schema: *ref_5
+          schema: *ref_6
           description: the retention policy
           required: false
           serializedName: RetentionPolicy
@@ -1423,7 +1413,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: MinuteMetrics
-      schema: *ref_6
+      schema: *ref_7
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: MinuteMetrics
       language: !<!Languages> 
@@ -1433,14 +1423,14 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: Cors
-      schema: !<!ArraySchema> &ref_76
+      schema: !<!ArraySchema> &ref_75
         $key: StorageServiceProperties-Cors
         type: array
         description: The set of CORS rules.
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: !<!ObjectSchema> &ref_8
+        elementType: !<!ObjectSchema> &ref_9
           $key: CorsRule
           type: object
           description: >-
@@ -1452,7 +1442,7 @@ schemas: !<!Schemas>
           properties:
           - !<!Property> 
             $key: AllowedOrigins
-            schema: !<!StringSchema> &ref_42
+            schema: !<!StringSchema> &ref_41
               $key: CorsRule-AllowedOrigins
               type: string
               description: >-
@@ -1482,7 +1472,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: AllowedMethods
-            schema: !<!StringSchema> &ref_43
+            schema: !<!StringSchema> &ref_42
               $key: CorsRule-AllowedMethods
               type: string
               description: The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated)
@@ -1504,7 +1494,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: AllowedHeaders
-            schema: !<!StringSchema> &ref_44
+            schema: !<!StringSchema> &ref_43
               $key: CorsRule-AllowedHeaders
               type: string
               description: the request headers that the origin domain may specify on the CORS request.
@@ -1526,7 +1516,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: ExposedHeaders
-            schema: !<!StringSchema> &ref_45
+            schema: !<!StringSchema> &ref_44
               $key: CorsRule-ExposedHeaders
               type: string
               description: The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer
@@ -1548,7 +1538,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: MaxAgeInSeconds
-            schema: !<!NumberSchema> &ref_83
+            schema: !<!NumberSchema> &ref_82
               $key: typeForMaxAgeInSeconds
               type: integer
               description: The maximum amount time that a browser should cache the preflight OPTIONS request.
@@ -1598,7 +1588,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: DefaultServiceVersion
-      schema: !<!StringSchema> &ref_46
+      schema: !<!StringSchema> &ref_45
         $key: StorageServiceProperties-DefaultServiceVersion
         type: string
         description: The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions
@@ -1619,7 +1609,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: DeleteRetentionPolicy
-      schema: *ref_5
+      schema: *ref_6
       description: the retention policy
       serializedName: DeleteRetentionPolicy
       language: !<!Languages> 
@@ -1633,11 +1623,11 @@ schemas: !<!Schemas>
         description: Storage Service Properties.
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_7
-  - *ref_5
-  - *ref_6
   - *ref_8
-  - !<!ObjectSchema> &ref_77
+  - *ref_6
+  - *ref_7
+  - *ref_9
+  - !<!ObjectSchema> &ref_76
     $key: SignedIdentifier
     type: object
     description: signed identifier
@@ -1647,7 +1637,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: Id
-      schema: !<!StringSchema> &ref_47
+      schema: !<!StringSchema> &ref_46
         $key: SignedIdentifier-Id
         type: string
         description: a unique id
@@ -1669,7 +1659,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: AccessPolicy
-      schema: !<!ObjectSchema> &ref_9
+      schema: !<!ObjectSchema> &ref_10
         $key: AccessPolicy
         type: object
         description: An Access policy
@@ -1679,7 +1669,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: Start
-          schema: !<!DateTimeSchema> &ref_92
+          schema: !<!DateTimeSchema> &ref_91
             $key: AccessPolicy-Start
             type: date-time
             format: date-time
@@ -1702,7 +1692,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Expiry
-          schema: !<!DateTimeSchema> &ref_93
+          schema: !<!DateTimeSchema> &ref_92
             $key: AccessPolicy-Expiry
             type: date-time
             format: date-time
@@ -1725,7 +1715,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Permission
-          schema: !<!StringSchema> &ref_48
+          schema: !<!StringSchema> &ref_47
             $key: AccessPolicy-Permission
             type: string
             description: the permissions for the acl policy
@@ -1770,8 +1760,8 @@ schemas: !<!Schemas>
         description: signed identifier
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_9
-  - !<!ObjectSchema> &ref_139
+  - *ref_10
+  - !<!ObjectSchema> &ref_137
     $key: ListBlobsResponse
     type: object
     description: An enumeration of blobs
@@ -1781,7 +1771,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: ServiceEndpoint
-      schema: !<!StringSchema> &ref_49
+      schema: !<!StringSchema> &ref_48
         $key: ListBlobsResponse-ServiceEndpoint
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1807,7 +1797,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: ContainerName
-      schema: !<!StringSchema> &ref_50
+      schema: !<!StringSchema> &ref_49
         $key: ListBlobsResponse-ContainerName
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1833,7 +1823,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: Prefix
-      schema: !<!StringSchema> &ref_51
+      schema: !<!StringSchema> &ref_50
         $key: ListBlobsResponse-Prefix
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1855,7 +1845,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: Marker
-      schema: !<!StringSchema> &ref_52
+      schema: !<!StringSchema> &ref_51
         $key: ListBlobsResponse-Marker
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1877,7 +1867,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: MaxResults
-      schema: !<!NumberSchema> &ref_84
+      schema: !<!NumberSchema> &ref_83
         $key: typeForMaxResults
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1897,7 +1887,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: Delimiter
-      schema: !<!StringSchema> &ref_53
+      schema: !<!StringSchema> &ref_52
         $key: ListBlobsResponse-Delimiter
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1919,7 +1909,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: Blobs
-      schema: !<!ObjectSchema> &ref_14
+      schema: !<!ObjectSchema> &ref_15
         $key: Blobs
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -1929,14 +1919,14 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: BlobPrefix
-          schema: !<!ArraySchema> &ref_78
+          schema: !<!ArraySchema> &ref_77
             $key: Blobs-BlobPrefix
             type: array
             description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            elementType: !<!ObjectSchema> &ref_15
+            elementType: !<!ObjectSchema> &ref_16
               $key: BlobPrefix
               type: object
               description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -1946,7 +1936,7 @@ schemas: !<!Schemas>
               properties:
               - !<!Property> 
                 $key: Name
-                schema: !<!StringSchema> &ref_54
+                schema: !<!StringSchema> &ref_53
                   $key: BlobPrefix-Name
                   type: string
                   description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -1986,14 +1976,14 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: Blob
-          schema: !<!ArraySchema> &ref_79
+          schema: !<!ArraySchema> &ref_78
             $key: Blobs-Blob
             type: array
             description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            elementType: !<!ObjectSchema> &ref_16
+            elementType: !<!ObjectSchema> &ref_17
               $key: Blob
               type: object
               description: An Azure Storage blob
@@ -2003,7 +1993,7 @@ schemas: !<!Schemas>
               properties:
               - !<!Property> 
                 $key: Name
-                schema: !<!StringSchema> &ref_55
+                schema: !<!StringSchema> &ref_54
                   $key: Blob-Name
                   type: string
                   description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2025,7 +2015,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: Deleted
-                schema: !<!BooleanSchema> &ref_108
+                schema: !<!BooleanSchema> &ref_107
                   $key: typeForDeleted
                   type: boolean
                   description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -2044,7 +2034,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: Snapshot
-                schema: !<!StringSchema> &ref_56
+                schema: !<!StringSchema> &ref_55
                   $key: Blob-Snapshot
                   type: string
                   description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2066,7 +2056,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: Properties
-                schema: !<!ObjectSchema> &ref_17
+                schema: !<!ObjectSchema> &ref_18
                   $key: BlobProperties
                   type: object
                   description: Properties of a blob
@@ -2076,7 +2066,7 @@ schemas: !<!Schemas>
                   properties:
                   - !<!Property> 
                     $key: Last-Modified
-                    schema: !<!DateTimeSchema> &ref_94
+                    schema: !<!DateTimeSchema> &ref_93
                       $key: BlobProperties-Last-Modified
                       type: date-time
                       format: date-time-rfc1123
@@ -2099,7 +2089,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Etag
-                    schema: !<!StringSchema> &ref_57
+                    schema: !<!StringSchema> &ref_56
                       $key: BlobProperties-Etag
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2121,7 +2111,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Content-Length
-                    schema: !<!NumberSchema> &ref_85
+                    schema: !<!NumberSchema> &ref_84
                       $key: typeForContent-Length
                       type: integer
                       description: Size in bytes
@@ -2141,7 +2131,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Content-Type
-                    schema: !<!StringSchema> &ref_58
+                    schema: !<!StringSchema> &ref_57
                       $key: BlobProperties-Content-Type
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2163,7 +2153,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Content-Encoding
-                    schema: !<!StringSchema> &ref_59
+                    schema: !<!StringSchema> &ref_58
                       $key: BlobProperties-Content-Encoding
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2185,7 +2175,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Content-Language
-                    schema: !<!StringSchema> &ref_60
+                    schema: !<!StringSchema> &ref_59
                       $key: BlobProperties-Content-Language
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2207,7 +2197,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Content-MD5
-                    schema: !<!StringSchema> &ref_61
+                    schema: !<!StringSchema> &ref_60
                       $key: BlobProperties-Content-MD5
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2229,7 +2219,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Content-Disposition
-                    schema: !<!StringSchema> &ref_62
+                    schema: !<!StringSchema> &ref_61
                       $key: BlobProperties-Content-Disposition
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2251,7 +2241,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: Cache-Control
-                    schema: !<!StringSchema> &ref_63
+                    schema: !<!StringSchema> &ref_62
                       $key: BlobProperties-Cache-Control
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2273,7 +2263,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: x-ms-blob-sequence-number
-                    schema: !<!NumberSchema> &ref_86
+                    schema: !<!NumberSchema> &ref_85
                       $key: blobSequenceNumber
                       type: integer
                       description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -2295,7 +2285,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: BlobType
-                    schema: !<!ChoiceSchema> &ref_100
+                    schema: !<!ChoiceSchema> &ref_96
                       $key: BlobType
                       choices:
                       - !<!ChoiceValue> 
@@ -2349,7 +2339,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: LeaseStatus
-                    schema: *ref_10
+                    schema: *ref_11
                     description: PROPERTY-DESCRIPTION-MISSING
                     required: false
                     serializedName: LeaseStatus
@@ -2360,7 +2350,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: LeaseState
-                    schema: *ref_11
+                    schema: *ref_12
                     description: PROPERTY-DESCRIPTION-MISSING
                     required: false
                     serializedName: LeaseState
@@ -2371,7 +2361,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: LeaseDuration
-                    schema: *ref_12
+                    schema: *ref_13
                     description: PROPERTY-DESCRIPTION-MISSING
                     required: false
                     serializedName: LeaseDuration
@@ -2382,7 +2372,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: CopyId
-                    schema: !<!StringSchema> &ref_64
+                    schema: !<!StringSchema> &ref_63
                       $key: BlobProperties-CopyId
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2404,7 +2394,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: CopyStatus
-                    schema: !<!ChoiceSchema> &ref_101
+                    schema: !<!ChoiceSchema> &ref_97
                       $key: CopyStatusType
                       choices:
                       - !<!ChoiceValue> 
@@ -2464,7 +2454,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: CopySource
-                    schema: !<!StringSchema> &ref_65
+                    schema: !<!StringSchema> &ref_64
                       $key: BlobProperties-CopySource
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2486,7 +2476,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: CopyProgress
-                    schema: !<!StringSchema> &ref_66
+                    schema: !<!StringSchema> &ref_65
                       $key: BlobProperties-CopyProgress
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2508,7 +2498,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: CopyCompletionTime
-                    schema: !<!DateTimeSchema> &ref_95
+                    schema: !<!DateTimeSchema> &ref_94
                       $key: BlobProperties-CopyCompletionTime
                       type: date-time
                       format: date-time-rfc1123
@@ -2531,7 +2521,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: CopyStatusDescription
-                    schema: !<!StringSchema> &ref_67
+                    schema: !<!StringSchema> &ref_66
                       $key: BlobProperties-CopyStatusDescription
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2553,7 +2543,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: ServerEncrypted
-                    schema: !<!BooleanSchema> &ref_109
+                    schema: !<!BooleanSchema> &ref_108
                       $key: typeForServerEncrypted
                       type: boolean
                       description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -2572,7 +2562,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: IncrementalCopy
-                    schema: !<!BooleanSchema> &ref_110
+                    schema: !<!BooleanSchema> &ref_109
                       $key: typeForIncrementalCopy
                       type: boolean
                       description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -2591,7 +2581,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: DestinationSnapshot
-                    schema: !<!StringSchema> &ref_68
+                    schema: !<!StringSchema> &ref_67
                       $key: BlobProperties-DestinationSnapshot
                       type: string
                       description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2613,7 +2603,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: DeletedTime
-                    schema: !<!DateTimeSchema> &ref_96
+                    schema: !<!DateTimeSchema> &ref_95
                       $key: BlobProperties-DeletedTime
                       type: date-time
                       format: date-time-rfc1123
@@ -2636,7 +2626,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: RemainingRetentionDays
-                    schema: !<!NumberSchema> &ref_87
+                    schema: !<!NumberSchema> &ref_86
                       $key: typeForRemainingRetentionDays
                       type: integer
                       description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -2656,7 +2646,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: AccessTier
-                    schema: !<!SealedChoiceSchema> &ref_98
+                    schema: !<!SealedChoiceSchema> &ref_99
                       $key: AccessTier
                       choices:
                       - !<!ChoiceValue> 
@@ -2752,7 +2742,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: AccessTierInferred
-                    schema: !<!BooleanSchema> &ref_111
+                    schema: !<!BooleanSchema> &ref_110
                       $key: typeForAccessTierInferred
                       type: boolean
                       description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -2771,7 +2761,7 @@ schemas: !<!Schemas>
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     $key: ArchiveStatus
-                    schema: !<!SealedChoiceSchema> &ref_99
+                    schema: !<!SealedChoiceSchema> &ref_100
                       $key: ArchiveStatus
                       choices:
                       - !<!ChoiceValue> 
@@ -2833,7 +2823,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: Metadata
-                schema: *ref_13
+                schema: *ref_14
                 description: PROPERTY-DESCRIPTION-MISSING
                 required: false
                 serializedName: Metadata
@@ -2881,7 +2871,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: NextMarker
-      schema: !<!StringSchema> &ref_69
+      schema: !<!StringSchema> &ref_68
         $key: ListBlobsResponse-NextMarker
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -2912,12 +2902,45 @@ schemas: !<!Schemas>
         description: An enumeration of blobs
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_14
   - *ref_15
   - *ref_16
   - *ref_17
-  - !<!ObjectSchema> &ref_140
+  - *ref_18
+  - !<!ObjectSchema> &ref_138
     $key: JSONInput
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      $key: id
+      schema: !<!NumberSchema> &ref_87
+        $key: typeForid
+        type: integer
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+        precision: 32
+        language: !<!Languages> 
+          default:
+            name: typeForid
+            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: id
+      language: !<!Languages> 
+        default:
+          name: id
+          description: PROPERTY-DESCRIPTION-MISSING
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: JSONInput
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_139
+    $key: JSONOutput
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
@@ -2945,64 +2968,31 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: JSONInput
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_141
-    $key: JSONOutput
-    type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      $key: id
-      schema: !<!NumberSchema> &ref_89
-        $key: typeForid
-        type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: typeForid
-            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-        protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: id
-      language: !<!Languages> 
-        default:
-          name: id
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
         name: JSONOutput
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
   dictionaries:
-  - *ref_13
+  - *ref_14
   choices:
-  - *ref_10
   - *ref_11
   - *ref_12
-  - *ref_100
-  - *ref_101
+  - *ref_13
+  - *ref_96
+  - *ref_97
   arrays:
+  - *ref_69
   - *ref_70
   - *ref_71
   - *ref_72
-  - *ref_73
-  - !<!ArraySchema> &ref_119
+  - !<!ArraySchema> &ref_117
     $key: paths·xml-root_list·get·responses·200·content·application-xml·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_74
+    elementType: *ref_73
     serialization:
       xml:
         name: bananas
@@ -3013,11 +3003,14 @@ schemas: !<!Schemas>
         name: paths·xml-root_list·get·responses·200·content·application-xml·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_120
-    $key: rqsch
+  - !<!ArraySchema> &ref_118
+    $key: paths·xml-root_list·put·requestbody·content·application-xml·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    elementType: *ref_74
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_73
     serialization:
       xml:
         name: bananas
@@ -3025,17 +3018,17 @@ schemas: !<!Schemas>
         wrapped: true
     language: !<!Languages> 
       default:
-        name: rqsch
+        name: paths·xml-root_list·put·requestbody·content·application-xml·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_121
+  - !<!ArraySchema> &ref_119
     $key: paths·xml-root_list_single_item·get·responses·200·content·application-xml·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_74
+    elementType: *ref_73
     serialization:
       xml:
         name: bananas
@@ -3046,11 +3039,14 @@ schemas: !<!Schemas>
         name: paths·xml-root_list_single_item·get·responses·200·content·application-xml·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_122
-    $key: rqsch
+  - !<!ArraySchema> &ref_120
+    $key: paths·xml-root_list_single_item·put·requestbody·content·application-xml·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    elementType: *ref_74
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_73
     serialization:
       xml:
         name: bananas
@@ -3058,17 +3054,17 @@ schemas: !<!Schemas>
         wrapped: true
     language: !<!Languages> 
       default:
-        name: rqsch
+        name: paths·xml-root_list_single_item·put·requestbody·content·application-xml·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_123
+  - !<!ArraySchema> &ref_121
     $key: paths·xml-empty_root_list·get·responses·200·content·application-xml·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_74
+    elementType: *ref_73
     serialization:
       xml:
         name: bananas
@@ -3079,11 +3075,14 @@ schemas: !<!Schemas>
         name: paths·xml-empty_root_list·get·responses·200·content·application-xml·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_124
-    $key: rqsch
+  - !<!ArraySchema> &ref_122
+    $key: paths·xml-empty_root_list·put·requestbody·content·application-xml·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    elementType: *ref_74
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_73
     serialization:
       xml:
         name: bananas
@@ -3091,19 +3090,19 @@ schemas: !<!Schemas>
         wrapped: true
     language: !<!Languages> 
       default:
-        name: rqsch
+        name: paths·xml-empty_root_list·put·requestbody·content·application-xml·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
+  - *ref_74
   - *ref_75
-  - *ref_76
-  - !<!ArraySchema> &ref_134
+  - !<!ArraySchema> &ref_132
     $key: SignedIdentifiers
     type: array
     description: a collection of signed identifiers
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_77
+    elementType: *ref_76
     serialization:
       xml:
         name: SignedIdentifiers
@@ -3114,9 +3113,10 @@ schemas: !<!Schemas>
         name: SignedIdentifiers
         description: a collection of signed identifiers
     protocol: !<!Protocols> {}
+  - *ref_77
   - *ref_78
-  - *ref_79
   booleans:
+  - *ref_101
   - *ref_102
   - *ref_103
   - *ref_104
@@ -3126,16 +3126,204 @@ schemas: !<!Schemas>
   - *ref_108
   - *ref_109
   - *ref_110
-  - *ref_111
+  constants:
+  - !<!ConstantSchema> &ref_123
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: list
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_125
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: properties
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_126
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: service
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_128
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: properties
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_129
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: service
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_130
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: acl
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_131
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: container
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_133
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: acl
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_134
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: container
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_135
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: list
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_136
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    value: container
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   dateTimes:
+  - *ref_89
   - *ref_90
   - *ref_91
   - *ref_92
   - *ref_93
   - *ref_94
   - *ref_95
-  - *ref_96
   numbers:
+  - *ref_79
   - *ref_80
   - *ref_81
   - *ref_82
@@ -3145,266 +3333,12 @@ schemas: !<!Schemas>
   - *ref_86
   - *ref_87
   - *ref_88
-  - *ref_89
   sealedChoices:
-  - !<!SealedChoiceSchema> &ref_125
-    choices:
-    - !<!ChoiceValue> 
-      value: list
-      language:
-        default:
-          name: list
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - *ref_97
-  - !<!SealedChoiceSchema> &ref_127
-    choices:
-    - !<!ChoiceValue> 
-      value: properties
-      language:
-        default:
-          name: properties
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_128
-    choices:
-    - !<!ChoiceValue> 
-      value: service
-      language:
-        default:
-          name: service
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_130
-    choices:
-    - !<!ChoiceValue> 
-      value: properties
-      language:
-        default:
-          name: properties
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_131
-    choices:
-    - !<!ChoiceValue> 
-      value: service
-      language:
-        default:
-          name: service
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_132
-    choices:
-    - !<!ChoiceValue> 
-      value: acl
-      language:
-        default:
-          name: acl
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_133
-    choices:
-    - !<!ChoiceValue> 
-      value: container
-      language:
-        default:
-          name: container
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_135
-    choices:
-    - !<!ChoiceValue> 
-      value: acl
-      language:
-        default:
-          name: acl
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_136
-    choices:
-    - !<!ChoiceValue> 
-      value: container
-      language:
-        default:
-          name: container
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_137
-    choices:
-    - !<!ChoiceValue> 
-      value: list
-      language:
-        default:
-          name: list
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_138
-    choices:
-    - !<!ChoiceValue> 
-      value: container
-      language:
-        default:
-          name: container
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   - *ref_98
   - *ref_99
+  - *ref_100
   strings:
-  - *ref_18
+  - *ref_3
   - *ref_19
   - *ref_20
   - *ref_21
@@ -3417,19 +3351,6 @@ schemas: !<!Schemas>
   - *ref_28
   - *ref_29
   - *ref_30
-  - !<!StringSchema> &ref_118
-    $key: paths·xml-headers·get·responses·200·headers·custom_header·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·xml-headers·get·responses·200·headers·custom_header·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-        header: Custom-Header
-    protocol: !<!Protocols> {}
   - *ref_31
   - *ref_32
   - *ref_33
@@ -3468,7 +3389,6 @@ schemas: !<!Schemas>
   - *ref_66
   - *ref_67
   - *ref_68
-  - *ref_69
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: xml-service
@@ -3489,7 +3409,7 @@ operationGroups:
           path: /xml/complex-type-ref-no-meta
           method: get
           servers:
-          - !<!HttpServer> &ref_112
+          - !<!HttpServer> &ref_111
             url: 'http://localhost:3000/'
             language:
               default:
@@ -3497,7 +3417,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_113
+      schema: *ref_112
       language: !<!Languages> 
         default:
           name: ''
@@ -3521,7 +3441,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: model
-        schema: *ref_113
+        schema: *ref_112
         description: ''
         implementation: Client
         extensions:
@@ -3546,7 +3466,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3577,10 +3497,10 @@ operationGroups:
           path: /xml/complex-type-ref-with-meta
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_114
+      schema: *ref_113
       language: !<!Languages> 
         default:
           name: ''
@@ -3604,7 +3524,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: model
-        schema: *ref_114
+        schema: *ref_113
         description: ''
         implementation: Client
         extensions:
@@ -3629,7 +3549,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3660,10 +3580,10 @@ operationGroups:
           path: /xml/simple
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_115
+      schema: *ref_114
       language: !<!Languages> 
         default:
           name: ''
@@ -3677,7 +3597,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_116
+      schema: *ref_115
       language: !<!Languages> 
         default:
           name: ''
@@ -3701,7 +3621,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: slideshow
-        schema: *ref_115
+        schema: *ref_114
         description: ''
         implementation: Client
         extensions:
@@ -3726,7 +3646,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3739,7 +3659,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_116
+      schema: *ref_115
       language: !<!Languages> 
         default:
           name: ''
@@ -3771,10 +3691,10 @@ operationGroups:
           path: /xml/wrapped-lists
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_117
+      schema: *ref_116
       language: !<!Languages> 
         default:
           name: ''
@@ -3798,7 +3718,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: wrappedLists
-        schema: *ref_117
+        schema: *ref_116
         description: ''
         implementation: Client
         extensions:
@@ -3823,7 +3743,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3836,7 +3756,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_116
+      schema: *ref_115
       language: !<!Languages> 
         default:
           name: ''
@@ -3868,7 +3788,7 @@ operationGroups:
           path: /xml/headers
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3878,7 +3798,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_118
+          - *ref_3
           statusCodes:
           - '200'
     language: !<!Languages> 
@@ -3899,10 +3819,10 @@ operationGroups:
           path: /xml/empty-list
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_115
+      schema: *ref_114
       language: !<!Languages> 
         default:
           name: ''
@@ -3926,7 +3846,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: slideshow
-        schema: *ref_115
+        schema: *ref_114
         description: ''
         implementation: Client
         extensions:
@@ -3951,7 +3871,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3982,10 +3902,10 @@ operationGroups:
           path: /xml/empty-wrapped-lists
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_117
+      schema: *ref_116
       language: !<!Languages> 
         default:
           name: ''
@@ -4009,7 +3929,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: appleBarrel
-        schema: *ref_117
+        schema: *ref_116
         description: ''
         implementation: Client
         extensions:
@@ -4034,7 +3954,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4065,10 +3985,10 @@ operationGroups:
           path: /xml/root-list
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_119
+      schema: *ref_117
       language: !<!Languages> 
         default:
           name: ''
@@ -4092,7 +4012,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: bananas
-        schema: *ref_120
+        schema: *ref_118
         description: ''
         implementation: Client
         extensions:
@@ -4117,7 +4037,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4148,10 +4068,10 @@ operationGroups:
           path: /xml/root-list-single-item
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_121
+      schema: *ref_119
       language: !<!Languages> 
         default:
           name: ''
@@ -4175,7 +4095,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: bananas
-        schema: *ref_122
+        schema: *ref_120
         description: ''
         implementation: Client
         extensions:
@@ -4200,7 +4120,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4231,10 +4151,10 @@ operationGroups:
           path: /xml/empty-root-list
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_123
+      schema: *ref_121
       language: !<!Languages> 
         default:
           name: ''
@@ -4258,7 +4178,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: bananas
-        schema: *ref_124
+        schema: *ref_122
         description: ''
         implementation: Client
         extensions:
@@ -4283,7 +4203,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4314,10 +4234,10 @@ operationGroups:
           path: /xml/empty-child-element
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_74
+      schema: *ref_73
       language: !<!Languages> 
         default:
           name: ''
@@ -4341,7 +4261,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: banana
-        schema: *ref_74
+        schema: *ref_73
         description: ''
         implementation: Client
         extensions:
@@ -4366,7 +4286,7 @@ operationGroups:
           mediaTypes:
           - application/xml
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4391,7 +4311,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: comp
-        schema: *ref_125
+        schema: *ref_123
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -4413,10 +4333,10 @@ operationGroups:
           path: /xml/?comp=list
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_126
+      schema: *ref_124
       language: !<!Languages> 
         default:
           name: ''
@@ -4440,7 +4360,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: comp
-        schema: *ref_127
+        schema: *ref_125
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -4455,7 +4375,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: restype
-        schema: *ref_128
+        schema: *ref_126
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -4477,10 +4397,10 @@ operationGroups:
           path: /xml/?comp=properties&restype=service
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_129
+      schema: *ref_127
       language: !<!Languages> 
         default:
           name: ''
@@ -4500,6 +4420,86 @@ operationGroups:
   - !<!Operation> 
     $key: putServiceProperties
     description: Puts storage service properties.
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: comp
+        schema: *ref_128
+        description: MISSING-PARAMETER-DESCRIPTION
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: comp
+            description: MISSING-PARAMETER-DESCRIPTION
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        $key: restype
+        schema: *ref_129
+        description: MISSING-PARAMETER-DESCRIPTION
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: restype
+            description: MISSING-PARAMETER-DESCRIPTION
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        $key: properties
+        schema: *ref_127
+        description: ''
+        implementation: Client
+        extensions:
+          x-ms-requestBody-name: properties
+        language: !<!Languages> 
+          default:
+            name: properties
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: /xml/?comp=properties&restype=service
+          method: put
+          knownMediaType: xml
+          mediaTypes:
+          - application/xml
+          servers:
+          - *ref_111
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '201'
+    extensions:
+      x-ms-requestBody-index: 2
+    language: !<!Languages> 
+      default:
+        name: putServiceProperties
+        description: Puts storage service properties.
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: getAcls
+    description: Gets storage ACLs for a container.
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -4532,86 +4532,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        $key: properties
-        schema: *ref_129
-        description: ''
-        implementation: Client
-        extensions:
-          x-ms-requestBody-name: properties
-        language: !<!Languages> 
-          default:
-            name: properties
-            description: ''
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: /xml/?comp=properties&restype=service
-          method: put
-          knownMediaType: xml
-          mediaTypes:
-          - application/xml
-          servers:
-          - *ref_112
-    responses:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - '201'
-    extensions:
-      x-ms-requestBody-index: 2
-    language: !<!Languages> 
-      default:
-        name: putServiceProperties
-        description: Puts storage service properties.
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    $key: getAcls
-    description: Gets storage ACLs for a container.
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> 
-        $key: comp
-        schema: *ref_132
-        description: MISSING-PARAMETER-DESCRIPTION
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: comp
-            description: MISSING-PARAMETER-DESCRIPTION
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> 
-        $key: restype
-        schema: *ref_133
-        description: MISSING-PARAMETER-DESCRIPTION
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: restype
-            description: MISSING-PARAMETER-DESCRIPTION
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       language: !<!Languages> 
         default:
           name: ''
@@ -4621,10 +4541,10 @@ operationGroups:
           path: /xml/mycontainer?comp=acl&restype=container
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_134
+      schema: *ref_132
       language: !<!Languages> 
         default:
           name: ''
@@ -4644,6 +4564,86 @@ operationGroups:
   - !<!Operation> 
     $key: putAcls
     description: Puts storage ACLs for a container.
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: comp
+        schema: *ref_133
+        description: MISSING-PARAMETER-DESCRIPTION
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: comp
+            description: MISSING-PARAMETER-DESCRIPTION
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        $key: restype
+        schema: *ref_134
+        description: MISSING-PARAMETER-DESCRIPTION
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: restype
+            description: MISSING-PARAMETER-DESCRIPTION
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        $key: properties
+        schema: *ref_132
+        description: ''
+        implementation: Client
+        extensions:
+          x-ms-requestBody-name: properties
+        language: !<!Languages> 
+          default:
+            name: properties
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: /xml/mycontainer?comp=acl&restype=container
+          method: put
+          knownMediaType: xml
+          mediaTypes:
+          - application/xml
+          servers:
+          - *ref_111
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '201'
+    extensions:
+      x-ms-requestBody-index: 2
+    language: !<!Languages> 
+      default:
+        name: putAcls
+        description: Puts storage ACLs for a container.
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: listBlobs
+    description: Lists blobs in a storage container.
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -4676,86 +4676,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        $key: properties
-        schema: *ref_134
-        description: ''
-        implementation: Client
-        extensions:
-          x-ms-requestBody-name: properties
-        language: !<!Languages> 
-          default:
-            name: properties
-            description: ''
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: /xml/mycontainer?comp=acl&restype=container
-          method: put
-          knownMediaType: xml
-          mediaTypes:
-          - application/xml
-          servers:
-          - *ref_112
-    responses:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - '201'
-    extensions:
-      x-ms-requestBody-index: 2
-    language: !<!Languages> 
-      default:
-        name: putAcls
-        description: Puts storage ACLs for a container.
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    $key: listBlobs
-    description: Lists blobs in a storage container.
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> 
-        $key: comp
-        schema: *ref_137
-        description: MISSING-PARAMETER-DESCRIPTION
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: comp
-            description: MISSING-PARAMETER-DESCRIPTION
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> 
-        $key: restype
-        schema: *ref_138
-        description: MISSING-PARAMETER-DESCRIPTION
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: restype
-            description: MISSING-PARAMETER-DESCRIPTION
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       language: !<!Languages> 
         default:
           name: ''
@@ -4765,10 +4685,10 @@ operationGroups:
           path: /xml/mycontainer?comp=list&restype=container
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_139
+      schema: *ref_137
       language: !<!Languages> 
         default:
           name: ''
@@ -4792,7 +4712,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: properties
-        schema: *ref_140
+        schema: *ref_138
         description: ''
         implementation: Client
         extensions:
@@ -4817,7 +4737,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4848,10 +4768,10 @@ operationGroups:
           path: /xml/jsonoutput
           method: get
           servers:
-          - *ref_112
+          - *ref_111
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_141
+      schema: *ref_139
       language: !<!Languages> 
         default:
           name: ''
@@ -4880,4 +4800,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_112
+    - *ref_111

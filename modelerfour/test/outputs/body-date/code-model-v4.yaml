@@ -55,6 +55,29 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
+  constants:
+  - !<!ConstantSchema> &ref_5
+    $key: paths·date-min·get·responses·200·content·application-json·schema
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: '0000-01-01'
+    valueType: !<!StringSchema> 
+      $key: constant
+      type: string
+      description: constant
+      language: !<!Languages> 
+        default:
+          name: constant
+          description: constant
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: paths·date-min·get·responses·200·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   dates:
   - !<!DateSchema> &ref_3
     $key: paths·date-null·get·responses·200·content·application-json·schema
@@ -68,103 +91,8 @@ schemas: !<!Schemas>
         name: paths·date-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-DATE
     protocol: !<!Protocols> {}
-  - !<!DateSchema> &ref_5
-    $key: paths·date-invaliddate·get·responses·200·content·application-json·schema
-    type: date
-    description: MISSING-SCHEMA-DESCRIPTION-DATE
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·date-invaliddate·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-DATE
-    protocol: !<!Protocols> {}
-  - !<!DateSchema> &ref_6
-    $key: paths·date-overflowdate·get·responses·200·content·application-json·schema
-    type: date
-    description: MISSING-SCHEMA-DESCRIPTION-DATE
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·date-overflowdate·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-DATE
-    protocol: !<!Protocols> {}
-  - !<!DateSchema> &ref_7
-    $key: paths·date-underflowdate·get·responses·200·content·application-json·schema
-    type: date
-    description: MISSING-SCHEMA-DESCRIPTION-DATE
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·date-underflowdate·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-DATE
-    protocol: !<!Protocols> {}
-  - !<!DateSchema> &ref_8
-    $key: rqsch
-    type: date
-    description: MISSING-SCHEMA-DESCRIPTION-DATE
-    language: !<!Languages> 
-      default:
-        name: rqsch
-        description: MISSING-SCHEMA-DESCRIPTION-DATE
-    protocol: !<!Protocols> {}
-  - !<!DateSchema> &ref_9
-    $key: paths·date-max·get·responses·200·content·application-json·schema
-    type: date
-    description: MISSING-SCHEMA-DESCRIPTION-DATE
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·date-max·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-DATE
-    protocol: !<!Protocols> {}
-  - !<!DateSchema> &ref_10
-    $key: rqsch
-    type: date
-    description: MISSING-SCHEMA-DESCRIPTION-DATE
-    language: !<!Languages> 
-      default:
-        name: rqsch
-        description: MISSING-SCHEMA-DESCRIPTION-DATE
-    protocol: !<!Protocols> {}
   numbers:
   - *ref_0
-  sealedChoices:
-  - !<!SealedChoiceSchema> &ref_11
-    $key: paths·date-min·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: '0000-01-01'
-      language:
-        default:
-          name: '0000-01-01'
-          description: ''
-    type: sealed-choice
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
-      type: string
-      description: choice
-      language: !<!Languages> 
-        default:
-          name: choice
-          description: choice
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: paths·date-min·get·responses·200·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   strings:
   - *ref_1
 info: !<!Info> 
@@ -242,7 +170,7 @@ operationGroups:
           - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -289,7 +217,7 @@ operationGroups:
           - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -336,7 +264,7 @@ operationGroups:
           - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -374,7 +302,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: dateBody
-        schema: *ref_8
+        schema: *ref_3
         description: ''
         implementation: Client
         extensions:
@@ -447,7 +375,7 @@ operationGroups:
           - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -485,7 +413,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: dateBody
-        schema: *ref_10
+        schema: *ref_3
         description: ''
         implementation: Client
         extensions:
@@ -558,7 +486,7 @@ operationGroups:
           - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''

@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_8
+  - !<!ObjectSchema> &ref_3
     $key: SampleResourceGroup
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -14,42 +14,31 @@ schemas: !<!Schemas>
       schema: !<!StringSchema> &ref_0
         $key: SampleResourceGroup-name
         type: string
-        description: resource group name 'testgroup101'
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 2014-04-01-preview
         language: !<!Languages> 
           default:
             name: SampleResourceGroup-name
-            description: resource group name 'testgroup101'
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: resource group name 'testgroup101'
+      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: resource group name 'testgroup101'
+          description: PROPERTY-DESCRIPTION-MISSING
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: location
-      schema: !<!StringSchema> &ref_1
-        $key: SampleResourceGroup-location
-        type: string
-        description: resource group location 'West US'
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2014-04-01-preview
-        language: !<!Languages> 
-          default:
-            name: SampleResourceGroup-location
-            description: resource group location 'West US'
-        protocol: !<!Protocols> {}
-      description: resource group location 'West US'
+      schema: *ref_0
+      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: location
       language: !<!Languages> 
         default:
           name: location
-          description: resource group location 'West US'
+          description: PROPERTY-DESCRIPTION-MISSING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -57,7 +46,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_9
+  - !<!ObjectSchema> &ref_4
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -67,7 +56,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: code
-      schema: !<!NumberSchema> &ref_3
+      schema: !<!NumberSchema> &ref_1
         $key: typeForcode
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -86,18 +75,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_2
-        $key: Error-message
-        type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2014-04-01-preview
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -112,47 +90,9 @@ schemas: !<!Schemas>
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_3
-  strings:
-  - !<!StringSchema> &ref_5
-    $key: components·parameters·subscriptionidparameter·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2014-04-01-preview
-    language: !<!Languages> 
-      default:
-        name: components·parameters·subscriptionidparameter·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_6
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname·get·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2014-04-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname·get·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_7
-    $key: components·parameters·apiversionparameter·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2014-04-01-preview
-    language: !<!Languages> 
-      default:
-        name: components·parameters·apiversionparameter·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - *ref_0
   - *ref_1
-  - *ref_2
+  strings:
+  - *ref_0
 info: !<!Info> 
   description: Some cool documentation.
   title: subscriptionId-apiVersion
@@ -167,7 +107,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_5
+        schema: *ref_0
         description: Subscription Id.
         implementation: Method
         required: true
@@ -180,7 +120,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_6
+        schema: *ref_0
         description: Resource Group name 'testgroup101'.
         implementation: Method
         required: true
@@ -195,7 +135,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_7
+        schema: *ref_0
         description: API Version with value '2014-04-01-preview'.
         implementation: Method
         required: true
@@ -215,7 +155,7 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'
           method: get
           servers:
-          - !<!HttpServer> &ref_4
+          - !<!HttpServer> &ref_2
             url: 'https://management.azure.com/'
             language:
               default:
@@ -223,7 +163,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -237,7 +177,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -266,4 +206,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_4
+    - *ref_2

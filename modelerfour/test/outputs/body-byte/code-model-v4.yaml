@@ -69,88 +69,51 @@ schemas: !<!Schemas>
         name: paths·byte-nonascii·get·responses·200·content·application-json·schema
         description: Non-ascii base-64 encoded byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_7
-    $key: rqsch
-    type: byte-array
-    format: byte
-    description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
-    language: !<!Languages> 
-      default:
-        name: rqsch
-        description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
-    protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_8
-    $key: paths·byte-invalid·get·responses·200·content·application-json·schema
-    type: byte-array
-    format: byte
-    description: 'The invalid byte value ''::::SWAGGER::::'''
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·byte-invalid·get·responses·200·content·application-json·schema
-        description: 'The invalid byte value ''::::SWAGGER::::'''
-    protocol: !<!Protocols> {}
-  numbers:
-  - *ref_0
-  sealedChoices:
-  - !<!SealedChoiceSchema> &ref_3
+  constants:
+  - !<!ConstantSchema> &ref_3
     $key: paths·byte-null·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: null
-      language:
-        default:
-          name: null
-          description: ''
-    type: sealed-choice
+    type: constant
     description: The null byte value
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
+    valueType: !<!StringSchema> 
+      $key: constant
       type: string
-      description: choice
+      description: constant
       language: !<!Languages> 
         default:
-          name: choice
-          description: choice
+          name: constant
+          description: constant
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·byte-null·get·responses·200·content·application-json·schema
         description: The null byte value
     protocol: !<!Protocols> {}
-  - !<!SealedChoiceSchema> &ref_5
+  - !<!ConstantSchema> &ref_5
     $key: paths·byte-empty·get·responses·200·content·application-json·schema
-    choices:
-    - !<!ChoiceValue> 
-      value: ''
-      language:
-        default:
-          name: ''
-          description: ''
-    type: sealed-choice
+    type: constant
     description: The empty byte value ''
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> 
-      $key: choice
+    valueType: !<!StringSchema> 
+      $key: constant
       type: string
-      description: choice
+      description: constant
       language: !<!Languages> 
         default:
-          name: choice
-          description: choice
+          name: constant
+          description: constant
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·byte-empty·get·responses·200·content·application-json·schema
         description: The empty byte value ''
     protocol: !<!Protocols> {}
+  numbers:
+  - *ref_0
   strings:
   - *ref_1
 info: !<!Info> 
@@ -313,7 +276,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: byteBody
-        schema: *ref_7
+        schema: *ref_6
         description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
         implementation: Client
         extensions:
@@ -386,7 +349,7 @@ operationGroups:
           - *ref_2
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''

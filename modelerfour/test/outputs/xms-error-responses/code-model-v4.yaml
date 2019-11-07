@@ -57,7 +57,7 @@ schemas: !<!Schemas>
     - !<!Property> 
       $key: aniType
       schema: !<!StringSchema> &ref_0
-        $key: Animal-aniType
+        $key: NotFoundErrorBase-reason
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
@@ -65,7 +65,7 @@ schemas: !<!Schemas>
           version: 0.0.0
         language: !<!Languages> 
           default:
-            name: Animal-aniType
+            name: NotFoundErrorBase-reason
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
       description: PROPERTY-DESCRIPTION-MISSING
@@ -82,7 +82,7 @@ schemas: !<!Schemas>
         namespace: Api0
     protocol: !<!Protocols> {}
   - *ref_3
-  - !<!ObjectSchema> &ref_10
+  - !<!ObjectSchema> &ref_6
     $key: BaseError
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -91,7 +91,7 @@ schemas: !<!Schemas>
       version: 0.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_9
+      - !<!ObjectSchema> &ref_5
         $key: NotFoundErrorBase
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -100,7 +100,7 @@ schemas: !<!Schemas>
           version: 0.0.0
         children: !<!Relations> 
           all:
-          - !<!ObjectSchema> &ref_12
+          - !<!ObjectSchema> &ref_7
             $key: LinkNotFound
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -110,25 +110,14 @@ schemas: !<!Schemas>
             discriminatorValue: InvalidResourceLink
             parents: !<!Relations> 
               all:
-              - *ref_9
-              - *ref_10
+              - *ref_5
+              - *ref_6
               immediate:
-              - *ref_9
+              - *ref_5
             properties:
             - !<!Property> 
               $key: whatSubAddress
-              schema: !<!StringSchema> &ref_8
-                $key: LinkNotFound-whatSubAddress
-                type: string
-                description: MISSING-SCHEMA-DESCRIPTION-STRING
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 0.0.0
-                language: !<!Languages> 
-                  default:
-                    name: LinkNotFound-whatSubAddress
-                    description: MISSING-SCHEMA-DESCRIPTION-STRING
-                protocol: !<!Protocols> {}
+              schema: *ref_0
               description: PROPERTY-DESCRIPTION-MISSING
               serializedName: whatSubAddress
               language: !<!Languages> 
@@ -144,7 +133,7 @@ schemas: !<!Schemas>
                 description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
                 namespace: Api0
             protocol: !<!Protocols> {}
-          - !<!ObjectSchema> &ref_13
+          - !<!ObjectSchema> &ref_8
             $key: AnimalNotFound
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -154,25 +143,14 @@ schemas: !<!Schemas>
             discriminatorValue: AnimalNotFound
             parents: !<!Relations> 
               all:
-              - *ref_9
-              - *ref_10
+              - *ref_5
+              - *ref_6
               immediate:
-              - *ref_9
+              - *ref_5
             properties:
             - !<!Property> 
               $key: name
-              schema: !<!StringSchema> &ref_11
-                $key: AnimalNotFound-name
-                type: string
-                description: MISSING-SCHEMA-DESCRIPTION-STRING
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 0.0.0
-                language: !<!Languages> 
-                  default:
-                    name: AnimalNotFound-name
-                    description: MISSING-SCHEMA-DESCRIPTION-STRING
-                protocol: !<!Protocols> {}
+              schema: *ref_0
               description: PROPERTY-DESCRIPTION-MISSING
               serializedName: name
               language: !<!Languages> 
@@ -187,29 +165,18 @@ schemas: !<!Schemas>
                 namespace: Api0
             protocol: !<!Protocols> {}
           immediate:
-          - *ref_12
-          - *ref_13
+          - *ref_7
+          - *ref_8
         discriminator: !<!Discriminator> 
           all:
-            AnimalNotFound: *ref_13
-            InvalidResourceLink: *ref_12
+            AnimalNotFound: *ref_8
+            InvalidResourceLink: *ref_7
           immediate:
-            AnimalNotFound: *ref_13
-            InvalidResourceLink: *ref_12
-          property: !<!Property> &ref_7
+            AnimalNotFound: *ref_8
+            InvalidResourceLink: *ref_7
+          property: !<!Property> &ref_4
             $key: whatNotFound
-            schema: !<!StringSchema> &ref_6
-              $key: NotFoundErrorBase-whatNotFound
-              type: string
-              description: MISSING-SCHEMA-DESCRIPTION-STRING
-              apiVersions:
-              - !<!ApiVersion> 
-                version: 0.0.0
-              language: !<!Languages> 
-                default:
-                  name: NotFoundErrorBase-whatNotFound
-                  description: MISSING-SCHEMA-DESCRIPTION-STRING
-              protocol: !<!Protocols> {}
+            schema: *ref_0
             description: PROPERTY-DESCRIPTION-MISSING
             isDiscriminator: true
             required: true
@@ -222,24 +189,13 @@ schemas: !<!Schemas>
         discriminatorValue: NotFoundErrorBase
         parents: !<!Relations> 
           all:
-          - *ref_10
+          - *ref_6
           immediate:
-          - *ref_10
+          - *ref_6
         properties:
         - !<!Property> 
           $key: reason
-          schema: !<!StringSchema> &ref_5
-            $key: NotFoundErrorBase-reason
-            type: string
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 0.0.0
-            language: !<!Languages> 
-              default:
-                name: NotFoundErrorBase-reason
-                description: MISSING-SCHEMA-DESCRIPTION-STRING
-            protocol: !<!Protocols> {}
+          schema: *ref_0
           description: PROPERTY-DESCRIPTION-MISSING
           required: false
           serializedName: reason
@@ -248,32 +204,21 @@ schemas: !<!Schemas>
               name: reason
               description: PROPERTY-DESCRIPTION-MISSING
           protocol: !<!Protocols> {}
-        - *ref_7
+        - *ref_4
         language: !<!Languages> 
           default:
             name: NotFoundErrorBase
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
             namespace: Api0
         protocol: !<!Protocols> {}
-      - *ref_12
-      - *ref_13
+      - *ref_7
+      - *ref_8
       immediate:
-      - *ref_9
+      - *ref_5
     properties:
     - !<!Property> 
       $key: someBaseProp
-      schema: !<!StringSchema> &ref_4
-        $key: BaseError-someBaseProp
-        type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: BaseError-someBaseProp
-            description: MISSING-SCHEMA-DESCRIPTION-STRING
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: someBaseProp
       language: !<!Languages> 
@@ -287,8 +232,8 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api0
     protocol: !<!Protocols> {}
-  - *ref_9
-  - !<!ObjectSchema> &ref_28
+  - *ref_5
+  - !<!ObjectSchema> &ref_15
     $key: PetAction
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -298,24 +243,13 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: actionResponse
-      schema: !<!StringSchema> &ref_14
-        $key: PetAction-actionResponse
-        type: string
-        description: action feedback
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAction-actionResponse
-            description: action feedback
-        protocol: !<!Protocols> {}
-      description: action feedback
+      schema: *ref_0
+      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: actionResponse
       language: !<!Languages> 
         default:
           name: actionResponse
-          description: action feedback
+          description: PROPERTY-DESCRIPTION-MISSING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -323,7 +257,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api0
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_19
+  - !<!ObjectSchema> &ref_10
     $key: PetActionError
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -332,7 +266,7 @@ schemas: !<!Schemas>
       version: 0.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_21
+      - !<!ObjectSchema> &ref_11
         $key: PetSadError
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -341,7 +275,7 @@ schemas: !<!Schemas>
           version: 0.0.0
         children: !<!Relations> 
           all:
-          - !<!ObjectSchema> &ref_22
+          - !<!ObjectSchema> &ref_12
             $key: PetHungryOrThirstyError
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -351,31 +285,20 @@ schemas: !<!Schemas>
             discriminatorValue: PetHungryOrThirstyError
             parents: !<!Relations> 
               all:
-              - *ref_21
-              - *ref_19
+              - *ref_11
+              - *ref_10
               immediate:
-              - *ref_21
+              - *ref_11
             properties:
             - !<!Property> 
               $key: hungryOrThirsty
-              schema: !<!StringSchema> &ref_20
-                $key: PetHungryOrThirstyError-hungryOrThirsty
-                type: string
-                description: is the pet hungry or thirsty or both
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 0.0.0
-                language: !<!Languages> 
-                  default:
-                    name: PetHungryOrThirstyError-hungryOrThirsty
-                    description: is the pet hungry or thirsty or both
-                protocol: !<!Protocols> {}
-              description: is the pet hungry or thirsty or both
+              schema: *ref_0
+              description: PROPERTY-DESCRIPTION-MISSING
               serializedName: hungryOrThirsty
               language: !<!Languages> 
                 default:
                   name: hungryOrThirsty
-                  description: is the pet hungry or thirsty or both
+                  description: PROPERTY-DESCRIPTION-MISSING
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -384,26 +307,15 @@ schemas: !<!Schemas>
                 namespace: Api0
             protocol: !<!Protocols> {}
           immediate:
-          - *ref_22
+          - *ref_12
         discriminator: !<!Discriminator> 
           all:
-            PetHungryOrThirstyError: *ref_22
+            PetHungryOrThirstyError: *ref_12
           immediate:
-            PetHungryOrThirstyError: *ref_22
-          property: !<!Property> &ref_17
+            PetHungryOrThirstyError: *ref_12
+          property: !<!Property> &ref_9
             $key: errorType
-            schema: !<!StringSchema> &ref_15
-              $key: PetActionError-errorType
-              type: string
-              description: MISSING-SCHEMA-DESCRIPTION-STRING
-              apiVersions:
-              - !<!ApiVersion> 
-                version: 0.0.0
-              language: !<!Languages> 
-                default:
-                  name: PetActionError-errorType
-                  description: MISSING-SCHEMA-DESCRIPTION-STRING
-              protocol: !<!Protocols> {}
+            schema: *ref_0
             description: PROPERTY-DESCRIPTION-MISSING
             isDiscriminator: true
             required: true
@@ -416,30 +328,19 @@ schemas: !<!Schemas>
         discriminatorValue: PetSadError
         parents: !<!Relations> 
           all:
-          - *ref_19
+          - *ref_10
           immediate:
-          - *ref_19
+          - *ref_10
         properties:
         - !<!Property> 
           $key: reason
-          schema: !<!StringSchema> &ref_18
-            $key: PetSadError-reason
-            type: string
-            description: why is the pet sad
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 0.0.0
-            language: !<!Languages> 
-              default:
-                name: PetSadError-reason
-                description: why is the pet sad
-            protocol: !<!Protocols> {}
-          description: why is the pet sad
+          schema: *ref_0
+          description: PROPERTY-DESCRIPTION-MISSING
           serializedName: reason
           language: !<!Languages> 
             default:
               name: reason
-              description: why is the pet sad
+              description: PROPERTY-DESCRIPTION-MISSING
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -447,39 +348,28 @@ schemas: !<!Schemas>
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
             namespace: Api0
         protocol: !<!Protocols> {}
-      - *ref_22
+      - *ref_12
       immediate:
-      - *ref_21
+      - *ref_11
     discriminator: !<!Discriminator> 
       all:
-        PetHungryOrThirstyError: *ref_22
-        PetSadError: *ref_21
+        PetHungryOrThirstyError: *ref_12
+        PetSadError: *ref_11
       immediate:
-        PetSadError: *ref_21
-      property: *ref_17
+        PetSadError: *ref_11
+      property: *ref_9
     properties:
-    - *ref_17
+    - *ref_9
     - !<!Property> 
       $key: errorMessage
-      schema: !<!StringSchema> &ref_16
-        $key: PetActionError-errorMessage
-        type: string
-        description: the error message
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: PetActionError-errorMessage
-            description: the error message
-        protocol: !<!Protocols> {}
-      description: the error message
+      schema: *ref_0
+      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: errorMessage
       language: !<!Languages> 
         default:
           name: errorMessage
-          description: the error message
+          description: PROPERTY-DESCRIPTION-MISSING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -487,12 +377,12 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api0
     protocol: !<!Protocols> {}
+  - *ref_7
+  - *ref_8
+  - *ref_11
   - *ref_12
-  - *ref_13
-  - *ref_21
-  - *ref_22
   numbers:
-  - !<!NumberSchema> &ref_26
+  - !<!NumberSchema> &ref_14
     $key: paths·errorstatuscodes-pets-petid-getpet·get·responses·501·content·application-json·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -506,54 +396,8 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
   strings:
-  - !<!StringSchema> &ref_24
-    $key: paths·errorstatuscodes-pets-petid-getpet·get·parameters·0·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·errorstatuscodes-pets-petid-getpet·get·parameters·0·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_0
   - *ref_1
-  - !<!StringSchema> &ref_25
-    $key: paths·errorstatuscodes-pets-petid-getpet·get·responses·400·content·application-json·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·errorstatuscodes-pets-petid-getpet·get·responses·400·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - *ref_4
-  - *ref_5
-  - *ref_6
-  - !<!StringSchema> &ref_27
-    $key: paths·errorstatuscodes-pets-dosomething-whataction·post·parameters·0·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·errorstatuscodes-pets-dosomething-whataction·post·parameters·0·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - *ref_14
-  - *ref_15
-  - *ref_16
-  - *ref_8
-  - *ref_11
-  - *ref_18
-  - *ref_20
 info: !<!Info> 
   description: XMS Error Response Extensions
   title: xms-error-responses
@@ -568,7 +412,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: petId
-        schema: *ref_24
+        schema: *ref_0
         description: pet id
         implementation: Method
         required: true
@@ -590,7 +434,7 @@ operationGroups:
           path: '/errorStatusCodes/Pets/{petId}/GetPet'
           method: get
           servers:
-          - !<!HttpServer> &ref_23
+          - !<!HttpServer> &ref_13
             url: 'http://localhost/'
             language:
               default:
@@ -621,7 +465,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_0
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -636,7 +480,7 @@ operationGroups:
           statusCodes:
           - '400'
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_5
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -651,7 +495,7 @@ operationGroups:
           statusCodes:
           - '404'
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_14
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -686,7 +530,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: whatAction
-        schema: *ref_27
+        schema: *ref_0
         description: what action the pet should do
         implementation: Method
         required: true
@@ -708,10 +552,10 @@ operationGroups:
           path: '/errorStatusCodes/Pets/doSomething/{whatAction}'
           method: post
           servers:
-          - *ref_23
+          - *ref_13
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_28
+      schema: *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -725,7 +569,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_10
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -740,7 +584,7 @@ operationGroups:
           statusCodes:
           - '500'
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -769,4 +613,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_23
+    - *ref_13

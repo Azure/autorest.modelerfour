@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_51
+  - !<!ObjectSchema> &ref_47
     $key: StorageAccountCheckNameAvailabilityParameters
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -60,7 +60,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_52
+  - !<!ObjectSchema> &ref_48
     $key: CheckNameAvailabilityResult
     type: object
     description: The CheckNameAvailability operation response.
@@ -70,7 +70,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: nameAvailable
-      schema: !<!BooleanSchema> &ref_35
+      schema: !<!BooleanSchema> &ref_33
         $key: typeFornameAvailable
         type: boolean
         description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
@@ -88,7 +88,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: reason
-      schema: !<!ChoiceSchema> &ref_37
+      schema: !<!ChoiceSchema> &ref_35
         $key: Reason
         choices:
         - !<!ChoiceValue> 
@@ -159,7 +159,7 @@ schemas: !<!Schemas>
         description: The CheckNameAvailability operation response.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_8
+  - !<!ObjectSchema> &ref_7
     $key: Resource
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -168,7 +168,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_19
+      - !<!ObjectSchema> &ref_18
         $key: StorageAccountCreateParameters
         type: object
         description: The parameters to provide for the account.
@@ -177,13 +177,13 @@ schemas: !<!Schemas>
           version: 2015-05-01-preview
         parents: !<!Relations> 
           all:
-          - *ref_8
+          - *ref_7
           immediate:
-          - *ref_8
+          - *ref_7
         properties:
         - !<!Property> 
           $key: properties
-          schema: !<!ObjectSchema> &ref_22
+          schema: !<!ObjectSchema> &ref_21
             $key: StorageAccountPropertiesCreateParameters
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -193,7 +193,7 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: accountType
-              schema: !<!ChoiceSchema> &ref_9
+              schema: !<!ChoiceSchema> &ref_8
                 $key: AccountType
                 choices:
                 - !<!ChoiceValue> 
@@ -227,7 +227,7 @@ schemas: !<!Schemas>
                       name: Premium_LRS
                       description: ''
                 type: choice
-                description: Gets the type of the storage account.
+                description: Gets or sets the account type.
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -246,14 +246,14 @@ schemas: !<!Schemas>
                 language: !<!Languages> 
                   default:
                     name: AccountType
-                    description: Gets the type of the storage account.
+                    description: Gets or sets the account type.
                 protocol: !<!Protocols> {}
-              description: Gets the type of the storage account.
+              description: Gets or sets the account type.
               serializedName: accountType
               language: !<!Languages> 
                 default:
                   name: accountType
-                  description: Gets the type of the storage account.
+                  description: Gets or sets the account type.
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -274,7 +274,7 @@ schemas: !<!Schemas>
             description: The parameters to provide for the account.
             namespace: Api20150501Preview
         protocol: !<!Protocols> {}
-      - !<!ObjectSchema> &ref_20
+      - !<!ObjectSchema> &ref_19
         $key: StorageAccount
         type: object
         description: The storage account.
@@ -283,13 +283,13 @@ schemas: !<!Schemas>
           version: 2015-05-01-preview
         parents: !<!Relations> 
           all:
-          - *ref_8
+          - *ref_7
           immediate:
-          - *ref_8
+          - *ref_7
         properties:
         - !<!Property> 
           $key: properties
-          schema: !<!ObjectSchema> &ref_23
+          schema: !<!ObjectSchema> &ref_22
             $key: StorageAccountProperties
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -299,7 +299,7 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: provisioningState
-              schema: !<!ChoiceSchema> &ref_38
+              schema: !<!ChoiceSchema> &ref_36
                 $key: ProvisioningState
                 choices:
                 - !<!ChoiceValue> 
@@ -351,17 +351,17 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: accountType
-              schema: *ref_9
-              description: Gets the type of the storage account.
+              schema: *ref_8
+              description: Gets or sets the account type.
               serializedName: accountType
               language: !<!Languages> 
                 default:
                   name: accountType
-                  description: Gets the type of the storage account.
+                  description: Gets or sets the account type.
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: primaryEndpoints
-              schema: !<!ObjectSchema> &ref_13
+              schema: !<!ObjectSchema> &ref_12
                 $key: Endpoints
                 type: object
                 description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
@@ -371,7 +371,7 @@ schemas: !<!Schemas>
                 properties:
                 - !<!Property> 
                   $key: blob
-                  schema: !<!StringSchema> &ref_10
+                  schema: !<!StringSchema> &ref_9
                     $key: Endpoints-blob
                     type: string
                     description: Gets the blob endpoint.
@@ -392,7 +392,7 @@ schemas: !<!Schemas>
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   $key: queue
-                  schema: !<!StringSchema> &ref_11
+                  schema: !<!StringSchema> &ref_10
                     $key: Endpoints-queue
                     type: string
                     description: Gets the queue endpoint.
@@ -413,7 +413,7 @@ schemas: !<!Schemas>
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   $key: table
-                  schema: !<!StringSchema> &ref_12
+                  schema: !<!StringSchema> &ref_11
                     $key: Endpoints-table
                     type: string
                     description: Gets the table endpoint.
@@ -434,7 +434,7 @@ schemas: !<!Schemas>
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   $key: dummyEndPoint
-                  schema: *ref_13
+                  schema: *ref_12
                   description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
                   serializedName: dummyEndPoint
                   language: !<!Languages> 
@@ -444,7 +444,7 @@ schemas: !<!Schemas>
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   $key: FooPoint
-                  schema: !<!ObjectSchema> &ref_24
+                  schema: !<!ObjectSchema> &ref_23
                     $key: Foo
                     type: object
                     description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
@@ -454,7 +454,7 @@ schemas: !<!Schemas>
                     properties:
                     - !<!Property> 
                       $key: Bar.Point
-                      schema: !<!ObjectSchema> &ref_25
+                      schema: !<!ObjectSchema> &ref_24
                         $key: Bar
                         type: object
                         description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
@@ -464,7 +464,7 @@ schemas: !<!Schemas>
                         properties:
                         - !<!Property> 
                           $key: RecursivePoint
-                          schema: *ref_13
+                          schema: *ref_12
                           description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
                           serializedName: RecursivePoint
                           language: !<!Languages> 
@@ -513,7 +513,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: primaryLocation
-              schema: !<!StringSchema> &ref_14
+              schema: !<!StringSchema> &ref_13
                 $key: StorageAccountProperties-primaryLocation
                 type: string
                 description: Gets the location of the primary for the storage account.
@@ -534,7 +534,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: statusOfPrimary
-              schema: !<!ChoiceSchema> &ref_16
+              schema: !<!ChoiceSchema> &ref_15
                 $key: AccountStatus
                 choices:
                 - !<!ChoiceValue> 
@@ -580,7 +580,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: lastGeoFailoverTime
-              schema: !<!DateTimeSchema> &ref_42
+              schema: !<!DateTimeSchema> &ref_40
                 $key: StorageAccountProperties-lastGeoFailoverTime
                 type: date-time
                 format: date-time
@@ -610,7 +610,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: secondaryLocation
-              schema: !<!StringSchema> &ref_15
+              schema: !<!StringSchema> &ref_14
                 $key: StorageAccountProperties-secondaryLocation
                 type: string
                 description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
@@ -631,7 +631,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: statusOfSecondary
-              schema: *ref_16
+              schema: *ref_15
               description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
               serializedName: statusOfSecondary
               language: !<!Languages> 
@@ -641,7 +641,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: creationTime
-              schema: !<!DateTimeSchema> &ref_43
+              schema: !<!DateTimeSchema> &ref_41
                 $key: StorageAccountProperties-creationTime
                 type: date-time
                 format: date-time
@@ -663,7 +663,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: customDomain
-              schema: !<!ObjectSchema> &ref_18
+              schema: !<!ObjectSchema> &ref_17
                 $key: CustomDomain
                 type: object
                 description: The custom domain assigned to this storage account. This can be set via Update.
@@ -673,7 +673,7 @@ schemas: !<!Schemas>
                 properties:
                 - !<!Property> 
                   $key: name
-                  schema: !<!StringSchema> &ref_17
+                  schema: !<!StringSchema> &ref_16
                     $key: CustomDomain-name
                     type: string
                     description: Gets or sets the custom domain name. Name is the CNAME source.
@@ -694,7 +694,7 @@ schemas: !<!Schemas>
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   $key: useSubDomain
-                  schema: !<!BooleanSchema> &ref_36
+                  schema: !<!BooleanSchema> &ref_34
                     $key: typeForuseSubDomain
                     type: boolean
                     description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
@@ -725,7 +725,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: secondaryEndpoints
-              schema: *ref_13
+              schema: *ref_12
               description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
               serializedName: secondaryEndpoints
               language: !<!Languages> 
@@ -752,7 +752,7 @@ schemas: !<!Schemas>
             description: The storage account.
             namespace: Api20150501Preview
         protocol: !<!Protocols> {}
-      - !<!ObjectSchema> &ref_21
+      - !<!ObjectSchema> &ref_20
         $key: StorageAccountUpdateParameters
         type: object
         description: The parameters to update on the account.
@@ -761,13 +761,13 @@ schemas: !<!Schemas>
           version: 2015-05-01-preview
         parents: !<!Relations> 
           all:
-          - *ref_8
+          - *ref_7
           immediate:
-          - *ref_8
+          - *ref_7
         properties:
         - !<!Property> 
           $key: properties
-          schema: !<!ObjectSchema> &ref_26
+          schema: !<!ObjectSchema> &ref_25
             $key: StorageAccountPropertiesUpdateParameters
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -777,17 +777,17 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: accountType
-              schema: *ref_9
-              description: Gets the type of the storage account.
+              schema: *ref_8
+              description: Gets or sets the account type.
               serializedName: accountType
               language: !<!Languages> 
                 default:
                   name: accountType
-                  description: Gets the type of the storage account.
+                  description: Gets or sets the account type.
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: customDomain
-              schema: *ref_18
+              schema: *ref_17
               description: The custom domain assigned to this storage account. This can be set via Update.
               serializedName: customDomain
               language: !<!Languages> 
@@ -815,9 +815,9 @@ schemas: !<!Schemas>
             namespace: Api20150501Preview
         protocol: !<!Protocols> {}
       immediate:
+      - *ref_18
       - *ref_19
       - *ref_20
-      - *ref_21
     properties:
     - !<!Property> 
       $key: id
@@ -912,22 +912,11 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: tags
-      schema: !<!DictionarySchema> &ref_41
+      schema: !<!DictionarySchema> &ref_39
         $key: Resource-tags
         type: dictionary
         description: Resource tags
-        elementType: !<!StringSchema> &ref_7
-          $key: components·schemas·resource·properties·tags·additionalproperties
-          type: string
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 2015-05-01-preview
-          language: !<!Languages> 
-            default:
-              name: components·schemas·resource·properties·tags·additionalproperties
-              description: MISSING-SCHEMA-DESCRIPTION-STRING
-          protocol: !<!Protocols> {}
+        elementType: *ref_0
         language: !<!Languages> 
           default:
             name: Resource-tags
@@ -962,17 +951,17 @@ schemas: !<!Schemas>
         description: Resource tags
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - *ref_19
-  - *ref_22
-  - *ref_20
-  - *ref_23
-  - *ref_13
-  - *ref_24
-  - *ref_25
   - *ref_18
   - *ref_21
-  - *ref_26
-  - !<!ObjectSchema> &ref_59
+  - *ref_19
+  - *ref_22
+  - *ref_12
+  - *ref_23
+  - *ref_24
+  - *ref_17
+  - *ref_20
+  - *ref_25
+  - !<!ObjectSchema> &ref_49
     $key: StorageAccountKeys
     type: object
     description: The access keys for the storage account.
@@ -982,7 +971,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: key1
-      schema: !<!StringSchema> &ref_27
+      schema: !<!StringSchema> &ref_26
         $key: StorageAccountKeys-key1
         type: string
         description: Gets the value of key 1.
@@ -1003,24 +992,13 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: key2
-      schema: !<!StringSchema> &ref_28
-        $key: StorageAccountKeys-key2
-        type: string
-        description: Gets the value of key 2.
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: StorageAccountKeys-key2
-            description: Gets the value of key 2.
-        protocol: !<!Protocols> {}
-      description: Gets the value of key 2.
+      schema: *ref_26
+      description: Gets the value of key 1.
       serializedName: key2
       language: !<!Languages> 
         default:
           name: key2
-          description: Gets the value of key 2.
+          description: Gets the value of key 1.
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1028,7 +1006,7 @@ schemas: !<!Schemas>
         description: The access keys for the storage account.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_60
+  - !<!ObjectSchema> &ref_50
     $key: StorageAccountListResult
     type: object
     description: The list storage accounts operation response.
@@ -1038,14 +1016,14 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: value
-      schema: !<!ArraySchema> &ref_44
+      schema: !<!ArraySchema> &ref_42
         $key: StorageAccountListResult-value
         type: array
         description: Gets the list of storage accounts and their properties.
         apiVersions:
         - !<!ApiVersion> 
           version: 2015-05-01-preview
-        elementType: *ref_20
+        elementType: *ref_19
         language: !<!Languages> 
           default:
             name: StorageAccountListResult-value
@@ -1060,7 +1038,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: nextLink
-      schema: !<!StringSchema> &ref_29
+      schema: !<!StringSchema> &ref_27
         $key: StorageAccountListResult-nextLink
         type: string
         description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
@@ -1085,7 +1063,7 @@ schemas: !<!Schemas>
         description: The list storage accounts operation response.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_62
+  - !<!ObjectSchema> &ref_51
     $key: StorageAccountRegenerateKeyParameters
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -1095,7 +1073,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: keyName
-      schema: !<!ChoiceSchema> &ref_39
+      schema: !<!ChoiceSchema> &ref_37
         $key: KeyName
         choices:
         - !<!ChoiceValue> 
@@ -1145,7 +1123,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_63
+  - !<!ObjectSchema> &ref_52
     $key: UsageListResult
     type: object
     description: The List Usages operation response.
@@ -1155,14 +1133,14 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: value
-      schema: !<!ArraySchema> &ref_45
+      schema: !<!ArraySchema> &ref_43
         $key: UsageListResult-value
         type: array
         description: Gets or sets the list Storage Resource Usages.
         apiVersions:
         - !<!ApiVersion> 
           version: 2015-05-01-preview
-        elementType: !<!ObjectSchema> &ref_32
+        elementType: !<!ObjectSchema> &ref_30
           $key: Usage
           type: object
           description: Describes Storage Resource Usage.
@@ -1172,7 +1150,7 @@ schemas: !<!Schemas>
           properties:
           - !<!Property> 
             $key: unit
-            schema: !<!ChoiceSchema> &ref_40
+            schema: !<!ChoiceSchema> &ref_38
               $key: UsageUnit
               choices:
               - !<!ChoiceValue> 
@@ -1242,7 +1220,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: currentValue
-            schema: !<!NumberSchema> &ref_46
+            schema: !<!NumberSchema> &ref_44
               $key: typeForcurrentValue
               type: integer
               description: Gets the current count of the allocated resources in the subscription.
@@ -1261,7 +1239,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: limit
-            schema: !<!NumberSchema> &ref_47
+            schema: !<!NumberSchema> &ref_45
               $key: typeForlimit
               type: integer
               description: Gets the maximum count of the resources that can be allocated in the subscription.
@@ -1280,7 +1258,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: name
-            schema: !<!ObjectSchema> &ref_33
+            schema: !<!ObjectSchema> &ref_31
               $key: UsageName
               type: object
               description: The Usage Names.
@@ -1290,7 +1268,7 @@ schemas: !<!Schemas>
               properties:
               - !<!Property> 
                 $key: value
-                schema: !<!StringSchema> &ref_30
+                schema: !<!StringSchema> &ref_28
                   $key: UsageName-value
                   type: string
                   description: Gets a string describing the resource name.
@@ -1311,7 +1289,7 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 $key: localizedValue
-                schema: !<!StringSchema> &ref_31
+                schema: !<!StringSchema> &ref_29
                   $key: UsageName-localizedValue
                   type: string
                   description: Gets a localized string describing the resource name.
@@ -1367,8 +1345,8 @@ schemas: !<!Schemas>
         description: The List Usages operation response.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - *ref_32
-  - *ref_33
+  - *ref_30
+  - *ref_31
   - !<!ObjectSchema> 
     $key: SubResource
     type: object
@@ -1379,7 +1357,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: id
-      schema: !<!StringSchema> &ref_34
+      schema: !<!StringSchema> &ref_32
         $key: SubResource-id
         type: string
         description: Resource Id
@@ -1407,155 +1385,45 @@ schemas: !<!Schemas>
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
   dictionaries:
-  - *ref_41
-  choices:
-  - *ref_37
-  - *ref_9
-  - *ref_38
-  - *ref_16
   - *ref_39
-  - *ref_40
-  arrays:
-  - *ref_44
-  - *ref_45
-  booleans:
+  choices:
   - *ref_35
+  - *ref_8
   - *ref_36
-  dateTimes:
+  - *ref_15
+  - *ref_37
+  - *ref_38
+  arrays:
   - *ref_42
   - *ref_43
+  booleans:
+  - *ref_33
+  - *ref_34
+  dateTimes:
+  - *ref_40
+  - *ref_41
   numbers:
-  - *ref_46
-  - *ref_47
+  - *ref_44
+  - *ref_45
   strings:
-  - !<!StringSchema> &ref_49
-    $key: components·parameters·apiversionparameter·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: components·parameters·apiversionparameter·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_50
-    $key: components·parameters·subscriptionidparameter·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: components·parameters·subscriptionidparameter·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_0
   - *ref_1
   - *ref_2
-  - !<!StringSchema> &ref_53
-    $key: components·parameters·resourcegroupname·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: components·parameters·resourcegroupname·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_54
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·put·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·put·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_3
   - *ref_4
   - *ref_5
   - *ref_6
-  - *ref_7
+  - *ref_9
   - *ref_10
   - *ref_11
-  - *ref_12
+  - *ref_13
   - *ref_14
-  - *ref_15
-  - *ref_17
-  - !<!StringSchema> &ref_55
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·delete·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·delete·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_56
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·get·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·get·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_57
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·patch·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname·patch·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_58
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeys·post·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-listkeys·post·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
+  - *ref_16
+  - *ref_26
   - *ref_27
   - *ref_28
   - *ref_29
-  - !<!StringSchema> &ref_61
-    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekey·post·parameters·1·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2015-05-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsoft-storage-storageaccounts-accountname-regeneratekey·post·parameters·1·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - *ref_30
-  - *ref_31
-  - *ref_34
+  - *ref_32
 info: !<!Info> 
   title: storage
 operationGroups:
@@ -1569,7 +1437,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -1582,7 +1450,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -1595,7 +1463,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_51
+        schema: *ref_47
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Client
         extensions:
@@ -1621,7 +1489,7 @@ operationGroups:
           - application/json
           - text/json
           servers:
-          - !<!HttpServer> &ref_48
+          - !<!HttpServer> &ref_46
             url: 'https://management.azure.com/'
             language:
               default:
@@ -1629,7 +1497,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_52
+      schema: *ref_48
       language: !<!Languages> 
         default:
           name: ''
@@ -1658,7 +1526,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -1673,7 +1541,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_54
+        schema: *ref_0
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
@@ -1688,7 +1556,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -1701,7 +1569,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -1714,7 +1582,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: parameters
-        schema: *ref_19
+        schema: *ref_18
         description: The parameters to provide for the created account.
         implementation: Client
         extensions:
@@ -1740,10 +1608,10 @@ operationGroups:
           - application/json
           - text/json
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_20
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -1782,7 +1650,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -1797,7 +1665,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_55
+        schema: *ref_0
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
@@ -1812,7 +1680,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -1825,7 +1693,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -1845,7 +1713,7 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
           method: delete
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1877,7 +1745,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -1892,7 +1760,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_56
+        schema: *ref_0
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
@@ -1907,7 +1775,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -1920,7 +1788,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -1940,10 +1808,10 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
           method: get
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_20
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -1971,7 +1839,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -1986,7 +1854,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_57
+        schema: *ref_0
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
@@ -2001,7 +1869,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -2014,7 +1882,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -2027,7 +1895,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: parameters
-        schema: *ref_21
+        schema: *ref_20
         description: 'The parameters to update on the account. Note that only one property can be changed at a time using this API. '
         implementation: Client
         extensions:
@@ -2053,10 +1921,10 @@ operationGroups:
           - application/json
           - text/json
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_20
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -2086,7 +1954,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -2101,7 +1969,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_58
+        schema: *ref_0
         description: The name of the storage account.
         implementation: Method
         required: true
@@ -2116,7 +1984,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -2129,7 +1997,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -2149,10 +2017,10 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'
           method: post
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_59
+      schema: *ref_49
       language: !<!Languages> 
         default:
           name: ''
@@ -2177,7 +2045,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -2190,7 +2058,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -2210,10 +2078,10 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'
           method: get
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_60
+      schema: *ref_50
       language: !<!Languages> 
         default:
           name: ''
@@ -2241,7 +2109,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -2256,7 +2124,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -2269,7 +2137,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -2289,10 +2157,10 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'
           method: get
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_60
+      schema: *ref_50
       language: !<!Languages> 
         default:
           name: ''
@@ -2320,7 +2188,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_53
+        schema: *ref_0
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
@@ -2335,7 +2203,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: accountName
-        schema: *ref_61
+        schema: *ref_0
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
@@ -2350,7 +2218,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -2363,7 +2231,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -2376,7 +2244,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: regenerateKey
-        schema: *ref_62
+        schema: *ref_51
         description: Specifies name of the key which should be regenerated.
         implementation: Client
         extensions:
@@ -2402,10 +2270,10 @@ operationGroups:
           - application/json
           - text/json
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_59
+      schema: *ref_49
       language: !<!Languages> 
         default:
           name: ''
@@ -2440,7 +2308,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_49
+        schema: *ref_0
         description: Client Api Version.
         implementation: Method
         required: true
@@ -2453,7 +2321,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_50
+        schema: *ref_0
         description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
         implementation: Method
         required: true
@@ -2473,10 +2341,10 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
           method: get
           servers:
-          - *ref_48
+          - *ref_46
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_63
+      schema: *ref_52
       language: !<!Languages> 
         default:
           name: ''
@@ -2506,4 +2374,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_48
+    - *ref_46

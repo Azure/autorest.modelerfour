@@ -1,70 +1,53 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_3
-    $key: rqsch
+  - !<!ObjectSchema> &ref_1
+    $key: paths·get·requestbody·content·application-x_www_form_urlencoded·schema
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     properties:
     - !<!Property> 
       $key: name
       schema: !<!StringSchema> &ref_0
-        $key: typeForname
+        $key: get-content-schema-name
         type: string
-        description: Updated name of the pet
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
         language: !<!Languages> 
           default:
-            name: typeForname
-            description: Updated name of the pet
+            name: get-content-schema-name
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: Updated name of the pet
-      required: false
+      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: Updated name of the pet
+          description: PROPERTY-DESCRIPTION-MISSING
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: status
-      schema: !<!StringSchema> &ref_1
-        $key: typeForstatus
-        type: string
-        description: Updated status of the pet
-        language: !<!Languages> 
-          default:
-            name: typeForstatus
-            description: Updated status of the pet
-        protocol: !<!Protocols> {}
-      description: Updated status of the pet
-      required: false
+      schema: *ref_0
+      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: Updated status of the pet
+          description: PROPERTY-DESCRIPTION-MISSING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: rqsch
+        name: paths·get·requestbody·content·application-x_www_form_urlencoded·schema
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        namespace: Api
+        namespace: Api10
     protocol: !<!Protocols> {}
   strings:
-  - !<!StringSchema> &ref_2
-    $key: paths·get·parameters·0·schema
-    type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·get·parameters·0·schema
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_0
-  - *ref_1
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-formdata-urlencoded
@@ -79,7 +62,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: petId
-        schema: *ref_2
+        schema: *ref_0
         description: ID of pet that needs to be updated
         implementation: Method
         required: true
@@ -94,7 +77,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: status
-        schema: *ref_3
+        schema: *ref_1
         description: ''
         implementation: Client
         extensions:
