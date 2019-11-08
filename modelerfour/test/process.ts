@@ -127,7 +127,7 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
     for (const each of folders) {
       if ([
         'body-formdata',
-        'lro'
+
       ].indexOf(each) > -1) {
         console.log(`Skipping: ${each}`);
         continue;
