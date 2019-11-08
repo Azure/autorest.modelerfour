@@ -193,7 +193,7 @@ export class Interpretations {
       }
       const s = new HttpServer(server.url, this.getDescription('MISSING-SERVER-DESCRIPTION', server));
       if (server.variables && length(server.variables) > 0) {
-        s.variables = items(server.variables).select(each => {
+        s.variables = items(server.variables).where(each => !!each.key).select(each => {
           const description = this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', each.value);
 
           const variable = each.value;
