@@ -57,7 +57,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: provisioningStateValues
-              schema: !<!SealedChoiceSchema> &ref_13
+              schema: !<!SealedChoiceSchema> &ref_16
                 $key: Product-properties-provisioningStateValues
                 choices:
                 - !<!ChoiceValue> 
@@ -131,14 +131,14 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
-                choiceType: !<!StringSchema> 
-                  $key: choice
+                choiceType: !<!StringSchema> &ref_11
+                  $key: string
                   type: string
-                  description: choice
+                  description: ''
                   language: !<!Languages> 
                     default:
-                      name: choice
-                      description: choice
+                      name: string
+                      description: ''
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -223,7 +223,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: tags
-      schema: !<!DictionarySchema> &ref_12
+      schema: !<!DictionarySchema> &ref_15
         $key: Resource-tags
         type: dictionary
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -295,7 +295,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_2
   - *ref_3
-  - !<!ObjectSchema> &ref_19
+  - !<!ObjectSchema> &ref_22
     $key: CloudError
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -305,7 +305,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_16
+      schema: !<!NumberSchema> &ref_19
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -340,7 +340,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_22
+  - !<!ObjectSchema> &ref_25
     $key: Sku
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -418,7 +418,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: provisioningStateValues
-              schema: !<!SealedChoiceSchema> &ref_14
+              schema: !<!SealedChoiceSchema> &ref_17
                 $key: SubProduct-properties-provisioningStateValues
                 choices:
                 - !<!ChoiceValue> 
@@ -492,14 +492,14 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
-                choiceType: !<!StringSchema> 
-                  $key: choice
+                choiceType: !<!StringSchema> &ref_13
+                  $key: string
                   type: string
-                  description: choice
+                  description: ''
                   language: !<!Languages> 
                     default:
-                      name: choice
-                      description: choice
+                      name: string
+                      description: ''
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -540,7 +540,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: id
-      schema: !<!StringSchema> &ref_11
+      schema: !<!StringSchema> &ref_12
         $key: SubResource-id
         type: string
         description: Sub Resource Id
@@ -580,7 +580,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!SealedChoiceSchema> &ref_15
+      schema: !<!SealedChoiceSchema> &ref_18
         $key: OperationResult-status
         choices:
         - !<!ChoiceValue> 
@@ -654,14 +654,14 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        choiceType: !<!StringSchema> 
-          $key: choice
+        choiceType: !<!StringSchema> &ref_14
+          $key: string
           type: string
-          description: choice
+          description: The status of the request
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: string
+              description: The status of the request
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -687,7 +687,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: code
-          schema: !<!NumberSchema> &ref_17
+          schema: !<!NumberSchema> &ref_20
             $key: typeForcode
             type: integer
             description: The error code for an operation failure
@@ -735,10 +735,10 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_7
   dictionaries:
-  - *ref_12
+  - *ref_15
   numbers:
-  - *ref_16
-  - !<!NumberSchema> &ref_20
+  - *ref_19
+  - !<!NumberSchema> &ref_23
     $key: paths·lro-putasync-retry-succeeded·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -752,7 +752,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_21
+  - !<!NumberSchema> &ref_24
     $key: paths·lro-putasync-retry-failed·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -766,7 +766,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_23
+  - !<!NumberSchema> &ref_26
     $key: paths·lro-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -780,7 +780,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_24
+  - !<!NumberSchema> &ref_27
     $key: paths·lro-delete-provisioning-202-deleting-200-failed·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -794,7 +794,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_25
+  - !<!NumberSchema> &ref_28
     $key: paths·lro-delete-provisioning-202-deleting-200-canceled·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -808,7 +808,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_26
+  - !<!NumberSchema> &ref_29
     $key: paths·lro-delete-202-retry-200·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -822,7 +822,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_27
+  - !<!NumberSchema> &ref_30
     $key: paths·lro-delete-202-noretry-204·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -836,7 +836,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_28
+  - !<!NumberSchema> &ref_31
     $key: paths·lro-deleteasync-retry-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -850,7 +850,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_29
+  - !<!NumberSchema> &ref_32
     $key: paths·lro-deleteasync-noretry-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -864,7 +864,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_30
+  - !<!NumberSchema> &ref_33
     $key: paths·lro-deleteasync-retry-failed·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -878,7 +878,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_31
+  - !<!NumberSchema> &ref_34
     $key: paths·lro-deleteasync-retry-canceled·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -892,7 +892,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_32
+  - !<!NumberSchema> &ref_35
     $key: paths·lro-post-202-retry-200·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -906,7 +906,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_33
+  - !<!NumberSchema> &ref_36
     $key: paths·lro-post-202-noretry-204·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -920,7 +920,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_34
+  - !<!NumberSchema> &ref_37
     $key: paths·lro-postasync-retry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -934,7 +934,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_35
+  - !<!NumberSchema> &ref_38
     $key: paths·lro-postasync-noretry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -948,7 +948,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_36
+  - !<!NumberSchema> &ref_39
     $key: paths·lro-postasync-retry-failed·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -962,7 +962,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_37
+  - !<!NumberSchema> &ref_40
     $key: paths·lro-postasync-retry-canceled·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -976,7 +976,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_38
+  - !<!NumberSchema> &ref_41
     $key: paths·lro-retryerror-putasync-retry-succeeded·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -990,7 +990,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_39
+  - !<!NumberSchema> &ref_42
     $key: paths·lro-retryerror-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1004,7 +1004,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_40
+  - !<!NumberSchema> &ref_43
     $key: paths·lro-retryerror-delete-202-retry-200·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1018,7 +1018,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_41
+  - !<!NumberSchema> &ref_44
     $key: paths·lro-retryerror-deleteasync-retry-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1032,7 +1032,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_42
+  - !<!NumberSchema> &ref_45
     $key: paths·lro-retryerror-post-202-retry-200·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1046,7 +1046,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_43
+  - !<!NumberSchema> &ref_46
     $key: paths·lro-retryerror-postasync-retry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1060,7 +1060,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_44
+  - !<!NumberSchema> &ref_47
     $key: paths·lro-nonretryerror-putasync-retry-400·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1074,7 +1074,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_45
+  - !<!NumberSchema> &ref_48
     $key: paths·lro-nonretryerror-delete-400·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1088,7 +1088,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_46
+  - !<!NumberSchema> &ref_49
     $key: paths·lro-nonretryerror-delete-202-retry-400·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1102,7 +1102,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_47
+  - !<!NumberSchema> &ref_50
     $key: paths·lro-nonretryerror-deleteasync-retry-400·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1116,7 +1116,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_48
+  - !<!NumberSchema> &ref_51
     $key: paths·lro-nonretryerror-post-400·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1130,7 +1130,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_49
+  - !<!NumberSchema> &ref_52
     $key: paths·lro-nonretryerror-post-202-retry-400·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1144,7 +1144,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_50
+  - !<!NumberSchema> &ref_53
     $key: paths·lro-nonretryerror-postasync-retry-400·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1158,7 +1158,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_51
+  - !<!NumberSchema> &ref_54
     $key: paths·lro-error-putasync-retry-nostatus·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1172,7 +1172,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_52
+  - !<!NumberSchema> &ref_55
     $key: paths·lro-error-putasync-retry-nostatuspayload·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1186,7 +1186,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_53
+  - !<!NumberSchema> &ref_56
     $key: paths·lro-error-deleteasync-retry-nostatus·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1200,7 +1200,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_54
+  - !<!NumberSchema> &ref_57
     $key: paths·lro-error-post-202-nolocation·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1214,7 +1214,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_55
+  - !<!NumberSchema> &ref_58
     $key: paths·lro-error-postasync-retry-nopayload·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1228,7 +1228,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_56
+  - !<!NumberSchema> &ref_59
     $key: paths·lro-error-putasync-retry-invalidheader·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1242,7 +1242,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_57
+  - !<!NumberSchema> &ref_60
     $key: paths·lro-error-putasync-retry-invalidjsonpolling·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1256,7 +1256,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_58
+  - !<!NumberSchema> &ref_61
     $key: paths·lro-error-delete-202-retry-invalidheader·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1270,7 +1270,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_59
+  - !<!NumberSchema> &ref_62
     $key: paths·lro-error-deleteasync-retry-invalidheader·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1284,7 +1284,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_60
+  - !<!NumberSchema> &ref_63
     $key: paths·lro-error-deleteasync-retry-invalidjsonpolling·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1298,7 +1298,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_61
+  - !<!NumberSchema> &ref_64
     $key: paths·lro-error-post-202-retry-invalidheader·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1312,7 +1312,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_62
+  - !<!NumberSchema> &ref_65
     $key: paths·lro-error-postasync-retry-invalidheader·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1326,7 +1326,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_63
+  - !<!NumberSchema> &ref_66
     $key: paths·lro-error-postasync-retry-invalidjsonpolling·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1340,7 +1340,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_64
+  - !<!NumberSchema> &ref_67
     $key: paths·lro-customheader-putasync-retry-succeeded·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1354,7 +1354,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_65
+  - !<!NumberSchema> &ref_68
     $key: paths·lro-customheader-post-202-retry-200·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1368,7 +1368,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_66
+  - !<!NumberSchema> &ref_69
     $key: paths·lro-customheader-postasync-retry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1382,17 +1382,20 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - *ref_17
+  - *ref_20
   sealedChoices:
-  - *ref_13
-  - *ref_14
-  - *ref_15
+  - *ref_16
+  - *ref_17
+  - *ref_18
   strings:
   - *ref_8
   - *ref_9
   - *ref_0
   - *ref_10
   - *ref_11
+  - *ref_12
+  - *ref_13
+  - *ref_14
 info: !<!Info> 
   description: Long-running Operation for AutoRest
   title: lro
@@ -1432,7 +1435,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - !<!HttpServer> &ref_18
+          - !<!HttpServer> &ref_21
             url: 'http://localhost:3000/'
             language:
               default:
@@ -1463,7 +1466,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1515,7 +1518,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1532,7 +1535,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1584,7 +1587,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1601,7 +1604,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1653,7 +1656,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1683,7 +1686,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1735,7 +1738,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1752,7 +1755,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1804,7 +1807,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1834,7 +1837,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1886,7 +1889,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1903,7 +1906,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1955,7 +1958,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -1974,7 +1977,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2026,7 +2029,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2039,7 +2042,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_20
+          - *ref_23
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2047,7 +2050,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2099,7 +2102,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2119,7 +2122,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2171,7 +2174,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2184,7 +2187,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_21
+          - *ref_24
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2192,7 +2195,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2244,7 +2247,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2264,7 +2267,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2316,7 +2319,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2335,7 +2338,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2362,7 +2365,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: sku
-        schema: *ref_22
+        schema: *ref_25
         description: sku to put
         implementation: Client
         extensions:
@@ -2387,10 +2390,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -2404,7 +2407,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2431,7 +2434,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: sku
-        schema: *ref_22
+        schema: *ref_25
         description: Sku to put
         implementation: Client
         extensions:
@@ -2456,10 +2459,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -2473,7 +2476,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2525,7 +2528,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -2542,7 +2545,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2594,7 +2597,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -2611,7 +2614,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2644,7 +2647,7 @@ operationGroups:
           path: /lro/delete/provisioning/202/accepted/200/succeeded
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2669,7 +2672,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_23
+          - *ref_26
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2677,7 +2680,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2709,7 +2712,7 @@ operationGroups:
           path: /lro/delete/provisioning/202/deleting/200/failed
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2734,7 +2737,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_24
+          - *ref_27
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2742,7 +2745,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2774,7 +2777,7 @@ operationGroups:
           path: /lro/delete/provisioning/202/deleting/200/canceled
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2799,7 +2802,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_25
+          - *ref_28
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2807,7 +2810,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2839,7 +2842,7 @@ operationGroups:
           path: /lro/delete/204/succeeded
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2852,7 +2855,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2884,7 +2887,7 @@ operationGroups:
           path: /lro/delete/202/retry/200
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2908,12 +2911,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_26
+          - *ref_29
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -2945,7 +2948,7 @@ operationGroups:
           path: /lro/delete/202/noretry/204
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -2969,12 +2972,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_27
+          - *ref_30
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3006,7 +3009,7 @@ operationGroups:
           path: /lro/delete/noheader
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3030,7 +3033,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3062,7 +3065,7 @@ operationGroups:
           path: /lro/deleteasync/noheader/202/204
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3086,7 +3089,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3118,7 +3121,7 @@ operationGroups:
           path: /lro/deleteasync/retry/succeeded
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3130,12 +3133,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_28
+          - *ref_31
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3167,7 +3170,7 @@ operationGroups:
           path: /lro/deleteasync/noretry/succeeded
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3179,12 +3182,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_29
+          - *ref_32
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3216,7 +3219,7 @@ operationGroups:
           path: /lro/deleteasync/retry/failed
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3228,12 +3231,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_30
+          - *ref_33
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3265,7 +3268,7 @@ operationGroups:
           path: /lro/deleteasync/retry/canceled
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3277,12 +3280,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_31
+          - *ref_34
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3314,10 +3317,10 @@ operationGroups:
           path: /lro/post/payload/200
           method: post
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -3330,7 +3333,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -3344,7 +3347,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3395,7 +3398,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3406,12 +3409,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_32
+          - *ref_35
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3463,7 +3466,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -3475,7 +3478,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_33
+          - *ref_36
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -3483,7 +3486,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3516,7 +3519,7 @@ operationGroups:
           path: /lro/LROPostDoubleHeadersFinalLocationGet
           method: post
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -3533,7 +3536,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3567,7 +3570,7 @@ operationGroups:
           path: /lro/LROPostDoubleHeadersFinalAzureHeaderGet
           method: post
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -3584,7 +3587,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3620,7 +3623,7 @@ operationGroups:
           path: /lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault
           method: post
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -3637,7 +3640,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3690,7 +3693,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -3715,12 +3718,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_34
+          - *ref_37
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3772,7 +3775,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -3797,12 +3800,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_35
+          - *ref_38
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3854,7 +3857,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3866,12 +3869,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_36
+          - *ref_39
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -3923,7 +3926,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3935,12 +3938,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_37
+          - *ref_40
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4002,7 +4005,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4032,7 +4035,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4086,7 +4089,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4099,7 +4102,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_38
+          - *ref_41
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -4107,7 +4110,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4142,7 +4145,7 @@ operationGroups:
           path: /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4167,7 +4170,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_39
+          - *ref_42
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -4175,7 +4178,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4209,7 +4212,7 @@ operationGroups:
           path: /lro/retryerror/delete/202/retry/200
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4220,12 +4223,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_40
+          - *ref_43
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4257,7 +4260,7 @@ operationGroups:
           path: /lro/retryerror/deleteasync/retry/succeeded
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4269,12 +4272,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_41
+          - *ref_44
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4325,7 +4328,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4336,12 +4339,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_42
+          - *ref_45
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4393,7 +4396,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4405,12 +4408,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_43
+          - *ref_46
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4470,7 +4473,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4500,7 +4503,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4552,7 +4555,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4582,7 +4585,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4634,7 +4637,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4664,7 +4667,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4716,7 +4719,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -4729,7 +4732,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_44
+          - *ref_47
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -4737,7 +4740,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4770,7 +4773,7 @@ operationGroups:
           path: /lro/nonretryerror/delete/400
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4781,12 +4784,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_45
+          - *ref_48
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4818,7 +4821,7 @@ operationGroups:
           path: /lro/nonretryerror/delete/202/retry/400
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4829,12 +4832,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_46
+          - *ref_49
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4866,7 +4869,7 @@ operationGroups:
           path: /lro/nonretryerror/deleteasync/retry/400
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4878,12 +4881,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_47
+          - *ref_50
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -4934,7 +4937,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4945,12 +4948,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_48
+          - *ref_51
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5002,7 +5005,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5013,12 +5016,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_49
+          - *ref_52
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5070,7 +5073,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5082,12 +5085,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_50
+          - *ref_53
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5139,7 +5142,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -5169,7 +5172,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5221,7 +5224,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -5234,7 +5237,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_51
+          - *ref_54
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5242,7 +5245,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5294,7 +5297,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -5307,7 +5310,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_52
+          - *ref_55
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5315,7 +5318,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5348,7 +5351,7 @@ operationGroups:
           path: /lro/error/delete/204/nolocation
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5361,7 +5364,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5393,7 +5396,7 @@ operationGroups:
           path: /lro/error/deleteasync/retry/nostatus
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5405,12 +5408,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_53
+          - *ref_56
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5461,7 +5464,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5472,12 +5475,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_54
+          - *ref_57
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5529,7 +5532,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5541,12 +5544,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_55
+          - *ref_58
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5598,7 +5601,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -5624,7 +5627,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5676,7 +5679,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -5689,7 +5692,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_56
+          - *ref_59
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5697,7 +5700,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5749,7 +5752,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -5762,7 +5765,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_57
+          - *ref_60
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5770,7 +5773,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5803,7 +5806,7 @@ operationGroups:
           path: /lro/error/delete/202/retry/invalidheader
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5814,12 +5817,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_58
+          - *ref_61
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5851,7 +5854,7 @@ operationGroups:
           path: /lro/error/deleteasync/retry/invalidheader
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5863,12 +5866,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_59
+          - *ref_62
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5900,7 +5903,7 @@ operationGroups:
           path: /lro/error/deleteasync/retry/invalidjsonpolling
           method: delete
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5912,12 +5915,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_60
+          - *ref_63
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -5968,7 +5971,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5979,12 +5982,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_61
+          - *ref_64
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6036,7 +6039,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6048,12 +6051,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_62
+          - *ref_65
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6105,7 +6108,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6117,12 +6120,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_63
+          - *ref_66
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6184,7 +6187,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -6197,7 +6200,7 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_64
+          - *ref_67
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -6205,7 +6208,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6261,7 +6264,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -6291,7 +6294,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6347,7 +6350,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6358,12 +6361,12 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - *ref_0
-          - *ref_65
+          - *ref_68
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6419,7 +6422,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_18
+          - *ref_21
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6431,12 +6434,12 @@ operationGroups:
           headers:
           - *ref_0
           - *ref_0
-          - *ref_66
+          - *ref_69
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -6470,4 +6473,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_18
+    - *ref_21

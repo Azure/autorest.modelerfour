@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_13
+  - !<!ObjectSchema> &ref_15
     $key: CatalogArray
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,14 +11,14 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productArray
-      schema: !<!ArraySchema> &ref_3
+      schema: !<!ArraySchema> &ref_5
         $key: CatalogArray-productArray
         type: array
         description: Array of products
         apiVersions:
         - !<!ApiVersion> 
           version: 2014-04-01-preview
-        elementType: !<!ObjectSchema> &ref_2
+        elementType: !<!ObjectSchema> &ref_4
           $key: Product
           type: object
           description: The product documentation.
@@ -28,7 +28,7 @@ schemas: !<!Schemas>
           properties:
           - !<!Property> 
             $key: product_id
-            schema: !<!StringSchema> &ref_0
+            schema: !<!StringSchema> &ref_2
               $key: Product-product_id
               type: string
               description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -49,7 +49,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: description
-            schema: *ref_0
+            schema: *ref_2
             description: PROPERTY-DESCRIPTION-MISSING
             serializedName: description
             language: !<!Languages> 
@@ -59,7 +59,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: display_name
-            schema: *ref_0
+            schema: *ref_2
             description: PROPERTY-DESCRIPTION-MISSING
             serializedName: display_name
             language: !<!Languages> 
@@ -69,7 +69,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: capacity
-            schema: !<!StringSchema> &ref_1
+            schema: !<!StringSchema> &ref_3
               $key: Product-capacity
               type: string
               description: 'Capacity of product. For example, 4 people.'
@@ -91,7 +91,7 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: image
-            schema: *ref_0
+            schema: *ref_2
             description: PROPERTY-DESCRIPTION-MISSING
             serializedName: image
             language: !<!Languages> 
@@ -123,8 +123,8 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - *ref_2
-  - !<!ObjectSchema> &ref_14
+  - *ref_4
+  - !<!ObjectSchema> &ref_16
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -134,7 +134,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_6
+      schema: !<!NumberSchema> &ref_8
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -153,7 +153,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: *ref_0
+      schema: *ref_2
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -167,7 +167,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_15
+  - !<!ObjectSchema> &ref_17
     $key: CatalogDictionaryOfArray
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -177,18 +177,18 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productDictionaryOfArray
-      schema: !<!DictionarySchema> &ref_7
+      schema: !<!DictionarySchema> &ref_9
         $key: CatalogDictionaryOfArray-productDictionaryOfArray
         type: dictionary
         description: Dictionary of Array of product
-        elementType: !<!ArraySchema> &ref_4
+        elementType: !<!ArraySchema> &ref_6
           $key: components·schemas·catalogdictionaryofarray·properties·productdictionaryofarray·additionalproperties
           type: array
           description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
           apiVersions:
           - !<!ApiVersion> 
             version: 2014-04-01-preview
-          elementType: *ref_2
+          elementType: *ref_4
           language: !<!Languages> 
             default:
               name: components·schemas·catalogdictionaryofarray·properties·productdictionaryofarray·additionalproperties
@@ -225,7 +225,7 @@ schemas: !<!Schemas>
         description: Dictionary of Array of product
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_16
+  - !<!ObjectSchema> &ref_18
     $key: CatalogDictionary
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -235,7 +235,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productDictionary
-      schema: !<!DictionarySchema> &ref_8
+      schema: !<!DictionarySchema> &ref_10
         $key: CatalogDictionary-productDictionary
         type: dictionary
         description: Dictionary of products
@@ -279,7 +279,7 @@ schemas: !<!Schemas>
         description: Dictionary of products
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_17
+  - !<!ObjectSchema> &ref_19
     $key: CatalogArrayOfDictionary
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -289,14 +289,14 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productArrayOfDictionary
-      schema: !<!ArraySchema> &ref_5
+      schema: !<!ArraySchema> &ref_7
         $key: CatalogArrayOfDictionary-productArrayOfDictionary
         type: array
         description: Array of dictionary of products
         apiVersions:
         - !<!ApiVersion> 
           version: 2014-04-01-preview
-        elementType: !<!DictionarySchema> &ref_9
+        elementType: !<!DictionarySchema> &ref_11
           $key: CatalogArrayOfDictionary-productArrayOfDictionaryItem
           type: dictionary
           description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -346,53 +346,55 @@ schemas: !<!Schemas>
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
   dictionaries:
-  - *ref_7
-  - *ref_8
   - *ref_9
+  - *ref_10
+  - *ref_11
   arrays:
-  - *ref_3
-  - *ref_4
   - *ref_5
+  - *ref_6
+  - *ref_7
   constants:
-  - !<!ConstantSchema> &ref_11
+  - !<!ConstantSchema> &ref_13
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     value: '123456'
-    valueType: !<!StringSchema> 
-      $key: constant
+    valueType: !<!StringSchema> &ref_0
+      $key: string
       type: string
-      description: constant
+      description: ''
       language: !<!Languages> 
         default:
-          name: constant
-          description: constant
+          name: string
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_12
+  - !<!ConstantSchema> &ref_14
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     value: 2014-04-01-preview
-    valueType: !<!StringSchema> 
-      $key: constant
+    valueType: !<!StringSchema> &ref_1
+      $key: string
       type: string
-      description: constant
+      description: ''
       language: !<!Languages> 
         default:
-          name: constant
-          description: constant
+          name: string
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_6
+  - *ref_8
   strings:
   - *ref_0
+  - *ref_2
   - *ref_1
+  - *ref_3
 info: !<!Info> 
   description: Some cool documentation.
   title: complex-model
@@ -407,7 +409,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_11
+        schema: *ref_13
         description: Subscription ID.
         implementation: Method
         required: true
@@ -420,7 +422,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_0
+        schema: *ref_2
         description: Resource Group ID.
         implementation: Method
         required: true
@@ -435,7 +437,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_12
+        schema: *ref_14
         description: API ID.
         implementation: Method
         required: true
@@ -455,7 +457,7 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
           method: get
           servers:
-          - !<!HttpServer> &ref_10
+          - !<!HttpServer> &ref_12
             url: 'http://localhost:3000/'
             language:
               default:
@@ -463,7 +465,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -477,7 +479,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -501,7 +503,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_0
+        schema: *ref_2
         description: Subscription ID.
         implementation: Method
         required: true
@@ -516,7 +518,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_0
+        schema: *ref_2
         description: Resource Group ID.
         implementation: Method
         required: true
@@ -531,118 +533,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_12
-        description: API ID.
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: api-version
-            description: API ID.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> 
-        $key: bodyParameter
-        schema: *ref_15
-        description: body Parameter
-        implementation: Client
-        extensions:
-          x-ms-requestBody-name: bodyParameter
-        language: !<!Languages> 
-          default:
-            name: bodyParameter
-            description: body Parameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
-          method: post
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          servers:
-          - *ref_10
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_16
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_14
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    extensions:
-      x-ms-requestBody-index: 2
-    language: !<!Languages> 
-      default:
-        name: create
-        description: Resets products.
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    $key: update
-    description: Resets products.
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> 
-        $key: subscriptionId
-        schema: *ref_0
-        description: Subscription ID.
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        $key: resourceGroupName
-        schema: *ref_0
-        description: Resource Group ID.
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-location: method
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: Resource Group ID.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        $key: api-version
-        schema: *ref_12
+        schema: *ref_14
         description: API ID.
         implementation: Method
         required: true
@@ -675,15 +566,15 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
-          method: put
+          method: post
           knownMediaType: json
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_12
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -697,7 +588,118 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_16
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    extensions:
+      x-ms-requestBody-index: 2
+    language: !<!Languages> 
+      default:
+        name: create
+        description: Resets products.
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    $key: update
+    description: Resets products.
+    request: !<!Request> 
+      parameters:
+      - !<!Parameter> 
+        $key: subscriptionId
+        schema: *ref_2
+        description: Subscription ID.
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: subscriptionId
+            description: Subscription ID.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: resourceGroupName
+        schema: *ref_2
+        description: Resource Group ID.
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-location: method
+        language: !<!Languages> 
+          default:
+            name: resourceGroupName
+            description: Resource Group ID.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        $key: api-version
+        schema: *ref_14
+        description: API ID.
+        implementation: Method
+        required: true
+        language: !<!Languages> 
+          default:
+            name: api-version
+            description: API ID.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        $key: bodyParameter
+        schema: *ref_19
+        description: body Parameter
+        implementation: Client
+        extensions:
+          x-ms-requestBody-name: bodyParameter
+        language: !<!Languages> 
+          default:
+            name: bodyParameter
+            description: body Parameter
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
+          method: put
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          servers:
+          - *ref_12
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_15
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -728,4 +730,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_10
+    - *ref_12

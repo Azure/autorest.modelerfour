@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_8
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_0
+      schema: !<!NumberSchema> &ref_4
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_1
+      schema: !<!StringSchema> &ref_5
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -56,7 +56,43 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   booleans:
-  - !<!BooleanSchema> &ref_8
+  - !<!BooleanSchema> &ref_0
+    $key: boolean
+    type: boolean
+    description: ''
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_1
+    $key: boolean
+    type: boolean
+    description: ''
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_2
+    $key: boolean
+    type: boolean
+    description: ''
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_3
+    $key: boolean
+    type: boolean
+    description: ''
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_12
     $key: paths·bool-null·get·responses·200·content·application-json·schema
     type: boolean
     description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -68,7 +104,7 @@ schemas: !<!Schemas>
         name: paths·bool-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_9
+  - !<!BooleanSchema> &ref_13
     $key: paths·bool-invalid·get·responses·200·content·application-json·schema
     type: boolean
     description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
@@ -81,7 +117,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_3
+  - !<!ConstantSchema> &ref_7
     $key: paths·bool-true·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -89,21 +125,13 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 1.0.0
     value: true
-    valueType: !<!StringSchema> 
-      $key: constant
-      type: string
-      description: constant
-      language: !<!Languages> 
-        default:
-          name: constant
-          description: constant
-      protocol: !<!Protocols> {}
+    valueType: *ref_0
     language: !<!Languages> 
       default:
         name: paths·bool-true·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_5
+  - !<!ConstantSchema> &ref_9
     $key: paths·bool-true·put·requestbody·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -111,66 +139,42 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 1.0.0
     value: true
-    valueType: !<!StringSchema> 
-      $key: constant
-      type: string
-      description: constant
-      language: !<!Languages> 
-        default:
-          name: constant
-          description: constant
-      protocol: !<!Protocols> {}
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: paths·bool-true·put·requestbody·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_6
+  - !<!ConstantSchema> &ref_10
     $key: paths·bool-false·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    valueType: !<!StringSchema> 
-      $key: constant
-      type: string
-      description: constant
-      language: !<!Languages> 
-        default:
-          name: constant
-          description: constant
-      protocol: !<!Protocols> {}
+    valueType: *ref_2
     language: !<!Languages> 
       default:
         name: paths·bool-false·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_7
+  - !<!ConstantSchema> &ref_11
     $key: paths·bool-false·put·requestbody·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    valueType: !<!StringSchema> 
-      $key: constant
-      type: string
-      description: constant
-      language: !<!Languages> 
-        default:
-          name: constant
-          description: constant
-      protocol: !<!Protocols> {}
+    valueType: *ref_3
     language: !<!Languages> 
       default:
         name: paths·bool-false·put·requestbody·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_0
+  - *ref_4
   strings:
-  - *ref_1
+  - *ref_5
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-boolean
@@ -191,7 +195,7 @@ operationGroups:
           path: /bool/true
           method: get
           servers:
-          - !<!HttpServer> &ref_2
+          - !<!HttpServer> &ref_6
             url: 'http://localhost:3000/'
             language:
               default:
@@ -199,7 +203,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -213,7 +217,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -237,7 +241,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: boolBody
-        schema: *ref_5
+        schema: *ref_9
         description: ''
         implementation: Client
         extensions:
@@ -262,7 +266,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_6
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -275,7 +279,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -307,10 +311,10 @@ operationGroups:
           path: /bool/false
           method: get
           servers:
-          - *ref_2
+          - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -324,7 +328,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -348,7 +352,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: boolBody
-        schema: *ref_7
+        schema: *ref_11
         description: ''
         implementation: Client
         extensions:
@@ -373,7 +377,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_6
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -386,7 +390,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -418,10 +422,10 @@ operationGroups:
           path: /bool/null
           method: get
           servers:
-          - *ref_2
+          - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -435,7 +439,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -465,10 +469,10 @@ operationGroups:
           path: /bool/invalid
           method: get
           servers:
-          - *ref_2
+          - *ref_6
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_13
       language: !<!Languages> 
         default:
           name: ''
@@ -482,7 +486,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -511,4 +515,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_2
+    - *ref_6

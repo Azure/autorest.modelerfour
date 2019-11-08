@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_5
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -56,7 +56,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_5
+  - !<!ConstantSchema> &ref_6
     $key: paths·datetimerfc1123-min·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -64,14 +64,14 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 1.0.0
     value: 'Sun, 1 Jan 0001 00:00:00 GMT'
-    valueType: !<!StringSchema> 
-      $key: constant
+    valueType: !<!StringSchema> &ref_2
+      $key: string
       type: string
-      description: constant
+      description: ''
       language: !<!Languages> 
         default:
-          name: constant
-          description: constant
+          name: string
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -79,7 +79,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   dateTimes:
-  - !<!DateTimeSchema> &ref_3
+  - !<!DateTimeSchema> &ref_4
     $key: paths·datetimerfc1123-null·get·responses·200·content·application-json·schema
     type: date-time
     format: date-time-rfc1123
@@ -96,6 +96,7 @@ schemas: !<!Schemas>
   - *ref_0
   strings:
   - *ref_1
+  - *ref_2
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-datetime-rfc1123
@@ -116,7 +117,7 @@ operationGroups:
           path: /datetimerfc1123/null
           method: get
           servers:
-          - !<!HttpServer> &ref_2
+          - !<!HttpServer> &ref_3
             url: 'http://localhost:3000/'
             language:
               default:
@@ -124,7 +125,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -138,7 +139,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -168,10 +169,10 @@ operationGroups:
           path: /datetimerfc1123/invalid
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -185,7 +186,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -215,10 +216,10 @@ operationGroups:
           path: /datetimerfc1123/overflow
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -232,7 +233,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -262,10 +263,10 @@ operationGroups:
           path: /datetimerfc1123/underflow
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -279,7 +280,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -303,7 +304,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: datetimeBody
-        schema: *ref_3
+        schema: *ref_4
         description: ''
         implementation: Client
         extensions:
@@ -328,7 +329,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -341,7 +342,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -373,10 +374,10 @@ operationGroups:
           path: /datetimerfc1123/max/lowercase
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -390,7 +391,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -420,10 +421,10 @@ operationGroups:
           path: /datetimerfc1123/max/uppercase
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -437,7 +438,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -461,7 +462,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: datetimeBody
-        schema: *ref_3
+        schema: *ref_4
         description: ''
         implementation: Client
         extensions:
@@ -486,7 +487,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -499,7 +500,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -531,10 +532,10 @@ operationGroups:
           path: /datetimerfc1123/min
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -548,7 +549,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -577,4 +578,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_2
+    - *ref_3

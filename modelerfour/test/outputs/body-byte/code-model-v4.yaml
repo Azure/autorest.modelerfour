@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_6
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_0
+      schema: !<!NumberSchema> &ref_3
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_1
+      schema: !<!StringSchema> &ref_2
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -56,7 +56,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   byteArrays:
-  - !<!ByteArraySchema> &ref_6
+  - !<!ByteArraySchema> &ref_8
     $key: paths·byte-nonascii·get·responses·200·content·application-json·schema
     type: byte-array
     format: byte
@@ -70,42 +70,42 @@ schemas: !<!Schemas>
         description: Non-ascii base-64 encoded byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_3
+  - !<!ConstantSchema> &ref_5
     $key: paths·byte-null·get·responses·200·content·application-json·schema
     type: constant
     description: The null byte value
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    valueType: !<!StringSchema> 
-      $key: constant
+    valueType: !<!StringSchema> &ref_0
+      $key: string
       type: string
-      description: constant
+      description: The null byte value
       language: !<!Languages> 
         default:
-          name: constant
-          description: constant
+          name: string
+          description: The null byte value
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·byte-null·get·responses·200·content·application-json·schema
         description: The null byte value
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_5
+  - !<!ConstantSchema> &ref_7
     $key: paths·byte-empty·get·responses·200·content·application-json·schema
     type: constant
     description: The empty byte value ''
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    valueType: !<!StringSchema> 
-      $key: constant
+    valueType: !<!StringSchema> &ref_1
+      $key: string
       type: string
-      description: constant
+      description: The empty byte value ''
       language: !<!Languages> 
         default:
-          name: constant
-          description: constant
+          name: string
+          description: The empty byte value ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -113,8 +113,10 @@ schemas: !<!Schemas>
         description: The empty byte value ''
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_0
+  - *ref_3
   strings:
+  - *ref_0
+  - *ref_2
   - *ref_1
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
@@ -136,7 +138,7 @@ operationGroups:
           path: /byte/null
           method: get
           servers:
-          - !<!HttpServer> &ref_2
+          - !<!HttpServer> &ref_4
             url: 'http://localhost:3000/'
             language:
               default:
@@ -144,7 +146,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -158,7 +160,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -188,10 +190,10 @@ operationGroups:
           path: /byte/empty
           method: get
           servers:
-          - *ref_2
+          - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -205,7 +207,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -235,10 +237,10 @@ operationGroups:
           path: /byte/nonAscii
           method: get
           servers:
-          - *ref_2
+          - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -252,7 +254,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -276,7 +278,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: byteBody
-        schema: *ref_6
+        schema: *ref_8
         description: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
         implementation: Client
         extensions:
@@ -301,7 +303,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_4
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -314,7 +316,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -346,10 +348,10 @@ operationGroups:
           path: /byte/invalid
           method: get
           servers:
-          - *ref_2
+          - *ref_4
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -363,7 +365,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -392,4 +394,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_2
+    - *ref_4

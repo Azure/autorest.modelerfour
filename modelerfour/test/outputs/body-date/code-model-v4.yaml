@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_5
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -56,7 +56,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_5
+  - !<!ConstantSchema> &ref_6
     $key: paths·date-min·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -64,14 +64,14 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 1.0.0
     value: '0000-01-01'
-    valueType: !<!StringSchema> 
-      $key: constant
+    valueType: !<!StringSchema> &ref_2
+      $key: string
       type: string
-      description: constant
+      description: ''
       language: !<!Languages> 
         default:
-          name: constant
-          description: constant
+          name: string
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -79,7 +79,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   dates:
-  - !<!DateSchema> &ref_3
+  - !<!DateSchema> &ref_4
     $key: paths·date-null·get·responses·200·content·application-json·schema
     type: date
     description: MISSING-SCHEMA-DESCRIPTION-DATE
@@ -95,6 +95,7 @@ schemas: !<!Schemas>
   - *ref_0
   strings:
   - *ref_1
+  - *ref_2
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-date
@@ -115,7 +116,7 @@ operationGroups:
           path: /date/null
           method: get
           servers:
-          - !<!HttpServer> &ref_2
+          - !<!HttpServer> &ref_3
             url: 'http://localhost:3000/'
             language:
               default:
@@ -123,7 +124,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -137,7 +138,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -167,10 +168,10 @@ operationGroups:
           path: /date/invaliddate
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -184,7 +185,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -214,10 +215,10 @@ operationGroups:
           path: /date/overflowdate
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -231,7 +232,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -261,10 +262,10 @@ operationGroups:
           path: /date/underflowdate
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -278,7 +279,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -302,7 +303,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: dateBody
-        schema: *ref_3
+        schema: *ref_4
         description: ''
         implementation: Client
         extensions:
@@ -327,7 +328,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -340,7 +341,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -372,10 +373,10 @@ operationGroups:
           path: /date/max
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -389,7 +390,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -413,7 +414,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: dateBody
-        schema: *ref_3
+        schema: *ref_4
         description: ''
         implementation: Client
         extensions:
@@ -438,7 +439,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -451,7 +452,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -483,10 +484,10 @@ operationGroups:
           path: /date/min
           method: get
           servers:
-          - *ref_2
+          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -500,7 +501,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -529,4 +530,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_2
+    - *ref_3

@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_6
     $key: Pet
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -33,7 +33,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: DaysOfWeek
-      schema: !<!SealedChoiceSchema> &ref_1
+      schema: !<!SealedChoiceSchema> &ref_3
         $key: DaysOfWeekExtensibleEnum
         choices:
         - !<!ChoiceValue> 
@@ -83,14 +83,14 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: '2016-07-07'
-        choiceType: !<!StringSchema> 
-          $key: choice
+        choiceType: !<!StringSchema> &ref_1
+          $key: string
           type: string
-          description: choice
+          description: Type of Pet
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: string
+              description: Type of Pet
           protocol: !<!Protocols> {}
         defaultValue: Friday
         extensions:
@@ -112,7 +112,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: IntEnum
-      schema: !<!SealedChoiceSchema> &ref_2
+      schema: !<!SealedChoiceSchema> &ref_4
         $key: IntEnum
         choices:
         - !<!ChoiceValue> 
@@ -138,14 +138,14 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: '2016-07-07'
-        choiceType: !<!StringSchema> 
-          $key: choice
+        choiceType: !<!StringSchema> &ref_2
+          $key: string
           type: string
-          description: choice
+          description: ''
           language: !<!Languages> 
             default:
-              name: choice
-              description: choice
+              name: string
+              description: ''
           protocol: !<!Protocols> {}
         extensions:
           x-ms-enum:
@@ -191,10 +191,12 @@ schemas: !<!Schemas>
         namespace: Api201607
     protocol: !<!Protocols> {}
   sealedChoices:
-  - *ref_1
-  - *ref_2
+  - *ref_3
+  - *ref_4
   strings:
   - *ref_0
+  - *ref_1
+  - *ref_2
 info: !<!Info> 
   description: PetStore
   title: extensible-enums-swagger
@@ -231,7 +233,7 @@ operationGroups:
           path: '/extensibleenums/pet/{petId}'
           method: get
           servers:
-          - !<!HttpServer> &ref_3
+          - !<!HttpServer> &ref_5
             url: 'http://localhost:3000/'
             language:
               default:
@@ -239,7 +241,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -263,7 +265,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: petParam
-        schema: *ref_4
+        schema: *ref_6
         description: ''
         implementation: Client
         extensions:
@@ -288,10 +290,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_3
+          - *ref_5
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -322,4 +324,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_3
+    - *ref_5

@@ -105,20 +105,20 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-      extensions: this.interpret.getExtensionProperties(schema),
-      summary: schema.title,
-      defaultValue: schema.default,
-      deprecated: this.interpret.getDeprecation(schema),
-      apiVersions: this.interpret.getApiVersions(schema),
-      example: this.interpret.getExample(schema),
-      externalDocs: this.interpret.getExternalDocs(schema),
-      serialization: this.interpret.getSerialization(schema),
-      maximum: schema.maximum,
-      minimum: schema.minimum,
-      multipleOf: schema.multipleOf,
-      exclusiveMaximum: schema.exclusiveMaximum,
-      exclusiveMinimum: schema.exclusiveMinimum
-    }));
+        extensions: this.interpret.getExtensionProperties(schema),
+        summary: schema.title,
+        defaultValue: schema.default,
+        deprecated: this.interpret.getDeprecation(schema),
+        apiVersions: this.interpret.getApiVersions(schema),
+        example: this.interpret.getExample(schema),
+        externalDocs: this.interpret.getExternalDocs(schema),
+        serialization: this.interpret.getSerialization(schema),
+        maximum: schema.maximum,
+        minimum: schema.minimum,
+        multipleOf: schema.multipleOf,
+        exclusiveMaximum: schema.exclusiveMaximum,
+        exclusiveMinimum: schema.exclusiveMinimum
+      }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -263,11 +263,10 @@ export class ModelerFour {
 
   getPrimitiveSchemaForEnum(schema: OpenAPI.Schema) {
     switch (schema.type) {
-
       case JsonType.String:
-        return new StringSchema('string', schema.description || '');
+        return this.codeModel.schemas.add(new StringSchema('string', schema.description || ''));
       case JsonType.Boolean:
-        return new BooleanSchema('boolean', schema.description || '');
+        return this.codeModel.schemas.add(new BooleanSchema('boolean', schema.description || ''));
       case JsonType.Number:
       case JsonType.Integer:
         return this.processNumberSchema('number', schema);
@@ -280,9 +279,6 @@ export class ModelerFour {
     name = xmse && xmse.name;
     const sealed = xmse && !(xmse.modelAsString);
 
-    switch (schema.type) {
-      case JsonType.String:
-    }
 
     if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
       return this.codeModel.schemas.add(new ConstantSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
@@ -294,7 +290,7 @@ export class ModelerFour {
         example: this.interpret.getExample(schema),
         externalDocs: this.interpret.getExternalDocs(schema),
         serialization: this.interpret.getSerialization(schema),
-        valueType: new StringSchema('constant', 'constant'),
+        valueType: this.getPrimitiveSchemaForEnum(schema),
         value: schema?.enum?.[0] || xmse?.values[0]?.value
       }));
 
@@ -310,7 +306,7 @@ export class ModelerFour {
         example: this.interpret.getExample(schema),
         externalDocs: this.interpret.getExternalDocs(schema),
         serialization: this.interpret.getSerialization(schema),
-        choiceType: new StringSchema('choice', 'choice'),
+        choiceType: <any>this.getPrimitiveSchemaForEnum(schema),
         choices: this.interpret.getEnumChoices(schema)
       }));
     }
@@ -324,7 +320,7 @@ export class ModelerFour {
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
       serialization: this.interpret.getSerialization(schema),
-      choiceType: new StringSchema('choice', 'choice'),
+      choiceType: <any>this.getPrimitiveSchemaForEnum(schema),
       choices: this.interpret.getEnumChoices(schema)
     }));
   }
@@ -849,14 +845,14 @@ export class ModelerFour {
                 requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Binary,
-                  })
-                },
-                implementation: ImplementationLocation.Client
-              }));
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Binary,
+                    })
+                  },
+                  implementation: ImplementationLocation.Client
+                }));
 
             } else {
               // it has a body parameter, and we're going to use a schema for it.
@@ -865,14 +861,14 @@ export class ModelerFour {
                 requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Json,
-                  })
-                },
-                implementation: ImplementationLocation.Client
-              }));
+                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Body, {
+                      style: SerializationStyle.Json,
+                    })
+                  },
+                  implementation: ImplementationLocation.Client
+                }));
             }
           }
             break;
