@@ -851,7 +851,7 @@ export class ModelerFour {
                       style: SerializationStyle.Binary,
                     })
                   },
-                  implementation: ImplementationLocation.Client
+                  implementation: ImplementationLocation.Method
                 }));
 
             } else {
@@ -867,7 +867,7 @@ export class ModelerFour {
                       style: SerializationStyle.Json,
                     })
                   },
-                  implementation: ImplementationLocation.Client
+                  implementation: ImplementationLocation.Method
                 }));
             }
           }
