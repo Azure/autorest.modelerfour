@@ -55,7 +55,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_18
+  - !<!ObjectSchema> &ref_23
     $key: RefColorConstant
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -133,7 +133,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_17
+  - !<!ChoiceSchema> &ref_22
     $key: Colors
     choices:
     - !<!ChoiceValue> 
@@ -178,7 +178,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   byteArrays:
-  - !<!ByteArraySchema> &ref_16
+  - !<!ByteArraySchema> &ref_21
     $key: paths·string-base64encoding·get·responses·200·content·application-json·schema
     type: byte-array
     format: base64url
@@ -218,7 +218,7 @@ schemas: !<!Schemas>
         name: paths·string-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_13
+  - !<!ConstantSchema> &ref_14
     $key: paths·string-empty·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -244,7 +244,7 @@ schemas: !<!Schemas>
         name: paths·string-empty·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_14
+  - !<!ConstantSchema> &ref_16
     $key: paths·string-mbcs·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -271,7 +271,7 @@ schemas: !<!Schemas>
         name: paths·string-mbcs·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_15
+  - !<!ConstantSchema> &ref_18
     $key: paths·string-whitespace·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -304,12 +304,72 @@ schemas: !<!Schemas>
   strings:
   - *ref_0
   - *ref_5
+  - !<!StringSchema> &ref_13
+    $key: paths·string-null·put·requestbody·content·application-json·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·string-null·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
   - *ref_1
+  - !<!StringSchema> &ref_15
+    $key: paths·string-empty·put·requestbody·content·application-json·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·string-empty·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
   - *ref_2
+  - !<!StringSchema> &ref_17
+    $key: paths·string-mbcs·put·requestbody·content·application-json·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·string-mbcs·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
   - *ref_3
+  - !<!StringSchema> &ref_19
+    $key: paths·string-whitespace·put·requestbody·content·application-json·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·string-whitespace·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
   - *ref_9
   - *ref_4
   - *ref_7
+  - !<!StringSchema> &ref_20
+    $key: paths·string-notprovided·get·responses·200·content·application-json·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·string-notprovided·get·responses·200·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-string.quirks
@@ -376,7 +436,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_5
+        schema: *ref_13
         description: ''
         implementation: Method
         extensions:
@@ -449,7 +509,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_14
       language: !<!Languages> 
         default:
           name: ''
@@ -487,7 +547,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_5
+        schema: *ref_15
         description: ''
         implementation: Method
         extensions:
@@ -560,7 +620,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -598,7 +658,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_5
+        schema: *ref_17
         description: ''
         implementation: Method
         extensions:
@@ -671,7 +731,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -709,7 +769,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_5
+        schema: *ref_19
         description: ''
         implementation: Method
         extensions:
@@ -782,7 +842,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -829,7 +889,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -876,7 +936,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -914,7 +974,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_16
+        schema: *ref_21
         description: ''
         implementation: Method
         extensions:
@@ -987,7 +1047,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -1042,7 +1102,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1080,7 +1140,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_17
+        schema: *ref_22
         description: ''
         implementation: Method
         extensions:
@@ -1153,7 +1213,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1191,7 +1251,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: enumStringBody
-        schema: *ref_17
+        schema: *ref_22
         description: ''
         implementation: Method
         extensions:
@@ -1264,7 +1324,7 @@ operationGroups:
           - *ref_10
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -1302,7 +1362,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: enumStringBody
-        schema: *ref_18
+        schema: *ref_23
         description: ''
         implementation: Method
         extensions:

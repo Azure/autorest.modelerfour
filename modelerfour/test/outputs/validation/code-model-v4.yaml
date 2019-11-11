@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_26
+  - !<!ObjectSchema> &ref_29
     $key: Product
     type: object
     description: The product documentation.
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: display_names
-      schema: !<!ArraySchema> &ref_13
+      schema: !<!ArraySchema> &ref_15
         $key: Product-display_names
         type: array
         description: Non required array of unique items from 0 to 6 elements.
@@ -104,7 +104,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: constProperty
-          schema: !<!ConstantSchema> &ref_14
+          schema: !<!ConstantSchema> &ref_16
             $key: ChildProduct-constProperty
             type: constant
             description: Constant string
@@ -185,7 +185,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: constProperty
-          schema: !<!ConstantSchema> &ref_15
+          schema: !<!ConstantSchema> &ref_17
             $key: ConstantProduct-constProperty
             type: constant
             description: Constant string
@@ -222,7 +222,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: constProperty2
-          schema: !<!ConstantSchema> &ref_16
+          schema: !<!ConstantSchema> &ref_18
             $key: ConstantProduct-constProperty2
             type: constant
             description: Constant string2
@@ -273,7 +273,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: constInt
-      schema: !<!ConstantSchema> &ref_17
+      schema: !<!ConstantSchema> &ref_19
         type: constant
         description: Constant int
         value: !<!ConstantValue> 
@@ -305,7 +305,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: constString
-      schema: !<!ConstantSchema> &ref_18
+      schema: !<!ConstantSchema> &ref_20
         $key: Product-constString
         type: constant
         description: Constant string
@@ -342,7 +342,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: constStringAsEnum
-      schema: !<!ConstantSchema> &ref_19
+      schema: !<!ConstantSchema> &ref_21
         $key: EnumConst
         type: constant
         description: Constant string as Enum
@@ -389,7 +389,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_10
   - *ref_11
-  - !<!ObjectSchema> &ref_27
+  - !<!ObjectSchema> &ref_30
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -418,7 +418,18 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: *ref_0
+      schema: !<!StringSchema> &ref_13
+        $key: Error-message
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Error-message
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -428,7 +439,18 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: fields
-      schema: *ref_0
+      schema: !<!StringSchema> &ref_14
+        $key: Error-fields
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Error-fields
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: fields
       language: !<!Languages> 
@@ -443,15 +465,15 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   arrays:
-  - *ref_13
-  constants:
-  - *ref_14
   - *ref_15
+  constants:
   - *ref_16
   - *ref_17
   - *ref_18
   - *ref_19
-  - !<!ConstantSchema> &ref_29
+  - *ref_20
+  - *ref_21
+  - !<!ConstantSchema> &ref_33
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     value: !<!ConstantValue> 
@@ -460,7 +482,7 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: !<!StringSchema> &ref_20
+    valueType: !<!StringSchema> &ref_22
       $key: string
       type: string
       description: ''
@@ -473,7 +495,7 @@ schemas: !<!Schemas>
       default:
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_30
+  - !<!ConstantSchema> &ref_34
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     value: !<!ConstantValue> 
@@ -482,7 +504,7 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: !<!StringSchema> &ref_21
+    valueType: !<!StringSchema> &ref_23
       $key: string
       type: string
       description: ''
@@ -496,7 +518,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
-  - !<!NumberSchema> &ref_24
+  - !<!NumberSchema> &ref_27
     $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·2·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -516,7 +538,7 @@ schemas: !<!Schemas>
   - *ref_4
   - *ref_7
   - *ref_12
-  - !<!NumberSchema> &ref_28
+  - !<!NumberSchema> &ref_32
     $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·2·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -533,8 +555,19 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
   strings:
-  - *ref_0
-  - !<!StringSchema> &ref_23
+  - !<!StringSchema> &ref_25
+    $key: components·parameters·subscriptionidparamterer·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: components·parameters·subscriptionidparamterer·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_26
     $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -549,7 +582,7 @@ schemas: !<!Schemas>
         name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·get·parameters·1·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_25
+  - !<!StringSchema> &ref_28
     $key: components·parameters·apiversionparameter·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -562,14 +595,32 @@ schemas: !<!Schemas>
         name: components·parameters·apiversionparameter·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
+  - *ref_0
   - *ref_2
   - *ref_3
   - *ref_5
   - *ref_6
   - *ref_8
   - *ref_9
-  - *ref_20
-  - *ref_21
+  - *ref_13
+  - *ref_14
+  - !<!StringSchema> &ref_31
+    $key: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maxLength: 10
+    minLength: 3
+    pattern: '[a-zA-Z0-9]+'
+    language: !<!Languages> 
+      default:
+        name: paths·fakepath-subscriptionid-resourcegroupname-id-api_version-apiversion·put·parameters·1·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - *ref_22
+  - *ref_23
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
@@ -584,7 +635,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_0
+        schema: *ref_25
         description: Subscription ID.
         implementation: Method
         required: true
@@ -597,7 +648,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_23
+        schema: *ref_26
         description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
         implementation: Method
         required: true
@@ -612,7 +663,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: id
-        schema: *ref_24
+        schema: *ref_27
         description: Required int multiple of 10 from 100 to 1000.
         implementation: Method
         required: true
@@ -627,7 +678,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: apiVersion
-        schema: *ref_25
+        schema: *ref_28
         description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
         implementation: Method
         required: true
@@ -647,7 +698,7 @@ operationGroups:
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}?api-version={apiVersion}'
           method: get
           servers:
-          - !<!HttpServer> &ref_22
+          - !<!HttpServer> &ref_24
             url: 'http://localhost:3000/'
             language:
               default:
@@ -655,7 +706,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -669,7 +720,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_27
+      schema: *ref_30
       language: !<!Languages> 
         default:
           name: ''
@@ -693,7 +744,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_0
+        schema: *ref_25
         description: Subscription ID.
         implementation: Method
         required: true
@@ -706,7 +757,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_23
+        schema: *ref_31
         description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
         implementation: Method
         required: true
@@ -721,7 +772,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: id
-        schema: *ref_28
+        schema: *ref_32
         description: Required int multiple of 10 from 100 to 1000.
         implementation: Method
         required: true
@@ -736,7 +787,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: apiVersion
-        schema: *ref_25
+        schema: *ref_28
         description: 'Required string following pattern \d{2}-\d{2}-\d{4}'
         implementation: Method
         required: true
@@ -749,7 +800,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: body
-        schema: *ref_26
+        schema: *ref_29
         description: ''
         implementation: Method
         extensions:
@@ -774,10 +825,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_22
+          - *ref_24
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -791,7 +842,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_27
+      schema: *ref_30
       language: !<!Languages> 
         default:
           name: ''
@@ -817,7 +868,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: constantParam
-        schema: *ref_29
+        schema: *ref_33
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -839,7 +890,7 @@ operationGroups:
           path: '/validation/constantsInPath/{constantParam}/value'
           method: get
           servers:
-          - *ref_22
+          - *ref_24
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -862,7 +913,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: constantParam
-        schema: *ref_30
+        schema: *ref_34
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
         required: true
@@ -877,7 +928,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: body
-        schema: *ref_26
+        schema: *ref_29
         description: ''
         implementation: Method
         extensions:
@@ -902,10 +953,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_22
+          - *ref_24
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -936,4 +987,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_22
+    - *ref_24

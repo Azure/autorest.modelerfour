@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_15
+  - !<!ObjectSchema> &ref_20
     $key: CatalogArray
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,14 +11,14 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productArray
-      schema: !<!ArraySchema> &ref_5
+      schema: !<!ArraySchema> &ref_9
         $key: CatalogArray-productArray
         type: array
         description: Array of products
         apiVersions:
         - !<!ApiVersion> 
           version: 2014-04-01-preview
-        elementType: !<!ObjectSchema> &ref_4
+        elementType: !<!ObjectSchema> &ref_7
           $key: Product
           type: object
           description: The product documentation.
@@ -31,45 +31,67 @@ schemas: !<!Schemas>
             schema: !<!StringSchema> &ref_2
               $key: Product-product_id
               type: string
-              description: MISSING-SCHEMA-DESCRIPTION-STRING
+              description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
               apiVersions:
               - !<!ApiVersion> 
                 version: 2014-04-01-preview
               language: !<!Languages> 
                 default:
                   name: Product-product_id
-                  description: MISSING-SCHEMA-DESCRIPTION-STRING
+                  description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
               protocol: !<!Protocols> {}
-            description: PROPERTY-DESCRIPTION-MISSING
+            description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
             serializedName: product_id
             language: !<!Languages> 
               default:
                 name: product_id
-                description: PROPERTY-DESCRIPTION-MISSING
+                description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: description
-            schema: *ref_2
-            description: PROPERTY-DESCRIPTION-MISSING
+            schema: !<!StringSchema> &ref_3
+              $key: Product-description
+              type: string
+              description: Description of product.
+              apiVersions:
+              - !<!ApiVersion> 
+                version: 2014-04-01-preview
+              language: !<!Languages> 
+                default:
+                  name: Product-description
+                  description: Description of product.
+              protocol: !<!Protocols> {}
+            description: Description of product.
             serializedName: description
             language: !<!Languages> 
               default:
                 name: description
-                description: PROPERTY-DESCRIPTION-MISSING
+                description: Description of product.
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: display_name
-            schema: *ref_2
-            description: PROPERTY-DESCRIPTION-MISSING
+            schema: !<!StringSchema> &ref_4
+              $key: Product-display_name
+              type: string
+              description: Display name of product.
+              apiVersions:
+              - !<!ApiVersion> 
+                version: 2014-04-01-preview
+              language: !<!Languages> 
+                default:
+                  name: Product-display_name
+                  description: Display name of product.
+              protocol: !<!Protocols> {}
+            description: Display name of product.
             serializedName: display_name
             language: !<!Languages> 
               default:
                 name: display_name
-                description: PROPERTY-DESCRIPTION-MISSING
+                description: Display name of product.
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: capacity
-            schema: !<!StringSchema> &ref_3
+            schema: !<!StringSchema> &ref_5
               $key: Product-capacity
               type: string
               description: 'Capacity of product. For example, 4 people.'
@@ -91,13 +113,24 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - !<!Property> 
             $key: image
-            schema: *ref_2
-            description: PROPERTY-DESCRIPTION-MISSING
+            schema: !<!StringSchema> &ref_6
+              $key: Product-image
+              type: string
+              description: Image URL representing the product.
+              apiVersions:
+              - !<!ApiVersion> 
+                version: 2014-04-01-preview
+              language: !<!Languages> 
+                default:
+                  name: Product-image
+                  description: Image URL representing the product.
+              protocol: !<!Protocols> {}
+            description: Image URL representing the product.
             serializedName: image
             language: !<!Languages> 
               default:
                 name: image
-                description: PROPERTY-DESCRIPTION-MISSING
+                description: Image URL representing the product.
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -123,8 +156,8 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - *ref_4
-  - !<!ObjectSchema> &ref_16
+  - *ref_7
+  - !<!ObjectSchema> &ref_21
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -134,7 +167,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_8
+      schema: !<!NumberSchema> &ref_12
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -153,7 +186,18 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: *ref_2
+      schema: !<!StringSchema> &ref_8
+        $key: Error-message
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 2014-04-01-preview
+        language: !<!Languages> 
+          default:
+            name: Error-message
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -167,7 +211,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_17
+  - !<!ObjectSchema> &ref_24
     $key: CatalogDictionaryOfArray
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -177,18 +221,18 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productDictionaryOfArray
-      schema: !<!DictionarySchema> &ref_9
+      schema: !<!DictionarySchema> &ref_13
         $key: CatalogDictionaryOfArray-productDictionaryOfArray
         type: dictionary
         description: Dictionary of Array of product
-        elementType: !<!ArraySchema> &ref_6
+        elementType: !<!ArraySchema> &ref_10
           $key: components·schemas·catalogdictionaryofarray·properties·productdictionaryofarray·additionalproperties
           type: array
           description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
           apiVersions:
           - !<!ApiVersion> 
             version: 2014-04-01-preview
-          elementType: *ref_4
+          elementType: *ref_7
           language: !<!Languages> 
             default:
               name: components·schemas·catalogdictionaryofarray·properties·productdictionaryofarray·additionalproperties
@@ -225,7 +269,7 @@ schemas: !<!Schemas>
         description: Dictionary of Array of product
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_18
+  - !<!ObjectSchema> &ref_25
     $key: CatalogDictionary
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -235,7 +279,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productDictionary
-      schema: !<!DictionarySchema> &ref_10
+      schema: !<!DictionarySchema> &ref_14
         $key: CatalogDictionary-productDictionary
         type: dictionary
         description: Dictionary of products
@@ -279,7 +323,7 @@ schemas: !<!Schemas>
         description: Dictionary of products
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_19
+  - !<!ObjectSchema> &ref_28
     $key: CatalogArrayOfDictionary
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -289,14 +333,14 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productArrayOfDictionary
-      schema: !<!ArraySchema> &ref_7
+      schema: !<!ArraySchema> &ref_11
         $key: CatalogArrayOfDictionary-productArrayOfDictionary
         type: array
         description: Array of dictionary of products
         apiVersions:
         - !<!ApiVersion> 
           version: 2014-04-01-preview
-        elementType: !<!DictionarySchema> &ref_11
+        elementType: !<!DictionarySchema> &ref_15
           $key: CatalogArrayOfDictionary-productArrayOfDictionaryItem
           type: dictionary
           description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -346,15 +390,15 @@ schemas: !<!Schemas>
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
   dictionaries:
+  - *ref_13
+  - *ref_14
+  - *ref_15
+  arrays:
   - *ref_9
   - *ref_10
   - *ref_11
-  arrays:
-  - *ref_5
-  - *ref_6
-  - *ref_7
   constants:
-  - !<!ConstantSchema> &ref_13
+  - !<!ConstantSchema> &ref_17
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     value: !<!ConstantValue> 
@@ -376,7 +420,7 @@ schemas: !<!Schemas>
       default:
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_14
+  - !<!ConstantSchema> &ref_19
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     value: !<!ConstantValue> 
@@ -399,12 +443,76 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_8
+  - *ref_12
   strings:
   - *ref_0
-  - *ref_2
+  - !<!StringSchema> &ref_18
+    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·get·parameters·1·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2014-04-01-preview
+    language: !<!Languages> 
+      default:
+        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·get·parameters·1·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
   - *ref_1
+  - *ref_2
   - *ref_3
+  - *ref_4
+  - *ref_5
+  - *ref_6
+  - *ref_8
+  - !<!StringSchema> &ref_22
+    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·post·parameters·0·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2014-04-01-preview
+    language: !<!Languages> 
+      default:
+        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·post·parameters·0·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_23
+    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·post·parameters·1·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2014-04-01-preview
+    language: !<!Languages> 
+      default:
+        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·post·parameters·1·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_26
+    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·put·parameters·0·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2014-04-01-preview
+    language: !<!Languages> 
+      default:
+        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·put·parameters·0·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_27
+    $key: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·put·parameters·1·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2014-04-01-preview
+    language: !<!Languages> 
+      default:
+        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname-microsoft-cache-redis·put·parameters·1·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
 info: !<!Info> 
   description: Some cool documentation.
   title: complex-model
@@ -419,7 +527,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_13
+        schema: *ref_17
         description: Subscription ID.
         implementation: Method
         required: true
@@ -432,7 +540,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_2
+        schema: *ref_18
         description: Resource Group ID.
         implementation: Method
         required: true
@@ -447,7 +555,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_14
+        schema: *ref_19
         description: API ID.
         implementation: Method
         required: true
@@ -467,7 +575,7 @@ operationGroups:
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
           method: get
           servers:
-          - !<!HttpServer> &ref_12
+          - !<!HttpServer> &ref_16
             url: 'http://localhost:3000/'
             language:
               default:
@@ -475,7 +583,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -489,7 +597,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -513,7 +621,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_2
+        schema: *ref_22
         description: Subscription ID.
         implementation: Method
         required: true
@@ -528,7 +636,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_2
+        schema: *ref_23
         description: Resource Group ID.
         implementation: Method
         required: true
@@ -543,7 +651,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_14
+        schema: *ref_19
         description: API ID.
         implementation: Method
         required: true
@@ -556,7 +664,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: bodyParameter
-        schema: *ref_17
+        schema: *ref_24
         description: body Parameter
         implementation: Method
         extensions:
@@ -581,10 +689,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -598,7 +706,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -624,7 +732,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: subscriptionId
-        schema: *ref_2
+        schema: *ref_26
         description: Subscription ID.
         implementation: Method
         required: true
@@ -639,7 +747,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_2
+        schema: *ref_27
         description: Resource Group ID.
         implementation: Method
         required: true
@@ -654,7 +762,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: api-version
-        schema: *ref_14
+        schema: *ref_19
         description: API ID.
         implementation: Method
         required: true
@@ -667,7 +775,7 @@ operationGroups:
             in: query
       - !<!Parameter> 
         $key: bodyParameter
-        schema: *ref_19
+        schema: *ref_28
         description: body Parameter
         implementation: Method
         extensions:
@@ -692,10 +800,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -709,7 +817,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -740,4 +848,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_12
+    - *ref_16

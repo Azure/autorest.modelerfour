@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_5
     $key: AvailabilitySetUpdateParameters
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -16,7 +16,7 @@ schemas: !<!Schemas>
         type: dictionary
         description: A description about the set of tags.
         elementType: !<!StringSchema> &ref_0
-          $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+          $key: components·schemas·availabilitysetupdateparameters·properties·tags·additionalproperties
           type: string
           description: MISSING-SCHEMA-DESCRIPTION-STRING
           apiVersions:
@@ -24,7 +24,7 @@ schemas: !<!Schemas>
             version: 1.0.0
           language: !<!Languages> 
             default:
-              name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+              name: components·schemas·availabilitysetupdateparameters·properties·tags·additionalproperties
               description: MISSING-SCHEMA-DESCRIPTION-STRING
           protocol: !<!Protocols> {}
         language: !<!Languages> 
@@ -63,8 +63,19 @@ schemas: !<!Schemas>
   dictionaries:
   - *ref_1
   strings:
-  - *ref_0
   - !<!StringSchema> &ref_3
+    $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
     $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
     type: string
     description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -77,6 +88,7 @@ schemas: !<!Schemas>
         name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
+  - *ref_0
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: parameter-flattening
@@ -94,7 +106,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: resourceGroupName
-        schema: *ref_0
+        schema: *ref_3
         description: The name of the resource group.
         implementation: Method
         required: true
@@ -109,7 +121,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: availabilitySetName
-        schema: *ref_3
+        schema: *ref_4
         description: The name of the storage availability set.
         implementation: Method
         required: true
@@ -125,7 +137,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: tags
-        schema: *ref_4
+        schema: *ref_5
         description: The tags.
         implementation: Method
         extensions:

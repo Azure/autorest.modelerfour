@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_1
+  - !<!ObjectSchema> &ref_0
     $key: Resource
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -10,7 +10,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_2
+      - !<!ObjectSchema> &ref_1
         $key: Product
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -19,13 +19,13 @@ schemas: !<!Schemas>
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_1
+          - *ref_0
           immediate:
-          - *ref_1
+          - *ref_0
         properties:
         - !<!Property> 
           $key: properties
-          schema: !<!ObjectSchema> &ref_3
+          schema: !<!ObjectSchema> &ref_2
             $key: Product-properties
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -35,8 +35,8 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: provisioningState
-              schema: !<!StringSchema> &ref_0
-                $key: CloudError-message
+              schema: !<!StringSchema> &ref_12
+                $key: Product-properties-provisioningState
                 type: string
                 description: MISSING-SCHEMA-DESCRIPTION-STRING
                 apiVersions:
@@ -44,9 +44,8 @@ schemas: !<!Schemas>
                   version: 1.0.0
                 language: !<!Languages> 
                   default:
-                    name: CloudError-message
+                    name: Product-properties-provisioningState
                     description: MISSING-SCHEMA-DESCRIPTION-STRING
-                    header: Location
                 protocol: !<!Protocols> {}
               description: PROPERTY-DESCRIPTION-MISSING
               serializedName: provisioningState
@@ -57,369 +56,8 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: provisioningStateValues
-              schema: !<!SealedChoiceSchema> &ref_16
+              schema: !<!SealedChoiceSchema> &ref_23
                 $key: Product-properties-provisioningStateValues
-                choices:
-                - !<!ChoiceValue> 
-                  value: Succeeded
-                  language:
-                    default:
-                      name: Succeeded
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Failed
-                  language:
-                    default:
-                      name: Failed
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: canceled
-                  language:
-                    default:
-                      name: canceled
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Accepted
-                  language:
-                    default:
-                      name: Accepted
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Creating
-                  language:
-                    default:
-                      name: Creating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Created
-                  language:
-                    default:
-                      name: Created
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Updating
-                  language:
-                    default:
-                      name: Updating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Updated
-                  language:
-                    default:
-                      name: Updated
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Deleting
-                  language:
-                    default:
-                      name: Deleting
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Deleted
-                  language:
-                    default:
-                      name: Deleted
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: OK
-                  language:
-                    default:
-                      name: OK
-                      description: ''
-                type: sealed-choice
-                description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-                choiceType: !<!StringSchema> &ref_11
-                  $key: string
-                  type: string
-                  description: ''
-                  language: !<!Languages> 
-                    default:
-                      name: string
-                      description: ''
-                  protocol: !<!Protocols> {}
-                language: !<!Languages> 
-                  default:
-                    name: Product-properties-provisioningStateValues
-                    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
-                protocol: !<!Protocols> {}
-              description: PROPERTY-DESCRIPTION-MISSING
-              readOnly: true
-              serializedName: provisioningStateValues
-              language: !<!Languages> 
-                default:
-                  name: provisioningStateValues
-                  description: PROPERTY-DESCRIPTION-MISSING
-              protocol: !<!Protocols> {}
-            extensions:
-              x-ms-client-flatten: true
-            language: !<!Languages> 
-              default:
-                name: Product-properties
-                description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-                namespace: Api10
-            protocol: !<!Protocols> {}
-          description: PROPERTY-DESCRIPTION-MISSING
-          serializedName: properties
-          language: !<!Languages> 
-            default:
-              name: properties
-              description: PROPERTY-DESCRIPTION-MISSING
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: Product
-            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-            namespace: Api10
-        protocol: !<!Protocols> {}
-      immediate:
-      - *ref_2
-    properties:
-    - !<!Property> 
-      $key: id
-      schema: !<!StringSchema> &ref_8
-        $key: Resource-id
-        type: string
-        description: Resource Id
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-id
-            description: Resource Id
-        protocol: !<!Protocols> {}
-      description: Resource Id
-      readOnly: true
-      serializedName: id
-      language: !<!Languages> 
-        default:
-          name: id
-          description: Resource Id
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      $key: type
-      schema: !<!StringSchema> &ref_9
-        $key: Resource-type
-        type: string
-        description: Resource Type
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-type
-            description: Resource Type
-        protocol: !<!Protocols> {}
-      description: Resource Type
-      readOnly: true
-      serializedName: type
-      language: !<!Languages> 
-        default:
-          name: type
-          description: Resource Type
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      $key: tags
-      schema: !<!DictionarySchema> &ref_15
-        $key: Resource-tags
-        type: dictionary
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: *ref_0
-        language: !<!Languages> 
-          default:
-            name: Resource-tags
-            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: tags
-      language: !<!Languages> 
-        default:
-          name: tags
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      $key: location
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: location
-      language: !<!Languages> 
-        default:
-          name: location
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      $key: name
-      schema: !<!StringSchema> &ref_10
-        $key: Resource-name
-        type: string
-        description: Resource Name
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-name
-            description: Resource Name
-        protocol: !<!Protocols> {}
-      description: Resource Name
-      readOnly: true
-      serializedName: name
-      language: !<!Languages> 
-        default:
-          name: name
-          description: Resource Name
-      protocol: !<!Protocols> {}
-    extensions:
-      x-ms-azure-resource: true
-    language: !<!Languages> 
-      default:
-        name: Resource
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> 
-    $key: Resource-tags
-    type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Resource-tags
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - *ref_2
-  - *ref_3
-  - !<!ObjectSchema> &ref_22
-    $key: CloudError
-    type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      $key: status
-      schema: !<!NumberSchema> &ref_19
-        $key: typeForstatus
-        type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: typeForstatus
-            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
-        protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      $key: message
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    extensions:
-      x-ms-external: true
-    language: !<!Languages> 
-      default:
-        name: CloudError
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_25
-    $key: Sku
-    type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      $key: name
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: name
-      language: !<!Languages> 
-        default:
-          name: name
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      $key: id
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
-      serializedName: id
-      language: !<!Languages> 
-        default:
-          name: id
-          description: PROPERTY-DESCRIPTION-MISSING
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: Sku
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        namespace: Api10
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_4
-    $key: SubResource
-    type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    children: !<!Relations> 
-      all:
-      - !<!ObjectSchema> &ref_5
-        $key: SubProduct
-        type: object
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        parents: !<!Relations> 
-          all:
-          - *ref_4
-          immediate:
-          - *ref_4
-        properties:
-        - !<!Property> 
-          $key: properties
-          schema: !<!ObjectSchema> &ref_6
-            $key: SubProduct-properties
-            type: object
-            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            properties:
-            - !<!Property> 
-              $key: provisioningState
-              schema: *ref_0
-              description: PROPERTY-DESCRIPTION-MISSING
-              serializedName: provisioningState
-              language: !<!Languages> 
-                default:
-                  name: provisioningState
-                  description: PROPERTY-DESCRIPTION-MISSING
-              protocol: !<!Protocols> {}
-            - !<!Property> 
-              $key: provisioningStateValues
-              schema: !<!SealedChoiceSchema> &ref_17
-                $key: SubProduct-properties-provisioningStateValues
                 choices:
                 - !<!ChoiceValue> 
                   value: Succeeded
@@ -503,6 +141,433 @@ schemas: !<!Schemas>
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
+                    name: Product-properties-provisioningStateValues
+                    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+                protocol: !<!Protocols> {}
+              description: PROPERTY-DESCRIPTION-MISSING
+              readOnly: true
+              serializedName: provisioningStateValues
+              language: !<!Languages> 
+                default:
+                  name: provisioningStateValues
+                  description: PROPERTY-DESCRIPTION-MISSING
+              protocol: !<!Protocols> {}
+            extensions:
+              x-ms-client-flatten: true
+            language: !<!Languages> 
+              default:
+                name: Product-properties
+                description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+                namespace: Api10
+            protocol: !<!Protocols> {}
+          description: PROPERTY-DESCRIPTION-MISSING
+          serializedName: properties
+          language: !<!Languages> 
+            default:
+              name: properties
+              description: PROPERTY-DESCRIPTION-MISSING
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            name: Product
+            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+            namespace: Api10
+        protocol: !<!Protocols> {}
+      immediate:
+      - *ref_1
+    properties:
+    - !<!Property> 
+      $key: id
+      schema: !<!StringSchema> &ref_7
+        $key: Resource-id
+        type: string
+        description: Resource Id
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Resource-id
+            description: Resource Id
+        protocol: !<!Protocols> {}
+      description: Resource Id
+      readOnly: true
+      serializedName: id
+      language: !<!Languages> 
+        default:
+          name: id
+          description: Resource Id
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: type
+      schema: !<!StringSchema> &ref_8
+        $key: Resource-type
+        type: string
+        description: Resource Type
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Resource-type
+            description: Resource Type
+        protocol: !<!Protocols> {}
+      description: Resource Type
+      readOnly: true
+      serializedName: type
+      language: !<!Languages> 
+        default:
+          name: type
+          description: Resource Type
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: tags
+      schema: !<!DictionarySchema> &ref_22
+        $key: Resource-tags
+        type: dictionary
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        elementType: !<!StringSchema> &ref_9
+          $key: components·schemas·resource·properties·tags·additionalproperties
+          type: string
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+          apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+          language: !<!Languages> 
+            default:
+              name: components·schemas·resource·properties·tags·additionalproperties
+              description: MISSING-SCHEMA-DESCRIPTION-STRING
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            name: Resource-tags
+            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: tags
+      language: !<!Languages> 
+        default:
+          name: tags
+          description: PROPERTY-DESCRIPTION-MISSING
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: location
+      schema: !<!StringSchema> &ref_10
+        $key: Resource-location
+        type: string
+        description: Resource Location
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Resource-location
+            description: Resource Location
+        protocol: !<!Protocols> {}
+      description: Resource Location
+      serializedName: location
+      language: !<!Languages> 
+        default:
+          name: location
+          description: Resource Location
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: name
+      schema: !<!StringSchema> &ref_11
+        $key: Resource-name
+        type: string
+        description: Resource Name
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Resource-name
+            description: Resource Name
+        protocol: !<!Protocols> {}
+      description: Resource Name
+      readOnly: true
+      serializedName: name
+      language: !<!Languages> 
+        default:
+          name: name
+          description: Resource Name
+      protocol: !<!Protocols> {}
+    extensions:
+      x-ms-azure-resource: true
+    language: !<!Languages> 
+      default:
+        name: Resource
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> 
+    $key: Resource-tags
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Resource-tags
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - *ref_1
+  - *ref_2
+  - !<!ObjectSchema> &ref_29
+    $key: CloudError
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      $key: status
+      schema: !<!NumberSchema> &ref_26
+        $key: typeForstatus
+        type: integer
+        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+        precision: 32
+        language: !<!Languages> 
+          default:
+            name: typeForstatus
+            description: MISSING-SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: PROPERTY-DESCRIPTION-MISSING
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: message
+      schema: !<!StringSchema> &ref_14
+        $key: CloudError-message
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: CloudError-message
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: PROPERTY-DESCRIPTION-MISSING
+      protocol: !<!Protocols> {}
+    extensions:
+      x-ms-external: true
+    language: !<!Languages> 
+      default:
+        name: CloudError
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_42
+    $key: Sku
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      $key: name
+      schema: !<!StringSchema> &ref_15
+        $key: Sku-name
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Sku-name
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: name
+      language: !<!Languages> 
+        default:
+          name: name
+          description: PROPERTY-DESCRIPTION-MISSING
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      $key: id
+      schema: !<!StringSchema> &ref_16
+        $key: Sku-id
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Sku-id
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
+      description: PROPERTY-DESCRIPTION-MISSING
+      serializedName: id
+      language: !<!Languages> 
+        default:
+          name: id
+          description: PROPERTY-DESCRIPTION-MISSING
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Sku
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        namespace: Api10
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_3
+    $key: SubResource
+    type: object
+    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    children: !<!Relations> 
+      all:
+      - !<!ObjectSchema> &ref_4
+        $key: SubProduct
+        type: object
+        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        parents: !<!Relations> 
+          all:
+          - *ref_3
+          immediate:
+          - *ref_3
+        properties:
+        - !<!Property> 
+          $key: properties
+          schema: !<!ObjectSchema> &ref_5
+            $key: SubProduct-properties
+            type: object
+            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
+            apiVersions:
+            - !<!ApiVersion> 
+              version: 1.0.0
+            properties:
+            - !<!Property> 
+              $key: provisioningState
+              schema: !<!StringSchema> &ref_18
+                $key: SubProduct-properties-provisioningState
+                type: string
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+                apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+                language: !<!Languages> 
+                  default:
+                    name: SubProduct-properties-provisioningState
+                    description: MISSING-SCHEMA-DESCRIPTION-STRING
+                protocol: !<!Protocols> {}
+              description: PROPERTY-DESCRIPTION-MISSING
+              serializedName: provisioningState
+              language: !<!Languages> 
+                default:
+                  name: provisioningState
+                  description: PROPERTY-DESCRIPTION-MISSING
+              protocol: !<!Protocols> {}
+            - !<!Property> 
+              $key: provisioningStateValues
+              schema: !<!SealedChoiceSchema> &ref_24
+                $key: SubProduct-properties-provisioningStateValues
+                choices:
+                - !<!ChoiceValue> 
+                  value: Succeeded
+                  language:
+                    default:
+                      name: Succeeded
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Failed
+                  language:
+                    default:
+                      name: Failed
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: canceled
+                  language:
+                    default:
+                      name: canceled
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Accepted
+                  language:
+                    default:
+                      name: Accepted
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Creating
+                  language:
+                    default:
+                      name: Creating
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Created
+                  language:
+                    default:
+                      name: Created
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Updating
+                  language:
+                    default:
+                      name: Updating
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Updated
+                  language:
+                    default:
+                      name: Updated
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Deleting
+                  language:
+                    default:
+                      name: Deleting
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: Deleted
+                  language:
+                    default:
+                      name: Deleted
+                      description: ''
+                - !<!ChoiceValue> 
+                  value: OK
+                  language:
+                    default:
+                      name: OK
+                      description: ''
+                type: sealed-choice
+                description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+                apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+                choiceType: !<!StringSchema> &ref_19
+                  $key: string
+                  type: string
+                  description: ''
+                  language: !<!Languages> 
+                    default:
+                      name: string
+                      description: ''
+                  protocol: !<!Protocols> {}
+                language: !<!Languages> 
+                  default:
                     name: SubProduct-properties-provisioningStateValues
                     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
                 protocol: !<!Protocols> {}
@@ -536,11 +601,11 @@ schemas: !<!Schemas>
             namespace: Api10
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_5
+      - *ref_4
     properties:
     - !<!Property> 
       $key: id
-      schema: !<!StringSchema> &ref_12
+      schema: !<!StringSchema> &ref_17
         $key: SubResource-id
         type: string
         description: Sub Resource Id
@@ -568,8 +633,8 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
+  - *ref_4
   - *ref_5
-  - *ref_6
   - !<!ObjectSchema> 
     $key: OperationResult
     type: object
@@ -580,7 +645,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!SealedChoiceSchema> &ref_18
+      schema: !<!SealedChoiceSchema> &ref_25
         $key: OperationResult-status
         choices:
         - !<!ChoiceValue> 
@@ -654,7 +719,7 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        choiceType: !<!StringSchema> &ref_14
+        choiceType: !<!StringSchema> &ref_20
           $key: string
           type: string
           description: The status of the request
@@ -677,7 +742,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: error
-      schema: !<!ObjectSchema> &ref_7
+      schema: !<!ObjectSchema> &ref_6
         $key: OperationResult-error
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -687,7 +752,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           $key: code
-          schema: !<!NumberSchema> &ref_20
+          schema: !<!NumberSchema> &ref_27
             $key: typeForcode
             type: integer
             description: The error code for an operation failure
@@ -706,13 +771,24 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           $key: message
-          schema: *ref_0
-          description: PROPERTY-DESCRIPTION-MISSING
+          schema: !<!StringSchema> &ref_21
+            $key: OperationResult-error-message
+            type: string
+            description: The detailed arror message
+            apiVersions:
+            - !<!ApiVersion> 
+              version: 1.0.0
+            language: !<!Languages> 
+              default:
+                name: OperationResult-error-message
+                description: The detailed arror message
+            protocol: !<!Protocols> {}
+          description: The detailed arror message
           serializedName: message
           language: !<!Languages> 
             default:
               name: message
-              description: PROPERTY-DESCRIPTION-MISSING
+              description: The detailed arror message
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -733,12 +809,12 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_7
+  - *ref_6
   dictionaries:
-  - *ref_15
+  - *ref_22
   numbers:
-  - *ref_19
-  - !<!NumberSchema> &ref_23
+  - *ref_26
+  - !<!NumberSchema> &ref_33
     $key: paths·lro-putasync-retry-succeeded·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -752,7 +828,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_24
+  - !<!NumberSchema> &ref_38
     $key: paths·lro-putasync-retry-failed·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -766,7 +842,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_26
+  - !<!NumberSchema> &ref_44
     $key: paths·lro-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -780,7 +856,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_27
+  - !<!NumberSchema> &ref_46
     $key: paths·lro-delete-provisioning-202-deleting-200-failed·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -794,7 +870,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_28
+  - !<!NumberSchema> &ref_48
     $key: paths·lro-delete-provisioning-202-deleting-200-canceled·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -808,7 +884,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_29
+  - !<!NumberSchema> &ref_50
     $key: paths·lro-delete-202-retry-200·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -822,7 +898,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_30
+  - !<!NumberSchema> &ref_52
     $key: paths·lro-delete-202-noretry-204·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -836,7 +912,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_31
+  - !<!NumberSchema> &ref_57
     $key: paths·lro-deleteasync-retry-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -850,7 +926,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_32
+  - !<!NumberSchema> &ref_60
     $key: paths·lro-deleteasync-noretry-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -864,7 +940,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_33
+  - !<!NumberSchema> &ref_63
     $key: paths·lro-deleteasync-retry-failed·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -878,7 +954,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_34
+  - !<!NumberSchema> &ref_66
     $key: paths·lro-deleteasync-retry-canceled·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -892,7 +968,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_35
+  - !<!NumberSchema> &ref_68
     $key: paths·lro-post-202-retry-200·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -906,7 +982,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_36
+  - !<!NumberSchema> &ref_70
     $key: paths·lro-post-202-noretry-204·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -920,7 +996,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_37
+  - !<!NumberSchema> &ref_73
     $key: paths·lro-postasync-retry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -934,7 +1010,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_38
+  - !<!NumberSchema> &ref_76
     $key: paths·lro-postasync-noretry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -948,7 +1024,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_39
+  - !<!NumberSchema> &ref_79
     $key: paths·lro-postasync-retry-failed·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -962,7 +1038,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_40
+  - !<!NumberSchema> &ref_82
     $key: paths·lro-postasync-retry-canceled·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -976,7 +1052,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_41
+  - !<!NumberSchema> &ref_85
     $key: paths·lro-retryerror-putasync-retry-succeeded·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -990,7 +1066,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_42
+  - !<!NumberSchema> &ref_87
     $key: paths·lro-retryerror-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1004,7 +1080,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_43
+  - !<!NumberSchema> &ref_89
     $key: paths·lro-retryerror-delete-202-retry-200·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1018,7 +1094,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_44
+  - !<!NumberSchema> &ref_92
     $key: paths·lro-retryerror-deleteasync-retry-succeeded·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1032,7 +1108,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_45
+  - !<!NumberSchema> &ref_94
     $key: paths·lro-retryerror-post-202-retry-200·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1046,7 +1122,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_46
+  - !<!NumberSchema> &ref_97
     $key: paths·lro-retryerror-postasync-retry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1060,7 +1136,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_47
+  - !<!NumberSchema> &ref_100
     $key: paths·lro-nonretryerror-putasync-retry-400·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1074,7 +1150,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_48
+  - !<!NumberSchema> &ref_102
     $key: paths·lro-nonretryerror-delete-400·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1088,7 +1164,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_49
+  - !<!NumberSchema> &ref_104
     $key: paths·lro-nonretryerror-delete-202-retry-400·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1102,7 +1178,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_50
+  - !<!NumberSchema> &ref_107
     $key: paths·lro-nonretryerror-deleteasync-retry-400·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1116,7 +1192,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_51
+  - !<!NumberSchema> &ref_109
     $key: paths·lro-nonretryerror-post-400·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1130,7 +1206,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_52
+  - !<!NumberSchema> &ref_111
     $key: paths·lro-nonretryerror-post-202-retry-400·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1144,7 +1220,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_53
+  - !<!NumberSchema> &ref_114
     $key: paths·lro-nonretryerror-postasync-retry-400·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1158,7 +1234,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_54
+  - !<!NumberSchema> &ref_117
     $key: paths·lro-error-putasync-retry-nostatus·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1172,7 +1248,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_55
+  - !<!NumberSchema> &ref_120
     $key: paths·lro-error-putasync-retry-nostatuspayload·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1186,7 +1262,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_56
+  - !<!NumberSchema> &ref_123
     $key: paths·lro-error-deleteasync-retry-nostatus·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1200,7 +1276,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_57
+  - !<!NumberSchema> &ref_125
     $key: paths·lro-error-post-202-nolocation·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1214,7 +1290,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_58
+  - !<!NumberSchema> &ref_128
     $key: paths·lro-error-postasync-retry-nopayload·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1228,7 +1304,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_59
+  - !<!NumberSchema> &ref_131
     $key: paths·lro-error-putasync-retry-invalidheader·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1242,7 +1318,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_60
+  - !<!NumberSchema> &ref_134
     $key: paths·lro-error-putasync-retry-invalidjsonpolling·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1256,7 +1332,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_61
+  - !<!NumberSchema> &ref_136
     $key: paths·lro-error-delete-202-retry-invalidheader·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1270,7 +1346,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_62
+  - !<!NumberSchema> &ref_139
     $key: paths·lro-error-deleteasync-retry-invalidheader·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1284,7 +1360,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_63
+  - !<!NumberSchema> &ref_142
     $key: paths·lro-error-deleteasync-retry-invalidjsonpolling·delete·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1298,7 +1374,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_64
+  - !<!NumberSchema> &ref_144
     $key: paths·lro-error-post-202-retry-invalidheader·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1312,7 +1388,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_65
+  - !<!NumberSchema> &ref_147
     $key: paths·lro-error-postasync-retry-invalidheader·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1326,7 +1402,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_66
+  - !<!NumberSchema> &ref_150
     $key: paths·lro-error-postasync-retry-invalidjsonpolling·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1340,7 +1416,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_67
+  - !<!NumberSchema> &ref_153
     $key: paths·lro-customheader-putasync-retry-succeeded·put·responses·200·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1354,7 +1430,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_68
+  - !<!NumberSchema> &ref_155
     $key: paths·lro-customheader-post-202-retry-200·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1368,7 +1444,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_69
+  - !<!NumberSchema> &ref_158
     $key: paths·lro-customheader-postasync-retry-succeeded·post·responses·202·headers·retry_after·schema
     type: integer
     description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -1382,20 +1458,1093 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - *ref_20
+  - *ref_27
   sealedChoices:
-  - *ref_16
-  - *ref_17
-  - *ref_18
+  - *ref_23
+  - *ref_24
+  - *ref_25
   strings:
+  - *ref_7
   - *ref_8
   - *ref_9
-  - *ref_0
   - *ref_10
   - *ref_11
   - *ref_12
   - *ref_13
   - *ref_14
+  - !<!StringSchema> &ref_30
+    $key: paths·lro-put-noheader-202-200·put·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-put-noheader-202-200·put·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_31
+    $key: paths·lro-putasync-retry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-retry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_32
+    $key: paths·lro-putasync-retry-succeeded·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-retry-succeeded·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_34
+    $key: paths·lro-putasync-noretry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-noretry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_35
+    $key: paths·lro-putasync-noretry-succeeded·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-noretry-succeeded·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_36
+    $key: paths·lro-putasync-retry-failed·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-retry-failed·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_37
+    $key: paths·lro-putasync-retry-failed·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-retry-failed·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_39
+    $key: paths·lro-putasync-noretry-canceled·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-noretry-canceled·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_40
+    $key: paths·lro-putasync-noretry-canceled·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-noretry-canceled·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_41
+    $key: paths·lro-putasync-noheader-201-200·put·responses·201·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-putasync-noheader-201-200·put·responses·201·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - *ref_15
+  - *ref_16
+  - *ref_17
+  - *ref_18
+  - *ref_19
+  - !<!StringSchema> &ref_43
+    $key: paths·lro-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_45
+    $key: paths·lro-delete-provisioning-202-deleting-200-failed·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-delete-provisioning-202-deleting-200-failed·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_47
+    $key: paths·lro-delete-provisioning-202-deleting-200-canceled·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-delete-provisioning-202-deleting-200-canceled·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_49
+    $key: paths·lro-delete-202-retry-200·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-delete-202-retry-200·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_51
+    $key: paths·lro-delete-202-noretry-204·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-delete-202-noretry-204·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_53
+    $key: paths·lro-delete-noheader·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-delete-noheader·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_54
+    $key: paths·lro-deleteasync-noheader-202-204·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-noheader-202-204·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_55
+    $key: paths·lro-deleteasync-retry-succeeded·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-retry-succeeded·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_56
+    $key: paths·lro-deleteasync-retry-succeeded·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-retry-succeeded·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_58
+    $key: paths·lro-deleteasync-noretry-succeeded·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-noretry-succeeded·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_59
+    $key: paths·lro-deleteasync-noretry-succeeded·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-noretry-succeeded·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_61
+    $key: paths·lro-deleteasync-retry-failed·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-retry-failed·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_62
+    $key: paths·lro-deleteasync-retry-failed·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-retry-failed·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_64
+    $key: paths·lro-deleteasync-retry-canceled·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-retry-canceled·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_65
+    $key: paths·lro-deleteasync-retry-canceled·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-deleteasync-retry-canceled·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_67
+    $key: paths·lro-post-202-retry-200·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-post-202-retry-200·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_69
+    $key: paths·lro-post-202-noretry-204·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-post-202-noretry-204·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_71
+    $key: paths·lro-postasync-retry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-retry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_72
+    $key: paths·lro-postasync-retry-succeeded·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-retry-succeeded·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_74
+    $key: paths·lro-postasync-noretry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-noretry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_75
+    $key: paths·lro-postasync-noretry-succeeded·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-noretry-succeeded·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_77
+    $key: paths·lro-postasync-retry-failed·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-retry-failed·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_78
+    $key: paths·lro-postasync-retry-failed·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-retry-failed·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_80
+    $key: paths·lro-postasync-retry-canceled·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-retry-canceled·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_81
+    $key: paths·lro-postasync-retry-canceled·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-postasync-retry-canceled·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_83
+    $key: paths·lro-retryerror-putasync-retry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-putasync-retry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_84
+    $key: paths·lro-retryerror-putasync-retry-succeeded·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-putasync-retry-succeeded·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_86
+    $key: paths·lro-retryerror-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-delete-provisioning-202-accepted-200-succeeded·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_88
+    $key: paths·lro-retryerror-delete-202-retry-200·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-delete-202-retry-200·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_90
+    $key: paths·lro-retryerror-deleteasync-retry-succeeded·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-deleteasync-retry-succeeded·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_91
+    $key: paths·lro-retryerror-deleteasync-retry-succeeded·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-deleteasync-retry-succeeded·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_93
+    $key: paths·lro-retryerror-post-202-retry-200·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-post-202-retry-200·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_95
+    $key: paths·lro-retryerror-postasync-retry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-postasync-retry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_96
+    $key: paths·lro-retryerror-postasync-retry-succeeded·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-retryerror-postasync-retry-succeeded·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_98
+    $key: paths·lro-nonretryerror-putasync-retry-400·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-putasync-retry-400·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_99
+    $key: paths·lro-nonretryerror-putasync-retry-400·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-putasync-retry-400·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_101
+    $key: paths·lro-nonretryerror-delete-400·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-delete-400·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_103
+    $key: paths·lro-nonretryerror-delete-202-retry-400·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-delete-202-retry-400·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_105
+    $key: paths·lro-nonretryerror-deleteasync-retry-400·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-deleteasync-retry-400·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_106
+    $key: paths·lro-nonretryerror-deleteasync-retry-400·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-deleteasync-retry-400·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_108
+    $key: paths·lro-nonretryerror-post-400·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-post-400·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_110
+    $key: paths·lro-nonretryerror-post-202-retry-400·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-post-202-retry-400·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_112
+    $key: paths·lro-nonretryerror-postasync-retry-400·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-postasync-retry-400·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_113
+    $key: paths·lro-nonretryerror-postasync-retry-400·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-nonretryerror-postasync-retry-400·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_115
+    $key: paths·lro-error-putasync-retry-nostatus·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-nostatus·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_116
+    $key: paths·lro-error-putasync-retry-nostatus·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-nostatus·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_118
+    $key: paths·lro-error-putasync-retry-nostatuspayload·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-nostatuspayload·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_119
+    $key: paths·lro-error-putasync-retry-nostatuspayload·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-nostatuspayload·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_121
+    $key: paths·lro-error-deleteasync-retry-nostatus·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-deleteasync-retry-nostatus·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_122
+    $key: paths·lro-error-deleteasync-retry-nostatus·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-deleteasync-retry-nostatus·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_124
+    $key: paths·lro-error-post-202-nolocation·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-post-202-nolocation·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_126
+    $key: paths·lro-error-postasync-retry-nopayload·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-postasync-retry-nopayload·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_127
+    $key: paths·lro-error-postasync-retry-nopayload·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-postasync-retry-nopayload·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_129
+    $key: paths·lro-error-putasync-retry-invalidheader·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-invalidheader·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_130
+    $key: paths·lro-error-putasync-retry-invalidheader·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-invalidheader·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_132
+    $key: paths·lro-error-putasync-retry-invalidjsonpolling·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-invalidjsonpolling·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_133
+    $key: paths·lro-error-putasync-retry-invalidjsonpolling·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-putasync-retry-invalidjsonpolling·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_135
+    $key: paths·lro-error-delete-202-retry-invalidheader·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-delete-202-retry-invalidheader·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_137
+    $key: paths·lro-error-deleteasync-retry-invalidheader·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-deleteasync-retry-invalidheader·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_138
+    $key: paths·lro-error-deleteasync-retry-invalidheader·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-deleteasync-retry-invalidheader·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_140
+    $key: paths·lro-error-deleteasync-retry-invalidjsonpolling·delete·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-deleteasync-retry-invalidjsonpolling·delete·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_141
+    $key: paths·lro-error-deleteasync-retry-invalidjsonpolling·delete·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-deleteasync-retry-invalidjsonpolling·delete·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_143
+    $key: paths·lro-error-post-202-retry-invalidheader·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-post-202-retry-invalidheader·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_145
+    $key: paths·lro-error-postasync-retry-invalidheader·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-postasync-retry-invalidheader·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_146
+    $key: paths·lro-error-postasync-retry-invalidheader·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-postasync-retry-invalidheader·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_148
+    $key: paths·lro-error-postasync-retry-invalidjsonpolling·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-postasync-retry-invalidjsonpolling·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_149
+    $key: paths·lro-error-postasync-retry-invalidjsonpolling·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-error-postasync-retry-invalidjsonpolling·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_151
+    $key: paths·lro-customheader-putasync-retry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-customheader-putasync-retry-succeeded·put·responses·200·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_152
+    $key: paths·lro-customheader-putasync-retry-succeeded·put·responses·200·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-customheader-putasync-retry-succeeded·put·responses·200·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_154
+    $key: paths·lro-customheader-post-202-retry-200·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-customheader-post-202-retry-200·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_156
+    $key: paths·lro-customheader-postasync-retry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-customheader-postasync-retry-succeeded·post·responses·202·headers·azure_asyncoperation·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Azure-AsyncOperation
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_157
+    $key: paths·lro-customheader-postasync-retry-succeeded·post·responses·202·headers·location·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·lro-customheader-postasync-retry-succeeded·post·responses·202·headers·location·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        header: Location
+    protocol: !<!Protocols> {}
+  - *ref_20
+  - *ref_21
 info: !<!Info> 
   description: Long-running Operation for AutoRest
   title: lro
@@ -1410,7 +2559,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1435,7 +2584,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - !<!HttpServer> &ref_21
+          - !<!HttpServer> &ref_28
             url: 'http://localhost:3000/'
             language:
               default:
@@ -1443,7 +2592,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1466,7 +2615,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1493,7 +2642,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1518,10 +2667,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1535,7 +2684,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1562,7 +2711,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1587,10 +2736,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1604,7 +2753,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1631,7 +2780,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1656,10 +2805,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1672,7 +2821,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1686,7 +2835,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1713,7 +2862,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1738,10 +2887,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1755,7 +2904,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1782,7 +2931,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1807,10 +2956,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1823,7 +2972,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1837,7 +2986,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1864,7 +3013,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1889,10 +3038,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1906,7 +3055,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1933,7 +3082,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -1958,10 +3107,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1969,7 +3118,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
+          - *ref_30
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1977,7 +3126,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2004,7 +3153,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -2029,10 +3178,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2040,9 +3189,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_23
+          - *ref_31
+          - *ref_32
+          - *ref_33
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2050,7 +3199,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2077,7 +3226,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -2102,10 +3251,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2113,8 +3262,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
+          - *ref_34
+          - *ref_35
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2122,7 +3271,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2149,7 +3298,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -2174,10 +3323,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2185,9 +3334,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_24
+          - *ref_36
+          - *ref_37
+          - *ref_38
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2195,7 +3344,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2222,7 +3371,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -2247,10 +3396,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2258,8 +3407,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
+          - *ref_39
+          - *ref_40
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2267,7 +3416,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2294,7 +3443,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -2319,10 +3468,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2330,7 +3479,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
+          - *ref_41
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2338,7 +3487,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2365,7 +3514,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: sku
-        schema: *ref_25
+        schema: *ref_42
         description: sku to put
         implementation: Method
         extensions:
@@ -2390,10 +3539,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_42
       language: !<!Languages> 
         default:
           name: ''
@@ -2407,7 +3556,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2434,7 +3583,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: sku
-        schema: *ref_25
+        schema: *ref_42
         description: Sku to put
         implementation: Method
         extensions:
@@ -2459,10 +3608,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_42
       language: !<!Languages> 
         default:
           name: ''
@@ -2476,7 +3625,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2503,7 +3652,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_5
+        schema: *ref_4
         description: Sub Product to put
         implementation: Method
         extensions:
@@ -2528,10 +3677,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -2545,7 +3694,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2572,7 +3721,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_5
+        schema: *ref_4
         description: Sub Product to put
         implementation: Method
         extensions:
@@ -2597,10 +3746,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -2614,7 +3763,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2647,10 +3796,10 @@ operationGroups:
           path: /lro/delete/provisioning/202/accepted/200/succeeded
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2663,7 +3812,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2671,8 +3820,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_26
+          - *ref_43
+          - *ref_44
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2680,7 +3829,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2712,10 +3861,10 @@ operationGroups:
           path: /lro/delete/provisioning/202/deleting/200/failed
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2728,7 +3877,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2736,8 +3885,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_27
+          - *ref_45
+          - *ref_46
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2745,7 +3894,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2777,10 +3926,10 @@ operationGroups:
           path: /lro/delete/provisioning/202/deleting/200/canceled
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2793,7 +3942,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2801,8 +3950,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_28
+          - *ref_47
+          - *ref_48
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2810,7 +3959,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2842,7 +3991,7 @@ operationGroups:
           path: /lro/delete/204/succeeded
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2855,7 +4004,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2887,10 +4036,10 @@ operationGroups:
           path: /lro/delete/202/retry/200
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2910,13 +4059,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_29
+          - !<!HttpHeader> 
+            schema: *ref_49
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_50
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -2948,10 +4101,10 @@ operationGroups:
           path: /lro/delete/202/noretry/204
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -2971,13 +4124,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_30
+          - !<!HttpHeader> 
+            schema: *ref_51
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_52
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3009,7 +4166,7 @@ operationGroups:
           path: /lro/delete/noheader
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3019,7 +4176,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
+          - !<!HttpHeader> 
+            schema: *ref_53
+            header: Location
           statusCodes:
           - '202'
     - !<!Response> 
@@ -3033,7 +4192,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3065,7 +4224,7 @@ operationGroups:
           path: /lro/deleteasync/noheader/202/204
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3075,7 +4234,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
+          - !<!HttpHeader> 
+            schema: *ref_54
+            header: Location
           statusCodes:
           - '202'
     - !<!Response> 
@@ -3089,7 +4250,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3121,7 +4282,7 @@ operationGroups:
           path: /lro/deleteasync/retry/succeeded
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3131,14 +4292,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_31
+          - !<!HttpHeader> 
+            schema: *ref_55
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_56
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_57
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3170,7 +4337,7 @@ operationGroups:
           path: /lro/deleteasync/noretry/succeeded
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3180,14 +4347,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_32
+          - !<!HttpHeader> 
+            schema: *ref_58
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_59
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_60
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3219,7 +4392,7 @@ operationGroups:
           path: /lro/deleteasync/retry/failed
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3229,14 +4402,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_33
+          - !<!HttpHeader> 
+            schema: *ref_61
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_62
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_63
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3268,7 +4447,7 @@ operationGroups:
           path: /lro/deleteasync/retry/canceled
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3278,14 +4457,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_34
+          - !<!HttpHeader> 
+            schema: *ref_64
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_65
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_66
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3317,10 +4502,10 @@ operationGroups:
           path: /lro/post/payload/200
           method: post
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_42
       language: !<!Languages> 
         default:
           name: ''
@@ -3333,7 +4518,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_42
       language: !<!Languages> 
         default:
           name: ''
@@ -3347,7 +4532,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3373,7 +4558,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -3398,7 +4583,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3408,13 +4593,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_35
+          - !<!HttpHeader> 
+            schema: *ref_67
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_68
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3441,7 +4630,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -3466,10 +4655,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -3477,8 +4666,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_36
+          - *ref_69
+          - *ref_70
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -3486,7 +4675,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3519,10 +4708,10 @@ operationGroups:
           path: /lro/LROPostDoubleHeadersFinalLocationGet
           method: post
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -3536,7 +4725,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3570,10 +4759,10 @@ operationGroups:
           path: /lro/LROPostDoubleHeadersFinalAzureHeaderGet
           method: post
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -3587,7 +4776,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3623,10 +4812,10 @@ operationGroups:
           path: /lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault
           method: post
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -3640,7 +4829,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3668,7 +4857,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -3693,10 +4882,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -3716,14 +4905,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_37
+          - !<!HttpHeader> 
+            schema: *ref_71
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_72
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_73
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3750,7 +4945,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -3775,10 +4970,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -3798,14 +4993,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_38
+          - !<!HttpHeader> 
+            schema: *ref_74
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_75
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_76
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3832,7 +5033,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -3857,7 +5058,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3867,14 +5068,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_39
+          - !<!HttpHeader> 
+            schema: *ref_77
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_78
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_79
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3901,7 +5108,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -3926,7 +5133,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3936,14 +5143,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_40
+          - !<!HttpHeader> 
+            schema: *ref_80
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_81
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_82
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -3980,7 +5193,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4005,10 +5218,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4021,7 +5234,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4035,7 +5248,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4064,7 +5277,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4089,10 +5302,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4100,9 +5313,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_41
+          - *ref_83
+          - *ref_84
+          - *ref_85
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -4110,7 +5323,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4145,10 +5358,10 @@ operationGroups:
           path: /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4161,7 +5374,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4169,8 +5382,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_42
+          - *ref_86
+          - *ref_87
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -4178,7 +5391,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4212,7 +5425,7 @@ operationGroups:
           path: /lro/retryerror/delete/202/retry/200
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4222,13 +5435,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_43
+          - !<!HttpHeader> 
+            schema: *ref_88
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_89
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4260,7 +5477,7 @@ operationGroups:
           path: /lro/retryerror/deleteasync/retry/succeeded
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4270,14 +5487,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_44
+          - !<!HttpHeader> 
+            schema: *ref_90
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_91
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_92
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4303,7 +5526,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4328,7 +5551,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4338,13 +5561,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_45
+          - !<!HttpHeader> 
+            schema: *ref_93
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_94
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4371,7 +5598,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4396,7 +5623,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4406,14 +5633,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_46
+          - !<!HttpHeader> 
+            schema: *ref_95
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_96
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_97
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4448,7 +5681,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4473,10 +5706,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4489,7 +5722,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4503,7 +5736,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4530,7 +5763,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4555,10 +5788,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4571,7 +5804,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4585,7 +5818,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4612,7 +5845,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4637,10 +5870,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4653,7 +5886,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4667,7 +5900,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4694,7 +5927,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4719,10 +5952,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -4730,9 +5963,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_47
+          - *ref_98
+          - *ref_99
+          - *ref_100
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -4740,7 +5973,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4773,7 +6006,7 @@ operationGroups:
           path: /lro/nonretryerror/delete/400
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4783,13 +6016,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_48
+          - !<!HttpHeader> 
+            schema: *ref_101
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_102
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4821,7 +6058,7 @@ operationGroups:
           path: /lro/nonretryerror/delete/202/retry/400
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4831,13 +6068,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_49
+          - !<!HttpHeader> 
+            schema: *ref_103
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_104
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4869,7 +6110,7 @@ operationGroups:
           path: /lro/nonretryerror/deleteasync/retry/400
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4879,14 +6120,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_50
+          - !<!HttpHeader> 
+            schema: *ref_105
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_106
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_107
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4912,7 +6159,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -4937,7 +6184,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4947,13 +6194,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_51
+          - !<!HttpHeader> 
+            schema: *ref_108
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_109
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -4980,7 +6231,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5005,7 +6256,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5015,13 +6266,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_52
+          - !<!HttpHeader> 
+            schema: *ref_110
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_111
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5048,7 +6303,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5073,7 +6328,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5083,14 +6338,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_53
+          - !<!HttpHeader> 
+            schema: *ref_112
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_113
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_114
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5117,7 +6378,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5142,10 +6403,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5158,7 +6419,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5172,7 +6433,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5199,7 +6460,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5224,10 +6485,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5235,9 +6496,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_54
+          - *ref_115
+          - *ref_116
+          - *ref_117
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5245,7 +6506,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5272,7 +6533,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5297,10 +6558,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5308,9 +6569,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_55
+          - *ref_118
+          - *ref_119
+          - *ref_120
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5318,7 +6579,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5351,7 +6612,7 @@ operationGroups:
           path: /lro/error/delete/204/nolocation
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5364,7 +6625,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5396,7 +6657,7 @@ operationGroups:
           path: /lro/error/deleteasync/retry/nostatus
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5406,14 +6667,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_56
+          - !<!HttpHeader> 
+            schema: *ref_121
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_122
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_123
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5439,7 +6706,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5464,7 +6731,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5474,13 +6741,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_57
+          - !<!HttpHeader> 
+            schema: *ref_124
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_125
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5507,7 +6778,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5532,7 +6803,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5542,14 +6813,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_58
+          - !<!HttpHeader> 
+            schema: *ref_126
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_127
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_128
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5576,7 +6853,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5601,10 +6878,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5627,7 +6904,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5654,7 +6931,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5679,10 +6956,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5690,9 +6967,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_59
+          - *ref_129
+          - *ref_130
+          - *ref_131
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5700,7 +6977,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5727,7 +7004,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5752,10 +7029,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -5763,9 +7040,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_60
+          - *ref_132
+          - *ref_133
+          - *ref_134
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -5773,7 +7050,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5806,7 +7083,7 @@ operationGroups:
           path: /lro/error/delete/202/retry/invalidheader
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5816,13 +7093,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_61
+          - !<!HttpHeader> 
+            schema: *ref_135
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_136
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5854,7 +7135,7 @@ operationGroups:
           path: /lro/error/deleteasync/retry/invalidheader
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5864,14 +7145,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_62
+          - !<!HttpHeader> 
+            schema: *ref_137
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_138
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_139
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5903,7 +7190,7 @@ operationGroups:
           path: /lro/error/deleteasync/retry/invalidjsonpolling
           method: delete
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5913,14 +7200,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_63
+          - !<!HttpHeader> 
+            schema: *ref_140
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_141
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_142
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -5946,7 +7239,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -5971,7 +7264,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5981,13 +7274,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_64
+          - !<!HttpHeader> 
+            schema: *ref_143
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_144
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6014,7 +7311,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -6039,7 +7336,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6049,14 +7346,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_65
+          - !<!HttpHeader> 
+            schema: *ref_145
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_146
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_147
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6083,7 +7386,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -6108,7 +7411,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6118,14 +7421,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_66
+          - !<!HttpHeader> 
+            schema: *ref_148
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_149
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_150
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6162,7 +7471,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -6187,10 +7496,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -6198,9 +7507,9 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_67
+          - *ref_151
+          - *ref_152
+          - *ref_153
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -6208,7 +7517,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6239,7 +7548,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -6264,10 +7573,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -6280,7 +7589,7 @@ operationGroups:
           statusCodes:
           - '200'
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -6294,7 +7603,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6325,7 +7634,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -6350,7 +7659,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6360,13 +7669,17 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_68
+          - !<!HttpHeader> 
+            schema: *ref_154
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_155
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6397,7 +7710,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: product
-        schema: *ref_2
+        schema: *ref_1
         description: Product to put
         implementation: Method
         extensions:
@@ -6422,7 +7735,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_21
+          - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6432,14 +7745,20 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpResponse> 
           headers:
-          - *ref_0
-          - *ref_0
-          - *ref_69
+          - !<!HttpHeader> 
+            schema: *ref_156
+            header: Azure-AsyncOperation
+          - !<!HttpHeader> 
+            schema: *ref_157
+            header: Location
+          - !<!HttpHeader> 
+            schema: *ref_158
+            header: Retry-After
           statusCodes:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -6473,4 +7792,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_21
+    - *ref_28

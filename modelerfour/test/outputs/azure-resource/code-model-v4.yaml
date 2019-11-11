@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_1
+  - !<!ObjectSchema> &ref_0
     $key: Resource
     type: object
     description: Some resource
@@ -10,7 +10,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_2
+      - !<!ObjectSchema> &ref_1
         $key: FlattenedProduct
         type: object
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -19,13 +19,13 @@ schemas: !<!Schemas>
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_1
+          - *ref_0
           immediate:
-          - *ref_1
+          - *ref_0
         properties:
         - !<!Property> 
           $key: properties
-          schema: !<!ObjectSchema> &ref_3
+          schema: !<!ObjectSchema> &ref_2
             $key: FlattenedResourceProperties
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -35,8 +35,8 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: pname
-              schema: !<!StringSchema> &ref_0
-                $key: Error-message
+              schema: !<!StringSchema> &ref_9
+                $key: FlattenedResourceProperties-pname
                 type: string
                 description: MISSING-SCHEMA-DESCRIPTION-STRING
                 apiVersions:
@@ -44,7 +44,7 @@ schemas: !<!Schemas>
                   version: 1.0.0
                 language: !<!Languages> 
                   default:
-                    name: Error-message
+                    name: FlattenedResourceProperties-pname
                     description: MISSING-SCHEMA-DESCRIPTION-STRING
                 protocol: !<!Protocols> {}
               description: PROPERTY-DESCRIPTION-MISSING
@@ -56,7 +56,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: lsize
-              schema: !<!NumberSchema> &ref_11
+              schema: !<!NumberSchema> &ref_15
                 $key: typeForlsize
                 type: integer
                 description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -75,7 +75,18 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: provisioningState
-              schema: *ref_0
+              schema: !<!StringSchema> &ref_10
+                $key: FlattenedResourceProperties-provisioningState
+                type: string
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+                apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+                language: !<!Languages> 
+                  default:
+                    name: FlattenedResourceProperties-provisioningState
+                    description: MISSING-SCHEMA-DESCRIPTION-STRING
+                protocol: !<!Protocols> {}
               description: PROPERTY-DESCRIPTION-MISSING
               serializedName: provisioningState
               language: !<!Languages> 
@@ -103,11 +114,11 @@ schemas: !<!Schemas>
             namespace: Api10
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_2
+      - *ref_1
     properties:
     - !<!Property> 
       $key: id
-      schema: !<!StringSchema> &ref_4
+      schema: !<!StringSchema> &ref_3
         $key: Resource-id
         type: string
         description: Resource Id
@@ -129,7 +140,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: type
-      schema: !<!StringSchema> &ref_5
+      schema: !<!StringSchema> &ref_4
         $key: Resource-type
         type: string
         description: Resource Type
@@ -151,11 +162,22 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: tags
-      schema: !<!DictionarySchema> &ref_7
+      schema: !<!DictionarySchema> &ref_11
         $key: Resource-tags
         type: dictionary
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: *ref_0
+        elementType: !<!StringSchema> &ref_5
+          $key: components·schemas·resource·properties·tags·additionalproperties
+          type: string
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+          apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+          language: !<!Languages> 
+            default:
+              name: components·schemas·resource·properties·tags·additionalproperties
+              description: MISSING-SCHEMA-DESCRIPTION-STRING
+          protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
             name: Resource-tags
@@ -170,17 +192,28 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: location
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
+      schema: !<!StringSchema> &ref_6
+        $key: Resource-location
+        type: string
+        description: Resource Location
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Resource-location
+            description: Resource Location
+        protocol: !<!Protocols> {}
+      description: Resource Location
       serializedName: location
       language: !<!Languages> 
         default:
           name: location
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: Resource Location
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: name
-      schema: !<!StringSchema> &ref_6
+      schema: !<!StringSchema> &ref_7
         $key: Resource-name
         type: string
         description: Resource Name
@@ -221,7 +254,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_14
+  - !<!ObjectSchema> &ref_18
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -231,7 +264,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_10
+      schema: !<!NumberSchema> &ref_14
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -250,7 +283,18 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: *ref_0
+      schema: !<!StringSchema> &ref_8
+        $key: Error-message
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Error-message
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -264,8 +308,8 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
+  - *ref_1
   - *ref_2
-  - *ref_3
   - !<!ObjectSchema> 
     $key: ResourceCollection-dictionaryofresources
     type: object
@@ -279,7 +323,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_16
+  - !<!ObjectSchema> &ref_20
     $key: ResourceCollection
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -289,7 +333,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productresource
-      schema: *ref_2
+      schema: *ref_1
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: productresource
       language: !<!Languages> 
@@ -299,14 +343,14 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: arrayofresources
-      schema: !<!ArraySchema> &ref_9
+      schema: !<!ArraySchema> &ref_13
         $key: ResourceCollection-arrayofresources
         type: array
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: *ref_2
+        elementType: *ref_1
         language: !<!Languages> 
           default:
             name: ResourceCollection-arrayofresources
@@ -321,11 +365,11 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: dictionaryofresources
-      schema: !<!DictionarySchema> &ref_8
+      schema: !<!DictionarySchema> &ref_12
         $key: ResourceCollection-dictionaryofresources
         type: dictionary
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: *ref_2
+        elementType: *ref_1
         language: !<!Languages> 
           default:
             name: ResourceCollection-dictionaryofresources
@@ -345,11 +389,24 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   dictionaries:
-  - *ref_7
-  - *ref_8
+  - *ref_11
+  - *ref_12
   arrays:
-  - !<!ArraySchema> &ref_13
+  - !<!ArraySchema> &ref_17
     $key: paths·azure-resource_flatten-array·put·requestbody·content·application-json·schema
+    type: array
+    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: paths·azure-resource_flatten-array·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+    protocol: !<!Protocols> {}
+  - !<!ArraySchema> &ref_19
+    $key: paths·azure-resource_flatten-array·get·responses·200·content·application-json·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
@@ -358,31 +415,22 @@ schemas: !<!Schemas>
     elementType: *ref_1
     language: !<!Languages> 
       default:
-        name: paths·azure-resource_flatten-array·put·requestbody·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_15
-    $key: paths·azure-resource_flatten-array·get·responses·200·content·application-json·schema
-    type: array
-    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_2
-    language: !<!Languages> 
-      default:
         name: paths·azure-resource_flatten-array·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - *ref_9
+  - *ref_13
   numbers:
-  - *ref_10
-  - *ref_11
+  - *ref_14
+  - *ref_15
   strings:
+  - *ref_3
   - *ref_4
   - *ref_5
-  - *ref_0
   - *ref_6
+  - *ref_7
+  - *ref_8
+  - *ref_9
+  - *ref_10
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: azure-resource
@@ -397,7 +445,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceArray
-        schema: *ref_13
+        schema: *ref_17
         description: External Resource as an Array to put
         implementation: Method
         extensions:
@@ -422,7 +470,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - !<!HttpServer> &ref_12
+          - !<!HttpServer> &ref_16
             url: 'http://localhost:3000/'
             language:
               default:
@@ -440,7 +488,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -472,10 +520,10 @@ operationGroups:
           path: /azure/resource-flatten/array
           method: get
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -489,7 +537,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -513,7 +561,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceDictionary
-        schema: *ref_8
+        schema: *ref_12
         description: External Resource as a Dictionary to put
         implementation: Method
         extensions:
@@ -538,7 +586,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -551,7 +599,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -583,10 +631,10 @@ operationGroups:
           path: /azure/resource-flatten/dictionary
           method: get
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -600,7 +648,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -624,7 +672,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceComplexObject
-        schema: *ref_16
+        schema: *ref_20
         description: External Resource as a ResourceCollection to put
         implementation: Method
         extensions:
@@ -649,7 +697,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -662,7 +710,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -694,10 +742,10 @@ operationGroups:
           path: /azure/resource-flatten/resourcecollection
           method: get
           servers:
-          - *ref_12
+          - *ref_16
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -711,7 +759,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -740,4 +788,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_12
+    - *ref_16

@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_1
+  - !<!ObjectSchema> &ref_0
     $key: Resource
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -10,7 +10,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_2
+      - !<!ObjectSchema> &ref_1
         $key: FlattenedProduct
         type: object
         description: Flattened product.
@@ -19,13 +19,13 @@ schemas: !<!Schemas>
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_1
+          - *ref_0
           immediate:
-          - *ref_1
+          - *ref_0
         properties:
         - !<!Property> 
           $key: properties
-          schema: !<!ObjectSchema> &ref_4
+          schema: !<!ObjectSchema> &ref_3
             $key: FlattenedProduct-properties
             type: object
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -35,8 +35,8 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: p.name
-              schema: !<!StringSchema> &ref_0
-                $key: Error-message
+              schema: !<!StringSchema> &ref_16
+                $key: FlattenedProduct-properties-p.name
                 type: string
                 description: MISSING-SCHEMA-DESCRIPTION-STRING
                 apiVersions:
@@ -44,7 +44,7 @@ schemas: !<!Schemas>
                   version: 1.0.0
                 language: !<!Languages> 
                   default:
-                    name: Error-message
+                    name: FlattenedProduct-properties-p.name
                     description: MISSING-SCHEMA-DESCRIPTION-STRING
                 protocol: !<!Protocols> {}
               description: PROPERTY-DESCRIPTION-MISSING
@@ -56,7 +56,18 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: type
-              schema: *ref_0
+              schema: !<!StringSchema> &ref_17
+                $key: FlattenedProduct-properties-type
+                type: string
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+                apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+                language: !<!Languages> 
+                  default:
+                    name: FlattenedProduct-properties-type
+                    description: MISSING-SCHEMA-DESCRIPTION-STRING
+                protocol: !<!Protocols> {}
               description: PROPERTY-DESCRIPTION-MISSING
               serializedName: type
               language: !<!Languages> 
@@ -66,7 +77,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: provisioningStateValues
-              schema: !<!SealedChoiceSchema> &ref_23
+              schema: !<!SealedChoiceSchema> &ref_32
                 $key: FlattenedProduct-properties-provisioningStateValues
                 choices:
                 - !<!ChoiceValue> 
@@ -140,7 +151,7 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
-                choiceType: !<!StringSchema> &ref_14
+                choiceType: !<!StringSchema> &ref_18
                   $key: string
                   type: string
                   description: ''
@@ -164,7 +175,18 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: provisioningState
-              schema: *ref_0
+              schema: !<!StringSchema> &ref_19
+                $key: FlattenedProduct-properties-provisioningState
+                type: string
+                description: MISSING-SCHEMA-DESCRIPTION-STRING
+                apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+                language: !<!Languages> 
+                  default:
+                    name: FlattenedProduct-properties-provisioningState
+                    description: MISSING-SCHEMA-DESCRIPTION-STRING
+                protocol: !<!Protocols> {}
               description: PROPERTY-DESCRIPTION-MISSING
               serializedName: provisioningState
               language: !<!Languages> 
@@ -194,11 +216,11 @@ schemas: !<!Schemas>
             namespace: Api10
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_2
+      - *ref_1
     properties:
     - !<!Property> 
       $key: id
-      schema: !<!StringSchema> &ref_11
+      schema: !<!StringSchema> &ref_10
         $key: Resource-id
         type: string
         description: Resource Id
@@ -220,7 +242,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: type
-      schema: !<!StringSchema> &ref_12
+      schema: !<!StringSchema> &ref_11
         $key: Resource-type
         type: string
         description: Resource Type
@@ -242,11 +264,22 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: tags
-      schema: !<!DictionarySchema> &ref_18
+      schema: !<!DictionarySchema> &ref_27
         $key: Resource-tags
         type: dictionary
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: *ref_0
+        elementType: !<!StringSchema> &ref_12
+          $key: components·schemas·resource·properties·tags·additionalproperties
+          type: string
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
+          apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+          language: !<!Languages> 
+            default:
+              name: components·schemas·resource·properties·tags·additionalproperties
+              description: MISSING-SCHEMA-DESCRIPTION-STRING
+          protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
             name: Resource-tags
@@ -261,17 +294,28 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: location
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
+      schema: !<!StringSchema> &ref_13
+        $key: Resource-location
+        type: string
+        description: Resource Location
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Resource-location
+            description: Resource Location
+        protocol: !<!Protocols> {}
+      description: Resource Location
       serializedName: location
       language: !<!Languages> 
         default:
           name: location
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: Resource Location
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: name
-      schema: !<!StringSchema> &ref_13
+      schema: !<!StringSchema> &ref_14
         $key: Resource-name
         type: string
         description: Resource Name
@@ -310,7 +354,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_3
+  - !<!ObjectSchema> &ref_2
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -320,7 +364,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_22
+      schema: !<!NumberSchema> &ref_31
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -339,7 +383,18 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: *ref_0
+      schema: !<!StringSchema> &ref_15
+        $key: Error-message
+        type: string
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: Error-message
+            description: MISSING-SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
@@ -349,7 +404,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: parentError
-      schema: *ref_3
+      schema: *ref_2
       description: PROPERTY-DESCRIPTION-MISSING
       serializedName: parentError
       language: !<!Languages> 
@@ -363,9 +418,9 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_2
-  - *ref_4
-  - !<!ObjectSchema> &ref_5
+  - *ref_1
+  - *ref_3
+  - !<!ObjectSchema> &ref_4
     $key: WrappedProduct
     type: object
     description: The wrapped produc.
@@ -375,13 +430,24 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: value
-      schema: *ref_0
-      description: PROPERTY-DESCRIPTION-MISSING
+      schema: !<!StringSchema> &ref_20
+        $key: WrappedProduct-value
+        type: string
+        description: the product value
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        language: !<!Languages> 
+          default:
+            name: WrappedProduct-value
+            description: the product value
+        protocol: !<!Protocols> {}
+      description: the product value
       serializedName: value
       language: !<!Languages> 
         default:
           name: value
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: the product value
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -389,7 +455,7 @@ schemas: !<!Schemas>
         description: The wrapped produc.
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_20
+  - !<!ObjectSchema> &ref_29
     $key: ProductWrapper
     type: object
     description: The wrapped produc.
@@ -399,7 +465,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: property
-      schema: *ref_5
+      schema: *ref_4
       description: The wrapped produc.
       serializedName: property
       language: !<!Languages> 
@@ -426,7 +492,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_30
+  - !<!ObjectSchema> &ref_39
     $key: ResourceCollection
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -436,7 +502,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: productresource
-      schema: *ref_2
+      schema: *ref_1
       description: Flattened product.
       serializedName: productresource
       language: !<!Languages> 
@@ -446,14 +512,14 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: arrayofresources
-      schema: !<!ArraySchema> &ref_21
+      schema: !<!ArraySchema> &ref_30
         $key: ResourceCollection-arrayofresources
         type: array
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: *ref_2
+        elementType: *ref_1
         language: !<!Languages> 
           default:
             name: ResourceCollection-arrayofresources
@@ -468,11 +534,11 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: dictionaryofresources
-      schema: !<!DictionarySchema> &ref_19
+      schema: !<!DictionarySchema> &ref_28
         $key: ResourceCollection-dictionaryofresources
         type: dictionary
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: *ref_2
+        elementType: *ref_1
         language: !<!Languages> 
           default:
             name: ResourceCollection-dictionaryofresources
@@ -491,7 +557,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_8
+  - !<!ObjectSchema> &ref_7
     $key: BaseProduct
     type: object
     description: The product documentation.
@@ -500,7 +566,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_9
+      - !<!ObjectSchema> &ref_8
         $key: SimpleProduct
         type: object
         description: The product documentation.
@@ -509,13 +575,13 @@ schemas: !<!Schemas>
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_8
+          - *ref_7
           immediate:
-          - *ref_8
+          - *ref_7
         properties:
         - !<!Property> 
           $key: details
-          schema: !<!ObjectSchema> &ref_10
+          schema: !<!ObjectSchema> &ref_9
             $key: SimpleProductProperties
             type: object
             description: The product documentation.
@@ -525,18 +591,29 @@ schemas: !<!Schemas>
             properties:
             - !<!Property> 
               $key: max_product_display_name
-              schema: *ref_0
-              description: PROPERTY-DESCRIPTION-MISSING
+              schema: !<!StringSchema> &ref_23
+                $key: SimpleProductProperties-max_product_display_name
+                type: string
+                description: Display name of product.
+                apiVersions:
+                - !<!ApiVersion> 
+                  version: 1.0.0
+                language: !<!Languages> 
+                  default:
+                    name: SimpleProductProperties-max_product_display_name
+                    description: Display name of product.
+                protocol: !<!Protocols> {}
+              description: Display name of product.
               required: true
               serializedName: max_product_display_name
               language: !<!Languages> 
                 default:
                   name: max_product_display_name
-                  description: PROPERTY-DESCRIPTION-MISSING
+                  description: Display name of product.
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: max_product_capacity
-              schema: !<!ConstantSchema> &ref_24
+              schema: !<!ConstantSchema> &ref_33
                 $key: capacity
                 type: constant
                 description: 'Capacity of product. For example, 4 people.'
@@ -549,7 +626,7 @@ schemas: !<!Schemas>
                     default:
                       name: ''
                       description: ''
-                valueType: !<!StringSchema> &ref_17
+                valueType: !<!StringSchema> &ref_24
                   $key: string
                   type: string
                   description: 'Capacity of product. For example, 4 people.'
@@ -575,7 +652,7 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             - !<!Property> 
               $key: max_product_image
-              schema: !<!ObjectSchema> &ref_6
+              schema: !<!ObjectSchema> &ref_5
                 $key: ProductUrl
                 type: object
                 description: The product URL.
@@ -584,7 +661,7 @@ schemas: !<!Schemas>
                   version: 1.0.0
                 parents: !<!Relations> 
                   all:
-                  - !<!ObjectSchema> &ref_7
+                  - !<!ObjectSchema> &ref_6
                     $key: GenericUrl
                     type: object
                     description: The Generic URL.
@@ -593,19 +670,30 @@ schemas: !<!Schemas>
                       version: 1.0.0
                     children: !<!Relations> 
                       all:
-                      - *ref_6
+                      - *ref_5
                       immediate:
-                      - *ref_6
+                      - *ref_5
                     properties:
                     - !<!Property> 
                       $key: generic_value
-                      schema: *ref_0
-                      description: PROPERTY-DESCRIPTION-MISSING
+                      schema: !<!StringSchema> &ref_25
+                        $key: GenericUrl-generic_value
+                        type: string
+                        description: Generic URL value.
+                        apiVersions:
+                        - !<!ApiVersion> 
+                          version: 1.0.0
+                        language: !<!Languages> 
+                          default:
+                            name: GenericUrl-generic_value
+                            description: Generic URL value.
+                        protocol: !<!Protocols> {}
+                      description: Generic URL value.
                       serializedName: generic_value
                       language: !<!Languages> 
                         default:
                           name: generic_value
-                          description: PROPERTY-DESCRIPTION-MISSING
+                          description: Generic URL value.
                       protocol: !<!Protocols> {}
                     language: !<!Languages> 
                       default:
@@ -614,17 +702,28 @@ schemas: !<!Schemas>
                         namespace: Api10
                     protocol: !<!Protocols> {}
                   immediate:
-                  - *ref_7
+                  - *ref_6
                 properties:
                 - !<!Property> 
                   $key: '@odata.value'
-                  schema: *ref_0
-                  description: PROPERTY-DESCRIPTION-MISSING
+                  schema: !<!StringSchema> &ref_26
+                    $key: ProductUrl-@odata.value
+                    type: string
+                    description: URL value.
+                    apiVersions:
+                    - !<!ApiVersion> 
+                      version: 1.0.0
+                    language: !<!Languages> 
+                      default:
+                        name: ProductUrl-@odata.value
+                        description: URL value.
+                    protocol: !<!Protocols> {}
+                  description: URL value.
                   serializedName: '@odata.value'
                   language: !<!Languages> 
                     default:
                       name: '@odata.value'
-                      description: PROPERTY-DESCRIPTION-MISSING
+                      description: URL value.
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -660,11 +759,11 @@ schemas: !<!Schemas>
             namespace: Api10
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_9
+      - *ref_8
     properties:
     - !<!Property> 
       $key: base_product_id
-      schema: !<!StringSchema> &ref_15
+      schema: !<!StringSchema> &ref_21
         $key: productId
         type: string
         description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
@@ -688,7 +787,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: base_product_description
-      schema: !<!StringSchema> &ref_16
+      schema: !<!StringSchema> &ref_22
         $key: description
         type: string
         description: Description of product.
@@ -716,16 +815,29 @@ schemas: !<!Schemas>
         description: The product documentation.
         namespace: Api10
     protocol: !<!Protocols> {}
+  - *ref_8
   - *ref_9
-  - *ref_10
-  - *ref_7
   - *ref_6
+  - *ref_5
   dictionaries:
-  - *ref_18
-  - *ref_19
+  - *ref_27
+  - *ref_28
   arrays:
-  - !<!ArraySchema> &ref_26
+  - !<!ArraySchema> &ref_35
     $key: paths·model_flatten-array·put·requestbody·content·application-json·schema
+    type: array
+    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: paths·model_flatten-array·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
+    protocol: !<!Protocols> {}
+  - !<!ArraySchema> &ref_36
+    $key: paths·model_flatten-array·get·responses·200·content·application-json·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
@@ -734,64 +846,72 @@ schemas: !<!Schemas>
     elementType: *ref_1
     language: !<!Languages> 
       default:
-        name: paths·model_flatten-array·put·requestbody·content·application-json·schema
-        description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_27
-    $key: paths·model_flatten-array·get·responses·200·content·application-json·schema
-    type: array
-    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_2
-    language: !<!Languages> 
-      default:
         name: paths·model_flatten-array·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_28
+  - !<!ArraySchema> &ref_37
     $key: paths·model_flatten-wrappedarray·put·requestbody·content·application-json·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_5
+    elementType: *ref_4
     language: !<!Languages> 
       default:
         name: paths·model_flatten-wrappedarray·put·requestbody·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_29
+  - !<!ArraySchema> &ref_38
     $key: paths·model_flatten-wrappedarray·get·responses·200·content·application-json·schema
     type: array
     description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_20
+    elementType: *ref_29
     language: !<!Languages> 
       default:
         name: paths·model_flatten-wrappedarray·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - *ref_21
+  - *ref_30
   constants:
-  - *ref_24
+  - *ref_33
   numbers:
-  - *ref_22
+  - *ref_31
   sealedChoices:
-  - *ref_23
+  - *ref_32
   strings:
+  - *ref_10
   - *ref_11
   - *ref_12
-  - *ref_0
   - *ref_13
   - *ref_14
   - *ref_15
   - *ref_16
   - *ref_17
+  - *ref_18
+  - *ref_19
+  - *ref_20
+  - *ref_21
+  - *ref_22
+  - *ref_23
+  - *ref_24
+  - *ref_25
+  - *ref_26
+  - !<!StringSchema> &ref_40
+    $key: paths·model_flatten-customflattening-parametergrouping-name·put·parameters·0·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·model_flatten-customflattening-parametergrouping-name·put·parameters·0·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: model-flattening
@@ -806,7 +926,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceArray
-        schema: *ref_26
+        schema: *ref_35
         description: External Resource as an Array to put
         implementation: Method
         extensions:
@@ -831,7 +951,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - !<!HttpServer> &ref_25
+          - !<!HttpServer> &ref_34
             url: 'http://localhost:3000/'
             language:
               default:
@@ -849,7 +969,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -881,10 +1001,10 @@ operationGroups:
           path: /model-flatten/array
           method: get
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_27
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -898,7 +1018,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -922,7 +1042,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceArray
-        schema: *ref_28
+        schema: *ref_37
         description: External Resource as an Array to put
         implementation: Method
         extensions:
@@ -947,7 +1067,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -960,7 +1080,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -992,10 +1112,10 @@ operationGroups:
           path: /model-flatten/wrappedarray
           method: get
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_29
+      schema: *ref_38
       language: !<!Languages> 
         default:
           name: ''
@@ -1009,7 +1129,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1033,7 +1153,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceDictionary
-        schema: *ref_19
+        schema: *ref_28
         description: External Resource as a Dictionary to put
         implementation: Method
         extensions:
@@ -1058,7 +1178,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1071,7 +1191,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1103,10 +1223,10 @@ operationGroups:
           path: /model-flatten/dictionary
           method: get
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -1120,7 +1240,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1144,7 +1264,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: ResourceComplexObject
-        schema: *ref_30
+        schema: *ref_39
         description: External Resource as a ResourceCollection to put
         implementation: Method
         extensions:
@@ -1169,7 +1289,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1182,7 +1302,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1214,10 +1334,10 @@ operationGroups:
           path: /model-flatten/resourcecollection
           method: get
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_30
+      schema: *ref_39
       language: !<!Languages> 
         default:
           name: ''
@@ -1231,7 +1351,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1255,7 +1375,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: SimpleBodyProduct
-        schema: *ref_9
+        schema: *ref_8
         description: Simple body product to put
         implementation: Method
         extensions:
@@ -1280,10 +1400,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1297,7 +1417,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1323,7 +1443,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: SimpleBodyProduct
-        schema: *ref_9
+        schema: *ref_8
         description: Simple body product to post
         implementation: Method
         extensions:
@@ -1349,10 +1469,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1366,7 +1486,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1392,7 +1512,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: name
-        schema: *ref_0
+        schema: *ref_40
         description: Product name with value 'groupproduct'
         implementation: Method
         required: true
@@ -1409,7 +1529,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         $key: SimpleBodyProduct
-        schema: *ref_9
+        schema: *ref_8
         description: Simple body product to put
         implementation: Method
         extensions:
@@ -1437,10 +1557,10 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_25
+          - *ref_34
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1454,7 +1574,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1485,4 +1605,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_25
+    - *ref_34

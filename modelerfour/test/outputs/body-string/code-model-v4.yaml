@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_12
+  - !<!ObjectSchema> &ref_16
     $key: Error
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -11,7 +11,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: status
-      schema: !<!NumberSchema> &ref_8
+      schema: !<!NumberSchema> &ref_12
         $key: typeForstatus
         type: integer
         description: MISSING-SCHEMA-DESCRIPTION-INTEGER
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: message
-      schema: !<!StringSchema> &ref_5
+      schema: !<!StringSchema> &ref_9
         $key: Error-message
         type: string
         description: MISSING-SCHEMA-DESCRIPTION-STRING
@@ -55,7 +55,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_18
+  - !<!ObjectSchema> &ref_27
     $key: RefColorConstant
     type: object
     description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
@@ -65,7 +65,7 @@ schemas: !<!Schemas>
     properties:
     - !<!Property> 
       $key: ColorConstant
-      schema: !<!ConstantSchema> &ref_6
+      schema: !<!ConstantSchema> &ref_10
         $key: ColorConstant
         type: constant
         description: Referenced Color Constant Description.
@@ -78,7 +78,7 @@ schemas: !<!Schemas>
             default:
               name: ''
               description: ''
-        valueType: !<!StringSchema> &ref_4
+        valueType: !<!StringSchema> &ref_8
           $key: string
           type: string
           description: Referenced Color Constant Description.
@@ -106,7 +106,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       $key: field1
-      schema: !<!StringSchema> &ref_7
+      schema: !<!StringSchema> &ref_11
         $key: RefColorConstant-field1
         type: string
         description: Sample string.
@@ -133,7 +133,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_17
+  - !<!ChoiceSchema> &ref_26
     $key: Colors
     choices:
     - !<!ChoiceValue> 
@@ -159,7 +159,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> &ref_9
+    choiceType: !<!StringSchema> &ref_13
       $key: string
       type: string
       description: ''
@@ -178,7 +178,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   byteArrays:
-  - !<!ByteArraySchema> &ref_16
+  - !<!ByteArraySchema> &ref_25
     $key: paths·string-base64encoding·get·responses·200·content·application-json·schema
     type: byte-array
     format: base64url
@@ -192,7 +192,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-BYTEARRAY
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_11
+  - !<!ConstantSchema> &ref_15
     $key: paths·string-null·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
@@ -218,8 +218,8 @@ schemas: !<!Schemas>
         name: paths·string-null·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_13
-    $key: paths·string-empty·get·responses·200·content·application-json·schema
+  - !<!ConstantSchema> &ref_17
+    $key: paths·string-null·put·requestbody·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
@@ -241,18 +241,17 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: paths·string-empty·get·responses·200·content·application-json·schema
+        name: paths·string-null·put·requestbody·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_14
-    $key: paths·string-mbcs·get·responses·200·content·application-json·schema
+  - !<!ConstantSchema> &ref_18
+    $key: paths·string-empty·get·responses·200·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     value: !<!ConstantValue> 
-      value: 啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
       language:
         default:
           name: ''
@@ -268,18 +267,17 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: paths·string-mbcs·get·responses·200·content·application-json·schema
+        name: paths·string-empty·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_15
-    $key: paths·string-whitespace·get·responses·200·content·application-json·schema
+  - !<!ConstantSchema> &ref_19
+    $key: paths·string-empty·put·requestbody·content·application-json·schema
     type: constant
     description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     value: !<!ConstantValue> 
-      value: '    Now is the time for all good men to come to the aid of their country    '
       language:
         default:
           name: ''
@@ -295,21 +293,145 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
+        name: paths·string-empty·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_20
+    $key: paths·string-mbcs·get·responses·200·content·application-json·schema
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: 啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
+      language:
+        default:
+          name: ''
+          description: ''
+    valueType: !<!StringSchema> &ref_4
+      $key: string
+      type: string
+      description: ''
+      language: !<!Languages> 
+        default:
+          name: string
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: paths·string-mbcs·get·responses·200·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_21
+    $key: paths·string-mbcs·put·requestbody·content·application-json·schema
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: 啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€
+      language:
+        default:
+          name: ''
+          description: ''
+    valueType: !<!StringSchema> &ref_5
+      $key: string
+      type: string
+      description: ''
+      language: !<!Languages> 
+        default:
+          name: string
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: paths·string-mbcs·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_22
+    $key: paths·string-whitespace·get·responses·200·content·application-json·schema
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: '    Now is the time for all good men to come to the aid of their country    '
+      language:
+        default:
+          name: ''
+          description: ''
+    valueType: !<!StringSchema> &ref_6
+      $key: string
+      type: string
+      description: ''
+      language: !<!Languages> 
+        default:
+          name: string
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
         name: paths·string-whitespace·get·responses·200·content·application-json·schema
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - *ref_6
+  - !<!ConstantSchema> &ref_23
+    $key: paths·string-whitespace·put·requestbody·content·application-json·schema
+    type: constant
+    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: '    Now is the time for all good men to come to the aid of their country    '
+      language:
+        default:
+          name: ''
+          description: ''
+    valueType: !<!StringSchema> &ref_7
+      $key: string
+      type: string
+      description: ''
+      language: !<!Languages> 
+        default:
+          name: string
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: paths·string-whitespace·put·requestbody·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - *ref_10
   numbers:
-  - *ref_8
+  - *ref_12
   strings:
   - *ref_0
-  - *ref_5
+  - *ref_9
   - *ref_1
   - *ref_2
   - *ref_3
-  - *ref_9
   - *ref_4
+  - *ref_5
+  - *ref_6
   - *ref_7
+  - *ref_13
+  - *ref_8
+  - *ref_11
+  - !<!StringSchema> &ref_24
+    $key: paths·string-notprovided·get·responses·200·content·application-json·schema
+    type: string
+    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: paths·string-notprovided·get·responses·200·content·application-json·schema
+        description: MISSING-SCHEMA-DESCRIPTION-STRING
+    protocol: !<!Protocols> {}
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-string
@@ -330,7 +452,7 @@ operationGroups:
           path: /string/null
           method: get
           servers:
-          - !<!HttpServer> &ref_10
+          - !<!HttpServer> &ref_14
             url: 'http://localhost:3000/'
             language:
               default:
@@ -338,7 +460,7 @@ operationGroups:
                 description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -352,7 +474,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -376,7 +498,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_11
+        schema: *ref_17
         description: ''
         implementation: Method
         extensions:
@@ -401,7 +523,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -414,7 +536,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -446,10 +568,10 @@ operationGroups:
           path: /string/empty
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -463,7 +585,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -487,7 +609,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_13
+        schema: *ref_19
         description: ''
         implementation: Method
         extensions:
@@ -512,7 +634,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -525,7 +647,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -557,10 +679,10 @@ operationGroups:
           path: /string/mbcs
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_14
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -574,7 +696,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -598,7 +720,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_14
+        schema: *ref_21
         description: ''
         implementation: Method
         extensions:
@@ -623,7 +745,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -636,7 +758,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -668,10 +790,10 @@ operationGroups:
           path: /string/whitespace
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -685,7 +807,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -709,7 +831,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_15
+        schema: *ref_23
         description: ''
         implementation: Method
         extensions:
@@ -734,7 +856,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -747,7 +869,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -779,10 +901,10 @@ operationGroups:
           path: /string/notProvided
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_24
       language: !<!Languages> 
         default:
           name: ''
@@ -796,7 +918,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -826,10 +948,10 @@ operationGroups:
           path: /string/base64Encoding
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -843,7 +965,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -873,10 +995,10 @@ operationGroups:
           path: /string/base64UrlEncoding
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -890,7 +1012,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -914,7 +1036,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_16
+        schema: *ref_25
         description: ''
         implementation: Method
         extensions:
@@ -939,7 +1061,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -952,7 +1074,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -984,10 +1106,10 @@ operationGroups:
           path: /string/nullBase64UrlEncoding
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -1001,7 +1123,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1039,10 +1161,10 @@ operationGroups:
           path: /string/enum/notExpandable
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -1056,7 +1178,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1080,7 +1202,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: stringBody
-        schema: *ref_17
+        schema: *ref_26
         description: ''
         implementation: Method
         extensions:
@@ -1105,7 +1227,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1118,7 +1240,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1150,10 +1272,10 @@ operationGroups:
           path: /string/enum/Referenced
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -1167,7 +1289,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1191,7 +1313,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: enumStringBody
-        schema: *ref_17
+        schema: *ref_26
         description: ''
         implementation: Method
         extensions:
@@ -1216,7 +1338,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1229,7 +1351,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1261,10 +1383,10 @@ operationGroups:
           path: /string/enum/ReferencedConstant
           method: get
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -1278,7 +1400,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1302,7 +1424,7 @@ operationGroups:
       parameters:
       - !<!Parameter> 
         $key: enumStringBody
-        schema: *ref_18
+        schema: *ref_27
         description: ''
         implementation: Method
         extensions:
@@ -1327,7 +1449,7 @@ operationGroups:
           mediaTypes:
           - application/json
           servers:
-          - *ref_10
+          - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1340,7 +1462,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -1371,4 +1493,4 @@ language: !<!Languages>
 protocol: !<!Protocols> 
   http: !<!HttpModel> 
     servers:
-    - *ref_10
+    - *ref_14

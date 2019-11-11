@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, excludeXDash, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -891,12 +891,12 @@ export class ModelerFour {
           const rsp = new Response({
             extensions: this.interpret.getExtensionProperties(response)
           });
-          const headers = new Array<Schema>();
+          const headers = new Array<HttpHeader>();
           for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
             this.use(hh.schema, (n, sch) => {
               const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
               hsch.language.default.header = header;
-              headers.push(hsch);
+              headers.push(new HttpHeader(header, hsch));
             });
           }
           rsp.protocol.http = SetType(HttpResponse, {
