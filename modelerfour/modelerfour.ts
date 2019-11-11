@@ -105,20 +105,20 @@ export class ModelerFour {
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
     return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
-        extensions: this.interpret.getExtensionProperties(schema),
-        summary: schema.title,
-        defaultValue: schema.default,
-        deprecated: this.interpret.getDeprecation(schema),
-        apiVersions: this.interpret.getApiVersions(schema),
-        example: this.interpret.getExample(schema),
-        externalDocs: this.interpret.getExternalDocs(schema),
-        serialization: this.interpret.getSerialization(schema),
-        maximum: schema.maximum,
-        minimum: schema.minimum,
-        multipleOf: schema.multipleOf,
-        exclusiveMaximum: schema.exclusiveMaximum,
-        exclusiveMinimum: schema.exclusiveMinimum
-      }));
+      extensions: this.interpret.getExtensionProperties(schema),
+      summary: schema.title,
+      defaultValue: schema.default,
+      deprecated: this.interpret.getDeprecation(schema),
+      apiVersions: this.interpret.getApiVersions(schema),
+      example: this.interpret.getExample(schema),
+      externalDocs: this.interpret.getExternalDocs(schema),
+      serialization: this.interpret.getSerialization(schema),
+      maximum: schema.maximum,
+      minimum: schema.minimum,
+      multipleOf: schema.multipleOf,
+      exclusiveMaximum: schema.exclusiveMaximum,
+      exclusiveMinimum: schema.exclusiveMinimum
+    }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
     return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-STRING', schema), {
@@ -276,12 +276,13 @@ export class ModelerFour {
 
   processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema | SealedChoiceSchema | ConstantSchema {
     const xmse = <XMSEnum>schema['x-ms-enum'];
-    name = xmse && xmse.name;
+    name = (xmse && xmse.name) || this.interpret.getName(name, schema);
+    // console.error(`name = '${(xmse && xmse.name)}' or '${this.interpret.getName(name, schema)}' `);
     const sealed = xmse && !(xmse.modelAsString);
 
 
     if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
-      return this.codeModel.schemas.add(new ConstantSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+      return this.codeModel.schemas.add(new ConstantSchema(name, this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
         extensions: this.interpret.getExtensionProperties(schema),
         summary: schema.title,
         defaultValue: schema.default,
@@ -297,7 +298,7 @@ export class ModelerFour {
     }
 
     if (sealed) {
-      return this.codeModel.schemas.add(new ChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+      return this.codeModel.schemas.add(new ChoiceSchema(name, this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
         extensions: this.interpret.getExtensionProperties(schema),
         summary: schema.title,
         defaultValue: schema.default,
@@ -311,7 +312,7 @@ export class ModelerFour {
       }));
     }
 
-    return this.codeModel.schemas.add(new SealedChoiceSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
+    return this.codeModel.schemas.add(new SealedChoiceSchema(name, this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-CHOICE', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -845,14 +846,14 @@ export class ModelerFour {
                 requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                  protocol: {
-                    http: new HttpParameter(ParameterLocation.Body, {
-                      style: SerializationStyle.Binary,
-                    })
-                  },
-                  implementation: ImplementationLocation.Method
-                }));
+                extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                protocol: {
+                  http: new HttpParameter(ParameterLocation.Body, {
+                    style: SerializationStyle.Binary,
+                  })
+                },
+                implementation: ImplementationLocation.Method
+              }));
 
             } else {
               // it has a body parameter, and we're going to use a schema for it.
@@ -861,14 +862,14 @@ export class ModelerFour {
                 requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                  extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                  protocol: {
-                    http: new HttpParameter(ParameterLocation.Body, {
-                      style: SerializationStyle.Json,
-                    })
-                  },
-                  implementation: ImplementationLocation.Method
-                }));
+                extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                protocol: {
+                  http: new HttpParameter(ParameterLocation.Body, {
+                    style: SerializationStyle.Json,
+                  })
+                },
+                implementation: ImplementationLocation.Method
+              }));
             }
           }
             break;
@@ -911,12 +912,12 @@ export class ModelerFour {
         } else {
           for (const { key: knownMediaType, value: mediatypes } of items(knownMediaTypes)) {
             const allMt = mediatypes.map(each => each.mediaType);
-            const headers = new Array<Schema>();
+            const headers = new Array<HttpHeader>();
             for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
               this.use(hh.schema, (n, sch) => {
                 const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
                 hsch.language.default.header = header;
-                headers.push(hsch);
+                headers.push(new HttpHeader(header, hsch));
               });
             }
 
