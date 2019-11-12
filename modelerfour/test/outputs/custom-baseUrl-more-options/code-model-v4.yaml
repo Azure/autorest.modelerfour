@@ -146,6 +146,9 @@ operationGroups:
   - !<!Operation> 
     $key: getEmpty
     description: Get a 200 to test a valid base uri
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -154,8 +157,6 @@ operationGroups:
         description: The key name with value 'key1'.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: keyName
@@ -181,8 +182,6 @@ operationGroups:
         schema: *ref_5
         description: The key version. Default value 'v1'.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: keyVersion

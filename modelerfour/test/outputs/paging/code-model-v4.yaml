@@ -615,6 +615,9 @@ operationGroups:
   - !<!Operation> 
     $key: getSinglePages
     description: A paging operation that finishes on the first call without a nextlink
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -667,6 +670,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePages
     description: A paging operation that includes a nextLink that has 10 pages
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -674,8 +680,6 @@ operationGroups:
         schema: *ref_12
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: client-request-id
@@ -691,7 +695,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: maxresults
@@ -707,7 +710,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: timeout
@@ -761,6 +763,9 @@ operationGroups:
   - !<!Operation> 
     $key: getOdataMultiplePages
     description: A paging operation that includes a nextLink in odata format that has 10 pages
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -768,8 +773,6 @@ operationGroups:
         schema: *ref_15
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: client-request-id
@@ -785,7 +788,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: maxresults
@@ -801,7 +803,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: timeout
@@ -855,6 +856,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesWithOffset
     description: A paging operation that includes a nextLink that has 10 pages
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -862,8 +866,6 @@ operationGroups:
         schema: *ref_19
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: client-request-id
@@ -879,7 +881,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: maxresults
@@ -896,7 +897,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: offset
@@ -912,7 +912,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: timeout
@@ -966,6 +965,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesRetryFirst
     description: A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1013,6 +1015,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesRetrySecond
     description: 'A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1060,6 +1065,9 @@ operationGroups:
   - !<!Operation> 
     $key: getSinglePagesFailure
     description: A paging operation that receives a 400 on the first call
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1107,6 +1115,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesFailure
     description: A paging operation that receives a 400 on the second call
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1154,6 +1165,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesFailureUri
     description: A paging operation that receives an invalid nextLink
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1201,6 +1215,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesFragmentNextLink
     description: 'A paging operation that doesn''t return a full URL, just a fragment'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1209,8 +1226,6 @@ operationGroups:
         description: Sets the api version to use.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: api_version
@@ -1224,8 +1239,6 @@ operationGroups:
         description: Sets the tenant to use.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: tenant
@@ -1280,6 +1293,9 @@ operationGroups:
   - !<!Operation> 
     $key: getMultiplePagesFragmentWithGroupingNextLink
     description: 'A paging operation that doesn''t return a full URL, just a fragment with parameters grouped'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1291,7 +1307,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             name: custom-parameter-group
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: api_version
@@ -1308,7 +1323,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             name: custom-parameter-group
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: tenant
@@ -1363,6 +1377,9 @@ operationGroups:
   - !<!Operation> 
     $key: GetMultiplePagesLRO
     description: A long-running paging operation that includes a nextLink that has 10 pages
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1370,8 +1387,6 @@ operationGroups:
         schema: *ref_27
         description: MISSING-PARAMETER-DESCRIPTION
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: client-request-id
@@ -1387,7 +1402,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: maxresults
@@ -1403,7 +1417,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             postfix: Options
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: timeout
@@ -1458,6 +1471,9 @@ operationGroups:
   - !<!Operation> 
     $key: nextFragment
     description: 'A paging operation that doesn''t return a full URL, just a fragment'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1466,8 +1482,6 @@ operationGroups:
         description: Sets the api version to use.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: api_version
@@ -1481,8 +1495,6 @@ operationGroups:
         description: Sets the tenant to use.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: tenant
@@ -1497,7 +1509,6 @@ operationGroups:
         implementation: Method
         required: true
         extensions:
-          x-ms-parameter-location: method
           x-ms-skip-url-encoding: true
         language: !<!Languages> 
           default:
@@ -1553,6 +1564,9 @@ operationGroups:
   - !<!Operation> 
     $key: nextFragmentWithGrouping
     description: 'A paging operation that doesn''t return a full URL, just a fragment'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1564,7 +1578,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             name: custom-parameter-group
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: api_version
@@ -1581,7 +1594,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             name: custom-parameter-group
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: tenant
@@ -1596,7 +1608,6 @@ operationGroups:
         implementation: Method
         required: true
         extensions:
-          x-ms-parameter-location: method
           x-ms-skip-url-encoding: true
         language: !<!Languages> 
           default:

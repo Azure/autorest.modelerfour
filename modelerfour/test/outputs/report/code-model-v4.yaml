@@ -118,6 +118,9 @@ operationGroups:
   - !<!Operation> 
     $key: getReport
     description: Get test coverage report
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -125,8 +128,6 @@ operationGroups:
         schema: *ref_4
         description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: qualifier

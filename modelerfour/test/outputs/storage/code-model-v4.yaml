@@ -117,9 +117,6 @@ schemas: !<!Schemas>
               name: string
               description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
           protocol: !<!Protocols> {}
-        extensions:
-          x-ms-enum:
-            name: Reason
         language: !<!Languages> 
           default:
             name: Reason
@@ -240,9 +237,6 @@ schemas: !<!Schemas>
                       name: string
                       description: Gets or sets the account type.
                   protocol: !<!Protocols> {}
-                extensions:
-                  x-ms-enum:
-                    name: AccountType
                 language: !<!Languages> 
                   default:
                     name: AccountType
@@ -334,9 +328,6 @@ schemas: !<!Schemas>
                       name: string
                       description: Gets the status of the storage account at the time the operation was called.
                   protocol: !<!Protocols> {}
-                extensions:
-                  x-ms-enum:
-                    name: ProvisioningState
                 language: !<!Languages> 
                   default:
                     name: ProvisioningState
@@ -563,9 +554,6 @@ schemas: !<!Schemas>
                       name: string
                       description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
                   protocol: !<!Protocols> {}
-                extensions:
-                  x-ms-enum:
-                    name: AccountStatus
                 language: !<!Languages> 
                   default:
                     name: AccountStatus
@@ -1124,9 +1112,6 @@ schemas: !<!Schemas>
               name: string
               description: ''
           protocol: !<!Protocols> {}
-        extensions:
-          x-ms-enum:
-            name: KeyName
         language: !<!Languages> 
           default:
             name: KeyName
@@ -1225,9 +1210,6 @@ schemas: !<!Schemas>
                     name: string
                     description: Gets the unit of measurement.
                 protocol: !<!Protocols> {}
-              extensions:
-                x-ms-enum:
-                  name: UsageUnit
               language: !<!Languages> 
                 default:
                   name: UsageUnit
@@ -1571,6 +1553,9 @@ operationGroups:
   - !<!Operation> 
     $key: CheckNameAvailability
     description: Checks that account name is valid and is not in use.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1660,6 +1645,9 @@ operationGroups:
     description: >-
       Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT
       request is issued with exact same set of properties, then HTTP 200 would be returned. 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1668,8 +1656,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -1683,8 +1669,6 @@ operationGroups:
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: accountName
@@ -1784,6 +1768,9 @@ operationGroups:
   - !<!Operation> 
     $key: Delete
     description: Deletes a storage account in Microsoft Azure.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1792,8 +1779,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -1807,8 +1792,6 @@ operationGroups:
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: accountName
@@ -1879,6 +1862,9 @@ operationGroups:
   - !<!Operation> 
     $key: GetProperties
     description: 'Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1887,8 +1873,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -1902,8 +1886,6 @@ operationGroups:
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: accountName
@@ -1973,6 +1955,9 @@ operationGroups:
       Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API
       can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account.
       If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1981,8 +1966,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -1996,8 +1979,6 @@ operationGroups:
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: accountName
@@ -2088,6 +2069,9 @@ operationGroups:
   - !<!Operation> 
     $key: ListKeys
     description: Lists the access keys for the specified storage account.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -2096,8 +2080,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -2111,8 +2093,6 @@ operationGroups:
         description: The name of the storage account.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: accountName
@@ -2179,6 +2159,9 @@ operationGroups:
   - !<!Operation> 
     $key: List
     description: Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -2243,6 +2226,9 @@ operationGroups:
   - !<!Operation> 
     $key: ListByResourceGroup
     description: Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -2251,8 +2237,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -2322,6 +2306,9 @@ operationGroups:
   - !<!Operation> 
     $key: RegenerateKey
     description: Regenerates the access keys for the specified storage account.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -2330,8 +2317,6 @@ operationGroups:
         description: The name of the resource group within the user’s subscription.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -2345,8 +2330,6 @@ operationGroups:
         description: 'The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.  '
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: accountName
@@ -2442,6 +2425,9 @@ operationGroups:
   - !<!Operation> 
     $key: List
     description: Gets the current usage count and the limit for the resources under the subscription.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
     request: !<!Request> 
       parameters:
       - !<!Parameter> 

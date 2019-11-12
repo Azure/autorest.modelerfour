@@ -438,10 +438,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: PathResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: PathResourceType
@@ -476,10 +472,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: PathRenameMode
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: PathRenameMode
@@ -526,10 +518,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: PathUpdateAction
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: PathUpdateAction
@@ -582,10 +570,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: PathLeaseAction
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: PathLeaseAction
@@ -626,10 +610,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: PathGetPropertiesAction
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: PathGetPropertiesAction
@@ -757,10 +737,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: AccountResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: AccountResourceType
@@ -785,10 +761,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: FilesystemResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: FilesystemResourceType
@@ -813,10 +785,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: FilesystemResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: FilesystemResourceType
@@ -841,10 +809,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: FilesystemResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: FilesystemResourceType
@@ -869,10 +833,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: FilesystemResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: FilesystemResourceType
@@ -897,10 +857,6 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-enum:
-        name: FilesystemResourceType
-        modelAsString: false
     language: !<!Languages> 
       default:
         name: FilesystemResourceType
@@ -4416,10 +4372,6 @@ schemas: !<!Schemas>
 info: !<!Info> 
   description: Azure Data Lake Storage provides storage for Hadoop and other big data workloads.
   title: Azure Data Lake Storage REST API
-  extensions:
-    x-ms-code-generation-settings:
-      name: DataLakeStorageClient
-      internalConstructors: true
 operationGroups:
 - !<!OperationGroup> 
   $key: Filesystem
@@ -4427,6 +4379,9 @@ operationGroups:
   - !<!Operation> 
     $key: List
     description: List filesystems and their properties in given account.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -4435,8 +4390,6 @@ operationGroups:
         description: The value must be "account" for all account operations.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resource
@@ -4449,8 +4402,6 @@ operationGroups:
         schema: *ref_31
         description: Filters results to filesystems within the specified prefix.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: prefix
@@ -4465,8 +4416,6 @@ operationGroups:
           The number of filesystems returned with each invocation is limited. If the number of filesystems to be returned exceeds this limit, a continuation token is returned in the response header x-ms-continuation. When a continuation
           token is  returned in the response, it must be specified in a subsequent invocation of the list operation to continue listing the filesystems.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: continuation
@@ -4481,8 +4430,6 @@ operationGroups:
         schema: *ref_33
         description: 'An optional value that specifies the maximum number of items to return. If omitted or greater than 5,000, the response will include up to 5,000 items.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: maxResults
@@ -4497,7 +4444,6 @@ operationGroups:
         implementation: Method
         extensions:
           x-ms-client-request-id: true
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-client-request-id
@@ -4510,8 +4456,6 @@ operationGroups:
         schema: *ref_35
         description: 'An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: timeout
@@ -4524,8 +4468,6 @@ operationGroups:
         schema: *ref_36
         description: Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-date
@@ -4538,8 +4480,6 @@ operationGroups:
         schema: *ref_37
         description: Specifies the version of the REST protocol used for processing the request. This is required when using shared key authorization.
         implementation: Client
-        extensions:
-          x-ms-parameter-location: client
         language: !<!Languages> 
           default:
             name: x-ms-version
@@ -4642,6 +4582,9 @@ operationGroups:
   - !<!Operation> 
     $key: Create
     description: 'Create a filesystem rooted at the specified location. If the filesystem already exists, the operation fails.  This operation does not support conditional HTTP requests.'
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -4719,8 +4662,6 @@ operationGroups:
           User-defined properties to be stored with the filesystem, in the format of a comma-separated list of name and value pairs "n1=v1, n2=v2, ...", where each value is a base64 encoded string. Note that the string may only contain
           ASCII characters in the ISO-8859-1 character set.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-properties
@@ -4800,6 +4741,9 @@ operationGroups:
     description: >-
       Set properties for the filesystem.  This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service
       Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -4878,8 +4822,6 @@ operationGroups:
           contain ASCII characters in the ISO-8859-1 character set.  If the filesystem exists, any properties not included in the list will be removed.  All properties are removed if the header is omitted.  To merge new and existing
           properties, first get all existing properties and the current E-Tag, then make a conditional request with the E-Tag and include values for all properties.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-properties
@@ -4895,8 +4837,6 @@ operationGroups:
         schema: *ref_65
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -4909,8 +4849,6 @@ operationGroups:
         schema: *ref_66
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -4985,6 +4923,9 @@ operationGroups:
   - !<!Operation> 
     $key: GetProperties
     description: All system and user-defined filesystem properties are specified in the response headers.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -5060,8 +5001,6 @@ operationGroups:
         schema: *ref_37
         description: Specifies the version of the REST protocol used for processing the request. This is required when using shared key authorization.
         implementation: Client
-        extensions:
-          x-ms-parameter-location: client
         language: !<!Languages> 
           default:
             name: x-ms-version
@@ -5144,6 +5083,9 @@ operationGroups:
       identifier will fail with status code 409 (Conflict), with the service returning additional error information indicating that the filesystem is being deleted. All other operations, including operations on any files or directories
       within the filesystem, will fail with status code 404 (Not Found) while the filesystem is being deleted. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service
       Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -5219,8 +5161,6 @@ operationGroups:
         schema: *ref_89
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -5233,8 +5173,6 @@ operationGroups:
         schema: *ref_90
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -5313,6 +5251,9 @@ operationGroups:
   - !<!Operation> 
     $key: List
     description: List filesystem paths and their properties.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -5388,8 +5329,6 @@ operationGroups:
         schema: *ref_99
         description: Filters results to paths within the specified directory. An error occurs if the directory does not exist.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: directory
@@ -5403,8 +5342,6 @@ operationGroups:
         description: 'If "true", all paths are listed; otherwise, only paths at the root of the filesystem are listed.  If "directory" is specified, the list will only include paths that share the same root.'
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: recursive
@@ -5419,8 +5356,6 @@ operationGroups:
           The number of paths returned with each invocation is limited. If the number of paths to be returned exceeds this limit, a continuation token is returned in the response header x-ms-continuation. When a continuation token is 
           returned in the response, it must be specified in a subsequent invocation of the list operation to continue listing the paths.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: continuation
@@ -5435,8 +5370,6 @@ operationGroups:
         schema: *ref_102
         description: 'An optional value that specifies the maximum number of items to return. If omitted or greater than 5,000, the response will include up to 5,000 items.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: maxResults
@@ -5452,8 +5385,6 @@ operationGroups:
           to User Principal Names.  If "false", the values will be returned as Azure Active Directory Object IDs. The default value is false. Note that group and application Object IDs are not translated because they do not have unique
           friendly names.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: upn
@@ -5543,6 +5474,9 @@ operationGroups:
       Create or rename a file or directory.    By default, the destination is overwritten and if the destination already exists and has a lease the lease is broken.  This operation supports conditional HTTP requests.  For more information,
       see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).  To fail if the destination already exists, use a
       conditional request with If-None-Match: "*".
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -5614,8 +5548,6 @@ operationGroups:
         schema: *ref_116
         description: Required only for Create File and Create Directory. The value must be "file" or "directory".
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resource
@@ -5630,8 +5562,6 @@ operationGroups:
           Optional.  When renaming a directory, the number of paths that are renamed with each invocation is limited.  If the number of paths to be renamed exceeds this limit, a continuation token is returned in this response header.  When
           a continuation token is returned in the response, it must be specified in a subsequent invocation of the rename operation to continue renaming the directory.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: continuation
@@ -5646,8 +5576,6 @@ operationGroups:
         schema: *ref_118
         description: 'Optional. Valid only when namespace is enabled. This parameter determines the behavior of the rename operation. The value must be "legacy" or "posix", and the default value will be "posix". '
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: mode
@@ -5660,8 +5588,6 @@ operationGroups:
         schema: *ref_119
         description: Optional.  The service stores this value and includes it in the "Cache-Control" response header for "Read File" operations for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Cache-Control
@@ -5674,8 +5600,6 @@ operationGroups:
         schema: *ref_120
         description: Optional.  Specifies which content encodings have been applied to the file. This value is returned to the client when the "Read File" operation is performed.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Content-Encoding
@@ -5688,8 +5612,6 @@ operationGroups:
         schema: *ref_121
         description: Optional.  Specifies the natural language used by the intended audience for the file.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Content-Language
@@ -5702,8 +5624,6 @@ operationGroups:
         schema: *ref_122
         description: Optional.  The service stores this value and includes it in the "Content-Disposition" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Content-Disposition
@@ -5716,8 +5636,6 @@ operationGroups:
         schema: *ref_123
         description: Optional.  The service stores this value and includes it in the "Cache-Control" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-cache-control
@@ -5730,8 +5648,6 @@ operationGroups:
         schema: *ref_124
         description: Optional.  The service stores this value and includes it in the "Content-Type" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-type
@@ -5744,8 +5660,6 @@ operationGroups:
         schema: *ref_125
         description: Optional.  The service stores this value and includes it in the "Content-Encoding" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-encoding
@@ -5758,8 +5672,6 @@ operationGroups:
         schema: *ref_126
         description: Optional.  The service stores this value and includes it in the "Content-Language" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-language
@@ -5772,8 +5684,6 @@ operationGroups:
         schema: *ref_127
         description: Optional.  The service stores this value and includes it in the "Content-Disposition" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-disposition
@@ -5788,8 +5698,6 @@ operationGroups:
           An optional file or directory to be renamed.  The value must have the following format: "/{filesystem}/{path}".  If "x-ms-properties" is specified, the properties will overwrite the existing properties; otherwise, the existing
           properties will be preserved. This value must be a URL percent-encoded string. Note that the string may only contain ASCII characters in the ISO-8859-1 character set.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-rename-source
@@ -5804,8 +5712,6 @@ operationGroups:
         schema: *ref_129
         description: Optional.  A lease ID for the path specified in the URI.  The path to be overwritten must have an active lease and the lease ID must match.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-id
@@ -5818,8 +5724,6 @@ operationGroups:
         schema: *ref_130
         description: Optional for rename operations.  A lease ID for the source path.  The source path must have an active lease and the lease ID must match.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-source-lease-id
@@ -5834,8 +5738,6 @@ operationGroups:
           Optional.  User-defined properties to be stored with the file or directory, in the format of a comma-separated list of name and value pairs "n1=v1, n2=v2, ...", where each value is a base64 encoded string. Note that the string may
           only contain ASCII characters in the ISO-8859-1 character set.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-properties
@@ -5852,8 +5754,6 @@ operationGroups:
           Optional and only valid if Hierarchical Namespace is enabled for the account. Sets POSIX access permissions for the file owner, the file owning group, and others. Each class may be granted read, write, or execute permission.  The
           sticky bit is also supported.  Both symbolic (rwxrw-rw-) and 4-digit octal notation (e.g. 0766) are supported.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-permissions
@@ -5871,8 +5771,6 @@ operationGroups:
           created.  The resulting permission is given by p & ^u, where p is the permission and u is the umask.  For example, if p is 0777 and u is 0057, then the resulting permission is 0720.  The default permission is 0777 for a directory
           and 0666 for a file.  The default umask is 0027.  The umask must be specified in 4-digit octal notation (e.g. 0766).
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-umask
@@ -5888,8 +5786,6 @@ operationGroups:
         schema: *ref_134
         description: Optional.  An ETag value. Specify this header to perform the operation only if the resource's ETag matches the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Match
@@ -5902,8 +5798,6 @@ operationGroups:
         schema: *ref_135
         description: Optional.  An ETag value or the special wildcard ("*") value. Specify this header to perform the operation only if the resource's ETag does not match the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-None-Match
@@ -5916,8 +5810,6 @@ operationGroups:
         schema: *ref_136
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -5930,8 +5822,6 @@ operationGroups:
         schema: *ref_137
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -5944,8 +5834,6 @@ operationGroups:
         schema: *ref_138
         description: Optional.  An ETag value. Specify this header to perform the rename operation only if the source's ETag matches the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-source-if-match
@@ -5958,8 +5846,6 @@ operationGroups:
         schema: *ref_139
         description: Optional.  An ETag value or the special wildcard ("*") value. Specify this header to perform the rename operation only if the source's ETag does not match the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-source-if-none-match
@@ -5972,8 +5858,6 @@ operationGroups:
         schema: *ref_140
         description: Optional. A date and time value. Specify this header to perform the rename operation only if the source has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-source-if-modified-since
@@ -5986,8 +5870,6 @@ operationGroups:
         schema: *ref_141
         description: Optional. A date and time value. Specify this header to perform the rename operation only if the source has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-source-if-unmodified-since
@@ -6072,6 +5954,9 @@ operationGroups:
       Uploads data to be appended to a file, flushes (writes) previously uploaded data to a file, sets properties for a file or directory, or sets access control for a file or directory. Data can only be appended to a file. This operation
       supports conditional HTTP requests. For more information, see [Specifying Conditional Headers for Blob Service
       Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -6147,8 +6032,6 @@ operationGroups:
           the owner, owning group, and others, so the x-ms-permissions and x-ms-acl request headers are mutually exclusive.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: action
@@ -6167,8 +6050,6 @@ operationGroups:
           the file.  The value must be the position where the data is to be appended.  Uploaded data is not immediately flushed, or written, to the file.  To flush, the previously uploaded data must be contiguous, the position parameter
           must be specified and equal to the length of the file after all data has been written, and there must not be a request entity body included with the request.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: position
@@ -6186,8 +6067,6 @@ operationGroups:
           Valid only for flush operations.  If "true", uncommitted data is retained after the flush operation completes; otherwise, the uncommitted data is deleted after the flush operation.  The default is false.  Data at offsets less than
           the specified position are written to the file when flush succeeds, but this optional parameter allows data after the flush position to be retained for a future flush operation.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: retainUncommittedData
@@ -6206,8 +6085,6 @@ operationGroups:
           of close is "true" and the flush operation completes successfully, the service raises a file change notification with a property indicating that this is the final update (the file stream has been closed). If "false" a change
           notification is raised indicating the file has changed. The default is false. This query parameter is set to true by the Hadoop ABFS driver to indicate that the file stream has been closed."
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: close
@@ -6224,8 +6101,6 @@ operationGroups:
         schema: *ref_158
         description: Required for "Append Data" and "Flush Data".  Must be 0 for "Flush Data".  Must be the length of the request content in bytes for "Append Data".
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Content-Length
@@ -6241,8 +6116,6 @@ operationGroups:
           service compares the hash of the content that has arrived with this header value. If the two hashes do not match, the operation will fail with error code 400 (Bad Request). Note that this MD5 hash is not stored with the file. This
           header is associated with the request content, and not with the stored content of the file itself.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Content-MD5
@@ -6258,8 +6131,6 @@ operationGroups:
         schema: *ref_160
         description: The lease ID must be specified if there is an active lease.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-id
@@ -6272,8 +6143,6 @@ operationGroups:
         schema: *ref_161
         description: Optional and only valid for flush and set properties operations.  The service stores this value and includes it in the "Cache-Control" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-cache-control
@@ -6286,8 +6155,6 @@ operationGroups:
         schema: *ref_162
         description: Optional and only valid for flush and set properties operations.  The service stores this value and includes it in the "Content-Type" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-type
@@ -6300,8 +6167,6 @@ operationGroups:
         schema: *ref_163
         description: Optional and only valid for flush and set properties operations.  The service stores this value and includes it in the "Content-Disposition" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-disposition
@@ -6314,8 +6179,6 @@ operationGroups:
         schema: *ref_164
         description: Optional and only valid for flush and set properties operations.  The service stores this value and includes it in the "Content-Encoding" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-encoding
@@ -6328,8 +6191,6 @@ operationGroups:
         schema: *ref_165
         description: Optional and only valid for flush and set properties operations.  The service stores this value and includes it in the "Content-Language" response header for "Read File" operations.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-language
@@ -6344,8 +6205,6 @@ operationGroups:
           Optional and only valid for "Flush & Set Properties" operations.  The service stores this value and includes it in the "Content-Md5" response header for "Read & Get Properties" operations. If this property is not specified on the
           request, then the property will be cleared for the file. Subsequent calls to "Read & Get Properties" will not return this property unless it is explicitly set on that file again.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-content-md5
@@ -6363,8 +6222,6 @@ operationGroups:
           only contain ASCII characters in the ISO-8859-1 character set. Valid only for the setProperties operation. If the file or directory exists, any properties not included in the list will be removed.  All properties are removed if
           the header is omitted.  To merge new and existing properties, first get all existing properties and the current E-Tag, then make a conditional request with the E-Tag and include values for all properties.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-properties
@@ -6380,8 +6237,6 @@ operationGroups:
         schema: *ref_168
         description: Optional and valid only for the setAccessControl operation. Sets the owner of the file or directory.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-owner
@@ -6394,8 +6249,6 @@ operationGroups:
         schema: *ref_169
         description: Optional and valid only for the setAccessControl operation. Sets the owning group of the file or directory.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-group
@@ -6410,8 +6263,6 @@ operationGroups:
           Optional and only valid if Hierarchical Namespace is enabled for the account. Sets POSIX access permissions for the file owner, the file owning group, and others. Each class may be granted read, write, or execute permission.  The
           sticky bit is also supported.  Both symbolic (rwxrw-rw-) and 4-digit octal notation (e.g. 0766) are supported. Invalid in conjunction with x-ms-acl.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-permissions
@@ -6433,8 +6284,6 @@ operationGroups:
           write access, and the third character is 'x' to grant execute permission.  If access is not granted, the '-' character is used to denote that the permission is denied. For example, the following ACL grants read, write, and execute
           rights to the file owner and john.doe@contoso, the read right to the owning group, and nothing to everyone else: "user::rwx,user:john.doe@contoso:rwx,group::r--,other::---,mask=rwx". Invalid in conjunction with x-ms-permissions.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-acl
@@ -6455,8 +6304,6 @@ operationGroups:
         schema: *ref_172
         description: 'Optional for Flush Data and Set Properties, but invalid for Append Data.  An ETag value. Specify this header to perform the operation only if the resource''s ETag matches the value specified. The ETag must be specified in quotes.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Match
@@ -6473,8 +6320,6 @@ operationGroups:
           Optional for Flush Data and Set Properties, but invalid for Append Data.  An ETag value or the special wildcard ("*") value. Specify this header to perform the operation only if the resource's ETag does not match the value
           specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-None-Match
@@ -6489,8 +6334,6 @@ operationGroups:
         schema: *ref_174
         description: 'Optional for Flush Data and Set Properties, but invalid for Append Data. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -6503,8 +6346,6 @@ operationGroups:
         schema: *ref_175
         description: 'Optional for Flush Data and Set Properties, but invalid for Append Data. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -6656,6 +6497,9 @@ operationGroups:
     description: >-
       Create and manage a lease to restrict write and delete access to the path. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service
       Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -6732,8 +6576,6 @@ operationGroups:
           specify the "x-ms-lease-id" to renew an existing lease. Use "release" and specify the "x-ms-lease-id" to release a lease.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-action
@@ -6750,8 +6592,6 @@ operationGroups:
         schema: *ref_202
         description: 'The lease duration is required to acquire a lease, and specifies the duration of the lease in seconds.  The lease duration must be between 15 and 60 seconds or -1 for infinite lease.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-duration
@@ -6764,8 +6604,6 @@ operationGroups:
         schema: *ref_203
         description: 'The lease break period duration is optional to break a lease, and  specifies the break period of the lease in seconds.  The lease break  duration must be between 0 and 60 seconds.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-break-period
@@ -6778,8 +6616,6 @@ operationGroups:
         schema: *ref_204
         description: 'Required when "x-ms-lease-action" is "renew", "change" or "release". For the renew and release actions, this must match the current lease ID.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-id
@@ -6792,8 +6628,6 @@ operationGroups:
         schema: *ref_205
         description: Required when "x-ms-lease-action" is "acquire" or "change".  A lease will be acquired with this lease ID if the operation is successful.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-proposed-lease-id
@@ -6806,8 +6640,6 @@ operationGroups:
         schema: *ref_206
         description: Optional.  An ETag value. Specify this header to perform the operation only if the resource's ETag matches the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Match
@@ -6820,8 +6652,6 @@ operationGroups:
         schema: *ref_207
         description: Optional.  An ETag value or the special wildcard ("*") value. Specify this header to perform the operation only if the resource's ETag does not match the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-None-Match
@@ -6834,8 +6664,6 @@ operationGroups:
         schema: *ref_208
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -6848,8 +6676,6 @@ operationGroups:
         schema: *ref_209
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -6982,6 +6808,9 @@ operationGroups:
     description: >-
       Read the contents of a file.  For read operations, range requests are supported. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service
       Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -7053,8 +6882,6 @@ operationGroups:
         schema: *ref_232
         description: The HTTP Range request header specifies one or more byte ranges of the resource to be retrieved.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: Range
@@ -7069,8 +6896,6 @@ operationGroups:
           Optional. If this header is specified, the operation will be performed only if both of the following conditions are met: i) the path's lease is currently active and ii) the lease ID specified in the request matches that of the
           path.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-id
@@ -7087,8 +6912,6 @@ operationGroups:
           Optional. When this header is set to "true" and specified together with the Range header, the service returns the MD5 hash for the range, as long as the range is less than or equal to 4MB in size. If this header is specified
           without the Range header, the service returns status code 400 (Bad Request). If this header is set to true when the range exceeds 4 MB in size, the service returns status code 400 (Bad Request).
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-range-get-content-md5
@@ -7103,8 +6926,6 @@ operationGroups:
         schema: *ref_235
         description: Optional.  An ETag value. Specify this header to perform the operation only if the resource's ETag matches the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Match
@@ -7117,8 +6938,6 @@ operationGroups:
         schema: *ref_236
         description: Optional.  An ETag value or the special wildcard ("*") value. Specify this header to perform the operation only if the resource's ETag does not match the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-None-Match
@@ -7131,8 +6950,6 @@ operationGroups:
         schema: *ref_237
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -7145,8 +6962,6 @@ operationGroups:
         schema: *ref_238
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -7345,6 +7160,9 @@ operationGroups:
     description: >-
       Get Properties returns all system and user defined properties for a path. Get Status returns all system defined properties for a path. Get Access Control List returns the access control list for a path. This operation supports
       conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -7418,8 +7236,6 @@ operationGroups:
           Optional. If the value is "getStatus" only the system defined properties for the path are returned. If the value is "getAccessControl" the access control list is returned in the response headers (Hierarchical Namespace must be
           enabled for the account), otherwise the properties are returned.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: action
@@ -7437,8 +7253,6 @@ operationGroups:
           Object IDs to User Principal Names.  If "false", the values will be returned as Azure Active Directory Object IDs. The default value is false. Note that group and application Object IDs are not translated because they do not have
           unique friendly names.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: upn
@@ -7454,8 +7268,6 @@ operationGroups:
         schema: *ref_285
         description: 'Required only for check access action. Valid only when Hierarchical Namespace is enabled for the account. File system operation read/write/execute in string form, matching regex pattern ''[rwx-]{3}'''
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: fsAction
@@ -7470,8 +7282,6 @@ operationGroups:
           Optional. If this header is specified, the operation will be performed only if both of the following conditions are met: i) the path's lease is currently active and ii) the lease ID specified in the request matches that of the
           path.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-id
@@ -7486,8 +7296,6 @@ operationGroups:
         schema: *ref_287
         description: Optional.  An ETag value. Specify this header to perform the operation only if the resource's ETag matches the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Match
@@ -7500,8 +7308,6 @@ operationGroups:
         schema: *ref_288
         description: Optional.  An ETag value or the special wildcard ("*") value. Specify this header to perform the operation only if the resource's ETag does not match the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-None-Match
@@ -7514,8 +7320,6 @@ operationGroups:
         schema: *ref_289
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -7528,8 +7332,6 @@ operationGroups:
         schema: *ref_290
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since
@@ -7661,6 +7463,9 @@ operationGroups:
     description: >-
       Delete the file or directory. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service
       Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -7732,8 +7537,6 @@ operationGroups:
         schema: *ref_319
         description: 'Required and valid only when the resource is a directory.  If "true", all paths beneath the directory will be deleted. If "false" and the directory is non-empty, an error occurs.'
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: recursive
@@ -7748,8 +7551,6 @@ operationGroups:
           Optional.  When deleting a directory, the number of paths that are deleted with each invocation is limited.  If the number of paths to be deleted exceeds this limit, a continuation token is returned in this response header.  When
           a continuation token is returned in the response, it must be specified in a subsequent invocation of the delete operation to continue deleting the directory.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: continuation
@@ -7764,8 +7565,6 @@ operationGroups:
         schema: *ref_321
         description: The lease ID must be specified if there is an active lease.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: x-ms-lease-id
@@ -7778,8 +7577,6 @@ operationGroups:
         schema: *ref_322
         description: Optional.  An ETag value. Specify this header to perform the operation only if the resource's ETag matches the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Match
@@ -7792,8 +7589,6 @@ operationGroups:
         schema: *ref_323
         description: Optional.  An ETag value or the special wildcard ("*") value. Specify this header to perform the operation only if the resource's ETag does not match the value specified. The ETag must be specified in quotes.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-None-Match
@@ -7806,8 +7601,6 @@ operationGroups:
         schema: *ref_324
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Modified-Since
@@ -7820,8 +7613,6 @@ operationGroups:
         schema: *ref_325
         description: Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.
         implementation: Method
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: If-Unmodified-Since

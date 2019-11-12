@@ -635,8 +635,6 @@ schemas: !<!Schemas>
                       name: string
                       description: 'Capacity of product. For example, 4 people.'
                   protocol: !<!Protocols> {}
-                extensions:
-                  x-ms-client-name: capacity
                 language: !<!Languages> 
                   default:
                     name: capacity
@@ -770,8 +768,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        extensions:
-          x-ms-client-name: productId
         language: !<!Languages> 
           default:
             name: productId
@@ -794,8 +790,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        extensions:
-          x-ms-client-name: description
         language: !<!Languages> 
           default:
             name: description
@@ -922,6 +916,9 @@ operationGroups:
   - !<!Operation> 
     $key: putArray
     description: Put External Resource as an Array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -991,6 +988,9 @@ operationGroups:
   - !<!Operation> 
     $key: getArray
     description: Get External Resource as an Array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1038,6 +1038,9 @@ operationGroups:
   - !<!Operation> 
     $key: putWrappedArray
     description: No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1102,6 +1105,9 @@ operationGroups:
   - !<!Operation> 
     $key: getWrappedArray
     description: No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1149,6 +1155,9 @@ operationGroups:
   - !<!Operation> 
     $key: putDictionary
     description: Put External Resource as a Dictionary
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1213,6 +1222,9 @@ operationGroups:
   - !<!Operation> 
     $key: getDictionary
     description: Get External Resource as a Dictionary
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1260,6 +1272,9 @@ operationGroups:
   - !<!Operation> 
     $key: putResourceCollection
     description: Put External Resource as a ResourceCollection
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1324,6 +1339,9 @@ operationGroups:
   - !<!Operation> 
     $key: getResourceCollection
     description: Get External Resource as a ResourceCollection
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       language: !<!Languages> 
         default:
@@ -1371,6 +1389,9 @@ operationGroups:
   - !<!Operation> 
     $key: putSimpleProduct
     description: Put Simple Product with client flattening true on the model
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1439,6 +1460,9 @@ operationGroups:
   - !<!Operation> 
     $key: postFlattenedSimpleProduct
     description: Put Flattened Simple Product with client flattening true on the parameter
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1508,6 +1532,9 @@ operationGroups:
   - !<!Operation> 
     $key: putSimpleProductWithGrouping
     description: Put Simple Product with client flattening true on the model
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -1519,7 +1546,6 @@ operationGroups:
         extensions:
           x-ms-parameter-grouping:
             name: flatten-parameter-group
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: name

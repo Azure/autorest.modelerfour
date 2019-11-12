@@ -93,10 +93,6 @@ schemas: !<!Schemas>
               description: Type of Pet
           protocol: !<!Protocols> {}
         defaultValue: Friday
-        extensions:
-          x-ms-enum:
-            name: DaysOfWeekExtensibleEnum
-            modelAsString: true
         language: !<!Languages> 
           default:
             name: DaysOfWeekExtensibleEnum
@@ -147,30 +143,6 @@ schemas: !<!Schemas>
               name: string
               description: ''
           protocol: !<!Protocols> {}
-        extensions:
-          x-ms-enum:
-            name: IntEnum
-            modelAsString: true
-            values:
-            - name: '1'
-              description: one
-              allowedValues:
-              - '1.1'
-              - '1.2'
-              - '1.3'
-              value: '1'
-            - name: '2'
-              description: two
-              allowedValues:
-              - '2.1'
-              - '2.2'
-              value: '2'
-            - name: '3'
-              description: three
-              allowedValues:
-              - '3.1'
-              - '3.3'
-              value: '3'
         language: !<!Languages> 
           default:
             name: IntEnum
@@ -219,6 +191,9 @@ operationGroups:
   - !<!Operation> 
     $key: GetByPetId
     description: MISSING-OPERATION-DESCRIPTION
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-07-07'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -227,8 +202,6 @@ operationGroups:
         description: Pet id
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: petId
@@ -273,6 +246,9 @@ operationGroups:
   - !<!Operation> 
     $key: AddPet
     description: MISSING-OPERATION-DESCRIPTION
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-07-07'
     request: !<!Request> 
       parameters:
       - !<!Parameter> 

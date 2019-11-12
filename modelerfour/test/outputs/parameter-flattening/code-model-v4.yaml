@@ -92,9 +92,6 @@ schemas: !<!Schemas>
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: parameter-flattening
-  extensions:
-    x-ms-code-generation-settings:
-      ft: 2
 operationGroups:
 - !<!OperationGroup> 
   $key: AvailabilitySets
@@ -102,6 +99,9 @@ operationGroups:
   - !<!Operation> 
     $key: Update
     description: Updates the tags for an availability set.
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
@@ -110,8 +110,6 @@ operationGroups:
         description: The name of the resource group.
         implementation: Method
         required: true
-        extensions:
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: resourceGroupName
@@ -125,9 +123,6 @@ operationGroups:
         description: The name of the storage availability set.
         implementation: Method
         required: true
-        extensions:
-          x-ms-client-name: avset
-          x-ms-parameter-location: method
         language: !<!Languages> 
           default:
             name: availabilitySetName

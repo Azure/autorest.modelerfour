@@ -11,6 +11,15 @@ export interface XMSEnum {
   name: string;
 }
 
+
+const removeKnownParameters = [
+  'x-ms-metadata',
+  'x-ms-enum',
+  'x-ms-code-generation-settings',
+  'x-ms-client-name',
+  'x-ms-parameter-location'
+];
+
 // ref: https://www.w3schools.com/charsets/ref_html_ascii.asp
 const specialCharacterMapping: { [character: string]: string } = {
   '!': 'exclamation mark',
@@ -97,7 +106,7 @@ export class Interpretations {
   getExample(schema: OpenAPI.Schema): any {
     return undefined;
   }
-  getApiVersions(schema: OpenAPI.Schema): Array<ApiVersion> | undefined {
+  getApiVersions(schema: OpenAPI.Schema | OpenAPI.HttpOperation | OpenAPI.PathItem): Array<ApiVersion> | undefined {
     if (schema['x-ms-metadata'] && schema['x-ms-metadata']['apiVersions']) {
       const v = values(<Array<string>>schema['x-ms-metadata']['apiVersions']).select(each => SetType(ApiVersion, {
         version: each.replace(/^-/, '').replace(/\+$/, ''),
@@ -228,14 +237,12 @@ export class Interpretations {
   getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     return Interpretations.getExtensionProperties(dictionary);
   }
+
   static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     const result = ToDictionary(OpenAPI.includeXDash(dictionary), each => dictionary[each]);
-    delete result['x-ms-metadata'];
-    //delete result['x-ms-enum'];
-    if (length(result) === 0) {
-      return undefined;
+    for (const each of removeKnownParameters) {
+      delete result[each];
     }
-    return result;
+    return length(result) === 0 ? undefined : result;
   }
 }
-
