@@ -864,6 +864,7 @@ export class ModelerFour {
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
                   extensions: this.interpret.getExtensionProperties(requestBody.instance),
+                  required: true,
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Body, {
                       style: SerializationStyle.Json,
