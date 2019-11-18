@@ -1,20 +1,15 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
-    $key: Pet
+  - !<!ObjectSchema> &ref_5
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: '2016-07-07'
     properties:
     - !<!Property> 
-      $key: name
       schema: !<!StringSchema> &ref_0
-        $key: Pet-name
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: '2016-07-07'
@@ -23,18 +18,15 @@ schemas: !<!Schemas>
             name: Pet-name
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: DaysOfWeek
-      schema: !<!SealedChoiceSchema> &ref_3
-        $key: DaysOfWeekExtensibleEnum
+      schema: !<!SealedChoiceSchema> &ref_2
         choices:
         - !<!ChoiceValue> 
           value: Monday
@@ -79,18 +71,15 @@ schemas: !<!Schemas>
               name: Sunday
               description: ''
         type: sealed-choice
-        description: Type of Pet
         apiVersions:
         - !<!ApiVersion> 
           version: '2016-07-07'
         choiceType: !<!StringSchema> &ref_1
-          $key: string
           type: string
-          description: Type of Pet
           language: !<!Languages> 
             default:
               name: string
-              description: Type of Pet
+              description: simple string
           protocol: !<!Protocols> {}
         defaultValue: Friday
         language: !<!Languages> 
@@ -98,7 +87,6 @@ schemas: !<!Schemas>
             name: DaysOfWeekExtensibleEnum
             description: Type of Pet
         protocol: !<!Protocols> {}
-      description: Type of Pet
       required: false
       serializedName: DaysOfWeek
       language: !<!Languages> 
@@ -107,9 +95,7 @@ schemas: !<!Schemas>
           description: Type of Pet
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: IntEnum
-      schema: !<!SealedChoiceSchema> &ref_4
-        $key: IntEnum
+      schema: !<!SealedChoiceSchema> &ref_3
         choices:
         - !<!ChoiceValue> 
           value: '1'
@@ -130,31 +116,21 @@ schemas: !<!Schemas>
               name: '3'
               description: three
         type: sealed-choice
-        description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         apiVersions:
         - !<!ApiVersion> 
           version: '2016-07-07'
-        choiceType: !<!StringSchema> &ref_2
-          $key: string
-          type: string
-          description: ''
-          language: !<!Languages> 
-            default:
-              name: string
-              description: ''
-          protocol: !<!Protocols> {}
+        choiceType: *ref_1
         language: !<!Languages> 
           default:
             name: IntEnum
             description: MISSING-SCHEMA-DESCRIPTION-CHOICE
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: IntEnum
       language: !<!Languages> 
         default:
           name: IntEnum
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-CHOICE
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -163,13 +139,12 @@ schemas: !<!Schemas>
         namespace: Api201607
     protocol: !<!Protocols> {}
   sealedChoices:
+  - *ref_2
   - *ref_3
-  - *ref_4
   strings:
-  - !<!StringSchema> &ref_6
-    $key: components·parameters·petid·schema
+  - *ref_1
+  - !<!StringSchema> &ref_4
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
     apiVersions:
     - !<!ApiVersion> 
       version: '2016-07-07'
@@ -179,8 +154,19 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
   - *ref_0
-  - *ref_1
-  - *ref_2
+globalParameters:
+- !<!Parameter> &ref_6
+  schema: *ref_1
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: PetStore
   title: extensible-enums-swagger
@@ -189,17 +175,14 @@ operationGroups:
   $key: Pet
   operations:
   - !<!Operation> 
-    $key: GetByPetId
-    description: MISSING-OPERATION-DESCRIPTION
     apiVersions:
     - !<!ApiVersion> 
       version: '2016-07-07'
     request: !<!Request> 
       parameters:
+      - *ref_6
       - !<!Parameter> 
-        $key: petId
-        schema: *ref_6
-        description: Pet id
+        schema: *ref_4
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -215,18 +198,11 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '/extensibleenums/pet/{petId}'
+          path: '{$host}/extensibleenums/pet/{petId}'
           method: get
-          servers:
-          - !<!HttpServer> &ref_5
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -244,18 +220,16 @@ operationGroups:
         description: MISSING-OPERATION-DESCRIPTION
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: AddPet
-    description: MISSING-OPERATION-DESCRIPTION
     apiVersions:
     - !<!ApiVersion> 
       version: '2016-07-07'
     request: !<!Request> 
       parameters:
+      - *ref_6
       - !<!Parameter> 
-        $key: petParam
-        schema: *ref_7
-        description: ''
+        schema: *ref_5
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: petParam
         language: !<!Languages> 
@@ -272,16 +246,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /extensibleenums/pet/addPet
+          path: '{$host}/extensibleenums/pet/addPet'
           method: post
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_5
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -310,6 +282,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_5
+  http: !<!HttpModel> {}

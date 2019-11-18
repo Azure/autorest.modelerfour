@@ -1,11 +1,10 @@
 import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, excludeXDash, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, ToDictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
-import { mkdirSync } from 'fs';
 
 
 export class ModelerFour {
@@ -29,10 +28,7 @@ export class ModelerFour {
       },
       extensions: Interpretations.getExtensionProperties(this.input),
       protocol: {
-        http: SetType(HttpModel, {
-          servers: []
-
-        })
+        http: new HttpModel()
       }
     });
     this.interpret = new Interpretations(session, this.codeModel);
@@ -261,12 +257,21 @@ export class ModelerFour {
     }));
   }
 
+  _stringSchema?: StringSchema;
+  get stringSchema() {
+    return this._stringSchema || (this._stringSchema = this.codeModel.schemas.add(new StringSchema('string', 'simple string')));
+  }
+  _booleanSchema?: BooleanSchema;
+  get booleanSchema() {
+    return this._booleanSchema || (this._booleanSchema = this.codeModel.schemas.add(new BooleanSchema('bool', 'simple boolean')));
+  }
+
   getPrimitiveSchemaForEnum(schema: OpenAPI.Schema) {
     switch (schema.type) {
       case JsonType.String:
-        return this.codeModel.schemas.add(new StringSchema('string', schema.description || ''));
+        return this.stringSchema;
       case JsonType.Boolean:
-        return this.codeModel.schemas.add(new BooleanSchema('boolean', schema.description || ''));
+        return this.booleanSchema;
       case JsonType.Number:
       case JsonType.Integer:
         return this.processNumberSchema('number', schema);
@@ -277,7 +282,6 @@ export class ModelerFour {
   processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema | SealedChoiceSchema | ConstantSchema {
     const xmse = <XMSEnum>schema['x-ms-enum'];
     name = (xmse && xmse.name) || this.interpret.getName(name, schema);
-    // console.error(`name = '${(xmse && xmse.name)}' or '${this.interpret.getName(name, schema)}' `);
     const sealed = xmse && !(xmse.modelAsString);
 
 
@@ -345,14 +349,7 @@ export class ModelerFour {
       }
     }
     const dict = new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA', schema), elementSchema, {
-      //extensions: this.interpret.getExtensionProperties(schema),
-      //summary: schema.title,
-      //defaultValue: schema.default,
-      //deprecated: this.interpret.getDeprecation(schema),
-      //apiVersions: this.interpret.getApiVersions(schema),
-      //example: this.interpret.getExample(schema),
-      //externalDocs: this.interpret.getExternalDocs(schema),
-      //serialization: this.interpret.getSerialization(schema),
+
 
     });
     this.codeModel.schemas.add(dict);
@@ -393,7 +390,7 @@ export class ModelerFour {
     for (const { key: propertyName, value: property } of this.resolveDictionary(schema.properties)) {
       this.use(<OpenAPI.Refable<OpenAPI.Schema>>property, (pSchemaName, pSchema) => {
         const pType = this.processSchema(pSchemaName || `typeFor${propertyName}`, pSchema);
-        const prop = objectSchema.addProperty(new Property(propertyName || this.interpret.getName(propertyName, property), this.interpret.getDescription('PROPERTY-DESCRIPTION-MISSING', property), pType, {
+        const prop = objectSchema.addProperty(new Property(propertyName || this.interpret.getName(propertyName, property), this.interpret.getDescription(pType.language.default.description, property), pType, {
           readOnly: property.readOnly,
           nullable: property.nullable,
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
@@ -500,25 +497,8 @@ export class ModelerFour {
           objectSchema.parents.all.push(p);
         }
       }
-
-
-      //objectSchema
-      /* const finalType = new AndSchema(n, schema.description || 'MISSING-SCHEMA-DESCRIPTION-ANDSCHEMA', {
-        allOf: andTypes,
-        apiVersions: this.interpret.getApiVersions(schema),
-        discriminatorValue,
-      });
-
-      finalType.language.default.namespace = pascalCase(`Api ${minimum(values(finalType.apiVersions).select(each => each.version).toArray())}`);
-      return this.codeModel.schemas.add(finalType);
-      */
     }
     return objectSchema;
-    // const andSchemas = andTypes.map( each => this.processSchema(''| each.) )
-
-    // [<I> and <B>] OR <C>
-
-    // throw new Error('Method not implemented.');
   }
   processOdataSchema(name: string, schema: OpenAPI.Schema): ODataQuerySchema {
     throw new Error('Method not implemented.');
@@ -777,6 +757,10 @@ export class ModelerFour {
 
   processOperation(operation: OpenAPI.HttpOperation | undefined, httpMethod: string, path: string, pathItem: OpenAPI.PathItem) {
     return this.should(operation, (operation) => {
+      path = this.interpret.getPath(pathItem, operation, path);
+      const p = path.indexOf('?');
+      path = p > -1 ? path.substr(0, p) : path;
+
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.
@@ -787,24 +771,160 @@ export class ModelerFour {
         apiVersions: this.interpret.getApiVersions(pathItem)
       }));
 
+      // create $host parameters from servers information.
+      // $host is comprised of []
+      const servers = values(operation.servers).toArray();
+
+      switch (servers.length) {
+        case 0:
+          throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no server information.`);
+
+        case 1: {
+          const server = servers[0];
+          // trim extraneous slash .
+          const uri = server.url.endsWith('/') && path.startsWith('/') ? server.url.substr(0, server.url.length - 1) : server.url;
+
+          if (length(server.variables) === 0) {
+            // scenario 1 : single static value
+
+
+            // check if we have the $host parameter foor this uri yet.
+            let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === '$host' && each.clientDefaultValue === uri);
+            if (!p) {
+              p = new Parameter('$host', 'server parameter', this.stringSchema, {
+                required: true,
+                implementation: ImplementationLocation.Client,
+                protocol: {
+                  http: new HttpParameter(ParameterLocation.Path)
+                },
+                clientDefaultValue: uri
+              });
+              // add it to the global parameter list
+              (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
+            }
+            // add it to the request
+            op.request.addParameter(p);
+            // and update the path for the operation.
+            path = `{$host}${path}`;
+          } else {
+            // scenario 3 : single parameterized value
+
+            for (const { key, value } of items(server.variables).where(each => !!each.key)) {
+              const sch = value.enum ? this.processChoiceSchema(key, <OpenAPI.Schema>{ type: 'string', enum: value.enum, description: value.description || `${key} - server parameter` }) : this.stringSchema;
+
+              const clientdefault = value.default ? value.default : undefined;
+              let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === key && each.clientDefaultValue === clientdefault);
+              if (!p) {
+                p = new Parameter(key, value.description || `${key} - server parameter`, sch, {
+                  required: true,
+                  implementation: ImplementationLocation.Client,
+                  protocol: {
+                    http: new HttpParameter(ParameterLocation.Path)
+                  },
+                  clientDefaultValue: clientdefault
+                });
+                // add it to the global parameter list
+                (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
+              }
+              // add the parameter to the operaiton
+              op.request.addParameter(p);
+            }
+            // and update the path for the operation. (copy the template onto the path)
+            path = `${uri}${path}`;
+          }
+        }
+          break;
+
+        default: {
+          if (values(servers).any(each => length(each.variables) > 0)) {
+            // scenario 4 : multiple parameterized value - not valid.
+            throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has multiple server information with parameterized values.`);
+          }
+          const sss = servers.join(',');
+          let choiceSchema = this.codeModel.schemas.choices?.find(each => each.choices.map(choice => choice.value).join(',') === sss);
+          if (!choiceSchema) {
+            choiceSchema = this.codeModel.schemas.add(new ChoiceSchema('host-options', 'choices for server host', {
+              choices: servers.map(each => new ChoiceValue(each.url, `host: ${each.url}`, each.url))
+            }));
+          }
+          let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === '$host' && each.clientDefaultValue === servers[0].url);
+          if (!p) {
+            p = new Parameter('$host', 'server parameter', choiceSchema, {
+              required: true,
+              implementation: ImplementationLocation.Client,
+              protocol: {
+                http: new HttpParameter(ParameterLocation.Path)
+              },
+              clientDefaultValue: servers[0].url
+            });
+            // add it to the global parameter list
+            (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
+          }
+          // scenario 2 : multiple static value
+          op.request.addParameter(p);
+
+          // update the path to have a $host parameter.
+          path = `{$host}${path}`;
+        }
+      }
+
+
       // === Request === 
       const httpRequest = op.request.protocol.http = SetType(HttpRequest, {
         method: httpMethod,
-        path: this.interpret.getPath(pathItem, operation, path),
-        servers: this.interpret.getServers(operation)
+        path: path // this.interpret.getPath(pathItem, operation, path),
       });
 
       // get all the parameters for the operation
       this.resolveArray(operation.parameters).select(parameter => {
         this.use(parameter.schema, (name, schema) => {
-          const param = op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING-PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
-            required: parameter.required ? true : undefined,
-            implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
-            extensions: this.interpret.getExtensionProperties(parameter)
 
-          }));
+          if (this.interpret.isApiVersionParameter(parameter)) {
+            // use the API versions information for this operation to give the values that should be used 
+            // notes: 
+            // legal values for apiversion parameter, are the x-ms-metadata.apiversions values
 
-          param.protocol.http = new HttpParameter(parameter.in);
+            // if there is a single apiversion value, you'll see a constant parameter.
+
+            // if there are multiple apiversion values, 
+            //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
+            //  - otherwise, you'll get a sealed choice parameter.
+
+            const apiversions = this.interpret.getApiVersionValues(pathItem);
+            if (apiversions.length === 0) {
+              // !!! 
+              throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no apiversions but has an apiversion parameter.`);
+            }
+            if (apiversions.length === 1) {
+              const apiVersionConst = this.codeModel.schemas.add(new ConstantSchema(`ApiVersion-${apiversions[0]}`, `Api Version (${apiversions[0]})`, {
+                valueType: this.stringSchema,
+                value: new ConstantValue(apiversions[0])
+              }));
+
+              return op.request.addParameter(new Parameter('ApiVersion', 'Api Version', apiVersionConst, {
+                required: parameter.required ? true : undefined,
+                //implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
+                implementation: ImplementationLocation.Client,
+                protocol: {
+                  http: new HttpParameter(ParameterLocation.Query)
+                }
+              }));
+            }
+
+            // multiple api versions. okaledokaley
+            throw new Error('MultiApiVersion Not Ready Yet');
+
+          } else {
+            // Not an APIVersion Parameter
+            return op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING-PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
+              required: parameter.required ? true : undefined,
+              implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
+              extensions: this.interpret.getExtensionProperties(parameter),
+              protocol: {
+                http: new HttpParameter(parameter.in)
+              }
+            }));
+          }
         });
       }).toArray();
 

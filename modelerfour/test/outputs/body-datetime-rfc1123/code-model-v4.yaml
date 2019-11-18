@@ -1,39 +1,30 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_5
-    $key: Error
+  - !<!ObjectSchema> &ref_4
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: status
-      schema: !<!NumberSchema> &ref_0
-        $key: typeForstatus
+      schema: !<!NumberSchema> &ref_1
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: message
-      schema: !<!StringSchema> &ref_1
-        $key: Error-message
+      schema: !<!StringSchema> &ref_0
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -42,12 +33,11 @@ schemas: !<!Schemas>
             name: Error-message
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -57,9 +47,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   constants:
   - !<!ConstantSchema> &ref_6
-    $key: paths·datetimerfc1123-min·get·responses·200·content·application-json·schema
     type: constant
-    description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -70,13 +58,11 @@ schemas: !<!Schemas>
           name: ''
           description: ''
     valueType: !<!StringSchema> &ref_2
-      $key: string
       type: string
-      description: ''
       language: !<!Languages> 
         default:
           name: string
-          description: ''
+          description: simple string
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -84,11 +70,9 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   dateTimes:
-  - !<!DateTimeSchema> &ref_4
-    $key: paths·datetimerfc1123-null·get·responses·200·content·application-json·schema
+  - !<!DateTimeSchema> &ref_3
     type: date-time
     format: date-time-rfc1123
-    description: MISSING-SCHEMA-DESCRIPTION-DATETIME
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -98,10 +82,23 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-DATETIME
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_0
-  strings:
   - *ref_1
+  strings:
   - *ref_2
+  - *ref_0
+globalParameters:
+- !<!Parameter> &ref_5
+  schema: *ref_2
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-datetime-rfc1123
@@ -110,30 +107,23 @@ operationGroups:
   $key: datetimerfc1123
   operations:
   - !<!Operation> 
-    $key: getNull
-    description: Get null datetime value
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/null
+          path: '{$host}/datetimerfc1123/null'
           method: get
-          servers:
-          - !<!HttpServer> &ref_3
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -147,7 +137,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -165,25 +155,23 @@ operationGroups:
         description: Get null datetime value
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: getInvalid
-    description: Get invalid datetime value
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/invalid
+          path: '{$host}/datetimerfc1123/invalid'
           method: get
-          servers:
-          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -197,7 +185,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -215,25 +203,23 @@ operationGroups:
         description: Get invalid datetime value
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: getOverflow
-    description: Get overflow datetime value
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/overflow
+          path: '{$host}/datetimerfc1123/overflow'
           method: get
-          servers:
-          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -247,7 +233,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -265,25 +251,23 @@ operationGroups:
         description: Get overflow datetime value
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: getUnderflow
-    description: Get underflow datetime value
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/underflow
+          path: '{$host}/datetimerfc1123/underflow'
           method: get
-          servers:
-          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -297,7 +281,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -315,18 +299,16 @@ operationGroups:
         description: Get underflow datetime value
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: putUtcMaxDateTime
-    description: 'Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_5
       - !<!Parameter> 
-        $key: datetimeBody
-        schema: *ref_4
-        description: ''
+        schema: *ref_3
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
@@ -343,13 +325,11 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /datetimerfc1123/max
+          path: '{$host}/datetimerfc1123/max'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_3
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -362,7 +342,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -382,25 +362,23 @@ operationGroups:
         description: 'Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT'
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: getUtcLowercaseMaxDateTime
-    description: 'Get max datetime value fri, 31 dec 9999 23:59:59 gmt'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/max/lowercase
+          path: '{$host}/datetimerfc1123/max/lowercase'
           method: get
-          servers:
-          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -414,7 +392,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -432,25 +410,23 @@ operationGroups:
         description: 'Get max datetime value fri, 31 dec 9999 23:59:59 gmt'
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: getUtcUppercaseMaxDateTime
-    description: 'Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/max/uppercase
+          path: '{$host}/datetimerfc1123/max/uppercase'
           method: get
-          servers:
-          - *ref_3
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -464,7 +440,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -482,18 +458,16 @@ operationGroups:
         description: 'Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT'
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: putUtcMinDateTime
-    description: 'Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_5
       - !<!Parameter> 
-        $key: datetimeBody
-        schema: *ref_4
-        description: ''
+        schema: *ref_3
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
@@ -510,13 +484,11 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /datetimerfc1123/min
+          path: '{$host}/datetimerfc1123/min'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_3
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -529,7 +501,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -549,22 +521,20 @@ operationGroups:
         description: 'Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT'
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: getUtcMinDateTime
-    description: 'Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /datetimerfc1123/min
+          path: '{$host}/datetimerfc1123/min'
           method: get
-          servers:
-          - *ref_3
     responses:
     - !<!SchemaResponse> 
       schema: *ref_6
@@ -581,7 +551,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -608,6 +578,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_3
+  http: !<!HttpModel> {}

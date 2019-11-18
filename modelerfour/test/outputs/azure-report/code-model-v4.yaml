@@ -2,9 +2,7 @@
 schemas: !<!Schemas> 
   objects:
   - !<!ObjectSchema> 
-    $key: paths·report-azure·get·responses·200·content·application-json·schema
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -15,38 +13,29 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_6
-    $key: Error
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: status
       schema: !<!NumberSchema> &ref_1
-        $key: typeForstatus
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: message
       schema: !<!StringSchema> &ref_0
-        $key: Error-message
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -55,12 +44,11 @@ schemas: !<!Schemas>
             name: Error-message
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -70,13 +58,9 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - !<!DictionarySchema> &ref_5
-    $key: paths·report-azure·get·responses·200·content·application-json·schema
     type: dictionary
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     elementType: !<!NumberSchema> &ref_2
-      $key: paths·report-azure·get·responses·200·content·application-json·schema·additionalproperties
       type: integer
-      description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       apiVersions:
       - !<!ApiVersion> 
         version: 1.0.0
@@ -95,10 +79,15 @@ schemas: !<!Schemas>
   - *ref_2
   - *ref_1
   strings:
-  - !<!StringSchema> &ref_4
-    $key: paths·report-azure·get·parameters·0·schema
+  - !<!StringSchema> &ref_3
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -108,6 +97,19 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
   - *ref_0
+globalParameters:
+- !<!Parameter> &ref_7
+  schema: *ref_3
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: azure-report
@@ -116,17 +118,14 @@ operationGroups:
   $key: ''
   operations:
   - !<!Operation> 
-    $key: getReport
-    description: Get test coverage report
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_7
       - !<!Parameter> 
-        $key: qualifier
         schema: *ref_4
-        description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
         implementation: Method
         language: !<!Languages> 
           default:
@@ -141,15 +140,8 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /report/azure
+          path: '{$host}/report/azure'
           method: get
-          servers:
-          - !<!HttpServer> &ref_3
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -193,6 +185,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_3
+  http: !<!HttpModel> {}

@@ -127,11 +127,16 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
     for (const each of folders) {
       if ([
         'body-formdata',
+        'body-formdata-urlencoded',
 
       ].indexOf(each) > -1) {
         console.log(`Skipping: ${each}`);
         continue;
       }
+      /* if ('body-complex' !== each) {
+        console.log(`Skipping: ${each}`);
+        continue;
+      } */
       console.log(`Processing: ${each}`);
       const session = await createTestSession<Model>({}, `${__dirname}/../../test/inputs/${each}`, ['openapi-document.json'], []);
 
