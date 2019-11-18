@@ -2,23 +2,16 @@
 schemas: !<!Schemas> 
   objects:
   - !<!ObjectSchema> &ref_5
-    $key: AvailabilitySetUpdateParameters
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: tags
       schema: !<!DictionarySchema> &ref_1
-        $key: AvailabilitySetUpdateParameters-tags
         type: dictionary
-        description: A description about the set of tags.
         elementType: !<!StringSchema> &ref_0
-          $key: components·schemas·availabilitysetupdateparameters·properties·tags·additionalproperties
           type: string
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
@@ -32,7 +25,6 @@ schemas: !<!Schemas>
             name: AvailabilitySetUpdateParameters-tags
             description: A description about the set of tags.
         protocol: !<!Protocols> {}
-      description: A description about the set of tags.
       required: true
       serializedName: tags
       language: !<!Languages> 
@@ -47,9 +39,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> 
-    $key: AvailabilitySetUpdateParameters-tags
     type: object
-    description: A description about the set of tags.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -63,10 +53,15 @@ schemas: !<!Schemas>
   dictionaries:
   - *ref_1
   strings:
-  - !<!StringSchema> &ref_3
-    $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
+  - !<!StringSchema> &ref_2
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -76,9 +71,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_4
-    $key: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -89,6 +82,19 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
   - *ref_0
+globalParameters:
+- !<!Parameter> &ref_6
+  schema: *ref_2
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: parameter-flattening
@@ -97,17 +103,14 @@ operationGroups:
   $key: AvailabilitySets
   operations:
   - !<!Operation> 
-    $key: Update
-    description: Updates the tags for an availability set.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_6
       - !<!Parameter> 
-        $key: resourceGroupName
         schema: *ref_3
-        description: The name of the resource group.
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -118,9 +121,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        $key: availabilitySetName
         schema: *ref_4
-        description: The name of the storage availability set.
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -131,10 +132,9 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        $key: tags
         schema: *ref_5
-        description: The tags.
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: tags
         language: !<!Languages> 
@@ -151,18 +151,11 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
+          path: '{$host}/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
           method: patch
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - !<!HttpServer> &ref_2
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -190,6 +183,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_2
+  http: !<!HttpModel> {}

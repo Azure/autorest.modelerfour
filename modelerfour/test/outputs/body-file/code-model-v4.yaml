@@ -2,38 +2,29 @@
 schemas: !<!Schemas> 
   objects:
   - !<!ObjectSchema> &ref_3
-    $key: Error
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: status
-      schema: !<!NumberSchema> &ref_0
-        $key: typeForstatus
+      schema: !<!NumberSchema> &ref_1
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: message
-      schema: !<!StringSchema> &ref_1
-        $key: Error-message
+      schema: !<!StringSchema> &ref_0
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -42,12 +33,11 @@ schemas: !<!Schemas>
             name: Error-message
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -56,9 +46,29 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_0
-  strings:
   - *ref_1
+  strings:
+  - !<!StringSchema> &ref_2
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - *ref_0
+globalParameters:
+- !<!Parameter> &ref_4
+  schema: *ref_2
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-file
@@ -67,27 +77,20 @@ operationGroups:
   $key: files
   operations:
   - !<!Operation> 
-    $key: GetFile
-    description: Get file
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_4
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /files/stream/nonempty
+          path: '{$host}/files/stream/nonempty'
           method: get
-          servers:
-          - !<!HttpServer> &ref_2
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -122,22 +125,20 @@ operationGroups:
         description: Get file
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: GetFileLarge
-    description: Get a large file
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_4
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /files/stream/verylarge
+          path: '{$host}/files/stream/verylarge'
           method: get
-          servers:
-          - *ref_2
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -172,22 +173,20 @@ operationGroups:
         description: Get a large file
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: GetEmptyFile
-    description: Get empty file
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_4
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /files/stream/empty
+          path: '{$host}/files/stream/empty'
           method: get
-          servers:
-          - *ref_2
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -231,6 +230,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_2
+  http: !<!HttpModel> {}

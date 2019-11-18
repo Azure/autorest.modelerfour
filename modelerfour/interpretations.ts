@@ -1,7 +1,7 @@
 import { Session } from '@azure-tools/autorest-extension-base';
 import * as OpenAPI from '@azure-tools/openapi';
 import { values, length, items, ToDictionary, Dictionary, keys } from '@azure-tools/linq';
-import { CodeModel, HttpServer, ServerVariable, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
+import { CodeModel, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
 import { StringFormat } from '@azure-tools/openapi';
 import { getPascalIdentifier } from '@azure-tools/codegen';
 
@@ -56,6 +56,11 @@ const specialCharacterMapping: { [character: string]: string } = {
   '~': 'tilde'
 };
 
+const apiVersionParameterNames = [
+  'api-version',
+  'apiversion',
+];
+
 export function getValidEnumValueName(originalString: string): string {
   if (typeof originalString === 'string') {
     return !originalString.match(/[A-Za-z0-9]/g) ?
@@ -66,6 +71,9 @@ export function getValidEnumValueName(originalString: string): string {
 }
 
 export class Interpretations {
+  isApiVersionParameter(parameter: OpenAPI.Parameter): boolean {
+    return !!(parameter['x-ms-api-version'] || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
+  }
   getEnumChoices(schema: OpenAPI.Schema): Array<ChoiceValue> {
     if (schema && schema.enum) {
       const xmse = <XMSEnum>schema['x-ms-enum'];
@@ -115,6 +123,12 @@ export class Interpretations {
       return v;
     }
     return undefined;
+  }
+  getApiVersionValues(node: OpenAPI.Schema | OpenAPI.HttpOperation | OpenAPI.PathItem): Array<string> {
+    if (node['x-ms-metadata'] && node['x-ms-metadata']['apiVersions']) {
+      return values(<Array<string>>node['x-ms-metadata']['apiVersions']).distinct().toArray();
+    }
+    return [];
   }
   getDeprecation(schema: OpenAPI.Schema): Deprecation | undefined {
     if (schema.deprecated) {
@@ -188,47 +202,49 @@ export class Interpretations {
     return this.xmsMeta(pathItem, 'path') || this.xmsMeta(operation, 'path') || path;
   }
 
-  /** creates server entries that are kept in the codeModel.protocol.http, and then referenced in each operation
-   * 
-   * @note - this is where deduplication of server entries happens.
-    */
-  getServers(operation: OpenAPI.HttpOperation): Array<HttpServer> {
 
-    return values(operation.servers).select(server => {
-      const p = <HttpModel>this.codeModel.protocol.http;
-      const f = p && p.servers.find(each => each.url === server.url);
-      if (f) {
-        return f;
-      }
-      const s = new HttpServer(server.url, this.getDescription('MISSING-SERVER-DESCRIPTION', server));
-      if (server.variables && length(server.variables) > 0) {
-        s.variables = items(server.variables).where(each => !!each.key).select(each => {
-          const description = this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', each.value);
-
-          const variable = each.value;
-
-          const schema = variable.enum ?
-            this.getEnumSchemaForVarible(each.key, variable) :
-            this.codeModel.schemas.add(new StringSchema(`ServerVariable/${each.key}`, description));
-
-          const serverVariable = new ServerVariable(
-            each.key,
-            this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', variable),
-            schema,
-            {
-              default: variable.default,
-              // required:  TODO: implement required on server variables
-            });
-          return serverVariable;
-        }).toArray();
-      }
-
-      (<HttpModel>this.codeModel.protocol.http).servers.push(s);
-      return s;
-
-    }).toArray();
-  }
-
+  /*
+    /** creates server entries that are kept in the codeModel.protocol.http, and then referenced in each operation
+     * 
+     * @note - this is where deduplication of server entries happens.
+      * /
+    getServers(operation: OpenAPI.HttpOperation): Array<HttpServer> {
+  
+      return values(operation.servers).select(server => {
+        const p = <HttpModel>this.codeModel.protocol.http;
+        const f = p && p.servers.find(each => each.url === server.url);
+        if (f) {
+          return f;
+        }
+        const s = new HttpServer(server.url, this.getDescription('MISSING-SERVER-DESCRIPTION', server));
+        if (server.variables && length(server.variables) > 0) {
+          s.variables = items(server.variables).where(each => !!each.key).select(each => {
+            const description = this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', each.value);
+  
+            const variable = each.value;
+  
+            const schema = variable.enum ?
+              this.getEnumSchemaForVarible(each.key, variable) :
+              this.codeModel.schemas.add(new StringSchema(`ServerVariable/${each.key}`, description));
+  
+            const serverVariable = new ServerVariable(
+              each.key,
+              this.getDescription('MISSING-SERVER_VARIABLE-DESCRIPTION', variable),
+              schema,
+              {
+                default: variable.default,
+                // required:  TODO: implement required on server variables
+              });
+            return serverVariable;
+          }).toArray();
+        }
+  
+        (<HttpModel>this.codeModel.protocol.http).servers.push(s);
+        return s;
+  
+      }).toArray();
+    }
+  */
 
   getEnumSchemaForVarible(name: string, somethingWithEnum: { enum?: Array<string> }): ChoiceSchema {
     return new ChoiceSchema(name, this.getDescription('MISSING-SERVER-VARIABLE-ENUM-DESCRIPTION', somethingWithEnum));

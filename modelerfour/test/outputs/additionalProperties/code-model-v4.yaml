@@ -1,33 +1,25 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_1
-    $key: PetAPTrue
+  - !<!ObjectSchema> &ref_2
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_2
-        $key: CatAPTrue
+      - !<!ObjectSchema> &ref_3
         type: object
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_1
-          - !<!DictionarySchema> &ref_0
-            $key: PetAPTrue
+          - *ref_2
+          - !<!DictionarySchema> &ref_1
             type: dictionary
-            description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
             elementType: !<!AnySchema> 
-              $key: any
               type: any
-              description: MISSING-SCHEMA-DESCRIPTION-ANY
               language: !<!Languages> 
                 default:
                   name: any
@@ -39,25 +31,21 @@ schemas: !<!Schemas>
                 description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
             protocol: !<!Protocols> {}
           immediate:
-          - *ref_1
+          - *ref_2
         properties:
         - !<!Property> 
-          $key: friendly
           schema: !<!BooleanSchema> &ref_24
-            $key: typeForfriendly
             type: boolean
-            description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
             language: !<!Languages> 
               default:
                 name: typeForfriendly
                 description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
             protocol: !<!Protocols> {}
-          description: PROPERTY-DESCRIPTION-MISSING
           serializedName: friendly
           language: !<!Languages> 
             default:
               name: friendly
-              description: PROPERTY-DESCRIPTION-MISSING
+              description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -66,39 +54,32 @@ schemas: !<!Schemas>
             namespace: Api10
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_2
+      - *ref_3
     parents: !<!Relations> 
       all:
-      - *ref_0
+      - *ref_1
       immediate:
-      - *ref_0
+      - *ref_1
     properties:
     - !<!Property> 
-      $key: id
-      schema: !<!NumberSchema> &ref_6
-        $key: typeForid
+      schema: !<!NumberSchema> &ref_15
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForid
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: id
       language: !<!Languages> 
         default:
           name: id
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: name
-      schema: !<!StringSchema> &ref_14
-        $key: PetAPTrue-name
+      schema: !<!StringSchema> &ref_0
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -107,33 +88,28 @@ schemas: !<!Schemas>
             name: PetAPTrue-name
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: status
       schema: !<!BooleanSchema> &ref_23
-        $key: typeForstatus
         type: boolean
-        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       readOnly: true
       required: false
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -142,38 +118,29 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_32
-    $key: Error
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: status
-      schema: !<!NumberSchema> &ref_7
-        $key: typeForstatus
+      schema: !<!NumberSchema> &ref_16
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: message
-      schema: !<!StringSchema> &ref_15
-        $key: Error-message
+      schema: !<!StringSchema> &ref_4
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -182,12 +149,11 @@ schemas: !<!Schemas>
             name: Error-message
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -195,24 +161,18 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - *ref_2
-  - !<!ObjectSchema> &ref_33
-    $key: PetAPObject
+  - *ref_3
+  - !<!ObjectSchema> &ref_34
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_3
-        $key: PetAPObject
+      - !<!DictionarySchema> &ref_6
         type: dictionary
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         elementType: !<!AnySchema> 
-          $key: any
           type: any
-          description: MISSING-SCHEMA-DESCRIPTION-ANY
           language: !<!Languages> 
             default:
               name: any
@@ -224,34 +184,27 @@ schemas: !<!Schemas>
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_3
+      - *ref_6
     properties:
     - !<!Property> 
-      $key: id
-      schema: !<!NumberSchema> &ref_8
-        $key: typeForid
+      schema: !<!NumberSchema> &ref_17
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForid
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: id
       language: !<!Languages> 
         default:
           name: id
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: name
-      schema: !<!StringSchema> &ref_16
-        $key: PetAPObject-name
+      schema: !<!StringSchema> &ref_5
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -260,33 +213,28 @@ schemas: !<!Schemas>
             name: PetAPObject-name
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: status
       schema: !<!BooleanSchema> &ref_25
-        $key: typeForstatus
         type: boolean
-        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       readOnly: true
       required: false
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -294,23 +242,17 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_34
-    $key: PetAPString
+  - !<!ObjectSchema> &ref_35
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_4
-        $key: PetAPString
+      - !<!DictionarySchema> &ref_9
         type: dictionary
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: !<!StringSchema> &ref_18
-          $key: components·schemas·petapstring·additionalproperties
+        elementType: !<!StringSchema> &ref_8
           type: string
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
@@ -325,34 +267,27 @@ schemas: !<!Schemas>
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_4
+      - *ref_9
     properties:
     - !<!Property> 
-      $key: id
-      schema: !<!NumberSchema> &ref_9
-        $key: typeForid
+      schema: !<!NumberSchema> &ref_18
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForid
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: id
       language: !<!Languages> 
         default:
           name: id
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: name
-      schema: !<!StringSchema> &ref_17
-        $key: PetAPString-name
+      schema: !<!StringSchema> &ref_7
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -361,33 +296,28 @@ schemas: !<!Schemas>
             name: PetAPString-name
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: status
       schema: !<!BooleanSchema> &ref_26
-        $key: typeForstatus
         type: boolean
-        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       readOnly: true
       required: false
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -395,40 +325,31 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_35
-    $key: PetAPInProperties
+  - !<!ObjectSchema> &ref_36
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: id
-      schema: !<!NumberSchema> &ref_10
-        $key: typeForid
+      schema: !<!NumberSchema> &ref_19
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForid
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: id
       language: !<!Languages> 
         default:
           name: id
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: name
-      schema: !<!StringSchema> &ref_19
-        $key: PetAPInProperties-name
+      schema: !<!StringSchema> &ref_10
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -437,44 +358,34 @@ schemas: !<!Schemas>
             name: PetAPInProperties-name
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: status
       schema: !<!BooleanSchema> &ref_27
-        $key: typeForstatus
         type: boolean
-        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       readOnly: true
       required: false
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: additionalProperties
       schema: !<!DictionarySchema> &ref_29
-        $key: PetAPInProperties-additionalProperties
         type: dictionary
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: !<!NumberSchema> &ref_11
-          $key: components·schemas·petapinproperties·properties·additionalproperties·additionalproperties
+        elementType: !<!NumberSchema> &ref_20
           type: number
-          description: MISSING-SCHEMA-DESCRIPTION-NUMBER
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
@@ -489,13 +400,12 @@ schemas: !<!Schemas>
             name: PetAPInProperties-additionalProperties
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: additionalProperties
       language: !<!Languages> 
         default:
           name: additionalProperties
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -504,9 +414,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> 
-    $key: PetAPInProperties-additionalProperties
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -516,23 +424,17 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api10
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_36
-    $key: PetAPInPropertiesWithAPString
+  - !<!ObjectSchema> &ref_37
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_5
-        $key: PetAPInPropertiesWithAPString
+      - !<!DictionarySchema> &ref_14
         type: dictionary
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: !<!StringSchema> &ref_22
-          $key: components·schemas·petapinpropertieswithapstring·additionalproperties
+        elementType: !<!StringSchema> &ref_13
           type: string
-          description: MISSING-SCHEMA-DESCRIPTION-STRING
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
@@ -547,34 +449,27 @@ schemas: !<!Schemas>
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_5
+      - *ref_14
     properties:
     - !<!Property> 
-      $key: id
-      schema: !<!NumberSchema> &ref_12
-        $key: typeForid
+      schema: !<!NumberSchema> &ref_21
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForid
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: id
       language: !<!Languages> 
         default:
           name: id
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: name
-      schema: !<!StringSchema> &ref_20
-        $key: PetAPInPropertiesWithAPString-name
+      schema: !<!StringSchema> &ref_11
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -583,40 +478,32 @@ schemas: !<!Schemas>
             name: PetAPInPropertiesWithAPString-name
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: name
       language: !<!Languages> 
         default:
           name: name
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: status
       schema: !<!BooleanSchema> &ref_28
-        $key: typeForstatus
         type: boolean
-        description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       readOnly: true
       required: false
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-BOOLEAN
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: '@odata.location'
-      schema: !<!StringSchema> &ref_21
-        $key: PetAPInPropertiesWithAPString-@odata.location
+      schema: !<!StringSchema> &ref_12
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -625,24 +512,18 @@ schemas: !<!Schemas>
             name: PetAPInPropertiesWithAPString-@odata.location
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: true
       serializedName: '@odata.location'
       language: !<!Languages> 
         default:
           name: '@odata.location'
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: additionalProperties
       schema: !<!DictionarySchema> &ref_30
-        $key: PetAPInPropertiesWithAPString-additionalProperties
         type: dictionary
-        description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
-        elementType: !<!NumberSchema> &ref_13
-          $key: components·schemas·petapinpropertieswithapstring·properties·additionalproperties·additionalproperties
+        elementType: !<!NumberSchema> &ref_22
           type: number
-          description: MISSING-SCHEMA-DESCRIPTION-NUMBER
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
@@ -657,13 +538,12 @@ schemas: !<!Schemas>
             name: PetAPInPropertiesWithAPString-additionalProperties
             description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       required: false
       serializedName: additionalProperties
       language: !<!Languages> 
         default:
           name: additionalProperties
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -672,9 +552,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> 
-    $key: PetAPInPropertiesWithAPString-additionalProperties
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -685,9 +563,7 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> 
-    $key: components·schemas·petaptrue·additionalproperties
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -698,12 +574,12 @@ schemas: !<!Schemas>
         namespace: Api10
     protocol: !<!Protocols> {}
   dictionaries:
-  - *ref_0
-  - *ref_3
-  - *ref_4
+  - *ref_1
+  - *ref_6
+  - *ref_9
   - *ref_29
   - *ref_30
-  - *ref_5
+  - *ref_14
   booleans:
   - *ref_23
   - *ref_24
@@ -712,16 +588,6 @@ schemas: !<!Schemas>
   - *ref_27
   - *ref_28
   numbers:
-  - *ref_6
-  - *ref_7
-  - *ref_8
-  - *ref_9
-  - *ref_10
-  - *ref_11
-  - *ref_12
-  - *ref_13
-  strings:
-  - *ref_14
   - *ref_15
   - *ref_16
   - *ref_17
@@ -730,6 +596,36 @@ schemas: !<!Schemas>
   - *ref_20
   - *ref_21
   - *ref_22
+  strings:
+  - !<!StringSchema> &ref_31
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - *ref_0
+  - *ref_4
+  - *ref_5
+  - *ref_7
+  - *ref_8
+  - *ref_10
+  - *ref_11
+  - *ref_12
+  - *ref_13
+globalParameters:
+- !<!Parameter> &ref_33
+  schema: *ref_31
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: additionalProperties
@@ -738,18 +634,16 @@ operationGroups:
   $key: Pets
   operations:
   - !<!Operation> 
-    $key: CreateAPTrue
-    description: Create a Pet which contains more properties than what is defined.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_33
       - !<!Parameter> 
-        $key: createParameters
-        schema: *ref_1
-        description: ''
+        schema: *ref_2
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: createParameters
         language: !<!Languages> 
@@ -766,21 +660,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /additionalProperties/true
+          path: '{$host}/additionalProperties/true'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - !<!HttpServer> &ref_31
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -814,18 +701,16 @@ operationGroups:
         description: Create a Pet which contains more properties than what is defined.
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: CreateCatAPTrue
-    description: Create a CatAPTrue which contains more properties than what is defined.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_33
       - !<!Parameter> 
-        $key: createParameters
-        schema: *ref_2
-        description: ''
+        schema: *ref_3
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: createParameters
         language: !<!Languages> 
@@ -842,16 +727,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /additionalProperties/true-subclass
+          path: '{$host}/additionalProperties/true-subclass'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_31
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -885,18 +768,16 @@ operationGroups:
         description: Create a CatAPTrue which contains more properties than what is defined.
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: CreateAPObject
-    description: Create a Pet which contains more properties than what is defined.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_33
       - !<!Parameter> 
-        $key: createParameters
-        schema: *ref_33
-        description: ''
+        schema: *ref_34
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: createParameters
         language: !<!Languages> 
@@ -913,16 +794,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /additionalProperties/type/object
+          path: '{$host}/additionalProperties/type/object'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_31
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_33
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -956,18 +835,16 @@ operationGroups:
         description: Create a Pet which contains more properties than what is defined.
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: CreateAPString
-    description: Create a Pet which contains more properties than what is defined.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_33
       - !<!Parameter> 
-        $key: createParameters
-        schema: *ref_34
-        description: ''
+        schema: *ref_35
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: createParameters
         language: !<!Languages> 
@@ -984,16 +861,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /additionalProperties/type/string
+          path: '{$host}/additionalProperties/type/string'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_31
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_35
       language: !<!Languages> 
         default:
           name: ''
@@ -1027,18 +902,16 @@ operationGroups:
         description: Create a Pet which contains more properties than what is defined.
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: CreateAPInProperties
-    description: Create a Pet which contains more properties than what is defined.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_33
       - !<!Parameter> 
-        $key: createParameters
-        schema: *ref_35
-        description: ''
+        schema: *ref_36
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: createParameters
         language: !<!Languages> 
@@ -1055,16 +928,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /additionalProperties/in/properties
+          path: '{$host}/additionalProperties/in/properties'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_31
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_35
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -1098,18 +969,16 @@ operationGroups:
         description: Create a Pet which contains more properties than what is defined.
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: CreateAPInPropertiesWithAPString
-    description: Create a Pet which contains more properties than what is defined.
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_33
       - !<!Parameter> 
-        $key: createParameters
-        schema: *ref_36
-        description: ''
+        schema: *ref_37
         implementation: Method
+        required: true
         extensions:
           x-ms-requestBody-name: createParameters
         language: !<!Languages> 
@@ -1126,16 +995,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: /additionalProperties/in/properties/with/additionalProperties/string
+          path: '{$host}/additionalProperties/in/properties/with/additionalProperties/string'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
-          servers:
-          - *ref_31
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_37
       language: !<!Languages> 
         default:
           name: ''
@@ -1178,6 +1045,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_31
+  http: !<!HttpModel> {}

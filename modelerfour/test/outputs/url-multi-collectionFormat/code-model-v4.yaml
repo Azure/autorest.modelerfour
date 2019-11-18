@@ -2,38 +2,29 @@
 schemas: !<!Schemas> 
   objects:
   - !<!ObjectSchema> &ref_7
-    $key: Error
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: status
       schema: !<!NumberSchema> &ref_4
-        $key: typeForstatus
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: message
       schema: !<!StringSchema> &ref_3
-        $key: Error-message
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -42,12 +33,11 @@ schemas: !<!Schemas>
             name: Error-message
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -57,16 +47,12 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   arrays:
   - !<!ArraySchema> &ref_6
-    $key: paths·queries-array-multi-string-null·get·parameters·0·schema
     type: array
-    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     elementType: !<!StringSchema> &ref_0
-      $key: get-0-itemsItem
       type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
       apiVersions:
       - !<!ApiVersion> 
         version: 1.0.0
@@ -80,17 +66,13 @@ schemas: !<!Schemas>
         name: paths·queries-array-multi-string-null·get·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_8
-    $key: paths·queries-array-multi-string-empty·get·parameters·0·schema
+  - !<!ArraySchema> &ref_9
     type: array
-    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     elementType: !<!StringSchema> &ref_1
-      $key: paths·queries-array-multi-string-empty·get·parameters·0·schema·items
       type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
       apiVersions:
       - !<!ApiVersion> 
         version: 1.0.0
@@ -104,17 +86,13 @@ schemas: !<!Schemas>
         name: paths·queries-array-multi-string-empty·get·parameters·0·schema
         description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_9
-    $key: paths·queries-array-multi-string-valid·get·parameters·0·schema
+  - !<!ArraySchema> &ref_10
     type: array
-    description: MISSING-SCHEMA-DESCRIPTION-ARRAYSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     elementType: !<!StringSchema> &ref_2
-      $key: paths·queries-array-multi-string-valid·get·parameters·0·schema·items
       type: string
-      description: MISSING-SCHEMA-DESCRIPTION-STRING
       apiVersions:
       - !<!ApiVersion> 
         version: 1.0.0
@@ -131,10 +109,30 @@ schemas: !<!Schemas>
   numbers:
   - *ref_4
   strings:
+  - !<!StringSchema> &ref_5
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
   - *ref_0
   - *ref_3
   - *ref_1
   - *ref_2
+globalParameters:
+- !<!Parameter> &ref_8
+  schema: *ref_5
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: url-multi-collectionFormat
@@ -143,17 +141,14 @@ operationGroups:
   $key: queries
   operations:
   - !<!Operation> 
-    $key: ArrayStringMultiNull
-    description: Get a null array of string using the multi-array format
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_8
       - !<!Parameter> 
-        $key: arrayQuery
         schema: *ref_6
-        description: a null array of string using the multi-array format
         implementation: Method
         language: !<!Languages> 
           default:
@@ -168,15 +163,8 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /queries/array/multi/string/null
+          path: '{$host}/queries/array/multi/string/null'
           method: get
-          servers:
-          - !<!HttpServer> &ref_5
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -207,17 +195,14 @@ operationGroups:
         description: Get a null array of string using the multi-array format
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: ArrayStringMultiEmpty
-    description: 'Get an empty array [] of string using the multi-array format'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_8
       - !<!Parameter> 
-        $key: arrayQuery
-        schema: *ref_8
-        description: 'an empty array [] of string using the multi-array format'
+        schema: *ref_9
         implementation: Method
         language: !<!Languages> 
           default:
@@ -232,10 +217,8 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /queries/array/multi/string/empty
+          path: '{$host}/queries/array/multi/string/empty'
           method: get
-          servers:
-          - *ref_5
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -266,17 +249,14 @@ operationGroups:
         description: 'Get an empty array [] of string using the multi-array format'
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: ArrayStringMultiValid
-    description: 'Get an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_8
       - !<!Parameter> 
-        $key: arrayQuery
-        schema: *ref_9
-        description: 'an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
+        schema: *ref_10
         implementation: Method
         language: !<!Languages> 
           default:
@@ -291,10 +271,8 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /queries/array/multi/string/valid
+          path: '{$host}/queries/array/multi/string/valid'
           method: get
-          servers:
-          - *ref_5
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -334,6 +312,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_5
+  http: !<!HttpModel> {}

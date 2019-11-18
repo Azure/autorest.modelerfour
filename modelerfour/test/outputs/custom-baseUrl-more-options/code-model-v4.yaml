@@ -2,38 +2,29 @@
 schemas: !<!Schemas> 
   objects:
   - !<!ObjectSchema> &ref_6
-    $key: Error
     type: object
-    description: MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      $key: status
       schema: !<!NumberSchema> &ref_1
-        $key: typeForstatus
         type: integer
-        description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
             description: MISSING-SCHEMA-DESCRIPTION-INTEGER
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      $key: message
       schema: !<!StringSchema> &ref_0
-        $key: Error-message
         type: string
-        description: MISSING-SCHEMA-DESCRIPTION-STRING
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -42,12 +33,11 @@ schemas: !<!Schemas>
             name: Error-message
             description: MISSING-SCHEMA-DESCRIPTION-STRING
         protocol: !<!Protocols> {}
-      description: PROPERTY-DESCRIPTION-MISSING
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: PROPERTY-DESCRIPTION-MISSING
+          description: MISSING-SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -58,37 +48,15 @@ schemas: !<!Schemas>
   numbers:
   - *ref_1
   strings:
-  - !<!StringSchema> 
-    $key: ServerVariable/vault
+  - !<!StringSchema> &ref_2
     type: string
-    description: 'The vault name, e.g. https://myvault'
     language: !<!Languages> 
       default:
-        name: ServerVariable/vault
-        description: 'The vault name, e.g. https://myvault'
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> 
-    $key: ServerVariable/secret
-    type: string
-    description: Secret value.
-    language: !<!Languages> 
-      default:
-        name: ServerVariable/secret
-        description: Secret value.
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> 
-    $key: ServerVariable/dnsSuffix
-    type: string
-    description: A string value that is used as a global part of the parameterized host. Default value 'host'.
-    language: !<!Languages> 
-      default:
-        name: ServerVariable/dnsSuffix
-        description: A string value that is used as a global part of the parameterized host. Default value 'host'.
+        name: string
+        description: simple string
     protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_3
-    $key: paths·customuri-subscriptionid-keyname·get·parameters·0·schema
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -98,9 +66,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_4
-    $key: components·parameters·subscriptionidparameter·schema
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -110,9 +76,7 @@ schemas: !<!Schemas>
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_5
-    $key: paths·customuri-subscriptionid-keyname·get·parameters·2·schema
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -124,9 +88,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_0
   - !<!StringSchema> 
-    $key: components·parameters·dnssuffix·schema
     type: string
-    description: MISSING-SCHEMA-DESCRIPTION-STRING
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -136,6 +98,41 @@ schemas: !<!Schemas>
         name: components·parameters·dnssuffix·schema
         description: MISSING-SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
+globalParameters:
+- !<!Parameter> &ref_7
+  schema: *ref_2
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: vault
+      description: 'The vault name, e.g. https://myvault'
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_8
+  schema: *ref_2
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: secret
+      description: Secret value.
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_9
+  schema: *ref_2
+  clientDefaultValue: host
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: dnsSuffix
+      description: A string value that is used as a global part of the parameterized host. Default value 'host'.
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: custom-baseUrl-more-options
@@ -144,17 +141,16 @@ operationGroups:
   $key: paths
   operations:
   - !<!Operation> 
-    $key: getEmpty
-    description: Get a 200 to test a valid base uri
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_7
+      - *ref_8
+      - *ref_9
       - !<!Parameter> 
-        $key: keyName
         schema: *ref_3
-        description: The key name with value 'key1'.
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -165,9 +161,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        $key: subscriptionId
         schema: *ref_4
-        description: The subscription id with value 'test12'.
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -178,9 +172,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        $key: keyVersion
         schema: *ref_5
-        description: The key version. Default value 'v1'.
         implementation: Method
         language: !<!Languages> 
           default:
@@ -195,40 +187,8 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '/customuri/{subscriptionId}/{keyName}'
+          path: '{vault}{secret}{dnsSuffix}/customuri/{subscriptionId}/{keyName}'
           method: get
-          servers:
-          - !<!HttpServer> &ref_2
-            url: '{vault}{secret}{dnsSuffix}'
-            variables:
-            - !<!ServerVariable> 
-              $key: vault
-              description: 'The vault name, e.g. https://myvault'
-              default: ''
-              language:
-                default:
-                  name: vault
-                  description: 'The vault name, e.g. https://myvault'
-            - !<!ServerVariable> 
-              $key: secret
-              description: Secret value.
-              default: ''
-              language:
-                default:
-                  name: secret
-                  description: Secret value.
-            - !<!ServerVariable> 
-              $key: dnsSuffix
-              description: A string value that is used as a global part of the parameterized host. Default value 'host'.
-              default: host
-              language:
-                default:
-                  name: dnsSuffix
-                  description: A string value that is used as a global part of the parameterized host. Default value 'host'.
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -268,6 +228,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_2
+  http: !<!HttpModel> {}

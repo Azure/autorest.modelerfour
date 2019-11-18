@@ -1,5 +1,26 @@
 !<!CodeModel> 
-schemas: !<!Schemas> {}
+schemas: !<!Schemas> 
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+globalParameters:
+- !<!Parameter> &ref_1
+  schema: *ref_0
+  clientDefaultValue: 'http://localhost:3000'
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: head
@@ -8,27 +29,20 @@ operationGroups:
   $key: httpSuccess
   operations:
   - !<!Operation> 
-    $key: head200
-    description: Return 200 status code if successful
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_1
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /http/success/200
+          path: '{$host}/http/success/200'
           method: head
-          servers:
-          - !<!HttpServer> &ref_0
-            url: 'http://localhost:3000/'
-            language:
-              default:
-                name: server-name
-                description: MISSING-SERVER-DESCRIPTION
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -64,22 +78,20 @@ operationGroups:
         description: Return 200 status code if successful
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: head204
-    description: Return 204 status code if successful
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_1
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /http/success/204
+          path: '{$host}/http/success/204'
           method: head
-          servers:
-          - *ref_0
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -115,22 +127,20 @@ operationGroups:
         description: Return 204 status code if successful
     protocol: !<!Protocols> {}
   - !<!Operation> 
-    $key: head404
-    description: Return 404 status code if successful
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     request: !<!Request> 
+      parameters:
+      - *ref_1
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: /http/success/404
+          path: '{$host}/http/success/404'
           method: head
-          servers:
-          - *ref_0
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -175,6 +185,4 @@ language: !<!Languages>
     name: ''
     description: ''
 protocol: !<!Protocols> 
-  http: !<!HttpModel> 
-    servers:
-    - *ref_0
+  http: !<!HttpModel> {}

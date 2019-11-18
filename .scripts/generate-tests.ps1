@@ -43,7 +43,7 @@ function run-autorest($src) {
 
   $outputFolder = "$outputRoot/$name"
   
-  $txt = "$autorest --pipeline-model:v3 --input-file:$swaggerRoot$src --output-folder:$outputFolde --title:$name --output-artifact:openapi-document $args" 
+  $txt = "$autorest --pipeline-model:v3 --input-file:$swaggerRoot$src --output-folder:$outputFolder --title:$name --output-artifact:openapi-document $args" 
   write-host -fore GREEN "`n--------------------------------------------------------`nGenerating [$name]`n--------------------------------------------------------`n"
   echo $txt
   & $autorest "--version:c:\work\2019\autorest.megarepo\autorest" "--pipeline-model:v3" "--input-file:$swaggerRoot$src" "--output-folder:$outputFolder" "--clear-output-folder" "--title:$name" "--output-artifact:openapi-document" $args
