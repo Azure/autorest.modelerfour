@@ -338,17 +338,17 @@ export class ModelerFour {
   processDictionarySchema(name: string, schema: OpenAPI.Schema): DictionarySchema {
     let elementSchema: Schema;
     if (schema.additionalProperties === true) {
-      elementSchema = new AnySchema('');
+      elementSchema = new AnySchema('<Any object>');
     } else {
       const eschema = this.resolve(schema.additionalProperties);
       const ei = eschema.instance;
-      if (ei && ei.type === JsonType.Object && length(ei.allOf) === 0 && !ei.discriminator) {
-        elementSchema = new AnySchema(this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-ANY', ei));
+      if (ei && this.interpret.isEmptyObject(ei)) {
+        elementSchema = new AnySchema(this.interpret.getDescription('<Any object>', ei));
       } else {
         elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance);
       }
     }
-    const dict = new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA', schema), elementSchema, {
+    const dict = new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription(`Dictionary of <${elementSchema.language.default.name}>`, schema), elementSchema, {
 
 
     });
@@ -433,9 +433,13 @@ export class ModelerFour {
       // it's an empty object? 
       this.session.warning(`Schema '${name}' is an empty object without properties or modifiers.`, ['Modeler', 'EmptyObject'], aSchema);
     }
-    const objectSchema = this.createObjectSchema(name, schema);
 
     const dictionarySchema = dictionaryDef ? this.processDictionarySchema(name, aSchema) : undefined;
+    if (parents.length === 0 && !hasProperties && dictionarySchema) {
+      return dictionarySchema;
+    }
+
+    const objectSchema = this.createObjectSchema(name, schema);
 
     // add it to the upcoming and schema set
     // andTypes.unshift(objectSchema);
@@ -1120,9 +1124,16 @@ export class ModelerFour {
 
       }
       for (const { key: name, value: schema } of this.resolveDictionary(this.input.components.schemas).where(each => !this.processed.has(each.value))) {
-        if (!this.interpret.isBinarySchema(schema)) {
-          this.processSchema(name, schema);
+        // we don't process binary schemas
+        if (this.interpret.isBinarySchema(schema)) {
+          continue;
         }
+
+        // if this schema is an empty object with no heirarchy, skip it.
+        if (this.interpret.isEmptyObject(schema)) {
+          continue;
+        }
+        this.processSchema(name, schema);
       }
 
 

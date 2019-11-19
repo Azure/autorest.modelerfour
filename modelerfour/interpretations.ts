@@ -2,7 +2,7 @@ import { Session } from '@azure-tools/autorest-extension-base';
 import * as OpenAPI from '@azure-tools/openapi';
 import { values, length, items, ToDictionary, Dictionary, keys } from '@azure-tools/linq';
 import { CodeModel, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
-import { StringFormat } from '@azure-tools/openapi';
+import { StringFormat, JsonType } from '@azure-tools/openapi';
 import { getPascalIdentifier } from '@azure-tools/codegen';
 
 export interface XMSEnum {
@@ -83,6 +83,9 @@ export class Interpretations {
         schema.enum.map(each => new ChoiceValue(getValidEnumValueName(each), '', each));
     }
     return [];
+  }
+  isEmptyObject(schema: OpenAPI.Schema): boolean {
+    return (schema.type === JsonType.Object && length(schema.allOf) + length(schema.anyOf) + length(schema.oneOf) + length(schema.properties) === 0 && !schema.discriminator);
   }
 
   getSerialization(schema: OpenAPI.Schema): any | undefined {
