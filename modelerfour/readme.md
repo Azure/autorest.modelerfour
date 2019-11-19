@@ -31,6 +31,18 @@ pipeline:
   modelerfour:
     input: openapi-document/multi-api/identity  
 
+  modelerfour/new-transform:
+    input: modelerfour
+
+  modelerfour/prenamer:
+    input: modelerfour/new-transform
+
+  modelerfour/prenamer/new-transform:
+    input: modelerfour/prenamer
+
+  modelerfour/identity:
+    input: modelerfour/prenamer/new-transform
+
   modelerfour/emitter:
     input: modelerfour
     scope: scope-modelerfour/emitter
