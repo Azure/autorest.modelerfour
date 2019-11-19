@@ -781,8 +781,14 @@ export class ModelerFour {
 
       switch (servers.length) {
         case 0:
-          throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no server information.`);
+          // Yanni says "we're ignoring the swagger spec because it is stupid."
+          servers.push({
+            url: '',
+            variables: {},
+            description: 'Service Host URL.'
+          });
 
+        // eslint-disable-next-line no-fallthrough
         case 1: {
           const server = servers[0];
           // trim extraneous slash .

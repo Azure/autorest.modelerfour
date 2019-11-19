@@ -15,6 +15,7 @@ import { Model } from '@azure-tools/openapi';
 import { codeModelSchema } from '@azure-tools/codemodel';
 import { ReadUri } from '@azure-tools/uri';
 import { PreNamer } from '../prenamer/prenamer';
+import { Flattener } from '../flattener/flattener';
 
 
 require('source-map-support').install();
@@ -172,16 +173,21 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       // go!
       const codeModel = await modeler.process();
 
-      // console.log(serialize(codeModel))
       const yaml = serialize(codeModel, codeModelSchema);
       await mkdir(`${__dirname}/../../test/outputs/${each}`);
-
       await (writeFile(`${__dirname}/../../test/outputs/${each}/modeler.yaml`, yaml));
 
       const namer = new PreNamer(await createPassThruSession({}, yaml, 'code-model-v4'));
       const named = await namer.process();
       const namedyaml = serialize(named, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/outputs/${each}/namer.yaml`, namedyaml));
+
+
+      const flattener = new Flattener(await createPassThruSession({}, namedyaml, 'code-model-v4'));
+      const flattened = await flattener.process();
+      const flatteneyaml = serialize(flattened, codeModelSchema);
+      await (writeFile(`${__dirname}/../../test/outputs/${each}/flattened.yaml`, flatteneyaml));
+
     }
   }
 }
