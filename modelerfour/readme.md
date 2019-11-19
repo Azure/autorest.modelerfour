@@ -34,21 +34,21 @@ pipeline:
   modelerfour/new-transform:
     input: modelerfour
 
-  modelerfour/prenamer:
+  modelerfour/pre-namer:
     input: modelerfour/new-transform
 
-  modelerfour/prenamer/new-transform:
-    input: modelerfour/prenamer
+  modelerfour/pre-namer/new-transform:
+    input: modelerfour/pre-namer
 
   modelerfour/identity:
-    input: modelerfour/prenamer/new-transform
+    input: modelerfour/pre-namer/new-transform
 
   modelerfour/emitter:
-    input: modelerfour
+    input: modelerfour/identity
     scope: scope-modelerfour/emitter
 
   modelerfour/notags/emitter:
-    input: modelerfour
+    input: modelerfour/identity
     scope: scope-modelerfour/notags/emitter
 
 scope-modelerfour/emitter: # writing to disk settings
