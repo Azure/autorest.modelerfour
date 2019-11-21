@@ -248,7 +248,7 @@ schemas: !<!Schemas>
         namespace: Api000
     protocol: !<!Protocols> {}
   - *ref_2
-  - !<!ObjectSchema> &ref_29
+  - !<!ObjectSchema> &ref_27
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -424,7 +424,7 @@ schemas: !<!Schemas>
   - *ref_7
   - *ref_9
   numbers:
-  - !<!NumberSchema> &ref_27
+  - !<!NumberSchema> &ref_26
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -455,29 +455,9 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_11
   - *ref_12
-  - !<!StringSchema> &ref_26
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_13
   - *ref_14
   - *ref_15
-  - !<!StringSchema> &ref_28
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_16
   - *ref_17
   - *ref_18
@@ -497,7 +477,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: XMS Error Response Extensions
   title: xms-error-responses
@@ -529,8 +509,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/errorStatusCodes/Pets/{petId}/GetPet'
+          path: '/errorStatusCodes/Pets/{petId}/GetPet'
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_1
@@ -556,7 +537,7 @@ operationGroups:
           - '202'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_25
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -586,7 +567,7 @@ operationGroups:
           statusCodes:
           - '404'
     - !<!SchemaResponse> 
-      schema: *ref_27
+      schema: *ref_26
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -622,7 +603,7 @@ operationGroups:
       parameters:
       - *ref_24
       - !<!Parameter> 
-        schema: *ref_28
+        schema: *ref_25
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -638,11 +619,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/errorStatusCodes/Pets/doSomething/{whatAction}'
+          path: '/errorStatusCodes/Pets/doSomething/{whatAction}'
           method: post
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_29
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''

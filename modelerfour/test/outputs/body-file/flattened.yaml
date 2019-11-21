@@ -68,7 +68,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-file
@@ -89,8 +89,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/files/stream/nonempty'
+          path: /files/stream/nonempty
           method: get
+          url: '{$host}'
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -137,8 +138,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/files/stream/verylarge'
+          path: /files/stream/verylarge
           method: get
+          url: '{$host}'
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -185,8 +187,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/files/stream/empty'
+          path: /files/stream/empty
           method: get
+          url: '{$host}'
     responses:
     - !<!BinaryResponse> 
       binary: true

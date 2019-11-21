@@ -56,56 +56,6 @@ schemas: !<!Schemas>
         name: paths·bool-true·get·responses·200·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_6
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·bool-true·put·requestbody·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-    protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_7
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·bool-false·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-    protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_8
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·bool-false·put·requestbody·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-    protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_9
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·bool-null·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-    protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_10
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·bool-invalid·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-    protocol: !<!Protocols> {}
   numbers:
   - *ref_1
   strings:
@@ -129,7 +79,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-boolean.quirks
@@ -150,8 +100,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/bool/true'
+          path: /bool/true
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -193,7 +144,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_6
+        schema: *ref_3
         implementation: Method
         required: true
         extensions:
@@ -212,11 +163,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/bool/true'
+          path: /bool/true
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -261,11 +213,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/bool/false'
+          path: /bool/false
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -304,7 +257,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_3
         implementation: Method
         required: true
         extensions:
@@ -323,11 +276,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/bool/false'
+          path: /bool/false
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -372,11 +326,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/bool/null'
+          path: /bool/null
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -420,11 +375,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/bool/invalid'
+          path: /bool/invalid
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''

@@ -20,7 +20,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: head
@@ -41,8 +41,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/http/success/200'
+          path: /http/success/200
           method: head
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -90,8 +91,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/http/success/204'
+          path: /http/success/204
           method: head
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -139,8 +141,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/http/success/404'
+          path: /http/success/404
           method: head
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 

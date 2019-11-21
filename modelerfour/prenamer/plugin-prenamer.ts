@@ -8,7 +8,6 @@ import { Host, startSession } from '@azure-tools/autorest-extension-base';
 import { codeModelSchema, CodeModel } from '@azure-tools/codemodel';
 import { PreNamer } from './prenamer';
 
-
 export async function processRequest(host: Host) {
   const debug = await host.GetValue('debug') || false;
 

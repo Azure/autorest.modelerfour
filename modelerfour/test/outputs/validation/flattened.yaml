@@ -383,7 +383,7 @@ schemas: !<!Schemas>
   - *ref_7
   - *ref_8
   - *ref_9
-  - !<!ConstantSchema> &ref_27
+  - !<!ConstantSchema> &ref_25
     type: constant
     value: !<!ConstantValue> 
       value: 1.0.0
@@ -397,7 +397,7 @@ schemas: !<!Schemas>
         name: ApiVersion-1.0.0
         description: Api Version (1.0.0)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_28
+  - !<!ConstantSchema> &ref_26
     type: constant
     value: !<!ConstantValue> 
       value: constant
@@ -409,20 +409,6 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: Constant0
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_29
-    type: constant
-    value: !<!ConstantValue> 
-      value: constant
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: Constant1
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
@@ -444,20 +430,6 @@ schemas: !<!Schemas>
   - *ref_11
   - *ref_12
   - *ref_13
-  - !<!NumberSchema> &ref_26
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maximum: 1000
-    minimum: 100
-    multipleOf: 10
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
   strings:
   - *ref_0
   - !<!StringSchema> &ref_19
@@ -487,19 +459,6 @@ schemas: !<!Schemas>
   - *ref_15
   - *ref_16
   - *ref_17
-  - !<!StringSchema> &ref_25
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maxLength: 10
-    minLength: 3
-    pattern: '[a-zA-Z0-9]+'
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - !<!StringSchema> 
     type: string
     apiVersions:
@@ -523,7 +482,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
@@ -588,8 +547,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
+          path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_23
@@ -642,7 +602,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_25
+        schema: *ref_20
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -653,7 +613,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_26
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -664,7 +624,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_27
+        schema: *ref_25
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -694,11 +654,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
+          path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_23
@@ -742,7 +703,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_28
+        schema: *ref_26
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -758,8 +719,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/validation/constantsInPath/{constantParam}/value'
+          path: '/validation/constantsInPath/{constantParam}/value'
           method: get
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -783,7 +745,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_29
+        schema: *ref_26
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -813,11 +775,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/validation/constantsInPath/{constantParam}/value'
+          path: '/validation/constantsInPath/{constantParam}/value'
           method: post
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_23

@@ -78,7 +78,7 @@ globalParameters:
       description: Account Name
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 - !<!Parameter> &ref_5
   schema: *ref_2
   clientDefaultValue: host
@@ -90,7 +90,7 @@ globalParameters:
       description: A string value that is used as a global part of the parameterized host
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: custom-baseUrl
@@ -112,8 +112,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'http://{accountName}{host}/customuri'
+          path: /customuri
           method: get
+          url: 'http://{accountName}{host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 

@@ -458,7 +458,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_74
+      schema: !<!StringSchema> &ref_75
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -480,7 +480,7 @@ schemas: !<!Schemas>
           description: MISSING·SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_75
+      schema: !<!StringSchema> &ref_76
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -535,14 +535,14 @@ schemas: !<!Schemas>
         description: A banana.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_127
+  - !<!ObjectSchema> &ref_122
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_76
+      schema: !<!StringSchema> &ref_77
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -564,7 +564,7 @@ schemas: !<!Schemas>
           description: MISSING·SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_77
+      schema: !<!StringSchema> &ref_78
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -582,7 +582,7 @@ schemas: !<!Schemas>
           description: MISSING·SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_78
+      schema: !<!StringSchema> &ref_79
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -628,7 +628,7 @@ schemas: !<!Schemas>
             version: 1.0.0
           properties:
           - !<!Property> 
-            schema: !<!StringSchema> &ref_79
+            schema: !<!StringSchema> &ref_80
               type: string
               apiVersions:
               - !<!ApiVersion> 
@@ -672,7 +672,7 @@ schemas: !<!Schemas>
                     description: MISSING·SCHEMA-DESCRIPTION-DATETIME
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!StringSchema> &ref_80
+                schema: !<!StringSchema> &ref_81
                   type: string
                   apiVersions:
                   - !<!ApiVersion> 
@@ -857,7 +857,7 @@ schemas: !<!Schemas>
           - !<!Property> 
             schema: !<!DictionarySchema> &ref_14
               type: dictionary
-              elementType: !<!StringSchema> &ref_81
+              elementType: !<!StringSchema> &ref_74
                 type: string
                 apiVersions:
                 - !<!ApiVersion> 
@@ -866,18 +866,19 @@ schemas: !<!Schemas>
                   default:
                     name: string
                     description: MISSING·SCHEMA-DESCRIPTION-STRING
+                    header: Custom-Header
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
                   name: Dictionary of string
-                  description: Dictionary of <components·schemas·metadata·additionalproperties>
+                  description: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
               protocol: !<!Protocols> {}
             required: false
             serializedName: Metadata
             language: !<!Languages> 
               default:
                 name: Metadata
-                description: Dictionary of <components·schemas·metadata·additionalproperties>
+                description: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -932,7 +933,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_4
   - *ref_5
-  - !<!ObjectSchema> &ref_130
+  - !<!ObjectSchema> &ref_125
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1436,7 +1437,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   - *ref_10
-  - !<!ObjectSchema> &ref_140
+  - !<!ObjectSchema> &ref_129
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -2287,7 +2288,7 @@ schemas: !<!Schemas>
                 language: !<!Languages> 
                   default:
                     name: Metadata
-                    description: Dictionary of <components·schemas·metadata·additionalproperties>
+                    description: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>
                 protocol: !<!Protocols> {}
               serialization:
                 xml:
@@ -2357,7 +2358,7 @@ schemas: !<!Schemas>
   - *ref_16
   - *ref_17
   - *ref_18
-  - !<!ObjectSchema> &ref_141
+  - !<!ObjectSchema> &ref_130
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -2384,7 +2385,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_142
+  - !<!ObjectSchema> &ref_131
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -2424,87 +2425,23 @@ schemas: !<!Schemas>
   - *ref_22
   - *ref_23
   - *ref_24
+  - !<!ArraySchema> &ref_119
+    type: array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_25
+    serialization:
+      xml:
+        name: bananas
+        attribute: false
+        wrapped: false
+    language: !<!Languages> 
+      default:
+        name: Array of Banana
+        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+    protocol: !<!Protocols> {}
   - !<!ArraySchema> &ref_120
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_25
-    serialization:
-      xml:
-        name: bananas
-        attribute: false
-        wrapped: false
-    language: !<!Languages> 
-      default:
-        name: Array of Banana
-        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_121
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_25
-    serialization:
-      xml:
-        name: bananas
-        attribute: false
-        wrapped: true
-    language: !<!Languages> 
-      default:
-        name: Array of Banana
-        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_122
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_25
-    serialization:
-      xml:
-        name: bananas
-        attribute: false
-        wrapped: false
-    language: !<!Languages> 
-      default:
-        name: Array of Banana
-        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_123
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_25
-    serialization:
-      xml:
-        name: bananas
-        attribute: false
-        wrapped: true
-    language: !<!Languages> 
-      default:
-        name: Array of Banana
-        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_124
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: *ref_25
-    serialization:
-      xml:
-        name: bananas
-        attribute: false
-        wrapped: false
-    language: !<!Languages> 
-      default:
-        name: Array of Banana
-        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_125
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -2522,7 +2459,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_26
   - *ref_27
-  - !<!ArraySchema> &ref_135
+  - !<!ArraySchema> &ref_128
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -2552,7 +2489,7 @@ schemas: !<!Schemas>
   - *ref_39
   - *ref_40
   constants:
-  - !<!ConstantSchema> &ref_126
+  - !<!ConstantSchema> &ref_121
     type: constant
     value: !<!ConstantValue> 
       value: list
@@ -2566,7 +2503,7 @@ schemas: !<!Schemas>
         name: Constant0
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_128
+  - !<!ConstantSchema> &ref_123
     type: constant
     value: !<!ConstantValue> 
       value: properties
@@ -2580,7 +2517,7 @@ schemas: !<!Schemas>
         name: Constant1
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_129
+  - !<!ConstantSchema> &ref_124
     type: constant
     value: !<!ConstantValue> 
       value: service
@@ -2594,10 +2531,10 @@ schemas: !<!Schemas>
         name: Constant2
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_131
+  - !<!ConstantSchema> &ref_126
     type: constant
     value: !<!ConstantValue> 
-      value: properties
+      value: acl
       language:
         default:
           name: ''
@@ -2608,10 +2545,10 @@ schemas: !<!Schemas>
         name: Constant3
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_132
+  - !<!ConstantSchema> &ref_127
     type: constant
     value: !<!ConstantValue> 
-      value: service
+      value: container
       language:
         default:
           name: ''
@@ -2620,90 +2557,6 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: Constant4
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_133
-    type: constant
-    value: !<!ConstantValue> 
-      value: acl
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: Constant5
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_134
-    type: constant
-    value: !<!ConstantValue> 
-      value: container
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: Constant6
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_136
-    type: constant
-    value: !<!ConstantValue> 
-      value: acl
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: Constant7
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_137
-    type: constant
-    value: !<!ConstantValue> 
-      value: container
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: Constant8
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_138
-    type: constant
-    value: !<!ConstantValue> 
-      value: list
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: Constant9
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_139
-    type: constant
-    value: !<!ConstantValue> 
-      value: container
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: Constant10
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   dateTimes:
@@ -2744,17 +2597,6 @@ schemas: !<!Schemas>
   - *ref_71
   - *ref_72
   - *ref_73
-  - !<!StringSchema> &ref_119
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-        header: Custom-Header
-    protocol: !<!Protocols> {}
   - *ref_74
   - *ref_75
   - *ref_76
@@ -2806,7 +2648,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: xml-service
@@ -2827,8 +2669,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/complex-type-ref-no-meta'
+          path: /xml/complex-type-ref-no-meta
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_114
@@ -2875,11 +2718,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/complex-type-ref-no-meta'
+          path: /xml/complex-type-ref-no-meta
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2910,8 +2754,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/complex-type-ref-with-meta'
+          path: /xml/complex-type-ref-with-meta
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_115
@@ -2958,11 +2803,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/complex-type-ref-with-meta'
+          path: /xml/complex-type-ref-with-meta
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2993,8 +2839,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/simple'
+          path: /xml/simple
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_116
@@ -3055,11 +2902,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/simple'
+          path: /xml/simple
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3104,8 +2952,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/wrapped-lists'
+          path: /xml/wrapped-lists
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_118
@@ -3152,11 +3001,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/wrapped-lists'
+          path: /xml/wrapped-lists
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3201,8 +3051,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/headers'
+          path: /xml/headers
           method: get
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3213,7 +3064,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_119
+            schema: *ref_74
             header: Custom-Header
           statusCodes:
           - '200'
@@ -3235,8 +3086,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/empty-list'
+          path: /xml/empty-list
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_116
@@ -3283,11 +3135,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/empty-list'
+          path: /xml/empty-list
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3318,8 +3171,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/empty-wrapped-lists'
+          path: /xml/empty-wrapped-lists
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_118
@@ -3366,11 +3220,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/empty-wrapped-lists'
+          path: /xml/empty-wrapped-lists
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3401,11 +3256,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/root-list'
+          path: /xml/root-list
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_120
+      schema: *ref_119
       language: !<!Languages> 
         default:
           name: ''
@@ -3430,7 +3286,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_121
+        schema: *ref_120
         implementation: Method
         required: true
         extensions:
@@ -3449,11 +3305,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/root-list'
+          path: /xml/root-list
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3484,11 +3341,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/root-list-single-item'
+          path: /xml/root-list-single-item
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_122
+      schema: *ref_119
       language: !<!Languages> 
         default:
           name: ''
@@ -3513,7 +3371,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_123
+        schema: *ref_120
         implementation: Method
         required: true
         extensions:
@@ -3532,11 +3390,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/root-list-single-item'
+          path: /xml/root-list-single-item
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3567,11 +3426,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/empty-root-list'
+          path: /xml/empty-root-list
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_124
+      schema: *ref_119
       language: !<!Languages> 
         default:
           name: ''
@@ -3596,7 +3456,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_125
+        schema: *ref_120
         implementation: Method
         required: true
         extensions:
@@ -3615,11 +3475,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/empty-root-list'
+          path: /xml/empty-root-list
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3650,8 +3511,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/empty-child-element'
+          path: /xml/empty-child-element
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_25
@@ -3698,11 +3560,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/empty-child-element'
+          path: /xml/empty-child-element
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3728,7 +3591,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_126
+        schema: *ref_121
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3744,11 +3607,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/'
+          path: /xml/
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_127
+      schema: *ref_122
       language: !<!Languages> 
         default:
           name: ''
@@ -3773,7 +3637,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_128
+        schema: *ref_123
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3784,7 +3648,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_129
+        schema: *ref_124
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3800,11 +3664,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/'
+          path: /xml/
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_130
+      schema: *ref_125
       language: !<!Languages> 
         default:
           name: ''
@@ -3829,7 +3694,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_131
+        schema: *ref_123
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3840,7 +3705,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_132
+        schema: *ref_124
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3851,7 +3716,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_130
+        schema: *ref_125
         implementation: Method
         required: true
         extensions:
@@ -3870,11 +3735,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/'
+          path: /xml/
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3900,7 +3766,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_133
+        schema: *ref_126
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3911,7 +3777,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_134
+        schema: *ref_127
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3927,11 +3793,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/mycontainer'
+          path: /xml/mycontainer
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_135
+      schema: *ref_128
       language: !<!Languages> 
         default:
           name: ''
@@ -3956,7 +3823,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_136
+        schema: *ref_126
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3967,7 +3834,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_137
+        schema: *ref_127
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -3978,7 +3845,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_135
+        schema: *ref_128
         implementation: Method
         required: true
         extensions:
@@ -3997,11 +3864,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/mycontainer'
+          path: /xml/mycontainer
           method: put
           knownMediaType: xml
           mediaTypes:
           - application/xml
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4027,7 +3895,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_138
+        schema: *ref_121
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -4038,7 +3906,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_139
+        schema: *ref_127
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -4054,11 +3922,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/mycontainer'
+          path: /xml/mycontainer
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_140
+      schema: *ref_129
       language: !<!Languages> 
         default:
           name: ''
@@ -4083,7 +3952,7 @@ operationGroups:
       parameters:
       - *ref_113
       - !<!Parameter> 
-        schema: *ref_141
+        schema: *ref_130
         implementation: Method
         required: true
         extensions:
@@ -4102,11 +3971,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/xml/jsoninput'
+          path: /xml/jsoninput
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4137,11 +4007,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/xml/jsonoutput'
+          path: /xml/jsonoutput
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_142
+      schema: *ref_131
       language: !<!Languages> 
         default:
           name: ''

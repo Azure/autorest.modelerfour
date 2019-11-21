@@ -396,6 +396,7 @@ export class ModelerFour {
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
+          extensions: this.interpret.getExtensionProperties(property),
         }));
         if (prop.isDiscriminator) {
           objectSchema.discriminator = new Discriminator(prop);
@@ -705,8 +706,8 @@ export class ModelerFour {
             //              this.session.error(`String schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
       }
-      this.session.error(`The model ${name} does not have a recognized schema type '${schema.type}'`, ['Modeler', 'UnknownSchemaType']);
-      throw new Error(`Unrecognized schema type:'${schema.type}' / format: ${schema.format}`);
+      this.session.error(`The model ${name} does not have a recognized schema type '${schema.type}' ${JSON.stringify(schema)} `, ['Modeler', 'UnknownSchemaType']);
+      throw new Error(`Unrecognized schema type:'${schema.type}' / format: ${schema.format} ${JSON.stringify(schema)} `);
     }) || fail('Unable to process schema.');
   }
 
@@ -765,6 +766,8 @@ export class ModelerFour {
       const p = path.indexOf('?');
       path = p > -1 ? path.substr(0, p) : path;
 
+      let baseUri = '';
+
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.
@@ -797,7 +800,6 @@ export class ModelerFour {
           if (length(server.variables) === 0) {
             // scenario 1 : single static value
 
-
             // check if we have the $host parameter foor this uri yet.
             let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === '$host' && each.clientDefaultValue === uri);
             if (!p) {
@@ -805,7 +807,7 @@ export class ModelerFour {
                 required: true,
                 implementation: ImplementationLocation.Client,
                 protocol: {
-                  http: new HttpParameter(ParameterLocation.Path)
+                  http: new HttpParameter(ParameterLocation.Uri)
                 },
                 clientDefaultValue: uri
               });
@@ -815,7 +817,7 @@ export class ModelerFour {
             // add it to the request
             op.request.addParameter(p);
             // and update the path for the operation.
-            path = `{$host}${path}`;
+            baseUri = '{$host}';
           } else {
             // scenario 3 : single parameterized value
 
@@ -829,7 +831,7 @@ export class ModelerFour {
                   required: true,
                   implementation: ImplementationLocation.Client,
                   protocol: {
-                    http: new HttpParameter(ParameterLocation.Path)
+                    http: new HttpParameter(ParameterLocation.Uri)
                   },
                   clientDefaultValue: clientdefault
                 });
@@ -840,7 +842,8 @@ export class ModelerFour {
               op.request.addParameter(p);
             }
             // and update the path for the operation. (copy the template onto the path)
-            path = `${uri}${path}`;
+            // path = `${uri}${path}`;
+            baseUri = uri;
           }
         }
           break;
@@ -863,7 +866,7 @@ export class ModelerFour {
               required: true,
               implementation: ImplementationLocation.Client,
               protocol: {
-                http: new HttpParameter(ParameterLocation.Path)
+                http: new HttpParameter(ParameterLocation.Uri)
               },
               clientDefaultValue: servers[0].url
             });
@@ -874,7 +877,9 @@ export class ModelerFour {
           op.request.addParameter(p);
 
           // update the path to have a $host parameter.
-          path = `{$host}${path}`;
+          //path = `{$host}${path}`;
+          baseUri = '{$host}';
+
         }
       }
 
@@ -882,7 +887,8 @@ export class ModelerFour {
       // === Request === 
       const httpRequest = op.request.protocol.http = SetType(HttpRequest, {
         method: httpMethod,
-        path: path // this.interpret.getPath(pathItem, operation, path),
+        path: path, // this.interpret.getPath(pathItem, operation, path),
+        url: baseUri
       });
 
       // get all the parameters for the operation

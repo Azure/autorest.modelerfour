@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_5
+  - !<!ObjectSchema> &ref_4
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -17,7 +17,7 @@ schemas: !<!Schemas>
             version: 1.0.0
           language: !<!Languages> 
             default:
-              name: components·schemas·availabilitysetupdateparameters·properties·tags·additionalproperties
+              name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
               description: MISSING·SCHEMA-DESCRIPTION-STRING
           protocol: !<!Protocols> {}
         language: !<!Languages> 
@@ -48,17 +48,8 @@ schemas: !<!Schemas>
         name: string
         description: simple string
     protocol: !<!Protocols> {}
+  - *ref_0
   - !<!StringSchema> &ref_3
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·0·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_4
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -69,9 +60,8 @@ schemas: !<!Schemas>
         name: paths·parameterflattening-resourcegroupname-availabilitysetname·patch·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - *ref_0
 globalParameters:
-- !<!Parameter> &ref_6
+- !<!Parameter> &ref_5
   schema: *ref_2
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -82,7 +72,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: parameter-flattening
@@ -96,9 +86,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_6
+      - *ref_5
       - !<!Parameter> 
-        schema: *ref_3
+        schema: *ref_0
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -109,7 +99,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_4
+        schema: *ref_3
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -120,7 +110,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_5
+        schema: *ref_4
         implementation: Method
         required: true
         extensions:
@@ -139,11 +129,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
+          path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
           method: patch
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
