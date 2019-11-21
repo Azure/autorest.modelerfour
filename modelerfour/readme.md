@@ -2,12 +2,12 @@
 
 ## Changelog:
 
-#### 4.1.55 - Breaking change: 
+#### 4.1.58 - Breaking change: 
   - version bump, change your configuration to specify version `~4.1.0` or greater
   
-  ```  
+  ``` 
   use-extension:
-  "@autorest/modelerfour" : "~4.1.0" 
+    "@autorest/modelerfour" : "~4.1.0" 
   ```
   - each Http operation (via `.protocol.http`) will now have a separate `path` and `uri` properties. 
   <br>Both are still templates, and will have parameters. 

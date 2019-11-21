@@ -888,7 +888,7 @@ export class ModelerFour {
       const httpRequest = op.request.protocol.http = SetType(HttpRequest, {
         method: httpMethod,
         path: path, // this.interpret.getPath(pathItem, operation, path),
-        url: baseUri
+        uri: baseUri
       });
 
       // get all the parameters for the operation
