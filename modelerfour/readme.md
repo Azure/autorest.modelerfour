@@ -2,7 +2,7 @@
 
 ## Changelog:
 
-#### 4.1.56 - Breaking change: 
+#### 4.1.55 - Breaking change: 
   - version bump, change your configuration to specify version `~4.1.0` or greater
   
   ``` yaml 
@@ -14,10 +14,12 @@
   <br>The parameters for the `uri` property will have `in` set to `ParameterLocation.Uri`
   <br>The parameters for the `path` property will continue to have `in` set to `ParameterLocation.Path`
 
-  - this package contains the initial code for the flattener plugin, however it is not yet enabled.
+  
   - autorest-core recently added an option to aggressively deduplicate inline models (ie, ones without a name)
   and modeler-four based generator will have that enabled by default. (ie `deduplicate-inline-models: true`)
   <br>This may increase deduplication time on extremely large openapi models.
+
+  - this package contains the initial code for the flattener plugin, however it is not yet enabled.
 
   - updated `@azure-tools/codemodel` package to `3.0.241`:
   <br>`uri` (required) was added to `HttpRequest`
