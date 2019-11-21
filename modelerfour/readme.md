@@ -5,7 +5,7 @@
 #### 4.1.55 - Breaking change: 
   - version bump, change your configuration to specify version `~4.1.0` or greater
   
-  ``` yaml 
+  ```  
   use-extension:
   "@autorest/modelerfour" : "~4.1.0" 
   ```
@@ -94,4 +94,5 @@ scope-modelerfour/notags/emitter: # writing to disk settings
 # the default preference for modeler-four based generators is to deduplicate inline models fully.
 # this may impact performance on extremely large models with a lot of inline schemas.
 deduplicate-inline-models: true
+
 ```
