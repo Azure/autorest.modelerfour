@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_8
+  - !<!ObjectSchema> &ref_7
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -47,7 +47,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_9
+  - !<!ObjectSchema> &ref_8
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -92,7 +92,7 @@ schemas: !<!Schemas>
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_7
+  - !<!ConstantSchema> &ref_6
     type: constant
     value: !<!ConstantValue> 
       value: 2014-04-01-preview
@@ -126,31 +126,11 @@ schemas: !<!Schemas>
         name: components·parameters·subscriptionidparameter·schema
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_6
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2014-04-01-preview
-    language: !<!Languages> 
-      default:
-        name: paths·subscriptions-subscriptionid-resourcegroups-resourcegroupname·get·parameters·1·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_1
   - *ref_2
   - *ref_3
-  - !<!StringSchema> 
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 2014-04-01-preview
-    language: !<!Languages> 
-      default:
-        name: components·parameters·apiversionparameter·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_10
+- !<!Parameter> &ref_9
   schema: *ref_0
   clientDefaultValue: 'https://management.azure.com'
   implementation: Client
@@ -161,7 +141,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Some cool documentation.
   title: subscriptionId-apiVersion
@@ -175,7 +155,7 @@ operationGroups:
       version: 2014-04-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_10
+      - *ref_9
       - !<!Parameter> 
         schema: *ref_5
         implementation: Method
@@ -188,7 +168,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_6
+        schema: *ref_5
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -199,7 +179,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_7
+        schema: *ref_6
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -215,11 +195,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'
+          path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -233,7 +214,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''

@@ -113,7 +113,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-byte
@@ -134,8 +134,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/byte/null'
+          path: /byte/null
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_4
@@ -182,8 +183,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/byte/empty'
+          path: /byte/empty
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_6
@@ -230,8 +232,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/byte/nonAscii'
+          path: /byte/nonAscii
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_7
@@ -292,11 +295,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/byte/nonAscii'
+          path: /byte/nonAscii
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -341,8 +345,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/byte/invalid'
+          path: /byte/invalid
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_7

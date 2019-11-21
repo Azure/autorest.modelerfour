@@ -45,7 +45,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_18
+  - !<!ObjectSchema> &ref_14
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -107,7 +107,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_17
+  - !<!ChoiceSchema> &ref_13
     choices:
     - !<!ChoiceValue> 
       value: red color
@@ -138,7 +138,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   byteArrays:
-  - !<!ByteArraySchema> &ref_16
+  - !<!ByteArraySchema> &ref_12
     type: byte-array
     format: base64url
     apiVersions:
@@ -182,7 +182,7 @@ schemas: !<!Schemas>
         name: Constant1
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_11
+  - !<!ConstantSchema> &ref_10
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -199,7 +199,7 @@ schemas: !<!Schemas>
         name: Constant2
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_13
+  - !<!ConstantSchema> &ref_11
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -232,47 +232,7 @@ schemas: !<!Schemas>
         name: string
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_10
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_12
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_14
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_4
-  - !<!StringSchema> &ref_15
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_5
   schema: *ref_0
@@ -285,7 +245,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest Swagger BAT
   title: body-string.quirks
@@ -306,8 +266,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/null'
+          path: /string/null
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_6
@@ -368,11 +329,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/null'
+          path: /string/null
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -417,8 +379,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/empty'
+          path: /string/empty
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_9
@@ -460,7 +423,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_10
+        schema: *ref_8
         implementation: Method
         required: true
         extensions:
@@ -479,11 +442,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/empty'
+          path: /string/empty
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -528,11 +492,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/mbcs'
+          path: /string/mbcs
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -571,7 +536,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_12
+        schema: *ref_8
         implementation: Method
         required: true
         extensions:
@@ -590,11 +555,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/mbcs'
+          path: /string/mbcs
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -639,11 +605,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/whitespace'
+          path: /string/whitespace
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_13
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -682,7 +649,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_14
+        schema: *ref_8
         implementation: Method
         required: true
         extensions:
@@ -701,11 +668,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/whitespace'
+          path: /string/whitespace
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -750,11 +718,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/notProvided'
+          path: /string/notProvided
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -798,11 +767,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/base64Encoding'
+          path: /string/base64Encoding
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -846,11 +816,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/base64UrlEncoding'
+          path: /string/base64UrlEncoding
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -889,7 +860,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_16
+        schema: *ref_12
         implementation: Method
         required: true
         extensions:
@@ -908,11 +879,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/base64UrlEncoding'
+          path: /string/base64UrlEncoding
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -957,11 +929,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/nullBase64UrlEncoding'
+          path: /string/nullBase64UrlEncoding
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_16
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -1013,11 +986,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/enum/notExpandable'
+          path: /string/enum/notExpandable
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_13
       language: !<!Languages> 
         default:
           name: ''
@@ -1056,7 +1030,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_17
+        schema: *ref_13
         implementation: Method
         required: true
         extensions:
@@ -1075,11 +1049,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/enum/notExpandable'
+          path: /string/enum/notExpandable
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1124,11 +1099,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/enum/Referenced'
+          path: /string/enum/Referenced
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_13
       language: !<!Languages> 
         default:
           name: ''
@@ -1167,7 +1143,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_17
+        schema: *ref_13
         implementation: Method
         required: true
         extensions:
@@ -1186,11 +1162,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/enum/Referenced'
+          path: /string/enum/Referenced
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1235,11 +1212,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/string/enum/ReferencedConstant'
+          path: /string/enum/ReferencedConstant
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_14
       language: !<!Languages> 
         default:
           name: ''
@@ -1278,7 +1256,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_18
+        schema: *ref_14
         implementation: Method
         required: true
         extensions:
@@ -1297,11 +1275,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/string/enum/ReferencedConstant'
+          path: /string/enum/ReferencedConstant
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 

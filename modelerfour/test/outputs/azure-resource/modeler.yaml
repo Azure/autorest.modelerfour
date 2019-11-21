@@ -245,7 +245,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_8
   - *ref_10
-  - !<!ObjectSchema> &ref_21
+  - !<!ObjectSchema> &ref_22
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -300,6 +300,14 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_11
+  - !<!DictionarySchema> &ref_21
+    type: dictionary
+    elementType: *ref_8
+    language: !<!Languages> 
+      default:
+        name: paths·azure-resource_flatten-dictionary·put·requestbody·content·application-json·schema
+        description: Dictionary of <FlattenedProduct>
+    protocol: !<!Protocols> {}
   - *ref_12
   arrays:
   - !<!ArraySchema> &ref_17
@@ -356,7 +364,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: azure-resource
@@ -391,11 +399,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/azure/resource-flatten/array'
+          path: /azure/resource-flatten/array
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -440,8 +449,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/azure/resource-flatten/array'
+          path: /azure/resource-flatten/array
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_20
@@ -483,7 +493,7 @@ operationGroups:
       parameters:
       - *ref_19
       - !<!Parameter> 
-        schema: *ref_12
+        schema: *ref_21
         implementation: Method
         required: true
         extensions:
@@ -502,11 +512,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/azure/resource-flatten/dictionary'
+          path: /azure/resource-flatten/dictionary
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -551,11 +562,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/azure/resource-flatten/dictionary'
+          path: /azure/resource-flatten/dictionary
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -594,7 +606,7 @@ operationGroups:
       parameters:
       - *ref_19
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_22
         implementation: Method
         required: true
         extensions:
@@ -613,11 +625,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/azure/resource-flatten/resourcecollection'
+          path: /azure/resource-flatten/resourcecollection
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -662,11 +675,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/azure/resource-flatten/resourcecollection'
+          path: /azure/resource-flatten/resourcecollection
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''

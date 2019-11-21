@@ -29,21 +29,27 @@ export class Flattener {
     // hasn't started yet.
     schema.extensions = schema.extensions || {};
     schema.extensions['x-ms-flattening'] = true;
+
+
     if (schema.properties) {
       const removeable = [];
 
       for (const { key: index, value: property } of items(schema.properties)) {
         if (property.extensions?.['x-ms-client-flatten'] && isObjectSchema(property.schema)) {
+
           // first, ensure tha the child is pre-flattened
           this.flattenSchema(property.schema);
 
           // copy all of the properties from the child into this 
           // schema 
+
+
           for (const childProperty of values(property.schema.properties)) {
-            schema.addProperty({
+            schema.addProperty(new Property(childProperty.language.default.name, childProperty.language.default.description, childProperty.schema, {
               ...(<any>childProperty),
-              serializedName: `${property.serializedName}.${childProperty.serializedName}`,
-            });
+              flattenedNames: [property.serializedName, ...childProperty.flattenedNames ? childProperty.flattenedNames : [childProperty.serializedName]],
+              required: property.required && childProperty.required
+            }));
           }
 
           // and then remove this property 
@@ -69,6 +75,7 @@ export class Flattener {
 
   process() {
     for (const schema of values(this.codeModel.schemas.objects)) {
+
       this.flattenSchema(schema);
     }
     for (const schema of values(this.codeModel.schemas.objects)) {

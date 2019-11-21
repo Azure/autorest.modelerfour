@@ -66,32 +66,10 @@ schemas: !<!Schemas>
     precision: 32
     language: !<!Languages> 
       default:
-        name: paths·int-invalid·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_7
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
         name: paths·int-overflowint32·get·responses·200·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_8
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·int-underflowint32·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_9
+  - !<!NumberSchema> &ref_7
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -100,61 +78,6 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: paths·int-overflowint64·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_10
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: paths·int-underflowint64·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_11
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·int-max-32·put·requestbody·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_12
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: paths·int-max-64·put·requestbody·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_13
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·int-min-32·put·requestbody·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_14
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: paths·int-min-64·put·requestbody·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
   strings:
@@ -167,7 +90,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_1
   unixtimes:
-  - !<!UnixTimeSchema> &ref_15
+  - !<!UnixTimeSchema> &ref_8
     type: unixtime
     apiVersions:
     - !<!ApiVersion> 
@@ -175,36 +98,6 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: paths·int-unixtime·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-UNIXTIME
-    protocol: !<!Protocols> {}
-  - !<!UnixTimeSchema> &ref_16
-    type: unixtime
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·int-unixtime·put·requestbody·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-UNIXTIME
-    protocol: !<!Protocols> {}
-  - !<!UnixTimeSchema> &ref_17
-    type: unixtime
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·int-invalidunixtime·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-UNIXTIME
-    protocol: !<!Protocols> {}
-  - !<!UnixTimeSchema> &ref_18
-    type: unixtime
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·int-nullunixtime·get·responses·200·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-UNIXTIME
     protocol: !<!Protocols> {}
 globalParameters:
@@ -219,7 +112,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-integer
@@ -240,8 +133,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/null'
+          path: /int/null
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -288,11 +182,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/invalid'
+          path: /int/invalid
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -336,11 +231,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/overflowint32'
+          path: /int/overflowint32
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -384,11 +280,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/underflowint32'
+          path: /int/underflowint32
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -432,11 +329,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/overflowint64'
+          path: /int/overflowint64
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -480,11 +378,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/underflowint64'
+          path: /int/underflowint64
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -523,7 +422,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_11
+        schema: *ref_6
         implementation: Method
         required: true
         extensions:
@@ -542,11 +441,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/int/max/32'
+          path: /int/max/32
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -586,7 +486,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_12
+        schema: *ref_7
         implementation: Method
         required: true
         extensions:
@@ -605,11 +505,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/int/max/64'
+          path: /int/max/64
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -649,7 +550,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_13
+        schema: *ref_6
         implementation: Method
         required: true
         extensions:
@@ -668,11 +569,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/int/min/32'
+          path: /int/min/32
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -712,7 +614,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_14
+        schema: *ref_7
         implementation: Method
         required: true
         extensions:
@@ -731,11 +633,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/int/min/64'
+          path: /int/min/64
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -780,11 +683,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/unixtime'
+          path: /int/unixtime
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_15
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -823,7 +727,7 @@ operationGroups:
       parameters:
       - *ref_5
       - !<!Parameter> 
-        schema: *ref_16
+        schema: *ref_8
         implementation: Method
         required: true
         extensions:
@@ -842,11 +746,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/int/unixtime'
+          path: /int/unixtime
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -891,11 +796,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/invalidunixtime'
+          path: /int/invalidunixtime
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_17
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -939,11 +845,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/int/nullunixtime'
+          path: /int/nullunixtime
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''

@@ -166,7 +166,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: PetStore
   title: extensible-enums-swagger
@@ -198,8 +198,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/extensibleenums/pet/{petId}'
+          path: '/extensibleenums/pet/{petId}'
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -246,11 +247,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/extensibleenums/pet/addPet'
+          path: /extensibleenums/pet/addPet
           method: post
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5

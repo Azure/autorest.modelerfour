@@ -178,6 +178,8 @@ schemas: !<!Schemas>
                 namespace: Api100
             protocol: !<!Protocols> {}
           serializedName: properties
+          extensions:
+            x-ms-client-flatten: true
           language: !<!Languages> 
             default:
               name: properties
@@ -396,7 +398,7 @@ schemas: !<!Schemas>
         description: The wrapped produc.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_38
+  - !<!ObjectSchema> &ref_39
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -661,6 +663,14 @@ schemas: !<!Schemas>
   - *ref_7
   dictionaries:
   - *ref_11
+  - !<!DictionarySchema> &ref_38
+    type: dictionary
+    elementType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: DictionaryOfFlattenedProduct
+        description: Dictionary of <FlattenedProduct>
+    protocol: !<!Protocols> {}
   - *ref_12
   arrays:
   - !<!ArraySchema> &ref_34
@@ -731,16 +741,6 @@ schemas: !<!Schemas>
   - *ref_30
   - *ref_31
   - *ref_32
-  - !<!StringSchema> &ref_39
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_33
   schema: *ref_6
@@ -753,7 +753,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: model-flattening
@@ -788,11 +788,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/array'
+          path: /model-flatten/array
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -837,8 +838,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/model-flatten/array'
+          path: /model-flatten/array
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_35
@@ -899,11 +901,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/wrappedarray'
+          path: /model-flatten/wrappedarray
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -948,8 +951,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/model-flatten/wrappedarray'
+          path: /model-flatten/wrappedarray
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_37
@@ -991,7 +995,7 @@ operationGroups:
       parameters:
       - *ref_33
       - !<!Parameter> 
-        schema: *ref_12
+        schema: *ref_38
         implementation: Method
         required: true
         extensions:
@@ -1010,11 +1014,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/dictionary'
+          path: /model-flatten/dictionary
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1059,11 +1064,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/model-flatten/dictionary'
+          path: /model-flatten/dictionary
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_38
       language: !<!Languages> 
         default:
           name: ''
@@ -1102,7 +1108,7 @@ operationGroups:
       parameters:
       - *ref_33
       - !<!Parameter> 
-        schema: *ref_38
+        schema: *ref_39
         implementation: Method
         required: true
         extensions:
@@ -1121,11 +1127,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/resourcecollection'
+          path: /model-flatten/resourcecollection
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1170,11 +1177,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/model-flatten/resourcecollection'
+          path: /model-flatten/resourcecollection
           method: get
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_38
+      schema: *ref_39
       language: !<!Languages> 
         default:
           name: ''
@@ -1232,11 +1240,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/customFlattening'
+          path: /model-flatten/customFlattening
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_9
@@ -1300,11 +1309,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/customFlattening'
+          path: /model-flatten/customFlattening
           method: post
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_9
@@ -1348,7 +1358,7 @@ operationGroups:
       parameters:
       - *ref_33
       - !<!Parameter> 
-        schema: *ref_39
+        schema: *ref_20
         implementation: Method
         required: true
         extensions:
@@ -1384,11 +1394,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/model-flatten/customFlattening/parametergrouping/{name}/'
+          path: '/model-flatten/customFlattening/parametergrouping/{name}/'
           method: put
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_9

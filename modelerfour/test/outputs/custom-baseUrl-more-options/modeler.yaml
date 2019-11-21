@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_6
+  - !<!ObjectSchema> &ref_5
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -70,16 +70,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: components·parameters·subscriptionidparameter·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_5
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
     defaultValue: v1
     language: !<!Languages> 
       default:
@@ -99,7 +89,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_7
+- !<!Parameter> &ref_6
   schema: *ref_2
   implementation: Client
   required: true
@@ -109,8 +99,8 @@ globalParameters:
       description: 'The vault name, e.g. https://myvault'
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
-- !<!Parameter> &ref_8
+      in: uri
+- !<!Parameter> &ref_7
   schema: *ref_2
   implementation: Client
   required: true
@@ -120,8 +110,8 @@ globalParameters:
       description: Secret value.
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
-- !<!Parameter> &ref_9
+      in: uri
+- !<!Parameter> &ref_8
   schema: *ref_2
   clientDefaultValue: host
   implementation: Client
@@ -132,7 +122,7 @@ globalParameters:
       description: A string value that is used as a global part of the parameterized host. Default value 'host'.
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: custom-baseUrl-more-options
@@ -146,9 +136,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_6
       - *ref_7
       - *ref_8
-      - *ref_9
       - !<!Parameter> 
         schema: *ref_3
         implementation: Method
@@ -161,7 +151,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_4
+        schema: *ref_3
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -172,7 +162,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_5
+        schema: *ref_4
         implementation: Method
         language: !<!Languages> 
           default:
@@ -187,8 +177,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{vault}{secret}{dnsSuffix}/customuri/{subscriptionId}/{keyName}'
+          path: '/customuri/{subscriptionId}/{keyName}'
           method: get
+          url: '{vault}{secret}{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -201,7 +192,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''

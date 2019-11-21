@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_6
+  - !<!ObjectSchema> &ref_5
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -48,17 +48,8 @@ schemas: !<!Schemas>
         name: string
         description: simple string
     protocol: !<!Protocols> {}
+  - *ref_1
   - !<!StringSchema> &ref_4
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_5
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -69,7 +60,6 @@ schemas: !<!Schemas>
         name: string
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - *ref_1
 globalParameters:
 - !<!Parameter> &ref_3
   schema: *ref_2
@@ -82,7 +72,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Resource Flattening for AutoRest
   title: parameter-flattening
@@ -98,7 +88,7 @@ operationGroups:
       parameters:
       - *ref_3
       - !<!Parameter> 
-        schema: *ref_4
+        schema: *ref_1
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -109,7 +99,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_5
+        schema: *ref_4
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -120,7 +110,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_6
+        schema: *ref_5
         implementation: Method
         required: true
         extensions:
@@ -139,11 +129,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
+          path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
           method: patch
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 

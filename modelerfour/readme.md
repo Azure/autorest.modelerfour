@@ -1,3 +1,29 @@
+# AutoRest Modeler Four 
+
+## Changelog:
+
+#### 4.1.56 - Breaking change: 
+  - version bump, change your configuration to specify version `~4.1.0` or greater
+  
+  ``` yaml 
+  use-extension:
+  "@autorest/modelerfour" : "~4.1.0" 
+  ```
+  - each Http operation (via `.protocol.http`) will now have a separate `path` and `uri` properties. 
+  <br>Both are still templates, and will have parameters. 
+  <br>The parameters for the `uri` property will have `in` set to `ParameterLocation.Uri`
+  <br>The parameters for the `path` property will continue to have `in` set to `ParameterLocation.Path`
+
+  - this package contains the initial code for the flattener plugin, however it is not yet enabled.
+  - autorest-core recently added an option to aggressively deduplicate inline models (ie, ones without a name)
+  and modeler-four based generator will have that enabled by default. (ie `deduplicate-inline-models: true`)
+  <br>This may increase deduplication time on extremely large openapi models.
+
+  - updated `@azure-tools/codemodel` package to `3.0.241`:
+  <br>`uri` (required) was added to `HttpRequest`
+  <br>`flattenedNames` (optional) was added to `Property` (in anticipation of supporting flattening)
+
+
 
 # Contributing
 
@@ -63,4 +89,7 @@ scope-modelerfour/notags/emitter: # writing to disk settings
   output-uri-expr: | # forces filename if it gets written to disk.
     "code-model-v4-no-tags.yaml"  
 
+# the default preference for modeler-four based generators is to deduplicate inline models fully.
+# this may impact performance on extremely large models with a lot of inline schemas.
+deduplicate-inline-models: true
 ```

@@ -3598,7 +3598,7 @@ globalParameters:
       description: The Azure Storage account name.
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 - !<!Parameter> &ref_20
   schema: *ref_3
   clientDefaultValue: dfs.core.windows.net
@@ -3610,7 +3610,7 @@ globalParameters:
       description: The DNS suffix for the Azure Data Lake Storage endpoint.
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Azure Data Lake Storage provides storage for Hadoop and other big data workloads.
   title: Azure Data Lake Storage REST API
@@ -3717,8 +3717,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/'
+          path: /
           method: get
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_29
@@ -3861,8 +3862,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}'
+          path: '/{filesystem}'
           method: put
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4021,8 +4023,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}'
+          path: '/{filesystem}'
           method: patch
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4157,8 +4160,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}'
+          path: '/{filesystem}'
           method: head
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4307,8 +4311,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}'
+          path: '/{filesystem}'
           method: delete
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4493,8 +4498,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}'
+          path: '/{filesystem}'
           method: get
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!SchemaResponse> 
       schema: *ref_95
@@ -4897,8 +4903,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}/{path}'
+          path: '/{filesystem}/{path}'
           method: put
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5296,13 +5303,14 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpBinaryRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}/{path}'
+          path: '/{filesystem}/{path}'
           method: patch
           binary: true
           knownMediaType: binary
           mediaTypes:
           - application/octet-stream
           - text/plain
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5575,8 +5583,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}/{path}'
+          path: '/{filesystem}/{path}'
           method: post
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5829,8 +5838,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}/{path}'
+          path: '/{filesystem}/{path}'
           method: get
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!BinaryResponse> 
       binary: true
@@ -6162,8 +6172,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}/{path}'
+          path: '/{filesystem}/{path}'
           method: head
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6413,8 +6424,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: 'https://{accountName}.{dnsSuffix}/{filesystem}/{path}'
+          path: '/{filesystem}/{path}'
           method: delete
+          url: 'https://{accountName}.{dnsSuffix}'
     responses:
     - !<!Response> 
       language: !<!Languages> 

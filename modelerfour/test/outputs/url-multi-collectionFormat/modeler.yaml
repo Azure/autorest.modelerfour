@@ -1,14 +1,14 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_6
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_4
+      schema: !<!NumberSchema> &ref_3
         type: integer
         precision: 32
         language: !<!Languages> 
@@ -23,7 +23,7 @@ schemas: !<!Schemas>
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_3
+      schema: !<!StringSchema> &ref_2
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -46,7 +46,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   arrays:
-  - !<!ArraySchema> &ref_6
+  - !<!ArraySchema> &ref_5
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -66,7 +66,7 @@ schemas: !<!Schemas>
         name: paths·queries-array-multi-string-null·get·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_9
+  - !<!ArraySchema> &ref_8
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -86,30 +86,10 @@ schemas: !<!Schemas>
         name: paths·queries-array-multi-string-empty·get·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_10
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: !<!StringSchema> &ref_2
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: paths·queries-array-multi-string-valid·get·parameters·0·schema·items
-          description: MISSING·SCHEMA-DESCRIPTION-STRING
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: paths·queries-array-multi-string-valid·get·parameters·0·schema
-        description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
-    protocol: !<!Protocols> {}
   numbers:
-  - *ref_4
+  - *ref_3
   strings:
-  - !<!StringSchema> &ref_5
+  - !<!StringSchema> &ref_4
     type: string
     language: !<!Languages> 
       default:
@@ -117,12 +97,11 @@ schemas: !<!Schemas>
         description: simple string
     protocol: !<!Protocols> {}
   - *ref_0
-  - *ref_3
-  - *ref_1
   - *ref_2
+  - *ref_1
 globalParameters:
-- !<!Parameter> &ref_8
-  schema: *ref_5
+- !<!Parameter> &ref_7
+  schema: *ref_4
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true
@@ -132,7 +111,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: url-multi-collectionFormat
@@ -146,9 +125,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_6
+        schema: *ref_5
         implementation: Method
         language: !<!Languages> 
           default:
@@ -163,8 +142,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/queries/array/multi/string/null'
+          path: /queries/array/multi/string/null
           method: get
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -177,7 +157,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -200,9 +180,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_9
+        schema: *ref_8
         implementation: Method
         language: !<!Languages> 
           default:
@@ -217,8 +197,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/queries/array/multi/string/empty'
+          path: /queries/array/multi/string/empty
           method: get
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -231,7 +212,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -254,14 +235,14 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_10
+        schema: *ref_8
         implementation: Method
         language: !<!Languages> 
           default:
             name: arrayQuery
-            description: 'an array of string [''ArrayQuery1'', ''begin!*''();:@ &=+$,/?#[]end'' , null, ''''] using the mult-array format'
+            description: 'an empty array [] of string using the multi-array format'
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
@@ -271,8 +252,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/queries/array/multi/string/valid'
+          path: /queries/array/multi/string/valid
           method: get
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -285,7 +267,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''

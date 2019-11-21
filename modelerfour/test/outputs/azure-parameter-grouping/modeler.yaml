@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_6
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -58,7 +58,7 @@ schemas: !<!Schemas>
         name: paths·parametergrouping-postrequired-path·post·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_6
+  - !<!NumberSchema> &ref_5
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -70,54 +70,6 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
   - *ref_0
-  - !<!NumberSchema> &ref_10
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    defaultValue: 30
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postoptional·post·parameters·1·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_12
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    defaultValue: 30
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postmultipleparametergroups·post·parameters·1·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_14
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    defaultValue: 30
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postmultipleparametergroups·post·parameters·3·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_16
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    defaultValue: 30
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-sharedparametergroupobject·post·parameters·1·schema
-        description: MISSING·SCHEMA-DESCRIPTION-INTEGER
-    protocol: !<!Protocols> {}
   strings:
   - !<!StringSchema> &ref_2
     type: string
@@ -136,59 +88,9 @@ schemas: !<!Schemas>
         name: paths·parametergrouping-postrequired-path·post·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_5
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postrequired-path·post·parameters·2·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_1
-  - !<!StringSchema> &ref_9
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postoptional·post·parameters·0·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_11
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postmultipleparametergroups·post·parameters·0·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_13
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-postmultipleparametergroups·post·parameters·2·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_15
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·parametergrouping-sharedparametergroupobject·post·parameters·0·schema
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_8
+- !<!Parameter> &ref_7
   schema: *ref_2
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -199,7 +101,7 @@ globalParameters:
       description: server parameter
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
-      in: path
+      in: uri
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: azure-parameter-grouping
@@ -213,12 +115,12 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
         schema: *ref_3
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: {}
+          x-ms-parameter-grouping: &ref_8 {}
         language: !<!Languages> 
           default:
             name: customHeader
@@ -230,7 +132,7 @@ operationGroups:
         schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: {}
+          x-ms-parameter-grouping: &ref_9 {}
         language: !<!Languages> 
           default:
             name: query
@@ -239,7 +141,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_5
+        schema: *ref_3
         implementation: Method
         required: true
         extensions:
@@ -252,7 +154,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_6
+        schema: *ref_5
         implementation: Method
         required: true
         extensions:
@@ -272,11 +174,12 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
-          path: '{$host}/parameterGrouping/postRequired/{path}'
+          path: '/parameterGrouping/postRequired/{path}'
           method: post
           knownMediaType: json
           mediaTypes:
           - application/json
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -289,7 +192,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -314,12 +217,12 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_9
+        schema: *ref_3
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: {}
+          x-ms-parameter-grouping: *ref_8
         language: !<!Languages> 
           default:
             name: customHeader
@@ -328,10 +231,10 @@ operationGroups:
           http: !<!HttpParameter> 
             in: header
       - !<!Parameter> 
-        schema: *ref_10
+        schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: {}
+          x-ms-parameter-grouping: *ref_9
         language: !<!Languages> 
           default:
             name: query
@@ -345,8 +248,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/parameterGrouping/postOptional'
+          path: /parameterGrouping/postOptional
           method: post
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -359,7 +263,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -382,12 +286,12 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_11
+        schema: *ref_3
         implementation: Method
         extensions:
-          x-ms-parameter-grouping:
+          x-ms-parameter-grouping: &ref_10
             name: first-parameter-group
         language: !<!Languages> 
           default:
@@ -397,10 +301,10 @@ operationGroups:
           http: !<!HttpParameter> 
             in: header
       - !<!Parameter> 
-        schema: *ref_12
+        schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping:
+          x-ms-parameter-grouping: &ref_11
             name: first-parameter-group
         language: !<!Languages> 
           default:
@@ -410,7 +314,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_13
+        schema: *ref_3
         implementation: Method
         extensions:
           x-ms-parameter-grouping:
@@ -423,7 +327,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: header
       - !<!Parameter> 
-        schema: *ref_14
+        schema: *ref_4
         implementation: Method
         extensions:
           x-ms-parameter-grouping:
@@ -441,8 +345,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/parameterGrouping/postMultipleParameterGroups'
+          path: /parameterGrouping/postMultipleParameterGroups
           method: post
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -455,7 +360,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -478,13 +383,12 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_8
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_15
+        schema: *ref_3
         implementation: Method
         extensions:
-          x-ms-parameter-grouping:
-            name: first-parameter-group
+          x-ms-parameter-grouping: *ref_10
         language: !<!Languages> 
           default:
             name: header-one
@@ -493,11 +397,10 @@ operationGroups:
           http: !<!HttpParameter> 
             in: header
       - !<!Parameter> 
-        schema: *ref_16
+        schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping:
-            name: first-parameter-group
+          x-ms-parameter-grouping: *ref_11
         language: !<!Languages> 
           default:
             name: query-one
@@ -511,8 +414,9 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '{$host}/parameterGrouping/sharedParameterGroupObject'
+          path: /parameterGrouping/sharedParameterGroupObject
           method: post
+          url: '{$host}'
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -525,7 +429,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
