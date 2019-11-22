@@ -296,7 +296,7 @@ export class ModelerFour {
         externalDocs: this.interpret.getExternalDocs(schema),
         serialization: this.interpret.getSerialization(schema),
         valueType: this.getPrimitiveSchemaForEnum(schema),
-        value: new ConstantValue(schema?.enum?.[0] || xmse?.values[0]?.value)
+        value: new ConstantValue(length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0])
       }));
 
     }
