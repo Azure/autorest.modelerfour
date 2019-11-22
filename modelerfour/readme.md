@@ -2,6 +2,10 @@
 
 ## Changelog:
 
+#### 4.1.60 - add missing serializedName on parameters
+  - query parameters should have a serializedName so that they don't rely on the cosmetic name property.
+  
+
 #### 4.1.58 - Breaking change: 
   - version bump, change your configuration to specify version `~4.1.0` or greater
   

@@ -906,6 +906,7 @@ export class ModelerFour {
             //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
             //  - otherwise, you'll get a sealed choice parameter.
 
+
             const apiversions = this.interpret.getApiVersionValues(pathItem);
             if (apiversions.length === 0) {
               // !!! 
@@ -923,6 +924,11 @@ export class ModelerFour {
                 implementation: ImplementationLocation.Client,
                 protocol: {
                   http: new HttpParameter(ParameterLocation.Query)
+                },
+                language: {
+                  default: {
+                    serializedName: parameter.name
+                  }
                 }
               }));
             }
@@ -937,7 +943,12 @@ export class ModelerFour {
               implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
               extensions: this.interpret.getExtensionProperties(parameter),
               protocol: {
-                http: new HttpParameter(parameter.in)
+                http: new HttpParameter(parameter.in),
+              },
+              language: {
+                default: {
+                  serializedName: parameter.name
+                }
               }
             }));
           }
