@@ -484,6 +484,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_27
+  schema: *ref_18
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription ID.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
@@ -498,18 +510,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_24
-      - !<!Parameter> 
-        schema: *ref_18
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_27
       - !<!Parameter> 
         schema: *ref_19
         implementation: Method
@@ -595,18 +596,6 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_24
-      - !<!Parameter> 
-        schema: *ref_18
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> 
         schema: *ref_19
         implementation: Method

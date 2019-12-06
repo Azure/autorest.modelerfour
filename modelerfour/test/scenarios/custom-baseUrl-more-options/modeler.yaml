@@ -123,6 +123,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_9
+  schema: *ref_3
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: The subscription id with value 'test12'.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: custom-baseUrl-more-options
@@ -151,18 +163,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: The subscription id with value 'test12'.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_9
       - !<!Parameter> 
         schema: *ref_4
         implementation: Method

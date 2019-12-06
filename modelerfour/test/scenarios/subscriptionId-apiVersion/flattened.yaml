@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_8
+  - !<!ObjectSchema> &ref_9
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -47,7 +47,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_9
+  - !<!ObjectSchema> &ref_10
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -92,7 +92,7 @@ schemas: !<!Schemas>
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_7
+  - !<!ConstantSchema> &ref_8
     type: constant
     value: !<!ConstantValue> 
       value: 2014-04-01-preview
@@ -116,7 +116,7 @@ schemas: !<!Schemas>
   - *ref_0
   strings:
   - *ref_1
-  - !<!StringSchema> &ref_6
+  - !<!StringSchema> &ref_5
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -130,7 +130,7 @@ schemas: !<!Schemas>
   - *ref_3
   - *ref_4
 globalParameters:
-- !<!Parameter> &ref_5
+- !<!Parameter> &ref_6
   schema: *ref_1
   clientDefaultValue: 'https://management.azure.com'
   implementation: Client
@@ -142,6 +142,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_7
+  schema: *ref_5
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription Id.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Some cool documentation.
   title: subscriptionId-apiVersion
@@ -155,21 +167,10 @@ operationGroups:
       version: 2014-04-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
+      - *ref_7
       - !<!Parameter> 
-        schema: *ref_6
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription Id.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        schema: *ref_6
+        schema: *ref_5
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -181,7 +182,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_7
+        schema: *ref_8
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -203,7 +204,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -217,7 +218,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''

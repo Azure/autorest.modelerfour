@@ -122,7 +122,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   constants:
   - *ref_0
-  - !<!ConstantSchema> &ref_10
+  - !<!ConstantSchema> &ref_11
     type: constant
     value: !<!ConstantValue> 
       value: 2015-07-01-preview
@@ -170,7 +170,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-07-01-preview
         description: Api Version (2015-07-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_16
+  - !<!ConstantSchema> &ref_15
     type: constant
     value: !<!ConstantValue> 
       value: 2015-07-01-preview
@@ -184,7 +184,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-07-01-preview
         description: Api Version (2015-07-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_17
+  - !<!ConstantSchema> &ref_16
     type: constant
     value: !<!ConstantValue> 
       value: 2015-07-01-preview
@@ -212,49 +212,21 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-07-01-preview
         description: Api Version (2015-07-01-preview)
     protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_17
+    type: constant
+    value: !<!ConstantValue> 
+      value: 2015-07-01-preview
+      language:
+        default:
+          name: ''
+          description: ''
+    valueType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: ApiVersion-2015-07-01-preview
+        description: Api Version (2015-07-01-preview)
+    protocol: !<!Protocols> {}
   - !<!ConstantSchema> &ref_18
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-07-01-preview
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-07-01-preview
-        description: Api Version (2015-07-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_15
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-07-01-preview
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-07-01-preview
-        description: Api Version (2015-07-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_19
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-07-01-preview
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-07-01-preview
-        description: Api Version (2015-07-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_21
     type: constant
     value: !<!ConstantValue> 
       value: path1/path2/path3
@@ -268,7 +240,7 @@ schemas: !<!Schemas>
         name: Constant0
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_23
+  - !<!ConstantSchema> &ref_19
     type: constant
     value: !<!ConstantValue> 
       value: value1&q2=value2&q3=value3
@@ -285,7 +257,7 @@ schemas: !<!Schemas>
   numbers:
   - *ref_2
   - *ref_3
-  - !<!NumberSchema> &ref_24
+  - !<!NumberSchema> &ref_20
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -299,7 +271,7 @@ schemas: !<!Schemas>
   - *ref_4
   strings:
   - *ref_1
-  - !<!StringSchema> &ref_8
+  - !<!StringSchema> &ref_7
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -311,30 +283,9 @@ schemas: !<!Schemas>
         header: foo-request-id
     protocol: !<!Protocols> {}
   - *ref_5
-  - !<!StringSchema> &ref_11
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_20
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_22
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   - *ref_6
 globalParameters:
-- !<!Parameter> &ref_7
+- !<!Parameter> &ref_8
   schema: *ref_1
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -346,6 +297,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_10
+  schema: *ref_7
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: azure-special-properties
@@ -359,7 +322,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -400,9 +363,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -465,19 +428,8 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_8
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_8
+      - *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -522,19 +474,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_8
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -579,21 +519,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        schema: *ref_10
+        schema: *ref_11
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -648,19 +576,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_8
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -705,19 +621,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_8
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -770,9 +674,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -827,9 +731,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -884,19 +788,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_11
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Should appear as a method parameter -use value '1234-5678-9012-3456'
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -941,9 +833,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -1006,7 +898,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
         schema: *ref_12
         implementation: Client
@@ -1063,7 +955,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
         schema: *ref_13
         implementation: Client
@@ -1120,19 +1012,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_14
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1177,9 +1057,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_15
+        schema: *ref_14
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1242,9 +1122,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_16
+        schema: *ref_15
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1299,9 +1179,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_17
+        schema: *ref_16
         implementation: Client
         language: !<!Languages> 
           default:
@@ -1355,19 +1235,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_18
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1412,9 +1280,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_19
+        schema: *ref_17
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1477,9 +1345,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         extensions:
@@ -1536,21 +1404,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_20
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-skip-url-encoding: true
-        language: !<!Languages> 
-          default:
-            name: unencodedPathParam
-            description: Unencoded path parameter with value 'path1/path2/path3'
-            serializedName: unencodedPathParam
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1595,9 +1449,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_18
         implementation: Method
         required: true
         extensions:
@@ -1654,9 +1508,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -1711,9 +1565,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         language: !<!Languages> 
           default:
@@ -1767,19 +1621,7 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
-        schema: *ref_22
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: q1
-            description: Unencoded query parameter with value 'value1&q2=value2&q3=value3'
-            serializedName: q1
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -1824,9 +1666,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_23
+        schema: *ref_19
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -1889,9 +1731,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         language: !<!Languages> 
           default:
@@ -1902,7 +1744,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_24
+        schema: *ref_20
         implementation: Method
         language: !<!Languages> 
           default:
@@ -1913,7 +1755,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         language: !<!Languages> 
           default:
@@ -1977,9 +1819,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         extensions:
@@ -2011,7 +1853,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_8
+            schema: *ref_7
             header: foo-request-id
           statusCodes:
           - '200'
@@ -2042,9 +1884,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         extensions:
@@ -2077,7 +1919,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_8
+            schema: *ref_7
             header: foo-request-id
           statusCodes:
           - '200'
@@ -2108,9 +1950,9 @@ operationGroups:
       version: 2015-07-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_7
+      - *ref_8
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_7
         implementation: Method
         required: true
         extensions:
@@ -2142,7 +1984,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_8
+            schema: *ref_7
             header: foo-request-id
           statusCodes:
           - '200'

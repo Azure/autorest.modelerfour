@@ -132,6 +132,64 @@
     "required": false,
     "x-ms-parameter-location": "method"
    },
+   "paths·filesystem·parameters·0": {
+    "name": "filesystem",
+    "in": "path",
+    "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem·parameters·0·schema"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem·parameters·1": {
+    "name": "resource",
+    "in": "query",
+    "description": "The value must be \"filesystem\" for all filesystem operations.",
+    "schema": {
+     "enum": [
+      "filesystem"
+     ],
+     "x-ms-enum": {
+      "name": "FilesystemResourceType",
+      "modelAsString": false
+     },
+     "type": "string"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem·parameters·2": {
+    "name": "x-ms-client-request-id",
+    "in": "header",
+    "description": "A UUID recorded in the analytics logs for troubleshooting and correlation.",
+    "x-ms-client-request-id": true,
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem·parameters·2·schema"
+    },
+    "required": false,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem·parameters·3": {
+    "name": "timeout",
+    "in": "query",
+    "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem·parameters·3·schema"
+    },
+    "required": false,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem·parameters·4": {
+    "name": "x-ms-date",
+    "in": "header",
+    "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem·parameters·4·schema"
+    },
+    "required": false,
+    "x-ms-parameter-location": "method"
+   },
    "paths·filesystem·put·parameters·0": {
     "name": "x-ms-properties",
     "in": "header",
@@ -238,6 +296,57 @@
     "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time.",
     "schema": {
      "$ref": "#/components/schemas/paths·filesystem·delete·parameters·1·schema"
+    },
+    "required": false,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem-path·parameters·0": {
+    "name": "filesystem",
+    "in": "path",
+    "description": "The filesystem identifier.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem-path·parameters·0·schema"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem-path·parameters·1": {
+    "name": "path",
+    "in": "path",
+    "description": "The file or directory path.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem-path·parameters·1·schema"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem-path·parameters·2": {
+    "name": "x-ms-client-request-id",
+    "in": "header",
+    "description": "A UUID recorded in the analytics logs for troubleshooting and correlation.",
+    "x-ms-client-request-id": true,
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem-path·parameters·2·schema"
+    },
+    "required": false,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem-path·parameters·3": {
+    "name": "timeout",
+    "in": "query",
+    "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem-path·parameters·3·schema"
+    },
+    "required": false,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·filesystem-path·parameters·4": {
+    "name": "x-ms-date",
+    "in": "header",
+    "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization.",
+    "schema": {
+     "$ref": "#/components/schemas/paths·filesystem-path·parameters·4·schema"
     },
     "required": false,
     "x-ms-parameter-location": "method"
@@ -1233,6 +1342,24 @@
    "paths·filesystem·put·responses·201·headers·x_ms_namespace_enabled·schema": {
     "type": "string"
    },
+   "paths·filesystem·parameters·0·schema": {
+    "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
+    "minLength": 3,
+    "maxLength": 63,
+    "type": "string"
+   },
+   "paths·filesystem·parameters·2·schema": {
+    "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+    "type": "string"
+   },
+   "paths·filesystem·parameters·3·schema": {
+    "format": "int32",
+    "minimum": 1,
+    "type": "integer"
+   },
+   "paths·filesystem·parameters·4·schema": {
+    "type": "string"
+   },
    "paths·filesystem·put·parameters·0·schema": {
     "type": "string"
    },
@@ -1357,6 +1484,27 @@
    "paths·filesystem-path·put·responses·201·headers·content_length·schema": {
     "format": "int64",
     "type": "integer"
+   },
+   "paths·filesystem-path·parameters·0·schema": {
+    "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
+    "minLength": 3,
+    "maxLength": 63,
+    "type": "string"
+   },
+   "paths·filesystem-path·parameters·1·schema": {
+    "type": "string"
+   },
+   "paths·filesystem-path·parameters·2·schema": {
+    "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+    "type": "string"
+   },
+   "paths·filesystem-path·parameters·3·schema": {
+    "format": "int32",
+    "minimum": 1,
+    "type": "integer"
+   },
+   "paths·filesystem-path·parameters·4·schema": {
+    "type": "string"
    },
    "paths·filesystem-path·put·parameters·0·schema": {
     "enum": [
@@ -3715,6 +3863,29 @@
     },
     "parameters": [
      {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·0",
+      "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·1",
+      "description": "The value must be \"filesystem\" for all filesystem operations."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
+     {
       "$ref": "#/components/parameters/paths·filesystem·put·parameters·0",
       "description": "User-defined properties to be stored with the filesystem, in the format of a comma-separated list of name and value pairs \"n1=v1, n2=v2, ...\", where each value is a base64 encoded string. Note that the string may only contain ASCII characters in the ISO-8859-1 character set."
      }
@@ -3759,6 +3930,29 @@
      }
     },
     "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·0",
+      "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·1",
+      "description": "The value must be \"filesystem\" for all filesystem operations."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
      {
       "$ref": "#/components/parameters/paths·filesystem·patch·parameters·0",
       "description": "Optional. User-defined properties to be stored with the filesystem, in the format of a comma-separated list of name and value pairs \"n1=v1, n2=v2, ...\", where each value is a base64 encoded string. Note that the string may only contain ASCII characters in the ISO-8859-1 character set.  If the filesystem exists, any properties not included in the list will be removed.  All properties are removed if the header is omitted.  To merge new and existing properties, first get all existing properties and the current E-Tag, then make a conditional request with the E-Tag and include values for all properties."
@@ -3816,6 +4010,29 @@
      }
     },
     "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·0",
+      "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·1",
+      "description": "The value must be \"filesystem\" for all filesystem operations."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
      {
       "$ref": "#/components/parameters/paths·filesystem·get·parameters·0",
       "description": "Filters results to paths within the specified directory. An error occurs if the directory does not exist."
@@ -3917,6 +4134,29 @@
     },
     "parameters": [
      {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·0",
+      "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·1",
+      "description": "The value must be \"filesystem\" for all filesystem operations."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
+     {
       "$ref": "#/components/parameters/paths·filesystem·delete·parameters·0",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has been modified since the specified date and time."
      },
@@ -3925,71 +4165,7 @@
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
     ]
-   },
-   "parameters": [
-    {
-     "name": "filesystem",
-     "in": "path",
-     "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters.",
-     "required": true,
-     "schema": {
-      "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
-      "minLength": 3,
-      "maxLength": 63,
-      "type": "string"
-     }
-    },
-    {
-     "name": "resource",
-     "in": "query",
-     "description": "The value must be \"filesystem\" for all filesystem operations.",
-     "required": true,
-     "schema": {
-      "enum": [
-       "filesystem"
-      ],
-      "x-ms-enum": {
-       "name": "FilesystemResourceType",
-       "modelAsString": false
-      },
-      "type": "string"
-     }
-    },
-    {
-     "name": "x-ms-client-request-id",
-     "in": "header",
-     "description": "A UUID recorded in the analytics logs for troubleshooting and correlation.",
-     "required": false,
-     "x-ms-client-request-id": true,
-     "schema": {
-      "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
-      "type": "string"
-     }
-    },
-    {
-     "name": "timeout",
-     "in": "query",
-     "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails.",
-     "required": false,
-     "schema": {
-      "format": "int32",
-      "minimum": 1,
-      "type": "integer"
-     }
-    },
-    {
-     "name": "x-ms-date",
-     "in": "header",
-     "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization.",
-     "required": false,
-     "schema": {
-      "type": "string"
-     }
-    },
-    {
-     "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
-    }
-   ]
+   }
   },
   "/{filesystem}/{path}": {
    "put": {
@@ -4031,6 +4207,29 @@
      }
     },
     "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
+      "description": "The filesystem identifier."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·1",
+      "description": "The file or directory path."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
      {
       "$ref": "#/components/parameters/paths·filesystem-path·put·parameters·0",
       "description": "Required only for Create File and Create Directory. The value must be \"file\" or \"directory\"."
@@ -4181,6 +4380,29 @@
     },
     "parameters": [
      {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
+      "description": "The filesystem identifier."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·1",
+      "description": "The file or directory path."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
+     {
       "$ref": "#/components/parameters/paths·filesystem-path·patch·parameters·0",
       "description": "The action must be \"append\" to upload data to be appended to a file, \"flush\" to flush previously uploaded data to a file, \"setProperties\" to set the properties of a file or directory, or \"setAccessControl\" to set the owner, group, permissions, or access control list for a file or directory.  Note that Hierarchical Namespace must be enabled for the account in order to use access control.  Also note that the Access Control List (ACL) includes permissions for the owner, owning group, and others, so the x-ms-permissions and x-ms-acl request headers are mutually exclusive."
      },
@@ -4323,6 +4545,29 @@
     },
     "parameters": [
      {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
+      "description": "The filesystem identifier."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·1",
+      "description": "The file or directory path."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
+     {
       "$ref": "#/components/parameters/paths·filesystem-path·post·parameters·0",
       "description": "There are five lease actions: \"acquire\", \"break\", \"change\", \"renew\", and \"release\". Use \"acquire\" and specify the \"x-ms-proposed-lease-id\" and \"x-ms-lease-duration\" to acquire a new lease. Use \"break\" to break an existing lease. When a lease is broken, the lease break period is allowed to elapse, during which time no lease operation except break and release can be performed on the file. When a lease is successfully broken, the response indicates the interval in seconds until a new lease can be acquired. Use \"change\" and specify the current lease ID in \"x-ms-lease-id\" and the new lease ID in \"x-ms-proposed-lease-id\" to change the lease ID of an active lease. Use \"renew\" and specify the \"x-ms-lease-id\" to renew an existing lease. Use \"release\" and specify the \"x-ms-lease-id\" to release a lease."
      },
@@ -4404,6 +4649,29 @@
     },
     "parameters": [
      {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
+      "description": "The filesystem identifier."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·1",
+      "description": "The file or directory path."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
+     {
       "$ref": "#/components/parameters/paths·filesystem-path·get·parameters·0",
       "description": "The HTTP Range request header specifies one or more byte ranges of the resource to be retrieved."
      },
@@ -4472,6 +4740,29 @@
      }
     },
     "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
+      "description": "The filesystem identifier."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·1",
+      "description": "The file or directory path."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
      {
       "$ref": "#/components/parameters/paths·filesystem-path·head·parameters·0",
       "description": "Optional. If the value is \"getStatus\" only the system defined properties for the path are returned. If the value is \"getAccessControl\" the access control list is returned in the response headers (Hierarchical Namespace must be enabled for the account), otherwise the properties are returned."
@@ -4546,6 +4837,29 @@
     },
     "parameters": [
      {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
+      "description": "The filesystem identifier."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·1",
+      "description": "The file or directory path."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem-path·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
+     },
+     {
       "$ref": "#/components/parameters/paths·filesystem-path·delete·parameters·0",
       "description": "Required and valid only when the resource is a directory.  If \"true\", all paths beneath the directory will be deleted. If \"false\" and the directory is non-empty, an error occurs."
      },
@@ -4574,64 +4888,7 @@
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
     ]
-   },
-   "parameters": [
-    {
-     "name": "filesystem",
-     "in": "path",
-     "description": "The filesystem identifier.",
-     "required": true,
-     "schema": {
-      "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
-      "minLength": 3,
-      "maxLength": 63,
-      "type": "string"
-     }
-    },
-    {
-     "name": "path",
-     "in": "path",
-     "description": "The file or directory path.",
-     "required": true,
-     "schema": {
-      "type": "string"
-     }
-    },
-    {
-     "name": "x-ms-client-request-id",
-     "in": "header",
-     "description": "A UUID recorded in the analytics logs for troubleshooting and correlation.",
-     "required": false,
-     "x-ms-client-request-id": true,
-     "schema": {
-      "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
-      "type": "string"
-     }
-    },
-    {
-     "name": "timeout",
-     "in": "query",
-     "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails.",
-     "required": false,
-     "schema": {
-      "format": "int32",
-      "minimum": 1,
-      "type": "integer"
-     }
-    },
-    {
-     "name": "x-ms-date",
-     "in": "header",
-     "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization.",
-     "required": false,
-     "schema": {
-      "type": "string"
-     }
-    },
-    {
-     "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
-    }
-   ]
+   }
   }
  },
  "servers": [

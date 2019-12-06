@@ -815,62 +815,6 @@ schemas: !<!Schemas>
   - *ref_2
   - *ref_21
   - *ref_20
-  - !<!StringSchema> &ref_69
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_70
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_71
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_72
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_73
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_74
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_75
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_76
-    type: string
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: MISSING·SCHEMA-DESCRIPTION-STRING
-    protocol: !<!Protocols> {}
   unixtimes:
   - !<!UnixTimeSchema> &ref_46
     type: unixtime
@@ -895,6 +839,29 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_69
+  schema: *ref_21
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: globalStringPath
+      description: A string value 'globalItemStringPath' that appears in the path
+      serializedName: globalStringPath
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_70
+  schema: *ref_21
+  implementation: Client
+  language: !<!Languages> 
+    default:
+      name: globalStringQuery
+      description: should contain value null
+      serializedName: globalStringQuery
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: url
@@ -4328,7 +4295,7 @@ operationGroups:
       parameters:
       - *ref_24
       - !<!Parameter> 
-        schema: *ref_69
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -4340,7 +4307,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_70
+        schema: *ref_21
         implementation: Method
         language: !<!Languages> 
           default:
@@ -4350,6 +4317,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      - *ref_69
+      - *ref_70
       - !<!Parameter> 
         schema: *ref_21
         implementation: Method
@@ -4421,7 +4390,7 @@ operationGroups:
       parameters:
       - *ref_24
       - !<!Parameter> 
-        schema: *ref_71
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -4433,7 +4402,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_72
+        schema: *ref_21
         implementation: Method
         language: !<!Languages> 
           default:
@@ -4512,7 +4481,7 @@ operationGroups:
       parameters:
       - *ref_24
       - !<!Parameter> 
-        schema: *ref_73
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -4524,7 +4493,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_74
+        schema: *ref_21
         implementation: Method
         language: !<!Languages> 
           default:
@@ -4603,7 +4572,7 @@ operationGroups:
       parameters:
       - *ref_24
       - !<!Parameter> 
-        schema: *ref_75
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -4615,12 +4584,12 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_76
+        schema: *ref_21
         implementation: Method
         language: !<!Languages> 
           default:
             name: pathItemStringQuery
-            description: should contain value null
+            description: A string value 'pathItemStringQuery' that appears as a query parameter
             serializedName: pathItemStringQuery
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 

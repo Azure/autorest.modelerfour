@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_23
+  - !<!ObjectSchema> &ref_24
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -300,7 +300,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_1
   - *ref_2
-  - !<!ObjectSchema> &ref_24
+  - !<!ObjectSchema> &ref_25
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -364,7 +364,7 @@ schemas: !<!Schemas>
   arrays:
   - *ref_3
   constants:
-  - !<!ConstantSchema> &ref_22
+  - !<!ConstantSchema> &ref_23
     type: constant
     value: !<!ConstantValue> 
       value: 1.0.0
@@ -384,7 +384,7 @@ schemas: !<!Schemas>
   - *ref_7
   - *ref_8
   - *ref_9
-  - !<!ConstantSchema> &ref_25
+  - !<!ConstantSchema> &ref_26
     type: constant
     value: !<!ConstantValue> 
       value: 1.0.0
@@ -398,7 +398,7 @@ schemas: !<!Schemas>
         name: ApiVersion-1.0.0
         description: Api Version (1.0.0)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_26
+  - !<!ConstantSchema> &ref_27
     type: constant
     value: !<!ConstantValue> 
       value: constant
@@ -413,7 +413,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
-  - !<!NumberSchema> &ref_21
+  - !<!NumberSchema> &ref_22
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -433,7 +433,7 @@ schemas: !<!Schemas>
   - *ref_13
   strings:
   - *ref_0
-  - !<!StringSchema> &ref_19
+  - !<!StringSchema> &ref_18
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -443,7 +443,7 @@ schemas: !<!Schemas>
         name: string
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_20
+  - !<!StringSchema> &ref_21
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -472,7 +472,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_18
+- !<!Parameter> &ref_19
   schema: *ref_0
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -484,6 +484,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_20
+  schema: *ref_18
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription ID.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
@@ -497,21 +509,10 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_18
+      - *ref_19
+      - *ref_20
       - !<!Parameter> 
-        schema: *ref_19
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        schema: *ref_20
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -523,7 +524,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_22
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -535,7 +536,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_22
+        schema: *ref_23
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -557,7 +558,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_23
+      schema: *ref_24
       language: !<!Languages> 
         default:
           name: ''
@@ -571,7 +572,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_24
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -594,21 +595,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_18
+      - *ref_19
       - !<!Parameter> 
-        schema: *ref_19
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        schema: *ref_20
+        schema: *ref_21
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -620,7 +609,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_22
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -632,7 +621,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_25
+        schema: *ref_26
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -644,7 +633,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_23
+        schema: *ref_24
         implementation: Method
         required: true
         extensions:
@@ -671,7 +660,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_23
+      schema: *ref_24
       language: !<!Languages> 
         default:
           name: ''
@@ -685,7 +674,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_24
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -710,9 +699,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_18
+      - *ref_19
       - !<!Parameter> 
-        schema: *ref_26
+        schema: *ref_27
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -753,9 +742,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_18
+      - *ref_19
       - !<!Parameter> 
-        schema: *ref_26
+        schema: *ref_27
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -767,7 +756,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_23
+        schema: *ref_24
         implementation: Method
         required: true
         extensions:
@@ -794,7 +783,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_23
+      schema: *ref_24
       language: !<!Languages> 
         default:
           name: ''

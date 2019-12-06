@@ -378,6 +378,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_26
+  schema: *ref_15
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription ID.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Some cool documentation.
   title: complex-model
@@ -392,18 +404,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_20
-      - !<!Parameter> 
-        schema: *ref_15
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_26
       - !<!Parameter> 
         schema: *ref_16
         implementation: Method

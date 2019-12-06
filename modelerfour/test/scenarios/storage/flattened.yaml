@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_50
+  - !<!ObjectSchema> &ref_51
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -50,7 +50,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_51
+  - !<!ObjectSchema> &ref_52
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -773,7 +773,7 @@ schemas: !<!Schemas>
   - *ref_5
   - *ref_8
   - *ref_13
-  - !<!ObjectSchema> &ref_57
+  - !<!ObjectSchema> &ref_58
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -810,7 +810,7 @@ schemas: !<!Schemas>
         description: The access keys for the storage account.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_59
+  - !<!ObjectSchema> &ref_60
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -857,7 +857,7 @@ schemas: !<!Schemas>
         description: The list storage accounts operation response.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_62
+  - !<!ObjectSchema> &ref_63
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -900,7 +900,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_64
+  - !<!ObjectSchema> &ref_65
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1142,20 +1142,6 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_52
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-      language:
-        default:
-          name: ''
-          description: ''
-    valueType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
   - !<!ConstantSchema> &ref_53
     type: constant
     value: !<!ConstantValue> 
@@ -1212,7 +1198,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_58
+  - !<!ConstantSchema> &ref_57
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1226,7 +1212,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_60
+  - !<!ConstantSchema> &ref_59
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1254,7 +1240,21 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_63
+  - !<!ConstantSchema> &ref_62
+    type: constant
+    value: !<!ConstantValue> 
+      value: 2015-05-01-preview
+      language:
+        default:
+          name: ''
+          description: ''
+    valueType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: ApiVersion-2015-05-01-preview
+        description: Api Version (2015-05-01-preview)
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_64
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1308,6 +1308,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_50
+  schema: *ref_30
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   title: storage
 operationGroups:
@@ -1333,20 +1345,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      - *ref_50
       - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        schema: *ref_50
+        schema: *ref_51
         implementation: Method
         required: true
         extensions:
@@ -1374,7 +1375,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_51
+      schema: *ref_52
       language: !<!Languages> 
         default:
           name: ''
@@ -1426,7 +1427,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_52
+        schema: *ref_53
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1437,18 +1438,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> 
         schema: *ref_6
         implementation: Method
@@ -1542,7 +1531,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_53
+        schema: *ref_54
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1553,18 +1542,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       language: !<!Languages> 
         default:
           name: ''
@@ -1630,7 +1607,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_54
+        schema: *ref_55
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1641,18 +1618,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       language: !<!Languages> 
         default:
           name: ''
@@ -1714,7 +1679,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_55
+        schema: *ref_56
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1725,18 +1690,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> 
         schema: *ref_8
         implementation: Method
@@ -1821,7 +1774,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_56
+        schema: *ref_57
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1832,18 +1785,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       language: !<!Languages> 
         default:
           name: ''
@@ -1855,7 +1796,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_57
+      schema: *ref_58
       language: !<!Languages> 
         default:
           name: ''
@@ -1881,7 +1822,7 @@ operationGroups:
       parameters:
       - *ref_48
       - !<!Parameter> 
-        schema: *ref_58
+        schema: *ref_59
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1892,18 +1833,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       language: !<!Languages> 
         default:
           name: ''
@@ -1915,7 +1844,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_59
+      schema: *ref_60
       language: !<!Languages> 
         default:
           name: ''
@@ -1956,7 +1885,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_60
+        schema: *ref_61
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -1967,18 +1896,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       language: !<!Languages> 
         default:
           name: ''
@@ -1990,7 +1907,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_59
+      schema: *ref_60
       language: !<!Languages> 
         default:
           name: ''
@@ -2043,7 +1960,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_61
+        schema: *ref_62
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -2055,19 +1972,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> 
-        schema: *ref_62
+        schema: *ref_63
         implementation: Method
         required: true
         extensions:
@@ -2095,7 +2000,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_57
+      schema: *ref_58
       language: !<!Languages> 
         default:
           name: ''
@@ -2131,7 +2036,7 @@ operationGroups:
       parameters:
       - *ref_48
       - !<!Parameter> 
-        schema: *ref_63
+        schema: *ref_64
         implementation: Client
         required: true
         language: !<!Languages> 
@@ -2142,18 +2047,6 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_30
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       language: !<!Languages> 
         default:
           name: ''
@@ -2165,7 +2058,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_64
+      schema: *ref_65
       language: !<!Languages> 
         default:
           name: ''

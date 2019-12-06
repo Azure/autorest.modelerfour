@@ -142,6 +142,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_10
+  schema: *ref_5
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription Id.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 info: !<!Info> 
   description: Some cool documentation.
   title: subscriptionId-apiVersion
@@ -156,18 +168,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_9
-      - !<!Parameter> 
-        schema: *ref_5
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription Id.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
+      - *ref_10
       - !<!Parameter> 
         schema: *ref_5
         implementation: Method

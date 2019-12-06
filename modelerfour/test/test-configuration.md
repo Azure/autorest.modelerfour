@@ -1,8 +1,6 @@
 # Test Configuration (extended pipeline)
 
 ``` yaml
-
-
 pipeline:
   my0/reset-identity:
     input: swagger-document/loader-swagger
