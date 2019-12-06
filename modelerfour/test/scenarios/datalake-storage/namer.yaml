@@ -8,7 +8,7 @@ schemas: !<!Schemas>
       version: '2019-10-31'
     properties:
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_4
+      schema: !<!ArraySchema> &ref_3
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -167,7 +167,7 @@ schemas: !<!Schemas>
       version: '2019-10-31'
     properties:
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_5
+      schema: !<!ArraySchema> &ref_4
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -196,7 +196,7 @@ schemas: !<!Schemas>
                 description: MISSING·SCHEMA-DESCRIPTION-STRING
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!BooleanSchema> &ref_6
+            schema: !<!BooleanSchema> &ref_5
               type: boolean
               defaultValue: false
               language: !<!Languages> 
@@ -334,172 +334,9 @@ schemas: !<!Schemas>
         namespace: Api20191031
     protocol: !<!Protocols> {}
   - *ref_2
-  choices:
-  - !<!ChoiceSchema> &ref_88
-    choices:
-    - !<!ChoiceValue> 
-      value: directory
-      language:
-        default:
-          name: directory
-          description: ''
-    - !<!ChoiceValue> 
-      value: file
-      language:
-        default:
-          name: file
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: !<!StringSchema> &ref_3
-      type: string
-      language: !<!Languages> 
-        default:
-          name: string
-          description: simple string
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: PathResourceType
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_90
-    choices:
-    - !<!ChoiceValue> 
-      value: legacy
-      language:
-        default:
-          name: legacy
-          description: ''
-    - !<!ChoiceValue> 
-      value: posix
-      language:
-        default:
-          name: posix
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: PathRenameMode
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_121
-    choices:
-    - !<!ChoiceValue> 
-      value: append
-      language:
-        default:
-          name: append
-          description: ''
-    - !<!ChoiceValue> 
-      value: flush
-      language:
-        default:
-          name: flush
-          description: ''
-    - !<!ChoiceValue> 
-      value: setProperties
-      language:
-        default:
-          name: setProperties
-          description: ''
-    - !<!ChoiceValue> 
-      value: setAccessControl
-      language:
-        default:
-          name: setAccessControl
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: PathUpdateAction
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_163
-    choices:
-    - !<!ChoiceValue> 
-      value: acquire
-      language:
-        default:
-          name: acquire
-          description: ''
-    - !<!ChoiceValue> 
-      value: break
-      language:
-        default:
-          name: break
-          description: ''
-    - !<!ChoiceValue> 
-      value: change
-      language:
-        default:
-          name: change
-          description: ''
-    - !<!ChoiceValue> 
-      value: renew
-      language:
-        default:
-          name: renew
-          description: ''
-    - !<!ChoiceValue> 
-      value: release
-      language:
-        default:
-          name: release
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: PathLeaseAction
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_235
-    choices:
-    - !<!ChoiceValue> 
-      value: getAccessControl
-      language:
-        default:
-          name: getAccessControl
-          description: ''
-    - !<!ChoiceValue> 
-      value: getStatus
-      language:
-        default:
-          name: getStatus
-          description: ''
-    - !<!ChoiceValue> 
-      value: checkAccess
-      language:
-        default:
-          name: checkAccess
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_3
-    language: !<!Languages> 
-      default:
-        name: PathGetPropertiesAction
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   arrays:
+  - *ref_3
   - *ref_4
-  - *ref_5
   binaries:
   - !<!BinarySchema> &ref_143
     type: binary
@@ -532,7 +369,7 @@ schemas: !<!Schemas>
         name: boolean
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - *ref_6
+  - *ref_5
   - !<!BooleanSchema> &ref_123
     type: boolean
     apiVersions:
@@ -592,7 +429,13 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: *ref_3
+    valueType: !<!StringSchema> &ref_6
+      type: string
+      language: !<!Languages> 
+        default:
+          name: string
+          description: simple string
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: AccountResourceType
@@ -606,7 +449,7 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: *ref_3
+    valueType: *ref_6
     language: !<!Languages> 
       default:
         name: FilesystemResourceType
@@ -779,8 +622,165 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
         header: Content-Length
     protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_88
+    choices:
+    - !<!ChoiceValue> 
+      value: directory
+      language:
+        default:
+          name: directory
+          description: ''
+    - !<!ChoiceValue> 
+      value: file
+      language:
+        default:
+          name: file
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: PathResourceType
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_90
+    choices:
+    - !<!ChoiceValue> 
+      value: legacy
+      language:
+        default:
+          name: legacy
+          description: ''
+    - !<!ChoiceValue> 
+      value: posix
+      language:
+        default:
+          name: posix
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: PathRenameMode
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_121
+    choices:
+    - !<!ChoiceValue> 
+      value: append
+      language:
+        default:
+          name: append
+          description: ''
+    - !<!ChoiceValue> 
+      value: flush
+      language:
+        default:
+          name: flush
+          description: ''
+    - !<!ChoiceValue> 
+      value: setProperties
+      language:
+        default:
+          name: setProperties
+          description: ''
+    - !<!ChoiceValue> 
+      value: setAccessControl
+      language:
+        default:
+          name: setAccessControl
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: PathUpdateAction
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_163
+    choices:
+    - !<!ChoiceValue> 
+      value: acquire
+      language:
+        default:
+          name: acquire
+          description: ''
+    - !<!ChoiceValue> 
+      value: break
+      language:
+        default:
+          name: break
+          description: ''
+    - !<!ChoiceValue> 
+      value: change
+      language:
+        default:
+          name: change
+          description: ''
+    - !<!ChoiceValue> 
+      value: renew
+      language:
+        default:
+          name: renew
+          description: ''
+    - !<!ChoiceValue> 
+      value: release
+      language:
+        default:
+          name: release
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: PathLeaseAction
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_235
+    choices:
+    - !<!ChoiceValue> 
+      value: getAccessControl
+      language:
+        default:
+          name: getAccessControl
+          description: ''
+    - !<!ChoiceValue> 
+      value: getStatus
+      language:
+        default:
+          name: getStatus
+          description: ''
+    - !<!ChoiceValue> 
+      value: checkAccess
+      language:
+        default:
+          name: checkAccess
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: PathGetPropertiesAction
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   strings:
-  - *ref_3
+  - *ref_6
   - !<!StringSchema> &ref_23
     type: string
     apiVersions:
@@ -3219,7 +3219,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_20
-  schema: *ref_3
+  schema: *ref_6
   implementation: Client
   required: true
   extensions:
@@ -3232,7 +3232,7 @@ globalParameters:
     http: !<!HttpParameter> 
       in: uri
 - !<!Parameter> &ref_21
-  schema: *ref_3
+  schema: *ref_6
   clientDefaultValue: dfs.core.windows.net
   implementation: Client
   required: true

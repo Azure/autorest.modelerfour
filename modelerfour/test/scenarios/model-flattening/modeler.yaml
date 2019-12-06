@@ -61,7 +61,7 @@ schemas: !<!Schemas>
                   description: MISSING·SCHEMA-DESCRIPTION-STRING
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_31
+              schema: !<!ChoiceSchema> &ref_31
                 choices:
                 - !<!ChoiceValue> 
                   value: Succeeded
@@ -129,7 +129,7 @@ schemas: !<!Schemas>
                     default:
                       name: OK
                       description: ''
-                type: sealed-choice
+                type: choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
@@ -672,6 +672,8 @@ schemas: !<!Schemas>
         description: Dictionary of <FlattenedProduct>
     protocol: !<!Protocols> {}
   - *ref_27
+  choices:
+  - *ref_31
   arrays:
   - !<!ArraySchema> &ref_33
     type: array
@@ -722,8 +724,6 @@ schemas: !<!Schemas>
   - *ref_32
   numbers:
   - *ref_30
-  sealedChoices:
-  - *ref_31
   strings:
   - *ref_7
   - *ref_0

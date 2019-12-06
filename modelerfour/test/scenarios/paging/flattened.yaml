@@ -8,7 +8,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_2
+      schema: !<!ArraySchema> &ref_3
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -27,7 +27,7 @@ schemas: !<!Schemas>
                 version: 1.0.0
               properties:
               - !<!Property> 
-                schema: !<!NumberSchema> &ref_4
+                schema: !<!NumberSchema> &ref_5
                   type: integer
                   precision: 32
                   language: !<!Languages> 
@@ -119,7 +119,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_3
+      schema: !<!ArraySchema> &ref_4
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -166,7 +166,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_5
+      schema: !<!ChoiceSchema> &ref_2
         choices:
         - !<!ChoiceValue> 
           value: Succeeded
@@ -234,7 +234,7 @@ schemas: !<!Schemas>
             default:
               name: OK
               description: ''
-        type: sealed-choice
+        type: choice
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -262,11 +262,13 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  arrays:
+  choices:
   - *ref_2
+  arrays:
   - *ref_3
-  numbers:
   - *ref_4
+  numbers:
+  - *ref_5
   - !<!NumberSchema> &ref_13
     type: integer
     apiVersions:
@@ -290,8 +292,6 @@ schemas: !<!Schemas>
         name: integer
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
-  sealedChoices:
-  - *ref_5
   strings:
   - *ref_6
   - *ref_7

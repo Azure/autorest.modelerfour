@@ -45,44 +45,6 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  choices:
-  - !<!ChoiceSchema> &ref_16
-    choices:
-    - !<!ChoiceValue> 
-      value: White
-      language:
-        default:
-          name: White
-          description: ''
-    - !<!ChoiceValue> 
-      value: black
-      language:
-        default:
-          name: black
-          description: ''
-    - !<!ChoiceValue> 
-      value: GREY
-      language:
-        default:
-          name: GREY
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: !<!StringSchema> &ref_1
-      type: string
-      language: !<!Languages> 
-        default:
-          name: string
-          description: simple string
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: GreyscaleColors
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-        header: value
-    protocol: !<!Protocols> {}
   booleans:
   - !<!BooleanSchema> &ref_10
     type: boolean
@@ -205,6 +167,44 @@ schemas: !<!Schemas>
       default:
         name: number
         description: MISSING·SCHEMA-DESCRIPTION-NUMBER
+        header: value
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_16
+    choices:
+    - !<!ChoiceValue> 
+      value: White
+      language:
+        default:
+          name: White
+          description: ''
+    - !<!ChoiceValue> 
+      value: black
+      language:
+        default:
+          name: black
+          description: ''
+    - !<!ChoiceValue> 
+      value: GREY
+      language:
+        default:
+          name: GREY
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: !<!StringSchema> &ref_1
+      type: string
+      language: !<!Languages> 
+        default:
+          name: string
+          description: simple string
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: GreyscaleColors
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
         header: value
     protocol: !<!Protocols> {}
   strings:

@@ -108,7 +108,7 @@ schemas: !<!Schemas>
         description: Dictionary of <paths·array-prim-string-foo1-foo2-foo3·get·responses·200·content·application-json·schema·items>
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_1
+  - !<!ChoiceSchema> &ref_2
     choices:
     - !<!ChoiceValue> 
       value: foo1
@@ -132,7 +132,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    choiceType: !<!StringSchema> &ref_2
+    choiceType: !<!StringSchema> &ref_1
       type: string
       language: !<!Languages> 
         default:
@@ -141,7 +141,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: FooEnum
+        name: Enum0
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   arrays:
@@ -306,17 +306,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: ArrayOfFooEnum
-        description: 'The array value [''foo1'', ''foo2'', ''foo3'']'
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_37
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
     elementType: !<!SealedChoiceSchema> &ref_21
       choices:
       - !<!ChoiceValue> 
@@ -341,12 +330,23 @@ schemas: !<!Schemas>
       apiVersions:
       - !<!ApiVersion> 
         version: 1.0.0
-      choiceType: *ref_2
+      choiceType: *ref_1
       language: !<!Languages> 
         default:
-          name: Enum0
+          name: FooEnum
           description: MISSING·SCHEMA-DESCRIPTION-CHOICE
       protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: ArrayOfFooEnum
+        description: 'The array value [''foo1'', ''foo2'', ''foo3'']'
+    protocol: !<!Protocols> {}
+  - !<!ArraySchema> &ref_37
+    type: array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_2
     language: !<!Languages> 
       default:
         name: ArrayOfEnum0
@@ -583,7 +583,7 @@ schemas: !<!Schemas>
   sealedChoices:
   - *ref_21
   strings:
-  - *ref_2
+  - *ref_1
   - *ref_22
   - *ref_23
   - *ref_0
@@ -593,7 +593,7 @@ schemas: !<!Schemas>
   - *ref_26
 globalParameters:
 - !<!Parameter> &ref_27
-  schema: *ref_2
+  schema: *ref_1
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true

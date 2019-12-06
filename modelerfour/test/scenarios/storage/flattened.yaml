@@ -57,7 +57,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_24
+      schema: !<!BooleanSchema> &ref_20
         type: boolean
         language: !<!Languages> 
           default:
@@ -71,7 +71,7 @@ schemas: !<!Schemas>
           description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_18
+      schema: !<!SealedChoiceSchema> &ref_26
         choices:
         - !<!ChoiceValue> 
           value: AccountNameInvalid
@@ -85,7 +85,7 @@ schemas: !<!Schemas>
             default:
               name: AlreadyExists
               description: ''
-        type: choice
+        type: sealed-choice
         apiVersions:
         - !<!ApiVersion> 
           version: 2015-05-01-preview
@@ -156,7 +156,7 @@ schemas: !<!Schemas>
               version: 2015-05-01-preview
             properties:
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_2
+              schema: !<!SealedChoiceSchema> &ref_2
                 choices:
                 - !<!ChoiceValue> 
                   value: Standard_LRS
@@ -188,7 +188,7 @@ schemas: !<!Schemas>
                     default:
                       name: Premium_LRS
                       description: ''
-                type: choice
+                type: sealed-choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -241,7 +241,7 @@ schemas: !<!Schemas>
               version: 2015-05-01-preview
             properties:
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_19
+              schema: !<!SealedChoiceSchema> &ref_27
                 choices:
                 - !<!ChoiceValue> 
                   value: Creating
@@ -261,7 +261,7 @@ schemas: !<!Schemas>
                     default:
                       name: Succeeded
                       description: ''
-                type: choice
+                type: sealed-choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -427,7 +427,7 @@ schemas: !<!Schemas>
                   description: Gets the location of the primary for the storage account.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_4
+              schema: !<!SealedChoiceSchema> &ref_4
                 choices:
                 - !<!ChoiceValue> 
                   value: Available
@@ -441,7 +441,7 @@ schemas: !<!Schemas>
                     default:
                       name: Unavailable
                       description: ''
-                type: choice
+                type: sealed-choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -458,7 +458,7 @@ schemas: !<!Schemas>
                   description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!DateTimeSchema> &ref_26
+              schema: !<!DateTimeSchema> &ref_22
                 type: date-time
                 format: date-time
                 apiVersions:
@@ -505,7 +505,7 @@ schemas: !<!Schemas>
                   description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!DateTimeSchema> &ref_27
+              schema: !<!DateTimeSchema> &ref_23
                 type: date-time
                 format: date-time
                 apiVersions:
@@ -547,7 +547,7 @@ schemas: !<!Schemas>
                       description: Gets or sets the custom domain name. Name is the CNAME source.
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: !<!BooleanSchema> &ref_25
+                  schema: !<!BooleanSchema> &ref_21
                     type: boolean
                     language: !<!Languages> 
                       default:
@@ -817,7 +817,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_22
+      schema: !<!ArraySchema> &ref_18
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -864,7 +864,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_20
+      schema: !<!SealedChoiceSchema> &ref_28
         choices:
         - !<!ChoiceValue> 
           value: key1
@@ -878,7 +878,7 @@ schemas: !<!Schemas>
             default:
               name: key2
               description: ''
-        type: choice
+        type: sealed-choice
         apiVersions:
         - !<!ApiVersion> 
           version: 2015-05-01-preview
@@ -907,7 +907,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_23
+      schema: !<!ArraySchema> &ref_19
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -919,7 +919,7 @@ schemas: !<!Schemas>
             version: 2015-05-01-preview
           properties:
           - !<!Property> 
-            schema: !<!ChoiceSchema> &ref_21
+            schema: !<!SealedChoiceSchema> &ref_29
               choices:
               - !<!ChoiceValue> 
                 value: Count
@@ -957,7 +957,7 @@ schemas: !<!Schemas>
                   default:
                     name: BytesPerSecond
                     description: ''
-              type: choice
+              type: sealed-choice
               apiVersions:
               - !<!ApiVersion> 
                 version: 2015-05-01-preview
@@ -974,7 +974,7 @@ schemas: !<!Schemas>
                 description: Gets the unit of measurement.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!NumberSchema> &ref_28
+            schema: !<!NumberSchema> &ref_24
               type: integer
               precision: 32
               language: !<!Languages> 
@@ -989,7 +989,7 @@ schemas: !<!Schemas>
                 description: Gets the current count of the allocated resources in the subscription.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!NumberSchema> &ref_29
+            schema: !<!NumberSchema> &ref_25
               type: integer
               precision: 32
               language: !<!Languages> 
@@ -1114,19 +1114,12 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_17
-  choices:
+  arrays:
   - *ref_18
-  - *ref_2
   - *ref_19
-  - *ref_4
+  booleans:
   - *ref_20
   - *ref_21
-  arrays:
-  - *ref_22
-  - *ref_23
-  booleans:
-  - *ref_24
-  - *ref_25
   constants:
   - !<!ConstantSchema> &ref_49
     type: constant
@@ -1269,9 +1262,16 @@ schemas: !<!Schemas>
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
   dateTimes:
-  - *ref_26
-  - *ref_27
+  - *ref_22
+  - *ref_23
   numbers:
+  - *ref_24
+  - *ref_25
+  sealedChoices:
+  - *ref_26
+  - *ref_2
+  - *ref_27
+  - *ref_4
   - *ref_28
   - *ref_29
   strings:

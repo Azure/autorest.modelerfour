@@ -61,7 +61,7 @@ schemas: !<!Schemas>
                   description: MISSING·SCHEMA-DESCRIPTION-STRING
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_17
+              schema: !<!ChoiceSchema> &ref_13
                 choices:
                 - !<!ChoiceValue> 
                   value: Succeeded
@@ -129,7 +129,7 @@ schemas: !<!Schemas>
                     default:
                       name: OK
                       description: ''
-                type: sealed-choice
+                type: choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
@@ -302,7 +302,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_16
+      schema: !<!NumberSchema> &ref_17
         type: integer
         precision: 32
         language: !<!Languages> 
@@ -378,7 +378,7 @@ schemas: !<!Schemas>
         description: The wrapped produc.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_13
+  - !<!ObjectSchema> &ref_14
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -413,7 +413,7 @@ schemas: !<!Schemas>
           description: Flattened product.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_14
+      schema: !<!ArraySchema> &ref_15
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -495,7 +495,7 @@ schemas: !<!Schemas>
                   description: Display name of product.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!ConstantSchema> &ref_15
+              schema: !<!ConstantSchema> &ref_16
                 type: constant
                 apiVersions:
                 - !<!ApiVersion> 
@@ -672,6 +672,8 @@ schemas: !<!Schemas>
         description: Dictionary of <FlattenedProduct>
     protocol: !<!Protocols> {}
   - *ref_12
+  choices:
+  - *ref_13
   arrays:
   - !<!ArraySchema> &ref_34
     type: array
@@ -711,18 +713,16 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_13
+    elementType: *ref_14
     language: !<!Languages> 
       default:
         name: Array of ProductWrapper
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - *ref_14
-  constants:
   - *ref_15
-  numbers:
+  constants:
   - *ref_16
-  sealedChoices:
+  numbers:
   - *ref_17
   strings:
   - *ref_6

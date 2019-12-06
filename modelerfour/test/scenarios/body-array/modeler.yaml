@@ -108,7 +108,7 @@ schemas: !<!Schemas>
         description: Dictionary of <paths·array-prim-string-foo1-foo2-foo3·get·responses·200·content·application-json·schema·items>
     protocol: !<!Protocols> {}
   choices:
-  - !<!ChoiceSchema> &ref_17
+  - !<!ChoiceSchema> &ref_18
     choices:
     - !<!ChoiceValue> 
       value: foo1
@@ -141,7 +141,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: FooEnum
+        name: paths·array-prim-string_enum-foo1-foo2-foo3·get·responses·200·content·application-json·schema·items
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   arrays:
@@ -306,18 +306,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_17
-    language: !<!Languages> 
-      default:
-        name: paths·array-prim-enum-foo1-foo2-foo3·get·responses·200·content·application-json·schema
-        description: 'The array value [''foo1'', ''foo2'', ''foo3'']'
-    protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_37
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: !<!SealedChoiceSchema> &ref_18
+    elementType: !<!SealedChoiceSchema> &ref_17
       choices:
       - !<!ChoiceValue> 
         value: foo1
@@ -344,9 +333,20 @@ schemas: !<!Schemas>
       choiceType: *ref_7
       language: !<!Languages> 
         default:
-          name: paths·array-prim-string_enum-foo1-foo2-foo3·get·responses·200·content·application-json·schema·items
+          name: FooEnum
           description: MISSING·SCHEMA-DESCRIPTION-CHOICE
       protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: paths·array-prim-enum-foo1-foo2-foo3·get·responses·200·content·application-json·schema
+        description: 'The array value [''foo1'', ''foo2'', ''foo3'']'
+    protocol: !<!Protocols> {}
+  - !<!ArraySchema> &ref_37
+    type: array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_18
     language: !<!Languages> 
       default:
         name: paths·array-prim-string_enum-foo1-foo2-foo3·get·responses·200·content·application-json·schema
@@ -581,7 +581,7 @@ schemas: !<!Schemas>
   - *ref_5
   - *ref_8
   sealedChoices:
-  - *ref_18
+  - *ref_17
   strings:
   - *ref_7
   - *ref_14

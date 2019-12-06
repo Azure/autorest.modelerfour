@@ -166,7 +166,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_9
+      schema: !<!ChoiceSchema> &ref_9
         choices:
         - !<!ChoiceValue> 
           value: Succeeded
@@ -234,7 +234,7 @@ schemas: !<!Schemas>
             default:
               name: OK
               description: ''
-        type: sealed-choice
+        type: choice
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -262,6 +262,8 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
+  choices:
+  - *ref_9
   arrays:
   - *ref_7
   - *ref_8
@@ -290,8 +292,6 @@ schemas: !<!Schemas>
         name: paths·paging-multiple·get·parameters·2·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
-  sealedChoices:
-  - *ref_9
   strings:
   - *ref_5
   - *ref_0

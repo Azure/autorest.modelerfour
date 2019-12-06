@@ -690,7 +690,7 @@ schemas: !<!Schemas>
                     description: MISSING·SCHEMA-DESCRIPTION-STRING
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!ChoiceSchema> &ref_57
+                schema: !<!SealedChoiceSchema> &ref_57
                   choices:
                   - !<!ChoiceValue> 
                     value: locked
@@ -704,7 +704,7 @@ schemas: !<!Schemas>
                       default:
                         name: unlocked
                         description: ''
-                  type: choice
+                  type: sealed-choice
                   apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
@@ -728,7 +728,7 @@ schemas: !<!Schemas>
                     description: MISSING·SCHEMA-DESCRIPTION-CHOICE
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!ChoiceSchema> &ref_58
+                schema: !<!SealedChoiceSchema> &ref_58
                   choices:
                   - !<!ChoiceValue> 
                     value: available
@@ -760,7 +760,7 @@ schemas: !<!Schemas>
                       default:
                         name: broken
                         description: ''
-                  type: choice
+                  type: sealed-choice
                   apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
@@ -778,7 +778,7 @@ schemas: !<!Schemas>
                     description: MISSING·SCHEMA-DESCRIPTION-CHOICE
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!ChoiceSchema> &ref_59
+                schema: !<!SealedChoiceSchema> &ref_59
                   choices:
                   - !<!ChoiceValue> 
                     value: infinite
@@ -792,7 +792,7 @@ schemas: !<!Schemas>
                       default:
                         name: fixed
                         description: ''
-                  type: choice
+                  type: sealed-choice
                   apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
@@ -810,7 +810,7 @@ schemas: !<!Schemas>
                     description: MISSING·SCHEMA-DESCRIPTION-CHOICE
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!SealedChoiceSchema> &ref_100
+                schema: !<!ChoiceSchema> &ref_100
                   choices:
                   - !<!ChoiceValue> 
                     value: container
@@ -824,7 +824,7 @@ schemas: !<!Schemas>
                       default:
                         name: blob
                         description: ''
-                  type: sealed-choice
+                  type: choice
                   apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
@@ -1859,7 +1859,7 @@ schemas: !<!Schemas>
                         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
                     protocol: !<!Protocols> {}
                   - !<!Property> 
-                    schema: !<!ChoiceSchema> &ref_98
+                    schema: !<!SealedChoiceSchema> &ref_98
                       choices:
                       - !<!ChoiceValue> 
                         value: BlockBlob
@@ -1879,7 +1879,7 @@ schemas: !<!Schemas>
                           default:
                             name: AppendBlob
                             description: ''
-                      type: choice
+                      type: sealed-choice
                       apiVersions:
                       - !<!ApiVersion> 
                         version: 1.0.0
@@ -1942,7 +1942,7 @@ schemas: !<!Schemas>
                         description: MISSING·SCHEMA-DESCRIPTION-STRING
                     protocol: !<!Protocols> {}
                   - !<!Property> 
-                    schema: !<!ChoiceSchema> &ref_99
+                    schema: !<!SealedChoiceSchema> &ref_99
                       choices:
                       - !<!ChoiceValue> 
                         value: pending
@@ -1968,7 +1968,7 @@ schemas: !<!Schemas>
                           default:
                             name: failed
                             description: ''
-                      type: choice
+                      type: sealed-choice
                       apiVersions:
                       - !<!ApiVersion> 
                         version: 1.0.0
@@ -2142,7 +2142,7 @@ schemas: !<!Schemas>
                         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
                     protocol: !<!Protocols> {}
                   - !<!Property> 
-                    schema: !<!SealedChoiceSchema> &ref_101
+                    schema: !<!ChoiceSchema> &ref_101
                       choices:
                       - !<!ChoiceValue> 
                         value: P4
@@ -2204,7 +2204,7 @@ schemas: !<!Schemas>
                           default:
                             name: Archive
                             description: ''
-                      type: sealed-choice
+                      type: choice
                       apiVersions:
                       - !<!ApiVersion> 
                         version: 1.0.0
@@ -2237,7 +2237,7 @@ schemas: !<!Schemas>
                         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
                     protocol: !<!Protocols> {}
                   - !<!Property> 
-                    schema: !<!SealedChoiceSchema> &ref_102
+                    schema: !<!ChoiceSchema> &ref_102
                       choices:
                       - !<!ChoiceValue> 
                         value: rehydrate-pending-to-hot
@@ -2251,7 +2251,7 @@ schemas: !<!Schemas>
                           default:
                             name: rehydrate-pending-to-cool
                             description: ''
-                      type: sealed-choice
+                      type: choice
                       apiVersions:
                       - !<!ApiVersion> 
                         version: 1.0.0
@@ -2415,11 +2415,9 @@ schemas: !<!Schemas>
   dictionaries:
   - *ref_65
   choices:
-  - *ref_57
-  - *ref_58
-  - *ref_59
-  - *ref_98
-  - *ref_99
+  - *ref_100
+  - *ref_101
+  - *ref_102
   arrays:
   - *ref_71
   - *ref_72
@@ -2579,9 +2577,11 @@ schemas: !<!Schemas>
   - *ref_89
   - *ref_90
   sealedChoices:
-  - *ref_100
-  - *ref_101
-  - *ref_102
+  - *ref_57
+  - *ref_58
+  - *ref_59
+  - *ref_98
+  - *ref_99
   strings:
   - *ref_23
   - *ref_0

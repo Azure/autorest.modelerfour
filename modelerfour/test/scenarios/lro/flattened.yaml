@@ -40,7 +40,7 @@ schemas: !<!Schemas>
               description: MISSING·SCHEMA-DESCRIPTION-STRING
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!SealedChoiceSchema> &ref_3
+          schema: !<!ChoiceSchema> &ref_3
             choices:
             - !<!ChoiceValue> 
               value: Succeeded
@@ -108,7 +108,7 @@ schemas: !<!Schemas>
                 default:
                   name: OK
                   description: ''
-            type: sealed-choice
+            type: choice
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
@@ -286,7 +286,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_11
+      schema: !<!NumberSchema> &ref_12
         type: integer
         precision: 32
         language: !<!Languages> 
@@ -410,7 +410,7 @@ schemas: !<!Schemas>
               description: MISSING·SCHEMA-DESCRIPTION-STRING
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!SealedChoiceSchema> &ref_8
+          schema: !<!ChoiceSchema> &ref_8
             choices:
             - !<!ChoiceValue> 
               value: Succeeded
@@ -478,7 +478,7 @@ schemas: !<!Schemas>
                 default:
                   name: OK
                   description: ''
-            type: sealed-choice
+            type: choice
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
@@ -572,7 +572,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_13
+      schema: !<!ChoiceSchema> &ref_11
         choices:
         - !<!ChoiceValue> 
           value: Succeeded
@@ -640,7 +640,7 @@ schemas: !<!Schemas>
             default:
               name: OK
               description: ''
-        type: sealed-choice
+        type: choice
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -664,7 +664,7 @@ schemas: !<!Schemas>
           version: 1.0.0
         properties:
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_12
+          schema: !<!NumberSchema> &ref_13
             type: integer
             precision: 32
             language: !<!Languages> 
@@ -716,8 +716,12 @@ schemas: !<!Schemas>
   - *ref_9
   dictionaries:
   - *ref_10
-  numbers:
+  choices:
+  - *ref_3
+  - *ref_8
   - *ref_11
+  numbers:
+  - *ref_12
   - !<!NumberSchema> &ref_26
     type: integer
     apiVersions:
@@ -730,10 +734,6 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
         header: Retry-After
     protocol: !<!Protocols> {}
-  - *ref_12
-  sealedChoices:
-  - *ref_3
-  - *ref_8
   - *ref_13
   strings:
   - *ref_5

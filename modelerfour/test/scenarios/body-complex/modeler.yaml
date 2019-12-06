@@ -40,7 +40,7 @@ schemas: !<!Schemas>
           description: Name property with a very long description that does not fit on a single line and a line break.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_58
+      schema: !<!ChoiceSchema> &ref_58
         choices:
         - !<!ChoiceValue> 
           value: cyan
@@ -66,7 +66,7 @@ schemas: !<!Schemas>
             default:
               name: blacK
               description: ''
-        type: sealed-choice
+        type: choice
         apiVersions:
         - !<!ApiVersion> 
           version: '2016-02-29'
@@ -1073,7 +1073,7 @@ schemas: !<!Schemas>
                   description: MISSING·SCHEMA-DESCRIPTION-INTEGER
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_59
+              schema: !<!ChoiceSchema> &ref_59
                 choices:
                 - !<!ChoiceValue> 
                   value: pink
@@ -1093,7 +1093,7 @@ schemas: !<!Schemas>
                     default:
                       name: brown
                       description: ''
-                type: sealed-choice
+                type: choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: '2016-02-29'
@@ -1646,6 +1646,9 @@ schemas: !<!Schemas>
   dictionaries:
   - *ref_80
   - *ref_23
+  choices:
+  - *ref_58
+  - *ref_59
   arrays:
   - *ref_75
   - *ref_76
@@ -1703,9 +1706,6 @@ schemas: !<!Schemas>
   - *ref_55
   - *ref_56
   - *ref_57
-  sealedChoices:
-  - *ref_58
-  - *ref_59
   strings:
   - *ref_1
   - *ref_0

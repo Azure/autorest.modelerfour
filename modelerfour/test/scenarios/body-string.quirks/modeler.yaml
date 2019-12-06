@@ -106,37 +106,6 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  choices:
-  - !<!ChoiceSchema> &ref_13
-    choices:
-    - !<!ChoiceValue> 
-      value: red color
-      language:
-        default:
-          name: red color
-          description: ''
-    - !<!ChoiceValue> 
-      value: green-color
-      language:
-        default:
-          name: green-color
-          description: ''
-    - !<!ChoiceValue> 
-      value: blue_color
-      language:
-        default:
-          name: blue_color
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: Colors
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   byteArrays:
   - !<!ByteArraySchema> &ref_12
     type: byte-array
@@ -221,6 +190,37 @@ schemas: !<!Schemas>
   - *ref_2
   numbers:
   - *ref_4
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_13
+    choices:
+    - !<!ChoiceValue> 
+      value: red color
+      language:
+        default:
+          name: red color
+          description: ''
+    - !<!ChoiceValue> 
+      value: green-color
+      language:
+        default:
+          name: green-color
+          description: ''
+    - !<!ChoiceValue> 
+      value: blue_color
+      language:
+        default:
+          name: blue_color
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: Colors
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
   strings:
   - *ref_0
   - *ref_1

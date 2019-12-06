@@ -334,169 +334,6 @@ schemas: !<!Schemas>
         namespace: Api20191031
     protocol: !<!Protocols> {}
   - *ref_15
-  choices:
-  - !<!ChoiceSchema> &ref_87
-    choices:
-    - !<!ChoiceValue> 
-      value: directory
-      language:
-        default:
-          name: directory
-          description: ''
-    - !<!ChoiceValue> 
-      value: file
-      language:
-        default:
-          name: file
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: !<!StringSchema> &ref_0
-      type: string
-      language: !<!Languages> 
-        default:
-          name: string
-          description: simple string
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: PathResourceType
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_89
-    choices:
-    - !<!ChoiceValue> 
-      value: legacy
-      language:
-        default:
-          name: legacy
-          description: ''
-    - !<!ChoiceValue> 
-      value: posix
-      language:
-        default:
-          name: posix
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: PathRenameMode
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_120
-    choices:
-    - !<!ChoiceValue> 
-      value: append
-      language:
-        default:
-          name: append
-          description: ''
-    - !<!ChoiceValue> 
-      value: flush
-      language:
-        default:
-          name: flush
-          description: ''
-    - !<!ChoiceValue> 
-      value: setProperties
-      language:
-        default:
-          name: setProperties
-          description: ''
-    - !<!ChoiceValue> 
-      value: setAccessControl
-      language:
-        default:
-          name: setAccessControl
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: PathUpdateAction
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_162
-    choices:
-    - !<!ChoiceValue> 
-      value: acquire
-      language:
-        default:
-          name: acquire
-          description: ''
-    - !<!ChoiceValue> 
-      value: break
-      language:
-        default:
-          name: break
-          description: ''
-    - !<!ChoiceValue> 
-      value: change
-      language:
-        default:
-          name: change
-          description: ''
-    - !<!ChoiceValue> 
-      value: renew
-      language:
-        default:
-          name: renew
-          description: ''
-    - !<!ChoiceValue> 
-      value: release
-      language:
-        default:
-          name: release
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: PathLeaseAction
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
-  - !<!ChoiceSchema> &ref_234
-    choices:
-    - !<!ChoiceValue> 
-      value: getAccessControl
-      language:
-        default:
-          name: getAccessControl
-          description: ''
-    - !<!ChoiceValue> 
-      value: getStatus
-      language:
-        default:
-          name: getStatus
-          description: ''
-    - !<!ChoiceValue> 
-      value: checkAccess
-      language:
-        default:
-          name: checkAccess
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-10-31'
-    choiceType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: PathGetPropertiesAction
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   arrays:
   - *ref_16
   - *ref_17
@@ -592,7 +429,13 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: *ref_0
+    valueType: !<!StringSchema> &ref_0
+      type: string
+      language: !<!Languages> 
+        default:
+          name: string
+          description: simple string
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: AccountResourceType
@@ -778,6 +621,163 @@ schemas: !<!Schemas>
         name: paths·filesystem-path·head·responses·200·headers·content_length·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
         header: Content-Length
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_87
+    choices:
+    - !<!ChoiceValue> 
+      value: directory
+      language:
+        default:
+          name: directory
+          description: ''
+    - !<!ChoiceValue> 
+      value: file
+      language:
+        default:
+          name: file
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: PathResourceType
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_89
+    choices:
+    - !<!ChoiceValue> 
+      value: legacy
+      language:
+        default:
+          name: legacy
+          description: ''
+    - !<!ChoiceValue> 
+      value: posix
+      language:
+        default:
+          name: posix
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: PathRenameMode
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_120
+    choices:
+    - !<!ChoiceValue> 
+      value: append
+      language:
+        default:
+          name: append
+          description: ''
+    - !<!ChoiceValue> 
+      value: flush
+      language:
+        default:
+          name: flush
+          description: ''
+    - !<!ChoiceValue> 
+      value: setProperties
+      language:
+        default:
+          name: setProperties
+          description: ''
+    - !<!ChoiceValue> 
+      value: setAccessControl
+      language:
+        default:
+          name: setAccessControl
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: PathUpdateAction
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_162
+    choices:
+    - !<!ChoiceValue> 
+      value: acquire
+      language:
+        default:
+          name: acquire
+          description: ''
+    - !<!ChoiceValue> 
+      value: break
+      language:
+        default:
+          name: break
+          description: ''
+    - !<!ChoiceValue> 
+      value: change
+      language:
+        default:
+          name: change
+          description: ''
+    - !<!ChoiceValue> 
+      value: renew
+      language:
+        default:
+          name: renew
+          description: ''
+    - !<!ChoiceValue> 
+      value: release
+      language:
+        default:
+          name: release
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: PathLeaseAction
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_234
+    choices:
+    - !<!ChoiceValue> 
+      value: getAccessControl
+      language:
+        default:
+          name: getAccessControl
+          description: ''
+    - !<!ChoiceValue> 
+      value: getStatus
+      language:
+        default:
+          name: getStatus
+          description: ''
+    - !<!ChoiceValue> 
+      value: checkAccess
+      language:
+        default:
+          name: checkAccess
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-10-31'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: PathGetPropertiesAction
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   strings:
   - *ref_0

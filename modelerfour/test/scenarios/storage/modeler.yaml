@@ -71,7 +71,7 @@ schemas: !<!Schemas>
           description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_37
+      schema: !<!SealedChoiceSchema> &ref_37
         choices:
         - !<!ChoiceValue> 
           value: AccountNameInvalid
@@ -85,7 +85,7 @@ schemas: !<!Schemas>
             default:
               name: AlreadyExists
               description: ''
-        type: choice
+        type: sealed-choice
         apiVersions:
         - !<!ApiVersion> 
           version: 2015-05-01-preview
@@ -156,7 +156,7 @@ schemas: !<!Schemas>
               version: 2015-05-01-preview
             properties:
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_10
+              schema: !<!SealedChoiceSchema> &ref_10
                 choices:
                 - !<!ChoiceValue> 
                   value: Standard_LRS
@@ -188,7 +188,7 @@ schemas: !<!Schemas>
                     default:
                       name: Premium_LRS
                       description: ''
-                type: choice
+                type: sealed-choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -241,7 +241,7 @@ schemas: !<!Schemas>
               version: 2015-05-01-preview
             properties:
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_38
+              schema: !<!SealedChoiceSchema> &ref_38
                 choices:
                 - !<!ChoiceValue> 
                   value: Creating
@@ -261,7 +261,7 @@ schemas: !<!Schemas>
                     default:
                       name: Succeeded
                       description: ''
-                type: choice
+                type: sealed-choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -427,7 +427,7 @@ schemas: !<!Schemas>
                   description: Gets the location of the primary for the storage account.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_17
+              schema: !<!SealedChoiceSchema> &ref_17
                 choices:
                 - !<!ChoiceValue> 
                   value: Available
@@ -441,7 +441,7 @@ schemas: !<!Schemas>
                     default:
                       name: Unavailable
                       description: ''
-                type: choice
+                type: sealed-choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 2015-05-01-preview
@@ -864,7 +864,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_39
+      schema: !<!SealedChoiceSchema> &ref_39
         choices:
         - !<!ChoiceValue> 
           value: key1
@@ -878,7 +878,7 @@ schemas: !<!Schemas>
             default:
               name: key2
               description: ''
-        type: choice
+        type: sealed-choice
         apiVersions:
         - !<!ApiVersion> 
           version: 2015-05-01-preview
@@ -919,7 +919,7 @@ schemas: !<!Schemas>
             version: 2015-05-01-preview
           properties:
           - !<!Property> 
-            schema: !<!ChoiceSchema> &ref_40
+            schema: !<!SealedChoiceSchema> &ref_40
               choices:
               - !<!ChoiceValue> 
                 value: Count
@@ -957,7 +957,7 @@ schemas: !<!Schemas>
                   default:
                     name: BytesPerSecond
                     description: ''
-              type: choice
+              type: sealed-choice
               apiVersions:
               - !<!ApiVersion> 
                 version: 2015-05-01-preview
@@ -1114,13 +1114,6 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_41
-  choices:
-  - *ref_37
-  - *ref_10
-  - *ref_38
-  - *ref_17
-  - *ref_39
-  - *ref_40
   arrays:
   - *ref_44
   - *ref_45
@@ -1274,6 +1267,13 @@ schemas: !<!Schemas>
   numbers:
   - *ref_46
   - *ref_47
+  sealedChoices:
+  - *ref_37
+  - *ref_10
+  - *ref_38
+  - *ref_17
+  - *ref_39
+  - *ref_40
   strings:
   - *ref_0
   - *ref_8

@@ -45,43 +45,6 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  choices:
-  - !<!ChoiceSchema> &ref_37
-    choices:
-    - !<!ChoiceValue> 
-      value: red color
-      language:
-        default:
-          name: red color
-          description: ''
-    - !<!ChoiceValue> 
-      value: green color
-      language:
-        default:
-          name: green color
-          description: ''
-    - !<!ChoiceValue> 
-      value: blue color
-      language:
-        default:
-          name: blue color
-          description: ''
-    type: choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: !<!StringSchema> &ref_1
-      type: string
-      language: !<!Languages> 
-        default:
-          name: string
-          description: simple string
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: UriColor
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
-    protocol: !<!Protocols> {}
   arrays:
   - !<!ArraySchema> &ref_45
     type: array
@@ -369,7 +332,13 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: *ref_1
+    valueType: !<!StringSchema> &ref_1
+      type: string
+      language: !<!Languages> 
+        default:
+          name: string
+          description: simple string
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: ''
@@ -809,6 +778,37 @@ schemas: !<!Schemas>
       default:
         name: paths·queries-double-null·get·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-NUMBER
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_37
+    choices:
+    - !<!ChoiceValue> 
+      value: red color
+      language:
+        default:
+          name: red color
+          description: ''
+    - !<!ChoiceValue> 
+      value: green color
+      language:
+        default:
+          name: green color
+          description: ''
+    - !<!ChoiceValue> 
+      value: blue color
+      language:
+        default:
+          name: blue color
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: UriColor
+        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   strings:
   - *ref_1

@@ -44,7 +44,7 @@ schemas: !<!Schemas>
                   description: MISSING·SCHEMA-DESCRIPTION-STRING
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_21
+              schema: !<!ChoiceSchema> &ref_21
                 choices:
                 - !<!ChoiceValue> 
                   value: Succeeded
@@ -112,7 +112,7 @@ schemas: !<!Schemas>
                     default:
                       name: OK
                       description: ''
-                type: sealed-choice
+                type: choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
@@ -401,7 +401,7 @@ schemas: !<!Schemas>
                   description: MISSING·SCHEMA-DESCRIPTION-STRING
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_22
+              schema: !<!ChoiceSchema> &ref_22
                 choices:
                 - !<!ChoiceValue> 
                   value: Succeeded
@@ -469,7 +469,7 @@ schemas: !<!Schemas>
                     default:
                       name: OK
                       description: ''
-                type: sealed-choice
+                type: choice
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
@@ -546,7 +546,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_23
+      schema: !<!ChoiceSchema> &ref_23
         choices:
         - !<!ChoiceValue> 
           value: Succeeded
@@ -614,7 +614,7 @@ schemas: !<!Schemas>
             default:
               name: OK
               description: ''
-        type: sealed-choice
+        type: choice
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
@@ -690,6 +690,10 @@ schemas: !<!Schemas>
   - *ref_19
   dictionaries:
   - *ref_20
+  choices:
+  - *ref_21
+  - *ref_22
+  - *ref_23
   numbers:
   - *ref_24
   - !<!NumberSchema> &ref_28
@@ -705,10 +709,6 @@ schemas: !<!Schemas>
         header: Retry-After
     protocol: !<!Protocols> {}
   - *ref_25
-  sealedChoices:
-  - *ref_21
-  - *ref_22
-  - *ref_23
   strings:
   - *ref_6
   - *ref_0
