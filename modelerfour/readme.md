@@ -2,16 +2,14 @@
 
 ## Changelog:
 
-#### 4.1.73 - bug fixes:
-  - add `style` to parameters to support collection format
-
-#### 4.1.72 - bug fixes:
-  - Include common paramters from oai/path #68 (requires fix from autorest-core 3.0.6160+ )
+#### 4.2.75 - bug fixes:
+  - add `style` to parameters to support collection format 
+  - `potential-breaking-change` Include common paramters from oai/path #68 (requires fix from autorest-core 3.0.6160+ ) 
   - propogate extensions from server parameters (ie, x-ms-skip-url-encoding) #61
-  - make operation groups case insensitive. #59
-  - sealedChoice/Choice selection was backwards ( was creating a sealedchoice schema for modelAsString:true and vice versa) #62
-  - drop constant schema from response, use constantschema's valueType instead. #63
-  - fix body parameter marked as required when not marked so in spec. #64
+  - `potential-breaking-change` make operation groups case insensitive. #59 
+  - `potential-breaking-change` sealedChoice/Choice selection was backwards ( was creating a sealedchoice schema for modelAsString:true and vice versa) #62 
+  - `potential-breaking-change` drop constant schema from response, use constantschema's valueType instead. #63
+  - `potential-breaking-change` fix body parameter marked as required when not marked so in spec. #64
 
 #### 4.1.60 - add missing serializedName on parameters
   - query parameters should have a serializedName so that they don't rely on the cosmetic name property.
