@@ -1114,7 +1114,14 @@ export class ModelerFour {
             const schema = mediatypes[0].schema.instance;
 
             if (schema) {
-              const s = this.processSchema('response', schema);
+              let s = this.processSchema('response', schema);
+
+              // response schemas should not be constant types. 
+              // this replaces the constant value with the value type itself.
+
+              if (s.type === SchemaType.Constant) {
+                s = (<ConstantSchema>s).valueType;
+              }
               const rsp = new SchemaResponse(s, {
                 extensions: this.interpret.getExtensionProperties(response)
               });
