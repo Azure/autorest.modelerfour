@@ -824,19 +824,25 @@ export class ModelerFour {
               const sch = value.enum ? this.processChoiceSchema(key, <OpenAPI.Schema>{ type: 'string', enum: value.enum, description: value.description || `${key} - server parameter` }) : this.stringSchema;
 
               const clientdefault = value.default ? value.default : undefined;
-              let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === key && each.clientDefaultValue === clientdefault);
+
+              // figure out where the parameter is supposed to be.
+              const implementation = value['x-ms-parameter-location'] === 'client' ? ImplementationLocation.Client : ImplementationLocation.Method;
+
+              let p = implementation === ImplementationLocation.Client ? values(this.codeModel.globalParameters).first(each => each.language.default.name === key && each.clientDefaultValue === clientdefault) : undefined;
               if (!p) {
                 p = new Parameter(key, value.description || `${key} - server parameter`, sch, {
                   required: true,
-                  implementation: ImplementationLocation.Client,
+                  implementation,
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Uri)
                   },
                   extensions: this.interpret.getExtensionProperties(value),
                   clientDefaultValue: clientdefault
                 });
-                // add it to the global parameter list
-                (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
+                if (implementation === ImplementationLocation.Client) {
+                  // add it to the global parameter list (if it's a client parameter)
+                  (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
+                }
               }
               // add the parameter to the operaiton
               op.request.addParameter(p);

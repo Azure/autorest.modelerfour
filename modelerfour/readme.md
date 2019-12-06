@@ -2,6 +2,10 @@
 
 ## Changelog:
 
+#### (patch-level changes)
+  - support server variable parameters as method unless they have x-ms-parameter-location
+  
+
 #### 4.2.75 - bug fixes:
   - add `style` to parameters to support collection format 
   - `potential-breaking-change` Include common paramters from oai/path #68 (requires fix from autorest-core 3.0.6160+ ) 
