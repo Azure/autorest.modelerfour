@@ -306,7 +306,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_23
+  - !<!ConstantSchema> &ref_20
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -324,7 +324,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_20
+  - !<!ConstantSchema> &ref_21
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -342,7 +342,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_21
+  - !<!ConstantSchema> &ref_22
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -360,7 +360,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
         header: Location
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_22
+  - !<!ConstantSchema> &ref_23
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -1519,6 +1519,70 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
           path: /http/success/204
+          method: post
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '204'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_12
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    extensions:
+      x-ms-requestBody-index: 0
+    language: !<!Languages> 
+      default:
+        name: post204
+        description: Post true Boolean value in request returns 204 (no content)
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    request: !<!Request> 
+      parameters:
+      - *ref_13
+      - !<!Parameter> 
+        schema: *ref_14
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-requestBody-name: booleanValue
+        language: !<!Languages> 
+          default:
+            name: booleanValue
+            description: Simple boolean value true
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: /http/success/204
           method: delete
           knownMediaType: json
           mediaTypes:
@@ -1612,78 +1676,6 @@ operationGroups:
   language: !<!Languages> 
     default:
       name: httpSuccess
-      description: ''
-  protocol: !<!Protocols> {}
-- !<!OperationGroup> 
-  $key: HttpSuccess
-  operations:
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_13
-      - !<!Parameter> 
-        schema: *ref_14
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-requestBody-name: booleanValue
-        language: !<!Languages> 
-          default:
-            name: booleanValue
-            description: Simple boolean value true
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: /http/success/204
-          method: post
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    responses:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - '204'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_12
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    extensions:
-      x-ms-requestBody-index: 0
-    language: !<!Languages> 
-      default:
-        name: post204
-        description: Post true Boolean value in request returns 204 (no content)
-    protocol: !<!Protocols> {}
-  language: !<!Languages> 
-    default:
-      name: HttpSuccess
       description: ''
   protocol: !<!Protocols> {}
 - !<!OperationGroup> 
@@ -2456,7 +2448,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/307
-          method: patch
+          method: put
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2481,6 +2473,83 @@ operationGroups:
           headers:
           - !<!HttpHeader> 
             schema: *ref_20
+            header: Location
+          statusCodes:
+          - '307'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_12
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    extensions:
+      x-ms-requestBody-index: 0
+    language: !<!Languages> 
+      default:
+        name: put307
+        description: 'Put redirected with 307, resulting in a 200 after redirect'
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    request: !<!Request> 
+      parameters:
+      - *ref_13
+      - !<!Parameter> 
+        schema: *ref_14
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-requestBody-name: booleanValue
+        language: !<!Languages> 
+          default:
+            name: booleanValue
+            description: Simple boolean value true
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: /http/redirect/307
+          method: patch
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          headers:
+          - !<!HttpHeader> 
+            schema: *ref_21
             header: Location
           statusCodes:
           - '307'
@@ -2557,7 +2626,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_21
+            schema: *ref_22
             header: Location
           statusCodes:
           - '307'
@@ -2634,7 +2703,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_22
+            schema: *ref_23
             header: Location
           statusCodes:
           - '307'
@@ -2662,91 +2731,6 @@ operationGroups:
   language: !<!Languages> 
     default:
       name: httpRedirects
-      description: ''
-  protocol: !<!Protocols> {}
-- !<!OperationGroup> 
-  $key: HttpRedirects
-  operations:
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_13
-      - !<!Parameter> 
-        schema: *ref_14
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-requestBody-name: booleanValue
-        language: !<!Languages> 
-          default:
-            name: booleanValue
-            description: Simple boolean value true
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: /http/redirect/307
-          method: put
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    responses:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - '200'
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          headers:
-          - !<!HttpHeader> 
-            schema: *ref_23
-            header: Location
-          statusCodes:
-          - '307'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_12
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    extensions:
-      x-ms-requestBody-index: 0
-    language: !<!Languages> 
-      default:
-        name: put307
-        description: 'Put redirected with 307, resulting in a 200 after redirect'
-    protocol: !<!Protocols> {}
-  language: !<!Languages> 
-    default:
-      name: HttpRedirects
       description: ''
   protocol: !<!Protocols> {}
 - !<!OperationGroup> 
