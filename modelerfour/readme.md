@@ -2,6 +2,9 @@
 
 ## Changelog:
 
+#### 4.1.73 - bug fixes:
+  - add `style` to parameters to support collection format
+
 #### 4.1.72 - bug fixes:
   - Include common paramters from oai/path #68 (requires fix from autorest-core 3.0.6160+ )
   - propogate extensions from server parameters (ie, x-ms-skip-url-encoding) #61

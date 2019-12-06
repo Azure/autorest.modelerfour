@@ -956,7 +956,9 @@ export class ModelerFour {
               implementation,
               extensions: this.interpret.getExtensionProperties(parameter),
               protocol: {
-                http: new HttpParameter(parameter.in),
+                http: new HttpParameter(parameter.in, parameter.style ? {
+                  style: <SerializationStyle><unknown>parameter.style,
+                } : undefined),
               },
               language: {
                 default: {
