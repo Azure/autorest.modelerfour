@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_9
+  - !<!ObjectSchema> &ref_7
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -65,7 +65,7 @@ schemas: !<!Schemas>
         name: string
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_8
+  - !<!StringSchema> &ref_6
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -91,32 +91,6 @@ schemas: !<!Schemas>
 globalParameters:
 - !<!Parameter> &ref_4
   schema: *ref_2
-  implementation: Client
-  required: true
-  extensions:
-    x-ms-skip-url-encoding: true
-  language: !<!Languages> 
-    default:
-      name: vault
-      description: 'The vault name, e.g. https://myvault'
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: uri
-- !<!Parameter> &ref_5
-  schema: *ref_2
-  implementation: Client
-  required: true
-  extensions:
-    x-ms-skip-url-encoding: true
-  language: !<!Languages> 
-    default:
-      name: secret
-      description: Secret value.
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: uri
-- !<!Parameter> &ref_6
-  schema: *ref_2
   clientDefaultValue: host
   implementation: Client
   required: true
@@ -129,7 +103,7 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_7
+- !<!Parameter> &ref_5
   schema: *ref_3
   implementation: Client
   required: true
@@ -154,9 +128,33 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - !<!Parameter> 
+        schema: *ref_2
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-skip-url-encoding: true
+        language: !<!Languages> 
+          default:
+            name: vault
+            description: 'The vault name, e.g. https://myvault'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: uri
+      - !<!Parameter> 
+        schema: *ref_2
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-skip-url-encoding: true
+        language: !<!Languages> 
+          default:
+            name: secret
+            description: Secret value.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: uri
       - *ref_4
-      - *ref_5
-      - *ref_6
       - !<!Parameter> 
         schema: *ref_3
         implementation: Method
@@ -169,9 +167,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - *ref_7
+      - *ref_5
       - !<!Parameter> 
-        schema: *ref_8
+        schema: *ref_6
         implementation: Method
         language: !<!Languages> 
           default:
@@ -202,7 +200,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''

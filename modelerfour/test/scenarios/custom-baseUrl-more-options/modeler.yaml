@@ -91,32 +91,6 @@ schemas: !<!Schemas>
 globalParameters:
 - !<!Parameter> &ref_6
   schema: *ref_2
-  implementation: Client
-  required: true
-  extensions:
-    x-ms-skip-url-encoding: true
-  language: !<!Languages> 
-    default:
-      name: vault
-      description: 'The vault name, e.g. https://myvault'
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: uri
-- !<!Parameter> &ref_7
-  schema: *ref_2
-  implementation: Client
-  required: true
-  extensions:
-    x-ms-skip-url-encoding: true
-  language: !<!Languages> 
-    default:
-      name: secret
-      description: Secret value.
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: uri
-- !<!Parameter> &ref_8
-  schema: *ref_2
   clientDefaultValue: host
   implementation: Client
   required: true
@@ -129,7 +103,7 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_9
+- !<!Parameter> &ref_7
   schema: *ref_3
   implementation: Client
   required: true
@@ -154,9 +128,33 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - !<!Parameter> 
+        schema: *ref_2
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-skip-url-encoding: true
+        language: !<!Languages> 
+          default:
+            name: vault
+            description: 'The vault name, e.g. https://myvault'
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: uri
+      - !<!Parameter> 
+        schema: *ref_2
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-skip-url-encoding: true
+        language: !<!Languages> 
+          default:
+            name: secret
+            description: Secret value.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: uri
       - *ref_6
-      - *ref_7
-      - *ref_8
       - !<!Parameter> 
         schema: *ref_3
         implementation: Method
@@ -169,7 +167,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - *ref_9
+      - *ref_7
       - !<!Parameter> 
         schema: *ref_4
         implementation: Method

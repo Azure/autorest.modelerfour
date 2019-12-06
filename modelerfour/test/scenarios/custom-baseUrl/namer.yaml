@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_5
+  - !<!ObjectSchema> &ref_4
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -70,19 +70,6 @@ schemas: !<!Schemas>
 globalParameters:
 - !<!Parameter> &ref_3
   schema: *ref_2
-  implementation: Client
-  required: true
-  extensions:
-    x-ms-skip-url-encoding: true
-  language: !<!Languages> 
-    default:
-      name: accountName
-      description: Account Name
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: uri
-- !<!Parameter> &ref_4
-  schema: *ref_2
   clientDefaultValue: host
   implementation: Client
   required: true
@@ -108,8 +95,20 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - !<!Parameter> 
+        schema: *ref_2
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-skip-url-encoding: true
+        language: !<!Languages> 
+          default:
+            name: accountName
+            description: Account Name
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: uri
       - *ref_3
-      - *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -131,7 +130,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
