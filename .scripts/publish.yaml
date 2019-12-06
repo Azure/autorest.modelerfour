@@ -50,6 +50,7 @@ steps:
     cd modelerfour 
     v=`node -e "console.log(require('./package.json').version)"`
     publish-release --token $(Github-azuresdkci-personalaccesstoken) --repo autorest.modelerfour --owner azure --name autorest-modelerfour-$v --tag $v --notes='prerelease build' --prerelease --editRelease false --assets ../common/temp/artifacts/packages/autorest-modelerfour-$v.tgz --target_commitish $(Build.SourceBranchName)
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
     cd ..
 
     # publish the packages (tag as preview by default)
