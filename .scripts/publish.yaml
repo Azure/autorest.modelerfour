@@ -49,7 +49,7 @@ steps:
     # publish autorest cli and beta (@autorest/autorest)
     cd modelerfour 
     v=`node -e "console.log(require('./package.json').version)"`
-    publish-release --token $(Github-azuresdkci-personalaccesstoken) --repo autorest.modelerfour --owner azure --name autorest-$v --tag autorest-$v --notes='prerelease build' --prerelease --editRelease false --assets ../common/temp/artifacts/packages/autorest-modelerfour-$v.tgz --target_commitish $(Build.SourceBranchName)
+    publish-release --token $(Github-azuresdkci-personalaccesstoken) --repo autorest.modelerfour --owner azure --name autorest-modelerfour-$v --tag $v --notes='prerelease build' --prerelease --editRelease false --assets ../common/temp/artifacts/packages/autorest-modelerfour-$v.tgz --target_commitish $(Build.SourceBranchName)
     cd ..
 
     # publish the packages (tag as preview by default)
