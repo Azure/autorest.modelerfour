@@ -151,7 +151,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
   }
 
   @test async 'acceptance-suite'() {
-    const folders = await readdir(`${__dirname}/../../test/inputs/`);
+    const folders = await readdir(`${__dirname}/../../test/scenarios/`);
     for (const each of folders) {
       if ([
         'body-formdata',
@@ -165,7 +165,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
         continue;
       } */
       console.log(`Processing: ${each}`);
-      const session = await createTestSession<Model>({}, `${__dirname}/../../test/inputs/${each}`, ['openapi-document.json'], []);
+      const session = await createTestSession<Model>({}, `${__dirname}/../../test/scenarios/${each}`, ['openapi-document.json'], []);
 
       // process OAI model
       const modeler = new ModelerFour(session);
@@ -174,19 +174,19 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       const codeModel = await modeler.process();
 
       const yaml = serialize(codeModel, codeModelSchema);
-      await mkdir(`${__dirname}/../../test/outputs/${each}`);
-      await (writeFile(`${__dirname}/../../test/outputs/${each}/modeler.yaml`, yaml));
+      await mkdir(`${__dirname}/../../test/scenarios/${each}`);
+      await (writeFile(`${__dirname}/../../test/scenarios/${each}/modeler.yaml`, yaml));
 
       const namer = new PreNamer(await createPassThruSession({}, yaml, 'code-model-v4'));
       const named = await namer.process();
       const namedyaml = serialize(named, codeModelSchema);
-      await (writeFile(`${__dirname}/../../test/outputs/${each}/namer.yaml`, namedyaml));
+      await (writeFile(`${__dirname}/../../test/scenarios/${each}/namer.yaml`, namedyaml));
 
 
       const flattener = new Flattener(await createPassThruSession({}, namedyaml, 'code-model-v4'));
       const flattened = await flattener.process();
       const flatteneyaml = serialize(flattened, codeModelSchema);
-      await (writeFile(`${__dirname}/../../test/outputs/${each}/flattened.yaml`, flatteneyaml));
+      await (writeFile(`${__dirname}/../../test/scenarios/${each}/flattened.yaml`, flatteneyaml));
 
     }
   }

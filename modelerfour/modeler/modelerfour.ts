@@ -1,11 +1,10 @@
-import { Model as oai3, Dereferenced, dereference, Refable, includeXDash, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, excludeXDash, filterOutXDash } from '@azure-tools/openapi';
+import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
-import { items, values, Dictionary, ToDictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, Request, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, ObjectSchemaTypes, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue } from '@azure-tools/codemodel';
+import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
-
 
 export class ModelerFour {
   codeModel: CodeModel
@@ -301,7 +300,7 @@ export class ModelerFour {
 
     }
 
-    if (sealed) {
+    if (!sealed) {
       return this.codeModel.schemas.add(new ChoiceSchema(name, this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-CHOICE', schema), {
         extensions: this.interpret.getExtensionProperties(schema),
         summary: schema.title,
@@ -833,6 +832,7 @@ export class ModelerFour {
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Uri)
                   },
+                  extensions: this.interpret.getExtensionProperties(value),
                   clientDefaultValue: clientdefault
                 });
                 // add it to the global parameter list
@@ -892,7 +892,8 @@ export class ModelerFour {
       });
 
       // get all the parameters for the operation
-      this.resolveArray(operation.parameters).select(parameter => {
+      values(operation.parameters).select(each => dereference(this.input, each)).select(pp => {
+        const parameter = pp.instance;
         this.use(parameter.schema, (name, schema) => {
 
           if (this.interpret.isApiVersionParameter(parameter)) {
@@ -938,9 +939,21 @@ export class ModelerFour {
 
           } else {
             // Not an APIVersion Parameter
-            return op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING·PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
+            const implementation = pp.fromRef ?
+              'method' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Method : ImplementationLocation.Client :
+              'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method;
+
+            if (implementation === ImplementationLocation.Client) {
+              // check to see of it's already in the global parameters
+              const p = values(this.codeModel.globalParameters).first(each => each.language.default.name === parameter.name);
+              if (p) {
+                return p;
+              }
+            }
+
+            const newParam = op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING·PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
               required: parameter.required ? true : undefined,
-              implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
+              implementation,
               extensions: this.interpret.getExtensionProperties(parameter),
               protocol: {
                 http: new HttpParameter(parameter.in),
@@ -951,6 +964,12 @@ export class ModelerFour {
                 }
               }
             }));
+
+            if (implementation === ImplementationLocation.Client) {
+              (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(newParam);
+            }
+
+            return newParam;
           }
         });
       }).toArray();
@@ -1011,7 +1030,7 @@ export class ModelerFour {
                 this.interpret.getDescription('', requestBody.instance),
                 this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
                   extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                  required: true,
+                  required: requestBody.instance.required,
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Body, {
                       style: SerializationStyle.Json,
@@ -1095,7 +1114,14 @@ export class ModelerFour {
             const schema = mediatypes[0].schema.instance;
 
             if (schema) {
-              const s = this.processSchema('response', schema);
+              let s = this.processSchema('response', schema);
+
+              // response schemas should not be constant types. 
+              // this replaces the constant value with the value type itself.
+
+              if (s.type === SchemaType.Constant) {
+                s = (<ConstantSchema>s).valueType;
+              }
               const rsp = new SchemaResponse(s, {
                 extensions: this.interpret.getExtensionProperties(response)
               });

@@ -7,7 +7,7 @@ param (
 # generates the AutoRest tests into separate modules
 
 $root = ( resolve-path "$PSScriptRoot/..").Path
-$outputRoot = ( resolve-path "$root/modelerfour/test/inputs").Path
+$outputRoot = ( resolve-path "$root/modelerfour/test").Path
 
 cd $root
 
@@ -41,12 +41,12 @@ function run-autorest($src) {
   $name = $src
   $src = "$name.json"
 
-  $outputFolder = "$outputRoot/$name"
+  $outputFolder = "$outputRoot/scenarios/$name"
   
-  $txt = "$autorest --pipeline-model:v3 --input-file:$swaggerRoot$src --output-folder:$outputFolder --title:$name --output-artifact:openapi-document $args" 
+  $txt = "$autorest --version:c:\work\2019\autorest.megarepo\autorest --pipeline-model:v3 --input-file:$swaggerRoot$src --output-folder:$outputFolder --title:$name $root/modelerfour/test/test-configuration.md $args" 
   write-host -fore GREEN "`n--------------------------------------------------------`nGenerating [$name]`n--------------------------------------------------------`n"
   echo $txt
-  & $autorest "--version:c:\work\2019\autorest.megarepo\autorest" "--pipeline-model:v3" "--input-file:$swaggerRoot$src" "--output-folder:$outputFolder" "--clear-output-folder" "--title:$name" "--output-artifact:openapi-document" "--deduplicate-inline-models" $args
+  & $autorest "--version:c:\work\2019\autorest.megarepo\autorest" "--pipeline-model:v3" "--input-file:$swaggerRoot$src" "--output-folder:$outputFolder" "--clear-output-folder" "--title:$name" "$root/modelerfour/test/test-configuration.md" "--deduplicate-inline-models" $args
   $rc = $LastExitCode
   if( $rc -gt 0 ) {
     write-host -fore RED "`n--------------------------------------------------------`nFAILED GENERATION [$name]`n--------------------------------------------------------`n"
@@ -76,4 +76,4 @@ $errors.Keys |% {
     write-host -fore RED $_  # : $each
 }
 
-autorest-beta --version:c:\work\2019\autorest.megarepo\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:C:\work\2019\autorest.megarepo\autorest.modelerfour\modelerfour\test\inputs/datalake-storage  --output-artifact:openapi-document --verbose --debug --no-network-check 
+autorest-beta --version:c:\work\2019\autorest.megarepo\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:C:\work\2019\autorest.megarepo\autorest.modelerfour\modelerfour\test\scenarios\datalake-storage --verbose --debug --no-network-check "$root/modelerfour/test/test-configuration.md"
