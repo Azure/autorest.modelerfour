@@ -5,7 +5,6 @@ import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, Bool
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
-import { DH_NOT_SUITABLE_GENERATOR } from 'constants';
 
 export class ModelerFour {
   codeModel: CodeModel
