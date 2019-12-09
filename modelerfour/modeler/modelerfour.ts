@@ -68,6 +68,11 @@ export class ModelerFour {
     }));
   }
 
+  location(obj: any): string {
+    const locations = obj['x-ms-metadata']?.originalLocations;
+    return locations ? `Location:\n   ${locations.join('\n   ')}` : '';
+  }
+
   processBooleanSchema(name: string, schema: OpenAPI.Schema): BooleanSchema {
     return this.codeModel.schemas.add(new BooleanSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-BOOLEAN', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
@@ -260,15 +265,59 @@ export class ModelerFour {
   get stringSchema() {
     return this._stringSchema || (this._stringSchema = this.codeModel.schemas.add(new StringSchema('string', 'simple string')));
   }
+  _charSchema?: CharSchema;
+  get charSchema() {
+    return this._charSchema || (this._charSchema = this.codeModel.schemas.add(new CharSchema('char', 'simple char')));
+  }
+
   _booleanSchema?: BooleanSchema;
   get booleanSchema() {
     return this._booleanSchema || (this._booleanSchema = this.codeModel.schemas.add(new BooleanSchema('bool', 'simple boolean')));
   }
 
+  getSchemaForString(schema: OpenAPI.Schema): Schema {
+    switch (schema.format) {
+      // member should be byte array
+      // on wire format should be base64url
+      case StringFormat.Base64Url:
+      case StringFormat.Byte:
+      case StringFormat.Certificate:
+        return this.processByteArraySchema('', schema);
+
+      case StringFormat.Char:
+        return this.charSchema;
+
+      case StringFormat.Date:
+        return this.processDateSchema('', schema);
+
+      case StringFormat.DateTime:
+      case StringFormat.DateTimeRfc1123:
+        return this.processDateTimeSchema('', schema);
+
+      case StringFormat.Duration:
+        return this.processDurationSchema('', schema);
+
+      case StringFormat.Uuid:
+        return this.processUuidSchema('', schema);
+
+      case StringFormat.Url:
+        return this.processUriSchema('', schema);
+
+      case StringFormat.Password:
+        return this.stringSchema;
+
+      case StringFormat.OData:
+        return this.processOdataSchema('', schema);
+
+      default:
+        return this.stringSchema;
+    }
+  }
+
   getPrimitiveSchemaForEnum(schema: OpenAPI.Schema) {
     switch (schema.type) {
       case JsonType.String:
-        return this.stringSchema;
+        return this.getSchemaForString(schema);
       case JsonType.Boolean:
         return this.booleanSchema;
       case JsonType.Number:
@@ -283,7 +332,6 @@ export class ModelerFour {
     name = (xmse && xmse.name) || this.interpret.getName(name, schema);
     const sealed = xmse && !(xmse.modelAsString);
 
-
     if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
       return this.codeModel.schemas.add(new ConstantSchema(name, this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-CHOICE', schema), {
         extensions: this.interpret.getExtensionProperties(schema),
@@ -295,9 +343,8 @@ export class ModelerFour {
         externalDocs: this.interpret.getExternalDocs(schema),
         serialization: this.interpret.getSerialization(schema),
         valueType: this.getPrimitiveSchemaForEnum(schema),
-        value: new ConstantValue(length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0])
+        value: new ConstantValue(this.interpret.getConstantValue(schema, length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0]))
       }));
-
     }
 
     if (!sealed) {
@@ -594,6 +641,14 @@ export class ModelerFour {
             this.session.warning(`The schema '${name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
             schema.type = OpenAPI.JsonType.Object;
             break;
+          }
+
+          {
+            // no type info at all!? 
+            // const err = `The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`;
+            this.session.warning(`The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`, ['Modeler', 'MissingType'], schema);
+            // throw Error(err);
+            return new AnySchema('<Any object>');
           }
       }
 

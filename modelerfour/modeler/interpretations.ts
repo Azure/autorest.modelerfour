@@ -71,6 +71,79 @@ export function getValidEnumValueName(originalString: string): string {
 }
 
 export class Interpretations {
+  isTrue(value: any) {
+    return (value === true || value === 'true' || value === 'True' || value === 'TRUE');
+  }
+
+  getConstantValue(schema: OpenAPI.Schema, value: any) {
+
+    switch (schema.type) {
+      case JsonType.String:
+        switch (schema.format) {
+          // member should be byte array
+          // on wire format should be base64url
+          case StringFormat.Base64Url:
+            // return this.parseBase64UrlValue(value);
+            return value;
+
+          case StringFormat.Byte:
+          case StringFormat.Certificate:
+            // return this.parseByteArrayValue(value);
+            return value;
+
+          case StringFormat.Char:
+            // a single character
+            return `${value}`.charAt(0);
+
+          case StringFormat.Date:
+            // return this.parseDateValue(value);
+            return value;
+
+          case StringFormat.DateTime:
+            // return this.parseDateTimeValue(value);
+            return value;
+
+          case StringFormat.DateTimeRfc1123:
+            // return this.parseDateTimeRfc1123Value(value);
+            return value;
+
+          case StringFormat.Duration:
+            // return this.parseDurationValue(value);
+            return value;
+
+          case StringFormat.Uuid:
+            return value;
+
+          case StringFormat.Url:
+            return value;
+
+          case StringFormat.Password:
+            throw new Error('Constant values for String/Passwords should never be in input documents');
+
+          case StringFormat.OData:
+            return value;
+
+          case StringFormat.None:
+          case undefined:
+          case null:
+            return value;
+
+          default:
+            // console.error(`String schema '${name}' with unknown format: '${schema.format}' is treated as simple string.`);
+            throw new Error(`Unknown type for constant value for String '${schema.format}'--cannot create constant value.`);
+        }
+
+      case JsonType.Boolean:
+        return this.isTrue(value);
+
+      case JsonType.Number:
+        return Number.parseFloat(value);
+
+      case JsonType.Integer:
+        return Number.parseInt(value);
+    }
+  }
+
   isApiVersionParameter(parameter: OpenAPI.Parameter): boolean {
     return !!(parameter['x-ms-api-version'] || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
   }
@@ -79,8 +152,8 @@ export class Interpretations {
       const xmse = <XMSEnum>schema['x-ms-enum'];
 
       return xmse && xmse.values ?
-        xmse.values.map((each) => new ChoiceValue(`${getValidEnumValueName((each.name !== undefined) ? each.name : each.value)}`, each.description || '', each.value)) :
-        schema.enum.map(each => new ChoiceValue(getValidEnumValueName(each), '', each));
+        xmse.values.map((each) => new ChoiceValue(`${getValidEnumValueName((each.name !== undefined) ? each.name : each.value)}`, each.description || '', this.getConstantValue(schema, each.value))) :
+        schema.enum.map(each => new ChoiceValue(getValidEnumValueName(each), '', this.getConstantValue(schema, each)));
     }
     return [];
   }

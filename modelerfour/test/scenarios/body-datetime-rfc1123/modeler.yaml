@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_5
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -57,12 +57,16 @@ schemas: !<!Schemas>
         default:
           name: ''
           description: ''
-    valueType: !<!StringSchema> &ref_2
-      type: string
+    valueType: !<!DateTimeSchema> &ref_2
+      type: date-time
+      format: date-time-rfc1123
+      apiVersions:
+      - !<!ApiVersion> 
+        version: 1.0.0
       language: !<!Languages> 
         default:
-          name: string
-          description: simple string
+          name: paths·datetimerfc1123-min·get·responses·200·content·application-json·schema
+          description: MISSING·SCHEMA-DESCRIPTION-DATETIME
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -70,7 +74,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   dateTimes:
-  - !<!DateTimeSchema> &ref_3
+  - !<!DateTimeSchema> &ref_4
     type: date-time
     format: date-time-rfc1123
     apiVersions:
@@ -81,14 +85,21 @@ schemas: !<!Schemas>
         name: paths·datetimerfc1123-null·get·responses·200·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-DATETIME
     protocol: !<!Protocols> {}
+  - *ref_2
   numbers:
   - *ref_1
   strings:
-  - *ref_2
+  - !<!StringSchema> &ref_3
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
   - *ref_0
 globalParameters:
-- !<!Parameter> &ref_5
-  schema: *ref_2
+- !<!Parameter> &ref_6
+  schema: *ref_3
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true
@@ -112,7 +123,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -124,7 +135,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -138,7 +149,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -161,7 +172,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -173,7 +184,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -187,7 +198,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -210,7 +221,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -222,7 +233,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -236,7 +247,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -259,7 +270,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -271,7 +282,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -285,7 +296,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -308,9 +319,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       - !<!Parameter> 
-        schema: *ref_3
+        schema: *ref_4
         implementation: Method
         required: true
         extensions:
@@ -347,7 +358,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -372,7 +383,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -384,7 +395,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -398,7 +409,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -421,7 +432,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -433,7 +444,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_3
+      schema: *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -447,7 +458,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -470,9 +481,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       - !<!Parameter> 
-        schema: *ref_3
+        schema: *ref_4
         implementation: Method
         required: true
         extensions:
@@ -509,7 +520,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -534,7 +545,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -560,7 +571,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
