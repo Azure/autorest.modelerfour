@@ -69,10 +69,8 @@ export class ModelerFour {
   }
 
   location(obj: any): string {
-    if (obj['x-ms-metadata'] && obj['x-ms-metadata'].originalLocations) {
-      return `Location:\n   ${obj['x-ms-metadata'].originalLocations.join('\n   ')}`;
-    }
-    return '';
+    const locations = obj['x-ms-metadata']?.originalLocations;
+    return locations ? `Location:\n   ${obj['x-ms-metadata'].originalLocations.join('\n   ')}` : '';
   }
 
   processBooleanSchema(name: string, schema: OpenAPI.Schema): BooleanSchema {
