@@ -77,3 +77,5 @@ $errors.Keys |% {
 }
 
 autorest-beta --version:c:\work\2019\autorest.megarepo\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:C:\work\2019\autorest.megarepo\autorest.modelerfour\modelerfour\test\scenarios\datalake-storage --verbose --debug --no-network-check "$root/modelerfour/test/test-configuration.md"
+autorest-beta --version:c:\work\2019\autorest.megarepo\autorest --pipeline-model:v3 --input-file:https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json  --output-folder:C:\work\2019\autorest.megarepo\autorest.modelerfour\modelerfour\test\scenarios\text-analytics --verbose --debug --no-network-check "$root/modelerfour/test/test-configuration.md"
+
