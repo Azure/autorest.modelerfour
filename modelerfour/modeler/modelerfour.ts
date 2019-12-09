@@ -70,7 +70,7 @@ export class ModelerFour {
 
   location(obj: any): string {
     const locations = obj['x-ms-metadata']?.originalLocations;
-    return locations ? `Location:\n   ${obj['x-ms-metadata'].originalLocations.join('\n   ')}` : '';
+    return locations ? `Location:\n   ${locations.join('\n   ')}` : '';
   }
 
   processBooleanSchema(name: string, schema: OpenAPI.Schema): BooleanSchema {
