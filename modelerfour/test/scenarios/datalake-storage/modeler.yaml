@@ -3747,6 +3747,68 @@ operationGroups:
       parameters:
       - *ref_36
       - *ref_37
+      - !<!Parameter> 
+        schema: *ref_38
+        implementation: Method
+        required: true
+        language: !<!Languages> 
+          default:
+            name: filesystem
+            description: >-
+              The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The
+              value must have between 3 and 63 characters.
+            serializedName: filesystem
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: path
+      - !<!Parameter> 
+        schema: *ref_39
+        implementation: Method
+        required: true
+        language: !<!Languages> 
+          default:
+            name: resource
+            description: The value must be "filesystem" for all filesystem operations.
+            serializedName: resource
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        schema: *ref_40
+        implementation: Method
+        extensions:
+          x-ms-client-request-id: true
+        language: !<!Languages> 
+          default:
+            name: x-ms-client-request-id
+            description: A UUID recorded in the analytics logs for troubleshooting and correlation.
+            serializedName: x-ms-client-request-id
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: header
+      - !<!Parameter> 
+        schema: *ref_41
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: timeout
+            description: 'An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails.'
+            serializedName: timeout
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> 
+        schema: *ref_42
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: x-ms-date
+            description: Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization.
+            serializedName: x-ms-date
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: header
+      - *ref_43
       language: !<!Languages> 
         default:
           name: ''

@@ -45,7 +45,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_20
+  - !<!ObjectSchema> &ref_21
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -73,7 +73,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_21
+  - !<!ObjectSchema> &ref_22
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -100,7 +100,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_22
+  - !<!ObjectSchema> &ref_23
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -130,7 +130,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_23
+  - !<!ObjectSchema> &ref_24
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -205,7 +205,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_24
+  - !<!ObjectSchema> &ref_25
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -226,7 +226,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_25
+  - !<!ObjectSchema> &ref_26
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -246,7 +246,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_28
+  - !<!ObjectSchema> &ref_29
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -286,7 +286,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_29
+  - !<!ObjectSchema> &ref_30
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -326,7 +326,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   arrays:
-  - !<!ArraySchema> &ref_26
+  - !<!ArraySchema> &ref_27
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -346,7 +346,7 @@ schemas: !<!Schemas>
         name: paths·reqopt-requied-array-parameter·post·requestbody·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_27
+  - !<!ArraySchema> &ref_28
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -368,7 +368,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_13
   - *ref_14
-  - !<!ArraySchema> &ref_30
+  - !<!ArraySchema> &ref_31
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -390,7 +390,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   numbers:
   - *ref_7
-  - !<!NumberSchema> &ref_19
+  - !<!NumberSchema> &ref_20
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -404,7 +404,7 @@ schemas: !<!Schemas>
   - *ref_8
   - *ref_9
   - *ref_10
-  - !<!NumberSchema> 
+  - !<!NumberSchema> &ref_19
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -445,6 +445,41 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_32
+  schema: *ref_12
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: required-global-path
+      description: number of items to skip
+      serializedName: required-global-path
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_33
+  schema: *ref_12
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: required-global-query
+      description: number of items to skip
+      serializedName: required-global-query
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
+- !<!Parameter> &ref_34
+  schema: *ref_19
+  implementation: Client
+  language: !<!Languages> 
+    default:
+      name: optional-global-query
+      description: number of items to skip
+      serializedName: optional-global-query
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: required-optional
@@ -681,6 +716,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_18
+      - *ref_32
       language: !<!Languages> 
         default:
           name: ''
@@ -716,6 +752,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_18
+      - *ref_33
       language: !<!Languages> 
         default:
           name: ''
@@ -751,6 +788,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_18
+      - *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -795,7 +833,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_19
+        schema: *ref_20
         implementation: Method
         required: true
         extensions:
@@ -849,7 +887,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_19
+        schema: *ref_20
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -912,7 +950,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_20
+        schema: *ref_21
         implementation: Method
         required: true
         extensions:
@@ -966,7 +1004,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_22
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1029,7 +1067,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_19
+        schema: *ref_20
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -1076,7 +1114,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_19
+        schema: *ref_20
         implementation: Method
         language: !<!Languages> 
           default:
@@ -1249,7 +1287,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_22
+        schema: *ref_23
         implementation: Method
         required: true
         extensions:
@@ -1303,7 +1341,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_23
+        schema: *ref_24
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1586,7 +1624,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_24
+        schema: *ref_25
         implementation: Method
         required: true
         extensions:
@@ -1640,7 +1678,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_25
+        schema: *ref_26
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1703,7 +1741,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_26
+        schema: *ref_27
         implementation: Method
         required: true
         extensions:
@@ -1757,7 +1795,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_27
+        schema: *ref_28
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1820,7 +1858,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_28
+        schema: *ref_29
         implementation: Method
         required: true
         extensions:
@@ -1874,7 +1912,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_29
+        schema: *ref_30
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1937,7 +1975,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_30
+        schema: *ref_31
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -1985,7 +2023,7 @@ operationGroups:
       parameters:
       - *ref_18
       - !<!Parameter> 
-        schema: *ref_27
+        schema: *ref_28
         implementation: Method
         language: !<!Languages> 
           default:
