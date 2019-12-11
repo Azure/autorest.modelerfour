@@ -1323,6 +1323,24 @@
    "paths·get·parameters·6·schema": {
     "type": "string"
    },
+   "paths·filesystem·parameters·0·schema": {
+    "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
+    "minLength": 3,
+    "maxLength": 63,
+    "type": "string"
+   },
+   "paths·filesystem·parameters·2·schema": {
+    "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+    "type": "string"
+   },
+   "paths·filesystem·parameters·3·schema": {
+    "format": "int32",
+    "minimum": 1,
+    "type": "integer"
+   },
+   "paths·filesystem·parameters·4·schema": {
+    "type": "string"
+   },
    "paths·filesystem·put·responses·201·headers·date·schema": {
     "type": "string"
    },
@@ -1340,24 +1358,6 @@
     "type": "string"
    },
    "paths·filesystem·put·responses·201·headers·x_ms_namespace_enabled·schema": {
-    "type": "string"
-   },
-   "paths·filesystem·parameters·0·schema": {
-    "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
-    "minLength": 3,
-    "maxLength": 63,
-    "type": "string"
-   },
-   "paths·filesystem·parameters·2·schema": {
-    "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
-    "type": "string"
-   },
-   "paths·filesystem·parameters·3·schema": {
-    "format": "int32",
-    "minimum": 1,
-    "type": "integer"
-   },
-   "paths·filesystem·parameters·4·schema": {
     "type": "string"
    },
    "paths·filesystem·put·parameters·0·schema": {
@@ -1462,6 +1462,27 @@
    "paths·filesystem·delete·parameters·1·schema": {
     "type": "string"
    },
+   "paths·filesystem-path·parameters·0·schema": {
+    "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
+    "minLength": 3,
+    "maxLength": 63,
+    "type": "string"
+   },
+   "paths·filesystem-path·parameters·1·schema": {
+    "type": "string"
+   },
+   "paths·filesystem-path·parameters·2·schema": {
+    "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+    "type": "string"
+   },
+   "paths·filesystem-path·parameters·3·schema": {
+    "format": "int32",
+    "minimum": 1,
+    "type": "integer"
+   },
+   "paths·filesystem-path·parameters·4·schema": {
+    "type": "string"
+   },
    "paths·filesystem-path·put·responses·201·headers·date·schema": {
     "type": "string"
    },
@@ -1484,27 +1505,6 @@
    "paths·filesystem-path·put·responses·201·headers·content_length·schema": {
     "format": "int64",
     "type": "integer"
-   },
-   "paths·filesystem-path·parameters·0·schema": {
-    "pattern": "^[$a-z0-9](?!.*--)[-a-z0-9]{1,61}[a-z0-9]$",
-    "minLength": 3,
-    "maxLength": 63,
-    "type": "string"
-   },
-   "paths·filesystem-path·parameters·1·schema": {
-    "type": "string"
-   },
-   "paths·filesystem-path·parameters·2·schema": {
-    "pattern": "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
-    "type": "string"
-   },
-   "paths·filesystem-path·parameters·3·schema": {
-    "format": "int32",
-    "minimum": 1,
-    "type": "integer"
-   },
-   "paths·filesystem-path·parameters·4·schema": {
-    "type": "string"
    },
    "paths·filesystem-path·put·parameters·0·schema": {
     "enum": [
@@ -3840,21 +3840,6 @@
       }
      }
     ],
-    "operationId": "Filesystem_Create",
-    "summary": "Create Filesystem",
-    "description": "Create a filesystem rooted at the specified location. If the filesystem already exists, the operation fails.  This operation does not support conditional HTTP requests.",
-    "tags": [
-     "Filesystem Operations"
-    ],
-    "responses": {
-     "201": {
-      "$ref": "#/components/responses/paths·filesystem·put·responses·201",
-      "description": "Created"
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem·parameters·0",
@@ -3883,7 +3868,22 @@
       "$ref": "#/components/parameters/paths·filesystem·put·parameters·0",
       "description": "User-defined properties to be stored with the filesystem, in the format of a comma-separated list of name and value pairs \"n1=v1, n2=v2, ...\", where each value is a base64 encoded string. Note that the string may only contain ASCII characters in the ISO-8859-1 character set."
      }
-    ]
+    ],
+    "operationId": "Filesystem_Create",
+    "summary": "Create Filesystem",
+    "description": "Create a filesystem rooted at the specified location. If the filesystem already exists, the operation fails.  This operation does not support conditional HTTP requests.",
+    "tags": [
+     "Filesystem Operations"
+    ],
+    "responses": {
+     "201": {
+      "$ref": "#/components/responses/paths·filesystem·put·responses·201",
+      "description": "Created"
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "patch": {
     "servers": [
@@ -3905,21 +3905,6 @@
       }
      }
     ],
-    "operationId": "Filesystem_SetProperties",
-    "summary": "Set Filesystem Properties",
-    "description": "Set properties for the filesystem.  This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "Filesystem Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem·patch·responses·200",
-      "description": "Ok"
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem·parameters·0",
@@ -3956,7 +3941,22 @@
       "$ref": "#/components/parameters/paths·filesystem·patch·parameters·2",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Filesystem_SetProperties",
+    "summary": "Set Filesystem Properties",
+    "description": "Set properties for the filesystem.  This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "Filesystem Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem·patch·responses·200",
+      "description": "Ok"
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "get": {
     "servers": [
@@ -3978,25 +3978,6 @@
       }
      }
     ],
-    "operationId": "Path_List",
-    "summary": "List Paths",
-    "description": "List filesystem paths and their properties.",
-    "x-ms-pageable": {
-     "itemName": "paths",
-     "nextLinkName": null
-    },
-    "tags": [
-     "Filesystem Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem·get·responses·200",
-      "description": "Ok"
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem·parameters·0",
@@ -4041,7 +4022,26 @@
       "$ref": "#/components/parameters/paths·filesystem·get·parameters·4",
       "description": "Optional. Valid only when Hierarchical Namespace is enabled for the account. If \"true\", the user identity values returned in the owner and group fields of each list entry will be transformed from Azure Active Directory Object IDs to User Principal Names.  If \"false\", the values will be returned as Azure Active Directory Object IDs. The default value is false. Note that group and application Object IDs are not translated because they do not have unique friendly names."
      }
-    ]
+    ],
+    "operationId": "Path_List",
+    "summary": "List Paths",
+    "description": "List filesystem paths and their properties.",
+    "x-ms-pageable": {
+     "itemName": "paths",
+     "nextLinkName": null
+    },
+    "tags": [
+     "Filesystem Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem·get·responses·200",
+      "description": "Ok"
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "head": {
     "servers": [
@@ -4061,6 +4061,31 @@
         "x-ms-parameter-location": "client"
        }
       }
+     }
+    ],
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·0",
+      "description": "The filesystem identifier.  The value must start and end with a letter or number and must contain only letters, numbers, and the dash (-) character.  Consecutive dashes are not permitted.  All letters must be lowercase.  The value must have between 3 and 63 characters."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·1",
+      "description": "The value must be \"filesystem\" for all filesystem operations."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·2",
+      "description": "A UUID recorded in the analytics logs for troubleshooting and correlation."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·3",
+      "description": "An optional operation timeout value in seconds. The period begins when the request is received by the service. If the timeout value elapses before the operation completes, the operation fails."
+     },
+     {
+      "$ref": "#/components/parameters/paths·filesystem·parameters·4",
+      "description": "Specifies the Coordinated Universal Time (UTC) for the request.  This is required when using shared key authorization."
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/parameters/Version"
      }
     ],
     "operationId": "Filesystem_GetProperties",
@@ -4099,21 +4124,6 @@
       }
      }
     ],
-    "operationId": "Filesystem_Delete",
-    "summary": "Delete Filesystem",
-    "description": "Marks the filesystem for deletion.  When a filesystem is deleted, a filesystem with the same identifier cannot be created for at least 30 seconds. While the filesystem is being deleted, attempts to create a filesystem with the same identifier will fail with status code 409 (Conflict), with the service returning additional error information indicating that the filesystem is being deleted. All other operations, including operations on any files or directories within the filesystem, will fail with status code 404 (Not Found) while the filesystem is being deleted. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "Filesystem Operations"
-    ],
-    "responses": {
-     "202": {
-      "$ref": "#/components/responses/paths·filesystem·delete·responses·202",
-      "description": "Accepted"
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem·parameters·0",
@@ -4146,7 +4156,22 @@
       "$ref": "#/components/parameters/paths·filesystem·delete·parameters·1",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Filesystem_Delete",
+    "summary": "Delete Filesystem",
+    "description": "Marks the filesystem for deletion.  When a filesystem is deleted, a filesystem with the same identifier cannot be created for at least 30 seconds. While the filesystem is being deleted, attempts to create a filesystem with the same identifier will fail with status code 409 (Conflict), with the service returning additional error information indicating that the filesystem is being deleted. All other operations, including operations on any files or directories within the filesystem, will fail with status code 404 (Not Found) while the filesystem is being deleted. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "Filesystem Operations"
+    ],
+    "responses": {
+     "202": {
+      "$ref": "#/components/responses/paths·filesystem·delete·responses·202",
+      "description": "Accepted"
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    }
   },
   "/{filesystem}/{path}": {
@@ -4170,21 +4195,6 @@
       }
      }
     ],
-    "operationId": "Path_Create",
-    "summary": "Create File | Create Directory | Rename File | Rename Directory",
-    "description": "Create or rename a file or directory.    By default, the destination is overwritten and if the destination already exists and has a lease the lease is broken.  This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).  To fail if the destination already exists, use a conditional request with If-None-Match: \"*\".",
-    "tags": [
-     "File and Directory Operations"
-    ],
-    "responses": {
-     "201": {
-      "$ref": "#/components/responses/paths·filesystem-path·put·responses·201",
-      "description": "The file or directory was created."
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
@@ -4313,7 +4323,22 @@
       "$ref": "#/components/parameters/paths·filesystem-path·put·parameters·25",
       "description": "Optional. A date and time value. Specify this header to perform the rename operation only if the source has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Path_Create",
+    "summary": "Create File | Create Directory | Rename File | Rename Directory",
+    "description": "Create or rename a file or directory.    By default, the destination is overwritten and if the destination already exists and has a lease the lease is broken.  This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).  To fail if the destination already exists, use a conditional request with If-None-Match: \"*\".",
+    "tags": [
+     "File and Directory Operations"
+    ],
+    "responses": {
+     "201": {
+      "$ref": "#/components/responses/paths·filesystem-path·put·responses·201",
+      "description": "The file or directory was created."
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "patch": {
     "servers": [
@@ -4335,25 +4360,6 @@
       }
      }
     ],
-    "operationId": "Path_Update",
-    "summary": "Append Data | Flush Data | Set Properties | Set Access Control",
-    "description": "Uploads data to be appended to a file, flushes (writes) previously uploaded data to a file, sets properties for a file or directory, or sets access control for a file or directory. Data can only be appended to a file. This operation supports conditional HTTP requests. For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "File and Directory Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem-path·patch·responses·200",
-      "description": "The data was flushed (written) to the file or the properties were set successfully."
-     },
-     "202": {
-      "$ref": "#/components/responses/paths·filesystem-path·patch·responses·202",
-      "description": "The uploaded data was accepted."
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
@@ -4467,6 +4473,25 @@
       "description": "Optional for Flush Data and Set Properties, but invalid for Append Data. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
     ],
+    "operationId": "Path_Update",
+    "summary": "Append Data | Flush Data | Set Properties | Set Access Control",
+    "description": "Uploads data to be appended to a file, flushes (writes) previously uploaded data to a file, sets properties for a file or directory, or sets access control for a file or directory. Data can only be appended to a file. This operation supports conditional HTTP requests. For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "File and Directory Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem-path·patch·responses·200",
+      "description": "The data was flushed (written) to the file or the properties were set successfully."
+     },
+     "202": {
+      "$ref": "#/components/responses/paths·filesystem-path·patch·responses·202",
+      "description": "The uploaded data was accepted."
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    },
     "requestBody": {
      "$ref": "#/components/requestBodies/paths·filesystem-path·patch·requestbody",
      "description": "Valid only for append operations.  The data to be uploaded and appended to the file."
@@ -4493,29 +4518,6 @@
       }
      }
     ],
-    "operationId": "Path_Lease",
-    "summary": "Lease Path",
-    "description": "Create and manage a lease to restrict write and delete access to the path. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "File and Directory Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem-path·post·responses·200",
-      "description": "The \"renew\", \"change\" or \"release\" action was successful."
-     },
-     "201": {
-      "$ref": "#/components/responses/paths·filesystem-path·post·responses·201",
-      "description": "A new lease has been created.  The \"acquire\" action was successful."
-     },
-     "202": {
-      "$ref": "#/components/responses/paths·filesystem-path·post·responses·202",
-      "description": "The \"break\" lease action was successful."
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
@@ -4576,7 +4578,30 @@
       "$ref": "#/components/parameters/paths·filesystem-path·post·parameters·8",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Path_Lease",
+    "summary": "Lease Path",
+    "description": "Create and manage a lease to restrict write and delete access to the path. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "File and Directory Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem-path·post·responses·200",
+      "description": "The \"renew\", \"change\" or \"release\" action was successful."
+     },
+     "201": {
+      "$ref": "#/components/responses/paths·filesystem-path·post·responses·201",
+      "description": "A new lease has been created.  The \"acquire\" action was successful."
+     },
+     "202": {
+      "$ref": "#/components/responses/paths·filesystem-path·post·responses·202",
+      "description": "The \"break\" lease action was successful."
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "get": {
     "servers": [
@@ -4598,25 +4623,6 @@
       }
      }
     ],
-    "operationId": "Path_Read",
-    "summary": "Read File",
-    "description": "Read the contents of a file.  For read operations, range requests are supported. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "File and Directory Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem-path·get·responses·200",
-      "description": "Ok"
-     },
-     "206": {
-      "$ref": "#/components/responses/paths·filesystem-path·get·responses·206",
-      "description": "Partial content"
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
@@ -4669,7 +4675,26 @@
       "$ref": "#/components/parameters/paths·filesystem-path·get·parameters·6",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Path_Read",
+    "summary": "Read File",
+    "description": "Read the contents of a file.  For read operations, range requests are supported. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "File and Directory Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem-path·get·responses·200",
+      "description": "Ok"
+     },
+     "206": {
+      "$ref": "#/components/responses/paths·filesystem-path·get·responses·206",
+      "description": "Partial content"
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "head": {
     "servers": [
@@ -4691,21 +4716,6 @@
       }
      }
     ],
-    "operationId": "Path_GetProperties",
-    "summary": "Get Properties | Get Status | Get Access Control List | Check Access",
-    "description": "Get Properties returns all system and user defined properties for a path. Get Status returns all system defined properties for a path. Get Access Control List returns the access control list for a path. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "File and Directory Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem-path·head·responses·200",
-      "description": "Returns all properties for the file or directory."
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
@@ -4762,7 +4772,22 @@
       "$ref": "#/components/parameters/paths·filesystem-path·head·parameters·7",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Path_GetProperties",
+    "summary": "Get Properties | Get Status | Get Access Control List | Check Access",
+    "description": "Get Properties returns all system and user defined properties for a path. Get Status returns all system defined properties for a path. Get Access Control List returns the access control list for a path. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "File and Directory Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem-path·head·responses·200",
+      "description": "Returns all properties for the file or directory."
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    },
    "delete": {
     "servers": [
@@ -4784,21 +4809,6 @@
       }
      }
     ],
-    "operationId": "Path_Delete",
-    "summary": "Delete File | Delete Directory",
-    "description": "Delete the file or directory. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
-    "tags": [
-     "File and Directory Operations"
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·filesystem-path·delete·responses·200",
-      "description": "The file was deleted."
-     },
-     "default": {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
-     }
-    },
     "parameters": [
      {
       "$ref": "#/components/parameters/paths·filesystem-path·parameters·0",
@@ -4851,7 +4861,22 @@
       "$ref": "#/components/parameters/paths·filesystem-path·delete·parameters·6",
       "description": "Optional. A date and time value. Specify this header to perform the operation only if the resource has not been modified since the specified date and time."
      }
-    ]
+    ],
+    "operationId": "Path_Delete",
+    "summary": "Delete File | Delete Directory",
+    "description": "Delete the file or directory. This operation supports conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob Service Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).",
+    "tags": [
+     "File and Directory Operations"
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·filesystem-path·delete·responses·200",
+      "description": "The file was deleted."
+     },
+     "default": {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json#/components/responses/ErrorResponse"
+     }
+    }
    }
   }
  },

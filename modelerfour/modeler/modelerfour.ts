@@ -863,7 +863,12 @@ export class ModelerFour {
                 protocol: {
                   http: new HttpParameter(ParameterLocation.Uri)
                 },
-                clientDefaultValue: uri
+                clientDefaultValue: uri,
+                language: {
+                  default: {
+                    serializedName: '$host'
+                  }
+                }
               });
               // add it to the global parameter list
               (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
@@ -890,6 +895,11 @@ export class ModelerFour {
                   implementation,
                   protocol: {
                     http: new HttpParameter(ParameterLocation.Uri)
+                  },
+                  language: {
+                    default: {
+                      serializedName: key
+                    }
                   },
                   extensions: this.interpret.getExtensionProperties(value),
                   clientDefaultValue: clientdefault
@@ -928,6 +938,11 @@ export class ModelerFour {
               implementation: ImplementationLocation.Client,
               protocol: {
                 http: new HttpParameter(ParameterLocation.Uri)
+              },
+              language: {
+                default: {
+                  serializedName: '$host'
+                }
               },
               clientDefaultValue: servers[0].url
             });
