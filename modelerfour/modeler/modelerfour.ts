@@ -855,42 +855,40 @@ export class ModelerFour {
             // scenario 1 : single static value
 
             // check if we have the $host parameter foor this uri yet.
-            let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === '$host' && each.clientDefaultValue === uri);
-            if (!p) {
-              p = new Parameter('$host', 'server parameter', this.stringSchema, {
-                required: true,
-                implementation: ImplementationLocation.Client,
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Uri)
-                },
-                clientDefaultValue: uri,
-                language: {
-                  default: {
-                    serializedName: '$host'
-                  }
+            op.request.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === uri, () => new Parameter('$host', 'server parameter', this.stringSchema, {
+              required: true,
+              implementation: ImplementationLocation.Client,
+              protocol: {
+                http: new HttpParameter(ParameterLocation.Uri)
+              },
+              clientDefaultValue: uri,
+              language: {
+                default: {
+                  serializedName: '$host'
                 }
-              });
-              // add it to the global parameter list
-              (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
-            }
-            // add it to the request
-            op.request.addParameter(p);
+              }
+            })));
             // and update the path for the operation.
             baseUri = '{$host}';
           } else {
             // scenario 3 : single parameterized value
 
-            for (const { key, value } of items(server.variables).where(each => !!each.key)) {
-              const sch = value.enum ? this.processChoiceSchema(key, <OpenAPI.Schema>{ type: 'string', enum: value.enum, description: value.description || `${key} - server parameter` }) : this.stringSchema;
+            for (const { key: variableName, value: variable } of items(server.variables).where(each => !!each.key)) {
+              const sch = variable.enum ? this.processChoiceSchema(variableName, <OpenAPI.Schema>{ type: 'string', enum: variable.enum, description: variable.description || `${variableName} - server parameter` }) : this.stringSchema;
 
-              const clientdefault = value.default ? value.default : undefined;
+              const clientdefault = variable.default ? variable.default : undefined;
 
               // figure out where the parameter is supposed to be.
-              const implementation = value['x-ms-parameter-location'] === 'client' ? ImplementationLocation.Client : ImplementationLocation.Method;
+              const implementation = variable['x-ms-parameter-location'] === 'client' ? ImplementationLocation.Client : ImplementationLocation.Method;
 
-              let p = implementation === ImplementationLocation.Client ? values(this.codeModel.globalParameters).first(each => each.language.default.name === key && each.clientDefaultValue === clientdefault) : undefined;
+              let p = implementation === ImplementationLocation.Client ? this.codeModel.findGlobalParameter(each => each.language.default.name === variableName && each.clientDefaultValue === clientdefault) : undefined;
+
+
+              const originalParameter = this.resolve<OpenAPI.Parameter>(variable['x-ms-original']);
+
+
               if (!p) {
-                p = new Parameter(key, value.description || `${key} - server parameter`, sch, {
+                p = new Parameter(variableName, variable.description || `${variableName} - server parameter`, sch, {
                   required: true,
                   implementation,
                   protocol: {
@@ -898,15 +896,15 @@ export class ModelerFour {
                   },
                   language: {
                     default: {
-                      serializedName: key
+                      serializedName: variableName
                     }
                   },
-                  extensions: this.interpret.getExtensionProperties(value),
+                  extensions: { ...this.interpret.getExtensionProperties(variable), 'x-ms-priority': originalParameter?.instance?.['x-ms-priority'] },
                   clientDefaultValue: clientdefault
                 });
                 if (implementation === ImplementationLocation.Client) {
                   // add it to the global parameter list (if it's a client parameter)
-                  (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
+                  this.codeModel.addGlobalParameter(p);
                 }
               }
               // add the parameter to the operaiton
@@ -925,15 +923,15 @@ export class ModelerFour {
             throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has multiple server information with parameterized values.`);
           }
           const sss = servers.join(',');
-          let choiceSchema = this.codeModel.schemas.choices?.find(each => each.choices.map(choice => choice.value).join(',') === sss);
-          if (!choiceSchema) {
-            choiceSchema = this.codeModel.schemas.add(new ChoiceSchema('host-options', 'choices for server host', {
+          let choiceSchema =
+            this.codeModel.schemas.choices?.find(each => each.choices.map(choice => choice.value).join(',') === sss) ||
+            this.codeModel.schemas.add(new ChoiceSchema('host-options', 'choices for server host', {
               choices: servers.map(each => new ChoiceValue(each.url, `host: ${each.url}`, each.url))
             }));
-          }
-          let p = values(this.codeModel.globalParameters).first(each => each.language.default.name === '$host' && each.clientDefaultValue === servers[0].url);
-          if (!p) {
-            p = new Parameter('$host', 'server parameter', choiceSchema, {
+
+          // scenario 2 : multiple static value
+          op.request.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === servers[0].url, () =>
+            new Parameter('$host', 'server parameter', choiceSchema, {
               required: true,
               implementation: ImplementationLocation.Client,
               protocol: {
@@ -945,12 +943,7 @@ export class ModelerFour {
                 }
               },
               clientDefaultValue: servers[0].url
-            });
-            // add it to the global parameter list
-            (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(p);
-          }
-          // scenario 2 : multiple static value
-          op.request.addParameter(p);
+            })))
 
           // update the path to have a $host parameter.
           //path = `{$host}${path}`;
@@ -1021,7 +1014,7 @@ export class ModelerFour {
 
             if (implementation === ImplementationLocation.Client) {
               // check to see of it's already in the global parameters
-              const p = values(this.codeModel.globalParameters).first(each => each.language.default.name === parameter.name);
+              const p = this.codeModel.findGlobalParameter(each => each.language.default.name === parameter.name);
               if (p) {
                 return op.request.addParameter(p);
               }
@@ -1044,7 +1037,7 @@ export class ModelerFour {
             }));
 
             if (implementation === ImplementationLocation.Client) {
-              (this.codeModel.globalParameters || (this.codeModel.globalParameters = [])).push(newParam);
+              this.codeModel.addGlobalParameter(newParam);
             }
 
             return newParam;
@@ -1204,7 +1197,6 @@ export class ModelerFour {
                 extensions: this.interpret.getExtensionProperties(response)
               });
 
-
               rsp.protocol.http = SetType(HttpResponse, {
                 statusCodes: [responseCode],
                 knownMediaType: knownMediaType,
@@ -1228,6 +1220,16 @@ export class ModelerFour {
   }
 
   process() {
+    let priority = 0;
+    for (const { key: name, value: parameter } of this.resolveDictionary(this.input.components?.parameters).where(each => !this.processed.has(each.value))) {
+      if (parameter['x-ms-parameter-location'] !== 'method') {
+        if (parameter['x-ms-priority'] === undefined) {
+          parameter['x-ms-priority'] = priority++;
+        }
+      }
+    }
+
+
     if (this.input.paths) {
       for (const { key: path, value: pathItem } of this.resolveDictionary(this.input.paths).where(each => !this.processed.has(each.value))) {
         this.should(pathItem, (pathItem) => {
