@@ -131,6 +131,20 @@ schemas: !<!Schemas>
   - *ref_3
 globalParameters:
 - !<!Parameter> &ref_9
+  schema: *ref_5
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription Id.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_10
   schema: *ref_0
   clientDefaultValue: 'https://management.azure.com'
   implementation: Client
@@ -143,18 +157,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_10
-  schema: *ref_5
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: Subscription Id.
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   description: Some cool documentation.
   title: subscriptionId-apiVersion
@@ -168,8 +170,8 @@ operationGroups:
       version: 2014-04-01-preview
     request: !<!Request> 
       parameters:
-      - *ref_9
       - *ref_10
+      - *ref_9
       - !<!Parameter> 
         schema: *ref_5
         implementation: Method

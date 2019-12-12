@@ -48,14 +48,14 @@ schemas: !<!Schemas>
   numbers:
   - *ref_0
   strings:
-  - !<!StringSchema> &ref_2
+  - !<!StringSchema> &ref_3
     type: string
     language: !<!Languages> 
       default:
         name: string
         description: simple string
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_3
+  - !<!StringSchema> &ref_2
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -89,12 +89,27 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_4
+- !<!Parameter> &ref_5
   schema: *ref_2
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: The subscription id with value 'test12'.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_4
+  schema: *ref_3
   clientDefaultValue: host
   implementation: Client
   required: true
   extensions:
+    x-ms-priority: 1
     x-ms-skip-url-encoding: true
   language: !<!Languages> 
     default:
@@ -104,18 +119,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_5
-  schema: *ref_3
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: The subscription id with value 'test12'.
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: custom-baseUrl-more-options
@@ -130,7 +133,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - !<!Parameter> 
-        schema: *ref_2
+        schema: *ref_3
         implementation: Method
         required: true
         extensions:
@@ -144,7 +147,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: uri
       - !<!Parameter> 
-        schema: *ref_2
+        schema: *ref_3
         implementation: Method
         required: true
         extensions:
@@ -159,7 +162,7 @@ operationGroups:
             in: uri
       - *ref_4
       - !<!Parameter> 
-        schema: *ref_3
+        schema: *ref_2
         implementation: Method
         required: true
         language: !<!Languages> 

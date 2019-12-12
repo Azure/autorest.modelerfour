@@ -3218,11 +3218,25 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
 globalParameters:
+- !<!Parameter> &ref_29
+  schema: *ref_19
+  implementation: Client
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: x-ms-version
+      description: Specifies the version of the REST protocol used for processing the request. This is required when using shared key authorization.
+      serializedName: x-ms-version
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: header
 - !<!Parameter> &ref_20
   schema: *ref_6
   implementation: Client
   required: true
   extensions:
+    x-ms-priority: 1
     x-ms-skip-url-encoding: true
   language: !<!Languages> 
     default:
@@ -3238,6 +3252,7 @@ globalParameters:
   implementation: Client
   required: true
   extensions:
+    x-ms-priority: 2
     x-ms-skip-url-encoding: true
   language: !<!Languages> 
     default:
@@ -3247,17 +3262,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_29
-  schema: *ref_19
-  implementation: Client
-  language: !<!Languages> 
-    default:
-      name: x-ms-version
-      description: Specifies the version of the REST protocol used for processing the request. This is required when using shared key authorization.
-      serializedName: x-ms-version
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: header
 info: !<!Info> 
   description: Azure Data Lake Storage provides storage for Hadoop and other big data workloads.
   title: Azure Data Lake Storage REST API

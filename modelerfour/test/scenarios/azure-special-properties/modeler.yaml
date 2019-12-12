@@ -313,6 +313,20 @@ schemas: !<!Schemas>
   - *ref_0
   - *ref_1
 globalParameters:
+- !<!Parameter> &ref_10
+  schema: *ref_8
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 - !<!Parameter> &ref_7
   schema: *ref_6
   clientDefaultValue: 'http://localhost:3000'
@@ -326,18 +340,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_10
-  schema: *ref_8
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: 'The subscription id, which appears in the path, always modeled in credentials. The value is always ''1234-5678-9012-3456'''
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: azure-special-properties

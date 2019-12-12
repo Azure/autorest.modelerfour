@@ -84,6 +84,96 @@
       }
      }
     },
+    "x-ms-examples": {
+     "Successful Entities request": {
+      "parameters": {
+       "Ocp-Apim-Subscription-Key": "{API key}",
+       "Endpoint": "{Endpoint}",
+       "input": {
+        "documents": [
+         {
+          "language": "en",
+          "id": "1",
+          "text": "I had a wonderful trip to Seattle last week."
+         },
+         {
+          "language": "en",
+          "id": "2",
+          "text": "I work at Microsoft."
+         },
+         {
+          "language": "en",
+          "id": "3",
+          "text": "I visited Space Needle 2 times."
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "headers": {},
+        "body": {
+         "documents": [
+          {
+           "id": "1",
+           "entities": [
+            {
+             "text": "Seattle",
+             "type": "Location",
+             "offset": 26,
+             "length": 7,
+             "score": 0.8062429428100586
+            },
+            {
+             "text": "last week",
+             "type": "DateTime",
+             "subtype": "DateRange",
+             "offset": 34,
+             "length": 9,
+             "score": 0.8
+            }
+           ]
+          },
+          {
+           "id": "2",
+           "entities": [
+            {
+             "text": "Microsoft",
+             "type": "Organization",
+             "offset": 10,
+             "length": 9,
+             "score": 0.9998359680175781
+            }
+           ]
+          },
+          {
+           "id": "3",
+           "entities": [
+            {
+             "text": "Space Needle",
+             "type": "Organization",
+             "offset": 10,
+             "length": 12,
+             "score": 0.7599651217460632
+            },
+            {
+             "text": "2",
+             "type": "Quantity",
+             "subtype": "Number",
+             "offset": 23,
+             "length": 1,
+             "score": 0.8
+            }
+           ]
+          }
+         ],
+         "errors": [],
+         "modelVersion": "2019-10-01"
+        }
+       }
+      }
+     }
+    },
     "deprecated": false
    }
   },
@@ -134,6 +224,83 @@
       "description": "Error Response",
       "schema": {
        "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+      }
+     }
+    },
+    "x-ms-examples": {
+     "Successful Entity PII request": {
+      "parameters": {
+       "Ocp-Apim-Subscription-Key": "{API key}",
+       "Endpoint": "{Endpoint}",
+       "input": {
+        "documents": [
+         {
+          "language": "en",
+          "id": "0",
+          "text": "Microsoft employee with ssn 859-98-0987 is using our awesome API's."
+         },
+         {
+          "language": "en",
+          "id": "1",
+          "text": "Your ABA number - 111000025 - is the first 9 digits in the lower left hand corner of your personal check."
+         },
+         {
+          "language": "en",
+          "id": "2",
+          "text": "Is 998.214.865-68 your Brazilian CPF number?"
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "headers": {},
+        "body": {
+         "documents": [
+          {
+           "id": "0",
+           "entities": [
+            {
+             "text": "859-98-0987",
+             "type": "U.S. Social Security Number (SSN)",
+             "subtype": "",
+             "offset": 28,
+             "length": 11,
+             "score": 0.65
+            }
+           ]
+          },
+          {
+           "id": "1",
+           "entities": [
+            {
+             "text": "111000025",
+             "type": "ABA Routing Number",
+             "subtype": "",
+             "offset": 18,
+             "length": 9,
+             "score": 0.75
+            }
+           ]
+          },
+          {
+           "id": "2",
+           "entities": [
+            {
+             "text": "998.214.865-68",
+             "type": "Brazil CPF Number",
+             "subtype": "",
+             "offset": 3,
+             "length": 14,
+             "score": 0.85
+            }
+           ]
+          }
+         ],
+         "errors": [],
+         "modelVersion": "2019-10-01"
+        }
+       }
       }
      }
     },
@@ -190,6 +357,104 @@
       }
      }
     },
+    "x-ms-examples": {
+     "Successful Entity Linking request": {
+      "parameters": {
+       "Ocp-Apim-Subscription-Key": "{API key}",
+       "Endpoint": "{Endpoint}",
+       "input": {
+        "documents": [
+         {
+          "language": "en",
+          "id": "1",
+          "text": "I had a wonderful trip to Seattle last week."
+         },
+         {
+          "language": "en",
+          "id": "2",
+          "text": "I work at Microsoft."
+         },
+         {
+          "language": "en",
+          "id": "3",
+          "text": "I visited Space Needle 2 times."
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "headers": {},
+        "body": {
+         "documents": [
+          {
+           "id": "1",
+           "entities": [
+            {
+             "name": "Seattle",
+             "matches": [
+              {
+               "text": "Seattle",
+               "offset": 26,
+               "length": 7,
+               "score": 0.15046201222847677
+              }
+             ],
+             "language": "en",
+             "id": "Seattle",
+             "url": "https://en.wikipedia.org/wiki/Seattle",
+             "dataSource": "Wikipedia"
+            }
+           ]
+          },
+          {
+           "id": "2",
+           "entities": [
+            {
+             "name": "Microsoft",
+             "matches": [
+              {
+               "text": "Microsoft",
+               "offset": 10,
+               "length": 9,
+               "score": 0.1869365971673207
+              }
+             ],
+             "language": "en",
+             "id": "Microsoft",
+             "url": "https://en.wikipedia.org/wiki/Microsoft",
+             "dataSource": "Wikipedia"
+            }
+           ]
+          },
+          {
+           "id": "3",
+           "entities": [
+            {
+             "name": "Space Needle",
+             "matches": [
+              {
+               "text": "Space Needle",
+               "offset": 10,
+               "length": 12,
+               "score": 0.155903620065595
+              }
+             ],
+             "language": "en",
+             "id": "Space Needle",
+             "url": "https://en.wikipedia.org/wiki/Space_Needle",
+             "dataSource": "Wikipedia"
+            }
+           ]
+          }
+         ],
+         "errors": [],
+         "modelVersion": "2019-10-01"
+        }
+       }
+      }
+     }
+    },
     "deprecated": false
    }
   },
@@ -240,6 +505,65 @@
       "description": "Error Response",
       "schema": {
        "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+      }
+     }
+    },
+    "x-ms-examples": {
+     "Successful Key Phrase request": {
+      "parameters": {
+       "Ocp-Apim-Subscription-Key": "{API key}",
+       "Endpoint": "{Endpoint}",
+       "input": {
+        "documents": [
+         {
+          "language": "en",
+          "id": "1",
+          "text": "Hello world. This is some input text that I love."
+         },
+         {
+          "language": "fr",
+          "id": "2",
+          "text": "Bonjour tout le monde"
+         },
+         {
+          "language": "es",
+          "id": "3",
+          "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "headers": {},
+        "body": {
+         "documents": [
+          {
+           "id": "1",
+           "keyPhrases": [
+            "world",
+            "input text"
+           ]
+          },
+          {
+           "id": "2",
+           "keyPhrases": [
+            "monde"
+           ]
+          },
+          {
+           "id": "3",
+           "keyPhrases": [
+            "carretera",
+            "tráfico",
+            "día"
+           ]
+          }
+         ],
+         "errors": [],
+         "modelVersion": "2019-10-01"
+        }
+       }
       }
      }
     },
@@ -296,6 +620,72 @@
       }
      }
     },
+    "x-ms-examples": {
+     "Successful Detect Language request": {
+      "parameters": {
+       "Ocp-Apim-Subscription-Key": "{API key}",
+       "Endpoint": "{Endpoint}",
+       "input": {
+        "documents": [
+         {
+          "countryHint": "US",
+          "id": "1",
+          "text": "Hello world"
+         },
+         {
+          "id": "2",
+          "text": "Bonjour tout le monde"
+         },
+         {
+          "id": "3",
+          "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "headers": {},
+        "body": {
+         "documents": [
+          {
+           "id": "1",
+           "detectedLanguages": [
+            {
+             "name": "English",
+             "iso6391Name": "en",
+             "score": 1
+            }
+           ]
+          },
+          {
+           "id": "2",
+           "detectedLanguages": [
+            {
+             "name": "French",
+             "iso6391Name": "fr",
+             "score": 1
+            }
+           ]
+          },
+          {
+           "id": "3",
+           "detectedLanguages": [
+            {
+             "name": "Spanish",
+             "iso6391Name": "es",
+             "score": 1
+            }
+           ]
+          }
+         ],
+         "errors": [],
+         "modelVersion": "2019-10-01"
+        }
+       }
+      }
+     }
+    },
     "deprecated": false
    }
   },
@@ -346,6 +736,127 @@
       "description": "Error Response",
       "schema": {
        "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+      }
+     }
+    },
+    "x-ms-examples": {
+     "Successful Sentiment request": {
+      "parameters": {
+       "Ocp-Apim-Subscription-Key": "{API key}",
+       "Endpoint": "{Endpoint}",
+       "input": {
+        "documents": [
+         {
+          "language": "en",
+          "id": "1",
+          "text": "Hello world. This is some input text that I love."
+         },
+         {
+          "language": "en",
+          "id": "2",
+          "text": "It's incredibly sunny outside! I'm so happy."
+         },
+         {
+          "language": "en",
+          "id": "3",
+          "text": "Pike place market is my favorite Seattle attraction."
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "headers": {},
+        "body": {
+         "documents": [
+          {
+           "id": "1",
+           "sentiment": "positive",
+           "documentScores": {
+            "positive": 0.998519241809845,
+            "neutral": 0.0009635657188483,
+            "negative": 0.000517153472174
+           },
+           "sentences": [
+            {
+             "sentiment": "neutral",
+             "sentenceScores": {
+              "positive": 0.070910170674324,
+              "neutral": 0.9124033451080322,
+              "negative": 0.0166865326464176
+             },
+             "offset": 0,
+             "length": 12
+            },
+            {
+             "sentiment": "positive",
+             "sentenceScores": {
+              "positive": 0.998519241809845,
+              "neutral": 0.0009635657188483,
+              "negative": 0.000517153472174
+             },
+             "offset": 13,
+             "length": 36
+            }
+           ]
+          },
+          {
+           "id": "2",
+           "sentiment": "positive",
+           "documentScores": {
+            "positive": 0.9954571723937988,
+            "neutral": 0.0034653299953789,
+            "negative": 0.0010774657130241
+           },
+           "sentences": [
+            {
+             "sentiment": "neutral",
+             "sentenceScores": {
+              "positive": 0.0499138832092285,
+              "neutral": 0.9387012720108032,
+              "negative": 0.0113849258050323
+             },
+             "offset": 0,
+             "length": 30
+            },
+            {
+             "sentiment": "positive",
+             "sentenceScores": {
+              "positive": 0.9954571723937988,
+              "neutral": 0.0034653299953789,
+              "negative": 0.0010774657130241
+             },
+             "offset": 31,
+             "length": 13
+            }
+           ]
+          },
+          {
+           "id": "3",
+           "sentiment": "positive",
+           "documentScores": {
+            "positive": 0.9965128302574158,
+            "neutral": 0.0018965365597978,
+            "negative": 0.0015906029148027
+           },
+           "sentences": [
+            {
+             "sentiment": "positive",
+             "sentenceScores": {
+              "positive": 0.9965128302574158,
+              "neutral": 0.0018965365597978,
+              "negative": 0.0015906029148027
+             },
+             "offset": 0,
+             "length": 52
+            }
+           ]
+          }
+         ],
+         "errors": [],
+         "modelVersion": "2019-10-01"
+        }
+       }
       }
      }
     },

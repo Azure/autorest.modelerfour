@@ -873,6 +873,33 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-UNIXTIME
     protocol: !<!Protocols> {}
 globalParameters:
+- !<!Parameter> &ref_75
+  schema: *ref_27
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: globalStringPath
+      description: A string value 'globalItemStringPath' that appears in the path
+      serializedName: globalStringPath
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_76
+  schema: *ref_27
+  implementation: Client
+  extensions:
+    x-ms-priority: 1
+  language: !<!Languages> 
+    default:
+      name: globalStringQuery
+      description: should contain value null
+      serializedName: globalStringQuery
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 - !<!Parameter> &ref_30
   schema: *ref_1
   clientDefaultValue: 'http://localhost:3000'
@@ -886,29 +913,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_75
-  schema: *ref_27
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: globalStringPath
-      description: A string value 'globalItemStringPath' that appears in the path
-      serializedName: globalStringPath
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
-- !<!Parameter> &ref_76
-  schema: *ref_27
-  implementation: Client
-  language: !<!Languages> 
-    default:
-      name: globalStringQuery
-      description: should contain value null
-      serializedName: globalStringQuery
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: query
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: url

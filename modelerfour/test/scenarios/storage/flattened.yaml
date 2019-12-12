@@ -1296,6 +1296,20 @@ schemas: !<!Schemas>
   - *ref_46
   - *ref_47
 globalParameters:
+- !<!Parameter> &ref_50
+  schema: *ref_30
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 - !<!Parameter> &ref_48
   schema: *ref_1
   clientDefaultValue: 'https://management.azure.com'
@@ -1309,18 +1323,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_50
-  schema: *ref_30
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   title: storage
 operationGroups:
