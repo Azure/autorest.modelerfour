@@ -90,11 +90,26 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_6
+  schema: *ref_3
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: The subscription id with value 'test12'.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
+- !<!Parameter> &ref_7
   schema: *ref_2
   clientDefaultValue: host
   implementation: Client
   required: true
   extensions:
+    x-ms-priority: 1
     x-ms-skip-url-encoding: true
   language: !<!Languages> 
     default:
@@ -104,18 +119,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_7
-  schema: *ref_3
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: The subscription id with value 'test12'.
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: custom-baseUrl-more-options
@@ -157,7 +160,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: uri
-      - *ref_6
+      - *ref_7
       - !<!Parameter> 
         schema: *ref_3
         implementation: Method
@@ -170,7 +173,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - *ref_7
+      - *ref_6
       - !<!Parameter> 
         schema: *ref_4
         implementation: Method

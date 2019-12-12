@@ -472,6 +472,20 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
 globalParameters:
+- !<!Parameter> &ref_20
+  schema: *ref_18
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription ID.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 - !<!Parameter> &ref_19
   schema: *ref_0
   clientDefaultValue: 'http://localhost:3000'
@@ -485,18 +499,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_20
-  schema: *ref_18
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: Subscription ID.
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation

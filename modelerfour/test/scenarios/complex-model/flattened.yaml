@@ -366,6 +366,20 @@ schemas: !<!Schemas>
   - *ref_13
   - *ref_14
 globalParameters:
+- !<!Parameter> &ref_17
+  schema: *ref_15
+  implementation: Client
+  required: true
+  extensions:
+    x-ms-priority: 0
+  language: !<!Languages> 
+    default:
+      name: subscriptionId
+      description: Subscription ID.
+      serializedName: subscriptionId
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: path
 - !<!Parameter> &ref_16
   schema: *ref_7
   clientDefaultValue: 'http://localhost:3000'
@@ -379,18 +393,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_17
-  schema: *ref_15
-  implementation: Client
-  required: true
-  language: !<!Languages> 
-    default:
-      name: subscriptionId
-      description: Subscription ID.
-      serializedName: subscriptionId
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: path
 info: !<!Info> 
   description: Some cool documentation.
   title: complex-model

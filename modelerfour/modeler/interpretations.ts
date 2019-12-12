@@ -17,7 +17,8 @@ const removeKnownParameters = [
   'x-ms-enum',
   'x-ms-code-generation-settings',
   'x-ms-client-name',
-  'x-ms-parameter-location'
+  'x-ms-parameter-location',
+  'x-ms-original',
 ];
 
 // ref: https://www.w3schools.com/charsets/ref_html_ascii.asp
@@ -228,9 +229,9 @@ export class Interpretations {
       group: opId.substr(0, p),
       member: opId.substr(p + 1)
     } : {
-      group: '',
-      member: opId
-    };
+        group: '',
+        member: opId
+      };
   }
 
   isBinarySchema(schema: OpenAPI.Schema | undefined) {
