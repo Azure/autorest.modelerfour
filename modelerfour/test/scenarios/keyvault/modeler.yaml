@@ -211,7 +211,6 @@ schemas: !<!Schemas>
                           Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the
                           key, at the end of the retention interval.
                     protocol: !<!Protocols> {}
-                  nullable: false
                   readOnly: true
                   serializedName: recoveryLevel
                   language: !<!Languages> 
@@ -240,7 +239,6 @@ schemas: !<!Schemas>
                 properties:
                 - !<!Property> 
                   schema: *ref_2
-                  nullable: false
                   readOnly: true
                   serializedName: recoveryLevel
                   language: !<!Languages> 
@@ -286,7 +284,7 @@ schemas: !<!Schemas>
               serializedName: nbf
               language: !<!Languages> 
                 default:
-                  name: nbf
+                  name: NotBefore
                   description: Not before date in UTC.
               protocol: !<!Protocols> {}
             - !<!Property> 
@@ -300,7 +298,7 @@ schemas: !<!Schemas>
               serializedName: exp
               language: !<!Languages> 
                 default:
-                  name: exp
+                  name: Expires
                   description: Expiry date in UTC.
               protocol: !<!Protocols> {}
             - !<!Property> 
@@ -344,7 +342,6 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           schema: *ref_2
-          nullable: false
           readOnly: true
           serializedName: recoveryLevel
           language: !<!Languages> 
@@ -364,7 +361,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: keyAttributes
           description: The attributes of a key managed by the key vault service.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -918,10 +915,11 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_18
+          readOnly: true
           serializedName: innererror
           language: !<!Languages> 
             default:
-              name: innererror
+              name: innerError
               description: The key vault server error.
           protocol: !<!Protocols> {}
         language: !<!Languages> 
@@ -930,6 +928,7 @@ schemas: !<!Schemas>
             description: The key vault server error.
             namespace: Api70Preview
         protocol: !<!Protocols> {}
+      readOnly: true
       serializedName: error
       language: !<!Languages> 
         default:
@@ -979,7 +978,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: keyAttributes
           description: The attributes of a key managed by the key vault service.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -1043,7 +1042,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: keyAttributes
           description: The attributes of a key managed by the key vault service.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -1775,7 +1774,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: secretAttributes
           description: The secret management attributes.
       protocol: !<!Protocols> {}
     language: !<!Languages> 
@@ -2010,7 +2009,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: secretAttributes
           description: The secret management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -2809,7 +2808,7 @@ schemas: !<!Schemas>
           serializedName: key_props
           language: !<!Languages> 
             default:
-              name: key_props
+              name: KeyProperties
               description: Properties of the key pair backing a certificate.
           protocol: !<!Protocols> {}
         - !<!Property> 
@@ -2845,7 +2844,7 @@ schemas: !<!Schemas>
           serializedName: secret_props
           language: !<!Languages> 
             default:
-              name: secret_props
+              name: SecretProperties
               description: Properties of the key backing a certificate.
           protocol: !<!Protocols> {}
         - !<!Property> 
@@ -2996,7 +2995,7 @@ schemas: !<!Schemas>
               serializedName: sans
               language: !<!Languages> 
                 default:
-                  name: sans
+                  name: SubjectAlternativeNames
                   description: The subject alternate names of a X509 object.
               protocol: !<!Protocols> {}
             - !<!Property> 
@@ -3095,7 +3094,7 @@ schemas: !<!Schemas>
               serializedName: validity_months
               language: !<!Languages> 
                 default:
-                  name: validity_months
+                  name: ValidityInMonths
                   description: The duration that the certificate is valid in months.
               protocol: !<!Protocols> {}
             language: !<!Languages> 
@@ -3107,7 +3106,7 @@ schemas: !<!Schemas>
           serializedName: x509_props
           language: !<!Languages> 
             default:
-              name: x509_props
+              name: X509CertificateProperties
               description: Properties of the X509 component of a certificate.
           protocol: !<!Protocols> {}
         - !<!Property> 
@@ -3292,7 +3291,7 @@ schemas: !<!Schemas>
               serializedName: cert_transparency
               language: !<!Languages> 
                 default:
-                  name: cert_transparency
+                  name: CertificateTransparency
                   description: Indicates if the certificates generated under this policy should be published to certificate transparency logs.
               protocol: !<!Protocols> {}
             language: !<!Languages> 
@@ -3304,7 +3303,7 @@ schemas: !<!Schemas>
           serializedName: issuer
           language: !<!Languages> 
             default:
-              name: issuer
+              name: IssuerParameters
               description: Parameters for the issuer of the X509 component of a certificate.
           protocol: !<!Protocols> {}
         - !<!Property> 
@@ -3321,6 +3320,7 @@ schemas: !<!Schemas>
             description: Management policy for a certificate.
             namespace: Api70Preview
         protocol: !<!Protocols> {}
+      readOnly: true
       serializedName: policy
       language: !<!Languages> 
         default:
@@ -3825,7 +3825,7 @@ schemas: !<!Schemas>
       serializedName: org_details
       language: !<!Languages> 
         default:
-          name: org_details
+          name: OrganizationDetails
           description: Details of the organization of the certificate issuer.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -3956,7 +3956,7 @@ schemas: !<!Schemas>
       serializedName: org_details
       language: !<!Languages> 
         default:
-          name: org_details
+          name: OrganizationDetails
           description: Details of the organization of the certificate issuer.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4009,7 +4009,7 @@ schemas: !<!Schemas>
       serializedName: org_details
       language: !<!Languages> 
         default:
-          name: org_details
+          name: OrganizationDetails
           description: Details of the organization of the certificate issuer.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4037,7 +4037,7 @@ schemas: !<!Schemas>
       serializedName: policy
       language: !<!Languages> 
         default:
-          name: policy
+          name: CertificatePolicy
           description: Management policy for a certificate.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4045,7 +4045,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: CertificateAttributes
           description: The certificate management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4107,7 +4107,7 @@ schemas: !<!Schemas>
       serializedName: issuer
       language: !<!Languages> 
         default:
-          name: issuer
+          name: IssuerParameters
           description: Parameters for the issuer of the X509 component of a certificate.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4272,7 +4272,7 @@ schemas: !<!Schemas>
       serializedName: policy
       language: !<!Languages> 
         default:
-          name: policy
+          name: CertificatePolicy
           description: Management policy for a certificate.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4281,7 +4281,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: CertificateAttributes
           description: The certificate management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4326,7 +4326,7 @@ schemas: !<!Schemas>
       serializedName: policy
       language: !<!Languages> 
         default:
-          name: policy
+          name: CertificatePolicy
           description: Management policy for a certificate.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4334,7 +4334,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: CertificateAttributes
           description: The certificate management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4435,7 +4435,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: CertificateAttributes
           description: The certificate management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -4756,7 +4756,6 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: *ref_2
-                nullable: false
                 readOnly: true
                 serializedName: recoveryLevel
                 language: !<!Languages> 
@@ -4772,6 +4771,7 @@ schemas: !<!Schemas>
                   description: The storage account management attributes.
                   namespace: Api70Preview
               protocol: !<!Protocols> {}
+            readOnly: true
             serializedName: attributes
             language: !<!Languages> 
               default:
@@ -5060,6 +5060,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_127
+      readOnly: true
       serializedName: attributes
       language: !<!Languages> 
         default:
@@ -5241,7 +5242,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: StorageAccountAttributes
           description: The storage account management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -5334,7 +5335,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: StorageAccountAttributes
           description: The storage account management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -5572,7 +5573,6 @@ schemas: !<!Schemas>
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: *ref_2
-                nullable: false
                 readOnly: true
                 serializedName: recoveryLevel
                 language: !<!Languages> 
@@ -5588,6 +5588,7 @@ schemas: !<!Schemas>
                   description: The SAS definition management attributes.
                   namespace: Api70Preview
               protocol: !<!Protocols> {}
+            readOnly: true
             serializedName: attributes
             language: !<!Languages> 
               default:
@@ -5866,6 +5867,7 @@ schemas: !<!Schemas>
             name: SasTokenType
             description: The type of SAS token the SAS definition will create.
         protocol: !<!Protocols> {}
+      readOnly: true
       serializedName: sasType
       language: !<!Languages> 
         default:
@@ -5892,6 +5894,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_152
+      readOnly: true
       serializedName: attributes
       language: !<!Languages> 
         default:
@@ -5987,7 +5990,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: SasDefinitionAttributes
           description: The SAS definition management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
@@ -6074,7 +6077,7 @@ schemas: !<!Schemas>
       serializedName: attributes
       language: !<!Languages> 
         default:
-          name: attributes
+          name: SasDefinitionAttributes
           description: The SAS definition management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 

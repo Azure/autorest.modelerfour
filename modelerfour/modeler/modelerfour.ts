@@ -432,13 +432,13 @@ export class ModelerFour {
 
     // cache this now before we accidentally recurse on this type.
     this.processed.set(schema, objectSchema);
-
-    for (const { key: propertyName, value: property } of this.resolveDictionary(schema.properties)) {
-      this.use(<OpenAPI.Refable<OpenAPI.Schema>>property, (pSchemaName, pSchema) => {
+    for (const { key: propertyName, value: propertyDeclaration } of items(schema.properties)) {
+      const property = this.resolve(propertyDeclaration);
+      this.use(<OpenAPI.Refable<OpenAPI.Schema>>propertyDeclaration, (pSchemaName, pSchema) => {
         const pType = this.processSchema(pSchemaName || `typeFor${propertyName}`, pSchema);
-        const prop = objectSchema.addProperty(new Property(propertyName || this.interpret.getPreferredName(property, propertyName), this.interpret.getDescription(pType.language.default.description, property), pType, {
-          readOnly: property.readOnly,
-          nullable: property.nullable,
+        const prop = objectSchema.addProperty(new Property(this.interpret.getPreferredName(propertyDeclaration, propertyName), this.interpret.getDescription(pType.language.default.description, property), pType, {
+          readOnly:  .readOnly,
+          nullable: propertyDeclaration.nullable,
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
