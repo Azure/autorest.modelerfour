@@ -3,8 +3,13 @@
 ## Changelog:
 
 #### (patch-level changes)
+  - properties should respect x-ms-client-name
+  - global parameters should try to be in order of original spec
+  - filter out 'x-ms-original' from extensions
+  - add serializedName for host parameters
+  - make sure reused global parameter is added to method too
+  - processed values in constants/enums a bit better, support AnySchema for no type/format 
   - support server variable parameters as method unless they have x-ms-parameter-location
-  
 
 #### 4.2.75 - bug fixes:
   - add `style` to parameters to support collection format 
