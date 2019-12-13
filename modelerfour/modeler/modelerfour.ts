@@ -436,7 +436,7 @@ export class ModelerFour {
     for (const { key: propertyName, value: property } of this.resolveDictionary(schema.properties)) {
       this.use(<OpenAPI.Refable<OpenAPI.Schema>>property, (pSchemaName, pSchema) => {
         const pType = this.processSchema(pSchemaName || `typeFor${propertyName}`, pSchema);
-        const prop = objectSchema.addProperty(new Property(propertyName || this.interpret.getName(propertyName, property), this.interpret.getDescription(pType.language.default.description, property), pType, {
+        const prop = objectSchema.addProperty(new Property(propertyName || this.interpret.getPreferredName(property, propertyName), this.interpret.getDescription(pType.language.default.description, property), pType, {
           readOnly: property.readOnly,
           nullable: property.nullable,
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,

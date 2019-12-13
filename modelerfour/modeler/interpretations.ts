@@ -269,9 +269,13 @@ export class Interpretations {
     return defaultValue;
   }
 
+  getPreferredName(original: any, preferredName?: string, fallbackName?: string) {
+    return original['x-ms-client-name'] ?? preferredName ?? original?.['x-ms-metadata']?.['name'] ?? fallbackName ?? original['name'] ?? 'MISSING_NAME';
+  }
+
   getName(defaultValue: string, original: any): string {
 
-    return original['x-ms-client-name'] || ((original['x-ms-metadata'] && original['x-ms-metadata']['name']) ? original['x-ms-metadata']['name'] : defaultValue);
+    return original['x-ms-client-name'] ?? original?.['x-ms-metadata']?.['name'] ?? defaultValue;
   }
 
   /** gets the operation path from metadata, falls back to the OAI3 path key */
