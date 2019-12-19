@@ -343,7 +343,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/ResourceCollection"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/ResourceCollection"
       }
      }
     },
@@ -355,7 +355,7 @@
      "application/json": {
       "schema": {
        "type": "object",
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProduct"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProduct"
       }
      }
     },
@@ -367,7 +367,7 @@
      "application/json": {
       "schema": {
        "type": "object",
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProduct"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProduct"
       }
      }
     },
@@ -380,7 +380,7 @@
      "application/json": {
       "schema": {
        "type": "object",
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProduct"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProduct"
       }
      }
     },
@@ -396,37 +396,37 @@
    "paths·model_flatten-array·put·requestbody·content·application-json·schema": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Resource"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Resource"
     }
    },
    "paths·model_flatten-array·get·responses·200·content·application-json·schema": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/FlattenedProduct"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/FlattenedProduct"
     }
    },
    "paths·model_flatten-wrappedarray·put·requestbody·content·application-json·schema": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/WrappedProduct"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/WrappedProduct"
     }
    },
    "paths·model_flatten-wrappedarray·get·responses·200·content·application-json·schema": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/ProductWrapper"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/ProductWrapper"
     }
    },
    "paths·model_flatten-dictionary·put·requestbody·content·application-json·schema": {
     "type": "object",
     "additionalProperties": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/FlattenedProduct"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/FlattenedProduct"
     }
    },
    "paths·model_flatten-dictionary·get·responses·200·content·application-json·schema": {
     "type": "object",
     "additionalProperties": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/FlattenedProduct"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/FlattenedProduct"
     }
    },
    "paths·model_flatten-customflattening-parametergrouping-name·put·parameters·0·schema": {
@@ -443,8 +443,7 @@
       "$ref": "#/components/schemas/Error-message"
      },
      "parentError": {
-      "x-ms-client-flatten": true,
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
      }
     }
    },
@@ -510,7 +509,7 @@
     "type": "object",
     "allOf": [
      {
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Resource"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Resource"
      }
     ],
     "description": "Flattened product.",
@@ -574,7 +573,7 @@
     "properties": {
      "productresource": {
       "type": "object",
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/FlattenedProduct"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/FlattenedProduct"
      },
      "arrayofresources": {
       "$ref": "#/components/schemas/ResourceCollection-arrayofresources"
@@ -587,13 +586,13 @@
    "ResourceCollection-arrayofresources": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/FlattenedProduct"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/FlattenedProduct"
     }
    },
    "ResourceCollection-dictionaryofresources": {
     "type": "object",
     "additionalProperties": {
-     "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/FlattenedProduct"
+     "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/FlattenedProduct"
     }
    },
    "BaseProduct": {
@@ -602,11 +601,13 @@
     "properties": {
      "base_product_id": {
       "$ref": "#/components/schemas/BaseProduct-base_product_id",
-      "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+      "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.",
+      "x-ms-client-name": "productId"
      },
      "base_product_description": {
       "$ref": "#/components/schemas/BaseProduct-base_product_description",
-      "description": "Description of product."
+      "description": "Description of product.",
+      "x-ms-client-name": "description"
      }
     },
     "example": {
@@ -632,13 +633,13 @@
     "description": "The product documentation.",
     "allOf": [
      {
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/BaseProduct"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/BaseProduct"
      }
     ],
     "properties": {
      "details": {
       "x-ms-client-flatten": true,
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProductProperties"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProductProperties"
      }
     }
    },
@@ -652,11 +653,12 @@
      },
      "max_product_capacity": {
       "$ref": "#/components/schemas/SimpleProductProperties-max_product_capacity",
-      "description": "Capacity of product. For example, 4 people."
+      "description": "Capacity of product. For example, 4 people.",
+      "x-ms-client-name": "capacity"
      },
      "max_product_image": {
       "x-ms-client-flatten": true,
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/ProductUrl"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/ProductUrl"
      }
     },
     "required": [
@@ -695,7 +697,7 @@
     "description": "The product URL.",
     "allOf": [
      {
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/GenericUrl"
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/GenericUrl"
      }
     ],
     "properties": {
@@ -729,7 +731,7 @@
     "properties": {
      "property": {
       "type": "object",
-      "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/WrappedProduct",
+      "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/WrappedProduct",
       "x-ms-client-flatten": true
      }
     }
@@ -744,7 +746,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -764,7 +766,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -777,7 +779,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -797,7 +799,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -810,7 +812,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -830,7 +832,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -843,7 +845,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -853,7 +855,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/ResourceCollection"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/ResourceCollection"
       }
      }
     }
@@ -863,7 +865,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -874,7 +876,7 @@
      "application/json": {
       "schema": {
        "type": "object",
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProduct"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProduct"
       }
      }
     }
@@ -884,7 +886,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -895,7 +897,7 @@
      "application/json": {
       "schema": {
        "type": "object",
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProduct"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProduct"
       }
      }
     }
@@ -905,7 +907,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }
@@ -916,7 +918,7 @@
      "application/json": {
       "schema": {
        "type": "object",
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/SimpleProduct"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/SimpleProduct"
       }
      }
     }
@@ -926,7 +928,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/model-flattening.json#/components/schemas/Error"
+       "$ref": "http://localhost:3000/__files/model-flattening.json#/components/schemas/Error"
       }
      }
     }

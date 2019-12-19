@@ -15,6 +15,7 @@ export async function processRequest(host: Host) {
 
   try {
     const session = await startSession<OpenAPI.Model>(host);
+    const options = <any>await session.getValue('modelerfour', {});
 
     // process
     const modeler = new ModelerFour(session);
@@ -23,9 +24,12 @@ export async function processRequest(host: Host) {
     const codeModel = modeler.process();
 
     // output the model to the pipeline
-    host.WriteFile('code-model-v4.yaml', serialize(codeModel, codeModelSchema), undefined, 'code-model-v4');
-    host.WriteFile('code-model-v4-no-tags.yaml', serialize(codeModel), undefined, 'code-model-v4-no-tags');
-
+    if (options['emit-yaml-tags'] !== false) {
+      host.WriteFile('code-model-v4.yaml', serialize(codeModel, codeModelSchema), undefined, 'code-model-v4');
+    }
+    if (options['emit-yaml-tags'] !== true) {
+      host.WriteFile('code-model-v4-no-tags.yaml', serialize(codeModel), undefined, 'code-model-v4-no-tags');
+    }
   } catch (E) {
     if (debug) {
       console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);

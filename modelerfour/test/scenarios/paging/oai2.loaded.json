@@ -16,6 +16,47 @@
   "application/json"
  ],
  "paths": {
+  "/paging/noitemname": {
+   "get": {
+    "x-ms-pageable": {
+     "nextLinkName": "nextLink"
+    },
+    "operationId": "Paging_getNoItemNamePages",
+    "description": "A paging operation that must return result of the default 'value' node.",
+    "responses": {
+     "200": {
+      "description": "A list of products",
+      "schema": {
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResultValue"
+      }
+     },
+     "default": {
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/paging/nullnextlink": {
+   "get": {
+    "x-ms-pageable": {
+     "nextLinkName": null,
+     "itemName": "values"
+    },
+    "operationId": "Paging_getNullNextLinkNamePages",
+    "description": "A paging operation that must ignore any kind of nextLink, and stop after page 1.",
+    "responses": {
+     "200": {
+      "description": "A list of products",
+      "schema": {
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
+      }
+     },
+     "default": {
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
   "/paging/single": {
    "get": {
     "x-ms-pageable": {
@@ -28,7 +69,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -80,7 +121,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -132,7 +173,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/OdataProductResult"
       }
      },
      "default": {
@@ -195,7 +236,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -216,7 +257,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -237,7 +278,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -258,7 +299,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -279,7 +320,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -300,7 +341,7 @@
      "200": {
       "description": "Initial response with ProvisioningState='Canceled'",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -338,7 +379,7 @@
      "200": {
       "description": "Paging response with a fragment nextLink",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/OdataProductResult"
       }
      },
      "default": {
@@ -382,7 +423,7 @@
      "200": {
       "description": "Paging response with a fragment nextLink",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/OdataProductResult"
       }
      },
      "default": {
@@ -435,7 +476,7 @@
      "202": {
       "description": "Operation is in progress.",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/ProductResult"
       }
      },
      "default": {
@@ -483,7 +524,7 @@
      "200": {
       "description": "Paging response with a fragment nextLink",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/OdataProductResult"
       }
      },
      "default": {
@@ -535,7 +576,7 @@
      "200": {
       "description": "Paging response with a fragment nextLink",
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/definitions/OdataProductResult"
       }
      },
      "default": {
@@ -546,13 +587,27 @@
   }
  },
  "definitions": {
+  "ProductResultValue": {
+   "type": "object",
+   "properties": {
+    "value": {
+     "type": "array",
+     "items": {
+      "$ref": "http://localhost:3000/__files/paging.json#/definitions/Product"
+     }
+    },
+    "nextLink": {
+     "type": "string"
+    }
+   }
+  },
   "ProductResult": {
    "type": "object",
    "properties": {
     "values": {
      "type": "array",
      "items": {
-      "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/Product"
+      "$ref": "http://localhost:3000/__files/paging.json#/definitions/Product"
      }
     },
     "nextLink": {
@@ -566,7 +621,7 @@
     "values": {
      "type": "array",
      "items": {
-      "$ref": "http://localhost:3000/__files/swagger/paging.json#/definitions/Product"
+      "$ref": "http://localhost:3000/__files/paging.json#/definitions/Product"
      }
     },
     "odata.nextLink": {

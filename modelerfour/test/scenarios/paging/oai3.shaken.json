@@ -6,6 +6,55 @@
   "version": "1.0.0"
  },
  "paths": {
+  "/paging/noitemname": {
+   "get": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "x-ms-pageable": {
+     "nextLinkName": "nextLink"
+    },
+    "operationId": "Paging_getNoItemNamePages",
+    "description": "A paging operation that must return result of the default 'value' node.",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·paging-noitemname·get·responses·200",
+      "description": "A list of products"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·paging-noitemname·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/paging/nullnextlink": {
+   "get": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "x-ms-pageable": {
+     "nextLinkName": null,
+     "itemName": "values"
+    },
+    "operationId": "Paging_getNullNextLinkNamePages",
+    "description": "A paging operation that must ignore any kind of nextLink, and stop after page 1.",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·paging-nullnextlink·get·responses·200",
+      "description": "A list of products"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·paging-nullnextlink·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
   "/paging/single": {
    "get": {
     "servers": [
@@ -468,12 +517,38 @@
  },
  "components": {
   "responses": {
+   "paths·paging-noitemname·get·responses·200": {
+    "description": "A list of products",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResultValue"
+      }
+     }
+    }
+   },
+   "paths·paging-noitemname·get·responses·default": {
+    "description": "Unexpected error"
+   },
+   "paths·paging-nullnextlink·get·responses·200": {
+    "description": "A list of products",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
+      }
+     }
+    }
+   },
+   "paths·paging-nullnextlink·get·responses·default": {
+    "description": "Unexpected error"
+   },
    "paths·paging-single·get·responses·200": {
     "description": "Initial response with ProvisioningState='Canceled'",
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -486,7 +561,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -499,7 +574,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/OdataProductResult"
       }
      }
     }
@@ -512,7 +587,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -525,7 +600,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -538,7 +613,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -551,7 +626,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -564,7 +639,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -577,7 +652,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -590,7 +665,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/OdataProductResult"
       }
      }
     }
@@ -603,7 +678,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/OdataProductResult"
       }
      }
     }
@@ -616,7 +691,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/ProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/ProductResult"
       }
      }
     }
@@ -629,7 +704,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/OdataProductResult"
       }
      }
     }
@@ -642,7 +717,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/OdataProductResult"
+       "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/OdataProductResult"
       }
      }
     }
@@ -734,6 +809,26 @@
    "paths·paging-multiple-fragmentwithgrouping-tenant-nextlink·get·parameters·2·schema": {
     "type": "string"
    },
+   "ProductResultValue": {
+    "type": "object",
+    "properties": {
+     "value": {
+      "$ref": "#/components/schemas/ProductResultValue-value"
+     },
+     "nextLink": {
+      "$ref": "#/components/schemas/ProductResultValue-nextLink"
+     }
+    }
+   },
+   "ProductResultValue-value": {
+    "type": "array",
+    "items": {
+     "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/Product"
+    }
+   },
+   "ProductResultValue-nextLink": {
+    "type": "string"
+   },
    "ProductResult": {
     "type": "object",
     "properties": {
@@ -748,7 +843,7 @@
    "ProductResult-values": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/Product"
+     "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/Product"
     }
    },
    "ProductResult-nextLink": {
@@ -768,7 +863,7 @@
    "OdataProductResult-values": {
     "type": "array",
     "items": {
-     "$ref": "http://localhost:3000/__files/swagger/paging.json#/components/schemas/Product"
+     "$ref": "http://localhost:3000/__files/paging.json#/components/schemas/Product"
     }
    },
    "OdataProductResult-odata.nextLink": {
