@@ -23,7 +23,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "MultiLanguageBatchInput",
      "originalLocations": [
@@ -48,7 +48,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "MultiLanguageBatchInput-documents",
      "originalLocations": [
@@ -67,7 +67,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "MultiLanguageInput",
      "originalLocations": [
@@ -101,7 +101,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "MultiLanguageInput-id",
      "originalLocations": [
@@ -117,7 +117,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "MultiLanguageInput-text",
      "originalLocations": [
@@ -133,7 +133,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "MultiLanguageInput-language",
      "originalLocations": [
@@ -149,7 +149,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentError",
      "originalLocations": [
@@ -163,8 +163,9 @@
       "description": "Document Id."
      },
      "error": {
-      "$ref": "#/components/schemas/schemas:8",
-      "description": "Document Error."
+      "type": "object",
+      "description": "Document Error.",
+      "$ref": "#/components/schemas/schemas:8"
      }
     },
     "required": [
@@ -178,7 +179,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentError-id",
      "originalLocations": [
@@ -194,52 +195,33 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "DocumentError-error",
+     "name": "TextAnalyticsError",
      "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/DocumentError-error"
-     ]
-    },
-    "type": "object",
-    "description": "Document Error.",
-    "items": {
-     "$ref": "#/components/schemas/schemas:9"
-    }
-   },
-   "schemas:9": {
-    "x-ms-metadata": {
-     "apiVersions": [
-      "v3.0-preview.1"
-     ],
-     "filename": [
-      "mem:///103?oai3.shaken.json"
-     ],
-     "name": "Error",
-     "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
      ]
     },
     "type": "object",
     "properties": {
      "code": {
-      "$ref": "#/components/schemas/schemas:10",
+      "$ref": "#/components/schemas/schemas:9",
       "description": "Error code."
      },
      "message": {
-      "$ref": "#/components/schemas/schemas:11",
+      "$ref": "#/components/schemas/schemas:10",
       "description": "Error message."
      },
      "target": {
-      "$ref": "#/components/schemas/schemas:12",
+      "$ref": "#/components/schemas/schemas:11",
       "description": "Error target."
      },
-     "innererror": {
-      "$ref": "#/components/schemas/schemas:14",
+     "innerError": {
+      "$ref": "#/components/schemas/schemas:13",
       "description": "Inner error contains more specific information."
      },
      "details": {
-      "$ref": "#/components/schemas/schemas:13",
+      "$ref": "#/components/schemas/schemas:12",
       "description": "Details about specific errors that led to this reported error."
      }
     },
@@ -248,17 +230,17 @@
      "message"
     ]
    },
-   "schemas:10": {
+   "schemas:9": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "Error-code",
+     "name": "ErrorCodeValue",
      "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error-code"
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError-code"
      ]
     },
     "type": "string",
@@ -268,7 +250,27 @@
      "internalServerError",
      "serviceUnavailable"
     ],
+    "x-ms-enum": {
+     "name": "ErrorCodeValue",
+     "modelAsString": false
+    },
     "description": "Error code."
+   },
+   "schemas:10": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "v3.0-preview.1"
+     ],
+     "filename": [
+      "mem:///105?oai3.shaken.json"
+     ],
+     "name": "TextAnalyticsError-message",
+     "originalLocations": [
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError-message"
+     ]
+    },
+    "type": "string",
+    "description": "Error message."
    },
    "schemas:11": {
     "x-ms-metadata": {
@@ -276,15 +278,15 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "Error-message",
+     "name": "TextAnalyticsError-target",
      "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error-message"
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError-target"
      ]
     },
     "type": "string",
-    "description": "Error message."
+    "description": "Error target."
    },
    "schemas:12": {
     "x-ms-metadata": {
@@ -292,15 +294,18 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "Error-target",
+     "name": "TextAnalyticsError-details",
      "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error-target"
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError-details"
      ]
     },
-    "type": "string",
-    "description": "Error target."
+    "type": "array",
+    "description": "Details about specific errors that led to this reported error.",
+    "items": {
+     "$ref": "#/components/schemas/schemas:8"
+    }
    },
    "schemas:13": {
     "x-ms-metadata": {
@@ -308,26 +313,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
-     ],
-     "name": "Error-details",
-     "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error-details"
-     ]
-    },
-    "type": "array",
-    "description": "Details about specific errors that led to this reported error.",
-    "items": {
-     "$ref": "#/components/schemas/schemas:9"
-    }
-   },
-   "schemas:14": {
-    "x-ms-metadata": {
-     "apiVersions": [
-      "v3.0-preview.1"
-     ],
-     "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "InnerError",
      "originalLocations": [
@@ -337,19 +323,23 @@
     "type": "object",
     "properties": {
      "code": {
-      "$ref": "#/components/schemas/schemas:15",
+      "$ref": "#/components/schemas/schemas:14",
       "description": "Error code."
      },
      "message": {
-      "$ref": "#/components/schemas/schemas:16",
+      "$ref": "#/components/schemas/schemas:15",
       "description": "Error message."
      },
+     "details": {
+      "$ref": "#/components/schemas/schemas:16",
+      "description": "Error details."
+     },
      "target": {
-      "$ref": "#/components/schemas/schemas:17",
+      "$ref": "#/components/schemas/schemas:18",
       "description": "Error target."
      },
-     "innererror": {
-      "$ref": "#/components/schemas/schemas:14",
+     "innerError": {
+      "$ref": "#/components/schemas/schemas:13",
       "description": "Inner error contains more specific information."
      }
     },
@@ -358,15 +348,15 @@
      "message"
     ]
    },
-   "schemas:15": {
+   "schemas:14": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "InnerError-code",
+     "name": "InnerErrorCodeValue",
      "originalLocations": [
       "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/InnerError-code"
      ]
@@ -383,15 +373,19 @@
      "unsupportedLanguageCode",
      "invalidCountryHint"
     ],
+    "x-ms-enum": {
+     "name": "InnerErrorCodeValue",
+     "modelAsString": false
+    },
     "description": "Error code."
    },
-   "schemas:16": {
+   "schemas:15": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "InnerError-message",
      "originalLocations": [
@@ -401,13 +395,47 @@
     "type": "string",
     "description": "Error message."
    },
+   "schemas:16": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "v3.0-preview.1"
+     ],
+     "filename": [
+      "mem:///105?oai3.shaken.json"
+     ],
+     "name": "InnerError-details",
+     "originalLocations": [
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/InnerError-details"
+     ]
+    },
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:17"
+    },
+    "description": "Error details."
+   },
    "schemas:17": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
+     ],
+     "name": "components·schemas·innererror·properties·details·additionalproperties",
+     "originalLocations": [
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/components·schemas·innererror·properties·details·additionalproperties"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:18": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "v3.0-preview.1"
+     ],
+     "filename": [
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "InnerError-target",
      "originalLocations": [
@@ -417,13 +445,13 @@
     "type": "string",
     "description": "Error target."
    },
-   "schemas:18": {
+   "schemas:19": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentimentResponse",
      "originalLocations": [
@@ -433,18 +461,18 @@
     "type": "object",
     "properties": {
      "documents": {
-      "$ref": "#/components/schemas/schemas:19",
+      "$ref": "#/components/schemas/schemas:20",
       "description": "Sentiment analysis per document."
      },
      "errors": {
-      "$ref": "#/components/schemas/schemas:20",
+      "$ref": "#/components/schemas/schemas:21",
       "description": "Errors by document id."
      },
      "statistics": {
       "$ref": "#/components/schemas/schemas:27"
      },
      "modelVersion": {
-      "$ref": "#/components/schemas/schemas:21",
+      "$ref": "#/components/schemas/schemas:22",
       "description": "This field indicates which model is used for scoring."
      }
     },
@@ -454,13 +482,13 @@
      "modelVersion"
     ]
    },
-   "schemas:19": {
+   "schemas:20": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentimentResponse-documents",
      "originalLocations": [
@@ -470,16 +498,16 @@
     "type": "array",
     "description": "Sentiment analysis per document.",
     "items": {
-     "$ref": "#/components/schemas/schemas:22"
+     "$ref": "#/components/schemas/schemas:23"
     }
    },
-   "schemas:20": {
+   "schemas:21": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentimentResponse-errors",
      "originalLocations": [
@@ -492,13 +520,13 @@
      "$ref": "#/components/schemas/schemas:6"
     }
    },
-   "schemas:21": {
+   "schemas:22": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentimentResponse-modelVersion",
      "originalLocations": [
@@ -508,13 +536,13 @@
     "type": "string",
     "description": "This field indicates which model is used for scoring."
    },
-   "schemas:22": {
+   "schemas:23": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentSentiment",
      "originalLocations": [
@@ -524,19 +552,19 @@
     "type": "object",
     "properties": {
      "id": {
-      "$ref": "#/components/schemas/schemas:23",
+      "$ref": "#/components/schemas/schemas:24",
       "description": "Unique, non-empty document identifier."
      },
      "sentiment": {
-      "$ref": "#/components/schemas/schemas:24",
+      "$ref": "#/components/schemas/schemas:25",
       "description": "Predicted sentiment for document (Negative, Neutral, Positive, or Mixed)."
      },
      "statistics": {
       "$ref": "#/components/schemas/schemas:28"
      },
      "documentScores": {
-      "$ref": "#/components/schemas/schemas:25",
-      "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class."
+      "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class.",
+      "$ref": "#/components/schemas/schemas:29"
      },
      "sentences": {
       "$ref": "#/components/schemas/schemas:26",
@@ -550,13 +578,13 @@
      "sentences"
     ]
    },
-   "schemas:23": {
+   "schemas:24": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentSentiment-id",
      "originalLocations": [
@@ -566,15 +594,15 @@
     "type": "string",
     "description": "Unique, non-empty document identifier."
    },
-   "schemas:24": {
+   "schemas:25": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "DocumentSentiment-sentiment",
+     "name": "DocumentSentimentValue",
      "originalLocations": [
       "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/DocumentSentiment-sentiment"
      ]
@@ -586,22 +614,11 @@
      "neutral",
      "negative",
      "mixed"
-    ]
-   },
-   "schemas:25": {
-    "x-ms-metadata": {
-     "apiVersions": [
-      "v3.0-preview.1"
-     ],
-     "filename": [
-      "mem:///103?oai3.shaken.json"
-     ],
-     "name": "DocumentSentiment-documentScores",
-     "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/DocumentSentiment-documentScores"
-     ]
-    },
-    "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class."
+    ],
+    "x-ms-enum": {
+     "name": "DocumentSentimentValue",
+     "modelAsString": false
+    }
    },
    "schemas:26": {
     "x-ms-metadata": {
@@ -609,7 +626,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentSentiment-sentences",
      "originalLocations": [
@@ -628,7 +645,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "RequestStatistics",
      "originalLocations": [
@@ -672,7 +689,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentStatistics",
      "originalLocations": [
@@ -704,7 +721,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentimentConfidenceScorePerLabel",
      "originalLocations": [
@@ -739,7 +756,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentenceSentiment",
      "originalLocations": [
@@ -753,8 +770,8 @@
       "description": "The predicted Sentiment for the sentence."
      },
      "sentenceScores": {
-      "$ref": "#/components/schemas/schemas:32",
-      "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes."
+      "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes.",
+      "$ref": "#/components/schemas/schemas:29"
      },
      "offset": {
       "type": "integer",
@@ -767,7 +784,7 @@
       "description": "The length of the sentence by Unicode standard."
      },
      "warnings": {
-      "$ref": "#/components/schemas/schemas:33",
+      "$ref": "#/components/schemas/schemas:32",
       "description": "The warnings generated for the sentence."
      }
     },
@@ -784,9 +801,9 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "SentenceSentiment-sentiment",
+     "name": "SentenceSentimentValue",
      "originalLocations": [
       "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/SentenceSentiment-sentiment"
      ]
@@ -797,7 +814,11 @@
      "positive",
      "neutral",
      "negative"
-    ]
+    ],
+    "x-ms-enum": {
+     "name": "SentenceSentimentValue",
+     "modelAsString": false
+    }
    },
    "schemas:32": {
     "x-ms-metadata": {
@@ -805,22 +826,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
-     ],
-     "name": "SentenceSentiment-sentenceScores",
-     "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/SentenceSentiment-sentenceScores"
-     ]
-    },
-    "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes."
-   },
-   "schemas:33": {
-    "x-ms-metadata": {
-     "apiVersions": [
-      "v3.0-preview.1"
-     ],
-     "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentenceSentiment-warnings",
      "originalLocations": [
@@ -830,16 +836,16 @@
     "type": "array",
     "description": "The warnings generated for the sentence.",
     "items": {
-     "$ref": "#/components/schemas/schemas:34"
+     "$ref": "#/components/schemas/schemas:33"
     }
    },
-   "schemas:34": {
+   "schemas:33": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "SentenceSentiment-warningsItem",
      "originalLocations": [
@@ -848,13 +854,13 @@
     },
     "type": "string"
    },
-   "schemas:35": {
+   "schemas:34": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntitiesResult",
      "originalLocations": [
@@ -864,18 +870,18 @@
     "type": "object",
     "properties": {
      "documents": {
-      "$ref": "#/components/schemas/schemas:36",
+      "$ref": "#/components/schemas/schemas:35",
       "description": "Response by document"
      },
      "errors": {
-      "$ref": "#/components/schemas/schemas:37",
+      "$ref": "#/components/schemas/schemas:36",
       "description": "Errors by document id."
      },
      "statistics": {
       "$ref": "#/components/schemas/schemas:27"
      },
      "modelVersion": {
-      "$ref": "#/components/schemas/schemas:38",
+      "$ref": "#/components/schemas/schemas:37",
       "description": "This field indicates which model is used for scoring."
      }
     },
@@ -885,13 +891,13 @@
      "modelVersion"
     ]
    },
-   "schemas:36": {
+   "schemas:35": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntitiesResult-documents",
      "originalLocations": [
@@ -901,16 +907,16 @@
     "type": "array",
     "description": "Response by document",
     "items": {
-     "$ref": "#/components/schemas/schemas:39"
+     "$ref": "#/components/schemas/schemas:38"
     }
    },
-   "schemas:37": {
+   "schemas:36": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntitiesResult-errors",
      "originalLocations": [
@@ -923,13 +929,13 @@
      "$ref": "#/components/schemas/schemas:6"
     }
    },
-   "schemas:38": {
+   "schemas:37": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntitiesResult-modelVersion",
      "originalLocations": [
@@ -939,13 +945,13 @@
     "type": "string",
     "description": "This field indicates which model is used for scoring."
    },
-   "schemas:39": {
+   "schemas:38": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentEntities",
      "originalLocations": [
@@ -955,11 +961,11 @@
     "type": "object",
     "properties": {
      "id": {
-      "$ref": "#/components/schemas/schemas:40",
+      "$ref": "#/components/schemas/schemas:39",
       "description": "Unique, non-empty document identifier."
      },
      "entities": {
-      "$ref": "#/components/schemas/schemas:41",
+      "$ref": "#/components/schemas/schemas:40",
       "description": "Recognized entities in the document."
      },
      "statistics": {
@@ -972,13 +978,13 @@
      "entities"
     ]
    },
-   "schemas:40": {
+   "schemas:39": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentEntities-id",
      "originalLocations": [
@@ -988,13 +994,13 @@
     "type": "string",
     "description": "Unique, non-empty document identifier."
    },
-   "schemas:41": {
+   "schemas:40": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentEntities-entities",
      "originalLocations": [
@@ -1004,16 +1010,16 @@
     "type": "array",
     "description": "Recognized entities in the document.",
     "items": {
-     "$ref": "#/components/schemas/schemas:42"
+     "$ref": "#/components/schemas/schemas:41"
     }
    },
-   "schemas:42": {
+   "schemas:41": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Entity",
      "originalLocations": [
@@ -1023,15 +1029,15 @@
     "type": "object",
     "properties": {
      "text": {
-      "$ref": "#/components/schemas/schemas:43",
+      "$ref": "#/components/schemas/schemas:42",
       "description": "Entity text as appears in the request."
      },
      "type": {
-      "$ref": "#/components/schemas/schemas:44",
+      "$ref": "#/components/schemas/schemas:43",
       "description": "Entity type, such as Person/Location/Org/SSN etc"
      },
      "subtype": {
-      "$ref": "#/components/schemas/schemas:45",
+      "$ref": "#/components/schemas/schemas:44",
       "description": "Entity sub type, such as Age/Year/TimeRange etc"
      },
      "offset": {
@@ -1058,13 +1064,13 @@
      "score"
     ]
    },
-   "schemas:43": {
+   "schemas:42": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Entity-text",
      "originalLocations": [
@@ -1074,13 +1080,13 @@
     "type": "string",
     "description": "Entity text as appears in the request."
    },
-   "schemas:44": {
+   "schemas:43": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Entity-type",
      "originalLocations": [
@@ -1090,13 +1096,13 @@
     "type": "string",
     "description": "Entity type, such as Person/Location/Org/SSN etc"
    },
-   "schemas:45": {
+   "schemas:44": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Entity-subtype",
      "originalLocations": [
@@ -1106,13 +1112,13 @@
     "type": "string",
     "description": "Entity sub type, such as Age/Year/TimeRange etc"
    },
-   "schemas:46": {
+   "schemas:45": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntityLinkingResult",
      "originalLocations": [
@@ -1122,18 +1128,18 @@
     "type": "object",
     "properties": {
      "documents": {
-      "$ref": "#/components/schemas/schemas:47",
+      "$ref": "#/components/schemas/schemas:46",
       "description": "Response by document"
      },
      "errors": {
-      "$ref": "#/components/schemas/schemas:48",
+      "$ref": "#/components/schemas/schemas:47",
       "description": "Errors by document id."
      },
      "statistics": {
       "$ref": "#/components/schemas/schemas:27"
      },
      "modelVersion": {
-      "$ref": "#/components/schemas/schemas:49",
+      "$ref": "#/components/schemas/schemas:48",
       "description": "This field indicates which model is used for scoring."
      }
     },
@@ -1143,13 +1149,13 @@
      "modelVersion"
     ]
    },
-   "schemas:47": {
+   "schemas:46": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntityLinkingResult-documents",
      "originalLocations": [
@@ -1159,16 +1165,16 @@
     "type": "array",
     "description": "Response by document",
     "items": {
-     "$ref": "#/components/schemas/schemas:50"
+     "$ref": "#/components/schemas/schemas:49"
     }
    },
-   "schemas:48": {
+   "schemas:47": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntityLinkingResult-errors",
      "originalLocations": [
@@ -1181,13 +1187,13 @@
      "$ref": "#/components/schemas/schemas:6"
     }
    },
-   "schemas:49": {
+   "schemas:48": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "EntityLinkingResult-modelVersion",
      "originalLocations": [
@@ -1197,13 +1203,13 @@
     "type": "string",
     "description": "This field indicates which model is used for scoring."
    },
-   "schemas:50": {
+   "schemas:49": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentLinkedEntities",
      "originalLocations": [
@@ -1213,11 +1219,11 @@
     "type": "object",
     "properties": {
      "id": {
-      "$ref": "#/components/schemas/schemas:51",
+      "$ref": "#/components/schemas/schemas:50",
       "description": "Unique, non-empty document identifier."
      },
      "entities": {
-      "$ref": "#/components/schemas/schemas:52",
+      "$ref": "#/components/schemas/schemas:51",
       "description": "Recognized well-known entities in the document."
      },
      "statistics": {
@@ -1230,13 +1236,13 @@
      "entities"
     ]
    },
-   "schemas:51": {
+   "schemas:50": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentLinkedEntities-id",
      "originalLocations": [
@@ -1246,13 +1252,13 @@
     "type": "string",
     "description": "Unique, non-empty document identifier."
    },
-   "schemas:52": {
+   "schemas:51": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentLinkedEntities-entities",
      "originalLocations": [
@@ -1262,16 +1268,16 @@
     "type": "array",
     "description": "Recognized well-known entities in the document.",
     "items": {
-     "$ref": "#/components/schemas/schemas:53"
+     "$ref": "#/components/schemas/schemas:52"
     }
    },
-   "schemas:53": {
+   "schemas:52": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity",
      "originalLocations": [
@@ -1281,27 +1287,27 @@
     "type": "object",
     "properties": {
      "name": {
-      "$ref": "#/components/schemas/schemas:54",
+      "$ref": "#/components/schemas/schemas:53",
       "description": "Entity Linking formal name."
      },
      "matches": {
-      "$ref": "#/components/schemas/schemas:55",
+      "$ref": "#/components/schemas/schemas:54",
       "description": "List of instances this entity appears in the text."
      },
      "language": {
-      "$ref": "#/components/schemas/schemas:56",
+      "$ref": "#/components/schemas/schemas:55",
       "description": "Language used in the data source."
      },
      "id": {
-      "$ref": "#/components/schemas/schemas:57",
+      "$ref": "#/components/schemas/schemas:56",
       "description": "Unique identifier of the recognized entity from the data source."
      },
      "url": {
-      "$ref": "#/components/schemas/schemas:58",
+      "$ref": "#/components/schemas/schemas:57",
       "description": "URL for the entity's page from the data source."
      },
      "dataSource": {
-      "$ref": "#/components/schemas/schemas:59",
+      "$ref": "#/components/schemas/schemas:58",
       "description": "Data source used to extract entity linking, such as Wiki/Bing etc."
      }
     },
@@ -1313,13 +1319,13 @@
      "dataSource"
     ]
    },
-   "schemas:54": {
+   "schemas:53": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity-name",
      "originalLocations": [
@@ -1329,13 +1335,13 @@
     "type": "string",
     "description": "Entity Linking formal name."
    },
-   "schemas:55": {
+   "schemas:54": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity-matches",
      "originalLocations": [
@@ -1345,16 +1351,16 @@
     "type": "array",
     "description": "List of instances this entity appears in the text.",
     "items": {
-     "$ref": "#/components/schemas/schemas:60"
+     "$ref": "#/components/schemas/schemas:59"
     }
    },
-   "schemas:56": {
+   "schemas:55": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity-language",
      "originalLocations": [
@@ -1364,13 +1370,13 @@
     "type": "string",
     "description": "Language used in the data source."
    },
-   "schemas:57": {
+   "schemas:56": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity-id",
      "originalLocations": [
@@ -1380,13 +1386,13 @@
     "type": "string",
     "description": "Unique identifier of the recognized entity from the data source."
    },
-   "schemas:58": {
+   "schemas:57": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity-url",
      "originalLocations": [
@@ -1396,13 +1402,13 @@
     "type": "string",
     "description": "URL for the entity's page from the data source."
    },
-   "schemas:59": {
+   "schemas:58": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LinkedEntity-dataSource",
      "originalLocations": [
@@ -1412,13 +1418,13 @@
     "type": "string",
     "description": "Data source used to extract entity linking, such as Wiki/Bing etc."
    },
-   "schemas:60": {
+   "schemas:59": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Match",
      "originalLocations": [
@@ -1433,7 +1439,7 @@
       "description": "If a well-known item is recognized, a decimal number denoting the confidence level between 0 and 1 will be returned."
      },
      "text": {
-      "$ref": "#/components/schemas/schemas:61",
+      "$ref": "#/components/schemas/schemas:60",
       "description": "Entity text as appears in the request."
      },
      "offset": {
@@ -1454,13 +1460,13 @@
      "length"
     ]
    },
-   "schemas:61": {
+   "schemas:60": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Match-text",
      "originalLocations": [
@@ -1470,13 +1476,13 @@
     "type": "string",
     "description": "Entity text as appears in the request."
    },
-   "schemas:62": {
+   "schemas:61": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "KeyPhraseResult",
      "originalLocations": [
@@ -1486,18 +1492,18 @@
     "type": "object",
     "properties": {
      "documents": {
-      "$ref": "#/components/schemas/schemas:63",
+      "$ref": "#/components/schemas/schemas:62",
       "description": "Response by document"
      },
      "errors": {
-      "$ref": "#/components/schemas/schemas:64",
+      "$ref": "#/components/schemas/schemas:63",
       "description": "Errors by document id."
      },
      "statistics": {
       "$ref": "#/components/schemas/schemas:27"
      },
      "modelVersion": {
-      "$ref": "#/components/schemas/schemas:65",
+      "$ref": "#/components/schemas/schemas:64",
       "description": "This field indicates which model is used for scoring."
      }
     },
@@ -1507,13 +1513,13 @@
      "modelVersion"
     ]
    },
-   "schemas:63": {
+   "schemas:62": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "KeyPhraseResult-documents",
      "originalLocations": [
@@ -1523,16 +1529,16 @@
     "type": "array",
     "description": "Response by document",
     "items": {
-     "$ref": "#/components/schemas/schemas:66"
+     "$ref": "#/components/schemas/schemas:65"
     }
    },
-   "schemas:64": {
+   "schemas:63": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "KeyPhraseResult-errors",
      "originalLocations": [
@@ -1545,13 +1551,13 @@
      "$ref": "#/components/schemas/schemas:6"
     }
    },
-   "schemas:65": {
+   "schemas:64": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "KeyPhraseResult-modelVersion",
      "originalLocations": [
@@ -1561,13 +1567,13 @@
     "type": "string",
     "description": "This field indicates which model is used for scoring."
    },
-   "schemas:66": {
+   "schemas:65": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentKeyPhrases",
      "originalLocations": [
@@ -1577,11 +1583,11 @@
     "type": "object",
     "properties": {
      "id": {
-      "$ref": "#/components/schemas/schemas:67",
+      "$ref": "#/components/schemas/schemas:66",
       "description": "Unique, non-empty document identifier."
      },
      "keyPhrases": {
-      "$ref": "#/components/schemas/schemas:68",
+      "$ref": "#/components/schemas/schemas:67",
       "description": "A list of representative words or phrases. The number of key phrases returned is proportional to the number of words in the input document."
      },
      "statistics": {
@@ -1594,13 +1600,13 @@
      "keyPhrases"
     ]
    },
-   "schemas:67": {
+   "schemas:66": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentKeyPhrases-id",
      "originalLocations": [
@@ -1610,13 +1616,13 @@
     "type": "string",
     "description": "Unique, non-empty document identifier."
    },
-   "schemas:68": {
+   "schemas:67": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentKeyPhrases-keyPhrases",
      "originalLocations": [
@@ -1626,16 +1632,16 @@
     "type": "array",
     "description": "A list of representative words or phrases. The number of key phrases returned is proportional to the number of words in the input document.",
     "items": {
-     "$ref": "#/components/schemas/schemas:69"
+     "$ref": "#/components/schemas/schemas:68"
     }
    },
-   "schemas:69": {
+   "schemas:68": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentKeyPhrases-keyPhrasesItem",
      "originalLocations": [
@@ -1644,13 +1650,13 @@
     },
     "type": "string"
    },
-   "schemas:70": {
+   "schemas:69": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageBatchInput",
      "originalLocations": [
@@ -1660,20 +1666,20 @@
     "type": "object",
     "properties": {
      "documents": {
-      "$ref": "#/components/schemas/schemas:71"
+      "$ref": "#/components/schemas/schemas:70"
      }
     },
     "required": [
      "documents"
     ]
    },
-   "schemas:71": {
+   "schemas:70": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageBatchInput-documents",
      "originalLocations": [
@@ -1682,16 +1688,16 @@
     },
     "type": "array",
     "items": {
-     "$ref": "#/components/schemas/schemas:72"
+     "$ref": "#/components/schemas/schemas:71"
     }
    },
-   "schemas:72": {
+   "schemas:71": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageInput",
      "originalLocations": [
@@ -1701,14 +1707,14 @@
     "type": "object",
     "properties": {
      "id": {
-      "$ref": "#/components/schemas/schemas:73",
+      "$ref": "#/components/schemas/schemas:72",
       "description": "Unique, non-empty document identifier."
      },
      "text": {
-      "$ref": "#/components/schemas/schemas:74"
+      "$ref": "#/components/schemas/schemas:73"
      },
      "countryHint": {
-      "$ref": "#/components/schemas/schemas:75"
+      "$ref": "#/components/schemas/schemas:74"
      }
     },
     "required": [
@@ -1716,13 +1722,13 @@
      "text"
     ]
    },
-   "schemas:73": {
+   "schemas:72": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageInput-id",
      "originalLocations": [
@@ -1732,17 +1738,32 @@
     "type": "string",
     "description": "Unique, non-empty document identifier."
    },
+   "schemas:73": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "v3.0-preview.1"
+     ],
+     "filename": [
+      "mem:///105?oai3.shaken.json"
+     ],
+     "name": "LanguageInput-text",
+     "originalLocations": [
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/LanguageInput-text"
+     ]
+    },
+    "type": "string"
+   },
    "schemas:74": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "LanguageInput-text",
+     "name": "LanguageInput-countryHint",
      "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/LanguageInput-text"
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/LanguageInput-countryHint"
      ]
     },
     "type": "string"
@@ -1753,22 +1774,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
-     ],
-     "name": "LanguageInput-countryHint",
-     "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/LanguageInput-countryHint"
-     ]
-    },
-    "type": "string"
-   },
-   "schemas:76": {
-    "x-ms-metadata": {
-     "apiVersions": [
-      "v3.0-preview.1"
-     ],
-     "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageResult",
      "originalLocations": [
@@ -1778,18 +1784,18 @@
     "type": "object",
     "properties": {
      "documents": {
-      "$ref": "#/components/schemas/schemas:77",
+      "$ref": "#/components/schemas/schemas:76",
       "description": "Response by document"
      },
      "errors": {
-      "$ref": "#/components/schemas/schemas:78",
+      "$ref": "#/components/schemas/schemas:77",
       "description": "Errors by document id."
      },
      "statistics": {
       "$ref": "#/components/schemas/schemas:27"
      },
      "modelVersion": {
-      "$ref": "#/components/schemas/schemas:79",
+      "$ref": "#/components/schemas/schemas:78",
       "description": "This field indicates which model is used for scoring."
      }
     },
@@ -1799,13 +1805,13 @@
      "modelVersion"
     ]
    },
-   "schemas:77": {
+   "schemas:76": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageResult-documents",
      "originalLocations": [
@@ -1815,16 +1821,16 @@
     "type": "array",
     "description": "Response by document",
     "items": {
-     "$ref": "#/components/schemas/schemas:80"
+     "$ref": "#/components/schemas/schemas:79"
     }
    },
-   "schemas:78": {
+   "schemas:77": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageResult-errors",
      "originalLocations": [
@@ -1837,13 +1843,13 @@
      "$ref": "#/components/schemas/schemas:6"
     }
    },
-   "schemas:79": {
+   "schemas:78": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "LanguageResult-modelVersion",
      "originalLocations": [
@@ -1853,13 +1859,13 @@
     "type": "string",
     "description": "This field indicates which model is used for scoring."
    },
-   "schemas:80": {
+   "schemas:79": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentLanguage",
      "originalLocations": [
@@ -1869,11 +1875,11 @@
     "type": "object",
     "properties": {
      "id": {
-      "$ref": "#/components/schemas/schemas:81",
+      "$ref": "#/components/schemas/schemas:80",
       "description": "Unique, non-empty document identifier."
      },
      "detectedLanguages": {
-      "$ref": "#/components/schemas/schemas:82",
+      "$ref": "#/components/schemas/schemas:81",
       "description": "A list of extracted languages."
      },
      "statistics": {
@@ -1886,13 +1892,13 @@
      "detectedLanguages"
     ]
    },
-   "schemas:81": {
+   "schemas:80": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentLanguage-id",
      "originalLocations": [
@@ -1902,13 +1908,13 @@
     "type": "string",
     "description": "Unique, non-empty document identifier."
    },
-   "schemas:82": {
+   "schemas:81": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DocumentLanguage-detectedLanguages",
      "originalLocations": [
@@ -1918,16 +1924,16 @@
     "type": "array",
     "description": "A list of extracted languages.",
     "items": {
-     "$ref": "#/components/schemas/schemas:83"
+     "$ref": "#/components/schemas/schemas:82"
     }
    },
-   "schemas:83": {
+   "schemas:82": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DetectedLanguage",
      "originalLocations": [
@@ -1937,11 +1943,11 @@
     "type": "object",
     "properties": {
      "name": {
-      "$ref": "#/components/schemas/schemas:84",
+      "$ref": "#/components/schemas/schemas:83",
       "description": "Long name of a detected language (e.g. English, French)."
      },
      "iso6391Name": {
-      "$ref": "#/components/schemas/schemas:85",
+      "$ref": "#/components/schemas/schemas:84",
       "description": "A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr)."
      },
      "score": {
@@ -1956,13 +1962,13 @@
      "score"
     ]
    },
-   "schemas:84": {
+   "schemas:83": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DetectedLanguage-name",
      "originalLocations": [
@@ -1972,13 +1978,13 @@
     "type": "string",
     "description": "Long name of a detected language (e.g. English, French)."
    },
-   "schemas:85": {
+   "schemas:84": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "DetectedLanguage-iso6391Name",
      "originalLocations": [
@@ -1988,17 +1994,32 @@
     "type": "string",
     "description": "A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr)."
    },
+   "schemas:85": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "v3.0-preview.1"
+     ],
+     "filename": [
+      "mem:///105?oai3.shaken.json"
+     ],
+     "name": "components·parameters·endpoint·schema",
+     "originalLocations": [
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/components·parameters·endpoint·schema"
+     ]
+    },
+    "type": "string"
+   },
    "schemas:86": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
-     "name": "components·parameters·endpoint·schema",
+     "name": "paths·entities-recognition-general·post·parameters·0·schema",
      "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/components·parameters·endpoint·schema"
+      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/paths·entities-recognition-general·post·parameters·0·schema"
      ]
     },
     "type": "string"
@@ -2009,22 +2030,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
-     ],
-     "name": "paths·entities-recognition-general·post·parameters·0·schema",
-     "originalLocations": [
-      "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/paths·entities-recognition-general·post·parameters·0·schema"
-     ]
-    },
-    "type": "string"
-   },
-   "schemas:88": {
-    "x-ms-metadata": {
-     "apiVersions": [
-      "v3.0-preview.1"
-     ],
-     "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-general·post·parameters·1·schema",
      "originalLocations": [
@@ -2033,13 +2039,13 @@
     },
     "type": "boolean"
    },
-   "schemas:89": {
+   "schemas:88": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·parameters·0·schema",
      "originalLocations": [
@@ -2048,13 +2054,13 @@
     },
     "type": "string"
    },
-   "schemas:90": {
+   "schemas:89": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·parameters·1·schema",
      "originalLocations": [
@@ -2063,13 +2069,13 @@
     },
     "type": "boolean"
    },
-   "schemas:91": {
+   "schemas:90": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·parameters·0·schema",
      "originalLocations": [
@@ -2078,13 +2084,13 @@
     },
     "type": "string"
    },
-   "schemas:92": {
+   "schemas:91": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·parameters·1·schema",
      "originalLocations": [
@@ -2093,13 +2099,13 @@
     },
     "type": "boolean"
    },
-   "schemas:93": {
+   "schemas:92": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·parameters·0·schema",
      "originalLocations": [
@@ -2108,13 +2114,13 @@
     },
     "type": "string"
    },
-   "schemas:94": {
+   "schemas:93": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·parameters·1·schema",
      "originalLocations": [
@@ -2123,13 +2129,13 @@
     },
     "type": "boolean"
    },
-   "schemas:95": {
+   "schemas:94": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·parameters·0·schema",
      "originalLocations": [
@@ -2138,13 +2144,13 @@
     },
     "type": "string"
    },
-   "schemas:96": {
+   "schemas:95": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·parameters·1·schema",
      "originalLocations": [
@@ -2153,13 +2159,13 @@
     },
     "type": "boolean"
    },
-   "schemas:97": {
+   "schemas:96": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·parameters·0·schema",
      "originalLocations": [
@@ -2168,13 +2174,13 @@
     },
     "type": "string"
    },
-   "schemas:98": {
+   "schemas:97": {
     "x-ms-metadata": {
      "apiVersions": [
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·parameters·1·schema",
      "originalLocations": [
@@ -2191,7 +2197,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "Endpoint",
      "originalLocations": [
@@ -2204,7 +2210,7 @@
     "x-ms-parameter-location": "client",
     "x-ms-skip-url-encoding": true,
     "schema": {
-     "$ref": "#/components/schemas/schemas:86"
+     "$ref": "#/components/schemas/schemas:85"
     },
     "required": true
    },
@@ -2214,7 +2220,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-general·post·parameters·0",
      "originalLocations": [
@@ -2225,7 +2231,7 @@
     "in": "query",
     "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
     "schema": {
-     "$ref": "#/components/schemas/schemas:87"
+     "$ref": "#/components/schemas/schemas:86"
     },
     "required": false,
     "x-ms-parameter-location": "method"
@@ -2236,7 +2242,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-general·post·parameters·1",
      "originalLocations": [
@@ -2247,7 +2253,7 @@
     "in": "query",
     "description": "(Optional) if set to true, response will contain input and document level statistics.",
     "schema": {
-     "$ref": "#/components/schemas/schemas:88"
+     "$ref": "#/components/schemas/schemas:87"
     },
     "required": false,
     "x-ms-parameter-location": "method"
@@ -2258,7 +2264,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·parameters·0",
      "originalLocations": [
@@ -2269,7 +2275,7 @@
     "in": "query",
     "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
     "schema": {
-     "$ref": "#/components/schemas/schemas:89"
+     "$ref": "#/components/schemas/schemas:88"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2279,7 +2285,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·parameters·1",
      "originalLocations": [
@@ -2290,7 +2296,7 @@
     "in": "query",
     "description": "(Optional) if set to true, response will contain input and document level statistics.",
     "schema": {
-     "$ref": "#/components/schemas/schemas:90"
+     "$ref": "#/components/schemas/schemas:89"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2300,7 +2306,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·parameters·0",
      "originalLocations": [
@@ -2311,7 +2317,7 @@
     "in": "query",
     "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
     "schema": {
-     "$ref": "#/components/schemas/schemas:91"
+     "$ref": "#/components/schemas/schemas:90"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2321,7 +2327,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·parameters·1",
      "originalLocations": [
@@ -2332,7 +2338,7 @@
     "in": "query",
     "description": "(Optional) if set to true, response will contain input and document level statistics.",
     "schema": {
-     "$ref": "#/components/schemas/schemas:92"
+     "$ref": "#/components/schemas/schemas:91"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2342,7 +2348,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·parameters·0",
      "originalLocations": [
@@ -2353,7 +2359,7 @@
     "in": "query",
     "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
     "schema": {
-     "$ref": "#/components/schemas/schemas:93"
+     "$ref": "#/components/schemas/schemas:92"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2363,7 +2369,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·parameters·1",
      "originalLocations": [
@@ -2374,7 +2380,7 @@
     "in": "query",
     "description": "(Optional) if set to true, response will contain input and document level statistics.",
     "schema": {
-     "$ref": "#/components/schemas/schemas:94"
+     "$ref": "#/components/schemas/schemas:93"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2384,7 +2390,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·parameters·0",
      "originalLocations": [
@@ -2395,7 +2401,7 @@
     "in": "query",
     "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
     "schema": {
-     "$ref": "#/components/schemas/schemas:95"
+     "$ref": "#/components/schemas/schemas:94"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2405,7 +2411,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·parameters·1",
      "originalLocations": [
@@ -2416,7 +2422,7 @@
     "in": "query",
     "description": "(Optional) if set to true, response will contain input and document level statistics.",
     "schema": {
-     "$ref": "#/components/schemas/schemas:96"
+     "$ref": "#/components/schemas/schemas:95"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2426,7 +2432,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·parameters·0",
      "originalLocations": [
@@ -2437,7 +2443,7 @@
     "in": "query",
     "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
     "schema": {
-     "$ref": "#/components/schemas/schemas:97"
+     "$ref": "#/components/schemas/schemas:96"
     },
     "x-ms-parameter-location": "method"
    },
@@ -2447,7 +2453,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·parameters·1",
      "originalLocations": [
@@ -2458,7 +2464,7 @@
     "in": "query",
     "description": "(Optional) if set to true, response will contain input and document level statistics.",
     "schema": {
-     "$ref": "#/components/schemas/schemas:98"
+     "$ref": "#/components/schemas/schemas:97"
     },
     "x-ms-parameter-location": "method"
    }
@@ -2470,7 +2476,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-general·post·requestbody",
      "originalLocations": [
@@ -2499,7 +2505,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·requestbody",
      "originalLocations": [
@@ -2528,7 +2534,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·requestbody",
      "originalLocations": [
@@ -2557,7 +2563,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·requestbody",
      "originalLocations": [
@@ -2586,7 +2592,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·requestbody",
      "originalLocations": [
@@ -2596,12 +2602,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:70"
+       "$ref": "#/components/schemas/schemas:69"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:70"
+       "$ref": "#/components/schemas/schemas:69"
       }
      }
     },
@@ -2615,7 +2621,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·requestbody",
      "originalLocations": [
@@ -2646,7 +2652,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-general·post·responses·200",
      "originalLocations": [
@@ -2657,12 +2663,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:35"
+       "$ref": "#/components/schemas/schemas:34"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:35"
+       "$ref": "#/components/schemas/schemas:34"
       }
      }
     }
@@ -2673,7 +2679,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-general·post·responses·default",
      "originalLocations": [
@@ -2684,12 +2690,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      }
     }
@@ -2700,7 +2706,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·responses·200",
      "originalLocations": [
@@ -2711,12 +2717,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:35"
+       "$ref": "#/components/schemas/schemas:34"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:35"
+       "$ref": "#/components/schemas/schemas:34"
       }
      }
     }
@@ -2727,7 +2733,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-recognition-pii·post·responses·default",
      "originalLocations": [
@@ -2738,12 +2744,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      }
     }
@@ -2754,7 +2760,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·responses·200",
      "originalLocations": [
@@ -2765,12 +2771,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:46"
+       "$ref": "#/components/schemas/schemas:45"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:46"
+       "$ref": "#/components/schemas/schemas:45"
       }
      }
     }
@@ -2781,7 +2787,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·entities-linking·post·responses·default",
      "originalLocations": [
@@ -2792,12 +2798,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      }
     }
@@ -2808,7 +2814,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·responses·200",
      "originalLocations": [
@@ -2819,12 +2825,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:62"
+       "$ref": "#/components/schemas/schemas:61"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:62"
+       "$ref": "#/components/schemas/schemas:61"
       }
      }
     }
@@ -2835,7 +2841,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·keyphrases·post·responses·default",
      "originalLocations": [
@@ -2846,12 +2852,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      }
     }
@@ -2862,7 +2868,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·responses·200",
      "originalLocations": [
@@ -2873,12 +2879,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:76"
+       "$ref": "#/components/schemas/schemas:75"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:76"
+       "$ref": "#/components/schemas/schemas:75"
       }
      }
     }
@@ -2889,7 +2895,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·languages·post·responses·default",
      "originalLocations": [
@@ -2900,12 +2906,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      }
     }
@@ -2916,7 +2922,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·responses·200",
      "originalLocations": [
@@ -2927,12 +2933,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:18"
+       "$ref": "#/components/schemas/schemas:19"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:18"
+       "$ref": "#/components/schemas/schemas:19"
       }
      }
     }
@@ -2943,7 +2949,7 @@
       "v3.0-preview.1"
      ],
      "filename": [
-      "mem:///103?oai3.shaken.json"
+      "mem:///105?oai3.shaken.json"
      ],
      "name": "paths·sentiment·post·responses·default",
      "originalLocations": [
@@ -2954,12 +2960,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:9"
+       "$ref": "#/components/schemas/schemas:8"
       }
      }
     }
@@ -2978,7 +2984,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/entities/recognition/general",
     "originalLocations": [
@@ -2992,7 +2998,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/entities/recognition/general",
     "originalLocations": [
@@ -3005,8 +3011,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/parameters:0"
@@ -3143,7 +3153,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/entities/recognition/pii",
     "originalLocations": [
@@ -3157,7 +3167,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/entities/recognition/pii",
     "originalLocations": [
@@ -3170,8 +3180,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/parameters:0"
@@ -3295,7 +3309,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/entities/linking",
     "originalLocations": [
@@ -3309,7 +3323,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/entities/linking",
     "originalLocations": [
@@ -3322,8 +3336,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/parameters:0"
@@ -3468,7 +3486,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/keyPhrases",
     "originalLocations": [
@@ -3482,7 +3500,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/keyPhrases",
     "originalLocations": [
@@ -3495,8 +3513,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/parameters:0"
@@ -3602,7 +3624,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/languages",
     "originalLocations": [
@@ -3616,7 +3638,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/languages",
     "originalLocations": [
@@ -3629,8 +3651,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/parameters:0"
@@ -3743,7 +3769,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/sentiment",
     "originalLocations": [
@@ -3757,7 +3783,7 @@
      "v3.0-preview.1"
     ],
     "filename": [
-     "mem:///103?oai3.shaken.json"
+     "mem:///105?oai3.shaken.json"
     ],
     "path": "/sentiment",
     "originalLocations": [
@@ -3770,8 +3796,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/parameters:0"
@@ -3939,8 +3969,12 @@
    "url": "{Endpoint}/text/analytics/v3.0-preview.1",
    "variables": {
     "Endpoint": {
+     "x-name": "Endpoint",
      "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
      "x-ms-parameter-location": "client",
+     "x-required": true,
+     "x-type": "string",
+     "x-in": "path",
      "x-ms-skip-url-encoding": true,
      "x-ms-original": {
       "$ref": "#/components/parameters/parameters:0"

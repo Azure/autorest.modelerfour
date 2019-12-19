@@ -80,7 +80,7 @@
      "default": {
       "description": "Error Response",
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
       }
      }
     },
@@ -223,7 +223,7 @@
      "default": {
       "description": "Error Response",
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
       }
      }
     },
@@ -353,7 +353,7 @@
      "default": {
       "description": "Error Response",
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
       }
      }
     },
@@ -504,7 +504,7 @@
      "default": {
       "description": "Error Response",
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
       }
      }
     },
@@ -616,7 +616,7 @@
      "default": {
       "description": "Error Response",
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
       }
      }
     },
@@ -735,7 +735,7 @@
      "default": {
       "description": "Error Response",
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
       }
      }
     },
@@ -917,13 +917,11 @@
     "error": {
      "type": "object",
      "description": "Document Error.",
-     "items": {
-      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
-     }
+     "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
     }
    }
   },
-  "Error": {
+  "TextAnalyticsError": {
    "type": "object",
    "required": [
     "code",
@@ -938,6 +936,10 @@
       "internalServerError",
       "serviceUnavailable"
      ],
+     "x-ms-enum": {
+      "name": "ErrorCodeValue",
+      "modelAsString": false
+     },
      "description": "Error code."
     },
     "message": {
@@ -948,7 +950,7 @@
      "type": "string",
      "description": "Error target."
     },
-    "innererror": {
+    "innerError": {
      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/InnerError",
      "description": "Inner error contains more specific information."
     },
@@ -956,7 +958,7 @@
      "type": "array",
      "description": "Details about specific errors that led to this reported error.",
      "items": {
-      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/Error"
+      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/TextAnalyticsError"
      }
     }
    }
@@ -981,17 +983,28 @@
       "unsupportedLanguageCode",
       "invalidCountryHint"
      ],
+     "x-ms-enum": {
+      "name": "InnerErrorCodeValue",
+      "modelAsString": false
+     },
      "description": "Error code."
     },
     "message": {
      "type": "string",
      "description": "Error message."
     },
+    "details": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string"
+     },
+     "description": "Error details."
+    },
     "target": {
      "type": "string",
      "description": "Error target."
     },
-    "innererror": {
+    "innerError": {
      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/InnerError",
      "description": "Inner error contains more specific information."
     }
@@ -1049,13 +1062,18 @@
       "neutral",
       "negative",
       "mixed"
-     ]
+     ],
+     "x-ms-enum": {
+      "name": "DocumentSentimentValue",
+      "modelAsString": false
+     }
     },
     "statistics": {
      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/DocumentStatistics"
     },
     "documentScores": {
-     "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class."
+     "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class.",
+     "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/SentimentConfidenceScorePerLabel"
     },
     "sentences": {
      "type": "array",
@@ -1157,10 +1175,15 @@
       "positive",
       "neutral",
       "negative"
-     ]
+     ],
+     "x-ms-enum": {
+      "name": "SentenceSentimentValue",
+      "modelAsString": false
+     }
     },
     "sentenceScores": {
-     "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes."
+     "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes.",
+     "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/definitions/SentimentConfidenceScorePerLabel"
     },
     "offset": {
      "type": "integer",

@@ -13,6 +13,7 @@ export async function processRequest(host: Host) {
 
   try {
     const session = await startSession<CodeModel>(host, {}, codeModelSchema);
+    const options = <any>await session.getValue('modelerfour', {});
 
     // process
     const plugin = new PreNamer(session);
@@ -21,9 +22,12 @@ export async function processRequest(host: Host) {
     const result = plugin.process();
 
     // output the model to the pipeline
-    host.WriteFile('code-model-v4.yaml', serialize(result, codeModelSchema), undefined, 'code-model-v4');
-    host.WriteFile('code-model-v4-no-tags.yaml', serialize(result), undefined, 'code-model-v4-no-tags');
-
+    if (options['emit-yaml-tags'] !== false) {
+      host.WriteFile('code-model-v4.yaml', serialize(result, codeModelSchema), undefined, 'code-model-v4');
+    }
+    if (options['emit-yaml-tags'] !== true) {
+      host.WriteFile('code-model-v4-no-tags.yaml', serialize(result), undefined, 'code-model-v4-no-tags');
+    }
   } catch (E) {
     if (debug) {
       console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);

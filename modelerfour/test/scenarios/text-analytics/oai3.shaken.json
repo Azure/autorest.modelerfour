@@ -81,8 +81,9 @@
       "description": "Document Id."
      },
      "error": {
-      "$ref": "#/components/schemas/DocumentError-error",
-      "description": "Document Error."
+      "type": "object",
+      "description": "Document Error.",
+      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
      }
     },
     "required": [
@@ -94,34 +95,27 @@
     "type": "string",
     "description": "Document Id."
    },
-   "DocumentError-error": {
-    "type": "object",
-    "description": "Document Error.",
-    "items": {
-     "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
-    }
-   },
-   "Error": {
+   "TextAnalyticsError": {
     "type": "object",
     "properties": {
      "code": {
-      "$ref": "#/components/schemas/Error-code",
+      "$ref": "#/components/schemas/TextAnalyticsError-code",
       "description": "Error code."
      },
      "message": {
-      "$ref": "#/components/schemas/Error-message",
+      "$ref": "#/components/schemas/TextAnalyticsError-message",
       "description": "Error message."
      },
      "target": {
-      "$ref": "#/components/schemas/Error-target",
+      "$ref": "#/components/schemas/TextAnalyticsError-target",
       "description": "Error target."
      },
-     "innererror": {
+     "innerError": {
       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/InnerError",
       "description": "Inner error contains more specific information."
      },
      "details": {
-      "$ref": "#/components/schemas/Error-details",
+      "$ref": "#/components/schemas/TextAnalyticsError-details",
       "description": "Details about specific errors that led to this reported error."
      }
     },
@@ -130,7 +124,7 @@
      "message"
     ]
    },
-   "Error-code": {
+   "TextAnalyticsError-code": {
     "type": "string",
     "enum": [
      "invalidRequest",
@@ -138,21 +132,25 @@
      "internalServerError",
      "serviceUnavailable"
     ],
+    "x-ms-enum": {
+     "name": "ErrorCodeValue",
+     "modelAsString": false
+    },
     "description": "Error code."
    },
-   "Error-message": {
+   "TextAnalyticsError-message": {
     "type": "string",
     "description": "Error message."
    },
-   "Error-target": {
+   "TextAnalyticsError-target": {
     "type": "string",
     "description": "Error target."
    },
-   "Error-details": {
+   "TextAnalyticsError-details": {
     "type": "array",
     "description": "Details about specific errors that led to this reported error.",
     "items": {
-     "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+     "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
     }
    },
    "InnerError": {
@@ -166,11 +164,15 @@
       "$ref": "#/components/schemas/InnerError-message",
       "description": "Error message."
      },
+     "details": {
+      "$ref": "#/components/schemas/InnerError-details",
+      "description": "Error details."
+     },
      "target": {
       "$ref": "#/components/schemas/InnerError-target",
       "description": "Error target."
      },
-     "innererror": {
+     "innerError": {
       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/InnerError",
       "description": "Inner error contains more specific information."
      }
@@ -193,11 +195,25 @@
      "unsupportedLanguageCode",
      "invalidCountryHint"
     ],
+    "x-ms-enum": {
+     "name": "InnerErrorCodeValue",
+     "modelAsString": false
+    },
     "description": "Error code."
    },
    "InnerError-message": {
     "type": "string",
     "description": "Error message."
+   },
+   "InnerError-details": {
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/components/schemas/components·schemas·innererror·properties·details·additionalproperties"
+    },
+    "description": "Error details."
+   },
+   "components·schemas·innererror·properties·details·additionalproperties": {
+    "type": "string"
    },
    "InnerError-target": {
     "type": "string",
@@ -261,8 +277,8 @@
       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/DocumentStatistics"
      },
      "documentScores": {
-      "$ref": "#/components/schemas/DocumentSentiment-documentScores",
-      "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class."
+      "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class.",
+      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/SentimentConfidenceScorePerLabel"
      },
      "sentences": {
       "$ref": "#/components/schemas/DocumentSentiment-sentences",
@@ -288,10 +304,11 @@
      "neutral",
      "negative",
      "mixed"
-    ]
-   },
-   "DocumentSentiment-documentScores": {
-    "description": "Document level sentiment confidence scores between 0 and 1 for each sentiment class."
+    ],
+    "x-ms-enum": {
+     "name": "DocumentSentimentValue",
+     "modelAsString": false
+    }
    },
    "DocumentSentiment-sentences": {
     "type": "array",
@@ -383,8 +400,8 @@
       "description": "The predicted Sentiment for the sentence."
      },
      "sentenceScores": {
-      "$ref": "#/components/schemas/SentenceSentiment-sentenceScores",
-      "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes."
+      "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes.",
+      "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/SentimentConfidenceScorePerLabel"
      },
      "offset": {
       "type": "integer",
@@ -415,10 +432,11 @@
      "positive",
      "neutral",
      "negative"
-    ]
-   },
-   "SentenceSentiment-sentenceScores": {
-    "description": "The sentiment confidence score between 0 and 1 for the sentence for all classes."
+    ],
+    "x-ms-enum": {
+     "name": "SentenceSentimentValue",
+     "modelAsString": false
+    }
    },
    "SentenceSentiment-warnings": {
     "type": "array",
@@ -1246,12 +1264,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      }
     }
@@ -1276,12 +1294,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      }
     }
@@ -1306,12 +1324,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      }
     }
@@ -1336,12 +1354,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      }
     }
@@ -1366,12 +1384,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      }
     }
@@ -1396,12 +1414,12 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      },
      "text/json": {
       "schema": {
-       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/Error"
+       "$ref": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json#/components/schemas/TextAnalyticsError"
       }
      }
     }
@@ -1421,8 +1439,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/Endpoint"
@@ -1560,8 +1582,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/Endpoint"
@@ -1686,8 +1712,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/Endpoint"
@@ -1833,8 +1863,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/Endpoint"
@@ -1941,8 +1975,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/Endpoint"
@@ -2056,8 +2094,12 @@
       "url": "{Endpoint}/text/analytics/v3.0-preview.1",
       "variables": {
        "Endpoint": {
+        "x-name": "Endpoint",
         "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
         "x-ms-parameter-location": "client",
+        "x-required": true,
+        "x-type": "string",
+        "x-in": "path",
         "x-ms-skip-url-encoding": true,
         "x-ms-original": {
          "$ref": "#/components/parameters/Endpoint"
@@ -2225,8 +2267,12 @@
    "url": "{Endpoint}/text/analytics/v3.0-preview.1",
    "variables": {
     "Endpoint": {
+     "x-name": "Endpoint",
      "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
      "x-ms-parameter-location": "client",
+     "x-required": true,
+     "x-type": "string",
+     "x-in": "path",
      "x-ms-skip-url-encoding": true,
      "x-ms-original": {
       "$ref": "#/components/parameters/Endpoint"

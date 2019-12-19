@@ -69,6 +69,36 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 AutoRest needs the below config to pick this up as a plug-in - see https://github.com/Azure/autorest/blob/master/docs/developer/architecture/AutoRest-extension.md
 
 
+### ModelFour Options
+You can specify the following options in your configuration for modelerfour:
+
+~~~ markdown
+``` yaml
+modelerfour: 
+  # this will speed up the serialization if you explicitly say you do or do not want yaml tags in the model
+  # default - both
+  emit-yaml-tags: undefined|true|false
+
+  # this will flatten modelers marked with 'x-ms-client-flatten' 
+  # defaults to true if not specified
+  flatten-models: true|false    
+
+  # this will flatten parameters when payload-flattening-threshold is specified (or marked in the input spec)
+  # defaults to true if not specified
+  flatten-payloads: true|false  
+  
+  # this runs a pre-namer step to clean up names 
+  # defaults to true if not specified
+  prenamer: true|false          
+
+  # merges response headers into response objects 
+  # defaults to false if not specified
+  # (not implemented yet)
+  merge-response-headers: false|true 
+```
+~~~
+
+
 #### ModelerFour
 
 ``` yaml 
@@ -90,8 +120,14 @@ pipeline:
   modelerfour/pre-namer/new-transform:
     input: modelerfour/pre-namer
 
-  modelerfour/identity:
+  modelerfour/flattener:
     input: modelerfour/pre-namer/new-transform
+
+  modelerfour/flattener/new-transform:
+    input: modelerfour/flattener
+
+  modelerfour/identity:
+    input: modelerfour/flattener/new-transform
 
   modelerfour/emitter:
     input: modelerfour/identity
@@ -118,3 +154,4 @@ scope-modelerfour/notags/emitter: # writing to disk settings
 deduplicate-inline-models: true
 
 ```
+
