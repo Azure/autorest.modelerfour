@@ -6,7 +6,7 @@ import { processRequest as flattener } from './flattener/plugin-flattener';
 export async function initializePlugins(pluginHost: AutoRestExtension) {
   pluginHost.Add('modelerfour', modelerfour);
   pluginHost.Add('pre-namer', preNamer);
-  pluginHost.Add('flatten', flattener);
+  pluginHost.Add('flattener', flattener);
 }
 
 async function main() {

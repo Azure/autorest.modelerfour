@@ -1036,6 +1036,12 @@ export class ModelerFour {
               }
             }));
 
+            // if allowReserved is present, add the extension attribute too.
+            if (parameter.allowReserved) {
+              newParam.extensions = newParam.extensions ?? {};
+              newParam.extensions['x-ms-skip-url-encoding'] = true;
+            }
+
             if (implementation === ImplementationLocation.Client) {
               this.codeModel.addGlobalParameter(newParam);
             }
