@@ -96,7 +96,7 @@ export class Flattener {
     // support '--payload-flattening-threshold:X' global setting
 
     if (this.options['flatten-models'] !== false) {
-      //return this.codeModel;
+      return this.codeModel;
 
       for (const schema of values(this.codeModel.schemas.objects)) {
         this.flattenSchema(schema);
