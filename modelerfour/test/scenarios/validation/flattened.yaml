@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_24
+  - !<!ObjectSchema> &ref_25
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -300,7 +300,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_1
   - *ref_2
-  - !<!ObjectSchema> &ref_25
+  - !<!ObjectSchema> &ref_26
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -364,7 +364,7 @@ schemas: !<!Schemas>
   arrays:
   - *ref_3
   constants:
-  - !<!ConstantSchema> &ref_23
+  - !<!ConstantSchema> &ref_19
     type: constant
     value: !<!ConstantValue> 
       value: 1.0.0
@@ -384,7 +384,7 @@ schemas: !<!Schemas>
   - *ref_7
   - *ref_8
   - *ref_9
-  - !<!ConstantSchema> &ref_26
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 1.0.0
@@ -413,7 +413,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-CHOICE
     protocol: !<!Protocols> {}
   numbers:
-  - !<!NumberSchema> &ref_22
+  - !<!NumberSchema> &ref_23
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -443,7 +443,7 @@ schemas: !<!Schemas>
         name: string
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_21
+  - !<!StringSchema> &ref_22
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -472,7 +472,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_20
+- !<!Parameter> &ref_21
   schema: *ref_18
   implementation: Client
   required: true
@@ -486,7 +486,7 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: path
-- !<!Parameter> &ref_19
+- !<!Parameter> &ref_20
   schema: *ref_0
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -499,6 +499,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_24
+  schema: *ref_19
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: ApiVersion
+      description: Api Version
+      serializedName: apiVersion
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 info: !<!Info> 
   description: Test Infrastructure for AutoRest. No server backend exists for these tests.
   title: validation
@@ -512,10 +524,10 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_19
       - *ref_20
+      - *ref_21
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_22
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -527,7 +539,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_22
+        schema: *ref_23
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -538,18 +550,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_23
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: apiVersion
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_24
       language: !<!Languages> 
         default:
           name: ''
@@ -561,7 +562,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_24
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -575,7 +576,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -598,10 +599,10 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_19
       - *ref_20
+      - *ref_21
       - !<!Parameter> 
-        schema: *ref_21
+        schema: *ref_22
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -613,7 +614,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_22
+        schema: *ref_23
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -624,20 +625,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      - *ref_24
       - !<!Parameter> 
-        schema: *ref_26
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: apiVersion
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> 
-        schema: *ref_24
+        schema: *ref_25
         implementation: Method
         extensions:
           x-ms-requestBody-name: body
@@ -663,7 +653,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_24
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -677,7 +667,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -702,7 +692,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_19
+      - *ref_20
       - !<!Parameter> 
         schema: *ref_27
         implementation: Method
@@ -745,7 +735,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_19
+      - *ref_20
       - !<!Parameter> 
         schema: *ref_27
         implementation: Method
@@ -759,7 +749,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - !<!Parameter> 
-        schema: *ref_24
+        schema: *ref_25
         implementation: Method
         extensions:
           x-ms-requestBody-name: body
@@ -785,7 +775,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_24
+      schema: *ref_25
       language: !<!Languages> 
         default:
           name: ''

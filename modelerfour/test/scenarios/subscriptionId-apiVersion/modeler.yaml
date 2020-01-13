@@ -157,6 +157,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_11
+  schema: *ref_6
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: ApiVersion
+      description: Api Version
+      serializedName: api-version
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 info: !<!Info> 
   description: Some cool documentation.
   title: subscriptionId-apiVersion
@@ -184,18 +196,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_6
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_11
       language: !<!Languages> 
         default:
           name: ''

@@ -1744,6 +1744,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_100
+  schema: *ref_84
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: ApiVersion
+      description: Api Version
+      serializedName: api-version
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 info: !<!Info> 
   description: Test Infrastructure for AutoRest
   title: body-complex
@@ -1807,18 +1819,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_83
-      - !<!Parameter> 
-        schema: *ref_84
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_100
       - !<!Parameter> 
         schema: *ref_81
         implementation: Method

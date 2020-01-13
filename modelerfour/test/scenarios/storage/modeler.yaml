@@ -773,7 +773,7 @@ schemas: !<!Schemas>
   - *ref_19
   - *ref_22
   - *ref_27
-  - !<!ObjectSchema> &ref_58
+  - !<!ObjectSchema> &ref_54
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -810,7 +810,7 @@ schemas: !<!Schemas>
         description: The access keys for the storage account.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_60
+  - !<!ObjectSchema> &ref_55
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -857,7 +857,7 @@ schemas: !<!Schemas>
         description: The list storage accounts operation response.
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_63
+  - !<!ObjectSchema> &ref_56
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -900,7 +900,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_65
+  - !<!ObjectSchema> &ref_57
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1135,7 +1135,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_52
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1149,7 +1149,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_54
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1163,7 +1163,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_55
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1177,7 +1177,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_56
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1191,7 +1191,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_57
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1205,7 +1205,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_59
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1219,7 +1219,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_61
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1233,7 +1233,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_62
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1247,7 +1247,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-05-01-preview
         description: Api Version (2015-05-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_64
+  - !<!ConstantSchema> 
     type: constant
     value: !<!ConstantValue> 
       value: 2015-05-01-preview
@@ -1323,6 +1323,18 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
+- !<!Parameter> &ref_52
+  schema: *ref_48
+  implementation: Client
+  required: true
+  language: !<!Languages> 
+    default:
+      name: ApiVersion
+      description: Api Version
+      serializedName: api-version
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
 info: !<!Info> 
   title: storage
 operationGroups:
@@ -1336,18 +1348,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_51
-      - !<!Parameter> 
-        schema: *ref_48
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       - !<!Parameter> 
         schema: *ref_49
@@ -1429,18 +1430,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_52
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       - !<!Parameter> 
         schema: *ref_20
@@ -1534,18 +1524,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_54
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       language: !<!Languages> 
         default:
@@ -1611,18 +1590,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_55
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       language: !<!Languages> 
         default:
@@ -1684,18 +1652,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_56
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       - !<!Parameter> 
         schema: *ref_22
@@ -1780,18 +1737,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_57
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       language: !<!Languages> 
         default:
@@ -1804,7 +1750,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_58
+      schema: *ref_54
       language: !<!Languages> 
         default:
           name: ''
@@ -1829,18 +1775,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_51
-      - !<!Parameter> 
-        schema: *ref_59
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       language: !<!Languages> 
         default:
@@ -1853,7 +1788,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_60
+      schema: *ref_55
       language: !<!Languages> 
         default:
           name: ''
@@ -1893,18 +1828,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_61
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       language: !<!Languages> 
         default:
@@ -1917,7 +1841,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_60
+      schema: *ref_55
       language: !<!Languages> 
         default:
           name: ''
@@ -1969,21 +1893,10 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_62
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       - !<!Parameter> 
-        schema: *ref_63
+        schema: *ref_56
         implementation: Method
         required: true
         extensions:
@@ -2011,7 +1924,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_58
+      schema: *ref_54
       language: !<!Languages> 
         default:
           name: ''
@@ -2046,18 +1959,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_51
-      - !<!Parameter> 
-        schema: *ref_64
-        implementation: Client
-        required: true
-        language: !<!Languages> 
-          default:
-            name: ApiVersion
-            description: Api Version
-            serializedName: api-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
+      - *ref_52
       - *ref_53
       language: !<!Languages> 
         default:
@@ -2070,7 +1972,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_65
+      schema: *ref_57
       language: !<!Languages> 
         default:
           name: ''

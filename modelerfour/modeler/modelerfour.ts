@@ -988,7 +988,12 @@ export class ModelerFour {
                 value: new ConstantValue(apiversions[0])
               }));
 
-              return op.request.addParameter(new Parameter('ApiVersion', 'Api Version', apiVersionConst, {
+              const p = this.codeModel.findGlobalParameter(each => each.language.default.name === 'ApiVersion');
+              if (p) {
+                return op.request.addParameter(p);
+              }
+
+              const apiVersionParameter = op.request.addParameter(new Parameter('ApiVersion', 'Api Version', apiVersionConst, {
                 required: parameter.required ? true : undefined,
                 //implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
                 implementation: ImplementationLocation.Client,
@@ -1001,6 +1006,9 @@ export class ModelerFour {
                   }
                 }
               }));
+
+              this.codeModel.addGlobalParameter(apiVersionParameter);
+              return apiVersionParameter;
             }
 
             // multiple api versions. okaledokaley
