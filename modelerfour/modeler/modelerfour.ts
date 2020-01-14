@@ -1028,7 +1028,7 @@ export class ModelerFour {
               }
             }
 
-            const newParam = op.request.addParameter(new Parameter(parameter.name, this.interpret.getDescription('MISSING·PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
+            const newParam = op.request.addParameter(new Parameter(this.interpret.getPreferredName(parameter, parameter.name), this.interpret.getDescription('MISSING·PARAMETER-DESCRIPTION', parameter), this.processSchema(name || '', schema), {
               required: parameter.required ? true : undefined,
               implementation,
               extensions: this.interpret.getExtensionProperties(parameter),
