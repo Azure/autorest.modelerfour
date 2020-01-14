@@ -77,4 +77,6 @@ autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https
 autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json  --output-folder:$outputRoot\scenarios\text-analytics --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
 # keyvault
 autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/28adfecc8c8d9a425451a5b7f6f2688e471a60f4/specification/keyvault/data-plane/Microsoft.KeyVault/preview/7.0/keyvault.json  --output-folder:$outputRoot\scenarios\keyvault --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
-#
+
+# blob storage
+autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/12ff3b96ec4ede0a56a7315bcdaefe9ae8aa9168/specification/storage/data-plane/Microsoft.BlobStorage/preview/2019-02-02/blob.json  --output-folder:$outputRoot\scenarios\blob-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 
