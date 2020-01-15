@@ -165,7 +165,13 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
         continue;
       } */
       console.log(`Processing: ${each}`);
-      const session = await createTestSession<Model>({}, `${__dirname}/../../test/scenarios/${each}`, ['openapi-document.json'], []);
+
+      const cfg = {
+        modelerfour: { 'flatten-models': true, 'flatten-payloads': true },
+        'payload-flattening-threshold': 2
+      }
+
+      const session = await createTestSession<Model>(cfg, `${__dirname}/../../test/scenarios/${each}`, ['openapi-document.json'], []);
 
       // process OAI model
       const modeler = new ModelerFour(session);
@@ -177,16 +183,17 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       await mkdir(`${__dirname}/../../test/scenarios/${each}`);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/modeler.yaml`, yaml));
 
-      const namer = new PreNamer(await createPassThruSession({}, yaml, 'code-model-v4'));
+
+      const flattener = await new Flattener(await createPassThruSession(cfg, yaml, 'code-model-v4')).init();
+      const flattened = await flattener.process();
+      const flatteneyaml = serialize(flattened, codeModelSchema);
+      await (writeFile(`${__dirname}/../../test/scenarios/${each}/flattened.yaml`, flatteneyaml));
+
+      const namer = new PreNamer(await createPassThruSession(cfg, flatteneyaml, 'code-model-v4'));
       const named = await namer.process();
       const namedyaml = serialize(named, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/namer.yaml`, namedyaml));
 
-
-      const flattener = new Flattener(await createPassThruSession({}, namedyaml, 'code-model-v4'));
-      const flattened = await flattener.process();
-      const flatteneyaml = serialize(flattened, codeModelSchema);
-      await (writeFile(`${__dirname}/../../test/scenarios/${each}/flattened.yaml`, flatteneyaml));
 
     }
   }
