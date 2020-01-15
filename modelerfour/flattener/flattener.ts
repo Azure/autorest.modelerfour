@@ -1,7 +1,6 @@
 import { CodeModel, Schema, ObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
-import { filterOutXDash } from '@azure-tools/openapi';
 
 const xmsThreshold = 'x-ms-payload-flattening-threshold';
 const xmsFlatten = 'x-ms-client-flatten';
@@ -59,6 +58,8 @@ export class Flattener {
         operation.request.parameters?.push(vp);
       }
     }
+
+
   }
 
   /**
@@ -121,7 +122,7 @@ export class Flattener {
     // support 'x-ms-payload-flattening-threshold'  per-operation
     // support '--payload-flattening-threshold:X' global setting
 
-    if (this.options['flatten-models'] !== false) {
+    if (this.options['flatten-models'] === true) {
 
       for (const schema of values(this.codeModel.schemas.objects)) {
         this.flattenSchema(schema);
@@ -149,8 +150,18 @@ export class Flattener {
           }
         }
       } while (dirty);
+
+      for (const schema of values(this.codeModel.schemas.objects)) {
+        if (schema.extensions) {
+          delete schema.extensions[marker];
+          delete schema.extensions['flattened'];
+          if (length(schema.extensions) === 0) {
+            delete schema['extensions'];
+          }
+        }
+      }
     }
-    if (this.options['flatten-payloads'] !== false) {
+    if (this.options['flatten-payloads'] === true) {
       /**
        * BodyParameter Payload Flattening 
        *  
@@ -199,16 +210,6 @@ export class Flattener {
       }
     }
 
-    // cleanup 
-    for (const schema of values(this.codeModel.schemas.objects)) {
-      if (schema.extensions) {
-        delete schema.extensions[marker];
-        delete schema.extensions['flattened'];
-        if (length(schema.extensions) === 0) {
-          delete schema['extensions'];
-        }
-      }
-    }
     return this.codeModel;
   }
 }
