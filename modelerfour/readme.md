@@ -129,7 +129,7 @@ pipeline:
     input: modelerfour/pre-namer
 
   modelerfour/identity:
-    input: modelerfour/flattener/new-transform
+    input: modelerfour/pre-namer/new-transform
 
   modelerfour/emitter:
     input: modelerfour/identity
