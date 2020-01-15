@@ -1,9 +1,11 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
-
 #### (patch-level changes)
-  - properties should respect x-ms-client-name
+
+#### 4.3.x
+  - flattening (model and payload) enabled.
+  - properties should respect x-ms-client-name (many fixes)
   - global parameters should try to be in order of original spec
   - filter out 'x-ms-original' from extensions
   - add serializedName for host parameters
@@ -80,12 +82,12 @@ modelerfour:
   emit-yaml-tags: undefined|true|false
 
   # this will flatten modelers marked with 'x-ms-client-flatten' 
-  # defaults to true if not specified
-  flatten-models: true|false    
+  # defaults to false if not specified
+  flatten-models: false|true    
 
   # this will flatten parameters when payload-flattening-threshold is specified (or marked in the input spec)
-  # defaults to true if not specified
-  flatten-payloads: true|false  
+  # defaults to false if not specified
+  flatten-payloads: false|true  
   
   # this runs a pre-namer step to clean up names 
   # defaults to true if not specified
@@ -114,17 +116,17 @@ pipeline:
   modelerfour/new-transform:
     input: modelerfour
 
-  modelerfour/pre-namer:
-    input: modelerfour/new-transform
-
-  modelerfour/pre-namer/new-transform:
-    input: modelerfour/pre-namer
-
   modelerfour/flattener:
-    input: modelerfour/pre-namer/new-transform
+    input: modelerfour/new-transform
 
   modelerfour/flattener/new-transform:
     input: modelerfour/flattener
+
+  modelerfour/pre-namer:
+    input: modelerfour/flattener/new-transform
+
+  modelerfour/pre-namer/new-transform:
+    input: modelerfour/pre-namer
 
   modelerfour/identity:
     input: modelerfour/flattener/new-transform

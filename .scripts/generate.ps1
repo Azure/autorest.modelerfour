@@ -73,8 +73,10 @@ $errors.Keys |% {
 
 # datalake storage
 autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:$outputRoot\scenarios\datalake-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
+
 # text analytics
 autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json  --output-folder:$outputRoot\scenarios\text-analytics --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
+
 # keyvault
 autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/28adfecc8c8d9a425451a5b7f6f2688e471a60f4/specification/keyvault/data-plane/Microsoft.KeyVault/preview/7.0/keyvault.json  --output-folder:$outputRoot\scenarios\keyvault --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
 

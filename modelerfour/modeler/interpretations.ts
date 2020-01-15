@@ -331,8 +331,15 @@ export class Interpretations {
     return new ChoiceSchema(name, this.getDescription('MISSING-SERVER-VARIABLE-ENUM-DESCRIPTION', somethingWithEnum));
   }
 
-  getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
-    return Interpretations.getExtensionProperties(dictionary);
+  getExtensionProperties(dictionary: Dictionary<any>, additional?: Dictionary<any>): Dictionary<any> | undefined {
+    const main = Interpretations.getExtensionProperties(dictionary);
+    if (additional) {
+      const more = Interpretations.getExtensionProperties(additional);
+      if (more) {
+        return { ...main, ...more };
+      }
+    }
+    return main;
   }
 
   static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {

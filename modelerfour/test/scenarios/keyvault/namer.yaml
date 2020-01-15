@@ -8599,6 +8599,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_305
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -8612,6 +8613,60 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_8
+        required: true
+        serializedName: kty
+        language: !<!Languages> 
+          default:
+            name: kty
+            description: 'JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_146
+        required: false
+        serializedName: key_size
+        language: !<!Languages> 
+          default:
+            name: key_size
+            description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_75
+        required: false
+        serializedName: key_ops
+        language: !<!Languages> 
+          default:
+            name: key_ops
+            description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_1
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: keyAttributes
+            description: The attributes of a key managed by the key vault service.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_50
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_9
+        required: false
+        serializedName: crv
+        language: !<!Languages> 
+          default:
+            name: curve
+            description: 'Elliptic curve name. For valid values, see JsonWebKeyCurveName.'
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -8741,6 +8796,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_308
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -8754,6 +8810,42 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_100
+        required: false
+        serializedName: Hsm
+        language: !<!Languages> 
+          default:
+            name: Hsm
+            description: Whether to import as a hardware key (HSM) or software key.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_10
+        required: true
+        serializedName: key
+        language: !<!Languages> 
+          default:
+            name: key
+            description: 'As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_1
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: keyAttributes
+            description: The attributes of a key managed by the key vault service.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_52
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -9009,6 +9101,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_312
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -9022,6 +9115,30 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_77
+        serializedName: key_ops
+        language: !<!Languages> 
+          default:
+            name: key_ops
+            description: 'Json web key operations. For more information on possible key operations, see JsonWebKeyOperation.'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_1
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: keyAttributes
+            description: The attributes of a key managed by the key vault service.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_53
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -9560,6 +9677,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_321
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -9573,6 +9691,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_129
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: keyBundleBackup
+            description: The backup blob associated with a key bundle.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -9705,6 +9832,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_324
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -9718,6 +9846,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_73
+        required: true
+        serializedName: alg
+        language: !<!Languages> 
+          default:
+            name: algorithm
+            description: algorithm identifier
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_130
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-BYTEARRAY
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -9834,6 +9980,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_324
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -9847,6 +9994,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_73
+        required: true
+        serializedName: alg
+        language: !<!Languages> 
+          default:
+            name: algorithm
+            description: algorithm identifier
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_130
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-BYTEARRAY
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -9963,6 +10128,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_330
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -9976,6 +10142,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_15
+        required: true
+        serializedName: alg
+        language: !<!Languages> 
+          default:
+            name: algorithm
+            description: 'The signing/verification algorithm identifier. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_132
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-BYTEARRAY
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -10089,6 +10273,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_333
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -10102,6 +10287,33 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_15
+        required: true
+        serializedName: alg
+        language: !<!Languages> 
+          default:
+            name: algorithm
+            description: 'The signing/verification algorithm identifier. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_133
+        required: true
+        serializedName: digest
+        language: !<!Languages> 
+          default:
+            name: digest
+            description: The digest used for signing.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_134
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: signature
+            description: The signature to be verified.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -10215,6 +10427,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_324
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -10228,6 +10441,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_73
+        required: true
+        serializedName: alg
+        language: !<!Languages> 
+          default:
+            name: algorithm
+            description: algorithm identifier
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_130
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-BYTEARRAY
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -10344,6 +10575,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_324
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -10357,6 +10589,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_73
+        required: true
+        serializedName: alg
+        language: !<!Languages> 
+          default:
+            name: algorithm
+            description: algorithm identifier
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_130
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-BYTEARRAY
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -10875,6 +11125,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_345
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -10888,6 +11139,42 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_167
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: The value of the secret.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_55
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_169
+        required: false
+        serializedName: contentType
+        language: !<!Languages> 
+          default:
+            name: contentType
+            description: Type of the secret value such as a password.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_4
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: secretAttributes
+            description: The secret management attributes.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -11100,6 +11387,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_349
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -11113,6 +11401,30 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_176
+        serializedName: contentType
+        language: !<!Languages> 
+          default:
+            name: contentType
+            description: Type of the secret value such as a password.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_4
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: secretAttributes
+            description: The secret management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_57
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -11999,6 +12311,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_363
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -12012,6 +12325,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_136
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: secretBundleBackup
+            description: The backup blob associated with a secret bundle.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -12353,6 +12675,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_368
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -12365,6 +12688,14 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_89
+        serializedName: contacts
+        language: !<!Languages> 
+          default:
+            name: ContactList
+            description: The contact list for the vault certificates.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -12736,6 +13067,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_372
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -12749,6 +13081,42 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_209
+        required: true
+        serializedName: provider
+        language: !<!Languages> 
+          default:
+            name: provider
+            description: The issuer provider.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_35
+        required: false
+        serializedName: credentials
+        language: !<!Languages> 
+          default:
+            name: credentials
+            description: The credentials to be used for the certificate issuer.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_36
+        required: false
+        serializedName: org_details
+        language: !<!Languages> 
+          default:
+            name: OrganizationDetails
+            description: Details of the organization of the certificate issuer.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_38
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: attributes
+            description: The attributes of an issuer managed by the Key Vault service.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -12869,6 +13237,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_375
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -12882,6 +13251,38 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_219
+        serializedName: provider
+        language: !<!Languages> 
+          default:
+            name: provider
+            description: The issuer provider.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_35
+        serializedName: credentials
+        language: !<!Languages> 
+          default:
+            name: credentials
+            description: The credentials to be used for the certificate issuer.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_36
+        serializedName: org_details
+        language: !<!Languages> 
+          default:
+            name: OrganizationDetails
+            description: Details of the organization of the certificate issuer.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_38
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: attributes
+            description: The attributes of an issuer managed by the Key Vault service.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -13202,6 +13603,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_379
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -13215,6 +13617,30 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_24
+        serializedName: policy
+        language: !<!Languages> 
+          default:
+            name: CertificatePolicy
+            description: Management policy for a certificate.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_5
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: CertificateAttributes
+            description: The certificate management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_61
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -13335,6 +13761,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_382
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -13348,6 +13775,51 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_226
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: base64EncodedCertificate
+            description: Base64 encoded representation of the certificate object to import. This certificate needs to contain the private key.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_227
+        required: false
+        serializedName: pwd
+        language: !<!Languages> 
+          default:
+            name: password
+            description: 'If the private key in base64EncodedCertificate is encrypted, the password used for encryption.'
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_24
+        required: false
+        serializedName: policy
+        language: !<!Languages> 
+          default:
+            name: CertificatePolicy
+            description: Management policy for a certificate.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_5
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: CertificateAttributes
+            description: The certificate management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_62
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -13895,6 +14367,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_389
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -13908,6 +14381,30 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_24
+        serializedName: policy
+        language: !<!Languages> 
+          default:
+            name: CertificatePolicy
+            description: Management policy for a certificate.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_5
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: CertificateAttributes
+            description: The certificate management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_63
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -14134,6 +14631,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_393
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -14147,6 +14645,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_110
+        required: true
+        serializedName: cancellation_requested
+        language: !<!Languages> 
+          default:
+            name: cancellation_requested
+            description: Indicates if cancellation was requested on the certificate operation.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -14446,6 +14953,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_397
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -14459,6 +14967,33 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_92
+        required: true
+        serializedName: x5c
+        language: !<!Languages> 
+          default:
+            name: x509Certificates
+            description: The certificate or the certificate chain to merge.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_5
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: CertificateAttributes
+            description: The certificate management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_64
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -14673,6 +15208,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_400
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -14686,6 +15222,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_143
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: certificateBundleBackup
+            description: The backup blob associated with a certificate bundle.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -15900,6 +16445,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_416
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -15913,6 +16459,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_145
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: storageBundleBackup
+            description: The backup blob associated with a storage account.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -16234,6 +16789,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_420
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -16247,6 +16803,60 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_245
+        required: true
+        serializedName: resourceId
+        language: !<!Languages> 
+          default:
+            name: resourceId
+            description: Storage account resource id.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_246
+        required: true
+        serializedName: activeKeyName
+        language: !<!Languages> 
+          default:
+            name: activeKeyName
+            description: Current active storage account key name.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_113
+        required: true
+        serializedName: autoRegenerateKey
+        language: !<!Languages> 
+          default:
+            name: autoRegenerateKey
+            description: whether keyvault should manage the storage account for the user.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_247
+        required: false
+        serializedName: regenerationPeriod
+        language: !<!Languages> 
+          default:
+            name: regenerationPeriod
+            description: The key regeneration time duration specified in ISO-8601 format.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_41
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: StorageAccountAttributes
+            description: The storage account management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_67
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -16366,6 +16976,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_422
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -16379,6 +16990,46 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_249
+        serializedName: activeKeyName
+        language: !<!Languages> 
+          default:
+            name: activeKeyName
+            description: The current active storage account key name.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_114
+        serializedName: autoRegenerateKey
+        language: !<!Languages> 
+          default:
+            name: autoRegenerateKey
+            description: whether keyvault should manage the storage account for the user.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_250
+        serializedName: regenerationPeriod
+        language: !<!Languages> 
+          default:
+            name: regenerationPeriod
+            description: The key regeneration time duration specified in ISO-8601 format.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_41
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: StorageAccountAttributes
+            description: The storage account management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_68
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -16491,6 +17142,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_424
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -16504,6 +17156,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_252
+        required: true
+        serializedName: keyName
+        language: !<!Languages> 
+          default:
+            name: keyName
+            description: The storage account key name.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -17329,6 +17990,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_441
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -17342,6 +18004,51 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_265
+        required: true
+        serializedName: templateUri
+        language: !<!Languages> 
+          default:
+            name: templateUri
+            description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_49
+        required: true
+        serializedName: sasType
+        language: !<!Languages> 
+          default:
+            name: sasType
+            description: The type of SAS token the SAS definition will create.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_266
+        required: true
+        serializedName: validityPeriod
+        language: !<!Languages> 
+          default:
+            name: validityPeriod
+            description: The validity period of SAS tokens created according to the SAS definition.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_46
+        required: false
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: SasDefinitionAttributes
+            description: The SAS definition management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_71
+        required: false
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -17467,6 +18174,7 @@ operationGroups:
       - *ref_304
       - !<!Parameter> 
         schema: *ref_444
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -17480,6 +18188,46 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_268
+        serializedName: templateUri
+        language: !<!Languages> 
+          default:
+            name: templateUri
+            description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_49
+        serializedName: sasType
+        language: !<!Languages> 
+          default:
+            name: sasType
+            description: The type of SAS token the SAS definition will create.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_269
+        serializedName: validityPeriod
+        language: !<!Languages> 
+          default:
+            name: validityPeriod
+            description: The validity period of SAS tokens created according to the SAS definition.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_46
+        serializedName: attributes
+        language: !<!Languages> 
+          default:
+            name: SasDefinitionAttributes
+            description: The SAS definition management attributes.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_72
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: Application specific metadata in the form of key-value pairs.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''

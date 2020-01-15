@@ -442,7 +442,7 @@ export class ModelerFour {
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
-          extensions: this.interpret.getExtensionProperties(property),
+          extensions: this.interpret.getExtensionProperties(property, propertyDeclaration),
         }));
         if (prop.isDiscriminator) {
           objectSchema.discriminator = new Discriminator(prop);

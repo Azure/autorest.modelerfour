@@ -106,7 +106,7 @@ operationGroups:
         required: true
         language: !<!Languages> 
           default:
-            name: availabilitySetName
+            name: avset
             description: The name of the storage availability set.
             serializedName: availabilitySetName
         protocol: !<!Protocols> 
@@ -114,6 +114,7 @@ operationGroups:
             in: path
       - !<!Parameter> 
         schema: *ref_5
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -126,6 +127,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_0
+        required: true
+        serializedName: tags
+        language: !<!Languages> 
+          default:
+            name: tags
+            description: A description about the set of tags.
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
