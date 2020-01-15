@@ -86,7 +86,7 @@ modelerfour:
   flatten-models: false|true    
 
   # this will flatten parameters when payload-flattening-threshold is specified (or marked in the input spec)
-  # defaults to true if not specified
+  # defaults to false if not specified
   flatten-payloads: false|true  
   
   # this runs a pre-namer step to clean up names 
