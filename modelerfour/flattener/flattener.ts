@@ -4,7 +4,8 @@ import { values, items, length, Dictionary, refCount, clone } from '@azure-tools
 
 const xmsThreshold = 'x-ms-payload-flattening-threshold';
 const xmsFlatten = 'x-ms-client-flatten';
-const marker = 'x-ms-flattening';
+const isCurrentlyFlattening = 'x-ms-flattening';
+const hasBeenFlattened = 'x-ms-flattened';
 
 function isObjectSchema(schema: Schema): schema is ObjectSchema {
   return schema.type === SchemaType.Object;
@@ -58,8 +59,6 @@ export class Flattener {
         operation.request.parameters?.push(vp);
       }
     }
-
-
   }
 
   /**
@@ -67,7 +66,7 @@ export class Flattener {
    * @param schema schema to recursively flatten
    */
   flattenSchema(schema: ObjectSchema) {
-    const state = schema.extensions?.[marker];
+    const state = schema.extensions?.[isCurrentlyFlattening];
 
     if (state === false) {
       // already done.
@@ -81,7 +80,7 @@ export class Flattener {
 
     // hasn't started yet.
     schema.extensions = schema.extensions || {};
-    schema.extensions[marker] = true;
+    schema.extensions[isCurrentlyFlattening] = true;
 
     if (schema.properties) {
       for (const { key: index, value: property } of items(schema.properties).toArray().reverse()) {
@@ -110,12 +109,12 @@ export class Flattener {
             delete property['extensions'];
           }
           // and mark the child class as 'do-not-generate' ?
-          (property.schema.extensions = property.schema.extensions || {})['x-ms-flattened'] = true;
+          (property.schema.extensions = property.schema.extensions || {})[hasBeenFlattened] = true;
         }
       }
     }
 
-    schema.extensions[marker] = false;
+    schema.extensions[isCurrentlyFlattening] = false;
   }
 
   process() {
@@ -153,8 +152,9 @@ export class Flattener {
 
       for (const schema of values(this.codeModel.schemas.objects)) {
         if (schema.extensions) {
-          delete schema.extensions[marker];
-          delete schema.extensions['flattened'];
+          delete schema.extensions[isCurrentlyFlattening];
+          // don't want this until I have removed the unreferenced models.
+          // delete schema.extensions[hasBeenFlattened];
           if (length(schema.extensions) === 0) {
             delete schema['extensions'];
           }
