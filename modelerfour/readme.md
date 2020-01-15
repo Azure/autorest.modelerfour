@@ -116,17 +116,17 @@ pipeline:
   modelerfour/new-transform:
     input: modelerfour
 
-  modelerfour/pre-namer:
-    input: modelerfour/new-transform
-
-  modelerfour/pre-namer/new-transform:
-    input: modelerfour/pre-namer
-
   modelerfour/flattener:
-    input: modelerfour/pre-namer/new-transform
+    input: modelerfour/new-transform
 
   modelerfour/flattener/new-transform:
     input: modelerfour/flattener
+
+  modelerfour/pre-namer:
+    input: modelerfour/flattener/new-transform
+
+  modelerfour/pre-namer/new-transform:
+    input: modelerfour/pre-namer
 
   modelerfour/identity:
     input: modelerfour/flattener/new-transform
