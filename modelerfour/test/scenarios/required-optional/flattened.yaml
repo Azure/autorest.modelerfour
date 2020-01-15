@@ -343,7 +343,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: Array of post-content-schemaItem
+        name: paths·reqopt-requied-array-parameter·post·requestbody·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
   - !<!ArraySchema> &ref_31
@@ -358,12 +358,12 @@ schemas: !<!Schemas>
         version: 1.0.0
       language: !<!Languages> 
         default:
-          name: string
+          name: components·parameters·required_global_path·schema
           description: MISSING·SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: Array of string
+        name: paths·reqopt-optional-array-header·post·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
   - *ref_1
@@ -385,7 +385,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: Array of post-0-itemsItem
+        name: paths·reqopt-requied-array-header·post·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
   numbers:
@@ -398,7 +398,7 @@ schemas: !<!Schemas>
     precision: 32
     language: !<!Languages> 
       default:
-        name: integer
+        name: paths·reqopt-requied-integer-header·post·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
   - *ref_4
@@ -412,7 +412,7 @@ schemas: !<!Schemas>
     precision: 32
     language: !<!Languages> 
       default:
-        name: integer
+        name: components·parameters·optional_global_query·schema
         description: MISSING·SCHEMA-DESCRIPTION-INTEGER
     protocol: !<!Protocols> {}
   strings:
@@ -1008,6 +1008,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_24
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1020,6 +1021,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_4
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1072,6 +1082,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_25
+        hidden: true
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1083,6 +1094,14 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_5
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1375,6 +1394,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_26
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1387,6 +1407,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_9
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1439,6 +1468,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_27
+        hidden: true
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1450,6 +1480,14 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_10
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1615,6 +1653,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_0
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1627,6 +1666,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_6
+        required: true
+        serializedName: id
+        language: !<!Languages> 
+          default:
+            name: id
+            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_11
+        required: false
+        serializedName: name
+        language: !<!Languages> 
+          default:
+            name: name
+            description: MISSING·SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1679,6 +1736,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_0
+        hidden: true
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1690,6 +1748,24 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_6
+        required: true
+        serializedName: id
+        language: !<!Languages> 
+          default:
+            name: id
+            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_11
+        required: false
+        serializedName: name
+        language: !<!Languages> 
+          default:
+            name: name
+            description: MISSING·SCHEMA-DESCRIPTION-STRING
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1742,6 +1818,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_28
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1754,6 +1831,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_0
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1806,6 +1892,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_29
+        hidden: true
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1817,6 +1904,14 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_0
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1996,6 +2091,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_32
+        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -2008,6 +2104,15 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_1
+        required: true
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -2060,6 +2165,7 @@ operationGroups:
       - *ref_18
       - !<!Parameter> 
         schema: *ref_33
+        hidden: true
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -2071,6 +2177,14 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      - !<!Parameter> 
+        schema: *ref_2
+        serializedName: value
+        language: !<!Languages> 
+          default:
+            name: value
+            description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
