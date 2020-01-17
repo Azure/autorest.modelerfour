@@ -396,7 +396,6 @@ export class ModelerFour {
     }
     const dict = new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription(`Dictionary of <${elementSchema.language.default.name}>`, schema), elementSchema, {
 
-
     });
     this.codeModel.schemas.add(dict);
     return dict;
@@ -825,9 +824,9 @@ export class ModelerFour {
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.
-
+      const memberName = operation['x-ms-client-name'] ?? member;
       const opGroup = this.codeModel.getOperationGroup(group);
-      const op = opGroup.addOperation(new Operation(member, this.interpret.getDescription('MISSING·OPERATION-DESCRIPTION', operation), {
+      const op = opGroup.addOperation(new Operation(memberName, this.interpret.getDescription('MISSING·OPERATION-DESCRIPTION', operation), {
         extensions: this.interpret.getExtensionProperties(operation),
         apiVersions: this.interpret.getApiVersions(pathItem)
       }));
@@ -866,7 +865,11 @@ export class ModelerFour {
                 default: {
                   serializedName: '$host'
                 }
+              },
+              extensions: {
+                'x-ms-skip-url-encoding': true
               }
+
             })));
             // and update the path for the operation.
             baseUri = '{$host}';
@@ -883,9 +886,7 @@ export class ModelerFour {
 
               let p = implementation === ImplementationLocation.Client ? this.codeModel.findGlobalParameter(each => each.language.default.name === variableName && each.clientDefaultValue === clientdefault) : undefined;
 
-
               const originalParameter = this.resolve<OpenAPI.Parameter>(variable['x-ms-original']);
-
 
               if (!p) {
                 p = new Parameter(variableName, variable.description || `${variableName} - server parameter`, sch, {
@@ -975,7 +976,6 @@ export class ModelerFour {
             // if there are multiple apiversion values, 
             //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
             //  - otherwise, you'll get a sealed choice parameter.
-
 
             const apiversions = this.interpret.getApiVersionValues(pathItem);
             if (apiversions.length === 0) {
