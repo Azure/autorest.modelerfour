@@ -7,7 +7,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_7
       schema: !<!DictionarySchema> &ref_0
         type: dictionary
         elementType: !<!StringSchema> &ref_1
@@ -31,6 +31,7 @@ schemas: !<!Schemas>
         default:
           name: tags
           description: A description about the set of tags.
+          originalName: tags
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -114,7 +115,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_6
         schema: *ref_5
         hidden: true
         implementation: Method
@@ -131,11 +132,14 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_0
+        originalParameter: *ref_6
+        pathToProperty: []
         required: true
         serializedName: tags
+        targetProperty: *ref_7
         language: !<!Languages> 
           default:
-            name: tags
+            name: AvailabilitySetUpdateParametersTags
             description: A description about the set of tags.
         protocol: !<!Protocols> {}
       language: !<!Languages> 

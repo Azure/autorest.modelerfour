@@ -36,8 +36,9 @@ schemas: !<!Schemas>
           serializedName: p.name
           language: !<!Languages> 
             default:
-              name: p.name
+              name: pName
               description: MISSING·SCHEMA-DESCRIPTION-STRING
+              originalName: p.name
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!StringSchema> &ref_4
@@ -56,8 +57,9 @@ schemas: !<!Schemas>
           serializedName: type
           language: !<!Languages> 
             default:
-              name: type
+              name: typePropertiesType
               description: MISSING·SCHEMA-DESCRIPTION-STRING
+              originalName: type
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!ChoiceSchema> &ref_5
@@ -153,6 +155,7 @@ schemas: !<!Schemas>
             default:
               name: provisioningStateValues
               description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+              originalName: provisioningStateValues
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!StringSchema> &ref_6
@@ -173,6 +176,7 @@ schemas: !<!Schemas>
             default:
               name: provisioningState
               description: MISSING·SCHEMA-DESCRIPTION-STRING
+              originalName: provisioningState
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -200,6 +204,7 @@ schemas: !<!Schemas>
         default:
           name: id
           description: Resource Id
+          originalName: id
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_23
@@ -218,6 +223,7 @@ schemas: !<!Schemas>
         default:
           name: type
           description: Resource Type
+          originalName: type
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!DictionarySchema> &ref_16
@@ -242,6 +248,7 @@ schemas: !<!Schemas>
         default:
           name: tags
           description: Dictionary of <components·schemas·resource·properties·tags·additionalproperties>
+          originalName: tags
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_25
@@ -259,6 +266,7 @@ schemas: !<!Schemas>
         default:
           name: location
           description: Resource Location
+          originalName: location
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_26
@@ -277,6 +285,7 @@ schemas: !<!Schemas>
         default:
           name: name
           description: Resource Name
+          originalName: name
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -304,6 +313,7 @@ schemas: !<!Schemas>
         default:
           name: status
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+          originalName: status
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_27
@@ -321,6 +331,7 @@ schemas: !<!Schemas>
         default:
           name: message
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: message
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_2
@@ -329,6 +340,7 @@ schemas: !<!Schemas>
         default:
           name: parentError
           description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+          originalName: parentError
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -348,8 +360,9 @@ schemas: !<!Schemas>
       serializedName: p.name
       language: !<!Languages> 
         default:
-          name: p.name
+          name: pName
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: p.name
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_4
@@ -358,6 +371,7 @@ schemas: !<!Schemas>
         default:
           name: type
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: type
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_5
@@ -367,6 +381,7 @@ schemas: !<!Schemas>
         default:
           name: provisioningStateValues
           description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+          originalName: provisioningStateValues
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_6
@@ -375,6 +390,7 @@ schemas: !<!Schemas>
         default:
           name: provisioningState
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: provisioningState
       protocol: !<!Protocols> {}
     extensions:
       x-ms-client-flatten: true
@@ -407,6 +423,7 @@ schemas: !<!Schemas>
         default:
           name: value
           description: the product value
+          originalName: value
       protocol: !<!Protocols> {}
     extensions:
       x-ms-flattened: true
@@ -432,6 +449,7 @@ schemas: !<!Schemas>
         default:
           name: value
           description: the product value
+          originalName: value
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -452,6 +470,7 @@ schemas: !<!Schemas>
         default:
           name: productresource
           description: Flattened product.
+          originalName: productresource
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_20
@@ -470,6 +489,7 @@ schemas: !<!Schemas>
         default:
           name: arrayofresources
           description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+          originalName: arrayofresources
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!DictionarySchema> &ref_17
@@ -485,6 +505,7 @@ schemas: !<!Schemas>
         default:
           name: dictionaryofresources
           description: Dictionary of <FlattenedProduct>
+          originalName: dictionaryofresources
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -510,7 +531,7 @@ schemas: !<!Schemas>
           immediate:
           - *ref_8
         properties:
-        - !<!Property> 
+        - !<!Property> &ref_40
           schema: !<!StringSchema> &ref_11
             type: string
             apiVersions:
@@ -527,10 +548,11 @@ schemas: !<!Schemas>
           serializedName: max_product_display_name
           language: !<!Languages> 
             default:
-              name: max_product_display_name
+              name: maxProductDisplayName
               description: Display name of product.
+              originalName: max_product_display_name
           protocol: !<!Protocols> {}
-        - !<!Property> 
+        - !<!Property> &ref_42
           schema: !<!ConstantSchema> &ref_12
             type: constant
             apiVersions:
@@ -548,7 +570,7 @@ schemas: !<!Schemas>
                 name: capacity
                 description: 'Capacity of product. For example, 4 people.'
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_39
+          flattenedNames: &ref_41
           - details
           - max_product_capacity
           serializedName: max_product_capacity
@@ -556,8 +578,9 @@ schemas: !<!Schemas>
             default:
               name: capacity
               description: 'Capacity of product. For example, 4 people.'
+              originalName: capacity
           protocol: !<!Protocols> {}
-        - !<!Property> 
+        - !<!Property> &ref_44
           schema: !<!StringSchema> &ref_13
             type: string
             apiVersions:
@@ -568,15 +591,16 @@ schemas: !<!Schemas>
                 name: ProductUrl-@odata.value
                 description: URL value.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_40
+          flattenedNames: &ref_43
           - details
           - max_product_image
           - '@odata.value'
           serializedName: '@odata.value'
           language: !<!Languages> 
             default:
-              name: '@odata.value'
+              name: OdataValue
               description: URL value.
+              originalName: '@odata.value'
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -604,6 +628,7 @@ schemas: !<!Schemas>
         default:
           name: productId
           description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
+          originalName: productId
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_29
@@ -622,6 +647,7 @@ schemas: !<!Schemas>
         default:
           name: description
           description: Description of product.
+          originalName: description
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -642,8 +668,9 @@ schemas: !<!Schemas>
       serializedName: max_product_display_name
       language: !<!Languages> 
         default:
-          name: max_product_display_name
+          name: maxProductDisplayName
           description: Display name of product.
+          originalName: max_product_display_name
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_12
@@ -653,6 +680,7 @@ schemas: !<!Schemas>
         default:
           name: capacity
           description: 'Capacity of product. For example, 4 people.'
+          originalName: capacity
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_13
@@ -663,8 +691,9 @@ schemas: !<!Schemas>
       serializedName: '@odata.value'
       language: !<!Languages> 
         default:
-          name: '@odata.value'
+          name: OdataValue
           description: URL value.
+          originalName: '@odata.value'
       protocol: !<!Protocols> {}
     extensions:
       x-ms-flattened: true
@@ -697,8 +726,9 @@ schemas: !<!Schemas>
           serializedName: '@odata.value'
           language: !<!Languages> 
             default:
-              name: '@odata.value'
+              name: OdataValue
               description: URL value.
+              originalName: '@odata.value'
           protocol: !<!Protocols> {}
         extensions:
           x-ms-flattened: true
@@ -725,8 +755,9 @@ schemas: !<!Schemas>
       serializedName: generic_value
       language: !<!Languages> 
         default:
-          name: generic_value
+          name: genericValue
           description: Generic URL value.
+          originalName: generic_value
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1360,7 +1391,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
+      - !<!Parameter> &ref_39
         schema: *ref_10
         hidden: true
         implementation: Method
@@ -1378,7 +1409,10 @@ operationGroups:
       - !<!Parameter> 
         schema: *ref_11
         flattenedNames: *ref_38
+        originalParameter: *ref_39
+        pathToProperty: []
         serializedName: max_product_display_name
+        targetProperty: *ref_40
         language: !<!Languages> 
           default:
             name: max_product_display_name
@@ -1386,8 +1420,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_12
-        flattenedNames: *ref_39
+        flattenedNames: *ref_41
+        originalParameter: *ref_39
+        pathToProperty: []
         serializedName: max_product_capacity
+        targetProperty: *ref_42
         language: !<!Languages> 
           default:
             name: capacity
@@ -1395,8 +1432,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_13
-        flattenedNames: *ref_40
+        flattenedNames: *ref_43
+        originalParameter: *ref_39
+        pathToProperty: []
         serializedName: '@odata.value'
+        targetProperty: *ref_44
         language: !<!Languages> 
           default:
             name: '@odata.value'
@@ -1471,7 +1511,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_45
         schema: *ref_10
         hidden: true
         implementation: Method
@@ -1491,7 +1531,10 @@ operationGroups:
       - !<!Parameter> 
         schema: *ref_11
         flattenedNames: *ref_38
+        originalParameter: *ref_45
+        pathToProperty: []
         serializedName: max_product_display_name
+        targetProperty: *ref_40
         language: !<!Languages> 
           default:
             name: max_product_display_name
@@ -1499,8 +1542,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_12
-        flattenedNames: *ref_39
+        flattenedNames: *ref_41
+        originalParameter: *ref_45
+        pathToProperty: []
         serializedName: max_product_capacity
+        targetProperty: *ref_42
         language: !<!Languages> 
           default:
             name: capacity
@@ -1508,8 +1554,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_13
-        flattenedNames: *ref_40
+        flattenedNames: *ref_43
+        originalParameter: *ref_45
+        pathToProperty: []
         serializedName: '@odata.value'
+        targetProperty: *ref_44
         language: !<!Languages> 
           default:
             name: '@odata.value'

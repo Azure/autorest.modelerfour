@@ -7,7 +7,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: v3.0-preview.1
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_102
       schema: !<!ArraySchema> &ref_20
         type: array
         apiVersions:
@@ -36,6 +36,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'A unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_63
@@ -54,6 +55,7 @@ schemas: !<!Schemas>
               default:
                 name: text
                 description: The input text to process.
+                originalName: text
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_64
@@ -72,6 +74,7 @@ schemas: !<!Schemas>
               default:
                 name: language
                 description: '(Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use "en" for English; "es" for Spanish etc. If not set, use "en" for English as default.'
+                originalName: language
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -90,6 +93,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: The set of documents to process as part of this batch.
+          originalName: documents
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -98,7 +102,7 @@ schemas: !<!Schemas>
         namespace: ApiV30Preview1
     protocol: !<!Protocols> {}
   - *ref_0
-  - !<!ObjectSchema> &ref_101
+  - !<!ObjectSchema> &ref_103
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -133,6 +137,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'Unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ArraySchema> &ref_21
@@ -163,6 +168,7 @@ schemas: !<!Schemas>
                     default:
                       name: text
                       description: Entity text as appears in the request.
+                      originalName: text
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_67
@@ -181,6 +187,7 @@ schemas: !<!Schemas>
                     default:
                       name: type
                       description: 'Entity type, such as Person/Location/Org/SSN etc'
+                      originalName: type
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_68
@@ -199,6 +206,7 @@ schemas: !<!Schemas>
                     default:
                       name: subtype
                       description: 'Entity sub type, such as Age/Year/TimeRange etc'
+                      originalName: subtype
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!NumberSchema> &ref_40
@@ -215,6 +223,7 @@ schemas: !<!Schemas>
                     default:
                       name: offset
                       description: Start position (in Unicode characters) for the entity text.
+                      originalName: offset
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!NumberSchema> &ref_41
@@ -231,6 +240,7 @@ schemas: !<!Schemas>
                     default:
                       name: length
                       description: Length (in Unicode characters) for the entity text.
+                      originalName: length
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!NumberSchema> &ref_42
@@ -247,6 +257,7 @@ schemas: !<!Schemas>
                     default:
                       name: score
                       description: Confidence score between 0 and 1 of the extracted entity.
+                      originalName: score
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -265,6 +276,7 @@ schemas: !<!Schemas>
               default:
                 name: entities
                 description: Recognized entities in the document.
+                originalName: entities
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ObjectSchema> &ref_6
@@ -288,6 +300,7 @@ schemas: !<!Schemas>
                   default:
                     name: charactersCount
                     description: Number of text elements recognized in the document.
+                    originalName: charactersCount
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!NumberSchema> &ref_44
@@ -304,6 +317,7 @@ schemas: !<!Schemas>
                   default:
                     name: transactionsCount
                     description: Number of transactions for the document.
+                    originalName: transactionsCount
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
@@ -317,6 +331,7 @@ schemas: !<!Schemas>
               default:
                 name: statistics
                 description: if showStats=true was specified in the request this field will contain information about the document payload.
+                originalName: statistics
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -335,6 +350,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: Response by document
+          originalName: documents
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_24
@@ -365,6 +381,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: Document Id.
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ObjectSchema> &ref_3
@@ -422,6 +439,7 @@ schemas: !<!Schemas>
                   default:
                     name: code
                     description: Error code.
+                    originalName: code
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!StringSchema> &ref_70
@@ -440,6 +458,7 @@ schemas: !<!Schemas>
                   default:
                     name: message
                     description: Error message.
+                    originalName: message
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!StringSchema> &ref_71
@@ -458,6 +477,7 @@ schemas: !<!Schemas>
                   default:
                     name: target
                     description: Error target.
+                    originalName: target
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!ObjectSchema> &ref_2
@@ -539,6 +559,7 @@ schemas: !<!Schemas>
                       default:
                         name: code
                         description: Error code.
+                        originalName: code
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     schema: !<!StringSchema> &ref_72
@@ -557,6 +578,7 @@ schemas: !<!Schemas>
                       default:
                         name: message
                         description: Error message.
+                        originalName: message
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     schema: !<!DictionarySchema> &ref_19
@@ -582,6 +604,7 @@ schemas: !<!Schemas>
                       default:
                         name: details
                         description: Error details.
+                        originalName: details
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     schema: !<!StringSchema> &ref_74
@@ -600,6 +623,7 @@ schemas: !<!Schemas>
                       default:
                         name: target
                         description: Error target.
+                        originalName: target
                     protocol: !<!Protocols> {}
                   - !<!Property> 
                     schema: *ref_2
@@ -609,6 +633,7 @@ schemas: !<!Schemas>
                       default:
                         name: innerError
                         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+                        originalName: innerError
                     protocol: !<!Protocols> {}
                   language: !<!Languages> 
                     default:
@@ -622,6 +647,7 @@ schemas: !<!Schemas>
                   default:
                     name: innerError
                     description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+                    originalName: innerError
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!ArraySchema> &ref_23
@@ -641,6 +667,7 @@ schemas: !<!Schemas>
                   default:
                     name: details
                     description: Details about specific errors that led to this reported error.
+                    originalName: details
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
@@ -654,6 +681,7 @@ schemas: !<!Schemas>
               default:
                 name: error
                 description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+                originalName: error
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -672,6 +700,7 @@ schemas: !<!Schemas>
         default:
           name: errors
           description: Errors by document id.
+          originalName: errors
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ObjectSchema> &ref_8
@@ -695,6 +724,7 @@ schemas: !<!Schemas>
             default:
               name: documentsCount
               description: Number of documents submitted in the request.
+              originalName: documentsCount
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!NumberSchema> &ref_46
@@ -711,6 +741,7 @@ schemas: !<!Schemas>
             default:
               name: validDocumentsCount
               description: 'Number of valid documents. This excludes empty, over-size limit or non-supported languages documents.'
+              originalName: validDocumentsCount
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!NumberSchema> &ref_47
@@ -727,6 +758,7 @@ schemas: !<!Schemas>
             default:
               name: erroneousDocumentsCount
               description: 'Number of invalid documents. This includes empty, over-size limit or non-supported languages documents.'
+              originalName: erroneousDocumentsCount
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!NumberSchema> &ref_48
@@ -743,6 +775,7 @@ schemas: !<!Schemas>
             default:
               name: transactionsCount
               description: Number of transactions for the request.
+              originalName: transactionsCount
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -756,6 +789,7 @@ schemas: !<!Schemas>
         default:
           name: statistics
           description: if showStats=true was specified in the request this field will contain information about the request payload.
+          originalName: statistics
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_75
@@ -774,6 +808,7 @@ schemas: !<!Schemas>
         default:
           name: modelVersion
           description: This field indicates which model is used for scoring.
+          originalName: modelVersion
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -788,7 +823,7 @@ schemas: !<!Schemas>
   - *ref_3
   - *ref_2
   - *ref_8
-  - !<!ObjectSchema> &ref_106
+  - !<!ObjectSchema> &ref_110
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -823,6 +858,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'Unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ArraySchema> &ref_26
@@ -853,6 +889,7 @@ schemas: !<!Schemas>
                     default:
                       name: name
                       description: Entity Linking formal name.
+                      originalName: name
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!ArraySchema> &ref_25
@@ -881,6 +918,7 @@ schemas: !<!Schemas>
                           default:
                             name: score
                             description: 'If a well-known item is recognized, a decimal number denoting the confidence level between 0 and 1 will be returned.'
+                            originalName: score
                         protocol: !<!Protocols> {}
                       - !<!Property> 
                         schema: !<!StringSchema> &ref_78
@@ -899,6 +937,7 @@ schemas: !<!Schemas>
                           default:
                             name: text
                             description: Entity text as appears in the request.
+                            originalName: text
                         protocol: !<!Protocols> {}
                       - !<!Property> 
                         schema: !<!NumberSchema> &ref_50
@@ -915,6 +954,7 @@ schemas: !<!Schemas>
                           default:
                             name: offset
                             description: Start position (in Unicode characters) for the entity match text.
+                            originalName: offset
                         protocol: !<!Protocols> {}
                       - !<!Property> 
                         schema: !<!NumberSchema> &ref_51
@@ -931,6 +971,7 @@ schemas: !<!Schemas>
                           default:
                             name: length
                             description: Length (in Unicode characters) for the entity match text.
+                            originalName: length
                         protocol: !<!Protocols> {}
                       language: !<!Languages> 
                         default:
@@ -949,6 +990,7 @@ schemas: !<!Schemas>
                     default:
                       name: matches
                       description: List of instances this entity appears in the text.
+                      originalName: matches
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_79
@@ -967,6 +1009,7 @@ schemas: !<!Schemas>
                     default:
                       name: language
                       description: Language used in the data source.
+                      originalName: language
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_80
@@ -985,6 +1028,7 @@ schemas: !<!Schemas>
                     default:
                       name: id
                       description: Unique identifier of the recognized entity from the data source.
+                      originalName: id
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_81
@@ -1003,6 +1047,7 @@ schemas: !<!Schemas>
                     default:
                       name: url
                       description: URL for the entity's page from the data source.
+                      originalName: url
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_82
@@ -1021,6 +1066,7 @@ schemas: !<!Schemas>
                     default:
                       name: dataSource
                       description: 'Data source used to extract entity linking, such as Wiki/Bing etc.'
+                      originalName: dataSource
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -1039,6 +1085,7 @@ schemas: !<!Schemas>
               default:
                 name: entities
                 description: Recognized well-known entities in the document.
+                originalName: entities
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: *ref_6
@@ -1048,6 +1095,7 @@ schemas: !<!Schemas>
               default:
                 name: statistics
                 description: if showStats=true was specified in the request this field will contain information about the document payload.
+                originalName: statistics
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -1066,6 +1114,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: Response by document
+          originalName: documents
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_28
@@ -1085,6 +1134,7 @@ schemas: !<!Schemas>
         default:
           name: errors
           description: Errors by document id.
+          originalName: errors
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_8
@@ -1094,6 +1144,7 @@ schemas: !<!Schemas>
         default:
           name: statistics
           description: if showStats=true was specified in the request this field will contain information about the request payload.
+          originalName: statistics
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_83
@@ -1112,6 +1163,7 @@ schemas: !<!Schemas>
         default:
           name: modelVersion
           description: This field indicates which model is used for scoring.
+          originalName: modelVersion
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1122,7 +1174,7 @@ schemas: !<!Schemas>
   - *ref_9
   - *ref_10
   - *ref_11
-  - !<!ObjectSchema> &ref_109
+  - !<!ObjectSchema> &ref_114
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1157,6 +1209,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'Unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ArraySchema> &ref_29
@@ -1185,6 +1238,7 @@ schemas: !<!Schemas>
               default:
                 name: keyPhrases
                 description: A list of representative words or phrases. The number of key phrases returned is proportional to the number of words in the input document.
+                originalName: keyPhrases
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: *ref_6
@@ -1194,6 +1248,7 @@ schemas: !<!Schemas>
               default:
                 name: statistics
                 description: if showStats=true was specified in the request this field will contain information about the document payload.
+                originalName: statistics
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -1212,6 +1267,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: Response by document
+          originalName: documents
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_31
@@ -1231,6 +1287,7 @@ schemas: !<!Schemas>
         default:
           name: errors
           description: Errors by document id.
+          originalName: errors
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_8
@@ -1240,6 +1297,7 @@ schemas: !<!Schemas>
         default:
           name: statistics
           description: if showStats=true was specified in the request this field will contain information about the request payload.
+          originalName: statistics
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_86
@@ -1258,6 +1316,7 @@ schemas: !<!Schemas>
         default:
           name: modelVersion
           description: This field indicates which model is used for scoring.
+          originalName: modelVersion
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1266,13 +1325,13 @@ schemas: !<!Schemas>
         namespace: ApiV30Preview1
     protocol: !<!Protocols> {}
   - *ref_12
-  - !<!ObjectSchema> &ref_112
+  - !<!ObjectSchema> &ref_117
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_119
       schema: !<!ArraySchema> &ref_32
         type: array
         apiVersions:
@@ -1301,6 +1360,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'Unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_88
@@ -1319,6 +1379,7 @@ schemas: !<!Schemas>
               default:
                 name: text
                 description: MISSING·SCHEMA-DESCRIPTION-STRING
+                originalName: text
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_89
@@ -1337,6 +1398,7 @@ schemas: !<!Schemas>
               default:
                 name: countryHint
                 description: MISSING·SCHEMA-DESCRIPTION-STRING
+                originalName: countryHint
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -1355,6 +1417,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+          originalName: documents
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1363,7 +1426,7 @@ schemas: !<!Schemas>
         namespace: ApiV30Preview1
     protocol: !<!Protocols> {}
   - *ref_13
-  - !<!ObjectSchema> &ref_113
+  - !<!ObjectSchema> &ref_120
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1398,6 +1461,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'Unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ArraySchema> &ref_33
@@ -1428,6 +1492,7 @@ schemas: !<!Schemas>
                     default:
                       name: name
                       description: 'Long name of a detected language (e.g. English, French).'
+                      originalName: name
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!StringSchema> &ref_92
@@ -1446,6 +1511,7 @@ schemas: !<!Schemas>
                     default:
                       name: iso6391Name
                       description: 'A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr).'
+                      originalName: iso6391Name
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!NumberSchema> &ref_52
@@ -1462,6 +1528,7 @@ schemas: !<!Schemas>
                     default:
                       name: score
                       description: A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true.
+                      originalName: score
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -1480,6 +1547,7 @@ schemas: !<!Schemas>
               default:
                 name: detectedLanguages
                 description: A list of extracted languages.
+                originalName: detectedLanguages
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: *ref_6
@@ -1489,6 +1557,7 @@ schemas: !<!Schemas>
               default:
                 name: statistics
                 description: if showStats=true was specified in the request this field will contain information about the document payload.
+                originalName: statistics
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -1507,6 +1576,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: Response by document
+          originalName: documents
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_35
@@ -1526,6 +1596,7 @@ schemas: !<!Schemas>
         default:
           name: errors
           description: Errors by document id.
+          originalName: errors
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_8
@@ -1535,6 +1606,7 @@ schemas: !<!Schemas>
         default:
           name: statistics
           description: if showStats=true was specified in the request this field will contain information about the request payload.
+          originalName: statistics
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_93
@@ -1553,6 +1625,7 @@ schemas: !<!Schemas>
         default:
           name: modelVersion
           description: This field indicates which model is used for scoring.
+          originalName: modelVersion
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1562,7 +1635,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_14
   - *ref_15
-  - !<!ObjectSchema> &ref_116
+  - !<!ObjectSchema> &ref_124
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1597,6 +1670,7 @@ schemas: !<!Schemas>
               default:
                 name: id
                 description: 'Unique, non-empty document identifier.'
+                originalName: id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!SealedChoiceSchema> &ref_60
@@ -1641,6 +1715,7 @@ schemas: !<!Schemas>
               default:
                 name: sentiment
                 description: 'Predicted sentiment for document (Negative, Neutral, Positive, or Mixed).'
+                originalName: sentiment
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: *ref_6
@@ -1650,6 +1725,7 @@ schemas: !<!Schemas>
               default:
                 name: statistics
                 description: if showStats=true was specified in the request this field will contain information about the document payload.
+                originalName: statistics
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ObjectSchema> &ref_16
@@ -1673,6 +1749,7 @@ schemas: !<!Schemas>
                   default:
                     name: positive
                     description: MISSING·SCHEMA-DESCRIPTION-NUMBER
+                    originalName: positive
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!NumberSchema> &ref_54
@@ -1689,6 +1766,7 @@ schemas: !<!Schemas>
                   default:
                     name: neutral
                     description: MISSING·SCHEMA-DESCRIPTION-NUMBER
+                    originalName: neutral
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!NumberSchema> &ref_55
@@ -1705,6 +1783,7 @@ schemas: !<!Schemas>
                   default:
                     name: negative
                     description: MISSING·SCHEMA-DESCRIPTION-NUMBER
+                    originalName: negative
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
@@ -1718,6 +1797,7 @@ schemas: !<!Schemas>
               default:
                 name: documentScores
                 description: 'Represents the confidence scores between 0 and 1 across all sentiment classes: positive, neutral, negative.'
+                originalName: documentScores
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ArraySchema> &ref_37
@@ -1768,6 +1848,7 @@ schemas: !<!Schemas>
                     default:
                       name: sentiment
                       description: The predicted Sentiment for the sentence.
+                      originalName: sentiment
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: *ref_16
@@ -1777,6 +1858,7 @@ schemas: !<!Schemas>
                     default:
                       name: sentenceScores
                       description: 'Represents the confidence scores between 0 and 1 across all sentiment classes: positive, neutral, negative.'
+                      originalName: sentenceScores
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!NumberSchema> &ref_56
@@ -1793,6 +1875,7 @@ schemas: !<!Schemas>
                     default:
                       name: offset
                       description: The sentence offset from the start of the document.
+                      originalName: offset
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!NumberSchema> &ref_57
@@ -1809,6 +1892,7 @@ schemas: !<!Schemas>
                     default:
                       name: length
                       description: The length of the sentence by Unicode standard.
+                      originalName: length
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!ArraySchema> &ref_36
@@ -1837,6 +1921,7 @@ schemas: !<!Schemas>
                     default:
                       name: warnings
                       description: The warnings generated for the sentence.
+                      originalName: warnings
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -1855,6 +1940,7 @@ schemas: !<!Schemas>
               default:
                 name: sentences
                 description: Sentence level sentiment analysis.
+                originalName: sentences
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -1873,6 +1959,7 @@ schemas: !<!Schemas>
         default:
           name: documents
           description: Sentiment analysis per document.
+          originalName: documents
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_39
@@ -1892,6 +1979,7 @@ schemas: !<!Schemas>
         default:
           name: errors
           description: Errors by document id.
+          originalName: errors
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_8
@@ -1901,6 +1989,7 @@ schemas: !<!Schemas>
         default:
           name: statistics
           description: if showStats=true was specified in the request this field will contain information about the request payload.
+          originalName: statistics
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_96
@@ -1919,6 +2008,7 @@ schemas: !<!Schemas>
         default:
           name: modelVersion
           description: This field indicates which model is used for scoring.
+          originalName: modelVersion
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1963,16 +2053,6 @@ schemas: !<!Schemas>
         name: boolean
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_103
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: v3.0-preview.1
-    language: !<!Languages> 
-      default:
-        name: boolean
-        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-    protocol: !<!Protocols> {}
   - !<!BooleanSchema> &ref_105
     type: boolean
     apiVersions:
@@ -1993,7 +2073,7 @@ schemas: !<!Schemas>
         name: boolean
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_111
+  - !<!BooleanSchema> &ref_112
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -2003,7 +2083,17 @@ schemas: !<!Schemas>
         name: boolean
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_115
+  - !<!BooleanSchema> &ref_116
+    type: boolean
+    apiVersions:
+    - !<!ApiVersion> 
+      version: v3.0-preview.1
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_122
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -2063,7 +2153,7 @@ schemas: !<!Schemas>
   - *ref_73
   - *ref_74
   - *ref_75
-  - !<!StringSchema> &ref_102
+  - !<!StringSchema> &ref_104
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2073,7 +2163,7 @@ schemas: !<!Schemas>
         name: string
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_104
+  - !<!StringSchema> &ref_107
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2091,7 +2181,7 @@ schemas: !<!Schemas>
   - *ref_81
   - *ref_82
   - *ref_83
-  - !<!StringSchema> &ref_107
+  - !<!StringSchema> &ref_111
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2104,7 +2194,7 @@ schemas: !<!Schemas>
   - *ref_84
   - *ref_85
   - *ref_86
-  - !<!StringSchema> &ref_110
+  - !<!StringSchema> &ref_115
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2121,7 +2211,7 @@ schemas: !<!Schemas>
   - *ref_91
   - *ref_92
   - *ref_93
-  - !<!StringSchema> &ref_114
+  - !<!StringSchema> &ref_121
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2207,7 +2297,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_101
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2224,8 +2314,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_101
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2246,7 +2339,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_101
+      schema: *ref_103
       language: !<!Languages> 
         default:
           name: ''
@@ -2347,7 +2440,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_102
+        schema: *ref_104
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2358,7 +2451,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_103
+        schema: *ref_105
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2368,7 +2461,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_106
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2385,8 +2478,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_106
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2407,7 +2503,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_101
+      schema: *ref_103
       language: !<!Languages> 
         default:
           name: ''
@@ -2499,7 +2595,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_104
+        schema: *ref_107
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2510,7 +2606,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_105
+        schema: *ref_108
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2520,7 +2616,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_109
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2537,8 +2633,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_109
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2559,7 +2658,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_106
+      schema: *ref_110
       language: !<!Languages> 
         default:
           name: ''
@@ -2661,7 +2760,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_107
+        schema: *ref_111
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2672,7 +2771,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_108
+        schema: *ref_112
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2682,7 +2781,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_113
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2699,8 +2798,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_113
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2721,7 +2823,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_109
+      schema: *ref_114
       language: !<!Languages> 
         default:
           name: ''
@@ -2799,7 +2901,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_110
+        schema: *ref_115
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2810,7 +2912,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_111
+        schema: *ref_116
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2820,8 +2922,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_112
+      - !<!Parameter> &ref_118
+        schema: *ref_117
         hidden: true
         implementation: Method
         required: true
@@ -2837,8 +2939,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_32
+        originalParameter: *ref_118
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_119
         language: !<!Languages> 
           default:
             name: documents
@@ -2859,7 +2964,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_113
+      schema: *ref_120
       language: !<!Languages> 
         default:
           name: ''
@@ -2940,7 +3045,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_114
+        schema: *ref_121
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2951,7 +3056,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_115
+        schema: *ref_122
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2961,7 +3066,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_123
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2978,8 +3083,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_123
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -3000,7 +3108,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_116
+      schema: *ref_124
       language: !<!Languages> 
         default:
           name: ''

@@ -7,7 +7,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 2015-05-01-preview
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_51
       schema: !<!StringSchema> &ref_30
         type: string
         apiVersions:
@@ -25,7 +25,7 @@ schemas: !<!Schemas>
           name: name
           description: MISSING·SCHEMA-DESCRIPTION-STRING
       protocol: !<!Protocols> {}
-    - !<!Property> 
+    - !<!Property> &ref_52
       schema: !<!StringSchema> &ref_31
         type: string
         apiVersions:
@@ -50,7 +50,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_50
+  - !<!ObjectSchema> &ref_53
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -191,7 +191,7 @@ schemas: !<!Schemas>
                 name: AccountType
                 description: Gets or sets the account type.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_51
+          flattenedNames:
           - properties
           - accountType
           serializedName: accountType
@@ -609,7 +609,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           schema: *ref_2
-          flattenedNames: &ref_52
+          flattenedNames:
           - properties
           - accountType
           serializedName: accountType
@@ -620,7 +620,7 @@ schemas: !<!Schemas>
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_5
-          flattenedNames: &ref_53
+          flattenedNames:
           - properties
           - customDomain
           serializedName: customDomain
@@ -1001,7 +1001,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 2015-05-01-preview
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_58
       schema: !<!SealedChoiceSchema> &ref_27
         choices:
         - !<!ChoiceValue> 
@@ -1038,7 +1038,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_57
+  - !<!ObjectSchema> &ref_59
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1490,7 +1490,7 @@ operationGroups:
       - *ref_46
       - *ref_47
       - *ref_48
-      - !<!Parameter> 
+      - !<!Parameter> &ref_50
         schema: *ref_49
         hidden: true
         implementation: Method
@@ -1507,8 +1507,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_30
+        originalParameter: *ref_50
+        pathToProperty: []
         required: true
         serializedName: name
+        targetProperty: *ref_51
         language: !<!Languages> 
           default:
             name: name
@@ -1516,8 +1519,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_31
+        originalParameter: *ref_50
+        pathToProperty: []
         required: false
         serializedName: type
+        targetProperty: *ref_52
         language: !<!Languages> 
           default:
             name: type
@@ -1538,7 +1544,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_50
+      schema: *ref_53
       language: !<!Languages> 
         default:
           name: ''
@@ -1593,7 +1599,6 @@ operationGroups:
       - *ref_48
       - !<!Parameter> 
         schema: *ref_6
-        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1606,15 +1611,6 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
-        schema: *ref_2
-        flattenedNames: *ref_51
-        serializedName: accountType
-        language: !<!Languages> 
-          default:
-            name: accountType
-            description: Gets or sets the account type.
-        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1825,7 +1821,6 @@ operationGroups:
       - *ref_48
       - !<!Parameter> 
         schema: *ref_8
-        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1838,24 +1833,6 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
-        schema: *ref_2
-        flattenedNames: *ref_52
-        serializedName: accountType
-        language: !<!Languages> 
-          default:
-            name: accountType
-            description: Gets or sets the account type.
-        protocol: !<!Protocols> {}
-      - !<!Parameter> 
-        schema: *ref_5
-        flattenedNames: *ref_53
-        serializedName: customDomain
-        language: !<!Languages> 
-          default:
-            name: customDomain
-            description: The custom domain assigned to this storage account. This can be set via Update.
-        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -2083,7 +2060,7 @@ operationGroups:
             in: path
       - *ref_47
       - *ref_48
-      - !<!Parameter> 
+      - !<!Parameter> &ref_57
         schema: *ref_56
         hidden: true
         implementation: Method
@@ -2100,7 +2077,10 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_27
+        originalParameter: *ref_57
+        pathToProperty: []
         serializedName: keyName
+        targetProperty: *ref_58
         language: !<!Languages> 
           default:
             name: keyName
@@ -2169,7 +2149,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_57
+      schema: *ref_59
       language: !<!Languages> 
         default:
           name: ''

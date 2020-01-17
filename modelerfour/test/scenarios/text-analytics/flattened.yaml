@@ -7,7 +7,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: v3.0-preview.1
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_102
       schema: !<!ArraySchema> &ref_20
         type: array
         apiVersions:
@@ -98,7 +98,7 @@ schemas: !<!Schemas>
         namespace: ApiV30Preview1
     protocol: !<!Protocols> {}
   - *ref_0
-  - !<!ObjectSchema> &ref_101
+  - !<!ObjectSchema> &ref_103
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -788,7 +788,7 @@ schemas: !<!Schemas>
   - *ref_3
   - *ref_2
   - *ref_8
-  - !<!ObjectSchema> &ref_106
+  - !<!ObjectSchema> &ref_110
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1122,7 +1122,7 @@ schemas: !<!Schemas>
   - *ref_9
   - *ref_10
   - *ref_11
-  - !<!ObjectSchema> &ref_109
+  - !<!ObjectSchema> &ref_114
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1266,13 +1266,13 @@ schemas: !<!Schemas>
         namespace: ApiV30Preview1
     protocol: !<!Protocols> {}
   - *ref_12
-  - !<!ObjectSchema> &ref_112
+  - !<!ObjectSchema> &ref_117
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_119
       schema: !<!ArraySchema> &ref_32
         type: array
         apiVersions:
@@ -1363,7 +1363,7 @@ schemas: !<!Schemas>
         namespace: ApiV30Preview1
     protocol: !<!Protocols> {}
   - *ref_13
-  - !<!ObjectSchema> &ref_113
+  - !<!ObjectSchema> &ref_120
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1562,7 +1562,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_14
   - *ref_15
-  - !<!ObjectSchema> &ref_116
+  - !<!ObjectSchema> &ref_124
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1963,7 +1963,7 @@ schemas: !<!Schemas>
         name: paths·entities-recognition-general·post·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_103
+  - !<!BooleanSchema> &ref_105
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -1973,7 +1973,7 @@ schemas: !<!Schemas>
         name: paths·entities-recognition-pii·post·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_105
+  - !<!BooleanSchema> &ref_108
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -1983,7 +1983,7 @@ schemas: !<!Schemas>
         name: paths·entities-linking·post·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_108
+  - !<!BooleanSchema> &ref_112
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -1993,7 +1993,7 @@ schemas: !<!Schemas>
         name: paths·keyphrases·post·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_111
+  - !<!BooleanSchema> &ref_116
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -2003,7 +2003,7 @@ schemas: !<!Schemas>
         name: paths·languages·post·parameters·1·schema
         description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
     protocol: !<!Protocols> {}
-  - !<!BooleanSchema> &ref_115
+  - !<!BooleanSchema> &ref_122
     type: boolean
     apiVersions:
     - !<!ApiVersion> 
@@ -2063,7 +2063,7 @@ schemas: !<!Schemas>
   - *ref_73
   - *ref_74
   - *ref_75
-  - !<!StringSchema> &ref_102
+  - !<!StringSchema> &ref_104
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2073,7 +2073,7 @@ schemas: !<!Schemas>
         name: paths·entities-recognition-pii·post·parameters·0·schema
         description: MISSING·SCHEMA-DESCRIPTION-STRING
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_104
+  - !<!StringSchema> &ref_107
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2091,7 +2091,7 @@ schemas: !<!Schemas>
   - *ref_81
   - *ref_82
   - *ref_83
-  - !<!StringSchema> &ref_107
+  - !<!StringSchema> &ref_111
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2104,7 +2104,7 @@ schemas: !<!Schemas>
   - *ref_84
   - *ref_85
   - *ref_86
-  - !<!StringSchema> &ref_110
+  - !<!StringSchema> &ref_115
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2121,7 +2121,7 @@ schemas: !<!Schemas>
   - *ref_91
   - *ref_92
   - *ref_93
-  - !<!StringSchema> &ref_114
+  - !<!StringSchema> &ref_121
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2207,7 +2207,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_101
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2224,8 +2224,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_101
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2246,7 +2249,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_101
+      schema: *ref_103
       language: !<!Languages> 
         default:
           name: ''
@@ -2347,7 +2350,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_102
+        schema: *ref_104
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2358,7 +2361,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_103
+        schema: *ref_105
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2368,7 +2371,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_106
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2385,8 +2388,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_106
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2407,7 +2413,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_101
+      schema: *ref_103
       language: !<!Languages> 
         default:
           name: ''
@@ -2499,7 +2505,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_104
+        schema: *ref_107
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2510,7 +2516,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_105
+        schema: *ref_108
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2520,7 +2526,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_109
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2537,8 +2543,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_109
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2559,7 +2568,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_106
+      schema: *ref_110
       language: !<!Languages> 
         default:
           name: ''
@@ -2661,7 +2670,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_107
+        schema: *ref_111
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2672,7 +2681,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_108
+        schema: *ref_112
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2682,7 +2691,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_113
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2699,8 +2708,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_113
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -2721,7 +2733,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_109
+      schema: *ref_114
       language: !<!Languages> 
         default:
           name: ''
@@ -2799,7 +2811,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_110
+        schema: *ref_115
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2810,7 +2822,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_111
+        schema: *ref_116
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2820,8 +2832,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_112
+      - !<!Parameter> &ref_118
+        schema: *ref_117
         hidden: true
         implementation: Method
         required: true
@@ -2837,8 +2849,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_32
+        originalParameter: *ref_118
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_119
         language: !<!Languages> 
           default:
             name: documents
@@ -2859,7 +2874,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_113
+      schema: *ref_120
       language: !<!Languages> 
         default:
           name: ''
@@ -2940,7 +2955,7 @@ operationGroups:
       parameters:
       - *ref_97
       - !<!Parameter> 
-        schema: *ref_114
+        schema: *ref_121
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2951,7 +2966,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: query
       - !<!Parameter> 
-        schema: *ref_115
+        schema: *ref_122
         implementation: Method
         language: !<!Languages> 
           default:
@@ -2961,7 +2976,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_123
         schema: *ref_100
         hidden: true
         implementation: Method
@@ -2978,8 +2993,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_20
+        originalParameter: *ref_123
+        pathToProperty: []
         required: true
         serializedName: documents
+        targetProperty: *ref_102
         language: !<!Languages> 
           default:
             name: documents
@@ -3000,7 +3018,7 @@ operationGroups:
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_116
+      schema: *ref_124
       language: !<!Languages> 
         default:
           name: ''

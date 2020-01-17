@@ -33,8 +33,9 @@ schemas: !<!Schemas>
             serializedName: product_id
             language: !<!Languages> 
               default:
-                name: product_id
+                name: productId
                 description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
+                originalName: product_id
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_10
@@ -52,6 +53,7 @@ schemas: !<!Schemas>
               default:
                 name: description
                 description: Description of product.
+                originalName: description
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_11
@@ -67,8 +69,9 @@ schemas: !<!Schemas>
             serializedName: display_name
             language: !<!Languages> 
               default:
-                name: display_name
+                name: displayName
                 description: Display name of product.
+                originalName: display_name
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_12
@@ -87,6 +90,7 @@ schemas: !<!Schemas>
               default:
                 name: capacity
                 description: 'Capacity of product. For example, 4 people.'
+                originalName: capacity
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!StringSchema> &ref_13
@@ -104,6 +108,7 @@ schemas: !<!Schemas>
               default:
                 name: image
                 description: Image URL representing the product.
+                originalName: image
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -121,6 +126,7 @@ schemas: !<!Schemas>
         default:
           name: productArray
           description: Array of products
+          originalName: productArray
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -149,6 +155,7 @@ schemas: !<!Schemas>
         default:
           name: status
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+          originalName: status
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_14
@@ -166,6 +173,7 @@ schemas: !<!Schemas>
         default:
           name: message
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: message
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -179,7 +187,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 2014-04-01-preview
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_25
       schema: !<!DictionarySchema> &ref_1
         type: dictionary
         elementType: !<!ArraySchema> &ref_5
@@ -203,6 +211,7 @@ schemas: !<!Schemas>
         default:
           name: productDictionaryOfArray
           description: Dictionary of Array of product
+          originalName: productDictionaryOfArray
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -210,7 +219,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_24
+  - !<!ObjectSchema> &ref_26
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -230,6 +239,7 @@ schemas: !<!Schemas>
         default:
           name: productDictionary
           description: Dictionary of products
+          originalName: productDictionary
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -237,13 +247,13 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_25
+  - !<!ObjectSchema> &ref_27
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_29
       schema: !<!ArraySchema> &ref_6
         type: array
         apiVersions:
@@ -267,6 +277,7 @@ schemas: !<!Schemas>
         default:
           name: productArrayOfDictionary
           description: Array of dictionary of products
+          originalName: productArrayOfDictionary
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -509,7 +520,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_20
-      - !<!Parameter> 
+      - !<!Parameter> &ref_24
         schema: *ref_23
         hidden: true
         implementation: Method
@@ -526,7 +537,10 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_1
+        originalParameter: *ref_24
+        pathToProperty: []
         serializedName: productDictionaryOfArray
+        targetProperty: *ref_25
         language: !<!Languages> 
           default:
             name: productDictionaryOfArray
@@ -546,7 +560,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_24
+      schema: *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -611,8 +625,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_20
-      - !<!Parameter> 
-        schema: *ref_25
+      - !<!Parameter> &ref_28
+        schema: *ref_27
         hidden: true
         implementation: Method
         required: true
@@ -628,7 +642,10 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_6
+        originalParameter: *ref_28
+        pathToProperty: []
         serializedName: productArrayOfDictionary
+        targetProperty: *ref_29
         language: !<!Languages> 
           default:
             name: productArrayOfDictionary

@@ -943,6 +943,9 @@ export class ModelerFour {
                   serializedName: '$host'
                 }
               },
+              extensions: {
+                'x-ms-skip-url-encoding': true
+              },
               clientDefaultValue: servers[0].url
             })))
 

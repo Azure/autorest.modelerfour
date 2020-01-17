@@ -51,7 +51,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_12
       schema: !<!ConstantSchema> &ref_1
         type: constant
         apiVersions:
@@ -82,7 +82,7 @@ schemas: !<!Schemas>
           name: ColorConstant
           description: Referenced Color Constant Description.
       protocol: !<!Protocols> {}
-    - !<!Property> 
+    - !<!Property> &ref_13
       schema: !<!StringSchema> &ref_4
         type: string
         apiVersions:
@@ -1259,7 +1259,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_5
-      - !<!Parameter> 
+      - !<!Parameter> &ref_11
         schema: *ref_10
         hidden: true
         implementation: Method
@@ -1276,8 +1276,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_1
+        originalParameter: *ref_11
+        pathToProperty: []
         required: true
         serializedName: ColorConstant
+        targetProperty: *ref_12
         language: !<!Languages> 
           default:
             name: ColorConstant
@@ -1285,8 +1288,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_4
+        originalParameter: *ref_11
+        pathToProperty: []
         required: false
         serializedName: field1
+        targetProperty: *ref_13
         language: !<!Languages> 
           default:
             name: field1
