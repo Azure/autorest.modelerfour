@@ -510,7 +510,7 @@ schemas: !<!Schemas>
           immediate:
           - *ref_8
         properties:
-        - !<!Property> 
+        - !<!Property> &ref_40
           schema: !<!StringSchema> &ref_11
             type: string
             apiVersions:
@@ -530,7 +530,7 @@ schemas: !<!Schemas>
               name: max_product_display_name
               description: Display name of product.
           protocol: !<!Protocols> {}
-        - !<!Property> 
+        - !<!Property> &ref_42
           schema: !<!ConstantSchema> &ref_12
             type: constant
             apiVersions:
@@ -548,7 +548,7 @@ schemas: !<!Schemas>
                 name: capacity
                 description: 'Capacity of product. For example, 4 people.'
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_39
+          flattenedNames: &ref_41
           - details
           - max_product_capacity
           serializedName: max_product_capacity
@@ -557,7 +557,7 @@ schemas: !<!Schemas>
               name: capacity
               description: 'Capacity of product. For example, 4 people.'
           protocol: !<!Protocols> {}
-        - !<!Property> 
+        - !<!Property> &ref_44
           schema: !<!StringSchema> &ref_13
             type: string
             apiVersions:
@@ -568,7 +568,7 @@ schemas: !<!Schemas>
                 name: ProductUrl-@odata.value
                 description: URL value.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_40
+          flattenedNames: &ref_43
           - details
           - max_product_image
           - '@odata.value'
@@ -1360,7 +1360,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
+      - !<!Parameter> &ref_39
         schema: *ref_10
         hidden: true
         implementation: Method
@@ -1378,7 +1378,10 @@ operationGroups:
       - !<!Parameter> 
         schema: *ref_11
         flattenedNames: *ref_38
+        originalParameter: *ref_39
+        pathToProperty: []
         serializedName: max_product_display_name
+        targetProperty: *ref_40
         language: !<!Languages> 
           default:
             name: max_product_display_name
@@ -1386,8 +1389,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_12
-        flattenedNames: *ref_39
+        flattenedNames: *ref_41
+        originalParameter: *ref_39
+        pathToProperty: []
         serializedName: max_product_capacity
+        targetProperty: *ref_42
         language: !<!Languages> 
           default:
             name: capacity
@@ -1395,8 +1401,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_13
-        flattenedNames: *ref_40
+        flattenedNames: *ref_43
+        originalParameter: *ref_39
+        pathToProperty: []
         serializedName: '@odata.value'
+        targetProperty: *ref_44
         language: !<!Languages> 
           default:
             name: '@odata.value'
@@ -1471,7 +1480,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_45
         schema: *ref_10
         hidden: true
         implementation: Method
@@ -1491,7 +1500,10 @@ operationGroups:
       - !<!Parameter> 
         schema: *ref_11
         flattenedNames: *ref_38
+        originalParameter: *ref_45
+        pathToProperty: []
         serializedName: max_product_display_name
+        targetProperty: *ref_40
         language: !<!Languages> 
           default:
             name: max_product_display_name
@@ -1499,8 +1511,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_12
-        flattenedNames: *ref_39
+        flattenedNames: *ref_41
+        originalParameter: *ref_45
+        pathToProperty: []
         serializedName: max_product_capacity
+        targetProperty: *ref_42
         language: !<!Languages> 
           default:
             name: capacity
@@ -1508,8 +1523,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_13
-        flattenedNames: *ref_40
+        flattenedNames: *ref_43
+        originalParameter: *ref_45
+        pathToProperty: []
         serializedName: '@odata.value'
+        targetProperty: *ref_44
         language: !<!Languages> 
           default:
             name: '@odata.value'

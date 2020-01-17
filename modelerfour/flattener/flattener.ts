@@ -1,4 +1,4 @@
-import { CodeModel, Schema, ObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter } from '@azure-tools/codemodel';
+import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 
@@ -7,9 +7,7 @@ const xmsFlatten = 'x-ms-client-flatten';
 const isCurrentlyFlattening = 'x-ms-flattening';
 const hasBeenFlattened = 'x-ms-flattened';
 
-function isObjectSchema(schema: Schema): schema is ObjectSchema {
-  return schema.type === SchemaType.Object;
-}
+
 
 export class Flattener {
   codeModel: CodeModel
@@ -29,17 +27,22 @@ export class Flattener {
     return this;
   }
 
-  *getFlattenedParameters(property: Property, path: Array<Property> = []): Iterable<VirtualParameter> {
+  *getFlattenedParameters(parameter: Parameter, property: Property, path: Array<Property> = []): Iterable<VirtualParameter> {
     if (property.readOnly) {
       // skip read-only properties
       return;
     }
     if (isObjectSchema(property.schema) && this.recursePayload === true) {
       for (const child of values((<ObjectSchema>property.schema).properties)) {
-        yield* this.getFlattenedParameters(child, [...path, property]);
+        yield* this.getFlattenedParameters(parameter, child, [...path, property]);
       }
     } else {
-      yield new VirtualParameter(property.language.default.name, property.language.default.description, property.schema, property);
+      yield new VirtualParameter(property.language.default.name, property.language.default.description, property.schema, {
+        ...property,
+        originalParameter: parameter,
+        targetProperty: property,
+        pathToProperty: path
+      });
     }
     // ·
   }
@@ -55,7 +58,7 @@ export class Flattener {
         // skip read-only properties
         continue;
       }
-      for (const vp of this.getFlattenedParameters(property)) {
+      for (const vp of this.getFlattenedParameters(parameter, property)) {
         operation.request.parameters?.push(vp);
       }
     }
@@ -197,7 +200,7 @@ export class Flattener {
               const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
               if (threshold > 0) {
                 // get the count of the (non-readonly) properties in the schema
-                const properties = values(schema.properties).where(property => property.readOnly !== true).toArray();
+                const properties = values(getAllProperties(schema)).where(property => property.readOnly !== true).toArray();
                 flattenOperationPayload = properties.length <= threshold;
               }
             }

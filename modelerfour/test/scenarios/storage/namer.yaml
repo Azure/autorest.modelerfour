@@ -7,7 +7,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 2015-05-01-preview
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_51
       schema: !<!StringSchema> &ref_30
         type: string
         apiVersions:
@@ -24,8 +24,9 @@ schemas: !<!Schemas>
         default:
           name: name
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: name
       protocol: !<!Protocols> {}
-    - !<!Property> 
+    - !<!Property> &ref_52
       schema: !<!StringSchema> &ref_31
         type: string
         apiVersions:
@@ -43,6 +44,7 @@ schemas: !<!Schemas>
         default:
           name: type
           description: MISSING·SCHEMA-DESCRIPTION-STRING
+          originalName: type
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -50,7 +52,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_50
+  - !<!ObjectSchema> &ref_53
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -69,6 +71,7 @@ schemas: !<!Schemas>
         default:
           name: nameAvailable
           description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
+          originalName: nameAvailable
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!SealedChoiceSchema> &ref_26
@@ -106,6 +109,7 @@ schemas: !<!Schemas>
         default:
           name: reason
           description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
+          originalName: reason
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_32
@@ -123,6 +127,7 @@ schemas: !<!Schemas>
         default:
           name: message
           description: Gets an error message explaining the Reason value in more detail.
+          originalName: message
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -191,7 +196,7 @@ schemas: !<!Schemas>
                 name: AccountType
                 description: Gets or sets the account type.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_51
+          flattenedNames:
           - properties
           - accountType
           serializedName: accountType
@@ -199,6 +204,7 @@ schemas: !<!Schemas>
             default:
               name: accountType
               description: Gets or sets the account type.
+              originalName: accountType
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -256,6 +262,7 @@ schemas: !<!Schemas>
             default:
               name: provisioningState
               description: Gets the status of the storage account at the time the operation was called.
+              originalName: provisioningState
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_2
@@ -267,6 +274,7 @@ schemas: !<!Schemas>
             default:
               name: accountType
               description: Gets or sets the account type.
+              originalName: accountType
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!ObjectSchema> &ref_3
@@ -291,6 +299,7 @@ schemas: !<!Schemas>
                 default:
                   name: blob
                   description: Gets the blob endpoint.
+                  originalName: blob
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: !<!StringSchema> &ref_38
@@ -308,6 +317,7 @@ schemas: !<!Schemas>
                 default:
                   name: queue
                   description: Gets the queue endpoint.
+                  originalName: queue
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: !<!StringSchema> &ref_39
@@ -325,6 +335,7 @@ schemas: !<!Schemas>
                 default:
                   name: table
                   description: Gets the table endpoint.
+                  originalName: table
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: *ref_3
@@ -333,6 +344,7 @@ schemas: !<!Schemas>
                 default:
                   name: dummyEndPoint
                   description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                  originalName: dummyEndPoint
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: !<!ObjectSchema> &ref_14
@@ -355,6 +367,7 @@ schemas: !<!Schemas>
                         default:
                           name: RecursivePoint
                           description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                          originalName: RecursivePoint
                       protocol: !<!Protocols> {}
                     language: !<!Languages> 
                       default:
@@ -365,8 +378,9 @@ schemas: !<!Schemas>
                   serializedName: Bar.Point
                   language: !<!Languages> 
                     default:
-                      name: Bar.Point
+                      name: barPoint
                       description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                      originalName: Bar.Point
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -379,6 +393,7 @@ schemas: !<!Schemas>
                 default:
                   name: FooPoint
                   description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                  originalName: FooPoint
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -394,6 +409,7 @@ schemas: !<!Schemas>
             default:
               name: primaryEndpoints
               description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+              originalName: primaryEndpoints
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!StringSchema> &ref_10
@@ -414,6 +430,7 @@ schemas: !<!Schemas>
             default:
               name: primaryLocation
               description: Gets the location of the primary for the storage account.
+              originalName: primaryLocation
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!SealedChoiceSchema> &ref_4
@@ -448,6 +465,7 @@ schemas: !<!Schemas>
             default:
               name: statusOfPrimary
               description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+              originalName: statusOfPrimary
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!DateTimeSchema> &ref_11
@@ -473,6 +491,7 @@ schemas: !<!Schemas>
               description: >-
                 Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if
                 the accountType is StandardGRS or StandardRAGRS.
+              originalName: lastGeoFailoverTime
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!StringSchema> &ref_12
@@ -493,6 +512,7 @@ schemas: !<!Schemas>
             default:
               name: secondaryLocation
               description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
+              originalName: secondaryLocation
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_4
@@ -504,6 +524,7 @@ schemas: !<!Schemas>
             default:
               name: statusOfSecondary
               description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+              originalName: statusOfSecondary
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!DateTimeSchema> &ref_13
@@ -525,6 +546,7 @@ schemas: !<!Schemas>
             default:
               name: creationTime
               description: Gets the creation date and time of the storage account in UTC.
+              originalName: creationTime
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!ObjectSchema> &ref_5
@@ -549,6 +571,7 @@ schemas: !<!Schemas>
                 default:
                   name: name
                   description: Gets or sets the custom domain name. Name is the CNAME source.
+                  originalName: name
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: !<!BooleanSchema> &ref_23
@@ -563,6 +586,7 @@ schemas: !<!Schemas>
                 default:
                   name: useSubDomain
                   description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
+                  originalName: useSubDomain
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -578,6 +602,7 @@ schemas: !<!Schemas>
             default:
               name: customDomain
               description: The custom domain assigned to this storage account. This can be set via Update.
+              originalName: customDomain
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_3
@@ -589,6 +614,7 @@ schemas: !<!Schemas>
             default:
               name: secondaryEndpoints
               description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+              originalName: secondaryEndpoints
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -609,7 +635,7 @@ schemas: !<!Schemas>
         properties:
         - !<!Property> 
           schema: *ref_2
-          flattenedNames: &ref_52
+          flattenedNames:
           - properties
           - accountType
           serializedName: accountType
@@ -617,10 +643,11 @@ schemas: !<!Schemas>
             default:
               name: accountType
               description: Gets or sets the account type.
+              originalName: accountType
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_5
-          flattenedNames: &ref_53
+          flattenedNames:
           - properties
           - customDomain
           serializedName: customDomain
@@ -628,6 +655,7 @@ schemas: !<!Schemas>
             default:
               name: customDomain
               description: The custom domain assigned to this storage account. This can be set via Update.
+              originalName: customDomain
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -658,6 +686,7 @@ schemas: !<!Schemas>
         default:
           name: id
           description: Resource Id
+          originalName: id
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_34
@@ -677,6 +706,7 @@ schemas: !<!Schemas>
         default:
           name: name
           description: Resource name
+          originalName: name
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_35
@@ -696,6 +726,7 @@ schemas: !<!Schemas>
         default:
           name: type
           description: Resource type
+          originalName: type
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_36
@@ -714,6 +745,7 @@ schemas: !<!Schemas>
         default:
           name: location
           description: Resource location
+          originalName: location
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!DictionarySchema> &ref_19
@@ -739,6 +771,7 @@ schemas: !<!Schemas>
         default:
           name: tags
           description: Resource tags
+          originalName: tags
       protocol: !<!Protocols> {}
     extensions:
       x-ms-azure-resource: true
@@ -762,6 +795,7 @@ schemas: !<!Schemas>
         default:
           name: accountType
           description: Gets or sets the account type.
+          originalName: accountType
       protocol: !<!Protocols> {}
     extensions:
       x-ms-flattened: true
@@ -785,6 +819,7 @@ schemas: !<!Schemas>
         default:
           name: provisioningState
           description: Gets the status of the storage account at the time the operation was called.
+          originalName: provisioningState
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_2
@@ -793,6 +828,7 @@ schemas: !<!Schemas>
         default:
           name: accountType
           description: Gets or sets the account type.
+          originalName: accountType
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_3
@@ -801,6 +837,7 @@ schemas: !<!Schemas>
         default:
           name: primaryEndpoints
           description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+          originalName: primaryEndpoints
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_10
@@ -809,6 +846,7 @@ schemas: !<!Schemas>
         default:
           name: primaryLocation
           description: Gets the location of the primary for the storage account.
+          originalName: primaryLocation
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_4
@@ -817,6 +855,7 @@ schemas: !<!Schemas>
         default:
           name: statusOfPrimary
           description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+          originalName: statusOfPrimary
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_11
@@ -827,6 +866,7 @@ schemas: !<!Schemas>
           description: >-
             Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the
             accountType is StandardGRS or StandardRAGRS.
+          originalName: lastGeoFailoverTime
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_12
@@ -835,6 +875,7 @@ schemas: !<!Schemas>
         default:
           name: secondaryLocation
           description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
+          originalName: secondaryLocation
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_4
@@ -843,6 +884,7 @@ schemas: !<!Schemas>
         default:
           name: statusOfSecondary
           description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+          originalName: statusOfSecondary
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_13
@@ -851,6 +893,7 @@ schemas: !<!Schemas>
         default:
           name: creationTime
           description: Gets the creation date and time of the storage account in UTC.
+          originalName: creationTime
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_5
@@ -859,6 +902,7 @@ schemas: !<!Schemas>
         default:
           name: customDomain
           description: The custom domain assigned to this storage account. This can be set via Update.
+          originalName: customDomain
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_3
@@ -867,6 +911,7 @@ schemas: !<!Schemas>
         default:
           name: secondaryEndpoints
           description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+          originalName: secondaryEndpoints
       protocol: !<!Protocols> {}
     extensions:
       x-ms-flattened: true
@@ -894,6 +939,7 @@ schemas: !<!Schemas>
         default:
           name: accountType
           description: Gets or sets the account type.
+          originalName: accountType
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_5
@@ -902,6 +948,7 @@ schemas: !<!Schemas>
         default:
           name: customDomain
           description: The custom domain assigned to this storage account. This can be set via Update.
+          originalName: customDomain
       protocol: !<!Protocols> {}
     extensions:
       x-ms-flattened: true
@@ -933,6 +980,7 @@ schemas: !<!Schemas>
         default:
           name: key1
           description: Gets the value of key 1.
+          originalName: key1
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_16
@@ -941,6 +989,7 @@ schemas: !<!Schemas>
         default:
           name: key2
           description: Gets the value of key 1.
+          originalName: key2
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -971,6 +1020,7 @@ schemas: !<!Schemas>
         default:
           name: value
           description: Gets the list of storage accounts and their properties.
+          originalName: value
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!StringSchema> &ref_41
@@ -988,6 +1038,7 @@ schemas: !<!Schemas>
         default:
           name: nextLink
           description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+          originalName: nextLink
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1001,7 +1052,7 @@ schemas: !<!Schemas>
     - !<!ApiVersion> 
       version: 2015-05-01-preview
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_58
       schema: !<!SealedChoiceSchema> &ref_27
         choices:
         - !<!ChoiceValue> 
@@ -1031,6 +1082,7 @@ schemas: !<!Schemas>
         default:
           name: keyName
           description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+          originalName: keyName
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1038,7 +1090,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_57
+  - !<!ObjectSchema> &ref_59
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -1110,6 +1162,7 @@ schemas: !<!Schemas>
               default:
                 name: unit
                 description: Gets the unit of measurement.
+                originalName: unit
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!NumberSchema> &ref_24
@@ -1125,6 +1178,7 @@ schemas: !<!Schemas>
               default:
                 name: currentValue
                 description: Gets the current count of the allocated resources in the subscription.
+                originalName: currentValue
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!NumberSchema> &ref_25
@@ -1140,6 +1194,7 @@ schemas: !<!Schemas>
               default:
                 name: limit
                 description: Gets the maximum count of the resources that can be allocated in the subscription.
+                originalName: limit
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: !<!ObjectSchema> &ref_18
@@ -1164,6 +1219,7 @@ schemas: !<!Schemas>
                   default:
                     name: value
                     description: Gets a string describing the resource name.
+                    originalName: value
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!StringSchema> &ref_43
@@ -1181,6 +1237,7 @@ schemas: !<!Schemas>
                   default:
                     name: localizedValue
                     description: Gets a localized string describing the resource name.
+                    originalName: localizedValue
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
@@ -1193,6 +1250,7 @@ schemas: !<!Schemas>
               default:
                 name: name
                 description: The Usage Names.
+                originalName: name
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
@@ -1210,6 +1268,7 @@ schemas: !<!Schemas>
         default:
           name: value
           description: Gets or sets the list Storage Resource Usages.
+          originalName: value
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1241,6 +1300,7 @@ schemas: !<!Schemas>
         default:
           name: id
           description: Resource Id
+          originalName: id
       protocol: !<!Protocols> {}
     extensions:
       x-ms-azure-resource: true
@@ -1490,7 +1550,7 @@ operationGroups:
       - *ref_46
       - *ref_47
       - *ref_48
-      - !<!Parameter> 
+      - !<!Parameter> &ref_50
         schema: *ref_49
         hidden: true
         implementation: Method
@@ -1507,8 +1567,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_30
+        originalParameter: *ref_50
+        pathToProperty: []
         required: true
         serializedName: name
+        targetProperty: *ref_51
         language: !<!Languages> 
           default:
             name: name
@@ -1516,8 +1579,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_31
+        originalParameter: *ref_50
+        pathToProperty: []
         required: false
         serializedName: type
+        targetProperty: *ref_52
         language: !<!Languages> 
           default:
             name: type
@@ -1538,7 +1604,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_50
+      schema: *ref_53
       language: !<!Languages> 
         default:
           name: ''
@@ -1593,7 +1659,6 @@ operationGroups:
       - *ref_48
       - !<!Parameter> 
         schema: *ref_6
-        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1606,15 +1671,6 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
-        schema: *ref_2
-        flattenedNames: *ref_51
-        serializedName: accountType
-        language: !<!Languages> 
-          default:
-            name: accountType
-            description: Gets or sets the account type.
-        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -1825,7 +1881,6 @@ operationGroups:
       - *ref_48
       - !<!Parameter> 
         schema: *ref_8
-        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -1838,24 +1893,6 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
-        schema: *ref_2
-        flattenedNames: *ref_52
-        serializedName: accountType
-        language: !<!Languages> 
-          default:
-            name: accountType
-            description: Gets or sets the account type.
-        protocol: !<!Protocols> {}
-      - !<!Parameter> 
-        schema: *ref_5
-        flattenedNames: *ref_53
-        serializedName: customDomain
-        language: !<!Languages> 
-          default:
-            name: customDomain
-            description: The custom domain assigned to this storage account. This can be set via Update.
-        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -2083,7 +2120,7 @@ operationGroups:
             in: path
       - *ref_47
       - *ref_48
-      - !<!Parameter> 
+      - !<!Parameter> &ref_57
         schema: *ref_56
         hidden: true
         implementation: Method
@@ -2100,7 +2137,10 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_27
+        originalParameter: *ref_57
+        pathToProperty: []
         serializedName: keyName
+        targetProperty: *ref_58
         language: !<!Languages> 
           default:
             name: keyName
@@ -2169,7 +2209,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_57
+      schema: *ref_59
       language: !<!Languages> 
         default:
           name: ''

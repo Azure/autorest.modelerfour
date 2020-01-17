@@ -61,7 +61,7 @@ schemas: !<!Schemas>
       immediate:
       - *ref_2
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_32
       schema: !<!NumberSchema> &ref_16
         type: integer
         precision: 32
@@ -77,7 +77,7 @@ schemas: !<!Schemas>
           name: id
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
-    - !<!Property> 
+    - !<!Property> &ref_33
       schema: !<!StringSchema> &ref_22
         type: string
         apiVersions:
@@ -117,7 +117,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_31
+  - !<!ObjectSchema> &ref_34
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -162,7 +162,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   - *ref_1
-  - !<!ObjectSchema> &ref_32
+  - !<!ObjectSchema> &ref_35
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -186,7 +186,7 @@ schemas: !<!Schemas>
       immediate:
       - *ref_3
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_37
       schema: !<!NumberSchema> &ref_18
         type: integer
         precision: 32
@@ -202,7 +202,7 @@ schemas: !<!Schemas>
           name: id
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
-    - !<!Property> 
+    - !<!Property> &ref_38
       schema: !<!StringSchema> &ref_24
         type: string
         apiVersions:
@@ -242,7 +242,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_33
+  - !<!ObjectSchema> &ref_39
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -269,7 +269,7 @@ schemas: !<!Schemas>
       immediate:
       - *ref_4
     properties:
-    - !<!Property> 
+    - !<!Property> &ref_41
       schema: !<!NumberSchema> &ref_19
         type: integer
         precision: 32
@@ -285,7 +285,7 @@ schemas: !<!Schemas>
           name: id
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
-    - !<!Property> 
+    - !<!Property> &ref_42
       schema: !<!StringSchema> &ref_25
         type: string
         apiVersions:
@@ -325,7 +325,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_34
+  - !<!ObjectSchema> &ref_43
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -413,7 +413,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_35
+  - !<!ObjectSchema> &ref_44
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -589,7 +589,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> 
+      - !<!Parameter> &ref_31
         schema: *ref_0
         hidden: true
         implementation: Method
@@ -606,8 +606,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_16
+        originalParameter: *ref_31
+        pathToProperty: []
         required: true
         serializedName: id
+        targetProperty: *ref_32
         language: !<!Languages> 
           default:
             name: id
@@ -615,8 +618,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_22
+        originalParameter: *ref_31
+        pathToProperty: []
         required: false
         serializedName: name
+        targetProperty: *ref_33
         language: !<!Languages> 
           default:
             name: name
@@ -650,7 +656,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_31
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -678,7 +684,6 @@ operationGroups:
       - *ref_30
       - !<!Parameter> 
         schema: *ref_1
-        hidden: true
         implementation: Method
         required: true
         extensions:
@@ -691,14 +696,6 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
-        schema: *ref_11
-        serializedName: friendly
-        language: !<!Languages> 
-          default:
-            name: friendly
-            description: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
-        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -727,7 +724,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_31
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -753,8 +750,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> 
-        schema: *ref_32
+      - !<!Parameter> &ref_36
+        schema: *ref_35
         hidden: true
         implementation: Method
         required: true
@@ -770,8 +767,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_18
+        originalParameter: *ref_36
+        pathToProperty: []
         required: true
         serializedName: id
+        targetProperty: *ref_37
         language: !<!Languages> 
           default:
             name: id
@@ -779,8 +779,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_24
+        originalParameter: *ref_36
+        pathToProperty: []
         required: false
         serializedName: name
+        targetProperty: *ref_38
         language: !<!Languages> 
           default:
             name: name
@@ -800,7 +803,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_32
+      schema: *ref_35
       language: !<!Languages> 
         default:
           name: ''
@@ -814,7 +817,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_31
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -840,8 +843,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> 
-        schema: *ref_33
+      - !<!Parameter> &ref_40
+        schema: *ref_39
         hidden: true
         implementation: Method
         required: true
@@ -857,8 +860,11 @@ operationGroups:
             style: json
       - !<!Parameter> 
         schema: *ref_19
+        originalParameter: *ref_40
+        pathToProperty: []
         required: true
         serializedName: id
+        targetProperty: *ref_41
         language: !<!Languages> 
           default:
             name: id
@@ -866,8 +872,11 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_25
+        originalParameter: *ref_40
+        pathToProperty: []
         required: false
         serializedName: name
+        targetProperty: *ref_42
         language: !<!Languages> 
           default:
             name: name
@@ -887,7 +896,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_33
+      schema: *ref_39
       language: !<!Languages> 
         default:
           name: ''
@@ -901,7 +910,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_31
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -928,7 +937,7 @@ operationGroups:
       parameters:
       - *ref_30
       - !<!Parameter> 
-        schema: *ref_34
+        schema: *ref_43
         implementation: Method
         required: true
         extensions:
@@ -955,7 +964,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_43
       language: !<!Languages> 
         default:
           name: ''
@@ -969,7 +978,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_31
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -996,7 +1005,7 @@ operationGroups:
       parameters:
       - *ref_30
       - !<!Parameter> 
-        schema: *ref_35
+        schema: *ref_44
         implementation: Method
         required: true
         extensions:
@@ -1023,7 +1032,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_35
+      schema: *ref_44
       language: !<!Languages> 
         default:
           name: ''
@@ -1037,7 +1046,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_31
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
