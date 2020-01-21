@@ -187,7 +187,7 @@ export class Flattener {
 
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
-          const body = values(operation.request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body);
+          const body = values(operation.request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body && p.implementation === ImplementationLocation.Method);
 
           if (body && isObjectSchema(body.schema)) {
             let flattenOperationPayload = body?.extensions?.[xmsFlatten];
@@ -197,9 +197,6 @@ export class Flattener {
             }
 
             const schema = <ObjectSchema>body.schema;
-            if (schema.language.default.name === 'RefColorConstant') {
-              debugger;
-            }
             if (!flattenOperationPayload) {
               const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
               if (threshold > 0) {
