@@ -34,6 +34,16 @@ export class ModelerFour {
 
   }
 
+  async init() {
+    // grab override-client-name 
+    const newTitle = await this.session.getValue('override-client-name', '');
+    if (newTitle) {
+      this.codeModel.info.title = newTitle;
+    }
+
+    return this;
+  }
+
   private processed = new Map<any, any>();
   private should<T, O>(original: T | undefined, processIt: (orig: T) => O): O | undefined {
     if (original) {
