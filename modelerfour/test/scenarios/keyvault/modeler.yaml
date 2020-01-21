@@ -8701,6 +8701,7 @@ operationGroups:
       default:
         name: CreateKey
         description: 'The create key operation can be used to create any key type in Azure Key Vault. If the named key already exists, Azure Key Vault creates a new version of the key. It requires the keys/create permission.'
+        summary: 'Creates a new key, stores it, then returns key parameters and attributes to the client.'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -8843,6 +8844,7 @@ operationGroups:
       default:
         name: ImportKey
         description: 'The import key operation may be used to import any key type into an Azure Key Vault. If the named key already exists, Azure Key Vault creates a new version of the key. This operation requires the keys/import permission.'
+        summary: 'Imports an externally created key, stores it, and returns key parameters and attributes to the client.'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -8957,6 +8959,7 @@ operationGroups:
         description: >-
           The delete key operation cannot be used to remove individual versions of a key. This operation removes the cryptographic material associated with the key, which means the key is not usable for Sign/Verify, Wrap/Unwrap or
           Encrypt/Decrypt operations. This operation requires the keys/delete permission.
+        summary: Deletes a key of any type from storage in Azure Key Vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9101,6 +9104,7 @@ operationGroups:
       default:
         name: UpdateKey
         description: 'In order to perform this operation, the key must already exist in the Key Vault. Note: The cryptographic material of a key itself cannot be changed. This operation requires the keys/update permission.'
+        summary: The update key operation changes specified attributes of a stored key and can be applied to any key type and key version stored in Azure Key Vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9223,6 +9227,7 @@ operationGroups:
       default:
         name: GetKey
         description: 'The get key operation is applicable to all key types. If the requested key is symmetric, then no key material is released in the response. This operation requires the keys/get permission.'
+        summary: Gets the public part of a stored key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9336,6 +9341,7 @@ operationGroups:
       default:
         name: GetKeyVersions
         description: 'The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list permission.'
+        summary: Retrieves a list of individual key versions with the same key name.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9437,6 +9443,7 @@ operationGroups:
         description: >-
           Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and tags
           are provided in the response. Individual versions of a key are not listed in the response. This operation requires the keys/list permission.
+        summary: List keys in the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9532,6 +9539,7 @@ operationGroups:
           Key Vault instance. The BACKUP operation may be used to export, in protected form, any key type from Azure Key Vault. Individual versions of a key cannot be backed up. BACKUP / RESTORE can be performed within geographical
           boundaries only; meaning that a BACKUP from one geographical area cannot be restored to another geographical area. For example, a backup from the US geographical area cannot be restored in an EU geographical area. This operation
           requires the key/backup permission.
+        summary: Requests that a backup of the specified key be downloaded to the client.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9653,6 +9661,7 @@ operationGroups:
           a key cannot be restored. The key is restored in its entirety with the same key name as it had when it was backed up. If the key name is not available in the target Key Vault, the RESTORE operation will be rejected. While the key
           name is retained during restore, the final key identifier will change if the key is restored to a different vault. Restore will restore all versions and preserve version identifiers. The RESTORE operation is subject to security
           constraints: The target Key Vault must be owned by the same Microsoft Azure Subscription as the source Key Vault The user must have RESTORE permission in the target Key Vault. This operation requires the keys/restore permission.
+        summary: Restores a backed up key to a vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9782,6 +9791,7 @@ operationGroups:
           The ENCRYPT operation encrypts an arbitrary sequence of bytes using an encryption key that is stored in Azure Key Vault. Note that the ENCRYPT operation only supports a single block of data, the size of which is dependent on the
           target key and the encryption algorithm to be used. The ENCRYPT operation is only strictly necessary for symmetric keys stored in Azure Key Vault since protection with an asymmetric key can be performed using public portion of the
           key. This operation is supported for asymmetric keys as a convenience for callers that have a key-reference but do not have access to the public key material. This operation requires the keys/encrypt permission.
+        summary: Encrypts an arbitrary sequence of bytes using an encryption key that is stored in a key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -9911,6 +9921,7 @@ operationGroups:
           The DECRYPT operation decrypts a well-formed block of ciphertext using the target encryption key and specified algorithm. This operation is the reverse of the ENCRYPT operation; only a single block of data may be decrypted, the
           size of this block is dependent on the target key and the algorithm to be used. The DECRYPT operation applies to asymmetric and symmetric keys stored in Azure Key Vault since it uses the private portion of the key. This operation
           requires the keys/decrypt permission.
+        summary: Decrypts a single block of encrypted data.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10037,6 +10048,7 @@ operationGroups:
       default:
         name: sign
         description: The SIGN operation is applicable to asymmetric and symmetric keys stored in Azure Key Vault since this operation uses the private portion of the key. This operation requires the keys/sign permission.
+        summary: Creates a signature from a digest using the specified key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10163,6 +10175,7 @@ operationGroups:
         description: >-
           The VERIFY operation is applicable to symmetric keys stored in Azure Key Vault. VERIFY is not strictly necessary for asymmetric keys stored in Azure Key Vault since signature verification can be performed using the public portion
           of the key but this operation is supported as a convenience for callers that only have a key-reference and not the public portion of the key. This operation requires the keys/verify permission.
+        summary: Verifies a signature using a specified key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10292,6 +10305,7 @@ operationGroups:
           The WRAP operation supports encryption of a symmetric key using a key encryption key that has previously been stored in an Azure Key Vault. The WRAP operation is only strictly necessary for symmetric keys stored in Azure Key Vault
           since protection with an asymmetric key can be performed using the public portion of the key. This operation is supported for asymmetric keys as a convenience for callers that have a key-reference but do not have access to the
           public key material. This operation requires the keys/wrapKey permission.
+        summary: Wraps a symmetric key using a specified key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10420,6 +10434,7 @@ operationGroups:
         description: >-
           The UNWRAP operation supports decryption of a symmetric key using the target key encryption key. This operation is the reverse of the WRAP operation. The UNWRAP operation applies to asymmetric and symmetric keys stored in Azure
           Key Vault since it uses the private portion of the key. This operation requires the keys/unwrapKey permission.
+        summary: Unwraps a symmetric key using the specified key that was initially used for wrapping that key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10524,6 +10539,7 @@ operationGroups:
         description: >-
           Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable for vaults
           enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
+        summary: Lists the deleted keys in the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10638,6 +10654,7 @@ operationGroups:
         description: >-
           The Get Deleted Key operation is applicable for soft-delete enabled vaults. While the operation can be invoked on any vault, it will return an error if invoked on a non soft-delete enabled vault. This operation requires the
           keys/get permission. 
+        summary: Gets the public part of a deleted key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10724,6 +10741,7 @@ operationGroups:
         description: >-
           The Purge Deleted Key operation is applicable for soft-delete enabled vaults. While the operation can be invoked on any vault, it will return an error if invoked on a non soft-delete enabled vault. This operation requires the
           keys/purge permission.
+        summary: Permanently deletes the specified key.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10835,6 +10853,7 @@ operationGroups:
         description: >-
           The Recover Deleted Key operation is applicable for deleted keys in soft-delete enabled vaults. It recovers the deleted key back to its latest version under /keys. An attempt to recover an non-deleted key will return an error.
           Consider this the inverse of the delete operation on soft-delete enabled vaults. This operation requires the keys/recover permission.
+        summary: Recovers the deleted key to its latest version.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -10951,6 +10970,7 @@ operationGroups:
       default:
         name: SetSecret
         description: ' The SET operation adds a secret to the Azure Key Vault. If the named secret already exists, Azure Key Vault creates a new version of that secret. This operation requires the secrets/set permission.'
+        summary: Sets a secret in a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11048,6 +11068,7 @@ operationGroups:
       default:
         name: DeleteSecret
         description: The DELETE operation applies to any secret stored in Azure Key Vault. DELETE cannot be applied to an individual version of a secret. This operation requires the secrets/delete permission.
+        summary: Deletes a secret from a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11185,6 +11206,7 @@ operationGroups:
         description: >-
           The UPDATE operation changes specified attributes of an existing stored secret. Attributes that are not specified in the request are left unchanged. The value of a secret itself cannot be changed. This operation requires the
           secrets/set permission.
+        summary: Updates the attributes associated with a specified secret in a given key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11293,6 +11315,7 @@ operationGroups:
       default:
         name: GetSecret
         description: The GET operation is applicable to any secret stored in Azure Key Vault. This operation requires the secrets/get permission.
+        summary: Get a specified secret from a given key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11393,6 +11416,7 @@ operationGroups:
         description: >-
           The Get Secrets operation is applicable to the entire vault. However, only the base secret identifier and its attributes are provided in the response. Individual secret versions are not listed in the response. This operation
           requires the secrets/list permission.
+        summary: List secrets in a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11503,6 +11527,7 @@ operationGroups:
       default:
         name: GetSecretVersions
         description: The full secret identifier and attributes are provided in the response. No values are returned for the secrets. This operations requires the secrets/list permission.
+        summary: List all versions of the specified secret.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11606,6 +11631,7 @@ operationGroups:
       default:
         name: GetDeletedSecrets
         description: The Get Deleted Secrets operation returns the secrets that have been deleted for a vault enabled for soft-delete. This operation requires the secrets/list permission.
+        summary: Lists deleted secrets for the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11703,6 +11729,7 @@ operationGroups:
       default:
         name: GetDeletedSecret
         description: The Get Deleted Secret operation returns the specified deleted secret along with its attributes. This operation requires the secrets/get permission.
+        summary: Gets the specified deleted secret.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11787,6 +11814,7 @@ operationGroups:
       default:
         name: PurgeDeletedSecret
         description: 'The purge deleted secret operation removes the secret permanently, without the possibility of recovery. This operation can only be enabled on a soft-delete enabled vault. This operation requires the secrets/purge permission.'
+        summary: Permanently deletes the specified secret.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11881,6 +11909,7 @@ operationGroups:
       default:
         name: RecoverDeletedSecret
         description: Recovers the deleted secret in the specified vault. This operation can only be performed on a soft-delete enabled vault. This operation requires the secrets/recover permission.
+        summary: Recovers the deleted secret to the latest version.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11971,6 +12000,7 @@ operationGroups:
       default:
         name: BackupSecret
         description: Requests that a backup of the specified secret be downloaded to the client. All versions of the secret will be downloaded. This operation requires the secrets/backup permission.
+        summary: Backs up the specified secret.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12077,6 +12107,7 @@ operationGroups:
       default:
         name: RestoreSecret
         description: 'Restores a backed up secret, and all its versions, to a vault. This operation requires the secrets/restore permission.'
+        summary: Restores a backed up secret to a vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12194,6 +12225,7 @@ operationGroups:
       default:
         name: GetCertificates
         description: The GetCertificates operation returns the set of certificates resources in the specified key vault. This operation requires the certificates/list permission.
+        summary: List certificates in a specified key vault
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12325,6 +12357,7 @@ operationGroups:
       default:
         name: DeleteCertificate
         description: Deletes all versions of a certificate object along with its associated policy. Delete certificate cannot be used to remove individual versions of a certificate object. This operation requires the certificates/delete permission.
+        summary: Deletes a certificate from a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12434,6 +12467,7 @@ operationGroups:
       default:
         name: SetCertificateContacts
         description: Sets the certificate contacts for the specified key vault. This operation requires the certificates/managecontacts permission.
+        summary: Sets the certificate contacts for the specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12517,6 +12551,7 @@ operationGroups:
       default:
         name: GetCertificateContacts
         description: The GetCertificateContacts operation returns the set of certificate contact resources in the specified key vault. This operation requires the certificates/managecontacts permission.
+        summary: Lists the certificate contacts for a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12600,6 +12635,7 @@ operationGroups:
       default:
         name: DeleteCertificateContacts
         description: Deletes the certificate contacts for a specified key vault certificate. This operation requires the certificates/managecontacts permission.
+        summary: Deletes the certificate contacts for a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12696,6 +12732,7 @@ operationGroups:
       default:
         name: GetCertificateIssuers
         description: The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault. This operation requires the certificates/manageissuers/getissuers permission.
+        summary: List certificate issuers for a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12829,6 +12866,7 @@ operationGroups:
       default:
         name: SetCertificateIssuer
         description: The SetCertificateIssuer operation adds or updates the specified certificate issuer. This operation requires the certificates/setissuers permission.
+        summary: Sets the specified certificate issuer.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12956,6 +12994,7 @@ operationGroups:
       default:
         name: UpdateCertificateIssuer
         description: The UpdateCertificateIssuer operation performs an update on the specified certificate issuer entity. This operation requires the certificates/setissuers permission.
+        summary: Updates the specified certificate issuer.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13059,6 +13098,7 @@ operationGroups:
       default:
         name: GetCertificateIssuer
         description: The GetCertificateIssuer operation returns the specified certificate issuer resources in the specified key vault. This operation requires the certificates/manageissuers/getissuers permission.
+        summary: Lists the specified certificate issuer.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13162,6 +13202,7 @@ operationGroups:
       default:
         name: DeleteCertificateIssuer
         description: The DeleteCertificateIssuer operation permanently removes the specified certificate issuer from the vault. This operation requires the certificates/manageissuers/deleteissuers permission.
+        summary: Deletes the specified certificate issuer.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13295,6 +13336,7 @@ operationGroups:
       default:
         name: CreateCertificate
         description: 'If this is the first version, the certificate resource is created. This operation requires the certificates/create permission.'
+        summary: Creates a new certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13456,6 +13498,7 @@ operationGroups:
         description: >-
           Imports an existing valid certificate, containing a private key, into Azure Key Vault. The certificate to be imported can be in either PFX or PEM format. If the certificate is in PEM format the PEM file must contain the key as
           well as x509 certificates. This operation requires the certificates/import permission.
+        summary: Imports a certificate into a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13575,6 +13618,7 @@ operationGroups:
       default:
         name: GetCertificateVersions
         description: The GetCertificateVersions operation returns the versions of a certificate in the specified key vault. This operation requires the certificates/list permission.
+        summary: List the versions of a certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13689,6 +13733,7 @@ operationGroups:
       default:
         name: GetCertificatePolicy
         description: The GetCertificatePolicy operation returns the specified certificate policy resources in the specified key vault. This operation requires the certificates/get permission.
+        summary: Lists the policy for a certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13843,6 +13888,7 @@ operationGroups:
       default:
         name: UpdateCertificatePolicy
         description: Set specified members in the certificate policy. Leave others as null. This operation requires the certificates/update permission.
+        summary: Updates the policy for a certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13984,6 +14030,7 @@ operationGroups:
       default:
         name: UpdateCertificate
         description: The UpdateCertificate operation applies the specified update on the given certificate; the only elements updated are the certificate's attributes. This operation requires the certificates/update permission.
+        summary: Updates the specified attributes associated with the given certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14094,6 +14141,7 @@ operationGroups:
       default:
         name: GetCertificate
         description: Gets information about a specific certificate. This operation requires the certificates/get permission.
+        summary: Gets information about a certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14212,6 +14260,7 @@ operationGroups:
       default:
         name: UpdateCertificateOperation
         description: Updates a certificate creation operation that is already in progress. This operation requires the certificates/update permission.
+        summary: Updates a certificate operation.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14309,6 +14358,7 @@ operationGroups:
       default:
         name: GetCertificateOperation
         description: Gets the creation operation associated with a specified certificate. This operation requires the certificates/get permission.
+        summary: Gets the creation operation of a certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14406,6 +14456,7 @@ operationGroups:
       default:
         name: DeleteCertificateOperation
         description: Deletes the creation operation for a specified certificate that is in the process of being created. The certificate is no longer created. This operation requires the certificates/update permission.
+        summary: Deletes the creation operation for a specific certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14555,6 +14606,7 @@ operationGroups:
       default:
         name: MergeCertificate
         description: The MergeCertificate operation performs the merging of a certificate or certificate chain with a key pair currently available in the service. This operation requires the certificates/create permission.
+        summary: Merges a certificate or a certificate chain with a key pair existing on the server.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14645,6 +14697,7 @@ operationGroups:
       default:
         name: BackupCertificate
         description: Requests that a backup of the specified certificate be downloaded to the client. All versions of the certificate will be downloaded. This operation requires the certificates/backup permission.
+        summary: Backs up the specified certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14786,6 +14839,7 @@ operationGroups:
       default:
         name: RestoreCertificate
         description: 'Restores a backed up certificate, and all its versions, to a vault. This operation requires the certificates/restore permission.'
+        summary: Restores a backed up certificate to a vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14903,6 +14957,7 @@ operationGroups:
         description: >-
           The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging. This operation includes deletion-specific information. This operation requires
           the certificates/get/list permission. This operation can only be enabled on soft-delete enabled vaults.
+        summary: Lists the deleted certificates in the specified vault currently available for recovery.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15037,6 +15092,7 @@ operationGroups:
         description: >-
           The GetDeletedCertificate operation retrieves the deleted certificate information plus its attributes, such as retention interval, scheduled permanent deletion and the current deletion recovery level. This operation requires the
           certificates/get permission.
+        summary: Retrieves information about the specified deleted certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15123,6 +15179,7 @@ operationGroups:
         description: >-
           The PurgeDeletedCertificate operation performs an irreversible deletion of the specified certificate, without possibility for recovery. The operation is not available if the recovery level does not specify 'Purgeable'. This
           operation requires the certificate/purge permission.
+        summary: Permanently deletes the specified deleted certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15253,6 +15310,7 @@ operationGroups:
         description: >-
           The RecoverDeletedCertificate operation performs the reversal of the Delete operation. The operation is applicable in vaults enabled for soft-delete, and must be issued during the retention interval (available in the deleted
           certificate's attributes). This operation requires the certificates/recover permission.
+        summary: Recovers the deleted certificate back to its current version under /certificates.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15483,6 +15541,7 @@ operationGroups:
       default:
         name: GetDeletedStorageAccounts
         description: The Get Deleted Storage Accounts operation returns the storage accounts that have been deleted for a vault enabled for soft-delete. This operation requires the storage/list permission.
+        summary: Lists deleted storage accounts for the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15589,6 +15648,7 @@ operationGroups:
       default:
         name: GetDeletedStorageAccount
         description: The Get Deleted Storage Account operation returns the specified deleted storage account along with its attributes. This operation requires the storage/get permission.
+        summary: Gets the specified deleted storage account.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15677,6 +15737,7 @@ operationGroups:
         description: >-
           The purge deleted storage account operation removes the secret permanently, without the possibility of recovery. This operation can only be performed on a soft-delete enabled vault. This operation requires the storage/purge
           permission.
+        summary: Permanently deletes the specified storage account.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15780,6 +15841,7 @@ operationGroups:
       default:
         name: RecoverDeletedStorageAccount
         description: Recovers the deleted storage account in the specified vault. This operation can only be performed on a soft-delete enabled vault. This operation requires the storage/recover permission.
+        summary: Recovers the deleted storage account.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15872,6 +15934,7 @@ operationGroups:
       default:
         name: BackupStorageAccount
         description: Requests that a backup of the specified storage account be downloaded to the client. This operation requires the storage/backup permission.
+        summary: Backs up the specified storage account.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -15985,6 +16048,7 @@ operationGroups:
       default:
         name: RestoreStorageAccount
         description: Restores a backed up storage account to a vault. This operation requires the storage/restore permission.
+        summary: Restores a backed up storage account to a vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -16819,6 +16883,7 @@ operationGroups:
       default:
         name: GetDeletedSasDefinitions
         description: The Get Deleted Sas Definitions operation returns the SAS definitions that have been deleted for a vault enabled for soft-delete. This operation requires the storage/listsas permission.
+        summary: Lists deleted SAS definitions for the specified vault and storage account.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -16935,6 +17000,7 @@ operationGroups:
       default:
         name: GetDeletedSasDefinition
         description: The Get Deleted SAS Definition operation returns the specified deleted SAS definition along with its attributes. This operation requires the storage/getsas permission.
+        summary: Gets the specified deleted sas definition.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -17048,6 +17114,7 @@ operationGroups:
       default:
         name: RecoverDeletedSasDefinition
         description: Recovers the deleted SAS definition for the specified storage account. This operation can only be performed on a soft-delete enabled vault. This operation requires the storage/recover permission.
+        summary: Recovers the deleted SAS definition.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
