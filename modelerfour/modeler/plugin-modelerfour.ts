@@ -18,7 +18,7 @@ export async function processRequest(host: Host) {
     const options = <any>await session.getValue('modelerfour', {});
 
     // process
-    const modeler = new ModelerFour(session);
+    const modeler = await new ModelerFour(session).init();
 
     // go!
     const codeModel = modeler.process();

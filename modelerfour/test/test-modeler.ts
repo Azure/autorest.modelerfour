@@ -174,7 +174,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       const session = await createTestSession<Model>(cfg, `${__dirname}/../../test/scenarios/${each}`, ['openapi-document.json'], []);
 
       // process OAI model
-      const modeler = new ModelerFour(session);
+      const modeler = await new ModelerFour(session).init();
 
       // go!
       const codeModel = await modeler.process();
