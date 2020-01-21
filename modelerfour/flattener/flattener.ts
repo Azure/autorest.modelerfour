@@ -202,7 +202,7 @@ export class Flattener {
               if (threshold > 0) {
                 // get the count of the (non-readonly) properties in the schema
 
-                flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true)) <= threshold;
+                flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true && property.schema.type !== SchemaType.Constant)) <= threshold;
               }
             }
 

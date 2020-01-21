@@ -437,6 +437,11 @@ export class ModelerFour {
       serialization: this.interpret.getSerialization(schema),
       minProperties: schema.minProperties ? Number(schema.minProperties) : undefined,
       maxProperties: schema.maxProperties ? Number(schema.maxProperties) : undefined,
+      language: {
+        default: {
+          summary: schema.summary || schema.title
+        }
+      }
     }));
 
     // cache this now before we accidentally recurse on this type.
@@ -838,7 +843,12 @@ export class ModelerFour {
       const opGroup = this.codeModel.getOperationGroup(group);
       const op = opGroup.addOperation(new Operation(memberName, this.interpret.getDescription('MISSING·OPERATION-DESCRIPTION', operation), {
         extensions: this.interpret.getExtensionProperties(operation),
-        apiVersions: this.interpret.getApiVersions(pathItem)
+        apiVersions: this.interpret.getApiVersions(pathItem),
+        language: {
+          default: {
+            summary: operation.summary
+          }
+        }
       }));
 
       // create $host parameters from servers information.
