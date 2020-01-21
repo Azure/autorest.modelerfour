@@ -1,4 +1,4 @@
-import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties } from '@azure-tools/codemodel';
+import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 
@@ -39,6 +39,7 @@ export class Flattener {
     } else {
       yield new VirtualParameter(property.language.default.name, property.language.default.description, property.schema, {
         ...property,
+        implementation: ImplementationLocation.Method,
         originalParameter: parameter,
         targetProperty: property,
         pathToProperty: path
@@ -186,7 +187,7 @@ export class Flattener {
 
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
-          const body = values(operation.request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body);
+          const body = values(operation.request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body && p.implementation === ImplementationLocation.Method);
 
           if (body && isObjectSchema(body.schema)) {
             let flattenOperationPayload = body?.extensions?.[xmsFlatten];
@@ -200,8 +201,8 @@ export class Flattener {
               const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
               if (threshold > 0) {
                 // get the count of the (non-readonly) properties in the schema
-                const properties = values(getAllProperties(schema)).where(property => property.readOnly !== true).toArray();
-                flattenOperationPayload = properties.length <= threshold;
+
+                flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true)) <= threshold;
               }
             }
 

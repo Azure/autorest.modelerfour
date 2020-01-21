@@ -192,13 +192,11 @@ export class PreNamer {
 
       // handle operation parameters
       for (const parameter of collisions) {
-        console.error(`Collision : ${parameter.language.default.name}`);
         let options = [parameter.language.default.name];
         if (isVirtualParameter(parameter)) {
           options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]);
         }
         parameter.language.default.name = selectName(options, usedNames);
-        console.error(`chose : ${parameter.language.default.name}`);
       }
     }
 
