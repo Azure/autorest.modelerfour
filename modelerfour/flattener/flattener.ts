@@ -1,4 +1,4 @@
-import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties } from '@azure-tools/codemodel';
+import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 
@@ -39,6 +39,7 @@ export class Flattener {
     } else {
       yield new VirtualParameter(property.language.default.name, property.language.default.description, property.schema, {
         ...property,
+        implementation: ImplementationLocation.Method,
         originalParameter: parameter,
         targetProperty: property,
         pathToProperty: path
@@ -196,12 +197,15 @@ export class Flattener {
             }
 
             const schema = <ObjectSchema>body.schema;
+            if (schema.language.default.name === 'RefColorConstant') {
+              debugger;
+            }
             if (!flattenOperationPayload) {
               const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
               if (threshold > 0) {
                 // get the count of the (non-readonly) properties in the schema
-                const properties = values(getAllProperties(schema)).where(property => property.readOnly !== true).toArray();
-                flattenOperationPayload = properties.length <= threshold;
+
+                flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true)) <= threshold;
               }
             }
 
