@@ -437,6 +437,11 @@ export class ModelerFour {
       serialization: this.interpret.getSerialization(schema),
       minProperties: schema.minProperties ? Number(schema.minProperties) : undefined,
       maxProperties: schema.maxProperties ? Number(schema.maxProperties) : undefined,
+      language: {
+        default: {
+          summary: schema.summary || schema.title
+        }
+      }
     }));
 
     // cache this now before we accidentally recurse on this type.
