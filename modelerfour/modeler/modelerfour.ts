@@ -334,7 +334,7 @@ export class ModelerFour {
       case JsonType.Integer:
         return this.processNumberSchema('number', schema);
     }
-    throw Error('Uh oh.');
+    throw Error(`Enum types of '${schema.type}' and format '${schema.format}' are not supported. Correct your input (${schema['x-ms-metadata']?.name}).`);
   }
 
   processChoiceSchema(name: string, schema: OpenAPI.Schema): ChoiceSchema | SealedChoiceSchema | ConstantSchema {
