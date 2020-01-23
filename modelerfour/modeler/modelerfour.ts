@@ -113,7 +113,7 @@ export class ModelerFour {
     }));
   }
   processNumberSchema(name: string, schema: OpenAPI.Schema): NumberSchema {
-    return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-NUMBER', schema), SchemaType.Number,
+    return this.codeModel.schemas.add(new NumberSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), SchemaType.Number,
       schema.format === NumberFormat.Decimal ? 128 : schema.format == NumberFormat.Double ? 64 : 32, {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
@@ -131,7 +131,7 @@ export class ModelerFour {
     }));
   }
   processStringSchema(name: string, schema: OpenAPI.Schema): StringSchema {
-    return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-STRING', schema), {
+    return this.codeModel.schemas.add(new StringSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -146,7 +146,7 @@ export class ModelerFour {
     }));
   }
   processCredentialSchema(name: string, schema: OpenAPI.Schema): CredentialSchema {
-    return this.codeModel.schemas.add(new CredentialSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-CREDENTIAL', schema), {
+    return this.codeModel.schemas.add(new CredentialSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -161,7 +161,7 @@ export class ModelerFour {
     }));
   }
   processUriSchema(name: string, schema: OpenAPI.Schema): UriSchema {
-    return this.codeModel.schemas.add(new UriSchema(this.interpret.getName(name, schema), this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-URI', schema), {
+    return this.codeModel.schemas.add(new UriSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
       summary: schema.title,
       defaultValue: schema.default,
@@ -343,7 +343,9 @@ export class ModelerFour {
     const sealed = xmse && !(xmse.modelAsString);
 
     if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
-      return this.codeModel.schemas.add(new ConstantSchema(name, this.interpret.getDescription('MISSING·SCHEMA-DESCRIPTION-CHOICE', schema), {
+      const constVal = length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0];
+
+      return this.codeModel.schemas.add(new ConstantSchema(name, this.interpret.getDescription(`The constant value ${constVal}`, schema), {
         extensions: this.interpret.getExtensionProperties(schema),
         summary: schema.title,
         defaultValue: schema.default,
@@ -353,7 +355,7 @@ export class ModelerFour {
         externalDocs: this.interpret.getExternalDocs(schema),
         serialization: this.interpret.getSerialization(schema),
         valueType: this.getPrimitiveSchemaForEnum(schema),
-        value: new ConstantValue(this.interpret.getConstantValue(schema, length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0]))
+        value: new ConstantValue(this.interpret.getConstantValue(schema, constVal))
       }));
     }
 
@@ -698,6 +700,11 @@ export class ModelerFour {
             case undefined:
               return this.processIntegerSchema(name, schema);
 
+            case NumberFormat.Double:
+            case NumberFormat.Float:
+            case NumberFormat.Decimal:
+              return this.processNumberSchema(name, schema)
+
             default:
               this.session.error(`Integer schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
           }
@@ -711,6 +718,11 @@ export class ModelerFour {
             case NumberFormat.Float:
             case NumberFormat.Decimal:
               return this.processNumberSchema(name, schema);
+
+            case IntegerFormat.Int64:
+            case IntegerFormat.Int32:
+              return this.processIntegerSchema(name, schema);
+
 
             default:
               this.session.error(`Number schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
