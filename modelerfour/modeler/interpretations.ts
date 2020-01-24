@@ -153,8 +153,16 @@ export class Interpretations {
       const xmse = <XMSEnum>schema['x-ms-enum'];
 
       return xmse && xmse.values ?
-        xmse.values.map((each) => new ChoiceValue(`${getValidEnumValueName((each.name !== undefined) ? each.name : each.value)}`, each.description || `The value '${this.getConstantValue(schema, each.value)}'`, this.getConstantValue(schema, each.value))) :
-        schema.enum.map(each => new ChoiceValue(getValidEnumValueName(each), `The value '${this.getConstantValue(schema, each.value)}'`, this.getConstantValue(schema, each)));
+        xmse.values.map((each) => {
+          const name = getValidEnumValueName((each.name !== undefined) ? each.name : each.value);
+          const value = this.getConstantValue(schema, each.value);
+          return new ChoiceValue(`${name}`, each.description || `The value '${value}'`, value);
+        }) :
+        schema.enum.map(each => {
+          const name = getValidEnumValueName(each);
+          const value = this.getConstantValue(schema, each);
+          return new ChoiceValue(name, `The value '${value}'`, value);
+        });
     }
     return [];
   }
