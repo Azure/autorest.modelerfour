@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master 
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -16,14 +16,29 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install -g npm 
+    npm install -g npm
     npm cache clear --force
 
-    npx @microsoft/rush update 
-    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
-    npx @microsoft/rush rebuild 
-    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
-    npx @microsoft/rush test 
-    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
-    
+    npx @microsoft/rush update
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
+    npx @microsoft/rush rebuild
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
+    npx @microsoft/rush test
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
+
   displayName: 'Rush install, build and test'
+
+- script : |
+    npm install -g @autorest/compare
+  displayName: Install autorest-compare
+
+- script : |
+    export AUTOREST_TYPESCRIPT=@autorest/typescript@0.1.0-dev.20200116.5
+    autorest-compare --typescript \
+                     --spec-path:body-string.json \
+                     --spec-path:body-complex.json \
+                     --spec-root-path:./modelerfour/node_modules/@microsoft.azure/autorest.testserver/__files/ \
+                     --output-path:./generated/typescript/ \
+                     --compare-old --package-name:test-package --version:3.0.6192 --use:@autorest/modelerfour@4.2.108 --use:$AUTOREST_TYPESCRIPT \
+                     --compare-new --package-name:test-package --version:3.0.6192 --use:./modelerfour --use:$AUTOREST_TYPESCRIPT
+  displayName: Regression Test - @autorest/typescript
