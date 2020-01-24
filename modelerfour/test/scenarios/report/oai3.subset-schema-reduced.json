@@ -17,7 +17,7 @@
      "1.0.0"
     ],
     "filename": [
-     "mem:///99?oai3.shaken.json"
+     "mem:///101?oai3.shaken.json"
     ],
     "path": "/report",
     "originalLocations": [
@@ -31,7 +31,7 @@
      "1.0.0"
     ],
     "filename": [
-     "mem:///99?oai3.shaken.json"
+     "mem:///101?oai3.shaken.json"
     ],
     "path": "/report",
     "originalLocations": [
@@ -63,6 +63,59 @@
      }
     }
    }
+  },
+  "path:1": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "1.0.0"
+    ],
+    "filename": [
+     "mem:///101?oai3.shaken.json"
+    ],
+    "path": "/report/optional",
+    "originalLocations": [
+     "http://localhost:3000/__files/report.json#/paths/~1report~1optional"
+    ]
+   }
+  },
+  "path:1.get": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "1.0.0"
+    ],
+    "filename": [
+     "mem:///101?oai3.shaken.json"
+    ],
+    "path": "/report/optional",
+    "originalLocations": [
+     "http://localhost:3000/__files/report.json#/paths/~1report~1optional"
+    ]
+   },
+   "get": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "operationId": "getOptionalReport",
+    "description": "Get optional test coverage report",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:0",
+      "description": "If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports."
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "The optional test coverage mapping",
+      "$ref": "#/components/responses/responses:0"
+     },
+     "default": {
+      "description": "Unexpected error",
+      "$ref": "#/components/responses/responses:1"
+     }
+    }
+   }
   }
  },
  "components": {
@@ -73,11 +126,12 @@
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "paths·report·get·parameters·0",
      "originalLocations": [
-      "http://localhost:3000/__files/report.json#/components/parameters/paths·report·get·parameters·0"
+      "http://localhost:3000/__files/report.json#/components/parameters/paths·report·get·parameters·0",
+      "http://localhost:3000/__files/report.json#/components/parameters/paths·report-optional·get·parameters·0"
      ]
     },
     "name": "qualifier",
@@ -97,11 +151,12 @@
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "paths·report·get·parameters·0·schema",
      "originalLocations": [
-      "http://localhost:3000/__files/report.json#/components/schemas/paths·report·get·parameters·0·schema"
+      "http://localhost:3000/__files/report.json#/components/schemas/paths·report·get·parameters·0·schema",
+      "http://localhost:3000/__files/report.json#/components/schemas/paths·report-optional·get·parameters·0·schema"
      ]
     },
     "type": "string"
@@ -112,11 +167,12 @@
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "paths·report·get·responses·200·content·application-json·schema",
      "originalLocations": [
-      "http://localhost:3000/__files/report.json#/components/schemas/paths·report·get·responses·200·content·application-json·schema"
+      "http://localhost:3000/__files/report.json#/components/schemas/paths·report·get·responses·200·content·application-json·schema",
+      "http://localhost:3000/__files/report.json#/components/schemas/paths·report-optional·get·responses·200·content·application-json·schema"
      ]
     },
     "type": "object",
@@ -130,22 +186,23 @@
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "paths·report·get·responses·200·content·application-json·schema·additionalproperties",
      "originalLocations": [
-      "http://localhost:3000/__files/report.json#/components/schemas/paths·report·get·responses·200·content·application-json·schema·additionalproperties"
+      "http://localhost:3000/__files/report.json#/components/schemas/paths·report·get·responses·200·content·application-json·schema·additionalproperties",
+      "http://localhost:3000/__files/report.json#/components/schemas/paths·report-optional·get·responses·200·content·application-json·schema·additionalproperties"
      ]
     },
     "type": "integer"
    },
-   "schemas:3": {
+   "schemas:6": {
     "x-ms-metadata": {
      "apiVersions": [
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "Error",
      "originalLocations": [
@@ -159,17 +216,17 @@
       "format": "int32"
      },
      "message": {
-      "$ref": "#/components/schemas/schemas:4"
+      "$ref": "#/components/schemas/schemas:7"
      }
     }
    },
-   "schemas:4": {
+   "schemas:7": {
     "x-ms-metadata": {
      "apiVersions": [
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "Error-message",
      "originalLocations": [
@@ -186,11 +243,12 @@
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "paths·report·get·responses·200",
      "originalLocations": [
-      "http://localhost:3000/__files/report.json#/components/responses/paths·report·get·responses·200"
+      "http://localhost:3000/__files/report.json#/components/responses/paths·report·get·responses·200",
+      "http://localhost:3000/__files/report.json#/components/responses/paths·report-optional·get·responses·200"
      ]
     },
     "description": "The test coverage mapping",
@@ -208,18 +266,19 @@
       "1.0.0"
      ],
      "filename": [
-      "mem:///99?oai3.shaken.json"
+      "mem:///101?oai3.shaken.json"
      ],
      "name": "paths·report·get·responses·default",
      "originalLocations": [
-      "http://localhost:3000/__files/report.json#/components/responses/paths·report·get·responses·default"
+      "http://localhost:3000/__files/report.json#/components/responses/paths·report·get·responses·default",
+      "http://localhost:3000/__files/report.json#/components/responses/paths·report-optional·get·responses·default"
      ]
     },
     "description": "Unexpected error",
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "#/components/schemas/schemas:3"
+       "$ref": "#/components/schemas/schemas:6"
       }
      }
     }

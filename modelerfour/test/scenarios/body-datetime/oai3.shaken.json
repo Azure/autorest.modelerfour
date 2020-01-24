@@ -98,7 +98,7 @@
      }
     ],
     "operationId": "datetime_putUtcMaxDateTime",
-    "description": "Put max datetime value 9999-12-31T23:59:59.9999999Z",
+    "description": "Put max datetime value 9999-12-31T23:59:59.999Z",
     "requestBody": {
      "$ref": "#/components/requestBodies/paths·datetime-max-utc·put·requestbody"
     },
@@ -106,10 +106,36 @@
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-utc·put·responses·200",
-      "description": "The max datetime value 9999-12-31T23:59:59.9999999Z"
+      "description": "The max datetime value 9999-12-31T23:59:59.999Z"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-utc·put·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/datetime/max/utc7ms": {
+   "put": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "operationId": "datetime_putUtcMaxDateTime7Digits",
+    "description": "Put max datetime value 9999-12-31T23:59:59.9999999Z",
+    "summary": "This is against the recommendation that asks for 3 digits, but allow to test what happens in that scenario",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·datetime-max-utc7ms·put·requestbody"
+    },
+    "x-ms-requestBody-index": 0,
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·datetime-max-utc7ms·put·responses·200",
+      "description": "The max datetime value 9999-12-31T23:59:59.9999999Z"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·datetime-max-utc7ms·put·responses·default",
       "description": "Unexpected error"
      }
     }
@@ -123,11 +149,11 @@
      }
     ],
     "operationId": "datetime_getUtcLowercaseMaxDateTime",
-    "description": "Get max datetime value 9999-12-31t23:59:59.9999999z",
+    "description": "Get max datetime value 9999-12-31t23:59:59.999z",
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-utc-lowercase·get·responses·200",
-      "description": "The max datetime value 9999-12-31t23:59:59.9999999z"
+      "description": "The max datetime value 9999-12-31t23:59:59.999z"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-utc-lowercase·get·responses·default",
@@ -144,14 +170,36 @@
      }
     ],
     "operationId": "datetime_getUtcUppercaseMaxDateTime",
-    "description": "Get max datetime value 9999-12-31T23:59:59.9999999Z",
+    "description": "Get max datetime value 9999-12-31T23:59:59.999Z",
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-utc-uppercase·get·responses·200",
-      "description": "The max datetime value 9999-12-31T23:59:59.9999999Z"
+      "description": "The max datetime value 9999-12-31T23:59:59.999Z"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-utc-uppercase·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/datetime/max/utc7ms/uppercase": {
+   "get": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "operationId": "datetime_getUtcUppercaseMaxDateTime7Digits",
+    "description": "Get max datetime value 9999-12-31T23:59:59.9999999Z",
+    "summary": "This is against the recommendation that asks for 3 digits, but allow to test what happens in that scenario",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·datetime-max-utc7ms-uppercase·get·responses·200",
+      "description": "The max datetime value 9999-12-31T23:59:59.9999999Z"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·datetime-max-utc7ms-uppercase·get·responses·default",
       "description": "Unexpected error"
      }
     }
@@ -165,7 +213,7 @@
      }
     ],
     "operationId": "datetime_putLocalPositiveOffsetMaxDateTime",
-    "description": "Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00",
+    "description": "Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00",
     "requestBody": {
      "$ref": "#/components/requestBodies/paths·datetime-max-localpositiveoffset·put·requestbody"
     },
@@ -173,7 +221,7 @@
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-localpositiveoffset·put·responses·200",
-      "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00"
+      "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-localpositiveoffset·put·responses·default",
@@ -190,11 +238,11 @@
      }
     ],
     "operationId": "datetime_getLocalPositiveOffsetLowercaseMaxDateTime",
-    "description": "Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999+14:00",
+    "description": "Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00",
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-localpositiveoffset-lowercase·get·responses·200",
-      "description": "The max datetime value 9999-12-31t23:59:59.9999999+14:00"
+      "description": "The max datetime value 9999-12-31t23:59:59.999+14:00"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-localpositiveoffset-lowercase·get·responses·default",
@@ -211,11 +259,11 @@
      }
     ],
     "operationId": "datetime_getLocalPositiveOffsetUppercaseMaxDateTime",
-    "description": "Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00",
+    "description": "Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00",
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-localpositiveoffset-uppercase·get·responses·200",
-      "description": "The max datetime value 9999-12-31T23:59:59.9999999+14:00"
+      "description": "The max datetime value 9999-12-31T23:59:59.999+14:00"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-localpositiveoffset-uppercase·get·responses·default",
@@ -232,7 +280,7 @@
      }
     ],
     "operationId": "datetime_putLocalNegativeOffsetMaxDateTime",
-    "description": "Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00",
+    "description": "Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00",
     "requestBody": {
      "$ref": "#/components/requestBodies/paths·datetime-max-localnegativeoffset·put·requestbody"
     },
@@ -240,7 +288,7 @@
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-localnegativeoffset·put·responses·200",
-      "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00"
+      "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-localnegativeoffset·put·responses·default",
@@ -257,11 +305,11 @@
      }
     ],
     "operationId": "datetime_getLocalNegativeOffsetUppercaseMaxDateTime",
-    "description": "Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999-14:00",
+    "description": "Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00",
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-localnegativeoffset-uppercase·get·responses·200",
-      "description": "The max datetime value 9999-12-31T23:59:59.9999999-14:00"
+      "description": "The max datetime value 9999-12-31T23:59:59.999-14:00"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-localnegativeoffset-uppercase·get·responses·default",
@@ -278,11 +326,11 @@
      }
     ],
     "operationId": "datetime_getLocalNegativeOffsetLowercaseMaxDateTime",
-    "description": "Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999-14:00",
+    "description": "Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00",
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·datetime-max-localnegativeoffset-lowercase·get·responses·200",
-      "description": "The max datetime value 9999-12-31t23:59:59.9999999-14:00"
+      "description": "The max datetime value 9999-12-31t23:59:59.999-14:00"
      },
      "default": {
       "$ref": "#/components/responses/paths·datetime-max-localnegativeoffset-lowercase·get·responses·default",
@@ -507,7 +555,7 @@
     }
    },
    "paths·datetime-max-utc·put·responses·200": {
-    "description": "The max datetime value 9999-12-31T23:59:59.9999999Z"
+    "description": "The max datetime value 9999-12-31T23:59:59.999Z"
    },
    "paths·datetime-max-utc·put·responses·default": {
     "description": "Unexpected error",
@@ -519,8 +567,21 @@
      }
     }
    },
+   "paths·datetime-max-utc7ms·put·responses·200": {
+    "description": "The max datetime value 9999-12-31T23:59:59.9999999Z"
+   },
+   "paths·datetime-max-utc7ms·put·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/body-datetime.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
    "paths·datetime-max-utc-lowercase·get·responses·200": {
-    "description": "The max datetime value 9999-12-31t23:59:59.9999999z",
+    "description": "The max datetime value 9999-12-31t23:59:59.999z",
     "content": {
      "application/json": {
       "schema": {
@@ -540,7 +601,7 @@
     }
    },
    "paths·datetime-max-utc-uppercase·get·responses·200": {
-    "description": "The max datetime value 9999-12-31T23:59:59.9999999Z",
+    "description": "The max datetime value 9999-12-31T23:59:59.999Z",
     "content": {
      "application/json": {
       "schema": {
@@ -559,8 +620,28 @@
      }
     }
    },
+   "paths·datetime-max-utc7ms-uppercase·get·responses·200": {
+    "description": "The max datetime value 9999-12-31T23:59:59.9999999Z",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/paths·datetime-max-utc7ms-uppercase·get·responses·200·content·application-json·schema"
+      }
+     }
+    }
+   },
+   "paths·datetime-max-utc7ms-uppercase·get·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/body-datetime.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
    "paths·datetime-max-localpositiveoffset·put·responses·200": {
-    "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00"
+    "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00"
    },
    "paths·datetime-max-localpositiveoffset·put·responses·default": {
     "description": "Unexpected error",
@@ -573,7 +654,7 @@
     }
    },
    "paths·datetime-max-localpositiveoffset-lowercase·get·responses·200": {
-    "description": "The max datetime value 9999-12-31t23:59:59.9999999+14:00",
+    "description": "The max datetime value 9999-12-31t23:59:59.999+14:00",
     "content": {
      "application/json": {
       "schema": {
@@ -593,7 +674,7 @@
     }
    },
    "paths·datetime-max-localpositiveoffset-uppercase·get·responses·200": {
-    "description": "The max datetime value 9999-12-31T23:59:59.9999999+14:00",
+    "description": "The max datetime value 9999-12-31T23:59:59.999+14:00",
     "content": {
      "application/json": {
       "schema": {
@@ -613,7 +694,7 @@
     }
    },
    "paths·datetime-max-localnegativeoffset·put·responses·200": {
-    "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00"
+    "description": "The max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00"
    },
    "paths·datetime-max-localnegativeoffset·put·responses·default": {
     "description": "Unexpected error",
@@ -626,7 +707,7 @@
     }
    },
    "paths·datetime-max-localnegativeoffset-uppercase·get·responses·200": {
-    "description": "The max datetime value 9999-12-31T23:59:59.9999999-14:00",
+    "description": "The max datetime value 9999-12-31T23:59:59.999-14:00",
     "content": {
      "application/json": {
       "schema": {
@@ -646,7 +727,7 @@
     }
    },
    "paths·datetime-max-localnegativeoffset-lowercase·get·responses·200": {
-    "description": "The max datetime value 9999-12-31t23:59:59.9999999-14:00",
+    "description": "The max datetime value 9999-12-31t23:59:59.999-14:00",
     "content": {
      "application/json": {
       "schema": {
@@ -786,11 +867,19 @@
     "type": "string",
     "format": "date-time"
    },
+   "paths·datetime-max-utc7ms·put·requestbody·content·application-json·schema": {
+    "type": "string",
+    "format": "date-time"
+   },
    "paths·datetime-max-utc-lowercase·get·responses·200·content·application-json·schema": {
     "type": "string",
     "format": "date-time"
    },
    "paths·datetime-max-utc-uppercase·get·responses·200·content·application-json·schema": {
+    "type": "string",
+    "format": "date-time"
+   },
+   "paths·datetime-max-utc7ms-uppercase·get·responses·200·content·application-json·schema": {
     "type": "string",
     "format": "date-time"
    },
@@ -873,6 +962,17 @@
      "application/json": {
       "schema": {
        "$ref": "#/components/schemas/paths·datetime-max-utc·put·requestbody·content·application-json·schema"
+      }
+     }
+    },
+    "required": true,
+    "x-ms-requestBody-name": "datetimeBody"
+   },
+   "paths·datetime-max-utc7ms·put·requestbody": {
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/paths·datetime-max-utc7ms·put·requestbody·content·application-json·schema"
       }
      }
     },

@@ -847,7 +847,6 @@ export class ModelerFour {
       path = p > -1 ? path.substr(0, p) : path;
 
       let baseUri = '';
-
       const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
       // get group and operation name
       // const opGroup = this.codeModel.

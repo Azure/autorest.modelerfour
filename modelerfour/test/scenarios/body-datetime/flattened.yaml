@@ -31,13 +31,13 @@ schemas: !<!Schemas>
         language: !<!Languages> 
           default:
             name: Error-message
-            description: MISSING·SCHEMA-DESCRIPTION-STRING
+            description: ''
         protocol: !<!Protocols> {}
       serializedName: message
       language: !<!Languages> 
         default:
           name: message
-          description: MISSING·SCHEMA-DESCRIPTION-STRING
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -71,7 +71,7 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: paths·datetime-min-utc·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+        description: 'The constant value 0001-01-01T00:00:00Z'
     protocol: !<!Protocols> {}
   - !<!ConstantSchema> 
     type: constant
@@ -98,7 +98,7 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: paths·datetime-min-localpositiveoffset·get·responses·200·content·application-json·schema
-        description: MISSING·SCHEMA-DESCRIPTION-CHOICE
+        description: 'The constant value 0001-01-01t00:00:00+14:00'
     protocol: !<!Protocols> {}
   dateTimes:
   - !<!DateTimeSchema> &ref_6
@@ -406,7 +406,72 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: putUtcMaxDateTime
+        description: 'Put max datetime value 9999-12-31T23:59:59.999Z'
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    request: !<!Request> 
+      parameters:
+      - *ref_5
+      - !<!Parameter> 
+        schema: *ref_6
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-requestBody-name: datetimeBody
+        language: !<!Languages> 
+          default:
+            name: datetimeBody
+            description: ''
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: /datetime/max/utc7ms
+          method: put
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_7
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    extensions:
+      x-ms-requestBody-index: 0
+    language: !<!Languages> 
+      default:
+        name: putUtcMaxDateTime7Digits
         description: 'Put max datetime value 9999-12-31T23:59:59.9999999Z'
+        summary: 'This is against the recommendation that asks for 3 digits, but allow to test what happens in that scenario'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -455,7 +520,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: getUtcLowercaseMaxDateTime
-        description: 'Get max datetime value 9999-12-31t23:59:59.9999999z'
+        description: 'Get max datetime value 9999-12-31t23:59:59.999z'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -504,7 +569,57 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: getUtcUppercaseMaxDateTime
+        description: 'Get max datetime value 9999-12-31T23:59:59.999Z'
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    request: !<!Request> 
+      parameters:
+      - *ref_5
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: /datetime/max/utc7ms/uppercase
+          method: get
+          uri: '{$host}'
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_6
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_7
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: getUtcUppercaseMaxDateTime7Digits
         description: 'Get max datetime value 9999-12-31T23:59:59.9999999Z'
+        summary: 'This is against the recommendation that asks for 3 digits, but allow to test what happens in that scenario'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -568,7 +683,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: putLocalPositiveOffsetMaxDateTime
-        description: 'Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999+14:00'
+        description: 'Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -617,7 +732,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: getLocalPositiveOffsetLowercaseMaxDateTime
-        description: 'Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999+14:00'
+        description: 'Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -666,7 +781,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: getLocalPositiveOffsetUppercaseMaxDateTime
-        description: 'Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999+14:00'
+        description: 'Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -730,7 +845,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: putLocalNegativeOffsetMaxDateTime
-        description: 'Put max datetime value with positive numoffset 9999-12-31t23:59:59.9999999-14:00'
+        description: 'Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -779,7 +894,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: getLocalNegativeOffsetUppercaseMaxDateTime
-        description: 'Get max datetime value with positive num offset 9999-12-31T23:59:59.9999999-14:00'
+        description: 'Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -828,7 +943,7 @@ operationGroups:
     language: !<!Languages> 
       default:
         name: getLocalNegativeOffsetLowercaseMaxDateTime
-        description: 'Get max datetime value with positive num offset 9999-12-31t23:59:59.9999999-14:00'
+        description: 'Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00'
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:

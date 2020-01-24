@@ -366,6 +366,37 @@
     }
    }
   },
+  "/paths/string/begin!*'();:@&=+$,end/{stringPath}": {
+   "get": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "operationId": "paths_stringUrlNonEncoded",
+    "description": "Get 'begin!*'();:@&=+$,end",
+    "summary": "https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded",
+    "tags": [
+     "Path Operations"
+    ],
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·paths-string-begin-end-stringpath·get·parameters·0",
+      "description": "'begin!*'();:@&=+$,end' url encoded string value"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·paths-string-begin-end-stringpath·get·responses·200",
+      "description": "Successfully Received 'begin!*'();:@&=+$,end' url encoded string value"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·paths-string-begin-end-stringpath·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
   "/paths/string/empty/{stringPath}": {
    "get": {
     "servers": [
@@ -2161,6 +2192,20 @@
     "required": true,
     "x-ms-parameter-location": "method"
    },
+   "paths·paths-string-begin-end-stringpath·get·parameters·0": {
+    "name": "stringPath",
+    "in": "path",
+    "description": "'begin!*'();:@&=+$,end' url encoded string value",
+    "x-ms-skip-url-encoding": true,
+    "schema": {
+     "enum": [
+      "begin!*'();:@&=+$,end"
+     ],
+     "type": "string"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
    "paths·paths-string-empty-stringpath·get·parameters·0": {
     "name": "stringPath",
     "in": "path",
@@ -3018,6 +3063,19 @@
     "description": "Successfully Received 'begin!*'();:@ &=+$,/?#[]end' url encoded string value"
    },
    "paths·paths-string-begin-21-2a-27-28-29-3b-3a-40-20-26-3d-2b-24-2c-2f-3f-23-5b-5dend-stringpath·get·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/url.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
+   "paths·paths-string-begin-end-stringpath·get·responses·200": {
+    "description": "Successfully Received 'begin!*'();:@&=+$,end' url encoded string value"
+   },
+   "paths·paths-string-begin-end-stringpath·get·responses·default": {
     "description": "Unexpected error",
     "content": {
      "application/json": {
