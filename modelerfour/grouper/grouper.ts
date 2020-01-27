@@ -58,11 +58,10 @@ export class Grouper {
 
   processParameterGroup(group: OperationGroup, operation: Operation) {
     const grouped = [...values(operation.request.parameters).where(parameter => parameter.extensions?.[xmsParameterGrouping])];
+
     if (grouped.length > 0) {
       // create a parameter group object schema for the selected parameters.
-
       const addedGroupedParameters = new Map<GroupSchema, Parameter>();
-      let isRequired = false;
 
       for (const parameter of grouped) {
         const groupName = this.proposedName(group, operation, parameter);
@@ -75,7 +74,6 @@ export class Grouper {
           this.codeModel.schemas.add(schema);
         }
         const schema = this.groups[groupName];
-
 
         // see if the group has this parameter. 
         const existingProperty = values(schema.properties).first(each => each.language.default.name === parameter.language.default.name);
@@ -101,7 +99,7 @@ export class Grouper {
 
         // make sure that it's not optional if any parameter are not optional.
         const pp = <Parameter>addedGroupedParameters.get(schema);
-        pp.required = pp.required || parameter.required || false;
+        pp.required = pp.required || parameter.required;
 
         // mark the original parameter hidden
         parameter.hidden = true;
@@ -114,10 +112,9 @@ export class Grouper {
           }
         }
       }
-
-
     }
   }
+
   processResponseHeaders(operation: Operation) {
     throw new Error('Method not implemented.');
   }
