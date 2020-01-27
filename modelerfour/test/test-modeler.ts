@@ -16,6 +16,7 @@ import { codeModelSchema } from '@azure-tools/codemodel';
 import { ReadUri } from '@azure-tools/uri';
 import { PreNamer } from '../prenamer/prenamer';
 import { Flattener } from '../flattener/flattener';
+import { Grouper } from '../grouper/grouper';
 
 
 require('source-map-support').install();
@@ -167,7 +168,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       console.log(`Processing: ${each}`);
 
       const cfg = {
-        modelerfour: { 'flatten-models': true, 'flatten-payloads': true },
+        modelerfour: { 'flatten-models': true, 'flatten-payloads': true, 'group-parameters': true },
         'payload-flattening-threshold': 2
       }
 
@@ -189,7 +190,12 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       const flatteneyaml = serialize(flattened, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/flattened.yaml`, flatteneyaml));
 
-      const namer = new PreNamer(await createPassThruSession(cfg, flatteneyaml, 'code-model-v4'));
+      const grouper = await new Grouper(await createPassThruSession(cfg, flatteneyaml, 'code-model-v4')).init();
+      const grouped = await grouper.process();
+      const groupedYaml = serialize(grouped, codeModelSchema);
+      await (writeFile(`${__dirname}/../../test/scenarios/${each}/grouped.yaml`, groupedYaml));
+
+      const namer = new PreNamer(await createPassThruSession(cfg, groupedYaml, 'code-model-v4'));
       const named = await namer.process();
       const namedyaml = serialize(named, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/namer.yaml`, namedyaml));
