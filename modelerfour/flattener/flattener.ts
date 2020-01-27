@@ -33,7 +33,7 @@ export class Flattener {
       return;
     }
     if (isObjectSchema(property.schema) && this.recursePayload === true) {
-      for (const child of values((<ObjectSchema>property.schema).properties)) {
+      for (const child of getAllProperties(<ObjectSchema>property.schema)) {
         yield* this.getFlattenedParameters(parameter, child, [...path, property]);
       }
     } else {
@@ -52,7 +52,7 @@ export class Flattener {
    */
   flattenPayload(operation: Operation, parameter: Parameter, schema: ObjectSchema) {
     // hide the original parameter
-    parameter.hidden = true;
+    parameter.flattened = true;
 
     for (const property of values(schema.properties)) {
       if (property.readOnly) {
@@ -93,13 +93,12 @@ export class Flattener {
           // first, ensure tha the child is pre-flattened
           this.flattenSchema(property.schema);
 
-
           // remove that property from the scheama
           schema.properties.splice(index, 1);
 
           // copy all of the properties from the child into this 
           // schema 
-          for (const childProperty of values(property.schema.properties)) {
+          for (const childProperty of values(getAllProperties(property.schema))) {
             schema.addProperty(new Property(childProperty.language.default.name, childProperty.language.default.description, childProperty.schema, {
               ...(<any>childProperty),
               flattenedNames: [property.serializedName, ...childProperty.flattenedNames ? childProperty.flattenedNames : [childProperty.serializedName]],

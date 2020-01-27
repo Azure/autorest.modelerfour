@@ -102,7 +102,7 @@ export class Grouper {
         pp.required = pp.required || parameter.required;
 
         // mark the original parameter hidden
-        parameter.hidden = true;
+        parameter.grouped = true;
 
         // remove the grouping extension from the original parameter.
         if (parameter.extensions) {

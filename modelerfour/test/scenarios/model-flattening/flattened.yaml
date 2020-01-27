@@ -184,7 +184,7 @@ schemas: !<!Schemas>
       - *ref_1
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_22
+      schema: !<!StringSchema> &ref_23
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -202,7 +202,7 @@ schemas: !<!Schemas>
           description: Resource Id
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_23
+      schema: !<!StringSchema> &ref_24
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -220,9 +220,9 @@ schemas: !<!Schemas>
           description: Resource Type
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_16
+      schema: !<!DictionarySchema> &ref_17
         type: dictionary
-        elementType: !<!StringSchema> &ref_24
+        elementType: !<!StringSchema> &ref_25
           type: string
           apiVersions:
           - !<!ApiVersion> 
@@ -244,7 +244,7 @@ schemas: !<!Schemas>
           description: Dictionary of <components·schemas·resource·properties·tags·additionalproperties>
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_25
+      schema: !<!StringSchema> &ref_26
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -261,7 +261,7 @@ schemas: !<!Schemas>
           description: Resource Location
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_26
+      schema: !<!StringSchema> &ref_27
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -291,7 +291,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_21
+      schema: !<!NumberSchema> &ref_22
         type: integer
         precision: 32
         language: !<!Languages> 
@@ -306,7 +306,7 @@ schemas: !<!Schemas>
           description: MISSING·SCHEMA-DESCRIPTION-INTEGER
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_27
+      schema: !<!StringSchema> &ref_28
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -385,7 +385,7 @@ schemas: !<!Schemas>
         description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_18
+  - !<!ObjectSchema> &ref_19
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -416,7 +416,7 @@ schemas: !<!Schemas>
         description: The wrapped produc.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_19
+  - !<!ObjectSchema> &ref_20
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -454,7 +454,7 @@ schemas: !<!Schemas>
           description: Flattened product.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_20
+      schema: !<!ArraySchema> &ref_21
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -472,7 +472,7 @@ schemas: !<!Schemas>
           description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_17
+      schema: !<!DictionarySchema> &ref_18
         type: dictionary
         elementType: *ref_1
         language: !<!Languages> 
@@ -565,10 +565,31 @@ schemas: !<!Schemas>
               version: 1.0.0
             language: !<!Languages> 
               default:
+                name: GenericUrl-generic_value
+                description: Generic URL value.
+            protocol: !<!Protocols> {}
+          flattenedNames: &ref_43
+          - details
+          - max_product_image
+          - generic_value
+          serializedName: generic_value
+          language: !<!Languages> 
+            default:
+              name: generic_value
+              description: Generic URL value.
+          protocol: !<!Protocols> {}
+        - !<!Property> &ref_46
+          schema: !<!StringSchema> &ref_14
+            type: string
+            apiVersions:
+            - !<!ApiVersion> 
+              version: 1.0.0
+            language: !<!Languages> 
+              default:
                 name: ProductUrl-@odata.value
                 description: URL value.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_43
+          flattenedNames: &ref_45
           - details
           - max_product_image
           - '@odata.value'
@@ -588,7 +609,7 @@ schemas: !<!Schemas>
       - *ref_10
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_28
+      schema: !<!StringSchema> &ref_29
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -606,7 +627,7 @@ schemas: !<!Schemas>
           description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_29
+      schema: !<!StringSchema> &ref_30
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -658,6 +679,18 @@ schemas: !<!Schemas>
       schema: *ref_13
       flattenedNames:
       - max_product_image
+      - generic_value
+      required: false
+      serializedName: generic_value
+      language: !<!Languages> 
+        default:
+          name: generic_value
+          description: Generic URL value.
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_14
+      flattenedNames:
+      - max_product_image
       - '@odata.value'
       required: false
       serializedName: '@odata.value'
@@ -674,26 +707,26 @@ schemas: !<!Schemas>
         description: The product documentation.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_14
+  - !<!ObjectSchema> &ref_15
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_15
+      - !<!ObjectSchema> &ref_16
         type: object
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_14
+          - *ref_15
           immediate:
-          - *ref_14
+          - *ref_15
         properties:
         - !<!Property> 
-          schema: *ref_13
+          schema: *ref_14
           serializedName: '@odata.value'
           language: !<!Languages> 
             default:
@@ -709,19 +742,10 @@ schemas: !<!Schemas>
             namespace: Api100
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_15
+      - *ref_16
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_30
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: GenericUrl-generic_value
-            description: Generic URL value.
-        protocol: !<!Protocols> {}
+      schema: *ref_13
       serializedName: generic_value
       language: !<!Languages> 
         default:
@@ -734,9 +758,9 @@ schemas: !<!Schemas>
         description: The Generic URL.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_15
-  dictionaries:
   - *ref_16
+  dictionaries:
+  - *ref_17
   - !<!DictionarySchema> &ref_36
     type: dictionary
     elementType: *ref_1
@@ -745,7 +769,7 @@ schemas: !<!Schemas>
         name: paths·model_flatten-dictionary·put·requestbody·content·application-json·schema
         description: Dictionary of <FlattenedProduct>
     protocol: !<!Protocols> {}
-  - *ref_17
+  - *ref_18
   choices:
   - *ref_5
   arrays:
@@ -776,7 +800,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_18
+    elementType: *ref_19
     language: !<!Languages> 
       default:
         name: paths·model_flatten-wrappedarray·put·requestbody·content·application-json·schema
@@ -787,34 +811,34 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_19
+    elementType: *ref_20
     language: !<!Languages> 
       default:
         name: paths·model_flatten-wrappedarray·get·responses·200·content·application-json·schema
         description: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
     protocol: !<!Protocols> {}
-  - *ref_20
+  - *ref_21
   constants:
   - *ref_12
   numbers:
-  - *ref_21
+  - *ref_22
   strings:
   - *ref_9
-  - *ref_22
   - *ref_23
   - *ref_24
   - *ref_25
   - *ref_26
   - *ref_27
+  - *ref_28
   - *ref_3
   - *ref_4
   - *ref_6
   - *ref_7
-  - *ref_28
   - *ref_29
-  - *ref_11
   - *ref_30
+  - *ref_11
   - *ref_13
+  - *ref_14
 globalParameters:
 - !<!Parameter> &ref_31
   schema: *ref_9
@@ -1362,7 +1386,7 @@ operationGroups:
       - *ref_31
       - !<!Parameter> &ref_39
         schema: *ref_10
-        hidden: true
+        flattened: true
         implementation: Method
         extensions:
           x-ms-client-flatten: true
@@ -1407,8 +1431,21 @@ operationGroups:
         implementation: Method
         originalParameter: *ref_39
         pathToProperty: []
-        serializedName: '@odata.value'
+        serializedName: generic_value
         targetProperty: *ref_44
+        language: !<!Languages> 
+          default:
+            name: generic_value
+            description: Generic URL value.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_14
+        flattenedNames: *ref_45
+        implementation: Method
+        originalParameter: *ref_39
+        pathToProperty: []
+        serializedName: '@odata.value'
+        targetProperty: *ref_46
         language: !<!Languages> 
           default:
             name: '@odata.value'
@@ -1469,7 +1506,7 @@ operationGroups:
       parameters:
       - *ref_31
       - !<!Parameter> 
-        schema: *ref_24
+        schema: *ref_25
         implementation: Method
         required: true
         extensions:
@@ -1483,9 +1520,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> &ref_45
+      - !<!Parameter> &ref_47
         schema: *ref_10
-        hidden: true
+        flattened: true
         implementation: Method
         extensions:
           x-ms-client-flatten: true
@@ -1504,7 +1541,7 @@ operationGroups:
         schema: *ref_11
         flattenedNames: *ref_38
         implementation: Method
-        originalParameter: *ref_45
+        originalParameter: *ref_47
         pathToProperty: []
         serializedName: max_product_display_name
         targetProperty: *ref_40
@@ -1517,7 +1554,7 @@ operationGroups:
         schema: *ref_12
         flattenedNames: *ref_41
         implementation: Method
-        originalParameter: *ref_45
+        originalParameter: *ref_47
         pathToProperty: []
         serializedName: max_product_capacity
         targetProperty: *ref_42
@@ -1530,10 +1567,23 @@ operationGroups:
         schema: *ref_13
         flattenedNames: *ref_43
         implementation: Method
-        originalParameter: *ref_45
+        originalParameter: *ref_47
+        pathToProperty: []
+        serializedName: generic_value
+        targetProperty: *ref_44
+        language: !<!Languages> 
+          default:
+            name: generic_value
+            description: Generic URL value.
+        protocol: !<!Protocols> {}
+      - !<!Parameter> 
+        schema: *ref_14
+        flattenedNames: *ref_45
+        implementation: Method
+        originalParameter: *ref_47
         pathToProperty: []
         serializedName: '@odata.value'
-        targetProperty: *ref_44
+        targetProperty: *ref_46
         language: !<!Languages> 
           default:
             name: '@odata.value'
