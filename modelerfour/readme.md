@@ -95,8 +95,13 @@ modelerfour:
 
   # merges response headers into response objects 
   # defaults to false if not specified
-  # (not implemented yet)
+  # not implenented
   merge-response-headers: false|true 
+
+  # enables parameter grouping via x-ms-parameter-grouping
+  # defaults to false if not specified
+  group-parameters: false|true
+
 ```
 ~~~
 
@@ -122,8 +127,14 @@ pipeline:
   modelerfour/flattener/new-transform:
     input: modelerfour/flattener
 
-  modelerfour/pre-namer:
+  modelerfour/grouper:
     input: modelerfour/flattener/new-transform
+
+  modelerfour/grouper/new-transform:
+    input: modelerfour/grouper
+
+  modelerfour/pre-namer:
+    input: modelerfour/grouper/new-transform
 
   modelerfour/pre-namer/new-transform:
     input: modelerfour/pre-namer
