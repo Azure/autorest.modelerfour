@@ -1,30 +1,30 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_12
+  - !<!ObjectSchema> &ref_20
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_3
+      schema: !<!NumberSchema> &ref_12
         type: integer
         precision: 32
         language: !<!Languages> 
           default:
             name: typeForstatus
-            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+            description: ''
         protocol: !<!Protocols> {}
       serializedName: status
       language: !<!Languages> 
         default:
           name: status
-          description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+          description: ''
           originalName: status
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_4
+      schema: !<!StringSchema> &ref_13
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -44,11 +44,11 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: Error
-        description: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
   groups:
-  - !<!GroupSchema> &ref_11
+  - !<!GroupSchema> &ref_1
     type: group
     properties:
     - !<!Property> 
@@ -63,14 +63,22 @@ schemas: !<!Schemas>
             description: ''
         protocol: !<!Protocols> {}
       originalParameter:
-      - !<!Parameter> &ref_7
+      - !<!Parameter> &ref_16
         schema: *ref_0
-        grouped: true
+        groupedBy: !<!Parameter> &ref_3
+          schema: *ref_1
+          implementation: Method
+          required: true
+          language: !<!Languages> 
+            default:
+              name: parameterGroupingPostRequiredParameters
+              description: Parameter group
+          protocol: !<!Protocols> {}
         implementation: Method
         language: !<!Languages> 
           default:
             name: customHeader
-            description: MISSING·PARAMETER-DESCRIPTION
+            description: ''
             serializedName: customHeader
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
@@ -79,10 +87,10 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: customHeader
-          description: MISSING·PARAMETER-DESCRIPTION
+          description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_1
+      schema: !<!NumberSchema> &ref_2
         type: integer
         apiVersions:
         - !<!ApiVersion> 
@@ -92,12 +100,12 @@ schemas: !<!Schemas>
         language: !<!Languages> 
           default:
             name: integer
-            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+            description: ''
         protocol: !<!Protocols> {}
       originalParameter:
-      - !<!Parameter> &ref_8
-        schema: *ref_1
-        grouped: true
+      - !<!Parameter> &ref_17
+        schema: *ref_2
+        groupedBy: *ref_3
         implementation: Method
         language: !<!Languages> 
           default:
@@ -116,9 +124,9 @@ schemas: !<!Schemas>
     - !<!Property> 
       schema: *ref_0
       originalParameter:
-      - !<!Parameter> &ref_9
+      - !<!Parameter> &ref_18
         schema: *ref_0
-        grouped: true
+        groupedBy: *ref_3
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -137,7 +145,7 @@ schemas: !<!Schemas>
           description: Path parameter
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_2
+      schema: !<!NumberSchema> &ref_4
         type: integer
         apiVersions:
         - !<!ApiVersion> 
@@ -146,12 +154,12 @@ schemas: !<!Schemas>
         language: !<!Languages> 
           default:
             name: integer
-            description: MISSING·SCHEMA-DESCRIPTION-INTEGER
+            description: ''
         protocol: !<!Protocols> {}
       originalParameter:
-      - !<!Parameter> &ref_10
-        schema: *ref_2
-        grouped: true
+      - !<!Parameter> &ref_19
+        schema: *ref_4
+        groupedBy: *ref_3
         implementation: Method
         required: true
         extensions:
@@ -176,20 +184,27 @@ schemas: !<!Schemas>
         name: ParameterGroupingPostRequiredParameters
         description: Parameter group
     protocol: !<!Protocols> {}
-  - !<!GroupSchema> &ref_15
+  - !<!GroupSchema> &ref_5
     type: group
     properties:
     - !<!Property> 
       schema: *ref_0
       originalParameter:
-      - !<!Parameter> &ref_13
+      - !<!Parameter> &ref_21
         schema: *ref_0
-        grouped: true
+        groupedBy: !<!Parameter> &ref_6
+          schema: *ref_5
+          implementation: Method
+          language: !<!Languages> 
+            default:
+              name: parameterGroupingPostOptionalParameters
+              description: Parameter group
+          protocol: !<!Protocols> {}
         implementation: Method
         language: !<!Languages> 
           default:
             name: customHeader
-            description: MISSING·PARAMETER-DESCRIPTION
+            description: ''
             serializedName: customHeader
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
@@ -198,14 +213,14 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: customHeader
-          description: MISSING·PARAMETER-DESCRIPTION
+          description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_1
+      schema: *ref_2
       originalParameter:
-      - !<!Parameter> &ref_14
-        schema: *ref_1
-        grouped: true
+      - !<!Parameter> &ref_22
+        schema: *ref_2
+        groupedBy: *ref_6
         implementation: Method
         language: !<!Languages> 
           default:
@@ -226,32 +241,46 @@ schemas: !<!Schemas>
         name: ParameterGroupingPostOptionalParameters
         description: Parameter group
     protocol: !<!Protocols> {}
-  - !<!GroupSchema> &ref_20
+  - !<!GroupSchema> &ref_7
     type: group
     properties:
     - !<!Property> 
       schema: *ref_0
       originalParameter:
-      - !<!Parameter> &ref_16
+      - !<!Parameter> &ref_23
         schema: *ref_0
-        grouped: true
+        groupedBy: !<!Parameter> &ref_8
+          schema: *ref_7
+          implementation: Method
+          language: !<!Languages> 
+            default:
+              name: firstParameterGroup
+              description: Parameter group
+          protocol: !<!Protocols> {}
         implementation: Method
         language: !<!Languages> 
           default:
             name: header-one
-            description: MISSING·PARAMETER-DESCRIPTION
+            description: ''
             serializedName: header-one
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> &ref_22
+      - !<!Parameter> &ref_27
         schema: *ref_0
-        grouped: true
+        groupedBy: !<!Parameter> &ref_9
+          schema: *ref_7
+          implementation: Method
+          language: !<!Languages> 
+            default:
+              name: firstParameterGroup
+              description: Parameter group
+          protocol: !<!Protocols> {}
         implementation: Method
         language: !<!Languages> 
           default:
             name: header-one
-            description: MISSING·PARAMETER-DESCRIPTION
+            description: ''
             serializedName: header-one
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
@@ -260,14 +289,14 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: header-one
-          description: MISSING·PARAMETER-DESCRIPTION
+          description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_1
+      schema: *ref_2
       originalParameter:
-      - !<!Parameter> &ref_17
-        schema: *ref_1
-        grouped: true
+      - !<!Parameter> &ref_24
+        schema: *ref_2
+        groupedBy: *ref_8
         implementation: Method
         language: !<!Languages> 
           default:
@@ -277,9 +306,9 @@ schemas: !<!Schemas>
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> &ref_23
-        schema: *ref_1
-        grouped: true
+      - !<!Parameter> &ref_28
+        schema: *ref_2
+        groupedBy: *ref_9
         implementation: Method
         language: !<!Languages> 
           default:
@@ -300,20 +329,27 @@ schemas: !<!Schemas>
         name: first-parameter-group
         description: Parameter group
     protocol: !<!Protocols> {}
-  - !<!GroupSchema> &ref_21
+  - !<!GroupSchema> &ref_10
     type: group
     properties:
     - !<!Property> 
       schema: *ref_0
       originalParameter:
-      - !<!Parameter> &ref_18
+      - !<!Parameter> &ref_25
         schema: *ref_0
-        grouped: true
+        groupedBy: !<!Parameter> &ref_11
+          schema: *ref_10
+          implementation: Method
+          language: !<!Languages> 
+            default:
+              name: parameterGroupingPostMultiParamGroupsSecondParamGroup
+              description: Parameter group
+          protocol: !<!Protocols> {}
         implementation: Method
         language: !<!Languages> 
           default:
             name: header-two
-            description: MISSING·PARAMETER-DESCRIPTION
+            description: ''
             serializedName: header-two
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
@@ -322,14 +358,14 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: header-two
-          description: MISSING·PARAMETER-DESCRIPTION
+          description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_1
+      schema: *ref_2
       originalParameter:
-      - !<!Parameter> &ref_19
-        schema: *ref_1
-        grouped: true
+      - !<!Parameter> &ref_26
+        schema: *ref_2
+        groupedBy: *ref_11
         implementation: Method
         language: !<!Languages> 
           default:
@@ -351,11 +387,11 @@ schemas: !<!Schemas>
         description: Parameter group
     protocol: !<!Protocols> {}
   numbers:
-  - *ref_1
   - *ref_2
-  - *ref_3
+  - *ref_4
+  - *ref_12
   strings:
-  - !<!StringSchema> &ref_5
+  - !<!StringSchema> &ref_14
     type: string
     language: !<!Languages> 
       default:
@@ -363,10 +399,10 @@ schemas: !<!Schemas>
         description: simple string
     protocol: !<!Protocols> {}
   - *ref_0
-  - *ref_4
+  - *ref_13
 globalParameters:
-- !<!Parameter> &ref_6
-  schema: *ref_5
+- !<!Parameter> &ref_15
+  schema: *ref_14
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true
@@ -393,20 +429,12 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_6
-      - *ref_7
-      - *ref_8
-      - *ref_9
-      - *ref_10
-      - !<!Parameter> 
-        schema: *ref_11
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: parameterGroupingPostRequiredParameters
-            description: Parameter group
-        protocol: !<!Protocols> {}
+      - *ref_15
+      - *ref_16
+      - *ref_17
+      - *ref_18
+      - *ref_19
+      - *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -431,7 +459,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -456,17 +484,10 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
+      - *ref_15
+      - *ref_21
+      - *ref_22
       - *ref_6
-      - *ref_13
-      - *ref_14
-      - !<!Parameter> 
-        schema: *ref_15
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: parameterGroupingPostOptionalParameters
-            description: Parameter group
-        protocol: !<!Protocols> {}
       language: !<!Languages> 
         default:
           name: ''
@@ -488,7 +509,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -511,27 +532,13 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_6
-      - *ref_16
-      - *ref_17
-      - *ref_18
-      - *ref_19
-      - !<!Parameter> 
-        schema: *ref_20
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: firstParameterGroup
-            description: Parameter group
-        protocol: !<!Protocols> {}
-      - !<!Parameter> 
-        schema: *ref_21
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: parameterGroupingPostMultiParamGroupsSecondParamGroup
-            description: Parameter group
-        protocol: !<!Protocols> {}
+      - *ref_15
+      - *ref_23
+      - *ref_24
+      - *ref_25
+      - *ref_26
+      - *ref_8
+      - *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -553,7 +560,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -576,17 +583,10 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_6
-      - *ref_22
-      - *ref_23
-      - !<!Parameter> 
-        schema: *ref_20
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: firstParameterGroup
-            description: Parameter group
-        protocol: !<!Protocols> {}
+      - *ref_15
+      - *ref_27
+      - *ref_28
+      - *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -608,7 +608,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_12
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''

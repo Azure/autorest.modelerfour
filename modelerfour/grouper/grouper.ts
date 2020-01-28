@@ -101,8 +101,8 @@ export class Grouper {
         const pp = <Parameter>addedGroupedParameters.get(schema);
         pp.required = pp.required || parameter.required;
 
-        // mark the original parameter hidden
-        parameter.grouped = true;
+        // mark the original parameter with the target of the grouping.
+        parameter.groupedBy = pp;
 
         // remove the grouping extension from the original parameter.
         if (parameter.extensions) {

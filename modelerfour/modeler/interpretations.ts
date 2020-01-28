@@ -156,12 +156,12 @@ export class Interpretations {
         xmse.values.map((each) => {
           const name = getValidEnumValueName((each.name !== undefined) ? each.name : each.value);
           const value = this.getConstantValue(schema, each.value);
-          return new ChoiceValue(`${name}`, each.description || `The value '${value}'`, value);
+          return new ChoiceValue(`${name}`, each.description || ``, value);
         }) :
         schema.enum.map(each => {
           const name = getValidEnumValueName(each);
           const value = this.getConstantValue(schema, each);
-          return new ChoiceValue(name, `The value '${value}'`, value);
+          return new ChoiceValue(name, ``, value);
         });
     }
     return [];
