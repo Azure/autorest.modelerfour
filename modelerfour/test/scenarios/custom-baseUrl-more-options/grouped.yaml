@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_11
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -136,7 +136,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> 
+      - !<!Parameter> &ref_7
         schema: *ref_3
         implementation: Method
         required: true
@@ -154,7 +154,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: uri
-      - !<!Parameter> 
+      - !<!Parameter> &ref_8
         schema: *ref_3
         implementation: Method
         required: true
@@ -173,7 +173,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: uri
       - *ref_4
-      - !<!Parameter> 
+      - !<!Parameter> &ref_9
         schema: *ref_2
         implementation: Method
         required: true
@@ -186,7 +186,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_5
-      - !<!Parameter> 
+      - !<!Parameter> &ref_10
         schema: *ref_6
         implementation: Method
         language: !<!Languages> 
@@ -197,6 +197,11 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -218,7 +223,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''

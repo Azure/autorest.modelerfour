@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_8
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -48,7 +48,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   dictionaries:
-  - !<!DictionarySchema> &ref_6
+  - !<!DictionarySchema> &ref_7
     type: dictionary
     elementType: !<!NumberSchema> &ref_0
       type: integer
@@ -118,7 +118,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_4
-      - !<!Parameter> 
+      - !<!Parameter> &ref_6
         schema: *ref_5
         implementation: Method
         language: !<!Languages> 
@@ -129,6 +129,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -140,7 +142,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -154,7 +156,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''

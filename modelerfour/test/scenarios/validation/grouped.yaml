@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_25
+  - !<!ObjectSchema> &ref_27
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -300,7 +300,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_1
   - *ref_2
-  - !<!ObjectSchema> &ref_26
+  - !<!ObjectSchema> &ref_28
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -398,7 +398,7 @@ schemas: !<!Schemas>
         name: ApiVersion-1.0.0
         description: Api Version (1.0.0)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_27
+  - !<!ConstantSchema> &ref_32
     type: constant
     value: !<!ConstantValue> 
       value: constant
@@ -528,7 +528,7 @@ operationGroups:
       parameters:
       - *ref_20
       - *ref_21
-      - !<!Parameter> 
+      - !<!Parameter> &ref_25
         schema: *ref_22
         implementation: Method
         required: true
@@ -540,7 +540,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_26
         schema: *ref_23
         implementation: Method
         required: true
@@ -553,6 +553,9 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_24
+      signatureParameters:
+      - *ref_25
+      - *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -564,7 +567,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -578,7 +581,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -604,7 +607,7 @@ operationGroups:
       parameters:
       - *ref_20
       - *ref_21
-      - !<!Parameter> 
+      - !<!Parameter> &ref_29
         schema: *ref_22
         implementation: Method
         required: true
@@ -616,7 +619,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_30
         schema: *ref_23
         implementation: Method
         required: true
@@ -629,8 +632,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_24
-      - !<!Parameter> 
-        schema: *ref_25
+      - !<!Parameter> &ref_31
+        schema: *ref_27
         implementation: Method
         extensions:
           x-ms-requestBody-name: body
@@ -642,6 +645,10 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_29
+      - *ref_30
+      - *ref_31
       language: !<!Languages> 
         default:
           name: ''
@@ -656,7 +663,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -670,7 +677,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -698,7 +705,7 @@ operationGroups:
       parameters:
       - *ref_20
       - !<!Parameter> 
-        schema: *ref_27
+        schema: *ref_32
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -709,6 +716,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -741,7 +749,7 @@ operationGroups:
       parameters:
       - *ref_20
       - !<!Parameter> 
-        schema: *ref_27
+        schema: *ref_32
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -752,8 +760,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
-        schema: *ref_25
+      - !<!Parameter> &ref_33
+        schema: *ref_27
         implementation: Method
         extensions:
           x-ms-requestBody-name: body
@@ -765,6 +773,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_33
       language: !<!Languages> 
         default:
           name: ''
@@ -779,7 +789,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''

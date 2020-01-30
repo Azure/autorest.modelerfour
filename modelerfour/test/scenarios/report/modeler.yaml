@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_6
+  - !<!ObjectSchema> &ref_7
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -46,7 +46,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   dictionaries:
-  - !<!DictionarySchema> &ref_5
+  - !<!DictionarySchema> &ref_6
     type: dictionary
     elementType: !<!NumberSchema> &ref_0
       type: integer
@@ -87,7 +87,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_2
 globalParameters:
-- !<!Parameter> &ref_7
+- !<!Parameter> &ref_8
   schema: *ref_3
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -115,8 +115,8 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
+      - *ref_8
+      - !<!Parameter> &ref_5
         schema: *ref_4
         implementation: Method
         language: !<!Languages> 
@@ -127,6 +127,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -138,7 +140,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -152,7 +154,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -175,8 +177,8 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_7
-      - !<!Parameter> 
+      - *ref_8
+      - !<!Parameter> &ref_9
         schema: *ref_4
         implementation: Method
         language: !<!Languages> 
@@ -187,6 +189,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -198,7 +202,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -212,7 +216,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''

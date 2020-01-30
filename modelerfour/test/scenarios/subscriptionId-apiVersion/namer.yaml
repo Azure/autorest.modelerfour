@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_10
+  - !<!ObjectSchema> &ref_11
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -49,7 +49,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_11
+  - !<!ObjectSchema> &ref_12
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -190,7 +190,7 @@ operationGroups:
       parameters:
       - *ref_7
       - *ref_8
-      - !<!Parameter> 
+      - !<!Parameter> &ref_10
         schema: *ref_5
         implementation: Method
         required: true
@@ -203,6 +203,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_9
+      signatureParameters:
+      - *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -214,7 +216,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_10
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -228,7 +230,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_12
       language: !<!Languages> 
         default:
           name: ''

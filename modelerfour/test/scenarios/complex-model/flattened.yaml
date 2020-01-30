@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_21
+  - !<!ObjectSchema> &ref_22
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -129,7 +129,7 @@ schemas: !<!Schemas>
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
   - *ref_0
-  - !<!ObjectSchema> &ref_22
+  - !<!ObjectSchema> &ref_23
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -173,13 +173,13 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_23
+  - !<!ObjectSchema> &ref_24
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
     properties:
-    - !<!Property> &ref_25
+    - !<!Property> &ref_26
       schema: !<!DictionarySchema> &ref_1
         type: dictionary
         elementType: !<!ArraySchema> &ref_5
@@ -210,7 +210,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_26
+  - !<!ObjectSchema> &ref_30
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -237,13 +237,13 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_27
+  - !<!ObjectSchema> &ref_31
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
     properties:
-    - !<!Property> &ref_29
+    - !<!Property> &ref_33
       schema: !<!ArraySchema> &ref_6
         type: array
         apiVersions:
@@ -422,7 +422,7 @@ operationGroups:
       parameters:
       - *ref_17
       - *ref_18
-      - !<!Parameter> 
+      - !<!Parameter> &ref_21
         schema: *ref_19
         implementation: Method
         required: true
@@ -435,6 +435,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_20
+      signatureParameters:
+      - *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -446,7 +448,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -460,7 +462,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -485,7 +487,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_17
-      - !<!Parameter> 
+      - !<!Parameter> &ref_27
         schema: *ref_19
         implementation: Method
         required: true
@@ -497,7 +499,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_28
         schema: *ref_19
         implementation: Method
         required: true
@@ -510,8 +512,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_20
-      - !<!Parameter> &ref_24
-        schema: *ref_23
+      - !<!Parameter> &ref_25
+        schema: *ref_24
         flattened: true
         implementation: Method
         required: true
@@ -525,18 +527,22 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_29
         schema: *ref_1
         implementation: Method
-        originalParameter: *ref_24
+        originalParameter: *ref_25
         pathToProperty: []
         serializedName: productDictionaryOfArray
-        targetProperty: *ref_25
+        targetProperty: *ref_26
         language: !<!Languages> 
           default:
             name: productDictionaryOfArray
             description: Dictionary of Array of product
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_27
+      - *ref_28
+      - *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -551,7 +557,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_30
       language: !<!Languages> 
         default:
           name: ''
@@ -565,7 +571,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -592,7 +598,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_17
-      - !<!Parameter> 
+      - !<!Parameter> &ref_34
         schema: *ref_19
         implementation: Method
         required: true
@@ -604,7 +610,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_35
         schema: *ref_19
         implementation: Method
         required: true
@@ -617,8 +623,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       - *ref_20
-      - !<!Parameter> &ref_28
-        schema: *ref_27
+      - !<!Parameter> &ref_32
+        schema: *ref_31
         flattened: true
         implementation: Method
         required: true
@@ -632,18 +638,22 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_36
         schema: *ref_6
         implementation: Method
-        originalParameter: *ref_28
+        originalParameter: *ref_32
         pathToProperty: []
         serializedName: productArrayOfDictionary
-        targetProperty: *ref_29
+        targetProperty: *ref_33
         language: !<!Languages> 
           default:
             name: productArrayOfDictionary
             description: Array of dictionary of products
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_34
+      - *ref_35
+      - *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -658,7 +668,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -672,7 +682,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_22
+      schema: *ref_23
       language: !<!Languages> 
         default:
           name: ''
