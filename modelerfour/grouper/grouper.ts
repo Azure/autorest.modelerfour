@@ -30,6 +30,7 @@ export class Grouper {
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
           this.processParameterGroup(group, operation);
+          operation.request.updateSignatureParameters();
         }
       }
     }
@@ -39,6 +40,7 @@ export class Grouper {
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
           this.processResponseHeaders(operation);
+          operation.request.updateSignatureParameters();
         }
       }
     }

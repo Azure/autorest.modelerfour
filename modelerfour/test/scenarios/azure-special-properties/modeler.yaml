@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_9
+  - !<!ObjectSchema> &ref_10
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -122,7 +122,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   constants:
   - *ref_5
-  - !<!ConstantSchema> &ref_11
+  - !<!ConstantSchema> &ref_12
     type: constant
     value: !<!ConstantValue> 
       value: 2015-07-01-preview
@@ -254,7 +254,7 @@ schemas: !<!Schemas>
         name: ApiVersion-2015-07-01-preview
         description: Api Version (2015-07-01-preview)
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_13
+  - !<!ConstantSchema> &ref_20
     type: constant
     value: !<!ConstantValue> 
       value: path1/path2/path3
@@ -268,7 +268,7 @@ schemas: !<!Schemas>
         name: ''
         description: ''
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_14
+  - !<!ConstantSchema> &ref_24
     type: constant
     value: !<!ConstantValue> 
       value: value1&q2=value2&q3=value3
@@ -285,7 +285,7 @@ schemas: !<!Schemas>
   numbers:
   - *ref_2
   - *ref_3
-  - !<!NumberSchema> &ref_15
+  - !<!NumberSchema> &ref_25
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -313,7 +313,7 @@ schemas: !<!Schemas>
   - *ref_0
   - *ref_1
 globalParameters:
-- !<!Parameter> &ref_10
+- !<!Parameter> &ref_11
   schema: *ref_8
   implementation: Client
   required: true
@@ -342,8 +342,8 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_12
-  schema: *ref_11
+- !<!Parameter> &ref_17
+  schema: *ref_12
   implementation: Client
   required: true
   language: !<!Languages> 
@@ -368,6 +368,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -409,7 +410,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_9
         schema: *ref_8
         implementation: Method
         required: true
@@ -421,6 +422,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
+      signatureParameters:
+      - *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -442,7 +445,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -474,7 +477,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_10
+      - *ref_11
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -496,7 +500,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -520,7 +524,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_10
+      - *ref_11
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -542,7 +547,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -566,8 +571,9 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_10
-      - *ref_12
+      - *ref_11
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -589,7 +595,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -613,7 +619,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_10
+      - *ref_11
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -635,7 +642,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -659,7 +666,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_10
+      - *ref_11
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -681,7 +689,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -713,7 +721,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_13
         schema: *ref_8
         implementation: Method
         required: true
@@ -725,6 +733,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_13
       language: !<!Languages> 
         default:
           name: ''
@@ -746,7 +756,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -770,7 +780,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_14
         schema: *ref_8
         implementation: Method
         required: true
@@ -782,6 +792,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_14
       language: !<!Languages> 
         default:
           name: ''
@@ -803,7 +815,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -827,7 +839,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_15
         schema: *ref_8
         implementation: Method
         required: true
@@ -839,6 +851,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -860,7 +874,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -884,7 +898,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_16
         schema: *ref_8
         implementation: Method
         required: true
@@ -896,6 +910,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_16
       language: !<!Languages> 
         default:
           name: ''
@@ -917,7 +933,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -949,7 +965,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -971,7 +988,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -995,7 +1012,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1017,7 +1035,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1041,7 +1059,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1063,7 +1082,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1087,7 +1106,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1109,7 +1129,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1141,7 +1161,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1163,7 +1184,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1187,7 +1208,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1209,7 +1231,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1233,7 +1255,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1255,7 +1278,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1279,7 +1302,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - *ref_12
+      - *ref_17
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1301,7 +1325,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1333,7 +1357,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_18
         schema: *ref_8
         implementation: Method
         required: true
@@ -1347,6 +1371,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -1368,7 +1394,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1392,7 +1418,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_19
         schema: *ref_8
         implementation: Method
         required: true
@@ -1406,6 +1432,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -1427,7 +1455,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1452,7 +1480,7 @@ operationGroups:
       parameters:
       - *ref_7
       - !<!Parameter> 
-        schema: *ref_13
+        schema: *ref_20
         implementation: Method
         required: true
         extensions:
@@ -1465,6 +1493,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1486,7 +1515,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1510,7 +1539,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_21
         schema: *ref_8
         implementation: Method
         required: true
@@ -1524,6 +1553,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -1545,7 +1576,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1569,7 +1600,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_22
         schema: *ref_8
         implementation: Method
         extensions:
@@ -1582,6 +1613,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -1603,7 +1636,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1627,7 +1660,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_23
         schema: *ref_8
         implementation: Method
         required: true
@@ -1641,6 +1674,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -1662,7 +1697,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1687,7 +1722,7 @@ operationGroups:
       parameters:
       - *ref_7
       - !<!Parameter> 
-        schema: *ref_14
+        schema: *ref_24
         implementation: Method
         required: true
         extensions:
@@ -1700,6 +1735,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1721,7 +1757,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1753,7 +1789,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_26
         schema: *ref_8
         implementation: Method
         language: !<!Languages> 
@@ -1764,8 +1800,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
-        schema: *ref_15
+      - !<!Parameter> &ref_27
+        schema: *ref_25
         implementation: Method
         language: !<!Languages> 
           default:
@@ -1775,7 +1811,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_28
         schema: *ref_8
         implementation: Method
         language: !<!Languages> 
@@ -1786,6 +1822,10 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_26
+      - *ref_27
+      - *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -1807,7 +1847,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1841,7 +1881,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_29
         schema: *ref_8
         implementation: Method
         required: true
@@ -1855,6 +1895,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
+      signatureParameters:
+      - *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -1880,7 +1922,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1906,7 +1948,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_30
         schema: *ref_8
         implementation: Method
         required: true
@@ -1921,6 +1963,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
+      signatureParameters:
+      - *ref_30
       language: !<!Languages> 
         default:
           name: ''
@@ -1946,7 +1990,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -1972,7 +2016,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_7
-      - !<!Parameter> 
+      - !<!Parameter> &ref_31
         schema: *ref_8
         implementation: Method
         required: true
@@ -1986,6 +2030,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
+      signatureParameters:
+      - *ref_31
       language: !<!Languages> 
         default:
           name: ''
@@ -2020,7 +2066,7 @@ operationGroups:
           - '404'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''

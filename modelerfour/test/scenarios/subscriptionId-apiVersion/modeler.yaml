@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_8
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -47,7 +47,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_8
+  - !<!ObjectSchema> &ref_9
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -130,7 +130,7 @@ schemas: !<!Schemas>
   - *ref_2
   - *ref_3
 globalParameters:
-- !<!Parameter> &ref_9
+- !<!Parameter> &ref_10
   schema: *ref_5
   implementation: Client
   required: true
@@ -144,7 +144,7 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: path
-- !<!Parameter> &ref_10
+- !<!Parameter> &ref_11
   schema: *ref_0
   clientDefaultValue: 'https://management.azure.com'
   implementation: Client
@@ -159,7 +159,7 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-- !<!Parameter> &ref_11
+- !<!Parameter> &ref_12
   schema: *ref_6
   implementation: Client
   required: true
@@ -184,9 +184,9 @@ operationGroups:
       version: 2014-04-01-preview
     request: !<!Request> 
       parameters:
+      - *ref_11
       - *ref_10
-      - *ref_9
-      - !<!Parameter> 
+      - !<!Parameter> &ref_7
         schema: *ref_5
         implementation: Method
         required: true
@@ -198,7 +198,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - *ref_11
+      - *ref_12
+      signatureParameters:
+      - *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -210,7 +212,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -224,7 +226,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_8
+      schema: *ref_9
       language: !<!Languages> 
         default:
           name: ''

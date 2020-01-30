@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_9
+  - !<!ObjectSchema> &ref_10
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -171,7 +171,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_0
   - *ref_1
-  - !<!StringSchema> &ref_11
+  - !<!StringSchema> &ref_13
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -194,7 +194,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_4
 globalParameters:
-- !<!Parameter> &ref_10
+- !<!Parameter> &ref_11
   schema: *ref_8
   clientDefaultValue: host
   implementation: Client
@@ -227,7 +227,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> 
+      - !<!Parameter> &ref_9
         schema: *ref_8
         implementation: Method
         required: true
@@ -245,7 +245,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: uri
-      - *ref_10
+      - *ref_11
+      signatureParameters:
+      - *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -257,7 +259,7 @@ operationGroups:
           uri: 'http://{accountName}{host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -294,7 +296,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> 
+      - !<!Parameter> &ref_12
         schema: *ref_8
         implementation: Method
         required: true
@@ -312,7 +314,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: uri
-      - *ref_10
+      - *ref_11
+      signatureParameters:
+      - *ref_12
       language: !<!Languages> 
         default:
           name: ''
@@ -324,7 +328,7 @@ operationGroups:
           uri: 'http://{accountName}{host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -362,7 +366,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> 
+      - !<!Parameter> &ref_14
         schema: *ref_8
         implementation: Method
         required: true
@@ -380,9 +384,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: uri
-      - *ref_10
-      - !<!Parameter> 
-        schema: *ref_11
+      - *ref_11
+      - !<!Parameter> &ref_15
+        schema: *ref_13
         implementation: Method
         required: true
         extensions:
@@ -395,6 +399,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_14
+      - *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -406,7 +413,7 @@ operationGroups:
           uri: 'http://{accountName}{host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_9
+      schema: *ref_10
       language: !<!Languages> 
         default:
           name: ''

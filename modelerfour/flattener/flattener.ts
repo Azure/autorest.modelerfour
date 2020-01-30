@@ -37,13 +37,20 @@ export class Flattener {
         yield* this.getFlattenedParameters(parameter, child, [...path, property]);
       }
     } else {
-      yield new VirtualParameter(property.language.default.name, property.language.default.description, property.schema, {
+      const vp = new VirtualParameter(property.language.default.name, property.language.default.description, property.schema, {
         ...property,
         implementation: ImplementationLocation.Method,
         originalParameter: parameter,
         targetProperty: property,
         pathToProperty: path
       });
+
+      // if the parameter has "x-ms-parameter-grouping" extension, (and this is a top level parameter) then we should copy that to the vp.
+      if (path.length === 0 && parameter.extensions?.['x-ms-parameter-grouping']) {
+        (vp.extensions = vp.extensions || {})['x-ms-parameter-grouping'] = parameter.extensions?.['x-ms-parameter-grouping'];
+      }
+
+      yield vp;
     }
     // ·
   }
@@ -207,6 +214,7 @@ export class Flattener {
 
             if (flattenOperationPayload) {
               this.flattenPayload(operation, body, schema);
+              operation.request.updateSignatureParameters();
             }
           }
         }

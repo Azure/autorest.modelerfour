@@ -255,7 +255,7 @@ schemas: !<!Schemas>
         namespace: Api000
     protocol: !<!Protocols> {}
   - *ref_2
-  - !<!ObjectSchema> &ref_27
+  - !<!ObjectSchema> &ref_29
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -436,7 +436,7 @@ schemas: !<!Schemas>
   - *ref_7
   - *ref_9
   numbers:
-  - !<!NumberSchema> &ref_26
+  - !<!NumberSchema> &ref_27
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -507,7 +507,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_24
-      - !<!Parameter> 
+      - !<!Parameter> &ref_26
         schema: *ref_25
         implementation: Method
         required: true
@@ -519,6 +519,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -583,7 +585,7 @@ operationGroups:
           statusCodes:
           - '404'
     - !<!SchemaResponse> 
-      schema: *ref_26
+      schema: *ref_27
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -618,7 +620,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_24
-      - !<!Parameter> 
+      - !<!Parameter> &ref_28
         schema: *ref_25
         implementation: Method
         required: true
@@ -630,6 +632,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -641,7 +645,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_27
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''

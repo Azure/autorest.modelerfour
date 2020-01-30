@@ -61,7 +61,7 @@ schemas: !<!Schemas>
         description: ''
     protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_5
+- !<!Parameter> &ref_8
   schema: *ref_2
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -89,8 +89,8 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_5
-      - !<!Parameter> 
+      - *ref_8
+      - !<!Parameter> &ref_5
         schema: *ref_0
         implementation: Method
         required: true
@@ -102,7 +102,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_6
         schema: *ref_3
         implementation: Method
         required: true
@@ -114,7 +114,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_7
         schema: *ref_4
         implementation: Method
         required: true
@@ -128,6 +128,10 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_5
+      - *ref_6
+      - *ref_7
       language: !<!Languages> 
         default:
           name: ''

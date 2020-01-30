@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_5
+  - !<!ObjectSchema> &ref_6
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -155,7 +155,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_0
 globalParameters:
-- !<!Parameter> &ref_6
+- !<!Parameter> &ref_7
   schema: *ref_1
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
@@ -183,8 +183,8 @@ operationGroups:
       version: '2016-07-07'
     request: !<!Request> 
       parameters:
-      - *ref_6
-      - !<!Parameter> 
+      - *ref_7
+      - !<!Parameter> &ref_5
         schema: *ref_4
         implementation: Method
         required: true
@@ -196,6 +196,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -207,7 +209,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -230,9 +232,9 @@ operationGroups:
       version: '2016-07-07'
     request: !<!Request> 
       parameters:
-      - *ref_6
-      - !<!Parameter> 
-        schema: *ref_5
+      - *ref_7
+      - !<!Parameter> &ref_8
+        schema: *ref_6
         implementation: Method
         extensions:
           x-ms-requestBody-name: petParam
@@ -244,6 +246,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -258,7 +262,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_5
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''

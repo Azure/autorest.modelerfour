@@ -197,7 +197,7 @@ schemas: !<!Schemas>
         description: Some resource
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_18
+  - !<!ObjectSchema> &ref_19
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -285,7 +285,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_21
+  - !<!ObjectSchema> &ref_23
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -343,7 +343,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_5
-  - !<!DictionarySchema> &ref_20
+  - !<!DictionarySchema> &ref_21
     type: dictionary
     elementType: *ref_1
     language: !<!Languages> 
@@ -364,7 +364,7 @@ schemas: !<!Schemas>
         name: Array of ResourceX
         description: ''
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_19
+  - !<!ArraySchema> &ref_20
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -425,7 +425,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_16
-      - !<!Parameter> 
+      - !<!Parameter> &ref_18
         schema: *ref_17
         implementation: Method
         extensions:
@@ -438,6 +438,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -462,7 +464,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -488,6 +490,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_16
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -499,7 +502,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -513,7 +516,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -537,8 +540,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_16
-      - !<!Parameter> 
-        schema: *ref_20
+      - !<!Parameter> &ref_22
+        schema: *ref_21
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceDictionary
@@ -550,6 +553,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -574,7 +579,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -600,6 +605,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_16
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -611,7 +617,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_20
+      schema: *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -625,7 +631,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -649,8 +655,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_16
-      - !<!Parameter> 
-        schema: *ref_21
+      - !<!Parameter> &ref_24
+        schema: *ref_23
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceComplexObject
@@ -662,6 +668,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_24
       language: !<!Languages> 
         default:
           name: ''
@@ -686,7 +694,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -712,6 +720,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_16
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -723,7 +732,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -737,7 +746,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_18
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''

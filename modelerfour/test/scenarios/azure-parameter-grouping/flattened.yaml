@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_7
+  - !<!ObjectSchema> &ref_11
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -119,11 +119,11 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_3
-      - !<!Parameter> 
+      - !<!Parameter> &ref_7
         schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: &ref_8 {}
+          x-ms-parameter-grouping: &ref_12 {}
         language: !<!Languages> 
           default:
             name: customHeader
@@ -132,11 +132,11 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> 
+      - !<!Parameter> &ref_8
         schema: *ref_5
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: &ref_9 {}
+          x-ms-parameter-grouping: &ref_13 {}
         language: !<!Languages> 
           default:
             name: query
@@ -145,7 +145,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_9
         schema: *ref_4
         implementation: Method
         required: true
@@ -159,7 +159,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_10
         schema: *ref_6
         implementation: Method
         required: true
@@ -174,6 +174,11 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -198,7 +203,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -224,11 +229,11 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_3
-      - !<!Parameter> 
+      - !<!Parameter> &ref_14
         schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: *ref_8
+          x-ms-parameter-grouping: *ref_12
         language: !<!Languages> 
           default:
             name: customHeader
@@ -237,11 +242,11 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> 
+      - !<!Parameter> &ref_15
         schema: *ref_5
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: *ref_9
+          x-ms-parameter-grouping: *ref_13
         language: !<!Languages> 
           default:
             name: query
@@ -250,6 +255,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_14
+      - *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -271,7 +279,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -295,11 +303,11 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_3
-      - !<!Parameter> 
+      - !<!Parameter> &ref_16
         schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: &ref_10
+          x-ms-parameter-grouping: &ref_20
             name: first-parameter-group
         language: !<!Languages> 
           default:
@@ -309,11 +317,11 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> 
+      - !<!Parameter> &ref_17
         schema: *ref_5
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: &ref_11
+          x-ms-parameter-grouping: &ref_21
             name: first-parameter-group
         language: !<!Languages> 
           default:
@@ -323,7 +331,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> 
+      - !<!Parameter> &ref_18
         schema: *ref_4
         implementation: Method
         extensions:
@@ -337,7 +345,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> 
+      - !<!Parameter> &ref_19
         schema: *ref_5
         implementation: Method
         extensions:
@@ -351,6 +359,11 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_16
+      - *ref_17
+      - *ref_18
+      - *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -372,7 +385,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''
@@ -396,11 +409,11 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_3
-      - !<!Parameter> 
+      - !<!Parameter> &ref_22
         schema: *ref_4
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: *ref_10
+          x-ms-parameter-grouping: *ref_20
         language: !<!Languages> 
           default:
             name: header-one
@@ -409,11 +422,11 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> 
+      - !<!Parameter> &ref_23
         schema: *ref_5
         implementation: Method
         extensions:
-          x-ms-parameter-grouping: *ref_11
+          x-ms-parameter-grouping: *ref_21
         language: !<!Languages> 
           default:
             name: query-one
@@ -422,6 +435,9 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
+      signatureParameters:
+      - *ref_22
+      - *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -443,7 +459,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_7
+      schema: *ref_11
       language: !<!Languages> 
         default:
           name: ''

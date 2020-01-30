@@ -439,7 +439,7 @@ schemas: !<!Schemas>
         description: The wrapped produc.
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_37
+  - !<!ObjectSchema> &ref_40
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -510,7 +510,7 @@ schemas: !<!Schemas>
           immediate:
           - *ref_8
         properties:
-        - !<!Property> &ref_40
+        - !<!Property> &ref_45
           schema: !<!StringSchema> &ref_11
             type: string
             apiVersions:
@@ -521,7 +521,7 @@ schemas: !<!Schemas>
                 name: SimpleProductProperties-max_product_display_name
                 description: Display name of product.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_38
+          flattenedNames: &ref_43
           - details
           - max_product_display_name
           serializedName: max_product_display_name
@@ -530,7 +530,7 @@ schemas: !<!Schemas>
               name: max_product_display_name
               description: Display name of product.
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_42
+        - !<!Property> &ref_47
           schema: !<!ConstantSchema> &ref_12
             type: constant
             apiVersions:
@@ -548,7 +548,7 @@ schemas: !<!Schemas>
                 name: capacity
                 description: 'Capacity of product. For example, 4 people.'
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_41
+          flattenedNames: &ref_46
           - details
           - max_product_capacity
           serializedName: max_product_capacity
@@ -557,7 +557,7 @@ schemas: !<!Schemas>
               name: capacity
               description: 'Capacity of product. For example, 4 people.'
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_44
+        - !<!Property> &ref_49
           schema: !<!StringSchema> &ref_13
             type: string
             apiVersions:
@@ -568,7 +568,7 @@ schemas: !<!Schemas>
                 name: GenericUrl-generic_value
                 description: Generic URL value.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_43
+          flattenedNames: &ref_48
           - details
           - max_product_image
           - generic_value
@@ -578,7 +578,7 @@ schemas: !<!Schemas>
               name: generic_value
               description: Generic URL value.
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_46
+        - !<!Property> &ref_51
           schema: !<!StringSchema> &ref_14
             type: string
             apiVersions:
@@ -589,7 +589,7 @@ schemas: !<!Schemas>
                 name: ProductUrl-@odata.value
                 description: URL value.
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_45
+          flattenedNames: &ref_50
           - details
           - max_product_image
           - '@odata.value'
@@ -761,7 +761,7 @@ schemas: !<!Schemas>
   - *ref_16
   dictionaries:
   - *ref_17
-  - !<!DictionarySchema> &ref_36
+  - !<!DictionarySchema> &ref_38
     type: dictionary
     elementType: *ref_1
     language: !<!Languages> 
@@ -784,7 +784,7 @@ schemas: !<!Schemas>
         name: paths·model_flatten-array·put·requestbody·content·application-json·schema
         description: ''
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_33
+  - !<!ArraySchema> &ref_34
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -795,7 +795,7 @@ schemas: !<!Schemas>
         name: paths·model_flatten-array·get·responses·200·content·application-json·schema
         description: ''
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_34
+  - !<!ArraySchema> &ref_35
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -806,7 +806,7 @@ schemas: !<!Schemas>
         name: paths·model_flatten-wrappedarray·put·requestbody·content·application-json·schema
         description: ''
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_35
+  - !<!ArraySchema> &ref_37
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -869,7 +869,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
+      - !<!Parameter> &ref_33
         schema: *ref_32
         implementation: Method
         extensions:
@@ -882,6 +882,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_33
       language: !<!Languages> 
         default:
           name: ''
@@ -932,6 +934,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -943,7 +946,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_33
+      schema: *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -981,8 +984,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
-        schema: *ref_34
+      - !<!Parameter> &ref_36
+        schema: *ref_35
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceArray
@@ -994,6 +997,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -1044,6 +1049,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1055,7 +1061,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_35
+      schema: *ref_37
       language: !<!Languages> 
         default:
           name: ''
@@ -1093,8 +1099,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
-        schema: *ref_36
+      - !<!Parameter> &ref_39
+        schema: *ref_38
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceDictionary
@@ -1106,6 +1112,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_39
       language: !<!Languages> 
         default:
           name: ''
@@ -1156,6 +1164,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1167,7 +1176,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_38
       language: !<!Languages> 
         default:
           name: ''
@@ -1205,8 +1214,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
-        schema: *ref_37
+      - !<!Parameter> &ref_41
+        schema: *ref_40
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceComplexObject
@@ -1218,6 +1227,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_41
       language: !<!Languages> 
         default:
           name: ''
@@ -1268,6 +1279,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
+      signatureParameters: []
       language: !<!Languages> 
         default:
           name: ''
@@ -1279,7 +1291,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_37
+      schema: *ref_40
       language: !<!Languages> 
         default:
           name: ''
@@ -1317,7 +1329,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
+      - !<!Parameter> &ref_42
         schema: *ref_10
         implementation: Method
         extensions:
@@ -1330,6 +1342,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_42
       language: !<!Languages> 
         default:
           name: ''
@@ -1384,7 +1398,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> &ref_39
+      - !<!Parameter> &ref_44
         schema: *ref_10
         flattened: true
         implementation: Method
@@ -1399,14 +1413,14 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_52
         schema: *ref_11
-        flattenedNames: *ref_38
+        flattenedNames: *ref_43
         implementation: Method
-        originalParameter: *ref_39
+        originalParameter: *ref_44
         pathToProperty: []
         serializedName: max_product_display_name
-        targetProperty: *ref_40
+        targetProperty: *ref_45
         language: !<!Languages> 
           default:
             name: max_product_display_name
@@ -1414,43 +1428,47 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_12
-        flattenedNames: *ref_41
+        flattenedNames: *ref_46
         implementation: Method
-        originalParameter: *ref_39
+        originalParameter: *ref_44
         pathToProperty: []
         serializedName: max_product_capacity
-        targetProperty: *ref_42
+        targetProperty: *ref_47
         language: !<!Languages> 
           default:
             name: capacity
             description: 'Capacity of product. For example, 4 people.'
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_53
         schema: *ref_13
-        flattenedNames: *ref_43
+        flattenedNames: *ref_48
         implementation: Method
-        originalParameter: *ref_39
+        originalParameter: *ref_44
         pathToProperty: []
         serializedName: generic_value
-        targetProperty: *ref_44
+        targetProperty: *ref_49
         language: !<!Languages> 
           default:
             name: generic_value
             description: Generic URL value.
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_54
         schema: *ref_14
-        flattenedNames: *ref_45
+        flattenedNames: *ref_50
         implementation: Method
-        originalParameter: *ref_39
+        originalParameter: *ref_44
         pathToProperty: []
         serializedName: '@odata.value'
-        targetProperty: *ref_46
+        targetProperty: *ref_51
         language: !<!Languages> 
           default:
             name: '@odata.value'
             description: URL value.
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_52
+      - *ref_53
+      - *ref_54
       language: !<!Languages> 
         default:
           name: ''
@@ -1505,7 +1523,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_31
-      - !<!Parameter> 
+      - !<!Parameter> &ref_57
         schema: *ref_25
         implementation: Method
         required: true
@@ -1520,13 +1538,13 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> &ref_47
+      - !<!Parameter> &ref_55
         schema: *ref_10
         flattened: true
         implementation: Method
         extensions:
           x-ms-client-flatten: true
-          x-ms-parameter-grouping:
+          x-ms-parameter-grouping: &ref_56
             name: flatten-parameter-group
           x-ms-requestBody-name: SimpleBodyProduct
         language: !<!Languages> 
@@ -1537,14 +1555,16 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_58
         schema: *ref_11
-        flattenedNames: *ref_38
+        flattenedNames: *ref_43
         implementation: Method
-        originalParameter: *ref_47
+        originalParameter: *ref_55
         pathToProperty: []
         serializedName: max_product_display_name
-        targetProperty: *ref_40
+        targetProperty: *ref_45
+        extensions:
+          x-ms-parameter-grouping: *ref_56
         language: !<!Languages> 
           default:
             name: max_product_display_name
@@ -1552,43 +1572,54 @@ operationGroups:
         protocol: !<!Protocols> {}
       - !<!Parameter> 
         schema: *ref_12
-        flattenedNames: *ref_41
+        flattenedNames: *ref_46
         implementation: Method
-        originalParameter: *ref_47
+        originalParameter: *ref_55
         pathToProperty: []
         serializedName: max_product_capacity
-        targetProperty: *ref_42
+        targetProperty: *ref_47
+        extensions:
+          x-ms-parameter-grouping: *ref_56
         language: !<!Languages> 
           default:
             name: capacity
             description: 'Capacity of product. For example, 4 people.'
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_59
         schema: *ref_13
-        flattenedNames: *ref_43
+        flattenedNames: *ref_48
         implementation: Method
-        originalParameter: *ref_47
+        originalParameter: *ref_55
         pathToProperty: []
         serializedName: generic_value
-        targetProperty: *ref_44
+        targetProperty: *ref_49
+        extensions:
+          x-ms-parameter-grouping: *ref_56
         language: !<!Languages> 
           default:
             name: generic_value
             description: Generic URL value.
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_60
         schema: *ref_14
-        flattenedNames: *ref_45
+        flattenedNames: *ref_50
         implementation: Method
-        originalParameter: *ref_47
+        originalParameter: *ref_55
         pathToProperty: []
         serializedName: '@odata.value'
-        targetProperty: *ref_46
+        targetProperty: *ref_51
+        extensions:
+          x-ms-parameter-grouping: *ref_56
         language: !<!Languages> 
           default:
             name: '@odata.value'
             description: URL value.
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_57
+      - *ref_58
+      - *ref_59
+      - *ref_60
       language: !<!Languages> 
         default:
           name: ''

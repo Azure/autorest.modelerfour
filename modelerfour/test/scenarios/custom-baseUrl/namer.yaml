@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_5
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -103,7 +103,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> 
+      - !<!Parameter> &ref_4
         schema: *ref_2
         implementation: Method
         required: true
@@ -122,6 +122,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: uri
       - *ref_3
+      signatureParameters:
+      - *ref_4
       language: !<!Languages> 
         default:
           name: ''
@@ -143,7 +145,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_4
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''

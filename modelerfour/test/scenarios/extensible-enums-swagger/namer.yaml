@@ -1,7 +1,7 @@
 !<!CodeModel> 
 schemas: !<!Schemas> 
   objects:
-  - !<!ObjectSchema> &ref_6
+  - !<!ObjectSchema> &ref_7
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -187,7 +187,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_4
-      - !<!Parameter> 
+      - !<!Parameter> &ref_6
         schema: *ref_5
         implementation: Method
         required: true
@@ -199,6 +199,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -210,7 +212,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -234,8 +236,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_4
-      - !<!Parameter> 
-        schema: *ref_6
+      - !<!Parameter> &ref_8
+        schema: *ref_7
         implementation: Method
         extensions:
           x-ms-requestBody-name: petParam
@@ -247,6 +249,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -261,7 +265,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''

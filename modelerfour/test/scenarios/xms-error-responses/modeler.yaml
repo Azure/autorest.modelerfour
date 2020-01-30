@@ -248,7 +248,7 @@ schemas: !<!Schemas>
         namespace: Api000
     protocol: !<!Protocols> {}
   - *ref_9
-  - !<!ObjectSchema> &ref_27
+  - !<!ObjectSchema> &ref_29
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -424,7 +424,7 @@ schemas: !<!Schemas>
   - *ref_21
   - *ref_22
   numbers:
-  - !<!NumberSchema> &ref_25
+  - !<!NumberSchema> &ref_26
     type: integer
     apiVersions:
     - !<!ApiVersion> 
@@ -466,7 +466,7 @@ schemas: !<!Schemas>
   - *ref_18
   - *ref_20
 globalParameters:
-- !<!Parameter> &ref_26
+- !<!Parameter> &ref_27
   schema: *ref_23
   clientDefaultValue: 'http://localhost'
   implementation: Client
@@ -494,8 +494,8 @@ operationGroups:
       version: 0.0.0
     request: !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> 
+      - *ref_27
+      - !<!Parameter> &ref_25
         schema: *ref_24
         implementation: Method
         required: true
@@ -507,6 +507,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_25
       language: !<!Languages> 
         default:
           name: ''
@@ -571,7 +573,7 @@ operationGroups:
           statusCodes:
           - '404'
     - !<!SchemaResponse> 
-      schema: *ref_25
+      schema: *ref_26
       extensions:
         x-ms-error-response: true
       language: !<!Languages> 
@@ -605,8 +607,8 @@ operationGroups:
       version: 0.0.0
     request: !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> 
+      - *ref_27
+      - !<!Parameter> &ref_28
         schema: *ref_24
         implementation: Method
         required: true
@@ -618,6 +620,8 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
+      signatureParameters:
+      - *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -629,7 +633,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_27
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''

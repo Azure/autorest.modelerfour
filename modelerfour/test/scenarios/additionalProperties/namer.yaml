@@ -121,7 +121,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_34
+  - !<!ObjectSchema> &ref_36
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -168,7 +168,7 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   - *ref_1
-  - !<!ObjectSchema> &ref_35
+  - !<!ObjectSchema> &ref_38
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -192,7 +192,7 @@ schemas: !<!Schemas>
       immediate:
       - *ref_3
     properties:
-    - !<!Property> &ref_37
+    - !<!Property> &ref_40
       schema: !<!NumberSchema> &ref_18
         type: integer
         precision: 32
@@ -209,7 +209,7 @@ schemas: !<!Schemas>
           description: ''
           originalName: id
       protocol: !<!Protocols> {}
-    - !<!Property> &ref_38
+    - !<!Property> &ref_41
       schema: !<!StringSchema> &ref_24
         type: string
         apiVersions:
@@ -251,7 +251,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_39
+  - !<!ObjectSchema> &ref_44
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -278,7 +278,7 @@ schemas: !<!Schemas>
       immediate:
       - *ref_4
     properties:
-    - !<!Property> &ref_41
+    - !<!Property> &ref_46
       schema: !<!NumberSchema> &ref_19
         type: integer
         precision: 32
@@ -295,7 +295,7 @@ schemas: !<!Schemas>
           description: ''
           originalName: id
       protocol: !<!Protocols> {}
-    - !<!Property> &ref_42
+    - !<!Property> &ref_47
       schema: !<!StringSchema> &ref_25
         type: string
         apiVersions:
@@ -337,7 +337,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_43
+  - !<!ObjectSchema> &ref_50
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -429,7 +429,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_44
+  - !<!ObjectSchema> &ref_52
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -625,7 +625,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_34
         schema: *ref_16
         implementation: Method
         originalParameter: *ref_31
@@ -638,7 +638,7 @@ operationGroups:
             name: id
             description: ''
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_35
         schema: *ref_22
         implementation: Method
         originalParameter: *ref_31
@@ -651,6 +651,9 @@ operationGroups:
             name: name
             description: ''
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_34
+      - *ref_35
       language: !<!Languages> 
         default:
           name: ''
@@ -679,7 +682,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -705,7 +708,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> 
+      - !<!Parameter> &ref_37
         schema: *ref_1
         implementation: Method
         required: true
@@ -719,6 +722,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_37
       language: !<!Languages> 
         default:
           name: ''
@@ -747,7 +752,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -773,8 +778,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> &ref_36
-        schema: *ref_35
+      - !<!Parameter> &ref_39
+        schema: *ref_38
         flattened: true
         implementation: Method
         required: true
@@ -788,32 +793,35 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_42
         schema: *ref_18
         implementation: Method
-        originalParameter: *ref_36
+        originalParameter: *ref_39
         pathToProperty: []
         required: true
         serializedName: id
-        targetProperty: *ref_37
+        targetProperty: *ref_40
         language: !<!Languages> 
           default:
             name: id
             description: ''
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_43
         schema: *ref_24
         implementation: Method
-        originalParameter: *ref_36
+        originalParameter: *ref_39
         pathToProperty: []
         required: false
         serializedName: name
-        targetProperty: *ref_38
+        targetProperty: *ref_41
         language: !<!Languages> 
           default:
             name: name
             description: ''
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_42
+      - *ref_43
       language: !<!Languages> 
         default:
           name: ''
@@ -828,7 +836,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_35
+      schema: *ref_38
       language: !<!Languages> 
         default:
           name: ''
@@ -842,7 +850,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -868,8 +876,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> &ref_40
-        schema: *ref_39
+      - !<!Parameter> &ref_45
+        schema: *ref_44
         flattened: true
         implementation: Method
         required: true
@@ -883,32 +891,35 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_48
         schema: *ref_19
         implementation: Method
-        originalParameter: *ref_40
+        originalParameter: *ref_45
         pathToProperty: []
         required: true
         serializedName: id
-        targetProperty: *ref_41
+        targetProperty: *ref_46
         language: !<!Languages> 
           default:
             name: id
             description: ''
         protocol: !<!Protocols> {}
-      - !<!Parameter> 
+      - !<!Parameter> &ref_49
         schema: *ref_25
         implementation: Method
-        originalParameter: *ref_40
+        originalParameter: *ref_45
         pathToProperty: []
         required: false
         serializedName: name
-        targetProperty: *ref_42
+        targetProperty: *ref_47
         language: !<!Languages> 
           default:
             name: name
             description: ''
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_48
+      - *ref_49
       language: !<!Languages> 
         default:
           name: ''
@@ -923,7 +934,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_39
+      schema: *ref_44
       language: !<!Languages> 
         default:
           name: ''
@@ -937,7 +948,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -963,8 +974,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> 
-        schema: *ref_43
+      - !<!Parameter> &ref_51
+        schema: *ref_50
         implementation: Method
         required: true
         extensions:
@@ -977,6 +988,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_51
       language: !<!Languages> 
         default:
           name: ''
@@ -991,7 +1004,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_43
+      schema: *ref_50
       language: !<!Languages> 
         default:
           name: ''
@@ -1005,7 +1018,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''
@@ -1031,8 +1044,8 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_30
-      - !<!Parameter> 
-        schema: *ref_44
+      - !<!Parameter> &ref_53
+        schema: *ref_52
         implementation: Method
         required: true
         extensions:
@@ -1045,6 +1058,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
+      signatureParameters:
+      - *ref_53
       language: !<!Languages> 
         default:
           name: ''
@@ -1059,7 +1074,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_44
+      schema: *ref_52
       language: !<!Languages> 
         default:
           name: ''
@@ -1073,7 +1088,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_34
+      schema: *ref_36
       language: !<!Languages> 
         default:
           name: ''

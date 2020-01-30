@@ -91,7 +91,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_3
-      - !<!Parameter> 
+      - !<!Parameter> &ref_8
         schema: *ref_1
         implementation: Method
         required: true
@@ -103,7 +103,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> 
+      - !<!Parameter> &ref_9
         schema: *ref_4
         implementation: Method
         required: true
@@ -130,7 +130,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> 
+      - !<!Parameter> &ref_10
         schema: *ref_0
         implementation: Method
         originalParameter: *ref_6
@@ -143,6 +143,10 @@ operationGroups:
             name: AvailabilitySetUpdateParametersTags
             description: A description about the set of tags.
         protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_8
+      - *ref_9
+      - *ref_10
       language: !<!Languages> 
         default:
           name: ''
