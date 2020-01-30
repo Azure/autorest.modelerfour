@@ -61,7 +61,7 @@ export class Flattener {
     // hide the original parameter
     parameter.flattened = true;
 
-    for (const property of values(schema.properties)) {
+    for (const property of values(getAllProperties(schema))) {
       if (property.readOnly) {
         // skip read-only properties
         continue;
