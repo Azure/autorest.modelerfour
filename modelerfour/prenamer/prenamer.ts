@@ -54,7 +54,7 @@ export class PreNamer {
       property: formatStyle(naming.property, camelCase),
       operation: formatStyle(naming.operation, pascalCase),
       operationGroup: formatStyle(naming.operationGroup, pascalCase),
-      choice: formatStyle(naming.schema, pascalCase),
+      choice: formatStyle(naming.choice, pascalCase),
       choiceValue: formatStyle(naming.choiceValue, pascalCase),
       constant: formatStyle(naming.constant, pascalCase),
       type: formatStyle(naming.type, pascalCase)
@@ -207,7 +207,6 @@ export class PreNamer {
 
       // handle operation parameters
       for (const parameter of collisions) {
-        console.log(`parameter collison fix on ${parameter.language.default.name} `)
         let options = [parameter.language.default.name];
         if (isVirtualParameter(parameter)) {
           options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]);
@@ -238,7 +237,6 @@ export class PreNamer {
     for (const each of flattened /*.sort((a, b) => length(a.nameOptions) - length(b.nameOptions)) */) {
       const ct = inlined.get(this.format.property(each.language.default.name));
       if (ct && ct > 1) {
-        console.error(`Fixing collision on name ${each.language.default.name} #${ct} `);
         const options = getNameOptions(each.schema.language.default.name, [each.language.default.name, ...values(each.flattenedNames)]);
         each.language.default.name = this.format.property(selectName(options, usedNames));
       }
