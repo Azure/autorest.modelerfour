@@ -1,7 +1,7 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, Property, getAllParentProperties } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, Property, getAllParentProperties, Language, Languages } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
-import { values, length } from '@azure-tools/linq';
-import { pascalCase, removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, camelCase } from '@azure-tools/codegen';
+import { values, length, Dictionary } from '@azure-tools/linq';
+import { pascalCase, removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, camelCase, snakeCase, formatStyle, formatter } from '@azure-tools/codegen';
 
 function getNameOptions(typeName: string, components: Array<string>) {
   const result = new Set<string>();
@@ -17,143 +17,165 @@ function getNameOptions(typeName: string, components: Array<string>) {
   return [...result.values()];
 }
 
+function isUnassigned(value: string) {
+  return !value || (value.indexOf('·') > -1);
+}
+
+function setName(thing: { language: Languages }, formatter: formatter, defaultValue: string) {
+  thing.language.default.name = formatter(isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name);
+}
+
 export class PreNamer {
   codeModel: CodeModel
+  options: Dictionary<any> = {};
+  format = {
+    parameter: camelCase,
+    property: camelCase,
+    operation: pascalCase,
+    operationGroup: pascalCase,
+    choice: pascalCase,
+    choiceValue: pascalCase,
+    constant: pascalCase,
+    type: pascalCase,
+  }
+
   enum = 0;
   constant = 0;
   constructor(protected session: Session<CodeModel>) {
     this.codeModel = session.model;// shadow(session.model, filename);
-
   }
 
-  isUnassigned(name: string) {
-    return !name || (name.indexOf('·') > -1);
+  async init() {
+    // get our configuration for this run.
+    this.options = await this.session.getValue('modelerfour', {});
+    const naming = this.options.naming || {};
+    this.format = {
+      parameter: formatStyle(naming.parameter, camelCase),
+      property: formatStyle(naming.property, camelCase),
+      operation: formatStyle(naming.operation, pascalCase),
+      operationGroup: formatStyle(naming.operationGroup, pascalCase),
+      choice: formatStyle(naming.schema, pascalCase),
+      choiceValue: formatStyle(naming.choiceValue, pascalCase),
+      constant: formatStyle(naming.constant, pascalCase),
+      type: formatStyle(naming.type, pascalCase)
+    }
+    return this;
+  }
+
+  isUnassigned(value: string) {
+    return !value || (value.indexOf('·') > -1);
   }
 
   process() {
+    if (this.options['prenamer'] === false) {
+      return this.codeModel;
+    }
 
     // choice
     for (const schema of values(this.codeModel.schemas.choices)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = `Enum${this.enum++}`;
+      setName(schema, this.format.choice, `Enum${this.enum++}`);
+      for (const choice of values(schema.choices)) {
+        setName(choice, this.format.choiceValue, '');
       }
     }
 
     // sealed choice
     for (const schema of values(this.codeModel.schemas.sealedChoices)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = `Enum${this.enum++}`;
+      setName(schema, this.format.choice, `Enum${this.enum++}`);
+      for (const choice of values(schema.choices)) {
+        setName(choice, this.format.choiceValue, '');
       }
     }
 
     // constant
     for (const schema of values(this.codeModel.schemas.constants)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = `Constant${this.enum++}`;
-      }
+      setName(schema, this.format.constant, `Constant${this.enum++}`);
     }
 
     // strings
     for (const schema of values(this.codeModel.schemas.strings)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     // number
     for (const schema of values(this.codeModel.schemas.numbers)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     for (const schema of values(this.codeModel.schemas.dates)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
     for (const schema of values(this.codeModel.schemas.dateTimes)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
     for (const schema of values(this.codeModel.schemas.durations)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
     for (const schema of values(this.codeModel.schemas.uuids)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     for (const schema of values(this.codeModel.schemas.uris)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     for (const schema of values(this.codeModel.schemas.unixtimes)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
-      if (this.isUnassigned(schema.language.default.description)) {
+      setName(schema, this.format.type, schema.type);
+
+      if (isUnassigned(schema.language.default.description)) {
         schema.language.default.description = 'date in seconds since 1970-01-01T00:00:00Z.';
       }
     }
 
     for (const schema of values(this.codeModel.schemas.byteArrays)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     for (const schema of values(this.codeModel.schemas.chars)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     for (const schema of values(this.codeModel.schemas.booleans)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     for (const schema of values(this.codeModel.schemas.flags)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = schema.type;
-      }
+      setName(schema, this.format.type, schema.type);
     }
 
     // dictionary
     for (const schema of values(this.codeModel.schemas.dictionaries)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        schema.language.default.name = `DictionaryOf${schema.elementType.language.default.name}`;
-      }
-      if (this.isUnassigned(schema.language.default.description)) {
-        schema.language.default.name = `Dictionary of ${schema.elementType.language.default.name}`;
+      setName(schema, this.format.type, `DictionaryOf${schema.elementType.language.default.name}`);
+      if (isUnassigned(schema.language.default.description)) {
+        schema.language.default.description = `Dictionary of ${schema.elementType.language.default.name}`;
       }
     }
 
     for (const schema of values(this.codeModel.schemas.arrays)) {
-      if (this.isUnassigned(schema.language.default.name)) {
-        if (this.isUnassigned(schema.language.default.name)) {
-          schema.language.default.name = `ArrayOf${schema.elementType.language.default.name}`;
-        }
-        if (this.isUnassigned(schema.language.default.description)) {
-          schema.language.default.name = `Array of ${schema.elementType.language.default.name}`;
+      setName(schema, this.format.type, `ArrayOf${schema.elementType.language.default.name}`);
+      if (this.isUnassigned(schema.language.default.description)) {
+        schema.language.default.description = `Array of ${schema.elementType.language.default.name}`;
+      }
+    }
+
+
+    for (const schema of values(this.codeModel.schemas.objects)) {
+      setName(schema, this.format.type, '');
+      for (const property of values(schema.properties)) {
+        setName(property, this.format.property, '');
+      }
+    }
+
+    for (const operationGroup of this.codeModel.operationGroups) {
+      setName(operationGroup, this.format.operationGroup, operationGroup.$key);
+      for (const operation of operationGroup.operations) {
+        setName(operation, this.format.operation, '');
+        for (const parameter of values(operation.request.signatureParameters)) {
+          setName(parameter, this.format.parameter, '');
         }
       }
     }
 
-    for (const schema of values(this.codeModel.schemas.objects)) {
-      for (const property of values(schema.properties)) {
-        property.language.default.originalName = property.language.default.name;
-        property.language.default.camelName = camelCase(property.language.default.name);
-      }
-    }
 
     // fix collisions from flattening on ObjectSchemas
     this.fixPropertyCollisions();
@@ -161,28 +183,21 @@ export class PreNamer {
     // fix collisions from flattening on VirtualParameters
     this.fixParameterCollisions();
 
-    for (const schema of values(this.codeModel.schemas.objects)) {
-      for (const property of values(schema.properties)) {
-        if (property.language.default.name.toLowerCase() !== property.language.default.camelName.toLowerCase()) {
-          property.language.default.name = property.language.default.camelName;
-        }
-        delete property.language.default.camelName;
-      }
-    }
+
 
 
     return this.codeModel;
   }
   fixParameterCollisions() {
     for (const operation of values(this.codeModel.operationGroups).selectMany(each => each.operations)) {
-      const parameters = values(operation.request.parameters);
+      const parameters = values(operation.request.signatureParameters);
 
       const usedNames = new Set<string>();
       const collisions = new Set<Parameter>();
 
       // we need to make sure we avoid name collisions. operation parameters get first crack.
       for (const each of values(parameters)) {
-        const name = pascalCase(each.language.default.name);
+        const name = each.language.default.name;
         if (usedNames.has(name)) {
           collisions.add(each);
         } else {
@@ -192,11 +207,12 @@ export class PreNamer {
 
       // handle operation parameters
       for (const parameter of collisions) {
+        console.log(`parameter collison fix on ${parameter.language.default.name} `)
         let options = [parameter.language.default.name];
         if (isVirtualParameter(parameter)) {
           options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]);
         }
-        parameter.language.default.name = selectName(options, usedNames);
+        parameter.language.default.name = this.format.parameter(selectName(options, usedNames));
       }
     }
 
@@ -213,18 +229,18 @@ export class PreNamer {
 
     const inlined = new Map<string, number>();
     for (const each of all) {
-      const name = camelCase(each.language.default.camelName);
+      const name = this.format.property(each.language.default.name);
       // track number of instances of a given name.
       inlined.set(name, (inlined.get(name) || 0) + 1);
     }
 
     const usedNames = new Set(inlined.keys());
     for (const each of flattened /*.sort((a, b) => length(a.nameOptions) - length(b.nameOptions)) */) {
-      const ct = inlined.get(camelCase(each.language.default.camelName));
+      const ct = inlined.get(this.format.property(each.language.default.name));
       if (ct && ct > 1) {
-        // console.error(`Fixing collision on name ${each.name} #${ct} `);
-        const options = getNameOptions(each.schema.language.default.camelName, [each.language.default.camelName, ...values(each.flattenedNames)]);
-        each.language.default.camelName = camelCase(selectName(options, usedNames));
+        console.error(`Fixing collision on name ${each.language.default.name} #${ct} `);
+        const options = getNameOptions(each.schema.language.default.name, [each.language.default.name, ...values(each.flattenedNames)]);
+        each.language.default.name = this.format.property(selectName(options, usedNames));
       }
     }
   }

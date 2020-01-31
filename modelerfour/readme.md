@@ -102,6 +102,23 @@ modelerfour:
   # defaults to false if not specified
   group-parameters: false|true
 
+  # customization of the identifier normalization and naming provided by the prenamer.
+  # pascalcase - MultiWordIdentifier 
+  # camelcase - multiWordIdentifier 
+  # snakecase - multi_word_identifier
+  # uppercase - MULTI_WORD_IDENTIFIER 
+  # kebabcase - multi-word-identifier 
+  # default is the first one in the list below:
+  naming: 
+    parameter: camelcase | pascalcase | snakecase | uppercase | kebabcase
+    property: camelcase| pascalcase | snakecase | uppercase | kebabcase
+    operation: pascalcase | camelcase | snakecase | uppercase | kebabcase
+    operationGroup:  pascalcase | camelcase | snakecase | uppercase | kebabcase
+    choice:  pascalcase | camelcase | snakecase | uppercase | kebabcase
+    choiceValue:  pascalcase | camelcase | snakecase | uppercase | kebabcase
+    constant:  pascalcase | camelcase | snakecase | uppercase | kebabcase
+    type:  pascalcase | camelcase | snakecase | uppercase | kebabcase
+
 ```
 ~~~
 

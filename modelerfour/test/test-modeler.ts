@@ -168,7 +168,15 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       console.log(`Processing: ${each}`);
 
       const cfg = {
-        modelerfour: { 'flatten-models': true, 'flatten-payloads': true, 'group-parameters': true },
+        modelerfour: {
+          'flatten-models': true,
+          'flatten-payloads': true,
+          'group-parameters': true,
+          naming: {
+            // constant: 'uppercase',
+            //property: 'snakecase'
+          }
+        },
         'payload-flattening-threshold': 2
       }
 
@@ -195,7 +203,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       const groupedYaml = serialize(grouped, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/grouped.yaml`, groupedYaml));
 
-      const namer = new PreNamer(await createPassThruSession(cfg, groupedYaml, 'code-model-v4'));
+      const namer = await new PreNamer(await createPassThruSession(cfg, groupedYaml, 'code-model-v4')).init();
       const named = await namer.process();
       const namedyaml = serialize(named, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/namer.yaml`, namedyaml));

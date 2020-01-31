@@ -16,7 +16,7 @@ export async function processRequest(host: Host) {
     const options = <any>await session.getValue('modelerfour', {});
 
     // process
-    const plugin = new PreNamer(session);
+    const plugin = await new PreNamer(session).init();
 
     // go!
     const result = plugin.process();
