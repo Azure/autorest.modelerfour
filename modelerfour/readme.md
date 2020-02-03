@@ -119,10 +119,12 @@ modelerfour:
     choiceValue:  pascal|camel|snake|upper|kebab|space
     constant:  pascal|camel|snake|upper|kebab|space
     type:  pascal|camel|snake|upper|kebab|space
+    client: pascal|camel|snake|upper|kebab|space
 
     override:  # a key/value mapping of names to force to a certain value 
       cmyk : CMYK
       $host: $host
+      LRO: LRO
 
 ```
 ~~~

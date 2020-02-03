@@ -1,4 +1,4 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, Property, getAllParentProperties, Language, Languages } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, Property, getAllParentProperties, Language, Languages, SchemaType } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, length, Dictionary } from '@azure-tools/linq';
 import { pascalCase, removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, camelCase, snakeCase, formatStyle, formatter } from '@azure-tools/codegen';
@@ -37,6 +37,7 @@ export class PreNamer {
     choiceValue: pascalCase,
     constant: pascalCase,
     type: pascalCase,
+    client: pascalCase,
     override: <Dictionary<string>>{}
   }
 
@@ -58,6 +59,7 @@ export class PreNamer {
       choice: formatStyle(naming.choice, pascalCase),
       choiceValue: formatStyle(naming.choiceValue, pascalCase),
       constant: formatStyle(naming.constant, pascalCase),
+      client: formatStyle(naming.client, pascalCase),
       type: formatStyle(naming.type, pascalCase),
       override: naming.override || {}
     }
@@ -176,7 +178,11 @@ export class PreNamer {
     }
 
     for (const parameter of values(this.codeModel.globalParameters)) {
-      setName(parameter, this.format.parameter, '', this.format.override);
+      if (parameter.schema.type === SchemaType.Constant) {
+        setName(parameter, this.format.constant, '', this.format.override);
+      } else {
+        setName(parameter, this.format.parameter, '', this.format.override);
+      }
     }
 
     for (const operationGroup of this.codeModel.operationGroups) {
@@ -184,10 +190,17 @@ export class PreNamer {
       for (const operation of operationGroup.operations) {
         setName(operation, this.format.operation, '', this.format.override);
         for (const parameter of values(operation.request.signatureParameters)) {
-          setName(parameter, this.format.parameter, '', this.format.override);
+          if (parameter.schema.type === SchemaType.Constant) {
+            setName(parameter, this.format.constant, '', this.format.override);
+          } else {
+            setName(parameter, this.format.parameter, '', this.format.override);
+          }
         }
       }
     }
+
+    // set a formatted client name
+    setName(this.codeModel, this.format.client, this.codeModel.info.title, this.format.override);
 
 
     // fix collisions from flattening on ObjectSchemas
@@ -195,9 +208,6 @@ export class PreNamer {
 
     // fix collisions from flattening on VirtualParameters
     this.fixParameterCollisions();
-
-
-
 
     return this.codeModel;
   }
