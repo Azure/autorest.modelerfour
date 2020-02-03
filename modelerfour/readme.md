@@ -95,7 +95,7 @@ modelerfour:
 
   # merges response headers into response objects 
   # defaults to false if not specified
-  # not implenented
+  # not implemented
   merge-response-headers: false|true 
 
   # enables parameter grouping via x-ms-parameter-grouping
@@ -103,21 +103,26 @@ modelerfour:
   group-parameters: false|true
 
   # customization of the identifier normalization and naming provided by the prenamer.
-  # pascalcase - MultiWordIdentifier 
-  # camelcase - multiWordIdentifier 
-  # snakecase - multi_word_identifier
-  # uppercase - MULTI_WORD_IDENTIFIER 
-  # kebabcase - multi-word-identifier 
+  # pascal|pascalcase - MultiWordIdentifier 
+  # camel|camelcase - multiWordIdentifier 
+  # snake|snakecase - multi_word_identifier
+  # upper|uppercase - MULTI_WORD_IDENTIFIER 
+  # kebab|kebabcase - multi-word-identifier 
+  # space|spacecase - spaces between recognized words
   # default is the first one in the list below:
   naming: 
-    parameter: camelcase | pascalcase | snakecase | uppercase | kebabcase
-    property: camelcase| pascalcase | snakecase | uppercase | kebabcase
-    operation: pascalcase | camelcase | snakecase | uppercase | kebabcase
-    operationGroup:  pascalcase | camelcase | snakecase | uppercase | kebabcase
-    choice:  pascalcase | camelcase | snakecase | uppercase | kebabcase
-    choiceValue:  pascalcase | camelcase | snakecase | uppercase | kebabcase
-    constant:  pascalcase | camelcase | snakecase | uppercase | kebabcase
-    type:  pascalcase | camelcase | snakecase | uppercase | kebabcase
+    parameter: camel|pascal|snake|upper|kebab|space
+    property: camel|pascal|snake|upper|kebab|space
+    operation: pascal|camel|snake|upper|kebab|space
+    operationGroup:  pascal|camel|snake|upper|kebab|space
+    choice:  pascal|camel|snake|upper|kebab|space
+    choiceValue:  pascal|camel|snake|upper|kebab|space
+    constant:  pascal|camel|snake|upper|kebab|space
+    type:  pascal|camel|snake|upper|kebab|space
+
+    override:  # a key/value mapping of names to force to a certain value 
+      cmyk : CMYK
+      $host: $host
 
 ```
 ~~~

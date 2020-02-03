@@ -173,6 +173,10 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
           'flatten-payloads': true,
           'group-parameters': true,
           naming: {
+            override: {
+              '$host': '$host',
+              'cmyk': 'CMYK'
+            }
             // constant: 'uppercase',
             //property: 'snakecase'
           }
