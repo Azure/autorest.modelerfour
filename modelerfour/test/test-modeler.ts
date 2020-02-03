@@ -178,6 +178,8 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
               'cmyk': 'CMYK'
             },
             /*
+            for when playing with python style settings :
+
             parameter: 'snakecase',
             property: 'snakecase',
             operation: 'snakecase',
