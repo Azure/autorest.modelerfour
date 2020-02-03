@@ -21,8 +21,8 @@ function isUnassigned(value: string) {
   return !value || (value.indexOf('·') > -1);
 }
 
-function setName(thing: { language: Languages }, formatter: formatter, defaultValue: string) {
-  thing.language.default.name = formatter(isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name);
+function setName(thing: { language: Languages }, formatter: formatter, defaultValue: string, overrides: Dictionary<string>) {
+  thing.language.default.name = formatter(isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
 }
 
 export class PreNamer {
@@ -37,6 +37,7 @@ export class PreNamer {
     choiceValue: pascalCase,
     constant: pascalCase,
     type: pascalCase,
+    override: <Dictionary<string>>{}
   }
 
   enum = 0;
@@ -57,7 +58,8 @@ export class PreNamer {
       choice: formatStyle(naming.choice, pascalCase),
       choiceValue: formatStyle(naming.choiceValue, pascalCase),
       constant: formatStyle(naming.constant, pascalCase),
-      type: formatStyle(naming.type, pascalCase)
+      type: formatStyle(naming.type, pascalCase),
+      override: naming.override || {}
     }
     return this;
   }
@@ -73,54 +75,54 @@ export class PreNamer {
 
     // choice
     for (const schema of values(this.codeModel.schemas.choices)) {
-      setName(schema, this.format.choice, `Enum${this.enum++}`);
+      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override);
       for (const choice of values(schema.choices)) {
-        setName(choice, this.format.choiceValue, '');
+        setName(choice, this.format.choiceValue, '', this.format.override);
       }
     }
 
     // sealed choice
     for (const schema of values(this.codeModel.schemas.sealedChoices)) {
-      setName(schema, this.format.choice, `Enum${this.enum++}`);
+      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override);
       for (const choice of values(schema.choices)) {
-        setName(choice, this.format.choiceValue, '');
+        setName(choice, this.format.choiceValue, '', this.format.override);
       }
     }
 
     // constant
     for (const schema of values(this.codeModel.schemas.constants)) {
-      setName(schema, this.format.constant, `Constant${this.enum++}`);
+      setName(schema, this.format.constant, `Constant${this.enum++}`, this.format.override);
     }
 
     // strings
     for (const schema of values(this.codeModel.schemas.strings)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     // number
     for (const schema of values(this.codeModel.schemas.numbers)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     for (const schema of values(this.codeModel.schemas.dates)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
     for (const schema of values(this.codeModel.schemas.dateTimes)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
     for (const schema of values(this.codeModel.schemas.durations)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
     for (const schema of values(this.codeModel.schemas.uuids)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     for (const schema of values(this.codeModel.schemas.uris)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     for (const schema of values(this.codeModel.schemas.unixtimes)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
 
       if (isUnassigned(schema.language.default.description)) {
         schema.language.default.description = 'date in seconds since 1970-01-01T00:00:00Z.';
@@ -128,31 +130,31 @@ export class PreNamer {
     }
 
     for (const schema of values(this.codeModel.schemas.byteArrays)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     for (const schema of values(this.codeModel.schemas.chars)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     for (const schema of values(this.codeModel.schemas.booleans)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     for (const schema of values(this.codeModel.schemas.flags)) {
-      setName(schema, this.format.type, schema.type);
+      setName(schema, this.format.type, schema.type, this.format.override);
     }
 
     // dictionary
     for (const schema of values(this.codeModel.schemas.dictionaries)) {
-      setName(schema, this.format.type, `DictionaryOf${schema.elementType.language.default.name}`);
+      setName(schema, this.format.type, `DictionaryOf${schema.elementType.language.default.name}`, this.format.override);
       if (isUnassigned(schema.language.default.description)) {
         schema.language.default.description = `Dictionary of ${schema.elementType.language.default.name}`;
       }
     }
 
     for (const schema of values(this.codeModel.schemas.arrays)) {
-      setName(schema, this.format.type, `ArrayOf${schema.elementType.language.default.name}`);
+      setName(schema, this.format.type, `ArrayOf${schema.elementType.language.default.name}`, this.format.override);
       if (this.isUnassigned(schema.language.default.description)) {
         schema.language.default.description = `Array of ${schema.elementType.language.default.name}`;
       }
@@ -160,18 +162,29 @@ export class PreNamer {
 
 
     for (const schema of values(this.codeModel.schemas.objects)) {
-      setName(schema, this.format.type, '');
+      setName(schema, this.format.type, '', this.format.override);
       for (const property of values(schema.properties)) {
-        setName(property, this.format.property, '');
+        setName(property, this.format.property, '', this.format.override);
       }
     }
 
+    for (const schema of values(this.codeModel.schemas.groups)) {
+      setName(schema, this.format.type, '', this.format.override);
+      for (const property of values(schema.properties)) {
+        setName(property, this.format.property, '', this.format.override);
+      }
+    }
+
+    for (const parameter of values(this.codeModel.globalParameters)) {
+      setName(parameter, this.format.parameter, '', this.format.override);
+    }
+
     for (const operationGroup of this.codeModel.operationGroups) {
-      setName(operationGroup, this.format.operationGroup, operationGroup.$key);
+      setName(operationGroup, this.format.operationGroup, operationGroup.$key, this.format.override);
       for (const operation of operationGroup.operations) {
-        setName(operation, this.format.operation, '');
+        setName(operation, this.format.operation, '', this.format.override);
         for (const parameter of values(operation.request.signatureParameters)) {
-          setName(parameter, this.format.parameter, '');
+          setName(parameter, this.format.parameter, '', this.format.override);
         }
       }
     }
