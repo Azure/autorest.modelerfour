@@ -35,11 +35,9 @@ steps:
 - script : |
     export AUTOREST_TYPESCRIPT=@autorest/typescript@0.1.0-dev.20200203.1
     autorest-compare --typescript \
-                     --spec-path:azure-parameter-grouping.json \
                      --spec-path:azure-report.json \
                      --spec-path:azure-resource-x.json \
                      --spec-path:azure-resource.json \
-                     --spec-path:body-array.json \
                      --spec-path:body-boolean.json \
                      --spec-path:body-boolean.quirks.json \
                      --spec-path:body-byte.json \
@@ -47,11 +45,8 @@ steps:
                      --spec-path:body-date.json \
                      --spec-path:body-datetime-rfc1123.json \
                      --spec-path:body-datetime.json \
-                     --spec-path:body-dictionary.json \
                      --spec-path:body-duration.json \
                      --spec-path:body-file.json \
-                     --spec-path:body-formdata-urlencoded.json \
-                     --spec-path:body-formdata.json \
                      --spec-path:body-integer.json \
                      --spec-path:body-number.json \
                      --spec-path:body-number.quirks.json \
@@ -59,18 +54,14 @@ steps:
                      --spec-path:body-string.quirks.json \
                      --spec-path:complex-model.json \
                      --spec-path:custom-baseUrl-more-options.json \
-                     --spec-path:custom-baseUrl-paging.json \
                      --spec-path:custom-baseUrl.json \
                      --spec-path:extensible-enums-swagger.json \
                      --spec-path:head-exceptions.json \
                      --spec-path:head.json \
-                     --spec-path:header.json \
                      --spec-path:httpInfrastructure.json \
                      --spec-path:httpInfrastructure.quirks.json \
-                     --spec-path:lro.json \
                      --spec-path:parameter-flattening.json \
                      --spec-path:report.json \
-                     --spec-path:required-optional.json \
                      --spec-path:storage.json \
                      --spec-path:subscriptionId-apiVersion.json \
                      --spec-path:url-multi-collectionFormat.json \
@@ -83,10 +74,19 @@ steps:
                      --compare-old --v3 --package-name:test-package --version=3.0.6200 --use:@autorest/modelerfour@4.4.158 --use:$AUTOREST_TYPESCRIPT \
                      --compare-new --v3 --package-name:test-package --version:3.0.6200 --use:./modelerfour --use:$AUTOREST_TYPESCRIPT
 
-                     # Disabled due to issues with TypeScript generator and OData properties
+                     # Disabled due to errors in the TypeScript generator
                      # --spec-path:additionalProperties.json \
+                     # --spec-path:azure-parameter-grouping.json \
                      # --spec-path:azure-special-properties.json \
-                     # --spec-path:paging.json \
+                     # --spec-path:body-array.json \
+                     # --spec-path:body-dictionary.json \
+                     # --spec-path:body-formdata-urlencoded.json \
+                     # --spec-path:body-formdata.json \
+                     # --spec-path:custom-baseUrl-paging.json \
+                     # --spec-path:header.json \
+                     # --spec-path:lro.json \
                      # --spec-path:model-flattening.json \
+                     # --spec-path:paging.json \
+                     # --spec-path:required-optional.json \
   displayName: Regression Test - @autorest/typescript
   continueOnError: true # Don't make this a hard fail just yet
