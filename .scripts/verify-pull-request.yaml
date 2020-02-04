@@ -18,7 +18,12 @@ steps:
 - script: |
     npm install -g npm 
     npm cache clear --force
-    
+
+    npm install -g pnpm
+    pnpm view @azure-tools/codegen versions
+
+    npm view @azure-tools/codegen versions
+
     npx @microsoft/rush update 
     rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
     npx @microsoft/rush rebuild 
