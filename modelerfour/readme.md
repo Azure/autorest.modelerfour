@@ -1,7 +1,38 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
-#### (patch-level changes)
+#### 4.5.x
+  - processed all names in namer, styles can be set in config:
+
+``` yaml
+modelerfour:
+  # customization of the identifier normalization and naming provided by the prenamer.
+  # pascal|pascalcase - MultiWordIdentifier 
+  # camel|camelcase - multiWordIdentifier 
+  # snake|snakecase - multi_word_identifier
+  # upper|uppercase - MULTI_WORD_IDENTIFIER 
+  # kebab|kebabcase - multi-word-identifier 
+  # space|spacecase - spaces between recognized words
+  # default is the first one in the list below:
+  naming: 
+    parameter: camel # camel|pascal|snake|upper|kebab|space
+    property: camel # camel|pascal|snake|upper|kebab|space
+    operation: pascal # pascal|camel|snake|upper|kebab|space
+    operationGroup:  pascal # pascal|camel|snake|upper|kebab|space
+    choice:  pascal # pascal|camel|snake|upper|kebab|space
+    choiceValue:  pascal # pascal|camel|snake|upper|kebab|space
+    constant:  pascal # pascal|camel|snake|upper|kebab|space
+    type:  pascal # pascal|camel|snake|upper|kebab|space
+    override:  # a key/value mapping of names to force to a certain value 
+      cmyk : CMYK
+      $host: $host  
+```
+  - support overrides in namer 
+  - static linked dependency
+
+#### 4.4.x 
+  - parameter grouping 
+  - some namer changes 
 
 #### 4.3.x
   - flattening (model and payload) enabled.
