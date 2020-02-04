@@ -1,19 +1,19 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, Property, getAllParentProperties, Language, Languages, SchemaType } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, length, Dictionary } from '@azure-tools/linq';
-import { pascalCase, removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, camelCase, snakeCase, formatStyle, formatter } from '@azure-tools/codegen';
+import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler } from '@azure-tools/codegen';
 
 function getNameOptions(typeName: string, components: Array<string>) {
   const result = new Set<string>();
 
   // add a variant for each incrementally inclusive parent naming scheme.
   for (let i = 0; i < length(components); i++) {
-    const subset = pascalCase([...removeSequentialDuplicates(components.slice(-1 * i, length(components)))]);
+    const subset = Style.pascal([...removeSequentialDuplicates(components.slice(-1 * i, length(components)))]);
     result.add(subset);
   }
 
   // add a second-to-last-ditch option as <typename>.<name>
-  result.add(pascalCase([...removeSequentialDuplicates([...fixLeadingNumber(deconstruct(typeName)), ...deconstruct(components.last)])]));
+  result.add(Style.pascal([...removeSequentialDuplicates([...fixLeadingNumber(deconstruct(typeName)), ...deconstruct(components.last)])]));
   return [...result.values()];
 }
 
@@ -21,23 +21,23 @@ function isUnassigned(value: string) {
   return !value || (value.indexOf('·') > -1);
 }
 
-function setName(thing: { language: Languages }, formatter: formatter, defaultValue: string, overrides: Dictionary<string>) {
-  thing.language.default.name = formatter(isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
+function setName(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>) {
+  thing.language.default.name = styler(isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
 }
 
 export class PreNamer {
   codeModel: CodeModel
   options: Dictionary<any> = {};
   format = {
-    parameter: camelCase,
-    property: camelCase,
-    operation: pascalCase,
-    operationGroup: pascalCase,
-    choice: pascalCase,
-    choiceValue: pascalCase,
-    constant: pascalCase,
-    type: pascalCase,
-    client: pascalCase,
+    parameter: Style.camel,
+    property: Style.camel,
+    operation: Style.pascal,
+    operationGroup: Style.pascal,
+    choice: Style.pascal,
+    choiceValue: Style.pascal,
+    constant: Style.pascal,
+    type: Style.pascal,
+    client: Style.pascal,
     override: <Dictionary<string>>{}
   }
 
@@ -52,15 +52,15 @@ export class PreNamer {
     this.options = await this.session.getValue('modelerfour', {});
     const naming = this.options.naming || {};
     this.format = {
-      parameter: formatStyle(naming.parameter, camelCase),
-      property: formatStyle(naming.property, camelCase),
-      operation: formatStyle(naming.operation, pascalCase),
-      operationGroup: formatStyle(naming.operationGroup, pascalCase),
-      choice: formatStyle(naming.choice, pascalCase),
-      choiceValue: formatStyle(naming.choiceValue, pascalCase),
-      constant: formatStyle(naming.constant, pascalCase),
-      client: formatStyle(naming.client, pascalCase),
-      type: formatStyle(naming.type, pascalCase),
+      parameter: Style.select(naming.parameter, Style.camel),
+      property: Style.select(naming.property, Style.camel),
+      operation: Style.select(naming.operation, Style.pascal),
+      operationGroup: Style.select(naming.operationGroup, Style.pascal),
+      choice: Style.select(naming.choice, Style.pascal),
+      choiceValue: Style.select(naming.choiceValue, Style.pascal),
+      constant: Style.select(naming.constant, Style.pascal),
+      client: Style.select(naming.client, Style.pascal),
+      type: Style.select(naming.type, Style.pascal),
       override: naming.override || {}
     }
     return this;
@@ -199,9 +199,8 @@ export class PreNamer {
       }
     }
 
-    // set a formatted client name
+    // set a styled client name
     setName(this.codeModel, this.format.client, this.codeModel.info.title, this.format.override);
-
 
     // fix collisions from flattening on ObjectSchemas
     this.fixPropertyCollisions();
