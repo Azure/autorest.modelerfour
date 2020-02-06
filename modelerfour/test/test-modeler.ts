@@ -17,10 +17,74 @@ import { ReadUri } from '@azure-tools/uri';
 import { PreNamer } from '../prenamer/prenamer';
 import { Flattener } from '../flattener/flattener';
 import { Grouper } from '../grouper/grouper';
-
+import { Checker } from '../checker/checker';
+import chalk from 'chalk';
 
 require('source-map-support').install();
 
+
+
+
+function addStyle(style: string, text: string): string {
+  return `▌PUSH:${style}▐${text}▌POP▐`;
+}
+function compileStyledText(text: string): string {
+  const styleStack = ['(x => x)'];
+  let result = '';
+  let consumedUpTo = 0;
+  const appendPart = (end: number) => {
+    const CHALK = chalk;
+    result += eval(styleStack[styleStack.length - 1])(text.slice(consumedUpTo, end));
+    consumedUpTo = end;
+  };
+
+  const commandRegex = /▌(.+?)▐/g;
+  let i: RegExpExecArray | null;
+  // eslint-disable-next-line no-cond-assign
+  while (i = commandRegex.exec(text)) {
+    const startIndex = i.index;
+    const length = i[0].length;
+    const command = i[1].split(':');
+
+    // append up to here with current style
+    appendPart(startIndex);
+
+    // process command
+    consumedUpTo += length;
+    switch (command[0]) {
+      case 'PUSH':
+        styleStack.push('CHALK.' + command[1]);
+        break;
+      case 'POP':
+        styleStack.pop();
+        break;
+    }
+  }
+  appendPart(text.length);
+  return result;
+}
+
+export function color(text: string): string {
+  return compileStyledText(text.
+    replace(/\*\*(.*?)\*\*/gm, addStyle('bold', '$1')).
+    replace(/(\[.*?s\])/gm, addStyle('yellow.bold', '$1')).
+    replace(/^# (.*)/gm, addStyle('greenBright', '$1')).
+    replace(/^## (.*)/gm, addStyle('green', '$1')).
+    replace(/^### (.*)/gm, addStyle('cyanBright', '$1')).
+    replace(/(https?:\/\/\S*)/gmi, addStyle('blue.bold.underline', '$1')).
+    replace(/__(.*)__/gm, addStyle('italic', '$1')).
+    replace(/^>(.*)/gm, addStyle('cyan', '  $1')).
+    replace(/^!(.*)/gm, addStyle('red.bold', '  $1')).
+    replace(/^(ERROR) (.*?):?(.*)/gmi, `${addStyle('red.bold', '$1')} ${addStyle('green', '$2')}:$3`).
+    replace(/^(WARNING) (.*?):?(.*)/gmi, `${addStyle('yellow.bold', '$1')} ${addStyle('green', '$2')}:$3`).
+    replace(/^(\s* - \w*:\/\/\S*):(\d*):(\d*) (.*)/gm, `${addStyle('cyan', '$1')}:${addStyle('cyan.bold', '$2')}:${addStyle('cyan.bold', '$3')} $4`).
+    replace(/`(.+?)`/gm, addStyle('gray', '$1')).
+    replace(/"(.*?)"/gm, addStyle('gray', '"$1"')).
+    replace(/'(.*?)'/gm, addStyle('gray', '\'$1\'')));
+}
+(<any>global).color = color;
+
+let errorCount = 0;
 
 const resources = `${__dirname}/../../test/resources/process`;
 
@@ -63,7 +127,13 @@ async function cts<TInputModel>(config: any, filename: string, content: string) 
     },
     Message: (message: any): void => {
       // test 
-      console.error(message);
+      if (message.Channel === 'warning' || message.Channel === 'error') {
+        if (message.Channel === 'error') {
+          errorCount++;
+        }
+        console.error(color(`${message.Channel} ${message.Text}`));
+      }
+
     },
     UpdateConfigurationFile: (filename: string, content: string): void => {
       // test 
@@ -94,7 +164,13 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
     },
     Message: (message: any): void => {
       // test 
-      console.error(message);
+      if (message.Channel === 'warning' || message.Channel === 'error') {
+        if (message.Channel === 'error') {
+
+          errorCount++;
+        }
+        console.error(color(`${message.Channel} ${message.Text}`));
+      }
     },
     UpdateConfigurationFile: (filename: string, content: string): void => {
       // test 
@@ -122,7 +198,13 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
     },
     Message: (message: any): void => {
       // test 
-      console.error(message);
+      if (message.Channel === 'warning' || message.Channel === 'error') {
+        if (message.Channel === 'error') {
+          errorCount++;
+        }
+        console.error(color(`${message.Channel} ${message.Text}`));
+      }
+
     },
     UpdateConfigurationFile: (filename: string, content: string): void => {
       // test 
@@ -173,6 +255,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
           'flatten-payloads': true,
           'group-parameters': true,
           'resolve-schema-name-collisons': true,
+          'additional-checks': true,
           naming: {
             override: {
               '$host': '$host',
@@ -223,7 +306,10 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       const namedyaml = serialize(named, codeModelSchema);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/namer.yaml`, namedyaml));
 
+      const checker = await new Checker(await createPassThruSession(cfg, namedyaml, 'code-model-v4')).init();
+      await checker.process();
 
+      assert(errorCount === 0, "Errors Encountered");
     }
   }
 }
