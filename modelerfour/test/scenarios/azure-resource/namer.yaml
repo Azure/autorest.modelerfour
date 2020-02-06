@@ -20,7 +20,7 @@ schemas: !<!Schemas>
           - *ref_0
         properties:
         - !<!Property> 
-          schema: !<!StringSchema> &ref_2
+          schema: !<!StringSchema> &ref_3
             type: string
             apiVersions:
             - !<!ApiVersion> 
@@ -40,12 +40,12 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_3
+          schema: !<!NumberSchema> &ref_2
             type: integer
             precision: 32
             language: !<!Languages> 
               default:
-                name: TypeForlsize
+                name: Integer
                 description: ''
             protocol: !<!Protocols> {}
           flattenedNames:
@@ -87,7 +87,7 @@ schemas: !<!Schemas>
       - *ref_1
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_9
+      schema: !<!StringSchema> &ref_8
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -105,7 +105,7 @@ schemas: !<!Schemas>
           description: Resource Id
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_10
+      schema: !<!StringSchema> &ref_9
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -125,7 +125,7 @@ schemas: !<!Schemas>
     - !<!Property> 
       schema: !<!DictionarySchema> &ref_5
         type: dictionary
-        elementType: !<!StringSchema> &ref_11
+        elementType: !<!StringSchema> &ref_10
           type: string
           apiVersions:
           - !<!ApiVersion> 
@@ -138,16 +138,16 @@ schemas: !<!Schemas>
         language: !<!Languages> 
           default:
             name: ResourceTags
-            description: Dictionary of String
+            description: Dictionary of <string>
         protocol: !<!Protocols> {}
       serializedName: tags
       language: !<!Languages> 
         default:
           name: tags
-          description: Dictionary of <components·schemas·resource·properties·tags·additionalproperties>
+          description: Dictionary of <string>
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_12
+      schema: !<!StringSchema> &ref_11
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -164,7 +164,7 @@ schemas: !<!Schemas>
           description: Resource Location
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_13
+      schema: !<!StringSchema> &ref_12
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -189,21 +189,14 @@ schemas: !<!Schemas>
         description: Some resource
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_19
+  - !<!ObjectSchema> &ref_18
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_8
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_2
       serializedName: status
       language: !<!Languages> 
         default:
@@ -211,7 +204,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_14
+      schema: !<!StringSchema> &ref_13
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -241,7 +234,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: *ref_2
+      schema: *ref_3
       serializedName: pname
       language: !<!Languages> 
         default:
@@ -249,7 +242,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_2
       serializedName: lsize
       language: !<!Languages> 
         default:
@@ -272,7 +265,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_23
+  - !<!ObjectSchema> &ref_22
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -327,7 +320,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_5
-  - !<!DictionarySchema> &ref_21
+  - !<!DictionarySchema> &ref_20
     type: dictionary
     elementType: *ref_1
     language: !<!Languages> 
@@ -337,7 +330,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_6
   arrays:
-  - !<!ArraySchema> &ref_17
+  - !<!ArraySchema> &ref_16
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -348,7 +341,7 @@ schemas: !<!Schemas>
         name: ArrayOfResource
         description: Array of Resource
     protocol: !<!Protocols> {}
-  - !<!ArraySchema> &ref_20
+  - !<!ArraySchema> &ref_19
     type: array
     apiVersions:
     - !<!ApiVersion> 
@@ -361,27 +354,26 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_7
   numbers:
-  - *ref_8
-  - *ref_3
+  - *ref_2
   strings:
-  - !<!StringSchema> &ref_15
+  - !<!StringSchema> &ref_14
     type: string
     language: !<!Languages> 
       default:
         name: String
         description: simple string
     protocol: !<!Protocols> {}
+  - *ref_8
   - *ref_9
   - *ref_10
   - *ref_11
   - *ref_12
   - *ref_13
-  - *ref_14
-  - *ref_2
+  - *ref_3
   - *ref_4
 globalParameters:
-- !<!Parameter> &ref_16
-  schema: *ref_15
+- !<!Parameter> &ref_15
+  schema: *ref_14
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true
@@ -408,9 +400,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_16
-      - !<!Parameter> &ref_18
-        schema: *ref_17
+      - *ref_15
+      - !<!Parameter> &ref_17
+        schema: *ref_16
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceArray
@@ -423,7 +415,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_18
+      - *ref_17
       language: !<!Languages> 
         default:
           name: ''
@@ -448,7 +440,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -473,7 +465,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_16
+      - *ref_15
       signatureParameters: []
       language: !<!Languages> 
         default:
@@ -486,7 +478,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_20
+      schema: *ref_19
       language: !<!Languages> 
         default:
           name: ''
@@ -500,7 +492,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -523,9 +515,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_16
-      - !<!Parameter> &ref_22
-        schema: *ref_21
+      - *ref_15
+      - !<!Parameter> &ref_21
+        schema: *ref_20
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceDictionary
@@ -538,7 +530,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_22
+      - *ref_21
       language: !<!Languages> 
         default:
           name: ''
@@ -563,7 +555,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -588,7 +580,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_16
+      - *ref_15
       signatureParameters: []
       language: !<!Languages> 
         default:
@@ -601,7 +593,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_21
+      schema: *ref_20
       language: !<!Languages> 
         default:
           name: ''
@@ -615,7 +607,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -638,9 +630,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_16
-      - !<!Parameter> &ref_24
-        schema: *ref_23
+      - *ref_15
+      - !<!Parameter> &ref_23
+        schema: *ref_22
         implementation: Method
         extensions:
           x-ms-requestBody-name: ResourceComplexObject
@@ -653,7 +645,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_24
+      - *ref_23
       language: !<!Languages> 
         default:
           name: ''
@@ -678,7 +670,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''
@@ -703,7 +695,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_16
+      - *ref_15
       signatureParameters: []
       language: !<!Languages> 
         default:
@@ -716,7 +708,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_23
+      schema: *ref_22
       language: !<!Languages> 
         default:
           name: ''
@@ -730,7 +722,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_19
+      schema: *ref_18
       language: !<!Languages> 
         default:
           name: ''

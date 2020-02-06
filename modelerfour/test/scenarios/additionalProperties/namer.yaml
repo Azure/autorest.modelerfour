@@ -18,12 +18,12 @@ schemas: !<!Schemas>
           - *ref_0
           - !<!DictionarySchema> &ref_2
             type: dictionary
-            elementType: !<!AnySchema> 
+            elementType: !<!AnySchema> &ref_5
               type: any
               language: !<!Languages> 
                 default:
                   name: any
-                  description: <Any object>
+                  description: Any object
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -34,11 +34,11 @@ schemas: !<!Schemas>
           - *ref_0
         properties:
         - !<!Property> 
-          schema: !<!BooleanSchema> &ref_11
+          schema: !<!BooleanSchema> &ref_3
             type: boolean
             language: !<!Languages> 
               default:
-                name: TypeForfriendly
+                name: Boolean
                 description: ''
             protocol: !<!Protocols> {}
           serializedName: friendly
@@ -61,13 +61,13 @@ schemas: !<!Schemas>
       immediate:
       - *ref_2
     properties:
-    - !<!Property> &ref_32
-      schema: !<!NumberSchema> &ref_16
+    - !<!Property> &ref_23
+      schema: !<!NumberSchema> &ref_4
         type: integer
         precision: 32
         language: !<!Languages> 
           default:
-            name: TypeForid
+            name: Integer
             description: ''
         protocol: !<!Protocols> {}
       required: true
@@ -77,8 +77,8 @@ schemas: !<!Schemas>
           name: id
           description: ''
       protocol: !<!Protocols> {}
-    - !<!Property> &ref_33
-      schema: !<!StringSchema> &ref_22
+    - !<!Property> &ref_24
+      schema: !<!StringSchema> &ref_13
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -96,13 +96,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_10
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       readOnly: true
       required: false
       serializedName: status
@@ -117,21 +111,14 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_36
+  - !<!ObjectSchema> &ref_27
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_17
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       serializedName: status
       language: !<!Languages> 
         default:
@@ -139,7 +126,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_23
+      schema: !<!StringSchema> &ref_14
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -162,39 +149,26 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   - *ref_1
-  - !<!ObjectSchema> &ref_38
+  - !<!ObjectSchema> &ref_29
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_3
+      - !<!DictionarySchema> &ref_6
         type: dictionary
-        elementType: !<!AnySchema> 
-          type: any
-          language: !<!Languages> 
-            default:
-              name: any
-              description: <Any object>
-          protocol: !<!Protocols> {}
+        elementType: *ref_5
         language: !<!Languages> 
           default:
             name: PetApObject
             description: Dictionary of <any>
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_3
+      - *ref_6
     properties:
-    - !<!Property> &ref_40
-      schema: !<!NumberSchema> &ref_18
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: TypeForid
-            description: ''
-        protocol: !<!Protocols> {}
+    - !<!Property> &ref_31
+      schema: *ref_4
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -202,8 +176,8 @@ schemas: !<!Schemas>
           name: id
           description: ''
       protocol: !<!Protocols> {}
-    - !<!Property> &ref_41
-      schema: !<!StringSchema> &ref_24
+    - !<!Property> &ref_32
+      schema: !<!StringSchema> &ref_15
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -221,13 +195,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_12
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       readOnly: true
       required: false
       serializedName: status
@@ -242,16 +210,16 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_44
+  - !<!ObjectSchema> &ref_35
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_4
+      - !<!DictionarySchema> &ref_7
         type: dictionary
-        elementType: !<!StringSchema> &ref_5
+        elementType: !<!StringSchema> &ref_8
           type: string
           apiVersions:
           - !<!ApiVersion> 
@@ -264,20 +232,13 @@ schemas: !<!Schemas>
         language: !<!Languages> 
           default:
             name: PetApString
-            description: Dictionary of String
+            description: Dictionary of <string>
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_4
+      - *ref_7
     properties:
-    - !<!Property> &ref_46
-      schema: !<!NumberSchema> &ref_19
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: TypeForid
-            description: ''
-        protocol: !<!Protocols> {}
+    - !<!Property> &ref_37
+      schema: *ref_4
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -285,8 +246,8 @@ schemas: !<!Schemas>
           name: id
           description: ''
       protocol: !<!Protocols> {}
-    - !<!Property> &ref_47
-      schema: !<!StringSchema> &ref_25
+    - !<!Property> &ref_38
+      schema: !<!StringSchema> &ref_16
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -304,13 +265,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_13
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       readOnly: true
       required: false
       serializedName: status
@@ -325,21 +280,14 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_50
+  - !<!ObjectSchema> &ref_41
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_20
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: TypeForid
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -348,7 +296,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_26
+      schema: !<!StringSchema> &ref_17
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -366,13 +314,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_14
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       readOnly: true
       required: false
       serializedName: status
@@ -382,9 +324,9 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_8
+      schema: !<!DictionarySchema> &ref_11
         type: dictionary
-        elementType: !<!NumberSchema> &ref_7
+        elementType: !<!NumberSchema> &ref_10
           type: number
           apiVersions:
           - !<!ApiVersion> 
@@ -398,14 +340,14 @@ schemas: !<!Schemas>
         language: !<!Languages> 
           default:
             name: PetApInPropertiesAdditionalProperties
-            description: Dictionary of Number
+            description: Dictionary of <number>
         protocol: !<!Protocols> {}
       required: false
       serializedName: additionalProperties
       language: !<!Languages> 
         default:
           name: additionalProperties
-          description: Dictionary of <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>
+          description: Dictionary of <number>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -413,33 +355,26 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_52
+  - !<!ObjectSchema> &ref_43
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_6
+      - !<!DictionarySchema> &ref_9
         type: dictionary
-        elementType: *ref_5
+        elementType: *ref_8
         language: !<!Languages> 
           default:
             name: PetApInPropertiesWithApstring
-            description: Dictionary of String
+            description: Dictionary of <string>
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_6
+      - *ref_9
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_21
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: TypeForid
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -448,7 +383,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_27
+      schema: !<!StringSchema> &ref_18
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -466,13 +401,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_15
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: TypeForstatus
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       readOnly: true
       required: false
       serializedName: status
@@ -482,7 +411,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_28
+      schema: !<!StringSchema> &ref_19
         type: string
         apiVersions:
         - !<!ApiVersion> 
@@ -500,20 +429,20 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_9
+      schema: !<!DictionarySchema> &ref_12
         type: dictionary
-        elementType: *ref_7
+        elementType: *ref_10
         language: !<!Languages> 
           default:
             name: PetApInPropertiesWithApstringAdditionalProperties
-            description: Dictionary of Number
+            description: Dictionary of <number>
         protocol: !<!Protocols> {}
       required: false
       serializedName: additionalProperties
       language: !<!Languages> 
         default:
           name: additionalProperties
-          description: Dictionary of <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>
+          description: Dictionary of <number>
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -523,45 +452,35 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dictionaries:
   - *ref_2
-  - *ref_3
-  - *ref_4
-  - *ref_8
   - *ref_6
-  - *ref_9
-  booleans:
-  - *ref_10
-  - *ref_11
-  - *ref_12
-  - *ref_13
-  - *ref_14
-  - *ref_15
-  numbers:
-  - *ref_16
-  - *ref_17
-  - *ref_18
-  - *ref_19
-  - *ref_20
   - *ref_7
-  - *ref_21
+  - *ref_11
+  - *ref_9
+  - *ref_12
+  booleans:
+  - *ref_3
+  numbers:
+  - *ref_4
+  - *ref_10
   strings:
-  - !<!StringSchema> &ref_29
+  - !<!StringSchema> &ref_20
     type: string
     language: !<!Languages> 
       default:
         name: String
         description: simple string
     protocol: !<!Protocols> {}
-  - *ref_22
-  - *ref_23
-  - *ref_24
-  - *ref_5
-  - *ref_25
-  - *ref_26
-  - *ref_27
-  - *ref_28
+  - *ref_13
+  - *ref_14
+  - *ref_15
+  - *ref_8
+  - *ref_16
+  - *ref_17
+  - *ref_18
+  - *ref_19
 globalParameters:
-- !<!Parameter> &ref_30
-  schema: *ref_29
+- !<!Parameter> &ref_21
+  schema: *ref_20
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true
@@ -588,8 +507,8 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_30
-      - !<!Parameter> &ref_31
+      - *ref_21
+      - !<!Parameter> &ref_22
         schema: *ref_0
         flattened: true
         implementation: Method
@@ -604,35 +523,35 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_34
-        schema: *ref_16
+      - !<!Parameter> &ref_25
+        schema: *ref_4
         implementation: Method
-        originalParameter: *ref_31
+        originalParameter: *ref_22
         pathToProperty: []
         required: true
         serializedName: id
-        targetProperty: *ref_32
+        targetProperty: *ref_23
         language: !<!Languages> 
           default:
             name: id
             description: ''
         protocol: !<!Protocols> {}
-      - !<!Parameter> &ref_35
-        schema: *ref_22
+      - !<!Parameter> &ref_26
+        schema: *ref_13
         implementation: Method
-        originalParameter: *ref_31
+        originalParameter: *ref_22
         pathToProperty: []
         required: false
         serializedName: name
-        targetProperty: *ref_33
+        targetProperty: *ref_24
         language: !<!Languages> 
           default:
             name: name
             description: ''
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_34
-      - *ref_35
+      - *ref_25
+      - *ref_26
       language: !<!Languages> 
         default:
           name: ''
@@ -661,7 +580,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -686,8 +605,8 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_30
-      - !<!Parameter> &ref_37
+      - *ref_21
+      - !<!Parameter> &ref_28
         schema: *ref_1
         implementation: Method
         required: true
@@ -702,7 +621,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_37
+      - *ref_28
       language: !<!Languages> 
         default:
           name: ''
@@ -731,7 +650,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -756,9 +675,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_30
-      - !<!Parameter> &ref_39
-        schema: *ref_38
+      - *ref_21
+      - !<!Parameter> &ref_30
+        schema: *ref_29
         flattened: true
         implementation: Method
         required: true
@@ -772,35 +691,35 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_42
-        schema: *ref_18
+      - !<!Parameter> &ref_33
+        schema: *ref_4
         implementation: Method
-        originalParameter: *ref_39
+        originalParameter: *ref_30
         pathToProperty: []
         required: true
         serializedName: id
-        targetProperty: *ref_40
+        targetProperty: *ref_31
         language: !<!Languages> 
           default:
             name: id
             description: ''
         protocol: !<!Protocols> {}
-      - !<!Parameter> &ref_43
-        schema: *ref_24
+      - !<!Parameter> &ref_34
+        schema: *ref_15
         implementation: Method
-        originalParameter: *ref_39
+        originalParameter: *ref_30
         pathToProperty: []
         required: false
         serializedName: name
-        targetProperty: *ref_41
+        targetProperty: *ref_32
         language: !<!Languages> 
           default:
             name: name
             description: ''
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_42
-      - *ref_43
+      - *ref_33
+      - *ref_34
       language: !<!Languages> 
         default:
           name: ''
@@ -815,7 +734,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_38
+      schema: *ref_29
       language: !<!Languages> 
         default:
           name: ''
@@ -829,7 +748,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -854,9 +773,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_30
-      - !<!Parameter> &ref_45
-        schema: *ref_44
+      - *ref_21
+      - !<!Parameter> &ref_36
+        schema: *ref_35
         flattened: true
         implementation: Method
         required: true
@@ -870,35 +789,35 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_48
-        schema: *ref_19
+      - !<!Parameter> &ref_39
+        schema: *ref_4
         implementation: Method
-        originalParameter: *ref_45
+        originalParameter: *ref_36
         pathToProperty: []
         required: true
         serializedName: id
-        targetProperty: *ref_46
+        targetProperty: *ref_37
         language: !<!Languages> 
           default:
             name: id
             description: ''
         protocol: !<!Protocols> {}
-      - !<!Parameter> &ref_49
-        schema: *ref_25
+      - !<!Parameter> &ref_40
+        schema: *ref_16
         implementation: Method
-        originalParameter: *ref_45
+        originalParameter: *ref_36
         pathToProperty: []
         required: false
         serializedName: name
-        targetProperty: *ref_47
+        targetProperty: *ref_38
         language: !<!Languages> 
           default:
             name: name
             description: ''
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_48
-      - *ref_49
+      - *ref_39
+      - *ref_40
       language: !<!Languages> 
         default:
           name: ''
@@ -913,7 +832,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_44
+      schema: *ref_35
       language: !<!Languages> 
         default:
           name: ''
@@ -927,7 +846,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -952,9 +871,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_30
-      - !<!Parameter> &ref_51
-        schema: *ref_50
+      - *ref_21
+      - !<!Parameter> &ref_42
+        schema: *ref_41
         implementation: Method
         required: true
         extensions:
@@ -968,7 +887,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_51
+      - *ref_42
       language: !<!Languages> 
         default:
           name: ''
@@ -983,7 +902,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_50
+      schema: *ref_41
       language: !<!Languages> 
         default:
           name: ''
@@ -997,7 +916,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''
@@ -1022,9 +941,9 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - *ref_30
-      - !<!Parameter> &ref_53
-        schema: *ref_52
+      - *ref_21
+      - !<!Parameter> &ref_44
+        schema: *ref_43
         implementation: Method
         required: true
         extensions:
@@ -1038,7 +957,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_53
+      - *ref_44
       language: !<!Languages> 
         default:
           name: ''
@@ -1053,7 +972,7 @@ operationGroups:
           uri: '{$host}'
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_52
+      schema: *ref_43
       language: !<!Languages> 
         default:
           name: ''
@@ -1067,7 +986,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_36
+      schema: *ref_27
       language: !<!Languages> 
         default:
           name: ''

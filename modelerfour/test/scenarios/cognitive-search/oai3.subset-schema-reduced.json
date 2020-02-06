@@ -1,0 +1,5392 @@
+{
+ "openapi": "3.0.0",
+ "info": {
+  "x-ms-code-generation-settings": {
+   "useDateTimeOffset": true,
+   "syncMethods": "None"
+  },
+  "title": "SearchIndexClient",
+  "description": "Client that can be used to query an index and upload, merge, or delete documents.",
+  "x-ms-metadata": {
+   "apiVersions": [
+    "2019-05-06"
+   ]
+  },
+  "version": "2019-05-06"
+ },
+ "paths": {
+  "path:0": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/$count",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1$count"
+    ]
+   }
+  },
+  "path:0.get": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/$count",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1$count"
+    ]
+   },
+   "get": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_Count",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/Count-Documents"
+    },
+    "x-ms-examples": {
+     "SearchIndexCountDocuments": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2017-11-11-Preview"
+      },
+      "responses": {
+       "200": {
+        "body": 427
+       }
+      }
+     }
+    },
+    "description": "Queries the number of documents in the index.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "OK",
+      "$ref": "#/components/responses/responses:0"
+     }
+    }
+   }
+  },
+  "path:1": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs"
+    ]
+   }
+  },
+  "path:1.get": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs"
+    ]
+   },
+   "get": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_SearchGet",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
+    },
+    "x-ms-examples": {
+     "SearchIndexSearchDocumentsGet": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "$count": true,
+       "facet": [
+        "category,count:10,sort:count"
+       ],
+       "$filter": "rating gt 10",
+       "highlight": [
+        "title"
+       ],
+       "highlightPostTag": "</em>",
+       "highlightPreTag": "<em>",
+       "minimumCoverage": 80,
+       "$orderby": [
+        "search.score() desc",
+        "rating desc"
+       ],
+       "queryType": "simple",
+       "scoringParameters": [
+        "currentLocation--122.123,44.77233"
+       ],
+       "scoringProfile": "sp",
+       "search": "nice hotels",
+       "searchFields": [
+        "title",
+        "description"
+       ],
+       "searchMode": "any",
+       "$select": [
+        "docId",
+        "title",
+        "description"
+       ],
+       "$skip": 100,
+       "$top": 10
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "@odata.count": 25,
+         "@search.coverage": 80,
+         "@search.facets": {
+          "category": [
+           {
+            "count": 1,
+            "value": "Economy"
+           },
+           {
+            "count": 1,
+            "value": "Luxury"
+           }
+          ]
+         },
+         "value": [
+          {
+           "@search.score": 1.5,
+           "@search.highlights": {
+            "title": [
+             "<em>Nice</em> <em>Hotel</em>"
+            ]
+           },
+           "description": "Cheapest hotel in town",
+           "docId": "1",
+           "title": "Nice Hotel"
+          },
+          {
+           "@search.score": 0.7,
+           "@search.highlights": {
+            "title": [
+             "Fancy <em>Hotel</em>"
+            ]
+           },
+           "description": "Best hotel in town",
+           "docId": "2",
+           "title": "Fancy Hotel"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    "description": "Searches for documents in the index.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:0",
+      "description": "A full-text search query expression; Use \"*\" or omit this parameter to match all documents.",
+      "x-ms-client-name": "SearchText"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:1",
+      "description": "A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.",
+      "x-ms-client-name": "IncludeTotalResultCount"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:2",
+      "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.",
+      "x-ms-client-name": "Facets"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:3",
+      "description": "The OData $filter expression to apply to the search query."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:4",
+      "description": "The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
+      "x-ms-client-name": "HighlightFields"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:5",
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:6",
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:7",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 100."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:8",
+      "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+      "x-ms-client-name": "OrderBy"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:9",
+      "description": "A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:10",
+      "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes).",
+      "x-ms-client-name": "ScoringParameters"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:11",
+      "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:12",
+      "description": "The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:13",
+      "description": "A value that specifies whether any or all of the search terms must be matched in order to count the document as a match."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:14",
+      "description": "The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:15",
+      "description": "The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and $filter with a range query instead."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:16",
+      "description": "The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation token that can be used to issue another Search request for the next page of results."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing documents that match the search criteria.",
+      "$ref": "#/components/responses/responses:1"
+     }
+    }
+   }
+  },
+  "path:2": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.post.search",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.post.search"
+    ]
+   }
+  },
+  "path:2.post": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.post.search",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.post.search"
+    ]
+   },
+   "post": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_SearchPost",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
+    },
+    "x-ms-examples": {
+     "SearchIndexSearchDocumentsPost": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "searchRequest": {
+        "count": true,
+        "facets": [
+         "category,count:10,sort:count"
+        ],
+        "filter": "rating gt 4.0",
+        "highlight": "title",
+        "highlightPostTag": "</em>",
+        "highlightPreTag": "<em>",
+        "minimumCoverage": {},
+        "orderby": "search.score() desc,rating desc",
+        "queryType": "simple",
+        "scoringParameters": [
+         "currentLocation--122.123,44.77233"
+        ],
+        "scoringProfile": "sp",
+        "search": "nice hotels",
+        "searchFields": "title,description",
+        "searchMode": "any",
+        "select": "docId,title,description",
+        "skip": 0,
+        "top": 10
+       }
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "@odata.count": 25,
+         "@search.facets": {
+          "category": [
+           {
+            "count": 1,
+            "value": "Economy"
+           },
+           {
+            "count": 1,
+            "value": "Luxury"
+           }
+          ]
+         },
+         "@search.nextPageParameters": {
+          "count": true,
+          "facets": [
+           "category,count:10,sort:count"
+          ],
+          "filter": "rating gt 4.0",
+          "highlight": "title",
+          "highlightPostTag": "</em>",
+          "highlightPreTag": "<em>",
+          "minimumCoverage": {},
+          "orderby": "search.score() desc,rating desc",
+          "queryType": "simple",
+          "scoringParameters": [
+           "currentLocation--122.123,44.77233"
+          ],
+          "scoringProfile": "sp",
+          "search": "nice hotels",
+          "searchFields": "title,description",
+          "searchMode": "any",
+          "select": "docId,title,description",
+          "skip": 2,
+          "top": 8
+         },
+         "value": [
+          {
+           "@search.score": 1.5,
+           "@search.highlights": {
+            "title": [
+             "<em>Nice</em> <em>Hotel</em>"
+            ]
+           },
+           "description": "Cheapest hotel in town",
+           "docId": "1",
+           "title": "Nice Hotel"
+          },
+          {
+           "@search.score": 0.7,
+           "@search.highlights": {
+            "title": [
+             "Fancy <em>Hotel</em>"
+            ]
+           },
+           "description": "Best hotel in town",
+           "docId": "2",
+           "title": "Fancy Hotel"
+          }
+         ],
+         "@odata.nextLink": "https://myservice.search.windows.net/indexes('myindex')/docs/search.post.search?api-version=2019-05-06"
+        }
+       }
+      }
+     }
+    },
+    "description": "Searches for documents in the index.",
+    "requestBody": {
+     "description": "The definition of the Search request.",
+     "$ref": "#/components/requestBodies/requestBodies:0"
+    },
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing documents that match the search criteria.",
+      "$ref": "#/components/responses/responses:2"
+     }
+    }
+   }
+  },
+  "path:3": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs('{key}')",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs('{key}')"
+    ]
+   }
+  },
+  "path:3.get": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs('{key}')",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs('{key}')"
+    ]
+   },
+   "get": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_Get",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/lookup-document"
+    },
+    "x-ms-examples": {
+     "SearchIndexGetDocument": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "key": "1",
+       "$select": [
+        "docId",
+        "title",
+        "description"
+       ]
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "description": "Cheapest hotel in town",
+         "docId": "1",
+         "title": "Nice Hotel"
+        }
+       }
+      }
+     }
+    },
+    "description": "Retrieves a document from the index.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:17",
+      "description": "The key of the document to retrieve."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:18",
+      "description": "List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.",
+      "x-ms-client-name": "SelectedFields"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Response containing the requested document.",
+      "$ref": "#/components/responses/responses:3"
+     }
+    }
+   }
+  },
+  "path:4": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.suggest",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.suggest"
+    ]
+   }
+  },
+  "path:4.get": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.suggest",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.suggest"
+    ]
+   },
+   "get": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_SuggestGet",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
+    },
+    "x-ms-examples": {
+     "SearchIndexSuggestDocumentsGet": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "$filter": "rating gt 10",
+       "fuzzy": false,
+       "highlightPostTag": "</em>",
+       "highlightPreTag": "<em>",
+       "minimumCoverage": 80,
+       "$orderby": [
+        "search.score() desc",
+        "rating desc"
+       ],
+       "search": "hote",
+       "searchFields": [
+        "title"
+       ],
+       "suggesterName": "sg",
+       "$select": [
+        "docId",
+        "title",
+        "description"
+       ],
+       "$top": 10
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "value": [
+          {
+           "@search.text": "Nice <em>Hotel</em>",
+           "description": "Cheapest hotel in town",
+           "docId": "1",
+           "title": "Nice Hotel"
+          },
+          {
+           "@search.text": "Fancy <em>Hotel</em>",
+           "description": "Best hotel in town",
+           "docId": "2",
+           "title": "Fancy Hotel"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    "description": "Suggests documents in the index that match the given partial query text.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:19",
+      "description": "The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.",
+      "x-ms-client-name": "SearchText"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:20",
+      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:21",
+      "description": "An OData expression that filters the documents considered for suggestions."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:22",
+      "description": "A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.",
+      "x-ms-client-name": "UseFuzzyMatching"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:23",
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:24",
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:25",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:26",
+      "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+      "x-ms-client-name": "OrderBy"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:27",
+      "description": "The list of field names to search for the specified search text. Target fields must be included in the specified suggester."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:28",
+      "description": "The list of fields to retrieve. If unspecified, only the key field will be included in the results."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:29",
+      "description": "The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing suggested documents that match the partial input.",
+      "$ref": "#/components/responses/responses:4"
+     }
+    }
+   }
+  },
+  "path:5": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.post.suggest",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.post.suggest"
+    ]
+   }
+  },
+  "path:5.post": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.post.suggest",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.post.suggest"
+    ]
+   },
+   "post": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_SuggestPost",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
+    },
+    "x-ms-examples": {
+     "SearchIndexSuggestDocumentsPost": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "suggestRequest": {
+        "filter": "rating gt 4.0",
+        "highlightPostTag": "</em>",
+        "highlightPreTag": "<em>",
+        "minimumCoverage": 80,
+        "orderby": "rating desc",
+        "search": "hote",
+        "searchFields": "title",
+        "select": "docId,title,description",
+        "top": 10
+       }
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "value": [
+          {
+           "@search.text": "Nice <em>Hotel</em>",
+           "description": "Cheapest hotel in town",
+           "docId": "1",
+           "title": "Nice Hotel"
+          },
+          {
+           "@search.text": "Fancy <em>Hotel</em>",
+           "description": "Best hotel in town",
+           "docId": "2",
+           "title": "Fancy Hotel"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    "description": "Suggests documents in the index that match the given partial query text.",
+    "requestBody": {
+     "description": "The Suggest request.",
+     "$ref": "#/components/requestBodies/requestBodies:1"
+    },
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing suggested documents that match the partial input.",
+      "$ref": "#/components/responses/responses:5"
+     }
+    }
+   }
+  },
+  "path:6": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.index",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.index"
+    ]
+   }
+  },
+  "path:6.post": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.index",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.index"
+    ]
+   },
+   "post": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_Index",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents"
+    },
+    "x-ms-examples": {
+     "SearchIndexIndexDocuments": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "batch": {
+        "value": [
+         {
+          "@search.action": "upload",
+          "docId": "1",
+          "title": "Fancy Stay",
+          "description": "Best hotel in town"
+         },
+         {
+          "@search.action": "merge",
+          "docId": "2",
+          "title": "Roach Motel"
+         },
+         {
+          "@search.action": "mergeOrUpload",
+          "docId": "3",
+          "title": "Econo Motel"
+         },
+         {
+          "@search.action": "delete",
+          "docId": "4"
+         }
+        ]
+       }
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "value": [
+          {
+           "key": "1",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 201
+          },
+          {
+           "key": "2",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 200
+          },
+          {
+           "key": "3",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 200
+          },
+          {
+           "key": "4",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 200
+          }
+         ]
+        }
+       },
+       "207": {
+        "body": {
+         "value": [
+          {
+           "key": "1",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 200
+          },
+          {
+           "key": "2",
+           "status": false,
+           "errorMessage": "Document not found.",
+           "statusCode": 404
+          },
+          {
+           "key": "3",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 200
+          },
+          {
+           "key": "4",
+           "status": true,
+           "errorMessage": null,
+           "statusCode": 200
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    "description": "Sends a batch of document write actions to the index.",
+    "requestBody": {
+     "description": "The batch of index actions.",
+     "$ref": "#/components/requestBodies/requestBodies:2"
+    },
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing the status of operations for all actions in the batch.",
+      "$ref": "#/components/responses/responses:6"
+     },
+     "207": {
+      "description": "Response containing the status of operations for all actions in the batch.",
+      "$ref": "#/components/responses/responses:7"
+     }
+    }
+   }
+  },
+  "path:7": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.autocomplete",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.autocomplete"
+    ]
+   }
+  },
+  "path:7.get": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.autocomplete",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.autocomplete"
+    ]
+   },
+   "get": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_AutocompleteGet",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/autocomplete"
+    },
+    "x-ms-examples": {
+     "SearchIndexAutocompleteDocumentsGet": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "autocompleteMode": "oneTerm",
+       "search": "washington medic",
+       "suggesterName": "sg",
+       "filter": "search.in(docId,'101,102,105')",
+       "fuzzy": false,
+       "highlightPostTag": "</em>",
+       "highlightPreTag": "<em>",
+       "minimumCoverage": 80,
+       "searchFields": [
+        "title",
+        "description"
+       ],
+       "top": 10
+      },
+      "responses": {
+       "200": {
+        "body": [
+         {
+          "text": "medicaid",
+          "queryPlusText": "washington medicaid"
+         },
+         {
+          "text": "medicare",
+          "queryPlusText": "washington medicare"
+         },
+         {
+          "text": "medicine",
+          "queryPlusText": "washington medicine"
+         }
+        ]
+       }
+      }
+     }
+    },
+    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:30",
+      "description": "The incomplete term which should be auto-completed.",
+      "x-ms-client-name": "SearchText"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:31",
+      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:32",
+      "description": "Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:33",
+      "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:34",
+      "description": "A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.",
+      "x-ms-client-name": "UseFuzzyMatching"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:35",
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:36",
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:37",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:38",
+      "description": "The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester."
+     },
+     {
+      "$ref": "#/components/parameters/parameters:39",
+      "description": "The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5."
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing suggested query terms that complete the partial input.",
+      "$ref": "#/components/responses/responses:8"
+     }
+    }
+   }
+  },
+  "path:8": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.post.autocomplete",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.post.autocomplete"
+    ]
+   }
+  },
+  "path:8.post": {
+   "x-ms-metadata": {
+    "apiVersions": [
+     "2019-05-06"
+    ],
+    "filename": [
+     "mem:///111?oai3.shaken.json"
+    ],
+    "path": "/docs/search.post.autocomplete",
+    "originalLocations": [
+     "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/paths/~1docs~1search.post.autocomplete"
+    ]
+   },
+   "post": {
+    "servers": [
+     {
+      "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+      "variables": {
+       "searchServiceName": {
+        "x-name": "searchServiceName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": true,
+        "description": "The name of the search service.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:42"
+        },
+        "default": ""
+       },
+       "searchDnsSuffix": {
+        "x-name": "searchDnsSuffix",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "default": "search.windows.net",
+        "x-ms-skip-url-encoding": true,
+        "description": "The DNS suffix of the search service. The default is search.windows.net.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:43"
+        }
+       },
+       "indexName": {
+        "x-name": "indexName",
+        "x-in": "path",
+        "x-required": true,
+        "x-type": "string",
+        "x-ms-skip-url-encoding": false,
+        "description": "The name of the index.",
+        "x-ms-parameter-location": "client",
+        "x-ms-original": {
+         "$ref": "#/components/parameters/parameters:44"
+        },
+        "default": ""
+       }
+      }
+     }
+    ],
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_AutocompletePost",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/autocomplete"
+    },
+    "x-ms-examples": {
+     "SearchIndexAutocompleteDocumentsPost": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2017-11-11-Preview",
+       "autocompleteRequest": {
+        "autocompleteMode": "oneTerm",
+        "search": "washington medic",
+        "suggesterName": "sg",
+        "filter": "search.in(docId,'101,102,105')",
+        "highlightPostTag": "</em>",
+        "highlightPreTag": "<em>",
+        "minimumCoverage": 80,
+        "searchFields": "title,description",
+        "top": 10
+       }
+      },
+      "responses": {
+       "200": {
+        "body": [
+         {
+          "text": "medicaid",
+          "queryPlusText": "washington medicaid"
+         },
+         {
+          "text": "medicare",
+          "queryPlusText": "washington medicare"
+         },
+         {
+          "text": "medicine",
+          "queryPlusText": "washington medicine"
+         }
+        ]
+       }
+      }
+     }
+    },
+    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/parameters:41"
+     },
+     {
+      "$ref": "#/components/parameters/parameters:40"
+     }
+    ],
+    "requestBody": {
+     "description": "The definition of the Autocomplete request.",
+     "$ref": "#/components/requestBodies/requestBodies:3"
+    },
+    "x-ms-requestBody-index": 2,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing suggested query terms that complete the partial input.",
+      "$ref": "#/components/responses/responses:9"
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "parameters": {
+   "parameters:0": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·h9d3wt·docs·get·parameters·0",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·h9d3wt·docs·get·parameters·0"
+     ]
+    },
+    "name": "search",
+    "in": "query",
+    "description": "A full-text search query expression; Use \"*\" or omit this parameter to match all documents.",
+    "x-ms-client-name": "SearchText",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:1"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:1": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·17zhpe7·docs·get·parameters·1",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·17zhpe7·docs·get·parameters·1"
+     ]
+    },
+    "name": "$count",
+    "in": "query",
+    "description": "A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "x-ms-client-name": "IncludeTotalResultCount",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:2"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:2": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·13qgxsn·docs·get·parameters·2",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·13qgxsn·docs·get·parameters·2"
+     ]
+    },
+    "name": "facet",
+    "in": "query",
+    "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "x-ms-client-name": "Facets",
+    "style": "form",
+    "explode": true,
+    "schema": {
+     "$ref": "#/components/schemas/schemas:3"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:3": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·i0m3lq·docs·get·parameters·3",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·i0m3lq·docs·get·parameters·3"
+     ]
+    },
+    "name": "$filter",
+    "in": "query",
+    "description": "The OData $filter expression to apply to the search query.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:5"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:4": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·r01exq·docs·get·parameters·4",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·r01exq·docs·get·parameters·4"
+     ]
+    },
+    "name": "highlight",
+    "in": "query",
+    "description": "The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "x-ms-client-name": "HighlightFields",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:6"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:5": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·12dhrk0·docs·get·parameters·5",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·12dhrk0·docs·get·parameters·5"
+     ]
+    },
+    "name": "highlightPostTag",
+    "in": "query",
+    "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:8"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:6": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·agrb8k·docs·get·parameters·6",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·agrb8k·docs·get·parameters·6"
+     ]
+    },
+    "name": "highlightPreTag",
+    "in": "query",
+    "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:9"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:7": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1pj2nhb·docs·get·parameters·7",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1pj2nhb·docs·get·parameters·7"
+     ]
+    },
+    "name": "minimumCoverage",
+    "in": "query",
+    "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 100.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:10"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:8": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1qid5rv·docs·get·parameters·8",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1qid5rv·docs·get·parameters·8"
+     ]
+    },
+    "name": "$orderby",
+    "in": "query",
+    "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "x-ms-client-name": "OrderBy",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:11"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:9": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·10uywf3·docs·get·parameters·9",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·10uywf3·docs·get·parameters·9"
+     ]
+    },
+    "name": "queryType",
+    "in": "query",
+    "description": "A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/QueryType"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:10": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·mcc6l0·docs·get·parameters·10",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·mcc6l0·docs·get·parameters·10"
+     ]
+    },
+    "name": "scoringParameter",
+    "in": "query",
+    "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes).",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "x-ms-client-name": "ScoringParameters",
+    "style": "form",
+    "explode": true,
+    "schema": {
+     "$ref": "#/components/schemas/schemas:14"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:11": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·xuti98·docs·get·parameters·11",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·xuti98·docs·get·parameters·11"
+     ]
+    },
+    "name": "scoringProfile",
+    "in": "query",
+    "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:16"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:12": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·jx0284·docs·get·parameters·12",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·jx0284·docs·get·parameters·12"
+     ]
+    },
+    "name": "searchFields",
+    "in": "query",
+    "description": "The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:17"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:13": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1nix0g1·docs·get·parameters·13",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1nix0g1·docs·get·parameters·13"
+     ]
+    },
+    "name": "searchMode",
+    "in": "query",
+    "description": "A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/SearchMode"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:14": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1j158g5·docs·get·parameters·14",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1j158g5·docs·get·parameters·14"
+     ]
+    },
+    "name": "$select",
+    "in": "query",
+    "description": "The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:20"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:15": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1enlw6q·docs·get·parameters·15",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1enlw6q·docs·get·parameters·15"
+     ]
+    },
+    "name": "$skip",
+    "in": "query",
+    "description": "The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and $filter with a range query instead.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:22"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:16": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·189yrkt·docs·get·parameters·16",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·189yrkt·docs·get·parameters·16"
+     ]
+    },
+    "name": "$top",
+    "in": "query",
+    "description": "The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation token that can be used to issue another Search request for the next page of results.",
+    "x-ms-parameter-grouping": {
+     "name": "SearchOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:23"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:17": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1hfcirq·docs-key·get·parameters·0",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1hfcirq·docs-key·get·parameters·0"
+     ]
+    },
+    "name": "key",
+    "in": "path",
+    "description": "The key of the document to retrieve.",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:24"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:18": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1ddvlxf·docs-key·get·parameters·1",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1ddvlxf·docs-key·get·parameters·1"
+     ]
+    },
+    "name": "$select",
+    "in": "query",
+    "description": "List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.",
+    "x-ms-client-name": "SelectedFields",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:25"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:19": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·4l043j·docs-search-suggest·get·parameters·0",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·4l043j·docs-search-suggest·get·parameters·0"
+     ]
+    },
+    "name": "search",
+    "in": "query",
+    "description": "The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.",
+    "x-ms-client-name": "SearchText",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:28"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:20": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1j3z2bd·docs-search-suggest·get·parameters·1",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1j3z2bd·docs-search-suggest·get·parameters·1"
+     ]
+    },
+    "name": "suggesterName",
+    "in": "query",
+    "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition.",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:29"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:21": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1yutmo1·docs-search-suggest·get·parameters·2",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1yutmo1·docs-search-suggest·get·parameters·2"
+     ]
+    },
+    "name": "$filter",
+    "in": "query",
+    "description": "An OData expression that filters the documents considered for suggestions.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:30"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:22": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1ierotz·docs-search-suggest·get·parameters·3",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1ierotz·docs-search-suggest·get·parameters·3"
+     ]
+    },
+    "name": "fuzzy",
+    "in": "query",
+    "description": "A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "x-ms-client-name": "UseFuzzyMatching",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:31"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:23": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·adhsl6·docs-search-suggest·get·parameters·4",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·adhsl6·docs-search-suggest·get·parameters·4"
+     ]
+    },
+    "name": "highlightPostTag",
+    "in": "query",
+    "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:32"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:24": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1amj6iy·docs-search-suggest·get·parameters·5",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1amj6iy·docs-search-suggest·get·parameters·5"
+     ]
+    },
+    "name": "highlightPreTag",
+    "in": "query",
+    "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:33"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:25": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·ajsbsr·docs-search-suggest·get·parameters·6",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·ajsbsr·docs-search-suggest·get·parameters·6"
+     ]
+    },
+    "name": "minimumCoverage",
+    "in": "query",
+    "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:34"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:26": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·17slqxx·docs-search-suggest·get·parameters·7",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·17slqxx·docs-search-suggest·get·parameters·7"
+     ]
+    },
+    "name": "$orderby",
+    "in": "query",
+    "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "x-ms-client-name": "OrderBy",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:35"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:27": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1eea8uc·docs-search-suggest·get·parameters·8",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1eea8uc·docs-search-suggest·get·parameters·8"
+     ]
+    },
+    "name": "searchFields",
+    "in": "query",
+    "description": "The list of field names to search for the specified search text. Target fields must be included in the specified suggester.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:37"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:28": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1d144l1·docs-search-suggest·get·parameters·9",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1d144l1·docs-search-suggest·get·parameters·9"
+     ]
+    },
+    "name": "$select",
+    "in": "query",
+    "description": "The list of fields to retrieve. If unspecified, only the key field will be included in the results.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:39"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:29": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·17icdkn·docs-search-suggest·get·parameters·10",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·17icdkn·docs-search-suggest·get·parameters·10"
+     ]
+    },
+    "name": "$top",
+    "in": "query",
+    "description": "The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.",
+    "x-ms-parameter-grouping": {
+     "name": "SuggestOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:41"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:30": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1w0pwdi·docs-search-autocomplete·get·parameters·2",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1w0pwdi·docs-search-autocomplete·get·parameters·2"
+     ]
+    },
+    "name": "search",
+    "in": "query",
+    "description": "The incomplete term which should be auto-completed.",
+    "x-ms-client-name": "SearchText",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:42"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:31": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·8tbf90·docs-search-autocomplete·get·parameters·3",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·8tbf90·docs-search-autocomplete·get·parameters·3"
+     ]
+    },
+    "name": "suggesterName",
+    "in": "query",
+    "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition.",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:43"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:32": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·14wiyxf·docs-search-autocomplete·get·parameters·4",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·14wiyxf·docs-search-autocomplete·get·parameters·4"
+     ]
+    },
+    "name": "autocompleteMode",
+    "in": "query",
+    "description": "Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/AutocompleteMode"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:33": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·17uh4ne·docs-search-autocomplete·get·parameters·5",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·17uh4ne·docs-search-autocomplete·get·parameters·5"
+     ]
+    },
+    "name": "$filter",
+    "in": "query",
+    "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:45"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:34": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·prjx2o·docs-search-autocomplete·get·parameters·6",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·prjx2o·docs-search-autocomplete·get·parameters·6"
+     ]
+    },
+    "name": "fuzzy",
+    "in": "query",
+    "description": "A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "x-ms-client-name": "UseFuzzyMatching",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:46"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:35": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1bx4id0·docs-search-autocomplete·get·parameters·7",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1bx4id0·docs-search-autocomplete·get·parameters·7"
+     ]
+    },
+    "name": "highlightPostTag",
+    "in": "query",
+    "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:47"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:36": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1f636t3·docs-search-autocomplete·get·parameters·8",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1f636t3·docs-search-autocomplete·get·parameters·8"
+     ]
+    },
+    "name": "highlightPreTag",
+    "in": "query",
+    "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:48"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:37": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1efggwv·docs-search-autocomplete·get·parameters·9",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1efggwv·docs-search-autocomplete·get·parameters·9"
+     ]
+    },
+    "name": "minimumCoverage",
+    "in": "query",
+    "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:49"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:38": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·jih4rt·docs-search-autocomplete·get·parameters·10",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·jih4rt·docs-search-autocomplete·get·parameters·10"
+     ]
+    },
+    "name": "searchFields",
+    "in": "query",
+    "description": "The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:50"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:39": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1pigxxs·docs-search-autocomplete·get·parameters·11",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/paths·1pigxxs·docs-search-autocomplete·get·parameters·11"
+     ]
+    },
+    "name": "$top",
+    "in": "query",
+    "description": "The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.",
+    "x-ms-parameter-grouping": {
+     "name": "AutocompleteOptions"
+    },
+    "schema": {
+     "$ref": "#/components/schemas/schemas:52"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "parameters:40": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "ApiVersionParameter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
+     ]
+    },
+    "name": "api-version",
+    "in": "query",
+    "description": "Client Api Version.",
+    "schema": {
+     "$ref": "#/components/schemas/schemas:118"
+    },
+    "required": true
+   },
+   "parameters:41": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "ClientRequestIdParameter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
+     ]
+    },
+    "name": "client-request-id",
+    "in": "header",
+    "description": "The tracking ID sent with the request to help with debugging.",
+    "x-ms-parameter-location": "method",
+    "x-ms-parameter-grouping": {
+     "name": "request-options"
+    },
+    "x-ms-client-request-id": true,
+    "schema": {
+     "$ref": "#/components/schemas/schemas:119"
+    },
+    "required": false
+   },
+   "parameters:42": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchServiceNameParameter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/SearchServiceNameParameter"
+     ]
+    },
+    "name": "searchServiceName",
+    "in": "path",
+    "description": "The name of the search service.",
+    "x-ms-parameter-location": "client",
+    "x-ms-skip-url-encoding": true,
+    "schema": {
+     "$ref": "#/components/schemas/schemas:120"
+    },
+    "required": true
+   },
+   "parameters:43": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchDnsSuffixParameter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/SearchDnsSuffixParameter"
+     ]
+    },
+    "name": "searchDnsSuffix",
+    "in": "path",
+    "description": "The DNS suffix of the search service. The default is search.windows.net.",
+    "x-ms-parameter-location": "client",
+    "x-ms-skip-url-encoding": true,
+    "schema": {
+     "$ref": "#/components/schemas/schemas:121"
+    },
+    "required": true
+   },
+   "parameters:44": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexNameParameter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/IndexNameParameter"
+     ]
+    },
+    "name": "indexName",
+    "in": "path",
+    "description": "The name of the index.",
+    "x-ms-parameter-location": "client",
+    "x-ms-skip-url-encoding": false,
+    "schema": {
+     "$ref": "#/components/schemas/schemas:122"
+    },
+    "required": true
+   }
+  },
+  "responses": {
+   "responses:0": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·17t17zj·docs-count·get·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·17t17zj·docs-count·get·responses·200"
+     ]
+    },
+    "description": "OK",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:0"
+      }
+     }
+    }
+   },
+   "responses:1": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1apgb02·docs·get·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·1apgb02·docs·get·responses·200"
+     ]
+    },
+    "description": "Response containing documents that match the search criteria.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:60"
+      }
+     }
+    }
+   },
+   "responses:2": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1ecftfz·docs-search-post-search·post·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·1ecftfz·docs-search-post-search·post·responses·200"
+     ]
+    },
+    "description": "Response containing documents that match the search criteria.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:60"
+      }
+     }
+    }
+   },
+   "responses:3": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·oe6x2a·docs-key·get·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·oe6x2a·docs-key·get·responses·200"
+     ]
+    },
+    "description": "Response containing the requested document.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:27"
+      }
+     }
+    }
+   },
+   "responses:4": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·gb78nj·docs-search-suggest·get·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·gb78nj·docs-search-suggest·get·responses·200"
+     ]
+    },
+    "description": "Response containing suggested documents that match the partial input.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:53"
+      }
+     }
+    }
+   },
+   "responses:5": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·umxn1r·docs-search-post-suggest·post·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·umxn1r·docs-search-post-suggest·post·responses·200"
+     ]
+    },
+    "description": "Response containing suggested documents that match the partial input.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:53"
+      }
+     }
+    }
+   },
+   "responses:6": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·7qh6vr·docs-search-index·post·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·7qh6vr·docs-search-index·post·responses·200"
+     ]
+    },
+    "description": "Response containing the status of operations for all actions in the batch.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:78"
+      }
+     }
+    }
+   },
+   "responses:7": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·gt56ok·docs-search-index·post·responses·207",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·gt56ok·docs-search-index·post·responses·207"
+     ]
+    },
+    "description": "Response containing the status of operations for all actions in the batch.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:78"
+      }
+     }
+    }
+   },
+   "responses:8": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·c9s3r·docs-search-autocomplete·get·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·c9s3r·docs-search-autocomplete·get·responses·200"
+     ]
+    },
+    "description": "Response containing suggested query terms that complete the partial input.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:113"
+      }
+     }
+    }
+   },
+   "responses:9": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1c3gxv8·docs-search-post-autocomplete·post·responses·200",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/responses/paths·1c3gxv8·docs-search-post-autocomplete·post·responses·200"
+     ]
+    },
+    "description": "Response containing suggested query terms that complete the partial input.",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:113"
+      }
+     }
+    }
+   }
+  },
+  "schemas": {
+   "schemas:0": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·mg5f6q·docs-count·get·responses·200·content·application-json·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·mg5f6q·docs-count·get·responses·200·content·application-json·schema"
+     ]
+    },
+    "type": "integer",
+    "format": "int64"
+   },
+   "schemas:1": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1iergbv·docs·get·parameters·0·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1iergbv·docs·get·parameters·0·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:2": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·ae5s3l·docs·get·parameters·1·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·ae5s3l·docs·get·parameters·1·schema"
+     ]
+    },
+    "type": "boolean"
+   },
+   "schemas:3": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1adzgki·docs·get·parameters·2·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1adzgki·docs·get·parameters·2·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:4"
+    }
+   },
+   "schemas:4": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-2-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-2-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:5": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1cf1xpd·docs·get·parameters·3·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1cf1xpd·docs·get·parameters·3·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:6": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·18nrber·docs·get·parameters·4·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·18nrber·docs·get·parameters·4·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:7"
+    }
+   },
+   "schemas:7": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-4-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-4-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:8": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·iesdrg·docs·get·parameters·5·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·iesdrg·docs·get·parameters·5·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:9": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·l1b6iy·docs·get·parameters·6·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·l1b6iy·docs·get·parameters·6·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:10": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·t5iu1e·docs·get·parameters·7·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·t5iu1e·docs·get·parameters·7·schema"
+     ]
+    },
+    "format": "double",
+    "type": "number"
+   },
+   "schemas:11": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1qpycpw·docs·get·parameters·8·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1qpycpw·docs·get·parameters·8·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:12"
+    }
+   },
+   "schemas:12": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-8-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-8-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:14": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1fk4czm·docs·get·parameters·10·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1fk4czm·docs·get·parameters·10·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:15"
+    }
+   },
+   "schemas:15": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-10-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-10-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:16": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1cou4om·docs·get·parameters·11·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1cou4om·docs·get·parameters·11·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:17": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1ydkr4·docs·get·parameters·12·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1ydkr4·docs·get·parameters·12·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:18"
+    }
+   },
+   "schemas:18": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-12-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-12-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:20": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·ittppp·docs·get·parameters·14·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·ittppp·docs·get·parameters·14·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:21"
+    }
+   },
+   "schemas:21": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-14-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-14-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:22": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1m277f1·docs·get·parameters·15·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1m277f1·docs·get·parameters·15·schema"
+     ]
+    },
+    "format": "int32",
+    "type": "integer"
+   },
+   "schemas:23": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1hjb5q7·docs·get·parameters·16·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1hjb5q7·docs·get·parameters·16·schema"
+     ]
+    },
+    "format": "int32",
+    "type": "integer"
+   },
+   "schemas:24": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·h38jb·docs-key·get·parameters·0·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·h38jb·docs-key·get·parameters·0·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:25": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·12hj56k·docs-key·get·parameters·1·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·12hj56k·docs-key·get·parameters·1·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:26"
+    }
+   },
+   "schemas:26": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-1-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-1-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:27": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1y7tjlf·docs-key·get·responses·200·content·application-json·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1y7tjlf·docs-key·get·responses·200·content·application-json·schema"
+     ]
+    },
+    "type": "object"
+   },
+   "schemas:28": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1hcmw5y·docs-search-suggest·get·parameters·0·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1hcmw5y·docs-search-suggest·get·parameters·0·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:29": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·12173dz·docs-search-suggest·get·parameters·1·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·12173dz·docs-search-suggest·get·parameters·1·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:30": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1g0c446·docs-search-suggest·get·parameters·2·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1g0c446·docs-search-suggest·get·parameters·2·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:31": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·x4oi2q·docs-search-suggest·get·parameters·3·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·x4oi2q·docs-search-suggest·get·parameters·3·schema"
+     ]
+    },
+    "type": "boolean"
+   },
+   "schemas:32": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1bvf311·docs-search-suggest·get·parameters·4·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1bvf311·docs-search-suggest·get·parameters·4·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:33": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1mhbla6·docs-search-suggest·get·parameters·5·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1mhbla6·docs-search-suggest·get·parameters·5·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:34": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·kvlmm9·docs-search-suggest·get·parameters·6·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·kvlmm9·docs-search-suggest·get·parameters·6·schema"
+     ]
+    },
+    "format": "double",
+    "type": "number"
+   },
+   "schemas:35": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·8sf5uk·docs-search-suggest·get·parameters·7·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·8sf5uk·docs-search-suggest·get·parameters·7·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:36"
+    }
+   },
+   "schemas:36": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-7-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-7-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:37": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·a27jtj·docs-search-suggest·get·parameters·8·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·a27jtj·docs-search-suggest·get·parameters·8·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:38"
+    }
+   },
+   "schemas:38": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1a5alxd·docs-search-suggest·get·parameters·8·schema·items",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1a5alxd·docs-search-suggest·get·parameters·8·schema·items"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:39": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·qhr0c7·docs-search-suggest·get·parameters·9·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·qhr0c7·docs-search-suggest·get·parameters·9·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:40"
+    }
+   },
+   "schemas:40": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "get-9-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/get-9-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:41": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·4z41df·docs-search-suggest·get·parameters·10·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·4z41df·docs-search-suggest·get·parameters·10·schema"
+     ]
+    },
+    "format": "int32",
+    "type": "integer"
+   },
+   "schemas:42": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·7hmzy5·docs-search-autocomplete·get·parameters·2·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·7hmzy5·docs-search-autocomplete·get·parameters·2·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:43": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1awzz5f·docs-search-autocomplete·get·parameters·3·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1awzz5f·docs-search-autocomplete·get·parameters·3·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:45": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1obf6gx·docs-search-autocomplete·get·parameters·5·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1obf6gx·docs-search-autocomplete·get·parameters·5·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:46": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·s3enru·docs-search-autocomplete·get·parameters·6·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·s3enru·docs-search-autocomplete·get·parameters·6·schema"
+     ]
+    },
+    "type": "boolean"
+   },
+   "schemas:47": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·adk2mj·docs-search-autocomplete·get·parameters·7·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·adk2mj·docs-search-autocomplete·get·parameters·7·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:48": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·18efowh·docs-search-autocomplete·get·parameters·8·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·18efowh·docs-search-autocomplete·get·parameters·8·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:49": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1ekq3gt·docs-search-autocomplete·get·parameters·9·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1ekq3gt·docs-search-autocomplete·get·parameters·9·schema"
+     ]
+    },
+    "format": "double",
+    "type": "number"
+   },
+   "schemas:50": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·2a1zqo·docs-search-autocomplete·get·parameters·10·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·2a1zqo·docs-search-autocomplete·get·parameters·10·schema"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:51"
+    }
+   },
+   "schemas:51": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·ufxbiw·docs-search-autocomplete·get·parameters·10·schema·items",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·ufxbiw·docs-search-autocomplete·get·parameters·10·schema·items"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:52": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1rfq491·docs-search-autocomplete·get·parameters·11·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1rfq491·docs-search-autocomplete·get·parameters·11·schema"
+     ]
+    },
+    "format": "int32",
+    "type": "integer"
+   },
+   "schemas:53": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestDocumentsResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestDocumentsResult"
+     ]
+    },
+    "properties": {
+     "value": {
+      "description": "The sequence of results returned by the query.",
+      "x-ms-client-name": "Results",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:54"
+     },
+     "@search.coverage": {
+      "type": "number",
+      "readOnly": true,
+      "format": "double",
+      "x-ms-client-name": "Coverage",
+      "description": "A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not set in the request."
+     }
+    },
+    "description": "Response containing suggestion query results from an index."
+   },
+   "schemas:54": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestDocumentsResult-value",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestDocumentsResult-value"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:55"
+    },
+    "readOnly": true,
+    "x-ms-client-name": "Results",
+    "description": "The sequence of results returned by the query."
+   },
+   "schemas:55": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestResult"
+     ]
+    },
+    "properties": {
+     "@search.text": {
+      "description": "The text of the suggestion result.",
+      "x-ms-client-name": "Text",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:56"
+     }
+    },
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:57"
+    },
+    "description": "A result containing a document found by a suggestion query, plus associated metadata."
+   },
+   "schemas:56": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestResult-@search.text",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestResult-@search.text"
+     ]
+    },
+    "type": "string",
+    "readOnly": true,
+    "description": "The text of the suggestion result.",
+    "x-ms-client-name": "Text"
+   },
+   "schemas:57": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·1wovo5v·schemas·suggestresult·additionalproperties",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·1wovo5v·schemas·suggestresult·additionalproperties"
+     ]
+    },
+    "type": "object"
+   },
+   "schemas:58": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "FacetResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/FacetResult"
+     ]
+    },
+    "properties": {
+     "count": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "The approximate count of documents falling within the bucket described by this facet."
+     }
+    },
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:59"
+    },
+    "description": "A single bucket of a facet query result. Reports the number of documents with a field value falling within a particular range or having a particular value or interval."
+   },
+   "schemas:59": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·1fm1tva·schemas·facetresult·additionalproperties",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·1fm1tva·schemas·facetresult·additionalproperties"
+     ]
+    },
+    "type": "object"
+   },
+   "schemas:60": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchDocumentsResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchDocumentsResult"
+     ]
+    },
+    "properties": {
+     "@odata.count": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "x-ms-client-name": "Count",
+      "description": "The total count of results found by the search operation, or null if the count was not requested. If present, the count may be greater than the number of results in this response. This can happen if you use the $top or $skip parameters, or if Azure Cognitive Search can't return all the requested documents in a single Search response."
+     },
+     "@search.coverage": {
+      "type": "number",
+      "format": "double",
+      "readOnly": true,
+      "x-ms-client-name": "Coverage",
+      "description": "A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not specified in the request."
+     },
+     "@search.facets": {
+      "description": "The facet query results for the search operation, organized as a collection of buckets for each faceted field; null if the query did not include any facet expressions.",
+      "x-ms-client-name": "Facets",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:61"
+     },
+     "@search.nextPageParameters": {
+      "readOnly": true,
+      "x-ms-client-name": "NextPageParameters",
+      "description": "Continuation JSON payload returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this JSON along with @odata.nextLink to formulate another POST Search request to get the next part of the search response.",
+      "$ref": "#/components/schemas/schemas:83"
+     },
+     "value": {
+      "description": "The sequence of results returned by the query.",
+      "x-ms-client-name": "Results",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:63"
+     },
+     "@odata.nextLink": {
+      "description": "Continuation URL returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this URL to formulate another GET or POST Search request to get the next part of the search response. Make sure to use the same verb (GET or POST) as the request that produced this response.",
+      "x-ms-client-name": "NextLink",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:64"
+     }
+    },
+    "description": "Response containing search results from an index."
+   },
+   "schemas:61": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchDocumentsResult-@search.facets",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchDocumentsResult-@search.facets"
+     ]
+    },
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:62"
+    },
+    "readOnly": true,
+    "x-ms-client-name": "Facets",
+    "description": "The facet query results for the search operation, organized as a collection of buckets for each faceted field; null if the query did not include any facet expressions."
+   },
+   "schemas:62": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·5qj7l7·schemas·searchdocumentsresult·properties·search-facets·additionalproperties",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·5qj7l7·schemas·searchdocumentsresult·properties·search-facets·additionalproperties"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:58"
+    }
+   },
+   "schemas:63": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchDocumentsResult-value",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchDocumentsResult-value"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:65"
+    },
+    "readOnly": true,
+    "x-ms-client-name": "Results",
+    "description": "The sequence of results returned by the query."
+   },
+   "schemas:64": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchDocumentsResult-@odata.nextLink",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchDocumentsResult-@odata.nextLink"
+     ]
+    },
+    "type": "string",
+    "readOnly": true,
+    "x-ms-client-name": "NextLink",
+    "description": "Continuation URL returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this URL to formulate another GET or POST Search request to get the next part of the search response. Make sure to use the same verb (GET or POST) as the request that produced this response."
+   },
+   "schemas:65": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchResult"
+     ]
+    },
+    "properties": {
+     "@search.score": {
+      "type": "number",
+      "format": "double",
+      "readOnly": true,
+      "x-ms-client-name": "Score",
+      "nullable": false,
+      "description": "The relevance score of the document compared to other documents returned by the query."
+     },
+     "@search.highlights": {
+      "description": "Text fragments from the document that indicate the matching search terms, organized by each applicable field; null if hit highlighting was not enabled for the query.",
+      "x-ms-client-name": "Highlights",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:66"
+     }
+    },
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:69"
+    },
+    "description": "Contains a document found by a search query, plus associated metadata."
+   },
+   "schemas:66": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchResult-@search.highlights",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchResult-@search.highlights"
+     ]
+    },
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:67"
+    },
+    "readOnly": true,
+    "x-ms-client-name": "Highlights",
+    "description": "Text fragments from the document that indicate the matching search terms, organized by each applicable field; null if hit highlighting was not enabled for the query."
+   },
+   "schemas:67": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·1fouik0·schemas·searchresult·properties·search-highlights·additionalproperties",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·1fouik0·schemas·searchresult·properties·search-highlights·additionalproperties"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:68"
+    }
+   },
+   "schemas:68": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchResult-@search.highlights-itemsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchResult-@search.highlights-itemsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:69": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·w8tm2·schemas·searchresult·additionalproperties",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·w8tm2·schemas·searchresult·additionalproperties"
+     ]
+    },
+    "type": "object"
+   },
+   "schemas:70": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexBatch",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexBatch"
+     ]
+    },
+    "properties": {
+     "value": {
+      "description": "The actions in the batch.",
+      "x-ms-client-name": "Actions",
+      "$ref": "#/components/schemas/schemas:71"
+     }
+    },
+    "description": "Contains a batch of document write actions to send to the index.",
+    "required": [
+     "value"
+    ]
+   },
+   "schemas:71": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexBatch-value",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexBatch-value"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:72"
+    },
+    "description": "The actions in the batch.",
+    "x-ms-client-name": "Actions"
+   },
+   "schemas:72": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexAction",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexAction"
+     ]
+    },
+    "properties": {
+     "@search.action": {
+      "description": "The operation to perform on a document in an indexing batch.",
+      "x-ms-client-name": "ActionType",
+      "$ref": "#/components/schemas/IndexActionType"
+     }
+    },
+    "additionalProperties": {
+     "$ref": "#/components/schemas/schemas:74"
+    },
+    "description": "Represents an index action that operates on a document."
+   },
+   "schemas:74": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·wrvnnw·schemas·indexaction·additionalproperties",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·wrvnnw·schemas·indexaction·additionalproperties"
+     ]
+    },
+    "type": "object"
+   },
+   "schemas:75": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexingResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexingResult"
+     ]
+    },
+    "properties": {
+     "key": {
+      "description": "The key of a document that was in the indexing request.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:76"
+     },
+     "errorMessage": {
+      "description": "The error message explaining why the indexing operation failed for the document identified by the key; null if indexing succeeded.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:77"
+     },
+     "status": {
+      "x-ms-client-name": "Succeeded",
+      "type": "boolean",
+      "nullable": false,
+      "readOnly": true,
+      "description": "A value indicating whether the indexing operation succeeded for the document identified by the key."
+     },
+     "statusCode": {
+      "type": "integer",
+      "format": "int32",
+      "nullable": false,
+      "readOnly": true,
+      "description": "The status code of the indexing operation. Possible values include: 200 for a successful update or delete, 201 for successful document creation, 400 for a malformed input document, 404 for document not found, 409 for a version conflict, 422 when the index is temporarily unavailable, or 503 for when the service is too busy."
+     }
+    },
+    "description": "Status of an indexing operation for a single document."
+   },
+   "schemas:76": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexingResult-key",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexingResult-key"
+     ]
+    },
+    "type": "string",
+    "readOnly": true,
+    "description": "The key of a document that was in the indexing request."
+   },
+   "schemas:77": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexingResult-errorMessage",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexingResult-errorMessage"
+     ]
+    },
+    "type": "string",
+    "readOnly": true,
+    "description": "The error message explaining why the indexing operation failed for the document identified by the key; null if indexing succeeded."
+   },
+   "schemas:78": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexDocumentsResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexDocumentsResult"
+     ]
+    },
+    "properties": {
+     "value": {
+      "description": "The list of status information for each document in the indexing request.",
+      "x-ms-client-name": "Results",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:79"
+     }
+    },
+    "description": "Response containing the status of operations for all documents in the indexing request."
+   },
+   "schemas:79": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexDocumentsResult-value",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexDocumentsResult-value"
+     ]
+    },
+    "x-ms-client-name": "Results",
+    "type": "array",
+    "readOnly": true,
+    "items": {
+     "$ref": "#/components/schemas/schemas:75"
+    },
+    "description": "The list of status information for each document in the indexing request."
+   },
+   "schemas:83": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest"
+     ]
+    },
+    "properties": {
+     "count": {
+      "type": "boolean",
+      "description": "A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.",
+      "x-ms-client-name": "IncludeTotalResultCount"
+     },
+     "facets": {
+      "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.",
+      "$ref": "#/components/schemas/schemas:84"
+     },
+     "filter": {
+      "description": "The OData $filter expression to apply to the search query.",
+      "$ref": "#/components/schemas/schemas:86"
+     },
+     "highlight": {
+      "description": "The comma-separated list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
+      "x-ms-client-name": "HighlightFields",
+      "$ref": "#/components/schemas/schemas:87"
+     },
+     "highlightPostTag": {
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.",
+      "$ref": "#/components/schemas/schemas:88"
+     },
+     "highlightPreTag": {
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.",
+      "$ref": "#/components/schemas/schemas:89"
+     },
+     "minimumCoverage": {
+      "type": "number",
+      "format": "double",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 100."
+     },
+     "orderby": {
+      "description": "The comma-separated list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+      "x-ms-client-name": "OrderBy",
+      "$ref": "#/components/schemas/schemas:90"
+     },
+     "queryType": {
+      "description": "A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.",
+      "$ref": "#/components/schemas/QueryType"
+     },
+     "scoringParameters": {
+      "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes).",
+      "$ref": "#/components/schemas/schemas:91"
+     },
+     "scoringProfile": {
+      "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.",
+      "$ref": "#/components/schemas/schemas:93"
+     },
+     "search": {
+      "description": "A full-text search query expression; Use \"*\" or omit this parameter to match all documents.",
+      "x-ms-client-name": "SearchText",
+      "$ref": "#/components/schemas/schemas:94"
+     },
+     "searchFields": {
+      "description": "The comma-separated list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter.",
+      "$ref": "#/components/schemas/schemas:95"
+     },
+     "searchMode": {
+      "description": "A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.",
+      "$ref": "#/components/schemas/SearchMode"
+     },
+     "select": {
+      "description": "The comma-separated list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.",
+      "$ref": "#/components/schemas/schemas:96"
+     },
+     "skip": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use skip due to this limitation, consider using orderby on a totally-ordered key and filter with a range query instead."
+     },
+     "top": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation token that can be used to issue another Search request for the next page of results."
+     }
+    },
+    "description": "Parameters for filtering, sorting, faceting, paging, and other search query behaviors."
+   },
+   "schemas:84": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-facets",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-facets"
+     ]
+    },
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:85"
+    },
+    "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs."
+   },
+   "schemas:85": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-facetsItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-facetsItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:86": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-filter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-filter"
+     ]
+    },
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/OData-Expression-Syntax-for-Azure-Search"
+    },
+    "type": "string",
+    "description": "The OData $filter expression to apply to the search query."
+   },
+   "schemas:87": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-highlight",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-highlight"
+     ]
+    },
+    "type": "string",
+    "description": "The comma-separated list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
+    "x-ms-client-name": "HighlightFields"
+   },
+   "schemas:88": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-highlightPostTag",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-highlightPostTag"
+     ]
+    },
+    "type": "string",
+    "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;."
+   },
+   "schemas:89": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-highlightPreTag",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-highlightPreTag"
+     ]
+    },
+    "type": "string",
+    "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;."
+   },
+   "schemas:90": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-orderby",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-orderby"
+     ]
+    },
+    "x-ms-client-name": "OrderBy",
+    "type": "string",
+    "description": "The comma-separated list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses."
+   },
+   "schemas:91": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-scoringParameters",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-scoringParameters"
+     ]
+    },
+    "type": "array",
+    "items": {
+     "$ref": "#/components/schemas/schemas:92"
+    },
+    "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes)."
+   },
+   "schemas:92": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-scoringParametersItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-scoringParametersItem"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:93": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-scoringProfile",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-scoringProfile"
+     ]
+    },
+    "type": "string",
+    "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results."
+   },
+   "schemas:94": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-search",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-search"
+     ]
+    },
+    "type": "string",
+    "description": "A full-text search query expression; Use \"*\" or omit this parameter to match all documents.",
+    "x-ms-client-name": "SearchText"
+   },
+   "schemas:95": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-searchFields",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-searchFields"
+     ]
+    },
+    "type": "string",
+    "description": "The comma-separated list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter."
+   },
+   "schemas:96": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchRequest-select",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchRequest-select"
+     ]
+    },
+    "type": "string",
+    "description": "The comma-separated list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included."
+   },
+   "schemas:97": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest"
+     ]
+    },
+    "properties": {
+     "filter": {
+      "description": "An OData expression that filters the documents considered for suggestions.",
+      "$ref": "#/components/schemas/schemas:98"
+     },
+     "fuzzy": {
+      "type": "boolean",
+      "description": "A value indicating whether to use fuzzy matching for the suggestion query. Default is false. When set to true, the query will find suggestions even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestion searches are slower and consume more resources.",
+      "x-ms-client-name": "UseFuzzyMatching"
+     },
+     "highlightPostTag": {
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.",
+      "$ref": "#/components/schemas/schemas:99"
+     },
+     "highlightPreTag": {
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.",
+      "$ref": "#/components/schemas/schemas:100"
+     },
+     "minimumCoverage": {
+      "type": "number",
+      "format": "double",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestion query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80."
+     },
+     "orderby": {
+      "description": "The comma-separated list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+      "x-ms-client-name": "OrderBy",
+      "$ref": "#/components/schemas/schemas:101"
+     },
+     "search": {
+      "description": "The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.",
+      "x-ms-client-name": "SearchText",
+      "$ref": "#/components/schemas/schemas:102"
+     },
+     "searchFields": {
+      "description": "The comma-separated list of field names to search for the specified search text. Target fields must be included in the specified suggester.",
+      "$ref": "#/components/schemas/schemas:103"
+     },
+     "select": {
+      "description": "The comma-separated list of fields to retrieve. If unspecified, only the key field will be included in the results.",
+      "$ref": "#/components/schemas/schemas:104"
+     },
+     "suggesterName": {
+      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition.",
+      "$ref": "#/components/schemas/schemas:105"
+     },
+     "top": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of suggestions to retrieve. This must be a value between 1 and 100. The default is 5."
+     }
+    },
+    "description": "Parameters for filtering, sorting, fuzzy matching, and other suggestions query behaviors."
+   },
+   "schemas:98": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-filter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-filter"
+     ]
+    },
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/OData-Expression-Syntax-for-Azure-Search"
+    },
+    "type": "string",
+    "description": "An OData expression that filters the documents considered for suggestions."
+   },
+   "schemas:99": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-highlightPostTag",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-highlightPostTag"
+     ]
+    },
+    "type": "string",
+    "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled."
+   },
+   "schemas:100": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-highlightPreTag",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-highlightPreTag"
+     ]
+    },
+    "type": "string",
+    "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled."
+   },
+   "schemas:101": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-orderby",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-orderby"
+     ]
+    },
+    "x-ms-client-name": "OrderBy",
+    "type": "string",
+    "description": "The comma-separated list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses."
+   },
+   "schemas:102": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-search",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-search"
+     ]
+    },
+    "type": "string",
+    "description": "The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.",
+    "x-ms-client-name": "SearchText"
+   },
+   "schemas:103": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-searchFields",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-searchFields"
+     ]
+    },
+    "type": "string",
+    "description": "The comma-separated list of field names to search for the specified search text. Target fields must be included in the specified suggester."
+   },
+   "schemas:104": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-select",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-select"
+     ]
+    },
+    "type": "string",
+    "description": "The comma-separated list of fields to retrieve. If unspecified, only the key field will be included in the results."
+   },
+   "schemas:105": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SuggestRequest-suggesterName",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestRequest-suggesterName"
+     ]
+    },
+    "type": "string",
+    "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
+   },
+   "schemas:106": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest"
+     ]
+    },
+    "properties": {
+     "search": {
+      "description": "The search text on which to base autocomplete results.",
+      "x-ms-client-name": "SearchText",
+      "$ref": "#/components/schemas/schemas:107"
+     },
+     "autocompleteMode": {
+      "description": "Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.",
+      "$ref": "#/components/schemas/AutocompleteMode"
+     },
+     "filter": {
+      "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result.",
+      "$ref": "#/components/schemas/schemas:108"
+     },
+     "fuzzy": {
+      "type": "boolean",
+      "description": "A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will autocomplete terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.",
+      "x-ms-client-name": "UseFuzzyMatching"
+     },
+     "highlightPostTag": {
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.",
+      "$ref": "#/components/schemas/schemas:109"
+     },
+     "highlightPreTag": {
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.",
+      "$ref": "#/components/schemas/schemas:110"
+     },
+     "minimumCoverage": {
+      "type": "number",
+      "format": "double",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80."
+     },
+     "searchFields": {
+      "description": "The comma-separated list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.",
+      "$ref": "#/components/schemas/schemas:111"
+     },
+     "suggesterName": {
+      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition.",
+      "$ref": "#/components/schemas/schemas:112"
+     },
+     "top": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5."
+     }
+    },
+    "description": "Parameters for fuzzy matching, and other autocomplete query behaviors."
+   },
+   "schemas:107": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest-search",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest-search"
+     ]
+    },
+    "type": "string",
+    "description": "The search text on which to base autocomplete results.",
+    "x-ms-client-name": "SearchText"
+   },
+   "schemas:108": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest-filter",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest-filter"
+     ]
+    },
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/OData-Expression-Syntax-for-Azure-Search"
+    },
+    "type": "string",
+    "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result."
+   },
+   "schemas:109": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest-highlightPostTag",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest-highlightPostTag"
+     ]
+    },
+    "type": "string",
+    "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled."
+   },
+   "schemas:110": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest-highlightPreTag",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest-highlightPreTag"
+     ]
+    },
+    "type": "string",
+    "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled."
+   },
+   "schemas:111": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest-searchFields",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest-searchFields"
+     ]
+    },
+    "type": "string",
+    "description": "The comma-separated list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester."
+   },
+   "schemas:112": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteRequest-suggesterName",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteRequest-suggesterName"
+     ]
+    },
+    "type": "string",
+    "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
+   },
+   "schemas:113": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteResult",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteResult"
+     ]
+    },
+    "properties": {
+     "@search.coverage": {
+      "type": "number",
+      "format": "double",
+      "readOnly": true,
+      "x-ms-client-name": "Coverage",
+      "description": "A value indicating the percentage of the index that was considered by the autocomplete request, or null if minimumCoverage was not specified in the request."
+     },
+     "value": {
+      "description": "The list of returned Autocompleted items.",
+      "x-ms-client-name": "Results",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:114"
+     }
+    },
+    "description": "The result of Autocomplete query."
+   },
+   "schemas:114": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteResult-value",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteResult-value"
+     ]
+    },
+    "type": "array",
+    "readOnly": true,
+    "items": {
+     "$ref": "#/components/schemas/schemas:115"
+    },
+    "description": "The list of returned Autocompleted items.",
+    "x-ms-client-name": "Results"
+   },
+   "schemas:115": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteItem",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteItem"
+     ]
+    },
+    "properties": {
+     "text": {
+      "description": "The completed term.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:116"
+     },
+     "queryPlusText": {
+      "description": "The query along with the completed term.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/schemas:117"
+     }
+    },
+    "description": "The result of Autocomplete requests."
+   },
+   "schemas:116": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteItem-text",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteItem-text"
+     ]
+    },
+    "type": "string",
+    "readOnly": true,
+    "description": "The completed term."
+   },
+   "schemas:117": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteItem-queryPlusText",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteItem-queryPlusText"
+     ]
+    },
+    "type": "string",
+    "readOnly": true,
+    "description": "The query along with the completed term."
+   },
+   "schemas:118": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·18mzsjh·parameters·apiversionparameter·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·18mzsjh·parameters·apiversionparameter·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:119": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·b50i80·parameters·clientrequestidparameter·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·b50i80·parameters·clientrequestidparameter·schema"
+     ]
+    },
+    "format": "uuid",
+    "type": "string"
+   },
+   "schemas:120": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·etyl6f·parameters·searchservicenameparameter·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·etyl6f·parameters·searchservicenameparameter·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "schemas:121": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·n48z3y·parameters·searchdnssuffixparameter·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·n48z3y·parameters·searchdnssuffixparameter·schema"
+     ]
+    },
+    "default": "search.windows.net",
+    "type": "string"
+   },
+   "schemas:122": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "components·1yz6l8l·parameters·indexnameparameter·schema",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/components·1yz6l8l·parameters·indexnameparameter·schema"
+     ]
+    },
+    "type": "string"
+   },
+   "QueryType": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "QueryType",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·u04kh7·docs·get·parameters·9·schema",
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/QueryType"
+     ]
+    },
+    "enum": [
+     "simple",
+     "full"
+    ],
+    "x-ms-enum": {
+     "name": "QueryType",
+     "modelAsString": false
+    },
+    "type": "string"
+   },
+   "SearchMode": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "SearchMode",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·131pnxq·docs·get·parameters·13·schema",
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchMode"
+     ]
+    },
+    "enum": [
+     "any",
+     "all"
+    ],
+    "x-ms-enum": {
+     "name": "SearchMode",
+     "modelAsString": false
+    },
+    "type": "string"
+   },
+   "AutocompleteMode": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "AutocompleteMode",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/paths·1sn7rrk·docs-search-autocomplete·get·parameters·4·schema",
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteMode"
+     ]
+    },
+    "enum": [
+     "oneTerm",
+     "twoTerms",
+     "oneTermWithContext"
+    ],
+    "x-ms-enum": {
+     "name": "AutocompleteMode",
+     "modelAsString": false
+    },
+    "type": "string"
+   },
+   "IndexActionType": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "IndexActionType",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexAction-@search.action"
+     ]
+    },
+    "type": "string",
+    "enum": [
+     "upload",
+     "merge",
+     "mergeOrUpload",
+     "delete"
+    ],
+    "x-ms-enum": {
+     "name": "IndexActionType"
+    },
+    "x-ms-client-name": "ActionType",
+    "nullable": false,
+    "description": "The operation to perform on a document in an indexing batch."
+   }
+  },
+  "requestBodies": {
+   "requestBodies:0": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·56vpw5·docs-search-post-search·post·requestbody",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/requestBodies/paths·56vpw5·docs-search-post-search·post·requestbody"
+     ]
+    },
+    "content": {
+     "application/json": {
+      "schema": {
+       "description": "The Search request.",
+       "$ref": "#/components/schemas/schemas:83"
+      }
+     }
+    },
+    "required": true,
+    "description": "The definition of the Search request.",
+    "x-ms-requestBody-name": "searchRequest"
+   },
+   "requestBodies:1": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·3h5jgz·docs-search-post-suggest·post·requestbody",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/requestBodies/paths·3h5jgz·docs-search-post-suggest·post·requestbody"
+     ]
+    },
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:97"
+      }
+     }
+    },
+    "required": true,
+    "description": "The Suggest request.",
+    "x-ms-requestBody-name": "suggestRequest"
+   },
+   "requestBodies:2": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·1m2z9i0·docs-search-index·post·requestbody",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/requestBodies/paths·1m2z9i0·docs-search-index·post·requestbody"
+     ]
+    },
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:70"
+      }
+     }
+    },
+    "required": true,
+    "description": "The batch of index actions.",
+    "x-ms-requestBody-name": "batch"
+   },
+   "requestBodies:3": {
+    "x-ms-metadata": {
+     "apiVersions": [
+      "2019-05-06"
+     ],
+     "filename": [
+      "mem:///111?oai3.shaken.json"
+     ],
+     "name": "paths·wzq3eb·docs-search-post-autocomplete·post·requestbody",
+     "originalLocations": [
+      "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/requestBodies/paths·wzq3eb·docs-search-post-autocomplete·post·requestbody"
+     ]
+    },
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/schemas:106"
+      }
+     }
+    },
+    "required": true,
+    "description": "The definition of the Autocomplete request.",
+    "x-ms-requestBody-name": "autocompleteRequest"
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "https://{searchServiceName}.{searchDnsSuffix}/indexes('{indexName}')",
+   "variables": {
+    "searchServiceName": {
+     "x-name": "searchServiceName",
+     "x-in": "path",
+     "x-required": true,
+     "x-type": "string",
+     "x-ms-skip-url-encoding": true,
+     "description": "The name of the search service.",
+     "x-ms-parameter-location": "client",
+     "x-ms-original": {
+      "$ref": "#/components/parameters/parameters:42"
+     },
+     "default": ""
+    },
+    "searchDnsSuffix": {
+     "x-name": "searchDnsSuffix",
+     "x-in": "path",
+     "x-required": true,
+     "x-type": "string",
+     "default": "search.windows.net",
+     "x-ms-skip-url-encoding": true,
+     "description": "The DNS suffix of the search service. The default is search.windows.net.",
+     "x-ms-parameter-location": "client",
+     "x-ms-original": {
+      "$ref": "#/components/parameters/parameters:43"
+     }
+    },
+    "indexName": {
+     "x-name": "indexName",
+     "x-in": "path",
+     "x-required": true,
+     "x-type": "string",
+     "x-ms-skip-url-encoding": false,
+     "description": "The name of the index.",
+     "x-ms-parameter-location": "client",
+     "x-ms-original": {
+      "$ref": "#/components/parameters/parameters:44"
+     },
+     "default": ""
+    }
+   }
+  }
+ ]
+}

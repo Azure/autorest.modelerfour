@@ -172,6 +172,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
           'flatten-models': true,
           'flatten-payloads': true,
           'group-parameters': true,
+          'resolve-schema-name-collisons': true,
           naming: {
             override: {
               '$host': '$host',
