@@ -2,8 +2,6 @@ import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, 
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 
-/// isDistinct<T>( Iterableitem:T  )
-
 export class Checker {
   codeModel: CodeModel
   options: Dictionary<any> = {};
@@ -38,16 +36,9 @@ export class Checker {
     for (const each of values(allSchemas).where(each => !each.language.default.name)) {
       this.session.warning(`Schema Missing Name '${JSON.stringify(each)}'.`, []);
     }
-    /*
-        for (const dupe of values(allSchemas).duplicates(schema => ({
-          type: schema.type,
-          name: schema.language?.default?.name,
-        })
-        )) {
-          this.session.warning(`Duplicate Schema Name '${JSON.stringify(dupe)}' detected.`, []);
-        }
-    */
-    for (const dupe of values(this.codeModel.schemas.objects).select(each => each.language.default.name).duplicates()) {
+
+    const types = values(<Schema[]>this.codeModel.schemas.objects).concat(values(this.codeModel.schemas.groups)).concat(values(this.codeModel.schemas.choices)).concat(values(this.codeModel.schemas.sealedChoices)).toArray()
+    for (const dupe of values(types).duplicates(each => each.language.default.name)) {
       this.session.error(`Duplicate Object Schema '${dupe}' detected.`, []);
     };
 
