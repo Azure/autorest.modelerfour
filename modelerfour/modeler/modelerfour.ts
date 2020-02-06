@@ -4,7 +4,8 @@ import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
 import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
-import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
+import { Style, fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
+import { isDate } from 'util';
 
 export class ModelerFour {
   codeModel: CodeModel
@@ -284,6 +285,10 @@ export class ModelerFour {
   get booleanSchema() {
     return this._booleanSchema || (this._booleanSchema = this.codeModel.schemas.add(new BooleanSchema('bool', 'simple boolean')));
   }
+  _anySchema?: AnySchema
+  get anySchema(): AnySchema {
+    return this._anySchema || (this._anySchema = this.codeModel.schemas.add(new AnySchema('Any object')));
+  }
 
   getSchemaForString(schema: OpenAPI.Schema): Schema {
     switch (schema.format) {
@@ -396,21 +401,27 @@ export class ModelerFour {
   processDictionarySchema(name: string, schema: OpenAPI.Schema): DictionarySchema {
     let elementSchema: Schema;
     if (schema.additionalProperties === true) {
-      elementSchema = new AnySchema('<Any object>');
+      elementSchema = this.anySchema;
     } else {
       const eschema = this.resolve(schema.additionalProperties);
       const ei = eschema.instance;
+
+      if (ei) {
+
+        if (ei.type === 'object' && length((<any>ei)?.properties) === 0) {
+          debugger;
+        }
+      }
+
       if (ei && this.interpret.isEmptyObject(ei)) {
-        elementSchema = new AnySchema(this.interpret.getDescription('<Any object>', ei));
+        elementSchema = this.anySchema;
       } else {
+
         elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance);
       }
     }
-    const dict = new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription(`Dictionary of <${elementSchema.language.default.name}>`, schema), elementSchema, {
-
-    });
-    this.codeModel.schemas.add(dict);
-    return dict;
+    return this.codeModel.schemas.add(new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription(`Dictionary of <${elementSchema.language.default.name}>`, schema), elementSchema, {
+    }));
   }
 
   isSchemaPolymorphic(schema: OpenAPI.Schema | undefined): boolean {
@@ -451,7 +462,7 @@ export class ModelerFour {
     for (const { key: propertyName, value: propertyDeclaration } of items(schema.properties)) {
       const property = this.resolve(propertyDeclaration);
       this.use(<OpenAPI.Refable<OpenAPI.Schema>>propertyDeclaration, (pSchemaName, pSchema) => {
-        const pType = this.processSchema(pSchemaName || `typeFor${propertyName}`, pSchema);
+        const pType = this.processSchema(pSchemaName || `type·for·${propertyName}`, pSchema);
         const prop = objectSchema.addProperty(new Property(this.interpret.getPreferredName(propertyDeclaration, propertyName), this.interpret.getDescription(pType.language.default.description, property), pType, {
           readOnly: propertyDeclaration.readOnly,
           nullable: propertyDeclaration.nullable,
@@ -614,7 +625,7 @@ export class ModelerFour {
       if (<any>schema.type === 'file') {
         // handle inconsistency in file format handling.
         this.session.warning(
-          'The schema type \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'',
+          `'The schema ${schema?.['x-ms-metadata']?.name || name} has type \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'`,
           ['Modeler', 'TypeFileNotValid'], schema);
         schema.type = OpenAPI.JsonType.String;
         schema.format = StringFormat.Binary;
@@ -623,7 +634,7 @@ export class ModelerFour {
       if (<any>schema.format === 'file') {
         // handle inconsistency in file format handling.
         this.session.warning(
-          'The schema format  \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'',
+          `The schema ${schema?.['x-ms-metadata']?.name || name} has format \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'`,
           ['Modeler', 'TypeFileNotValid'], schema);
         schema.type = OpenAPI.JsonType.String;
         schema.format = StringFormat.Binary;
@@ -638,7 +649,8 @@ export class ModelerFour {
           if (schema.properties) {
             // if the model has properties, then we're going to assume they meant to say JsonType.object 
             // but we're going to warn them anyway.
-            this.session.warning(`The schema '${name}' with an undefined type and decalared properties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
+
+            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and decalared properties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
             schema.type = OpenAPI.JsonType.Object;
             break;
           }
@@ -646,7 +658,7 @@ export class ModelerFour {
           if (schema.additionalProperties) {
             // this looks like it's going to be a dictionary
             // we'll mark it as object and let the processObjectSchema sort it out.
-            this.session.warning(`The schema '${name}' with an undefined type and additionalProperties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler'], schema);
+            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and additionalProperties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler'], schema);
             schema.type = OpenAPI.JsonType.Object;
             break;
           }
@@ -654,7 +666,7 @@ export class ModelerFour {
           if (schema.allOf || schema.anyOf || schema.oneOf) {
             // if the model has properties, then we're going to assume they meant to say JsonType.object 
             // but we're going to warn them anyway.
-            this.session.warning(`The schema '${name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
+            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
             schema.type = OpenAPI.JsonType.Object;
             break;
           }
@@ -662,9 +674,9 @@ export class ModelerFour {
           {
             // no type info at all!? 
             // const err = `The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`;
-            this.session.warning(`The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`, ['Modeler', 'MissingType'], schema);
+            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' has no type or format information whatsoever. ${this.location(schema)}`, ['Modeler', 'MissingType'], schema);
             // throw Error(err);
-            return new AnySchema('<Any object>');
+            return this.anySchema;
           }
       }
 
@@ -675,7 +687,7 @@ export class ModelerFour {
             case undefined:
               return this.processArraySchema(name, schema);
             default:
-              this.session.error(`Array schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+              this.session.error(`Array schema '${schema?.['x-ms-metadata']?.name || name}' with unknown format: '${schema.format} ' is not valid`, ['Modeler'], schema);
           }
           break;
 
@@ -1061,8 +1073,9 @@ export class ModelerFour {
                 return op.request.addParameter(p);
               }
             }
+            const parameterSchema = this.processSchema(name || '', schema);
 
-            const newParam = op.request.addParameter(new Parameter(this.interpret.getPreferredName(parameter, parameter.name), this.interpret.getDescription('', parameter), this.processSchema(name || '', schema), {
+            const newParam = op.request.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
               required: parameter.required ? true : undefined,
               implementation,
               extensions: this.interpret.getExtensionProperties(parameter),

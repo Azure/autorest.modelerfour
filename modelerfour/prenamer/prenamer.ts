@@ -1,6 +1,6 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
-import { values, length, Dictionary } from '@azure-tools/linq';
+import { values, length, Dictionary, when } from '@azure-tools/linq';
 import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler } from '@azure-tools/codegen';
 
 function getNameOptions(typeName: string, components: Array<string>) {
@@ -22,7 +22,14 @@ function isUnassigned(value: string) {
 }
 
 function setName(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>) {
-  thing.language.default.name = styler(isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
+  thing.language.default.name = styler(defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
+  if (!thing.language.default.name) {
+    throw new Error('Name is empty!');
+  }
+}
+
+function setNameAllowEmpty(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>) {
+  thing.language.default.name = styler(defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
 }
 
 export class PreNamer {
@@ -186,7 +193,7 @@ export class PreNamer {
     }
 
     for (const operationGroup of this.codeModel.operationGroups) {
-      setName(operationGroup, this.format.operationGroup, operationGroup.$key, this.format.override);
+      setNameAllowEmpty(operationGroup, this.format.operationGroup, operationGroup.$key, this.format.override);
       for (const operation of operationGroup.operations) {
         setName(operation, this.format.operation, '', this.format.override);
         for (const parameter of values(operation.request.signatureParameters)) {
@@ -207,6 +214,11 @@ export class PreNamer {
 
     // fix collisions from flattening on VirtualParameters
     this.fixParameterCollisions();
+
+    if (this.options['resolve-schema-name-collisons']) {
+      // fix collision on schema names after naming everything.
+      this.fixSchemaCollisions();
+    }
 
     return this.codeModel;
   }
@@ -268,6 +280,82 @@ export class PreNamer {
   fixPropertyCollisions() {
     for (const schema of values(this.codeModel.schemas.objects)) {
       this.fixCollisions(schema);
+    }
+  }
+
+  fixSchemaCollisions() {
+    const usedNames = new Map<string, Array<Schema>>();
+
+    // schemas - 
+    for (const schema of values(this.codeModel.schemas.objects)) {
+      const name = schema.language.default.name;
+
+      when(usedNames.get(name), (values) => {
+        // verify that the schema is in a different namespace
+        for (const existingSchema of values) {
+          const namespace = schema.language.default.namespace;
+          if (existingSchema.language.default.namespace === namespace) {
+            // bad news! actual schema collision
+            this.session.error(`Two object schemas have name '${name}' in the same namespace '${namespace}'-- you must add a client name.`, [], existingSchema);
+          } else {
+            // otherwise, just add this one to the list.
+            values.push(schema)
+          }
+        }
+      }, () => usedNames.set(name, [schema]));
+    }
+
+    for (const schema of values(this.codeModel.schemas.groups)) {
+      const name = schema.language.default.name;
+
+      when(usedNames.get(name), (values) => {
+        // verify that the schema is in a different namespace
+        for (const existingSchema of values) {
+          const namespace = schema.language.default.namespace;
+          if (existingSchema.language.default.namespace === namespace) {
+            // bad news! actual schema collision
+            this.session.error(`A parameter-group schema '${name}' is colliding in the same namespace '${namespace}'-- you must change the group name.`, []);
+          } else {
+            // otherwise, just add this one to the list.
+            values.push(schema)
+          }
+        }
+      }, () => usedNames.set(name, [schema]));
+    }
+
+    for (const schema of values(this.codeModel.schemas.choices)) {
+      const name = schema.language.default.name;
+
+      when(usedNames.get(name), (values) => {
+        // enum schemas should not overlap with object or group schemas, regardless of namespace
+        if (!name.endsWith('Enum')) {
+          const newname = this.format.choice(`${name}Enum`, false, this.format.override);
+          if (usedNames.has(newname)) {
+            this.session.error(`Enum Schema '${name}' collides with another schema -- you must add a client name.`, []);
+          } else {
+            // update the name and move on.
+            schema.language.default.name = newname;
+            usedNames.set(newname, [schema]);
+          }
+        }
+      }, () => usedNames.set(name, [schema]));
+    }
+    for (const schema of values(this.codeModel.schemas.sealedChoices)) {
+      const name = schema.language.default.name;
+
+      when(usedNames.get(name), (values) => {
+        // enum schemas should not overlap with object or group schemas, regardless of namespace
+        if (!name.endsWith('Enum')) {
+          const newname = this.format.choice(`${name}Enum`, false, this.format.override);
+          if (usedNames.has(newname)) {
+            this.session.error(`Enum Schema '${name}' collides with another schema -- you must add a client name.`, []);
+          } else {
+            // update the name and move on.
+            schema.language.default.name = newname;
+            usedNames.set(newname, [schema]);
+          }
+        }
+      }, () => usedNames.set(name, [schema]));
     }
   }
 }
