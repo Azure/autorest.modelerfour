@@ -1,7 +1,13 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
+#### 4.6.x
+  - add additional checks for empty names, collisions
+  - fix errant processing on APString => Apstring 
+  - x-ms-client-name fixes on parameters
+
 #### 4.5.x
+  - static linking libraries for stability
   - processed all names in namer, styles can be set in config:
 
 ``` yaml
