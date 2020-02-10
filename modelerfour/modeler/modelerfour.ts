@@ -405,14 +405,6 @@ export class ModelerFour {
     } else {
       const eschema = this.resolve(schema.additionalProperties);
       const ei = eschema.instance;
-
-      if (ei) {
-
-        if (ei.type === 'object' && length((<any>ei)?.properties) === 0) {
-          debugger;
-        }
-      }
-
       if (ei && this.interpret.isEmptyObject(ei)) {
         elementSchema = this.anySchema;
       } else {
