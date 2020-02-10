@@ -82,3 +82,6 @@ autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https
 
 # blob storage
 autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/12ff3b96ec4ede0a56a7315bcdaefe9ae8aa9168/specification/storage/data-plane/Microsoft.BlobStorage/preview/2019-02-02/blob.json  --output-folder:$outputRoot\scenarios\blob-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 
+
+# search
+autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json  --output-folder:$outputRoot\scenarios\cognitive-search --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 

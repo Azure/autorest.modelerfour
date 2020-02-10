@@ -124,6 +124,10 @@ modelerfour:
   # defaults to true if not specified
   prenamer: true|false          
 
+  # does a check to see if names in schemas/enums/etc will collide
+  # off by default 
+  resolve-schema-name-collisons: false|true
+
   # merges response headers into response objects 
   # defaults to false if not specified
   # not implemented
@@ -132,6 +136,10 @@ modelerfour:
   # enables parameter grouping via x-ms-parameter-grouping
   # defaults to false if not specified
   group-parameters: false|true
+
+  # some additional sanity checks to help debugging
+  # defaults to false
+  additional-checks: false|true
 
   # customization of the identifier normalization and naming provided by the prenamer.
   # pascal|pascalcase - MultiWordIdentifier 
@@ -169,6 +177,12 @@ modelerfour-loaded: true
 ```
 
 ``` yaml
+modelerfour:
+  naming:
+    override:  # defaults 
+      cmyk : CMYK
+      $host: $host
+
 pipeline:
   modelerfour:
     input: openapi-document/multi-api/identity  
@@ -193,6 +207,9 @@ pipeline:
 
   modelerfour/pre-namer/new-transform:
     input: modelerfour/pre-namer
+
+  modelerfour/checker:
+    input: modelerfour/pre-namer/new-transform
 
   modelerfour/identity:
     input: modelerfour/pre-namer/new-transform
