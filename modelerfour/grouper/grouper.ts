@@ -59,7 +59,7 @@ export class Grouper {
   }
 
   processParameterGroup(group: OperationGroup, operation: Operation) {
-    const grouped = [...values(operation.request.parameters).where(parameter => parameter.extensions?.[xmsParameterGrouping])];
+    const grouped = [...values(operation.request.parameters).where(parameter => parameter.extensions?.[xmsParameterGrouping] && parameter.schema.type !== SchemaType.Constant && parameter.implementation !== ImplementationLocation.Client)];
 
     if (grouped.length > 0) {
       // create a parameter group object schema for the selected parameters.
