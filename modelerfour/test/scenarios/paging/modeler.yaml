@@ -379,7 +379,7 @@ operationGroups:
 - !<!OperationGroup> 
   $key: Paging
   operations:
-  - !<!Operation> 
+  - !<!Operation> &ref_31
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -427,6 +427,8 @@ operationGroups:
       default:
         name: getNoItemNamePages
         description: A paging operation that must return result of the default 'value' node.
+        paging:
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -472,11 +474,14 @@ operationGroups:
     extensions:
       x-ms-pageable:
         itemName: values
-        nextLinkName: {}
+        nextLinkName: null
     language: !<!Languages> 
       default:
         name: getNullNextLinkNamePages
         description: 'A paging operation that must ignore any kind of nextLink, and stop after page 1.'
+        paging:
+          itemName: values
+          nextLinkName: null
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -527,6 +532,9 @@ operationGroups:
       default:
         name: getSinglePages
         description: A paging operation that finishes on the first call without a nextlink
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -619,6 +627,9 @@ operationGroups:
       default:
         name: getMultiplePages
         description: A paging operation that includes a nextLink that has 10 pages
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -709,6 +720,9 @@ operationGroups:
       default:
         name: getOdataMultiplePages
         description: A paging operation that includes a nextLink in odata format that has 10 pages
+        paging:
+          itemName: values
+          nextLinkName: odata.nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -815,6 +829,9 @@ operationGroups:
       default:
         name: getMultiplePagesWithOffset
         description: A paging operation that includes a nextLink that has 10 pages
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -865,6 +882,9 @@ operationGroups:
       default:
         name: getMultiplePagesRetryFirst
         description: A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -915,6 +935,9 @@ operationGroups:
       default:
         name: getMultiplePagesRetrySecond
         description: 'A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.'
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -965,6 +988,9 @@ operationGroups:
       default:
         name: getSinglePagesFailure
         description: A paging operation that receives a 400 on the first call
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1015,6 +1041,9 @@ operationGroups:
       default:
         name: getMultiplePagesFailure
         description: A paging operation that receives a 400 on the second call
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1065,6 +1094,9 @@ operationGroups:
       default:
         name: getMultiplePagesFailureUri
         description: A paging operation that receives an invalid nextLink
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1073,7 +1105,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_13
-      - !<!Parameter> &ref_31
+      - !<!Parameter> &ref_32
         schema: *ref_15
         implementation: Method
         required: true
@@ -1085,7 +1117,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> &ref_32
+      - !<!Parameter> &ref_33
         schema: *ref_15
         implementation: Method
         required: true
@@ -1098,8 +1130,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       signatureParameters:
-      - *ref_31
       - *ref_32
+      - *ref_33
       language: !<!Languages> 
         default:
           name: ''
@@ -1142,6 +1174,12 @@ operationGroups:
       default:
         name: getMultiplePagesFragmentNextLink
         description: 'A paging operation that doesn''t return a full URL, just a fragment'
+        paging:
+          group: Paging
+          itemName: values
+          member: nextFragment
+          nextLinkName: odata.nextLink
+          nextLinkOperation: *ref_31
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1150,12 +1188,12 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_13
-      - !<!Parameter> &ref_33
+      - !<!Parameter> &ref_34
         schema: *ref_15
         implementation: Method
         required: true
         extensions:
-          x-ms-parameter-grouping: &ref_41
+          x-ms-parameter-grouping: &ref_42
             name: custom-parameter-group
         language: !<!Languages> 
           default:
@@ -1165,12 +1203,12 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> &ref_34
+      - !<!Parameter> &ref_35
         schema: *ref_15
         implementation: Method
         required: true
         extensions:
-          x-ms-parameter-grouping: &ref_42
+          x-ms-parameter-grouping: &ref_43
             name: custom-parameter-group
         language: !<!Languages> 
           default:
@@ -1181,8 +1219,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       signatureParameters:
-      - *ref_33
       - *ref_34
+      - *ref_35
       language: !<!Languages> 
         default:
           name: ''
@@ -1225,6 +1263,12 @@ operationGroups:
       default:
         name: getMultiplePagesFragmentWithGroupingNextLink
         description: 'A paging operation that doesn''t return a full URL, just a fragment with parameters grouped'
+        paging:
+          group: Paging
+          itemName: values
+          member: nextFragmentWithGrouping
+          nextLinkName: odata.nextLink
+          nextLinkOperation: *ref_31
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1233,7 +1277,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_13
-      - !<!Parameter> &ref_35
+      - !<!Parameter> &ref_36
         schema: *ref_15
         implementation: Method
         language: !<!Languages> 
@@ -1244,7 +1288,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> &ref_36
+      - !<!Parameter> &ref_37
         schema: *ref_16
         implementation: Method
         extensions:
@@ -1257,7 +1301,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: header
-      - !<!Parameter> &ref_37
+      - !<!Parameter> &ref_38
         schema: *ref_17
         implementation: Method
         extensions:
@@ -1271,9 +1315,9 @@ operationGroups:
           http: !<!HttpParameter> 
             in: header
       signatureParameters:
-      - *ref_35
       - *ref_36
       - *ref_37
+      - *ref_38
       language: !<!Languages> 
         default:
           name: ''
@@ -1316,6 +1360,9 @@ operationGroups:
       default:
         name: GetMultiplePagesLRO
         description: A long-running paging operation that includes a nextLink that has 10 pages
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1324,7 +1371,7 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_13
-      - !<!Parameter> &ref_38
+      - !<!Parameter> &ref_39
         schema: *ref_15
         implementation: Method
         required: true
@@ -1336,7 +1383,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: query
-      - !<!Parameter> &ref_39
+      - !<!Parameter> &ref_40
         schema: *ref_15
         implementation: Method
         required: true
@@ -1348,7 +1395,7 @@ operationGroups:
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> &ref_40
+      - !<!Parameter> &ref_41
         schema: *ref_15
         implementation: Method
         required: true
@@ -1363,9 +1410,9 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       signatureParameters:
-      - *ref_38
       - *ref_39
       - *ref_40
+      - *ref_41
       language: !<!Languages> 
         default:
           name: ''
@@ -1408,6 +1455,12 @@ operationGroups:
       default:
         name: nextFragment
         description: 'A paging operation that doesn''t return a full URL, just a fragment'
+        paging:
+          group: Paging
+          itemName: values
+          member: nextFragment
+          nextLinkName: odata.nextLink
+          nextLinkOperation: *ref_31
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -1416,20 +1469,6 @@ operationGroups:
     request: !<!Request> 
       parameters:
       - *ref_13
-      - !<!Parameter> &ref_43
-        schema: *ref_15
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-parameter-grouping: *ref_41
-        language: !<!Languages> 
-          default:
-            name: api_version
-            description: Sets the api version to use.
-            serializedName: api_version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_44
         schema: *ref_15
         implementation: Method
@@ -1438,13 +1477,27 @@ operationGroups:
           x-ms-parameter-grouping: *ref_42
         language: !<!Languages> 
           default:
+            name: api_version
+            description: Sets the api version to use.
+            serializedName: api_version
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: query
+      - !<!Parameter> &ref_45
+        schema: *ref_15
+        implementation: Method
+        required: true
+        extensions:
+          x-ms-parameter-grouping: *ref_43
+        language: !<!Languages> 
+          default:
             name: tenant
             description: Sets the tenant to use.
             serializedName: tenant
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: path
-      - !<!Parameter> &ref_45
+      - !<!Parameter> &ref_46
         schema: *ref_15
         implementation: Method
         required: true
@@ -1459,9 +1512,9 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       signatureParameters:
-      - *ref_43
       - *ref_44
       - *ref_45
+      - *ref_46
       language: !<!Languages> 
         default:
           name: ''
@@ -1504,6 +1557,12 @@ operationGroups:
       default:
         name: nextFragmentWithGrouping
         description: 'A paging operation that doesn''t return a full URL, just a fragment'
+        paging:
+          group: Paging
+          itemName: values
+          member: nextFragmentWithGrouping
+          nextLinkName: odata.nextLink
+          nextLinkOperation: *ref_31
     protocol: !<!Protocols> {}
   language: !<!Languages> 
     default:

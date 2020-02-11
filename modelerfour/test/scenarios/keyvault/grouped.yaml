@@ -7842,6 +7842,8 @@ operationGroups:
       default:
         name: GetKeyVersions
         description: 'The full key identifier, attributes, and tags are provided in the response. This operation requires the keys/list permission.'
+        paging:
+          nextLinkName: nextLink
         summary: Retrieves a list of individual key versions with the same key name.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -7947,6 +7949,8 @@ operationGroups:
         description: >-
           Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier, attributes, and tags
           are provided in the response. Individual versions of a key are not listed in the response. This operation requires the keys/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: List keys in the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -9278,6 +9282,8 @@ operationGroups:
         description: >-
           Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a deleted key. This operation includes deletion-specific information. The Get Deleted Keys operation is applicable for vaults
           enabled for soft-delete. While the operation can be invoked on any vault, it will return an error if invoked on a non soft-delete enabled vault. This operation requires the keys/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: Lists the deleted keys in the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -10278,6 +10284,8 @@ operationGroups:
         description: >-
           The Get Secrets operation is applicable to the entire vault. However, only the base secret identifier and its attributes are provided in the response. Individual secret versions are not listed in the response. This operation
           requires the secrets/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: List secrets in a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -10393,6 +10401,8 @@ operationGroups:
       default:
         name: GetSecretVersions
         description: The full secret identifier and attributes are provided in the response. No values are returned for the secrets. This operations requires the secrets/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: List all versions of the specified secret.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -10500,6 +10510,8 @@ operationGroups:
       default:
         name: GetDeletedSecrets
         description: The Get Deleted Secrets operation returns the secrets that have been deleted for a vault enabled for soft-delete. This operation requires the secrets/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: Lists deleted secrets for the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -11103,7 +11115,7 @@ operationGroups:
           responses:
             '200':
               body:
-                nextLink: {}
+                nextLink: null
                 value:
                 - attributes:
                     created: 1482188987
@@ -11127,6 +11139,8 @@ operationGroups:
       default:
         name: GetCertificates
         description: The GetCertificates operation returns the set of certificates resources in the specified key vault. This operation requires the certificates/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: List certificates in a specified key vault
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -11646,7 +11660,7 @@ operationGroups:
           responses:
             '200':
               body:
-                nextLink: {}
+                nextLink: null
                 value:
                 - id: 'https://karlaugsoftdeletesdk.vault-int.azure-int.net/certificates/issuers/issuer01'
                   provider: Test
@@ -11660,6 +11674,8 @@ operationGroups:
       default:
         name: GetCertificateIssuers
         description: The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault. This operation requires the certificates/manageissuers/getissuers permission.
+        paging:
+          nextLinkName: nextLink
         summary: List certificate issuers for a specified key vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -12765,7 +12781,7 @@ operationGroups:
           responses:
             '200':
               body:
-                nextLink: {}
+                nextLink: null
                 value:
                 - attributes:
                     created: 1482189534
@@ -12789,6 +12805,8 @@ operationGroups:
       default:
         name: GetCertificateVersions
         description: The GetCertificateVersions operation returns the versions of a certificate in the specified key vault. This operation requires the certificates/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: List the versions of a certificate.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -14277,6 +14295,8 @@ operationGroups:
         description: >-
           The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging. This operation includes deletion-specific information. This operation requires
           the certificates/get/list permission. This operation can only be enabled on soft-delete enabled vaults.
+        paging:
+          nextLinkName: nextLink
         summary: Lists the deleted certificates in the specified vault currently available for recovery.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -14755,6 +14775,8 @@ operationGroups:
       default:
         name: GetStorageAccounts
         description: List storage accounts managed by the specified key vault. This operation requires the storage/list permission.
+        paging:
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -14876,6 +14898,8 @@ operationGroups:
       default:
         name: GetDeletedStorageAccounts
         description: The Get Deleted Storage Accounts operation returns the storage accounts that have been deleted for a vault enabled for soft-delete. This operation requires the storage/list permission.
+        paging:
+          nextLinkName: nextLink
         summary: Lists deleted storage accounts for the specified vault.
     protocol: !<!Protocols> {}
   - !<!Operation> 
@@ -16307,6 +16331,8 @@ operationGroups:
       default:
         name: GetSasDefinitions
         description: List storage SAS definitions for the given storage account. This operation requires the storage/listsas permission.
+        paging:
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -16436,6 +16462,8 @@ operationGroups:
       default:
         name: GetDeletedSasDefinitions
         description: The Get Deleted Sas Definitions operation returns the SAS definitions that have been deleted for a vault enabled for soft-delete. This operation requires the storage/listsas permission.
+        paging:
+          nextLinkName: nextLink
         summary: Lists deleted SAS definitions for the specified vault and storage account.
     protocol: !<!Protocols> {}
   - !<!Operation> 

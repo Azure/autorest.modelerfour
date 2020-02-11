@@ -263,7 +263,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
             },
             /*
             for when playing with python style settings :
-
+            
             parameter: 'snakecase',
             property: 'snakecase',
             operation: 'snakecase',
@@ -272,7 +272,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
             choiceValue: 'uppercase',
             constant: 'uppercase',
             type: 'pascalcase',
-            */
+            // */
           }
         },
         'payload-flattening-threshold': 2

@@ -163,7 +163,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_4
   - *ref_5
-  - !<!StringSchema> &ref_12
+  - !<!StringSchema> &ref_13
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -213,7 +213,7 @@ operationGroups:
 - !<!OperationGroup> 
   $key: Paging
   operations:
-  - !<!Operation> 
+  - !<!Operation> &ref_12
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -281,6 +281,9 @@ operationGroups:
       default:
         name: GetPagesPartialUrl
         description: 'A paging operation that combines custom url, paging and partial URL and expect to concat after host'
+        paging:
+          itemName: values
+          nextLinkName: nextLink
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -351,6 +354,12 @@ operationGroups:
       default:
         name: GetPagesPartialUrlOperation
         description: 'A paging operation that combines custom url, paging and partial URL with next operation'
+        paging:
+          group: Paging
+          itemName: values
+          member: GetPagesPartialUrlOperationNext
+          nextLinkName: nextLink
+          nextLinkOperation: *ref_12
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -358,7 +367,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> &ref_13
+      - !<!Parameter> &ref_14
         schema: *ref_7
         implementation: Method
         required: true
@@ -377,8 +386,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: uri
       - *ref_8
-      - !<!Parameter> &ref_14
-        schema: *ref_12
+      - !<!Parameter> &ref_15
+        schema: *ref_13
         implementation: Method
         required: true
         extensions:
@@ -392,8 +401,8 @@ operationGroups:
           http: !<!HttpParameter> 
             in: path
       signatureParameters:
-      - *ref_13
       - *ref_14
+      - *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -436,6 +445,12 @@ operationGroups:
       default:
         name: GetPagesPartialUrlOperationNext
         description: 'A paging operation that combines custom url, paging and partial URL'
+        paging:
+          group: Paging
+          itemName: values
+          member: GetPagesPartialUrlOperationNext
+          nextLinkName: nextLink
+          nextLinkOperation: *ref_12
     protocol: !<!Protocols> {}
   language: !<!Languages> 
     default:
