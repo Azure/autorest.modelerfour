@@ -1,4 +1,4 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema, ImplementationLocation } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, length, Dictionary, when } from '@azure-tools/linq';
 import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler } from '@azure-tools/codegen';
@@ -45,7 +45,8 @@ export class PreNamer {
     constant: Style.pascal,
     type: Style.pascal,
     client: Style.pascal,
-    local: Style.pascal,
+    local: Style.camel,
+    global: Style.pascal,
     override: <Dictionary<string>>{}
   }
 
@@ -69,7 +70,8 @@ export class PreNamer {
       constant: Style.select(naming.constant, Style.pascal),
       client: Style.select(naming.client, Style.pascal),
       type: Style.select(naming.type, Style.pascal),
-      local: Style.select(naming.local, Style.pascal),
+      local: Style.select(naming.local, Style.camel),
+      global: Style.select(naming.local, Style.pascal),
       override: naming.override || {}
     }
     return this;
@@ -207,7 +209,15 @@ export class PreNamer {
         }
         for (const parameter of values(operation.request.parameters)) {
           if ((operation.request.signatureParameters ?? []).indexOf(parameter) === -1) {
-
+            if (parameter.schema.type === SchemaType.Constant) {
+              setName(parameter, this.format.constant, '', this.format.override);
+            } else {
+              if (parameter.implementation === ImplementationLocation.Client) {
+                setName(parameter, this.format.global, '', this.format.override);
+              } else {
+                setName(parameter, this.format.local, '', this.format.override);
+              }
+            }
           }
         }
         const p = operation.language.default.paging;

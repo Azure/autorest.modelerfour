@@ -261,6 +261,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
               '$host': '$host',
               'cmyk': 'CMYK'
             },
+            local: "_ + camel",
             /*
             for when playing with python style settings :
             
