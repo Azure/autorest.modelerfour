@@ -45,6 +45,7 @@ export class PreNamer {
     constant: Style.pascal,
     type: Style.pascal,
     client: Style.pascal,
+    local: Style.pascal,
     override: <Dictionary<string>>{}
   }
 
@@ -68,6 +69,7 @@ export class PreNamer {
       constant: Style.select(naming.constant, Style.pascal),
       client: Style.select(naming.client, Style.pascal),
       type: Style.select(naming.type, Style.pascal),
+      local: Style.select(naming.local, Style.pascal),
       override: naming.override || {}
     }
     return this;
@@ -203,11 +205,15 @@ export class PreNamer {
             setName(parameter, this.format.parameter, '', this.format.override);
           }
         }
+        for (const parameter of values(operation.request.parameters)) {
+          if ((operation.request.signatureParameters ?? []).indexOf(parameter) === -1) {
+
+          }
+        }
         const p = operation.language.default.paging;
         if (p) {
           p.group = p.group ? this.format.operationGroup(p.group, true, this.format.override) : undefined;
           p.member = p.member ? this.format.operation(p.member, true, this.format.override) : undefined;
-
         }
       }
     }

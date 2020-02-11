@@ -1307,9 +1307,8 @@ export class ModelerFour {
           const nl = operation.language.default.paging;
           if (nl && nl.member) {
             // find the member in the group
-            const it = group.operations.find(each => each.language.default.name);
+            const it = group.operations.find(each => each.language.default.name === nl.member);
             operation.language.default.paging.nextLinkOperation = it;
-
           }
         }
       }

@@ -163,7 +163,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   - *ref_0
   - *ref_1
-  - !<!StringSchema> &ref_13
+  - !<!StringSchema> &ref_12
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -213,7 +213,7 @@ operationGroups:
 - !<!OperationGroup> 
   $key: Paging
   operations:
-  - !<!Operation> &ref_10
+  - !<!Operation> 
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
@@ -291,7 +291,7 @@ operationGroups:
       version: 1.0.0
     request: !<!Request> 
       parameters:
-      - !<!Parameter> &ref_12
+      - !<!Parameter> &ref_15
         schema: *ref_7
         implementation: Method
         required: true
@@ -311,7 +311,7 @@ operationGroups:
             in: uri
       - *ref_11
       signatureParameters:
-      - *ref_12
+      - *ref_15
       language: !<!Languages> 
         default:
           name: ''
@@ -359,99 +359,99 @@ operationGroups:
           itemName: values
           member: getPagesPartialUrlOperationNext
           nextLinkName: nextLink
-          nextLinkOperation: *ref_10
+          nextLinkOperation: !<!Operation> &ref_10
+            apiVersions:
+            - !<!ApiVersion> 
+              version: 1.0.0
+            request: !<!Request> 
+              parameters:
+              - !<!Parameter> &ref_13
+                schema: *ref_7
+                implementation: Method
+                required: true
+                extensions:
+                  x-in: path
+                  x-ms-skip-url-encoding: true
+                  x-name: accountName
+                  x-required: true
+                  x-type: string
+                language: !<!Languages> 
+                  default:
+                    name: accountName
+                    description: Account Name
+                    serializedName: accountName
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: uri
+              - *ref_11
+              - !<!Parameter> &ref_14
+                schema: *ref_12
+                implementation: Method
+                required: true
+                extensions:
+                  x-ms-skip-url-encoding: true
+                language: !<!Languages> 
+                  default:
+                    name: nextLink
+                    description: Next link for the list operation.
+                    serializedName: nextLink
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: path
+              signatureParameters:
+              - *ref_13
+              - *ref_14
+              language: !<!Languages> 
+                default:
+                  name: ''
+                  description: ''
+              protocol: !<!Protocols> 
+                http: !<!HttpRequest> 
+                  path: '/paging/customurl/{nextLink}'
+                  method: get
+                  uri: 'http://{accountName}{host}'
+            responses:
+            - !<!SchemaResponse> 
+              schema: *ref_9
+              language: !<!Languages> 
+                default:
+                  name: ''
+                  description: ''
+              protocol: !<!Protocols> 
+                http: !<!HttpResponse> 
+                  knownMediaType: json
+                  mediaTypes:
+                  - application/json
+                  statusCodes:
+                  - '200'
+            exceptions:
+            - !<!Response> 
+              language: !<!Languages> 
+                default:
+                  name: ''
+                  description: ''
+              protocol: !<!Protocols> 
+                http: !<!HttpResponse> 
+                  statusCodes:
+                  - default
+            extensions:
+              x-ms-pageable:
+                itemName: values
+                nextLinkName: nextLink
+                operationName: Paging_getPagesPartialUrlOperationNext
+            language: !<!Languages> 
+              default:
+                name: getPagesPartialUrlOperationNext
+                description: 'A paging operation that combines custom url, paging and partial URL'
+                paging:
+                  group: Paging
+                  itemName: values
+                  member: getPagesPartialUrlOperationNext
+                  nextLinkName: nextLink
+                  nextLinkOperation: *ref_10
+            protocol: !<!Protocols> {}
     protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_14
-        schema: *ref_7
-        implementation: Method
-        required: true
-        extensions:
-          x-in: path
-          x-ms-skip-url-encoding: true
-          x-name: accountName
-          x-required: true
-          x-type: string
-        language: !<!Languages> 
-          default:
-            name: accountName
-            description: Account Name
-            serializedName: accountName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: uri
-      - *ref_11
-      - !<!Parameter> &ref_15
-        schema: *ref_13
-        implementation: Method
-        required: true
-        extensions:
-          x-ms-skip-url-encoding: true
-        language: !<!Languages> 
-          default:
-            name: nextLink
-            description: Next link for the list operation.
-            serializedName: nextLink
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_14
-      - *ref_15
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: '/paging/customurl/{nextLink}'
-          method: get
-          uri: 'http://{accountName}{host}'
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_9
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - default
-    extensions:
-      x-ms-pageable:
-        itemName: values
-        nextLinkName: nextLink
-        operationName: Paging_getPagesPartialUrlOperationNext
-    language: !<!Languages> 
-      default:
-        name: getPagesPartialUrlOperationNext
-        description: 'A paging operation that combines custom url, paging and partial URL'
-        paging:
-          group: Paging
-          itemName: values
-          member: getPagesPartialUrlOperationNext
-          nextLinkName: nextLink
-          nextLinkOperation: *ref_10
-    protocol: !<!Protocols> {}
+  - *ref_10
   language: !<!Languages> 
     default:
       name: Paging

@@ -19,6 +19,7 @@ modelerfour:
   # upper|uppercase - MULTI_WORD_IDENTIFIER 
   # kebab|kebabcase - multi-word-identifier 
   # space|spacecase - spaces between recognized words
+  # you can prefix
   # default is the first one in the list below:
   naming: 
     parameter: camel # camel|pascal|snake|upper|kebab|space
@@ -29,6 +30,7 @@ modelerfour:
     choiceValue:  pascal # pascal|camel|snake|upper|kebab|space
     constant:  pascal # pascal|camel|snake|upper|kebab|space
     type:  pascal # pascal|camel|snake|upper|kebab|space
+    local: _ + camel # pascal|camel|snake|upper|kebab|space
     override:  # a key/value mapping of names to force to a certain value 
       cmyk : CMYK
       $host: $host  
