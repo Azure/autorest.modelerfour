@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { Style, fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -866,6 +866,16 @@ export class ModelerFour {
         }
       }));
 
+
+      if (operation['x-ms-pageable']) {
+        const nextLink = operation['x-ms-pageable']?.operationName;
+        op.language.default.paging = {
+          ...operation['x-ms-pageable'],
+          ...nextLink ? this.interpret.splitOpId(nextLink) : {},
+          operationName: nextLink ? undefined : operation['x-ms-pageable'].opearationName,
+        }
+      }
+
       // create $host parameters from servers information.
       // $host is comprised of []
       const servers = values(operation.servers).toArray();
@@ -1290,6 +1300,18 @@ export class ModelerFour {
             this.processOperation(pathItem[httpMethod], httpMethod, path, pathItem);
           }
         });
+      }
+
+      for (const group of this.codeModel.operationGroups) {
+        for (const operation of group.operations) {
+          const nl = operation.language.default.paging;
+          if (nl && nl.member) {
+            // find the member in the group
+            const it = group.operations.find(each => each.language.default.name);
+            operation.language.default.paging.nextLinkOperation = it;
+
+          }
+        }
       }
     }
     if (this.input.components) {
