@@ -203,6 +203,12 @@ export class PreNamer {
             setName(parameter, this.format.parameter, '', this.format.override);
           }
         }
+        const p = operation.language.default.paging;
+        if (p) {
+          p.group = p.group ? this.format.operationGroup(p.group, true, this.format.override) : undefined;
+          p.member = p.member ? this.format.operation(p.member, true, this.format.override) : undefined;
+
+        }
       }
     }
 
