@@ -262,7 +262,6 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
               'cmyk': 'CMYK'
             },
             local: "_ + camel",
-            // 'preserve-uppercase-max-length': 3,
             /*
             for when playing with python style settings :
             
