@@ -5,6 +5,7 @@
   - add additional checks for empty names, collisions
   - fix errant processing on APString => Apstring 
   - x-ms-client-name fixes on parameters
+  - added setting for `preserve-uppercase-max-length` to preserve uppercase words up to a certain length.
 
 #### 4.5.x
   - static linking libraries for stability
@@ -22,6 +23,7 @@ modelerfour:
   # you can prefix
   # default is the first one in the list below:
   naming: 
+    preserve-uppercase-max-length: 0 # length of uppercase words to preserve in identifier names
     parameter: camel # camel|pascal|snake|upper|kebab|space
     property: camel # camel|pascal|snake|upper|kebab|space
     operation: pascal # pascal|camel|snake|upper|kebab|space
@@ -31,9 +33,11 @@ modelerfour:
     constant:  pascal # pascal|camel|snake|upper|kebab|space
     type:  pascal # pascal|camel|snake|upper|kebab|space
     local: _ + camel # pascal|camel|snake|upper|kebab|space
+    global: camel
     override:  # a key/value mapping of names to force to a certain value 
       cmyk : CMYK
       $host: $host  
+    
 ```
   - support overrides in namer 
   - static linked dependency

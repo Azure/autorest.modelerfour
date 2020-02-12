@@ -60,7 +60,7 @@ export class PreNamer {
     // get our configuration for this run.
     this.options = await this.session.getValue('modelerfour', {});
     const naming = this.options.naming || {};
-    const maxPreserve = Number(naming['preserve-uppercase-max-length']) || 0;
+    const maxPreserve = Number(naming['preserve-uppercase-max-length']) || 3;
     this.format = {
 
       parameter: Style.select(naming.parameter, Style.camel, maxPreserve),
