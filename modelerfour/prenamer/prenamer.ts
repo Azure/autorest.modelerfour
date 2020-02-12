@@ -60,18 +60,20 @@ export class PreNamer {
     // get our configuration for this run.
     this.options = await this.session.getValue('modelerfour', {});
     const naming = this.options.naming || {};
+    const maxPreserve = Number(naming['preserve-uppercase-max-length']) || 0;
     this.format = {
-      parameter: Style.select(naming.parameter, Style.camel),
-      property: Style.select(naming.property, Style.camel),
-      operation: Style.select(naming.operation, Style.pascal),
-      operationGroup: Style.select(naming.operationGroup, Style.pascal),
-      choice: Style.select(naming.choice, Style.pascal),
-      choiceValue: Style.select(naming.choiceValue, Style.pascal),
-      constant: Style.select(naming.constant, Style.pascal),
-      client: Style.select(naming.client, Style.pascal),
-      type: Style.select(naming.type, Style.pascal),
-      local: Style.select(naming.local, Style.camel),
-      global: Style.select(naming.local, Style.pascal),
+
+      parameter: Style.select(naming.parameter, Style.camel, maxPreserve),
+      property: Style.select(naming.property, Style.camel, maxPreserve),
+      operation: Style.select(naming.operation, Style.pascal, maxPreserve),
+      operationGroup: Style.select(naming.operationGroup, Style.pascal, maxPreserve),
+      choice: Style.select(naming.choice, Style.pascal, maxPreserve),
+      choiceValue: Style.select(naming.choiceValue, Style.pascal, maxPreserve),
+      constant: Style.select(naming.constant, Style.pascal, maxPreserve),
+      client: Style.select(naming.client, Style.pascal, maxPreserve),
+      type: Style.select(naming.type, Style.pascal, maxPreserve),
+      local: Style.select(naming.local, Style.camel, maxPreserve),
+      global: Style.select(naming.global, Style.pascal, maxPreserve),
       override: naming.override || {}
     }
     return this;
