@@ -9,36 +9,8 @@
 
 #### 4.5.x
   - static linking libraries for stability
-  - processed all names in namer, styles can be set in config:
+  - processed all names in namer, styles can be set in config (see below):
 
-``` yaml
-modelerfour:
-  # customization of the identifier normalization and naming provided by the prenamer.
-  # pascal|pascalcase - MultiWordIdentifier 
-  # camel|camelcase - multiWordIdentifier 
-  # snake|snakecase - multi_word_identifier
-  # upper|uppercase - MULTI_WORD_IDENTIFIER 
-  # kebab|kebabcase - multi-word-identifier 
-  # space|spacecase - spaces between recognized words
-  # you can prefix
-  # default is the first one in the list below:
-  naming: 
-    preserve-uppercase-max-length: 0 # length of uppercase words to preserve in identifier names
-    parameter: camel # camel|pascal|snake|upper|kebab|space
-    property: camel # camel|pascal|snake|upper|kebab|space
-    operation: pascal # pascal|camel|snake|upper|kebab|space
-    operationGroup:  pascal # pascal|camel|snake|upper|kebab|space
-    choice:  pascal # pascal|camel|snake|upper|kebab|space
-    choiceValue:  pascal # pascal|camel|snake|upper|kebab|space
-    constant:  pascal # pascal|camel|snake|upper|kebab|space
-    type:  pascal # pascal|camel|snake|upper|kebab|space
-    local: _ + camel # pascal|camel|snake|upper|kebab|space
-    global: camel
-    override:  # a key/value mapping of names to force to a certain value 
-      cmyk : CMYK
-      $host: $host  
-    
-```
   - support overrides in namer 
   - static linked dependency
 
@@ -161,7 +133,9 @@ modelerfour:
   # kebab|kebabcase - multi-word-identifier 
   # space|spacecase - spaces between recognized words
   # default is the first one in the list below:
+  # you can prefix or postfix a formatted name with + (ie, '_ + camel' or 'pascal + _' )
   naming: 
+    preserve-uppercase-max-length: <number> #defaults to 3
     parameter: camel|pascal|snake|upper|kebab|space
     property: camel|pascal|snake|upper|kebab|space
     operation: pascal|camel|snake|upper|kebab|space
@@ -171,6 +145,8 @@ modelerfour:
     constant:  pascal|camel|snake|upper|kebab|space
     type:  pascal|camel|snake|upper|kebab|space
     client: pascal|camel|snake|upper|kebab|space
+    local: _ + camel 
+    global: camel    
 
     override:  # a key/value mapping of names to force to a certain value 
       cmyk : CMYK
