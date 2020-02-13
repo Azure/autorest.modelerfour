@@ -161,7 +161,7 @@ export class Interpretations {
         schema.enum.map(each => {
           const name = getValidEnumValueName(each);
           const value = this.getConstantValue(schema, each);
-          return new ChoiceValue(name, ``, value);
+          return new ChoiceValue(`${name}`, ``, value);
         });
     }
     return [];
