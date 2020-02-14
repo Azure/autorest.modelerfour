@@ -1,5 +1,410 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Long-running Operation for AutoRest
+  title: lro
 schemas: !<!Schemas> 
+  numbers:
+  - !<!NumberSchema> &ref_24
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_37
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+        header: Retry-After
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_25
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: The error code for an operation failure
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_6
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Resource-id
+        description: Resource Id
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Resource-type
+        description: Resource Type
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+        header: Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Resource-location
+        description: Resource Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Resource-name
+        description: Resource Name
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_5
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Product-properties-provisioningState
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_10
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: CloudError-message
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Sku-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_12
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Sku-id
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_13
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: SubResource-id
+        description: Sub Resource Id
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_14
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: SubProduct-properties-provisioningState
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_18
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: OperationResult-error-message
+        description: The detailed arror message
+    protocol: !<!Protocols> {}
+  choices:
+  - !<!ChoiceSchema> &ref_21
+    choices:
+    - !<!ChoiceValue> 
+      value: Succeeded
+      language:
+        default:
+          name: Succeeded
+          description: ''
+    - !<!ChoiceValue> 
+      value: Failed
+      language:
+        default:
+          name: Failed
+          description: ''
+    - !<!ChoiceValue> 
+      value: canceled
+      language:
+        default:
+          name: canceled
+          description: ''
+    - !<!ChoiceValue> 
+      value: Accepted
+      language:
+        default:
+          name: Accepted
+          description: ''
+    - !<!ChoiceValue> 
+      value: Creating
+      language:
+        default:
+          name: Creating
+          description: ''
+    - !<!ChoiceValue> 
+      value: Created
+      language:
+        default:
+          name: Created
+          description: ''
+    - !<!ChoiceValue> 
+      value: Updating
+      language:
+        default:
+          name: Updating
+          description: ''
+    - !<!ChoiceValue> 
+      value: Updated
+      language:
+        default:
+          name: Updated
+          description: ''
+    - !<!ChoiceValue> 
+      value: Deleting
+      language:
+        default:
+          name: Deleting
+          description: ''
+    - !<!ChoiceValue> 
+      value: Deleted
+      language:
+        default:
+          name: Deleted
+          description: ''
+    - !<!ChoiceValue> 
+      value: OK
+      language:
+        default:
+          name: OK
+          description: ''
+    type: choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: Product-properties-provisioningStateValues
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!ChoiceSchema> &ref_22
+    choices:
+    - !<!ChoiceValue> 
+      value: Succeeded
+      language:
+        default:
+          name: Succeeded
+          description: ''
+    - !<!ChoiceValue> 
+      value: Failed
+      language:
+        default:
+          name: Failed
+          description: ''
+    - !<!ChoiceValue> 
+      value: canceled
+      language:
+        default:
+          name: canceled
+          description: ''
+    - !<!ChoiceValue> 
+      value: Accepted
+      language:
+        default:
+          name: Accepted
+          description: ''
+    - !<!ChoiceValue> 
+      value: Creating
+      language:
+        default:
+          name: Creating
+          description: ''
+    - !<!ChoiceValue> 
+      value: Created
+      language:
+        default:
+          name: Created
+          description: ''
+    - !<!ChoiceValue> 
+      value: Updating
+      language:
+        default:
+          name: Updating
+          description: ''
+    - !<!ChoiceValue> 
+      value: Updated
+      language:
+        default:
+          name: Updated
+          description: ''
+    - !<!ChoiceValue> 
+      value: Deleting
+      language:
+        default:
+          name: Deleting
+          description: ''
+    - !<!ChoiceValue> 
+      value: Deleted
+      language:
+        default:
+          name: Deleted
+          description: ''
+    - !<!ChoiceValue> 
+      value: OK
+      language:
+        default:
+          name: OK
+          description: ''
+    type: choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: SubProduct-properties-provisioningStateValues
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!ChoiceSchema> &ref_23
+    choices:
+    - !<!ChoiceValue> 
+      value: Succeeded
+      language:
+        default:
+          name: Succeeded
+          description: ''
+    - !<!ChoiceValue> 
+      value: Failed
+      language:
+        default:
+          name: Failed
+          description: ''
+    - !<!ChoiceValue> 
+      value: canceled
+      language:
+        default:
+          name: canceled
+          description: ''
+    - !<!ChoiceValue> 
+      value: Accepted
+      language:
+        default:
+          name: Accepted
+          description: ''
+    - !<!ChoiceValue> 
+      value: Creating
+      language:
+        default:
+          name: Creating
+          description: ''
+    - !<!ChoiceValue> 
+      value: Created
+      language:
+        default:
+          name: Created
+          description: ''
+    - !<!ChoiceValue> 
+      value: Updating
+      language:
+        default:
+          name: Updating
+          description: ''
+    - !<!ChoiceValue> 
+      value: Updated
+      language:
+        default:
+          name: Updated
+          description: ''
+    - !<!ChoiceValue> 
+      value: Deleting
+      language:
+        default:
+          name: Deleting
+          description: ''
+    - !<!ChoiceValue> 
+      value: Deleted
+      language:
+        default:
+          name: Deleted
+          description: ''
+    - !<!ChoiceValue> 
+      value: OK
+      language:
+        default:
+          name: OK
+          description: ''
+    type: choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_6
+    language: !<!Languages> 
+      default:
+        name: OperationResult-status
+        description: The status of the request
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_20
+    type: dictionary
+    elementType: *ref_2
+    language: !<!Languages> 
+      default:
+        name: Resource-tags
+        description: Dictionary of <string>
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_7
     type: object
@@ -27,16 +432,7 @@ schemas: !<!Schemas>
               version: 1.0.0
             properties:
             - !<!Property> 
-              schema: !<!StringSchema> &ref_5
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-                language: !<!Languages> 
-                  default:
-                    name: Product-properties-provisioningState
-                    description: ''
-                protocol: !<!Protocols> {}
+              schema: *ref_5
               serializedName: provisioningState
               language: !<!Languages> 
                 default:
@@ -44,90 +440,7 @@ schemas: !<!Schemas>
                   description: ''
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_21
-                choices:
-                - !<!ChoiceValue> 
-                  value: Succeeded
-                  language:
-                    default:
-                      name: Succeeded
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Failed
-                  language:
-                    default:
-                      name: Failed
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: canceled
-                  language:
-                    default:
-                      name: canceled
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Accepted
-                  language:
-                    default:
-                      name: Accepted
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Creating
-                  language:
-                    default:
-                      name: Creating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Created
-                  language:
-                    default:
-                      name: Created
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Updating
-                  language:
-                    default:
-                      name: Updating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Updated
-                  language:
-                    default:
-                      name: Updated
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Deleting
-                  language:
-                    default:
-                      name: Deleting
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Deleted
-                  language:
-                    default:
-                      name: Deleted
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: OK
-                  language:
-                    default:
-                      name: OK
-                      description: ''
-                type: choice
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-                choiceType: !<!StringSchema> &ref_6
-                  type: string
-                  language: !<!Languages> 
-                    default:
-                      name: string
-                      description: simple string
-                  protocol: !<!Protocols> {}
-                language: !<!Languages> 
-                  default:
-                    name: Product-properties-provisioningStateValues
-                    description: ''
-                protocol: !<!Protocols> {}
+              schema: *ref_21
               readOnly: true
               serializedName: provisioningStateValues
               language: !<!Languages> 
@@ -161,16 +474,7 @@ schemas: !<!Schemas>
       - *ref_8
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_0
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-id
-            description: Resource Id
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       readOnly: true
       serializedName: id
       language: !<!Languages> 
@@ -179,16 +483,7 @@ schemas: !<!Schemas>
           description: Resource Id
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_1
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-type
-            description: Resource Type
-        protocol: !<!Protocols> {}
+      schema: *ref_1
       readOnly: true
       serializedName: type
       language: !<!Languages> 
@@ -197,24 +492,7 @@ schemas: !<!Schemas>
           description: Resource Type
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_20
-        type: dictionary
-        elementType: !<!StringSchema> &ref_2
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: string
-              description: ''
-              header: Location
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: Resource-tags
-            description: Dictionary of <string>
-        protocol: !<!Protocols> {}
+      schema: *ref_20
       serializedName: tags
       language: !<!Languages> 
         default:
@@ -222,16 +500,7 @@ schemas: !<!Schemas>
           description: Dictionary of <string>
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_3
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-location
-            description: Resource Location
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       serializedName: location
       language: !<!Languages> 
         default:
@@ -239,16 +508,7 @@ schemas: !<!Schemas>
           description: Resource Location
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_4
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Resource-name
-            description: Resource Name
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       readOnly: true
       serializedName: name
       language: !<!Languages> 
@@ -273,14 +533,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_24
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_24
       serializedName: status
       language: !<!Languages> 
         default:
@@ -288,16 +541,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_10
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: CloudError-message
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_10
       serializedName: message
       language: !<!Languages> 
         default:
@@ -319,16 +563,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_11
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Sku-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_11
       serializedName: name
       language: !<!Languages> 
         default:
@@ -336,16 +571,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_12
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Sku-id
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_12
       serializedName: id
       language: !<!Languages> 
         default:
@@ -384,16 +610,7 @@ schemas: !<!Schemas>
               version: 1.0.0
             properties:
             - !<!Property> 
-              schema: !<!StringSchema> &ref_14
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-                language: !<!Languages> 
-                  default:
-                    name: SubProduct-properties-provisioningState
-                    description: ''
-                protocol: !<!Protocols> {}
+              schema: *ref_14
               serializedName: provisioningState
               language: !<!Languages> 
                 default:
@@ -401,84 +618,7 @@ schemas: !<!Schemas>
                   description: ''
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!ChoiceSchema> &ref_22
-                choices:
-                - !<!ChoiceValue> 
-                  value: Succeeded
-                  language:
-                    default:
-                      name: Succeeded
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Failed
-                  language:
-                    default:
-                      name: Failed
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: canceled
-                  language:
-                    default:
-                      name: canceled
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Accepted
-                  language:
-                    default:
-                      name: Accepted
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Creating
-                  language:
-                    default:
-                      name: Creating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Created
-                  language:
-                    default:
-                      name: Created
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Updating
-                  language:
-                    default:
-                      name: Updating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Updated
-                  language:
-                    default:
-                      name: Updated
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Deleting
-                  language:
-                    default:
-                      name: Deleting
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Deleted
-                  language:
-                    default:
-                      name: Deleted
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: OK
-                  language:
-                    default:
-                      name: OK
-                      description: ''
-                type: choice
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 1.0.0
-                choiceType: *ref_6
-                language: !<!Languages> 
-                  default:
-                    name: SubProduct-properties-provisioningStateValues
-                    description: ''
-                protocol: !<!Protocols> {}
+              schema: *ref_22
               readOnly: true
               serializedName: provisioningStateValues
               language: !<!Languages> 
@@ -512,16 +652,7 @@ schemas: !<!Schemas>
       - *ref_16
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_13
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: SubResource-id
-            description: Sub Resource Id
-        protocol: !<!Protocols> {}
+      schema: *ref_13
       readOnly: true
       serializedName: id
       language: !<!Languages> 
@@ -546,84 +677,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_23
-        choices:
-        - !<!ChoiceValue> 
-          value: Succeeded
-          language:
-            default:
-              name: Succeeded
-              description: ''
-        - !<!ChoiceValue> 
-          value: Failed
-          language:
-            default:
-              name: Failed
-              description: ''
-        - !<!ChoiceValue> 
-          value: canceled
-          language:
-            default:
-              name: canceled
-              description: ''
-        - !<!ChoiceValue> 
-          value: Accepted
-          language:
-            default:
-              name: Accepted
-              description: ''
-        - !<!ChoiceValue> 
-          value: Creating
-          language:
-            default:
-              name: Creating
-              description: ''
-        - !<!ChoiceValue> 
-          value: Created
-          language:
-            default:
-              name: Created
-              description: ''
-        - !<!ChoiceValue> 
-          value: Updating
-          language:
-            default:
-              name: Updating
-              description: ''
-        - !<!ChoiceValue> 
-          value: Updated
-          language:
-            default:
-              name: Updated
-              description: ''
-        - !<!ChoiceValue> 
-          value: Deleting
-          language:
-            default:
-              name: Deleting
-              description: ''
-        - !<!ChoiceValue> 
-          value: Deleted
-          language:
-            default:
-              name: Deleted
-              description: ''
-        - !<!ChoiceValue> 
-          value: OK
-          language:
-            default:
-              name: OK
-              description: ''
-        type: choice
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        choiceType: *ref_6
-        language: !<!Languages> 
-          default:
-            name: OperationResult-status
-            description: The status of the request
-        protocol: !<!Protocols> {}
+      schema: *ref_23
       serializedName: status
       language: !<!Languages> 
         default:
@@ -638,14 +692,7 @@ schemas: !<!Schemas>
           version: 1.0.0
         properties:
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_25
-            type: integer
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: integer
-                description: The error code for an operation failure
-            protocol: !<!Protocols> {}
+          schema: *ref_25
           serializedName: code
           language: !<!Languages> 
             default:
@@ -653,16 +700,7 @@ schemas: !<!Schemas>
               description: The error code for an operation failure
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_18
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: OperationResult-error-message
-                description: The detailed arror message
-            protocol: !<!Protocols> {}
+          schema: *ref_18
           serializedName: message
           language: !<!Languages> 
             default:
@@ -688,41 +726,6 @@ schemas: !<!Schemas>
         namespace: Api100
     protocol: !<!Protocols> {}
   - *ref_19
-  dictionaries:
-  - *ref_20
-  choices:
-  - *ref_21
-  - *ref_22
-  - *ref_23
-  numbers:
-  - *ref_24
-  - !<!NumberSchema> &ref_37
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-        header: Retry-After
-    protocol: !<!Protocols> {}
-  - *ref_25
-  strings:
-  - *ref_6
-  - *ref_0
-  - *ref_1
-  - *ref_2
-  - *ref_3
-  - *ref_4
-  - *ref_5
-  - *ref_10
-  - *ref_11
-  - *ref_12
-  - *ref_13
-  - *ref_14
-  - *ref_18
 globalParameters:
 - !<!Parameter> &ref_28
   schema: *ref_6
@@ -739,9 +742,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Long-running Operation for AutoRest
-  title: lro
 operationGroups:
 - !<!OperationGroup> 
   $key: LROs
@@ -750,14 +750,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_26
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -776,10 +776,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/200/succeeded
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -819,7 +821,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put200Succeeded
@@ -829,14 +830,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_29
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -855,10 +856,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/200/succeeded/nostate
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -889,7 +892,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put200SucceededNoState
@@ -899,14 +901,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_30
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -925,10 +927,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/202/retry/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -959,7 +963,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put202Retry200
@@ -969,14 +972,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_31
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -995,10 +998,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/201/creating/succeeded/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1042,7 +1047,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put201CreatingSucceeded200
@@ -1052,14 +1056,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_32
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1078,10 +1082,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/200/updating/succeeded/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1112,7 +1118,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put200UpdatingSucceeded204
@@ -1122,14 +1127,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_33
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1148,10 +1153,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/201/created/failed/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1195,7 +1202,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put201CreatingFailed200
@@ -1205,14 +1211,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_34
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1231,10 +1237,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/200/accepted/canceled/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1265,7 +1273,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put200Acceptedcanceled200
@@ -1275,14 +1282,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_35
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1301,10 +1308,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/put/noheader/202/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1339,7 +1348,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putNoHeaderInRetry
@@ -1349,14 +1357,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_36
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1375,10 +1383,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putasync/retry/succeeded
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1419,7 +1429,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRetrySucceeded
@@ -1429,14 +1438,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_38
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1455,10 +1464,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putasync/noretry/succeeded
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1496,7 +1507,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncNoRetrySucceeded
@@ -1506,14 +1516,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_39
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1532,10 +1542,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putasync/retry/failed
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1576,7 +1588,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRetryFailed
@@ -1586,14 +1597,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_40
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1612,10 +1623,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putasync/noretry/canceled
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1653,7 +1666,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncNoRetrycanceled
@@ -1663,14 +1675,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_41
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1689,10 +1701,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putasync/noheader/201/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -1727,7 +1741,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncNoHeaderInRetry
@@ -1737,14 +1750,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_43
         schema: *ref_42
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: sku
         language: !<!Languages> 
           default:
             name: sku
@@ -1763,10 +1776,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putnonresource/202/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_42
@@ -1797,7 +1812,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putNonResource
@@ -1807,14 +1821,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_44
         schema: *ref_42
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: sku
         language: !<!Languages> 
           default:
             name: sku
@@ -1833,10 +1847,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putnonresourceasync/202/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_42
@@ -1867,7 +1883,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncNonResource
@@ -1877,14 +1892,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_45
         schema: *ref_16
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1903,10 +1918,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putsubresource/202/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_16
@@ -1937,7 +1954,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putSubResource
@@ -1947,14 +1963,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_46
         schema: *ref_16
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -1973,10 +1989,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/putsubresourceasync/202/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_16
@@ -2007,7 +2025,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncSubResource
@@ -2017,19 +2034,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/provisioning/202/accepted/200/succeeded
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -2089,19 +2107,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/provisioning/202/deleting/200/failed
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -2161,19 +2180,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/provisioning/202/deleting/200/canceled
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -2233,19 +2253,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/204/succeeded
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2281,19 +2302,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/202/retry/200
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -2349,19 +2371,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/202/noretry/204
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -2417,19 +2440,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/delete/noheader
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2478,19 +2502,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/deleteasync/noheader/202/204
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2539,19 +2564,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/deleteasync/retry/succeeded
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2597,19 +2623,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/deleteasync/noretry/succeeded
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2655,19 +2682,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/deleteasync/retry/failed
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2713,19 +2741,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/deleteasync/retry/canceled
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2771,19 +2800,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/post/payload/200
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_42
@@ -2836,14 +2866,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_47
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -2862,10 +2892,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/post/202/retry/200
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2899,7 +2931,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202Retry200
@@ -2909,14 +2940,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_48
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -2935,10 +2966,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/post/202/noretry/204
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -2976,7 +3009,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202NoRetry204
@@ -2986,19 +3018,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/LROPostDoubleHeadersFinalLocationGet
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3040,19 +3073,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/LROPostDoubleHeadersFinalAzureHeaderGet
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3094,19 +3128,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3148,14 +3183,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_49
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3174,10 +3209,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/postasync/retry/succeeded
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3227,7 +3264,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRetrySucceeded
@@ -3237,14 +3273,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_50
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3263,10 +3299,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/postasync/noretry/succeeded
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3316,7 +3354,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncNoRetrySucceeded
@@ -3326,14 +3363,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_51
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3352,10 +3389,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/postasync/retry/failed
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3392,7 +3431,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRetryFailed
@@ -3402,14 +3440,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_52
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3428,10 +3466,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/postasync/retry/canceled
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3468,7 +3508,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRetrycanceled
@@ -3486,14 +3525,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_53
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3512,10 +3551,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/retryerror/put/201/creating/succeeded/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3559,7 +3600,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put201CreatingSucceeded200
@@ -3571,14 +3611,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_54
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3597,10 +3637,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/retryerror/putasync/retry/succeeded
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3641,7 +3683,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRelativeRetrySucceeded
@@ -3651,19 +3692,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/retryerror/delete/provisioning/202/accepted/200/succeeded
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -3725,19 +3767,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/retryerror/delete/202/retry/200
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3780,19 +3823,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/retryerror/deleteasync/retry/succeeded
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3838,14 +3882,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_55
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3864,10 +3908,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/retryerror/post/202/retry/200
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3901,7 +3947,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202Retry200
@@ -3911,14 +3956,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_56
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -3937,10 +3982,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/retryerror/postasync/retry/succeeded
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -3977,7 +4024,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRelativeRetrySucceeded
@@ -3995,14 +4041,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_57
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4021,10 +4067,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/put/400
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4068,7 +4116,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putNonRetry400
@@ -4078,14 +4125,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_58
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4104,10 +4151,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/put/201/creating/400
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4151,7 +4200,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putNonRetry201Creating400
@@ -4161,14 +4209,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_59
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4187,10 +4235,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/put/201/creating/400/invalidjson
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4234,7 +4284,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putNonRetry201Creating400InvalidJson
@@ -4244,14 +4293,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_60
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4270,10 +4319,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/putasync/retry/400
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4314,7 +4365,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRelativeRetry400
@@ -4324,19 +4374,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/nonretryerror/delete/400
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4379,19 +4430,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/nonretryerror/delete/202/retry/400
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4434,19 +4486,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/nonretryerror/deleteasync/retry/400
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4492,14 +4545,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_61
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4518,10 +4571,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/post/400
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4555,7 +4610,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postNonRetry400
@@ -4565,14 +4619,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_62
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4591,10 +4645,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/post/202/retry/400
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4628,7 +4684,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202NonRetry400
@@ -4638,14 +4693,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_63
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4664,10 +4719,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/nonretryerror/postasync/retry/400
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4704,7 +4761,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRelativeRetry400
@@ -4714,14 +4770,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_64
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4740,10 +4796,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/put/201/noprovisioningstatepayload
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4787,7 +4845,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putError201NoProvisioningStatePayload
@@ -4797,14 +4854,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_65
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4823,10 +4880,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/putasync/retry/nostatus
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4867,7 +4926,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRelativeRetryNoStatus
@@ -4877,14 +4935,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_66
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -4903,10 +4961,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/putasync/retry/nostatuspayload
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -4947,7 +5007,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRelativeRetryNoStatusPayload
@@ -4957,19 +5016,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/error/delete/204/nolocation
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5005,19 +5065,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/error/deleteasync/retry/nostatus
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5063,14 +5124,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_67
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5089,10 +5150,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/post/202/nolocation
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5126,7 +5189,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202NoLocation
@@ -5136,14 +5198,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_68
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5162,10 +5224,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/postasync/retry/nopayload
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5202,7 +5266,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRelativeRetryNoPayload
@@ -5212,14 +5275,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_69
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5238,10 +5301,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/put/200/invalidjson
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -5281,7 +5346,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put200InvalidJson
@@ -5291,14 +5355,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_70
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5317,10 +5381,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/putasync/retry/invalidheader
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -5361,7 +5427,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRelativeRetryInvalidHeader
@@ -5371,14 +5436,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_71
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5397,10 +5462,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/putasync/retry/invalidjsonpolling
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -5441,7 +5508,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRelativeRetryInvalidJsonPolling
@@ -5451,19 +5517,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/error/delete/202/retry/invalidheader
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5506,19 +5573,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/error/deleteasync/retry/invalidheader
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5564,19 +5632,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_28
-      signatureParameters: []
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /lro/error/deleteasync/retry/invalidjsonpolling
           method: delete
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5622,14 +5691,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_72
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5648,10 +5717,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/post/202/retry/invalidheader
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5685,7 +5756,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202RetryInvalidHeader
@@ -5695,14 +5765,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_73
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5721,10 +5791,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/postasync/retry/invalidheader
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5761,7 +5833,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRelativeRetryInvalidHeader
@@ -5771,14 +5842,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_74
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5797,10 +5868,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/error/postasync/retry/invalidjsonpolling
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5837,7 +5910,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRelativeRetryInvalidJsonPolling
@@ -5855,14 +5927,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_75
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5881,10 +5953,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/customheader/putasync/retry/succeeded
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -5925,7 +5999,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putAsyncRetrySucceeded
@@ -5937,14 +6010,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_76
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -5963,10 +6036,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/customheader/put/201/creating/succeeded/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8
@@ -6010,7 +6085,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put201CreatingSucceeded200
@@ -6022,14 +6096,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_77
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -6048,10 +6122,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/customheader/post/202/retry/200
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6085,7 +6161,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202Retry200
@@ -6097,14 +6172,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_28
       - !<!Parameter> &ref_78
         schema: *ref_8
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: product
         language: !<!Languages> 
           default:
             name: product
@@ -6123,10 +6198,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /lro/customheader/postasync/retry/succeeded
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6163,7 +6240,6 @@ operationGroups:
           - default
     extensions:
       x-ms-long-running-operation: true
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: postAsyncRetrySucceeded

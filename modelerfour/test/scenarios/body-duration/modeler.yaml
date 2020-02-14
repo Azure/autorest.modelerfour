@@ -1,49 +1,34 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: body-duration
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_4
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_2
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_1
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_0
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: Error
+        name: Error-message
         description: ''
-        namespace: Api100
     protocol: !<!Protocols> {}
   durations:
   - !<!DurationSchema> &ref_3
@@ -56,17 +41,35 @@ schemas: !<!Schemas>
         name: duration
         description: ''
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_1
-  strings:
-  - !<!StringSchema> &ref_2
-    type: string
+  objects:
+  - !<!ObjectSchema> &ref_4
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_0
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: string
-        description: simple string
+        name: Error
+        description: ''
+        namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_0
 globalParameters:
 - !<!Parameter> &ref_5
   schema: *ref_2
@@ -83,9 +86,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: body-duration
 operationGroups:
 - !<!OperationGroup> 
   $key: duration
@@ -94,19 +94,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_5
-      signatureParameters: []
+    parameters:
+    - *ref_5
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /duration/null
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -144,15 +145,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_5
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_5
       - !<!Parameter> &ref_6
         schema: *ref_3
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: durationBody
         language: !<!Languages> 
           default:
             name: durationBody
@@ -171,10 +172,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /duration/positiveduration
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -199,8 +202,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putPositiveDuration
@@ -210,19 +211,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_5
-      signatureParameters: []
+    parameters:
+    - *ref_5
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /duration/positiveduration
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -260,19 +262,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_5
-      signatureParameters: []
+    parameters:
+    - *ref_5
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /duration/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3

@@ -1,5 +1,158 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: XMS Error Response Extensions
+  title: xms-error-responses
 schemas: !<!Schemas> 
+  numbers:
+  - !<!NumberSchema> &ref_26
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_23
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_24
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: Animal-aniType
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: Pet-name
+        description: Gets the Pet by id.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: BaseError-someBaseProp
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_5
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: NotFoundErrorBase-reason
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_6
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: NotFoundErrorBase-whatNotFound
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_14
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAction-actionResponse
+        description: action feedback
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_15
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: PetActionError-errorType
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_16
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: PetActionError-errorMessage
+        description: the error message
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_8
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: LinkNotFound-whatSubAddress
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: AnimalNotFound-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_18
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: PetSadError-reason
+        description: why is the pet sad
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_20
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 0.0.0
+    language: !<!Languages> 
+      default:
+        name: PetHungryOrThirstyError-hungryOrThirsty
+        description: is the pet hungry or thirsty or both
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_2
     type: object
@@ -20,16 +173,7 @@ schemas: !<!Schemas>
           - *ref_2
         properties:
         - !<!Property> 
-          schema: !<!StringSchema> &ref_1
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 0.0.0
-            language: !<!Languages> 
-              default:
-                name: Pet-name
-                description: Gets the Pet by id.
-            protocol: !<!Protocols> {}
+          schema: *ref_1
           readOnly: true
           serializedName: name
           language: !<!Languages> 
@@ -47,16 +191,7 @@ schemas: !<!Schemas>
       - *ref_3
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_0
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: Animal-aniType
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       serializedName: aniType
       language: !<!Languages> 
         default:
@@ -98,16 +233,7 @@ schemas: !<!Schemas>
               - *ref_9
             properties:
             - !<!Property> 
-              schema: !<!StringSchema> &ref_8
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 0.0.0
-                language: !<!Languages> 
-                  default:
-                    name: LinkNotFound-whatSubAddress
-                    description: ''
-                protocol: !<!Protocols> {}
+              schema: *ref_8
               serializedName: whatSubAddress
               language: !<!Languages> 
                 default:
@@ -136,16 +262,7 @@ schemas: !<!Schemas>
               - *ref_9
             properties:
             - !<!Property> 
-              schema: !<!StringSchema> &ref_11
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 0.0.0
-                language: !<!Languages> 
-                  default:
-                    name: AnimalNotFound-name
-                    description: ''
-                protocol: !<!Protocols> {}
+              schema: *ref_11
               serializedName: name
               language: !<!Languages> 
                 default:
@@ -169,16 +286,7 @@ schemas: !<!Schemas>
             AnimalNotFound: *ref_13
             InvalidResourceLink: *ref_12
           property: !<!Property> &ref_7
-            schema: !<!StringSchema> &ref_6
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: 0.0.0
-              language: !<!Languages> 
-                default:
-                  name: NotFoundErrorBase-whatNotFound
-                  description: ''
-              protocol: !<!Protocols> {}
+            schema: *ref_6
             isDiscriminator: true
             required: true
             serializedName: whatNotFound
@@ -195,16 +303,7 @@ schemas: !<!Schemas>
           - *ref_10
         properties:
         - !<!Property> 
-          schema: !<!StringSchema> &ref_5
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 0.0.0
-            language: !<!Languages> 
-              default:
-                name: NotFoundErrorBase-reason
-                description: ''
-            protocol: !<!Protocols> {}
+          schema: *ref_5
           required: false
           serializedName: reason
           language: !<!Languages> 
@@ -225,16 +324,7 @@ schemas: !<!Schemas>
       - *ref_9
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_4
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: BaseError-someBaseProp
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       serializedName: someBaseProp
       language: !<!Languages> 
         default:
@@ -255,16 +345,7 @@ schemas: !<!Schemas>
       version: 0.0.0
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_14
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAction-actionResponse
-            description: action feedback
-        protocol: !<!Protocols> {}
+      schema: *ref_14
       serializedName: actionResponse
       language: !<!Languages> 
         default:
@@ -305,16 +386,7 @@ schemas: !<!Schemas>
               - *ref_21
             properties:
             - !<!Property> 
-              schema: !<!StringSchema> &ref_20
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 0.0.0
-                language: !<!Languages> 
-                  default:
-                    name: PetHungryOrThirstyError-hungryOrThirsty
-                    description: is the pet hungry or thirsty or both
-                protocol: !<!Protocols> {}
+              schema: *ref_20
               serializedName: hungryOrThirsty
               language: !<!Languages> 
                 default:
@@ -335,16 +407,7 @@ schemas: !<!Schemas>
           immediate:
             PetHungryOrThirstyError: *ref_22
           property: !<!Property> &ref_17
-            schema: !<!StringSchema> &ref_15
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: 0.0.0
-              language: !<!Languages> 
-                default:
-                  name: PetActionError-errorType
-                  description: ''
-              protocol: !<!Protocols> {}
+            schema: *ref_15
             isDiscriminator: true
             required: true
             serializedName: errorType
@@ -361,16 +424,7 @@ schemas: !<!Schemas>
           - *ref_19
         properties:
         - !<!Property> 
-          schema: !<!StringSchema> &ref_18
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 0.0.0
-            language: !<!Languages> 
-              default:
-                name: PetSadError-reason
-                description: why is the pet sad
-            protocol: !<!Protocols> {}
+          schema: *ref_18
           serializedName: reason
           language: !<!Languages> 
             default:
@@ -396,16 +450,7 @@ schemas: !<!Schemas>
     properties:
     - *ref_17
     - !<!Property> 
-      schema: !<!StringSchema> &ref_16
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 0.0.0
-        language: !<!Languages> 
-          default:
-            name: PetActionError-errorMessage
-            description: the error message
-        protocol: !<!Protocols> {}
+      schema: *ref_16
       required: false
       serializedName: errorMessage
       language: !<!Languages> 
@@ -423,48 +468,6 @@ schemas: !<!Schemas>
   - *ref_13
   - *ref_21
   - *ref_22
-  numbers:
-  - !<!NumberSchema> &ref_26
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-    protocol: !<!Protocols> {}
-  strings:
-  - !<!StringSchema> &ref_23
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: simple string
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_24
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 0.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-    protocol: !<!Protocols> {}
-  - *ref_0
-  - *ref_1
-  - *ref_4
-  - *ref_5
-  - *ref_6
-  - *ref_14
-  - *ref_15
-  - *ref_16
-  - *ref_8
-  - *ref_11
-  - *ref_18
-  - *ref_20
 globalParameters:
 - !<!Parameter> &ref_27
   schema: *ref_23
@@ -481,9 +484,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: XMS Error Response Extensions
-  title: xms-error-responses
 operationGroups:
 - !<!OperationGroup> 
   $key: Pet
@@ -492,32 +492,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 0.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_27
-      - !<!Parameter> &ref_25
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: petId
-            description: pet id
-            serializedName: petId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_25
+    parameters:
+    - *ref_27
+    - !<!Parameter> &ref_25
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: petId
+          description: pet id
+          serializedName: petId
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/errorStatusCodes/Pets/{petId}/GetPet'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_25
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -605,32 +606,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 0.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_27
-      - !<!Parameter> &ref_28
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: whatAction
-            description: what action the pet should do
-            serializedName: whatAction
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_28
+    parameters:
+    - *ref_27
+    - !<!Parameter> &ref_28
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: whatAction
+          description: what action the pet should do
+          serializedName: whatAction
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/errorStatusCodes/Pets/doSomething/{whatAction}'
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_28
     responses:
     - !<!SchemaResponse> 
       schema: *ref_29

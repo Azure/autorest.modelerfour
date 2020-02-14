@@ -1,49 +1,34 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: body-datetime
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_5
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_3
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_1
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: Error
+        name: ErrorMessage
         description: ''
-        namespace: Api100
     protocol: !<!Protocols> {}
   constants:
   - !<!ConstantSchema> 
@@ -84,17 +69,35 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   dateTimes:
   - *ref_0
-  numbers:
-  - *ref_1
-  strings:
-  - !<!StringSchema> &ref_3
-    type: string
+  objects:
+  - !<!ObjectSchema> &ref_5
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_2
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: String
-        description: simple string
+        name: Error
+        description: ''
+        namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_2
 globalParameters:
 - !<!Parameter> &ref_4
   schema: *ref_3
@@ -111,9 +114,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: body-datetime
 operationGroups:
 - !<!OperationGroup> 
   $key: datetime
@@ -122,19 +122,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/null
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -172,19 +173,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -222,19 +224,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/overflow
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -272,19 +275,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/underflow
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -322,15 +326,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_6
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -349,10 +353,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/max/utc
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -377,8 +383,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutUtcMaxDateTime
@@ -388,15 +392,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_7
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -415,10 +419,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/max/utc7ms
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -443,8 +449,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutUtcMaxDateTime7Digits
@@ -455,19 +459,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/utc/lowercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -505,19 +510,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/utc/uppercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -555,19 +561,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/utc7ms/uppercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -606,15 +613,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_8
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -633,10 +640,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/max/localpositiveoffset
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -661,8 +670,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutLocalPositiveOffsetMaxDateTime
@@ -672,19 +679,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/localpositiveoffset/lowercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -722,19 +730,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/localpositiveoffset/uppercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -772,15 +781,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_9
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -799,10 +808,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/max/localnegativeoffset
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -827,8 +838,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutLocalNegativeOffsetMaxDateTime
@@ -838,19 +847,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/localnegativeoffset/uppercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -888,19 +898,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/max/localnegativeoffset/lowercase
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -938,15 +949,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_10
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -965,10 +976,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/min/utc
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -993,8 +1006,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutUtcMinDateTime
@@ -1004,19 +1015,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/min/utc
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -1054,15 +1066,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_11
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -1081,10 +1093,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/min/localpositiveoffset
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1109,8 +1123,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutLocalPositiveOffsetMinDateTime
@@ -1120,19 +1132,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/min/localpositiveoffset
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -1170,15 +1183,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_12
         schema: *ref_0
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: datetimeBody
         language: !<!Languages> 
           default:
             name: datetimeBody
@@ -1197,10 +1210,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /datetime/min/localnegativeoffset
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1225,8 +1240,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: PutLocalNegativeOffsetMinDateTime
@@ -1236,19 +1249,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      signatureParameters: []
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /datetime/min/localnegativeoffset
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0

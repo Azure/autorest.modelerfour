@@ -1,49 +1,67 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: body-number.quirks
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_6
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_2
+    type: number
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_0
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_1
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
+    precision: 32
     language: !<!Languages> 
       default:
-        name: Error
+        name: number
         description: ''
-        namespace: Api100
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_0
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_3
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: number
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_4
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 128
+    language: !<!Languages> 
+      default:
+        name: number
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_5
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-message
+        description: ''
     protocol: !<!Protocols> {}
   constants:
   - !<!ConstantSchema> 
@@ -53,17 +71,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 340282300000000000000
-    valueType: !<!NumberSchema> &ref_2
-      type: number
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 32
-      language: !<!Languages> 
-        default:
-          name: number
-          description: ''
-      protocol: !<!Protocols> {}
+    valueType: *ref_2
     language: !<!Languages> 
       default:
         name: paths·10negkw·number-big-float-3-402823e-20·get·responses·200·content·application-json·schema
@@ -76,17 +84,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 2.5976931e+101
-    valueType: !<!NumberSchema> &ref_3
-      type: number
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 64
-      language: !<!Languages> 
-        default:
-          name: number
-          description: ''
-      protocol: !<!Protocols> {}
+    valueType: *ref_3
     language: !<!Languages> 
       default:
         name: paths·dxaw7j·number-big-double-2-5976931e-101·get·responses·200·content·application-json·schema
@@ -125,17 +123,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 2.5976931e+101
-    valueType: !<!NumberSchema> &ref_4
-      type: number
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 128
-      language: !<!Languages> 
-        default:
-          name: number
-          description: ''
-      protocol: !<!Protocols> {}
+    valueType: *ref_4
     language: !<!Languages> 
       default:
         name: paths·sp96l1·number-big-decimal-2-5976931e-101·get·responses·200·content·application-json·schema
@@ -206,20 +194,35 @@ schemas: !<!Schemas>
         name: paths·hlryvi·number-small-decimal-2-5976931e_101·get·responses·200·content·application-json·schema
         description: ''
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_2
-  - *ref_0
-  - *ref_3
-  - *ref_4
-  strings:
-  - !<!StringSchema> &ref_5
-    type: string
+  objects:
+  - !<!ObjectSchema> &ref_6
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_0
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: string
-        description: simple string
+        name: Error
+        description: ''
+        namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_1
 globalParameters:
 - !<!Parameter> &ref_7
   schema: *ref_5
@@ -236,9 +239,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: body-number.quirks
 operationGroups:
 - !<!OperationGroup> 
   $key: number
@@ -247,19 +247,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/null
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -297,19 +298,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/invalidfloat
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -347,19 +349,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/invaliddouble
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -397,15 +400,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_8
         schema: *ref_2
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -424,10 +427,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/float/3.402823e+20
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -452,8 +457,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigFloat
@@ -463,19 +466,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/float/3.402823e+20
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_2
@@ -513,15 +517,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_9
         schema: *ref_3
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -540,10 +544,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/double/2.5976931e+101
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -568,8 +574,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigDouble
@@ -579,19 +583,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/double/2.5976931e+101
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -629,15 +634,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_10
         schema: *ref_3
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -656,10 +661,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/double/99999999.99
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -684,8 +691,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigDoublePositiveDecimal
@@ -695,19 +700,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/double/99999999.99
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -745,15 +751,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_11
         schema: *ref_3
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -772,10 +778,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/double/-99999999.99
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -800,8 +808,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigDoubleNegativeDecimal
@@ -811,19 +817,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/double/-99999999.99
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -861,15 +868,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_12
         schema: *ref_4
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -888,10 +895,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/decimal/2.5976931e+101
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -916,8 +925,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigDecimal
@@ -927,19 +934,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/decimal/2.5976931e+101
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_4
@@ -977,15 +985,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_13
         schema: *ref_4
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -1004,10 +1012,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/decimal/99999999.99
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1032,8 +1042,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigDecimalPositiveDecimal
@@ -1043,19 +1051,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/decimal/99999999.99
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_4
@@ -1093,15 +1102,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_14
         schema: *ref_4
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -1120,10 +1129,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/big/decimal/-99999999.99
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1148,8 +1159,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putBigDecimalNegativeDecimal
@@ -1159,19 +1168,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/big/decimal/-99999999.99
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_4
@@ -1209,15 +1219,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_15
         schema: *ref_2
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -1236,10 +1246,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/small/float/3.402823e-20
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1264,8 +1276,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putSmallFloat
@@ -1275,19 +1285,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/small/float/3.402823e-20
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -1325,15 +1336,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_16
         schema: *ref_3
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -1352,10 +1363,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/small/double/2.5976931e-101
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1380,8 +1393,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putSmallDouble
@@ -1391,19 +1402,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/small/double/2.5976931e-101
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_3
@@ -1441,15 +1453,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_7
       - !<!Parameter> &ref_17
         schema: *ref_4
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: numberBody
         language: !<!Languages> 
           default:
             name: numberBody
@@ -1468,10 +1480,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /number/small/decimal/2.5976931e-101
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1496,8 +1510,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putSmallDecimal
@@ -1507,19 +1519,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_7
-      signatureParameters: []
+    parameters:
+    - *ref_7
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /number/small/decimal/2.5976931e-101
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_4

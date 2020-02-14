@@ -1,11 +1,17 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
-import { Style, fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
-import { isDate } from 'util';
+import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
+
+/** asserts that the value is not null or undefined  */
+function is(value: any): asserts value is object | string | number | boolean {
+  if (value === undefined || value === null) {
+    throw new Error(`Intenral assertion failure -- value must not be null`);
+  }
+}
 
 export class ModelerFour {
   codeModel: CodeModel
@@ -614,24 +620,14 @@ export class ModelerFour {
         return this.processChoiceSchema(name, schema);
       }
 
-      if (<any>schema.type === 'file') {
+      if (<any>schema.type === 'file' || <any>schema.format === 'file' || <any>schema.format === 'binary') {
         // handle inconsistency in file format handling.
-        this.session.warning(
-          `'The schema ${schema?.['x-ms-metadata']?.name || name} has type \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'`,
-          ['Modeler', 'TypeFileNotValid'], schema);
+        this.session.hint(
+          `'The schema ${schema?.['x-ms-metadata']?.name || name} with 'type: ${schema.type}', format: ${schema.format}' will be treated as a binary blob for binary media types.`,
+          ['Modeler', 'Superflous type information'], schema);
         schema.type = OpenAPI.JsonType.String;
         schema.format = StringFormat.Binary;
       }
-
-      if (<any>schema.format === 'file') {
-        // handle inconsistency in file format handling.
-        this.session.warning(
-          `The schema ${schema?.['x-ms-metadata']?.name || name} has format \'file\' is not a OAI standard type. This has been auto-corrected to \'type:string\' and \'format:binary\'`,
-          ['Modeler', 'TypeFileNotValid'], schema);
-        schema.type = OpenAPI.JsonType.String;
-        schema.format = StringFormat.Binary;
-      }
-
 
       // if they haven't set the schema.type then we're going to have to guess what
       // they meant to do.
@@ -795,17 +791,17 @@ export class ModelerFour {
     }) || fail('Unable to process schema.');
   }
 
-  processRequestBody(mediaType: string, request: OpenAPI.RequestBody) {
-    /// ?
-  }
-
-  filterMediaTypes(mm: Dictionary<MediaType> | undefined) {
-    const mediaTypeGroups = items(mm).groupBy(
+  groupMediaTypes(oai3Content: Dictionary<MediaType> | undefined) {
+    return items(oai3Content).groupBy(
       each => knownMediaType(each.key),
       each => ({
         mediaType: each.key,
         schema: this.resolve(each.value.schema),
       }));
+  }
+
+  filterMediaTypes(oai3Content: Dictionary<MediaType> | undefined) {
+    const mediaTypeGroups = this.groupMediaTypes(oai3Content);
 
     // filter out invalid combinations
     //if (length(mediaTypeGroups.keys()) > 0) {
@@ -844,247 +840,312 @@ export class ModelerFour {
     return mediaTypeGroups;
   }
 
-  processOperation(operation: OpenAPI.HttpOperation | undefined, httpMethod: string, path: string, pathItem: OpenAPI.PathItem) {
-    return this.should(operation, (operation) => {
-      path = this.interpret.getPath(pathItem, operation, path);
+  processBinary(kmt: KnownMediaType, kmtBinary: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
+    const http = new HttpBinaryRequest({
+      knownMediaType: kmt,
+      mediaTypes: kmtBinary.map(each => each.mediaType),
+      binary: true,
+    })
+
+    // create the request object
+    const httpRequest = new Request({
+      protocol: {
+        http
+      }
+    });
+
+    if (http.mediaTypes.length > 0) {
+      // we have multiple media types 
+      // make sure we have an enum for the content-type
+      // and add a content type parameter to the request
+      const choices = http.mediaTypes.sort().map(each => new ChoiceValue(each, `Content Type '${each}'`, each));
+      const check = JSON.stringify(choices);
+
+      // look for a sealed choice schema with that set of choices
+      const scs = this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
+        new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
+      );
+
+      // add the parameter for the binary upload. 
+      httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs))
+    }
+
+    const bodyName = body.instance?.['x-ms-requestBody-name'] ?? 'data'
+
+    const requestSchema = values(kmtBinary).first(each => !!each.schema.instance)?.schema;
+
+    const pSchema = kmt === KnownMediaType.Text ? this.stringSchema : this.processBinarySchema(requestSchema?.name || 'upload', requestSchema?.instance || <OpenAPI.Schema>{})
+    // add a stream parameter for the body
+    httpRequest.addParameter(new Parameter(
+      bodyName,
+      this.interpret.getDescription('', body?.instance || {}),
+      pSchema, {
+      extensions: this.interpret.getExtensionProperties(body?.instance || {}),
+      protocol: {
+        http: new HttpParameter(ParameterLocation.Body, {
+          style: SerializationStyle.Binary,
+        })
+      },
+      implementation: ImplementationLocation.Method
+    }));
+
+    return operation.addRequest(httpRequest);
+  }
+
+  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
+    if (!body?.instance) {
+      throw new Error('NO BODY DUDE.');
+
+    }
+    const http = new HttpWithBodyRequest({
+      knownMediaType: kmt,
+      mediaTypes: kmtObject.map(each => each.mediaType),
+      binary: true,
+    });
+
+    // create the request object
+    const httpRequest = new Request({
+      protocol: {
+        http
+      }
+    });
+
+    const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
+    const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
+
+    httpRequest.addParameter(new Parameter(
+      body.instance?.['x-ms-requestBody-name'] ?? 'body',
+      this.interpret.getDescription('', body?.instance || {}),
+
+      pSchema, {
+      extensions: this.interpret.getExtensionProperties(body.instance),
+      required: body.instance.required,
+      protocol: {
+        http: new HttpParameter(ParameterLocation.Body, {
+          style: <SerializationStyle><any>kmt,
+        })
+      },
+      implementation: ImplementationLocation.Method
+    }));
+    return operation.addRequest(httpRequest);
+  }
+
+  processMultipart(kmtMulti: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
+    throw new Error('Multipart forms not implemented yet..');
+  }
+
+  processOperation(httpOp: OpenAPI.HttpOperation | undefined, httpMethod: string, path: string, pathItem: OpenAPI.PathItem) {
+    return this.should(httpOp, (httpOperation) => {
+      path = this.interpret.getPath(pathItem, httpOperation, path);
       const p = path.indexOf('?');
       path = p > -1 ? path.substr(0, p) : path;
 
-      let baseUri = '';
-      const { group, member } = this.interpret.getOperationId(httpMethod, path, operation);
+      const { group, member } = this.interpret.getOperationId(httpMethod, path, httpOperation);
       // get group and operation name
       // const opGroup = this.codeModel.
-      const memberName = operation['x-ms-client-name'] ?? member;
-      const opGroup = this.codeModel.getOperationGroup(group);
-      const op = opGroup.addOperation(new Operation(memberName, this.interpret.getDescription('', operation), {
-        extensions: this.interpret.getExtensionProperties(operation),
+      const memberName = httpOperation['x-ms-client-name'] ?? member;
+      const operationGroup = this.codeModel.getOperationGroup(group);
+      const operation = operationGroup.addOperation(new Operation(memberName, this.interpret.getDescription('', httpOperation), {
+        extensions: this.interpret.getExtensionProperties(httpOperation),
         apiVersions: this.interpret.getApiVersions(pathItem),
         language: {
           default: {
-            summary: operation.summary
+            summary: httpOperation.summary
           }
         }
       }));
 
-
-      if (operation['x-ms-pageable']) {
-        const nextLink = operation['x-ms-pageable']?.operationName;
-        op.language.default.paging = {
-          ...operation['x-ms-pageable'],
+      // tag the pageable operation with pagable info and the linked operation if specified.
+      if (httpOperation['x-ms-pageable']) {
+        const nextLink = httpOperation['x-ms-pageable']?.operationName;
+        operation.language.default.paging = {
+          ...httpOperation['x-ms-pageable'],
           ...nextLink ? this.interpret.splitOpId(nextLink) : {},
-          operationName: nextLink ? undefined : operation['x-ms-pageable'].opearationName,
+          operationName: nextLink ? undefined : httpOperation['x-ms-pageable'].opearationName,
         }
       }
 
-      // create $host parameters from servers information.
-      // $host is comprised of []
-      const servers = values(operation.servers).toArray();
+      // === Host Parameters ===
+      const baseUri = this.processHostParameters(httpOperation, operation, path, pathItem);
 
-      switch (servers.length) {
-        case 0:
-          // Yanni says "we're ignoring the swagger spec because it is stupid."
-          servers.push({
-            url: '',
-            variables: {},
-            description: 'Service Host URL.'
-          });
+      // === Common Parameters === 
+      this.processParameters(httpOperation, operation, pathItem);
 
-        // eslint-disable-next-line no-fallthrough
-        case 1: {
-          const server = servers[0];
-          // trim extraneous slash .
-          const uri = server.url.endsWith('/') && path.startsWith('/') ? server.url.substr(0, server.url.length - 1) : server.url;
+      // === Requests === 
+      this.processRequestBody(httpOperation, httpMethod, operationGroup, operation, path, baseUri);
 
-          if (length(server.variables) === 0) {
-            // scenario 1 : single static value
+      // === Response === 
+      this.processResponses(httpOperation, operation);
+    });
+  }
 
-            // check if we have the $host parameter foor this uri yet.
-            op.request.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === uri, () => new Parameter('$host', 'server parameter', this.stringSchema, {
-              required: true,
-              implementation: ImplementationLocation.Client,
-              protocol: {
-                http: new HttpParameter(ParameterLocation.Uri)
-              },
-              clientDefaultValue: uri,
-              language: {
-                default: {
-                  serializedName: '$host'
-                }
-              },
-              extensions: {
-                'x-ms-skip-url-encoding': true
+  processHostParameters(httpOperation: OpenAPI.HttpOperation, operation: Operation, path: string, pathItem: OpenAPI.PathItem) {
+    let baseUri = '';
+    // create $host parameters from servers information.
+    // $host is comprised of []
+    const servers = values(httpOperation.servers).toArray();
+
+    switch (servers.length) {
+      case 0:
+        // Yanni says "we're ignoring the swagger spec because it is stupid."
+        servers.push({
+          url: '',
+          variables: {},
+          description: 'Service Host URL.'
+        });
+
+      // eslint-disable-next-line no-fallthrough
+      case 1: {
+        const server = servers[0];
+        // trim extraneous slash .
+        const uri = server.url.endsWith('/') && path.startsWith('/') ? server.url.substr(0, server.url.length - 1) : server.url;
+
+        if (length(server.variables) === 0) {
+          // scenario 1 : single static value
+
+          // check if we have the $host parameter foor this uri yet.
+          operation.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === uri, () => new Parameter('$host', 'server parameter', this.stringSchema, {
+            required: true,
+            implementation: ImplementationLocation.Client,
+            protocol: {
+              http: new HttpParameter(ParameterLocation.Uri)
+            },
+            clientDefaultValue: uri,
+            language: {
+              default: {
+                serializedName: '$host'
               }
-
-            })));
-            // and update the path for the operation.
-            baseUri = '{$host}';
-          } else {
-            // scenario 3 : single parameterized value
-
-            for (const { key: variableName, value: variable } of items(server.variables).where(each => !!each.key)) {
-              const sch = variable.enum ? this.processChoiceSchema(variableName, <OpenAPI.Schema>{ type: 'string', enum: variable.enum, description: variable.description || `${variableName} - server parameter` }) : this.stringSchema;
-
-              const clientdefault = variable.default ? variable.default : undefined;
-
-              // figure out where the parameter is supposed to be.
-              const implementation = variable['x-ms-parameter-location'] === 'client' ? ImplementationLocation.Client : ImplementationLocation.Method;
-
-              let p = implementation === ImplementationLocation.Client ? this.codeModel.findGlobalParameter(each => each.language.default.name === variableName && each.clientDefaultValue === clientdefault) : undefined;
-
-              const originalParameter = this.resolve<OpenAPI.Parameter>(variable['x-ms-original']);
-
-              if (!p) {
-                p = new Parameter(variableName, variable.description || `${variableName} - server parameter`, sch, {
-                  required: true,
-                  implementation,
-                  protocol: {
-                    http: new HttpParameter(ParameterLocation.Uri)
-                  },
-                  language: {
-                    default: {
-                      serializedName: variableName
-                    }
-                  },
-                  extensions: { ...this.interpret.getExtensionProperties(variable), 'x-ms-priority': originalParameter?.instance?.['x-ms-priority'] },
-                  clientDefaultValue: clientdefault
-                });
-                if (implementation === ImplementationLocation.Client) {
-                  // add it to the global parameter list (if it's a client parameter)
-                  this.codeModel.addGlobalParameter(p);
-                }
-              }
-              // add the parameter to the operaiton
-              op.request.addParameter(p);
+            },
+            extensions: {
+              'x-ms-skip-url-encoding': true
             }
-            // and update the path for the operation. (copy the template onto the path)
-            // path = `${uri}${path}`;
-            baseUri = uri;
-          }
-        }
-          break;
 
-        default: {
-          if (values(servers).any(each => length(each.variables) > 0)) {
-            // scenario 4 : multiple parameterized value - not valid.
-            throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has multiple server information with parameterized values.`);
-          }
-          const sss = servers.join(',');
-          let choiceSchema =
-            this.codeModel.schemas.choices?.find(each => each.choices.map(choice => choice.value).join(',') === sss) ||
-            this.codeModel.schemas.add(new ChoiceSchema('host-options', 'choices for server host', {
-              choices: servers.map(each => new ChoiceValue(each.url, `host: ${each.url}`, each.url))
-            }));
-
-          // scenario 2 : multiple static value
-          op.request.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === servers[0].url, () =>
-            new Parameter('$host', 'server parameter', choiceSchema, {
-              required: true,
-              implementation: ImplementationLocation.Client,
-              protocol: {
-                http: new HttpParameter(ParameterLocation.Uri)
-              },
-              language: {
-                default: {
-                  serializedName: '$host'
-                }
-              },
-              extensions: {
-                'x-ms-skip-url-encoding': true
-              },
-              clientDefaultValue: servers[0].url
-            })))
-
-          // update the path to have a $host parameter.
-          //path = `{$host}${path}`;
+          })));
+          // and update the path for the operation.
           baseUri = '{$host}';
+        } else {
+          // scenario 3 : single parameterized value
 
-        }
-      }
+          for (const { key: variableName, value: variable } of items(server.variables).where(each => !!each.key)) {
+            const sch = variable.enum ? this.processChoiceSchema(variableName, <OpenAPI.Schema>{ type: 'string', enum: variable.enum, description: variable.description || `${variableName} - server parameter` }) : this.stringSchema;
 
+            const clientdefault = variable.default ? variable.default : undefined;
 
-      // === Request === 
-      const httpRequest = op.request.protocol.http = SetType(HttpRequest, {
-        method: httpMethod,
-        path: path, // this.interpret.getPath(pathItem, operation, path),
-        uri: baseUri
-      });
+            // figure out where the parameter is supposed to be.
+            const implementation = variable['x-ms-parameter-location'] === 'client' ? ImplementationLocation.Client : ImplementationLocation.Method;
 
-      // get all the parameters for the operation
-      values(operation.parameters).select(each => dereference(this.input, each)).select(pp => {
-        const parameter = pp.instance;
-        this.use(parameter.schema, (name, schema) => {
+            let p = implementation === ImplementationLocation.Client ? this.codeModel.findGlobalParameter(each => each.language.default.name === variableName && each.clientDefaultValue === clientdefault) : undefined;
 
-          if (this.interpret.isApiVersionParameter(parameter)) {
-            // use the API versions information for this operation to give the values that should be used 
-            // notes: 
-            // legal values for apiversion parameter, are the x-ms-metadata.apiversions values
+            const originalParameter = this.resolve<OpenAPI.Parameter>(variable['x-ms-original']);
 
-            // if there is a single apiversion value, you'll see a constant parameter.
-
-            // if there are multiple apiversion values, 
-            //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
-            //  - otherwise, you'll get a sealed choice parameter.
-
-            const apiversions = this.interpret.getApiVersionValues(pathItem);
-            if (apiversions.length === 0) {
-              // !!! 
-              throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no apiversions but has an apiversion parameter.`);
-            }
-            if (apiversions.length === 1) {
-              const apiVersionConst = this.codeModel.schemas.add(new ConstantSchema(`ApiVersion-${apiversions[0]}`, `Api Version (${apiversions[0]})`, {
-                valueType: this.stringSchema,
-                value: new ConstantValue(apiversions[0])
-              }));
-
-              const p = this.codeModel.findGlobalParameter(each => each.language.default.name === 'ApiVersion');
-              if (p) {
-                return op.request.addParameter(p);
-              }
-
-              const apiVersionParameter = op.request.addParameter(new Parameter('ApiVersion', 'Api Version', apiVersionConst, {
-                required: parameter.required ? true : undefined,
-                //implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
-                implementation: ImplementationLocation.Client,
+            if (!p) {
+              p = new Parameter(variableName, variable.description || `${variableName} - server parameter`, sch, {
+                required: true,
+                implementation,
                 protocol: {
-                  http: new HttpParameter(ParameterLocation.Query)
+                  http: new HttpParameter(ParameterLocation.Uri)
                 },
                 language: {
                   default: {
-                    serializedName: parameter.name
+                    serializedName: variableName
                   }
-                }
-              }));
-
-              this.codeModel.addGlobalParameter(apiVersionParameter);
-              return apiVersionParameter;
-            }
-
-            // multiple api versions. okaledokaley
-            throw new Error('MultiApiVersion Not Ready Yet');
-
-          } else {
-            // Not an APIVersion Parameter
-            const implementation = pp.fromRef ?
-              'method' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Method : ImplementationLocation.Client :
-              'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method;
-
-            if (implementation === ImplementationLocation.Client) {
-              // check to see of it's already in the global parameters
-              const p = this.codeModel.findGlobalParameter(each => each.language.default.name === parameter.name);
-              if (p) {
-                return op.request.addParameter(p);
+                },
+                extensions: { ...this.interpret.getExtensionProperties(variable), 'x-ms-priority': originalParameter?.instance?.['x-ms-priority'] },
+                clientDefaultValue: clientdefault
+              });
+              if (implementation === ImplementationLocation.Client) {
+                // add it to the global parameter list (if it's a client parameter)
+                this.codeModel.addGlobalParameter(p);
               }
             }
-            const parameterSchema = this.processSchema(name || '', schema);
+            // add the parameter to the operaiton
+            operation.addParameter(p);
+          }
+          // and update the path for the operation. (copy the template onto the path)
+          // path = `${uri}${path}`;
+          baseUri = uri;
+        }
+      }
+        break;
 
-            const newParam = op.request.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
+      default: {
+        if (values(servers).any(each => length(each.variables) > 0)) {
+          // scenario 4 : multiple parameterized value - not valid.
+          throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has multiple server information with parameterized values.`);
+        }
+        const sss = servers.join(',');
+        let choiceSchema =
+          this.codeModel.schemas.choices?.find(each => each.choices.map(choice => choice.value).join(',') === sss) ||
+          this.codeModel.schemas.add(new ChoiceSchema('host-options', 'choices for server host', {
+            choices: servers.map(each => new ChoiceValue(each.url, `host: ${each.url}`, each.url))
+          }));
+
+        // scenario 2 : multiple static value
+        operation.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === servers[0].url, () =>
+          new Parameter('$host', 'server parameter', choiceSchema, {
+            required: true,
+            implementation: ImplementationLocation.Client,
+            protocol: {
+              http: new HttpParameter(ParameterLocation.Uri)
+            },
+            language: {
+              default: {
+                serializedName: '$host'
+              }
+            },
+            extensions: {
+              'x-ms-skip-url-encoding': true
+            },
+            clientDefaultValue: servers[0].url
+          })))
+
+        // update the path to have a $host parameter.
+        //path = `{$host}${path}`;
+        baseUri = '{$host}';
+
+      }
+    }
+    return baseUri;
+  }
+
+  processParameters(httpOperation: OpenAPI.HttpOperation, operation: Operation, pathItem: OpenAPI.PathItem) {
+    values(httpOperation.parameters).select(each => dereference(this.input, each)).select(pp => {
+      const parameter = pp.instance;
+      this.use(parameter.schema, (name, schema) => {
+
+        if (this.interpret.isApiVersionParameter(parameter)) {
+          // use the API versions information for this operation to give the values that should be used 
+          // notes: 
+          // legal values for apiversion parameter, are the x-ms-metadata.apiversions values
+
+          // if there is a single apiversion value, you'll see a constant parameter.
+
+          // if there are multiple apiversion values, 
+          //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
+          //  - otherwise, you'll get a sealed choice parameter.
+
+          const apiversions = this.interpret.getApiVersionValues(pathItem);
+          if (apiversions.length === 0) {
+            // !!! 
+            throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no apiversions but has an apiversion parameter.`);
+          }
+          if (apiversions.length === 1) {
+            const apiVersionConst = this.codeModel.schemas.add(new ConstantSchema(`ApiVersion-${apiversions[0]}`, `Api Version (${apiversions[0]})`, {
+              valueType: this.stringSchema,
+              value: new ConstantValue(apiversions[0])
+            }));
+
+            const p = this.codeModel.findGlobalParameter(each => each.language.default.name === 'ApiVersion');
+            if (p) {
+              return operation.addParameter(p);
+            }
+
+            const apiVersionParameter = operation.addParameter(new Parameter('ApiVersion', 'Api Version', apiVersionConst, {
               required: parameter.required ? true : undefined,
-              implementation,
-              extensions: this.interpret.getExtensionProperties(parameter),
+              //implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
+              implementation: ImplementationLocation.Client,
               protocol: {
-                http: new HttpParameter(parameter.in, parameter.style ? {
-                  style: <SerializationStyle><unknown>parameter.style,
-                } : undefined),
+                http: new HttpParameter(ParameterLocation.Query)
               },
               language: {
                 default: {
@@ -1093,107 +1154,93 @@ export class ModelerFour {
               }
             }));
 
-            // if allowReserved is present, add the extension attribute too.
-            if (parameter.allowReserved) {
-              newParam.extensions = newParam.extensions ?? {};
-              newParam.extensions['x-ms-skip-url-encoding'] = true;
-            }
-
-            if (implementation === ImplementationLocation.Client) {
-              this.codeModel.addGlobalParameter(newParam);
-            }
-
-            return newParam;
+            this.codeModel.addGlobalParameter(apiVersionParameter);
+            return apiVersionParameter;
           }
-        });
-      }).toArray();
 
-      // what to do about the body?
-      const requestBody = this.resolve(operation.requestBody);
-      if (requestBody.instance) {
-        const mediaTypeGroups = this.filterMediaTypes(requestBody.instance.content);
+          // multiple api versions. okaledokaley
+          throw new Error('MultiApiVersion Not Ready Yet');
 
+        } else {
+          // Not an APIVersion Parameter
+          const implementation = pp.fromRef ?
+            'method' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Method : ImplementationLocation.Client :
+            'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method;
 
-        switch (length(mediaTypeGroups.keys())) {
-          case 0:
-            // no request body (ie, GET?)
-            break;
-
-          case 1: {
-            // a single type request body 
-            const mediaTypes = values(mediaTypeGroups).first();
-            const kmt = keys(mediaTypeGroups).first() || KnownMediaType.Unknown;
-
-            const mediaType = values(mediaTypes).first();
-            if (!mediaType) {
-              throw new Error('??.');
-            }
-
-            const requestSchema = mediaType.schema;
-            if (!requestSchema.instance) {
-              throw new Error('Missing schema on request.');
-            }
-
-            // set the media type to the content type.
-            const httpReq = SetType(HttpWithBodyRequest, httpRequest);
-
-            httpReq.knownMediaType = kmt;
-            httpReq.mediaTypes = values(mediaTypes).select(each => each.mediaType).toArray();
-
-            if (this.interpret.isBinarySchema(requestSchema.instance)) {
-              // the request body is a stream. 
-              SetType(HttpBinaryRequest, httpRequest).binary = true;
-              op.request.addParameter(new Parameter(
-                requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
-                this.interpret.getDescription('', requestBody.instance),
-                this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Binary,
-                  })
-                },
-                implementation: ImplementationLocation.Method
-              }));
-
-            } else {
-              // it has a body parameter, and we're going to use a schema for it.
-              // add it as the last parameter 
-              op.request.addParameter(new Parameter(
-                requestBody.instance?.['x-ms-requestBody-name'] ?? 'body',
-                this.interpret.getDescription('', requestBody.instance),
-                this.processSchema(requestSchema.name || 'rqsch', requestSchema.instance), {
-                extensions: this.interpret.getExtensionProperties(requestBody.instance),
-                required: requestBody.instance.required,
-                protocol: {
-                  http: new HttpParameter(ParameterLocation.Body, {
-                    style: SerializationStyle.Json,
-                  })
-                },
-                implementation: ImplementationLocation.Method
-              }));
+          if (implementation === ImplementationLocation.Client) {
+            // check to see of it's already in the global parameters
+            const p = this.codeModel.findGlobalParameter(each => each.language.default.name === parameter.name);
+            if (p) {
+              return operation.addParameter(p);
             }
           }
-            break;
+          const parameterSchema = this.processSchema(name || '', schema);
 
-          default:
-            // invalid combinations should have been filtered, so WTH?
-            throw new Error(`Requests with multiple unrelated body types not implemented yet. ${[...mediaTypeGroups.keys()]}`);
+          const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
+            required: parameter.required ? true : undefined,
+            implementation,
+            extensions: this.interpret.getExtensionProperties(parameter),
+            protocol: {
+              http: new HttpParameter(parameter.in, parameter.style ? {
+                style: <SerializationStyle><unknown>parameter.style,
+              } : undefined),
+            },
+            language: {
+              default: {
+                serializedName: parameter.name
+              }
+            }
+          }));
+
+          // if allowReserved is present, add the extension attribute too.
+          if (parameter.allowReserved) {
+            newParam.extensions = newParam.extensions ?? {};
+            newParam.extensions['x-ms-skip-url-encoding'] = true;
+          }
+
+          if (implementation === ImplementationLocation.Client) {
+            this.codeModel.addGlobalParameter(newParam);
+          }
+
+          return newParam;
         }
-      }
+      });
+    }).toArray();
+  }
 
-      // === Response === 
-      for (const { key: responseCode, value: response } of this.resolveDictionary(operation.responses)) {
+  processResponses(httpOperation: OpenAPI.HttpOperation, operation: Operation, ) {
+    // === Response === 
+    for (const { key: responseCode, value: response } of this.resolveDictionary(httpOperation.responses)) {
 
-        const isErr = responseCode === 'default' || response['x-ms-error-response'];
-        const knownMediaTypes = this.filterMediaTypes(response.content);
+      const isErr = responseCode === 'default' || response['x-ms-error-response'];
+      const knownMediaTypes = this.filterMediaTypes(response.content);
 
-        if (length(knownMediaTypes) === 0) {
-          // it has no actual response *payload*
-          // so we just want to create a simple response .
-          const rsp = new Response({
-            extensions: this.interpret.getExtensionProperties(response)
+      if (length(knownMediaTypes) === 0) {
+        // it has no actual response *payload*
+        // so we just want to create a simple response .
+        const rsp = new Response({
+          extensions: this.interpret.getExtensionProperties(response)
+        });
+        const headers = new Array<HttpHeader>();
+        for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
+          this.use(hh.schema, (n, sch) => {
+            const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
+            hsch.language.default.header = header;
+            headers.push(new HttpHeader(header, hsch));
           });
+        }
+        rsp.protocol.http = SetType(HttpResponse, {
+          statusCodes: [responseCode],
+          headers: headers.length ? headers : undefined,
+        });
+        if (isErr) {
+          operation.addException(rsp);
+        } else {
+          operation.addResponse(rsp);
+        }
+      } else {
+        for (const { key: knownMediaType, value: mediatypes } of items(knownMediaTypes)) {
+          const allMt = mediatypes.map(each => each.mediaType);
           const headers = new Array<HttpHeader>();
           for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
             this.use(hh.schema, (n, sch) => {
@@ -1202,84 +1249,137 @@ export class ModelerFour {
               headers.push(new HttpHeader(header, hsch));
             });
           }
-          rsp.protocol.http = SetType(HttpResponse, {
-            statusCodes: [responseCode],
-            headers: headers.length ? headers : undefined,
-          });
-          if (isErr) {
-            op.addException(rsp);
-          } else {
-            op.addResponse(rsp);
+
+          if (knownMediaType === KnownMediaType.Binary) {
+            // binary response needs different response type.
+            const rsp = new BinaryResponse({
+              extensions: this.interpret.getExtensionProperties(response)
+            });
+            rsp.protocol.http = SetType(HttpBinaryResponse, {
+              statusCodes: [responseCode],
+              knownMediaType: knownMediaType,
+              mediaTypes: allMt,
+              headers: headers.length ? headers : undefined,
+            });
+            if (isErr) {
+              //op.addException(rsp);
+              // errors should not be binary streams!
+              throw new Error(`The response body should not be a binary! ${httpOperation.operationId}/${responseCode}`);
+
+            } else {
+              operation.addResponse(rsp);
+            }
+            continue;
           }
-        } else {
-          for (const { key: knownMediaType, value: mediatypes } of items(knownMediaTypes)) {
-            const allMt = mediatypes.map(each => each.mediaType);
-            const headers = new Array<HttpHeader>();
-            for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
-              this.use(hh.schema, (n, sch) => {
-                const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
-                hsch.language.default.header = header;
-                headers.push(new HttpHeader(header, hsch));
-              });
+
+          const schema = mediatypes[0].schema.instance;
+
+          if (schema) {
+            let s = this.processSchema('response', schema);
+
+            // response schemas should not be constant types. 
+            // this replaces the constant value with the value type itself.
+
+            if (s.type === SchemaType.Constant) {
+              s = (<ConstantSchema>s).valueType;
             }
+            const rsp = new SchemaResponse(s, {
+              extensions: this.interpret.getExtensionProperties(response)
+            });
 
-            if (knownMediaType === KnownMediaType.Binary) {
-              // binary response needs different response type.
-              const rsp = new BinaryResponse({
-                extensions: this.interpret.getExtensionProperties(response)
-              });
-              rsp.protocol.http = SetType(HttpBinaryResponse, {
-                statusCodes: [responseCode],
-                knownMediaType: knownMediaType,
-                mediaTypes: allMt,
-                headers: headers.length ? headers : undefined,
-              });
-              if (isErr) {
-                //op.addException(rsp);
-                // errors should not be binary streams!
-                throw new Error(`The response body should not be a binary! ${operation.operationId}/${responseCode}`);
+            rsp.protocol.http = SetType(HttpResponse, {
+              statusCodes: [responseCode],
+              knownMediaType: knownMediaType,
+              mediaTypes: allMt,
+              headers: headers.length ? headers : undefined,
+            });
 
-              } else {
-                op.addResponse(rsp);
-              }
-              continue;
-            }
-
-            const schema = mediatypes[0].schema.instance;
-
-            if (schema) {
-              let s = this.processSchema('response', schema);
-
-              // response schemas should not be constant types. 
-              // this replaces the constant value with the value type itself.
-
-              if (s.type === SchemaType.Constant) {
-                s = (<ConstantSchema>s).valueType;
-              }
-              const rsp = new SchemaResponse(s, {
-                extensions: this.interpret.getExtensionProperties(response)
-              });
-
-              rsp.protocol.http = SetType(HttpResponse, {
-                statusCodes: [responseCode],
-                knownMediaType: knownMediaType,
-                mediaTypes: allMt,
-                headers: headers.length ? headers : undefined,
-              });
-
-              if (isErr) {
-                op.addException(rsp);
-              } else {
-                op.addResponse(rsp);
-              }
+            if (isErr) {
+              operation.addException(rsp);
+            } else {
+              operation.addResponse(rsp);
             }
           }
         }
       }
+    }
+  }
 
-      //op.addResponse()
-      //op.addException();
-    });
+  processRequestBody(httpOperation: OpenAPI.HttpOperation, httpMethod: string, operationGroup: OperationGroup, operation: Operation, path: string, baseUri: string) {
+    const requestBody = this.resolve(httpOperation.requestBody);
+    if (requestBody.instance) {
+      const groupedMediaTypes = this.groupMediaTypes(requestBody.instance.content);
+      const kmtCount = groupedMediaTypes.size;
+      switch (httpMethod.toLowerCase()) {
+        case 'get':
+        case 'head':
+        case 'delete':
+          if (kmtCount > 0) {
+            this.session.warning(`Operation '${operationGroup.language.default.name}/${operation.language.default.name}' really should not have a media type (because there should be no body)`, ['?'], httpOperation.requestBody);
+          }
+          break;
+        case 'options':
+        case 'trace':
+        case 'put':
+        case 'patch':
+        case 'post':
+          if (kmtCount === 0) {
+            throw new Error(`Operation '${operationGroup.language.default.name}/${operation.language.default.name}' must have a media type.`);
+          }
+      }
+      const kmtBinary = groupedMediaTypes.get(KnownMediaType.Binary);
+      if (kmtBinary) {
+        // handle binary
+        this.processBinary(KnownMediaType.Binary, kmtBinary, operation, requestBody);
+      }
+      const kmtText = groupedMediaTypes.get(KnownMediaType.Text);
+      if (kmtText) {
+        this.processBinary(KnownMediaType.Text, kmtText, operation, requestBody);
+      }
+      const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
+      if (kmtJSON) {
+        this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody);
+      }
+      const kmtXML = groupedMediaTypes.get(KnownMediaType.Xml);
+      if (kmtXML && !kmtJSON) {
+        // only do XML if there is not a JSON body
+        this.processSerializedObject(KnownMediaType.Xml, kmtXML, operation, requestBody);
+      }
+      const kmtForm = groupedMediaTypes.get(KnownMediaType.Form);
+      if (kmtForm && !kmtXML && !kmtJSON) {
+        // only do FORM if there is not an JSON or XML body
+        this.processSerializedObject(KnownMediaType.Form, kmtForm, operation, requestBody);
+      }
+      const kmtMultipart = groupedMediaTypes.get(KnownMediaType.Multipart);
+      if (kmtMultipart) {
+        if (kmtCount !== 1) {
+          throw new Error(`Requests with 'multipart/formdata' can not be combined in a single operation with other media types ${keys(requestBody.instance.content).toArray()} `);
+        }
+        // create multipart form upload for this.
+        this.processMultipart(kmtMultipart, operation, requestBody);
+      }
+      // ensure the protocol information is set on the requests 
+      for (const request of values(operation.requests)) {
+        is(request.protocol.http);
+        request.protocol.http.method = httpMethod;
+        request.protocol.http.path = path;
+        request.protocol.http.uri = baseUri;
+      }
+    }
+    else {
+      // no request body present
+      // which means there should just be a simple request with no parameters
+      // added to the operation.
+      operation.addRequest(new Request({
+        protocol: {
+          http: {
+            method: httpMethod,
+            path: path,
+            uri: baseUri
+          }
+        }
+      }));
+    }
   }
 
   process() {
@@ -1291,7 +1391,6 @@ export class ModelerFour {
         }
       }
     }
-
 
     if (this.input.paths) {
       for (const { key: path, value: pathItem } of this.resolveDictionary(this.input.paths).where(each => !this.processed.has(each.value))) {

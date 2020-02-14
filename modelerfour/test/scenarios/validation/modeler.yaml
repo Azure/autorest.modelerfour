@@ -1,5 +1,238 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest. No server backend exists for these tests.
+  title: validation
 schemas: !<!Schemas> 
+  numbers:
+  - !<!NumberSchema> &ref_20
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maximum: 1000
+    minimum: 100
+    multipleOf: 10
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_3
+    type: integer
+    exclusiveMaximum: true
+    exclusiveMinimum: true
+    maximum: 100
+    minimum: 0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: Non required int betwen 0 and 100 exclusive.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_6
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: Count
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_1
+    type: number
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: number
+        description: Constant int
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_14
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_18
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_19
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maxLength: 10
+    minLength: 3
+    pattern: '[a-zA-Z0-9]+'
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Product-display_namesItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    pattern: 'http://\w+'
+    language: !<!Languages> 
+      default:
+        name: Product-image
+        description: Image URL representing the product.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_15
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-message
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_16
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-fields
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> 
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    pattern: '\d{2}-\d{2}-\d{4}'
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  constants:
+  - !<!ConstantSchema> &ref_21
+    type: constant
+    value: !<!ConstantValue> 
+      value: 1.0.0
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ApiVersion-1.0.0
+        description: Api Version (1.0.0)
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_5
+    type: constant
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: constant
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ChildProduct-constProperty
+        description: Constant string
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_7
+    type: constant
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: constant
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ConstantProduct-constProperty
+        description: Constant string
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_8
+    type: constant
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: constant2
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ConstantProduct-constProperty2
+        description: Constant string2
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_9
+    type: constant
+    value: !<!ConstantValue> 
+      value: 0
+    valueType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: type·for·constInt
+        description: Constant int
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_10
+    type: constant
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: constant
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: Product-constString
+        description: Constant string
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_11
+    type: constant
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
+      value: constant_string_as_enum
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: EnumConst
+        description: Constant string as Enum
+    protocol: !<!Protocols> {}
+  - !<!ConstantSchema> &ref_32
+    type: constant
+    value: !<!ConstantValue> 
+      value: constant
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ''
+        description: ''
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_24
     type: object
@@ -13,16 +246,7 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: !<!StringSchema> &ref_2
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: Product-display_namesItem
-              description: ''
-          protocol: !<!Protocols> {}
+        elementType: *ref_2
         maxItems: 6
         uniqueItems: true
         language: !<!Languages> 
@@ -38,18 +262,7 @@ schemas: !<!Schemas>
           description: Non required array of unique items from 0 to 6 elements.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_3
-        type: integer
-        exclusiveMaximum: true
-        exclusiveMinimum: true
-        maximum: 100
-        minimum: 0
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: Non required int betwen 0 and 100 exclusive.
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       required: false
       serializedName: capacity
       language: !<!Languages> 
@@ -58,17 +271,7 @@ schemas: !<!Schemas>
           description: Non required int betwen 0 and 100 exclusive.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_4
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        pattern: 'http://\w+'
-        language: !<!Languages> 
-          default:
-            name: Product-image
-            description: Image URL representing the product.
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       required: false
       serializedName: image
       language: !<!Languages> 
@@ -84,25 +287,7 @@ schemas: !<!Schemas>
           version: 1.0.0
         properties:
         - !<!Property> 
-          schema: !<!ConstantSchema> &ref_5
-            type: constant
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            value: !<!ConstantValue> 
-              value: constant
-            valueType: !<!StringSchema> &ref_0
-              type: string
-              language: !<!Languages> 
-                default:
-                  name: string
-                  description: simple string
-              protocol: !<!Protocols> {}
-            language: !<!Languages> 
-              default:
-                name: ChildProduct-constProperty
-                description: Constant string
-            protocol: !<!Protocols> {}
+          schema: *ref_5
           required: true
           serializedName: constProperty
           language: !<!Languages> 
@@ -111,14 +296,7 @@ schemas: !<!Schemas>
               description: Constant string
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_6
-            type: integer
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: integer
-                description: Count
-            protocol: !<!Protocols> {}
+          schema: *ref_6
           required: false
           serializedName: count
           language: !<!Languages> 
@@ -147,19 +325,7 @@ schemas: !<!Schemas>
           version: 1.0.0
         properties:
         - !<!Property> 
-          schema: !<!ConstantSchema> &ref_7
-            type: constant
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            value: !<!ConstantValue> 
-              value: constant
-            valueType: *ref_0
-            language: !<!Languages> 
-              default:
-                name: ConstantProduct-constProperty
-                description: Constant string
-            protocol: !<!Protocols> {}
+          schema: *ref_7
           required: true
           serializedName: constProperty
           language: !<!Languages> 
@@ -168,19 +334,7 @@ schemas: !<!Schemas>
               description: Constant string
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!ConstantSchema> &ref_8
-            type: constant
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            value: !<!ConstantValue> 
-              value: constant2
-            valueType: *ref_0
-            language: !<!Languages> 
-              default:
-                name: ConstantProduct-constProperty2
-                description: Constant string2
-            protocol: !<!Protocols> {}
+          schema: *ref_8
           required: true
           serializedName: constProperty2
           language: !<!Languages> 
@@ -202,23 +356,7 @@ schemas: !<!Schemas>
           description: The product documentation.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ConstantSchema> &ref_9
-        type: constant
-        value: !<!ConstantValue> 
-          value: 0
-        valueType: !<!NumberSchema> &ref_1
-          type: number
-          precision: 32
-          language: !<!Languages> 
-            default:
-              name: number
-              description: Constant int
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: type·for·constInt
-            description: Constant int
-        protocol: !<!Protocols> {}
+      schema: *ref_9
       required: true
       serializedName: constInt
       language: !<!Languages> 
@@ -227,19 +365,7 @@ schemas: !<!Schemas>
           description: Constant int
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ConstantSchema> &ref_10
-        type: constant
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        value: !<!ConstantValue> 
-          value: constant
-        valueType: *ref_0
-        language: !<!Languages> 
-          default:
-            name: Product-constString
-            description: Constant string
-        protocol: !<!Protocols> {}
+      schema: *ref_10
       required: true
       serializedName: constString
       language: !<!Languages> 
@@ -248,19 +374,7 @@ schemas: !<!Schemas>
           description: Constant string
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ConstantSchema> &ref_11
-        type: constant
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        value: !<!ConstantValue> 
-          value: constant_string_as_enum
-        valueType: *ref_0
-        language: !<!Languages> 
-          default:
-            name: EnumConst
-            description: Constant string as Enum
-        protocol: !<!Protocols> {}
+      schema: *ref_11
       required: false
       serializedName: constStringAsEnum
       language: !<!Languages> 
@@ -283,14 +397,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_14
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_14
       serializedName: code
       language: !<!Languages> 
         default:
@@ -298,16 +405,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_15
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_15
       serializedName: message
       language: !<!Languages> 
         default:
@@ -315,16 +413,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_16
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-fields
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_16
       serializedName: fields
       language: !<!Languages> 
         default:
@@ -339,102 +428,6 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
   arrays:
   - *ref_17
-  constants:
-  - !<!ConstantSchema> &ref_21
-    type: constant
-    value: !<!ConstantValue> 
-      value: 1.0.0
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-1.0.0
-        description: Api Version (1.0.0)
-    protocol: !<!Protocols> {}
-  - *ref_5
-  - *ref_7
-  - *ref_8
-  - *ref_9
-  - *ref_10
-  - *ref_11
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 1.0.0
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-1.0.0
-        description: Api Version (1.0.0)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_32
-    type: constant
-    value: !<!ConstantValue> 
-      value: constant
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ''
-        description: ''
-    protocol: !<!Protocols> {}
-  numbers:
-  - !<!NumberSchema> &ref_20
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maximum: 1000
-    minimum: 100
-    multipleOf: 10
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-    protocol: !<!Protocols> {}
-  - *ref_3
-  - *ref_6
-  - *ref_1
-  - *ref_14
-  strings:
-  - *ref_0
-  - !<!StringSchema> &ref_18
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_19
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maxLength: 10
-    minLength: 3
-    pattern: '[a-zA-Z0-9]+'
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-    protocol: !<!Protocols> {}
-  - *ref_2
-  - *ref_4
-  - *ref_15
-  - *ref_16
-  - !<!StringSchema> 
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    pattern: '\d{2}-\d{2}-\d{4}'
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_27
   schema: *ref_18
@@ -477,9 +470,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: query
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest. No server backend exists for these tests.
-  title: validation
 operationGroups:
 - !<!OperationGroup> 
   $key: ''
@@ -488,47 +478,48 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      - *ref_27
-      - !<!Parameter> &ref_22
-        schema: *ref_19
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_23
-        schema: *ref_20
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: id
-            description: Required int multiple of 10 from 100 to 1000.
-            serializedName: id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_28
-      signatureParameters:
-      - *ref_22
-      - *ref_23
+    parameters:
+    - *ref_26
+    - *ref_27
+    - !<!Parameter> &ref_22
+      schema: *ref_19
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_23
+      schema: *ref_20
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: id
+          description: Required int multiple of 10 from 100 to 1000.
+          serializedName: id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_22
+    - *ref_23
     responses:
     - !<!SchemaResponse> 
       schema: *ref_24
@@ -567,40 +558,40 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - *ref_27
+    - !<!Parameter> &ref_29
+      schema: *ref_19
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_30
+      schema: *ref_20
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: id
+          description: Required int multiple of 10 from 100 to 1000.
+          serializedName: id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - *ref_27
-      - !<!Parameter> &ref_29
-        schema: *ref_19
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_30
-        schema: *ref_20
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: id
-            description: Required int multiple of 10 from 100 to 1000.
-            serializedName: id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_28
       - !<!Parameter> &ref_31
         schema: *ref_24
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: body
         language: !<!Languages> 
           default:
             name: body
@@ -610,8 +601,6 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_29
-      - *ref_30
       - *ref_31
       language: !<!Languages> 
         default:
@@ -621,10 +610,14 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters:
+    - *ref_29
+    - *ref_30
     responses:
     - !<!SchemaResponse> 
       schema: *ref_24
@@ -653,8 +646,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 3
     language: !<!Languages> 
       default:
         name: validationOfBody
@@ -665,31 +656,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      - !<!Parameter> 
-        schema: *ref_32
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: constantParam
-            description: ''
-            serializedName: constantParam
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    - !<!Parameter> 
+      schema: *ref_32
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: constantParam
+          description: ''
+          serializedName: constantParam
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/validation/constantsInPath/{constantParam}/value'
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -709,26 +701,26 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - !<!Parameter> 
+      schema: *ref_32
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: constantParam
+          description: ''
+          serializedName: constantParam
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> 
-        schema: *ref_32
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: constantParam
-            description: ''
-            serializedName: constantParam
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> &ref_33
         schema: *ref_24
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: body
         language: !<!Languages> 
           default:
             name: body
@@ -747,10 +739,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/validation/constantsInPath/{constantParam}/value'
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_24
@@ -765,8 +759,6 @@ operationGroups:
           - application/json
           statusCodes:
           - '200'
-    extensions:
-      x-ms-requestBody-index: 1
     language: !<!Languages> 
       default:
         name: postWithConstantInBody

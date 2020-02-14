@@ -1,197 +1,8 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: httpInfrastructure
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_11
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_9
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: ''
-        namespace: Api100
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_5
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    children: !<!Relations> 
-      all:
-      - !<!ObjectSchema> &ref_6
-        type: object
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        parents: !<!Relations> 
-          all:
-          - *ref_5
-          immediate:
-          - *ref_5
-        properties:
-        - !<!Property> 
-          schema: !<!StringSchema> &ref_4
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: B-textStatusCode
-                description: ''
-            protocol: !<!Protocols> {}
-          serializedName: textStatusCode
-          language: !<!Languages> 
-            default:
-              name: textStatusCode
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: B
-            description: ''
-            namespace: Api100
-        protocol: !<!Protocols> {}
-      immediate:
-      - *ref_6
-    properties:
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_3
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: A-statusCode
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: statusCode
-      language: !<!Languages> 
-        default:
-          name: statusCode
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: MyException
-        description: ''
-        namespace: Api100
-    protocol: !<!Protocols> {}
-  - *ref_6
-  - !<!ObjectSchema> &ref_23
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_7
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: C-httpCode
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: httpCode
-      language: !<!Languages> 
-        default:
-          name: httpCode
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: C
-        description: ''
-        namespace: Api100
-    protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_24
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_8
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: D-httpStatusCode
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: httpStatusCode
-      language: !<!Languages> 
-        default:
-          name: httpStatusCode
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: D
-        description: ''
-        namespace: Api100
-    protocol: !<!Protocols> {}
-  arrays:
-  - !<!ArraySchema> &ref_16
-    type: array
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    elementType: !<!StringSchema> &ref_10
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: get-300-application-json-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: paths·1881m25·http-redirect-300·get·responses·300·content·application-json·schema
-        description: 'A list of location options for the request [''/http/success/get/200'']'
-    protocol: !<!Protocols> {}
   booleans:
   - !<!BooleanSchema> &ref_0
     type: boolean
@@ -199,6 +10,83 @@ schemas: !<!Schemas>
       default:
         name: bool
         description: simple boolean
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_9
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_1
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-message
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_10
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: get-300-application-json-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: A-statusCode
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: B-textStatusCode
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_7
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: C-httpCode
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_8
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: D-httpStatusCode
+        description: ''
     protocol: !<!Protocols> {}
   constants:
   - !<!ConstantSchema> &ref_13
@@ -221,13 +109,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: /http/success/head/200
-    valueType: !<!StringSchema> &ref_1
-      type: string
-      language: !<!Languages> 
-        default:
-          name: string
-          description: simple string
-      protocol: !<!Protocols> {}
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: paths·slp8rr·http-redirect-300·head·responses·300·headers·location·schema
@@ -332,16 +214,137 @@ schemas: !<!Schemas>
         description: ''
         header: Location
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_9
-  strings:
-  - *ref_1
-  - *ref_2
-  - *ref_10
-  - *ref_3
-  - *ref_4
-  - *ref_7
-  - *ref_8
+  objects:
+  - !<!ObjectSchema> &ref_11
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_9
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_2
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_5
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    children: !<!Relations> 
+      all:
+      - !<!ObjectSchema> &ref_6
+        type: object
+        apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+        parents: !<!Relations> 
+          all:
+          - *ref_5
+          immediate:
+          - *ref_5
+        properties:
+        - !<!Property> 
+          schema: *ref_4
+          serializedName: textStatusCode
+          language: !<!Languages> 
+            default:
+              name: textStatusCode
+              description: ''
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            name: B
+            description: ''
+            namespace: Api100
+        protocol: !<!Protocols> {}
+      immediate:
+      - *ref_6
+    properties:
+    - !<!Property> 
+      schema: *ref_3
+      serializedName: statusCode
+      language: !<!Languages> 
+        default:
+          name: statusCode
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: MyException
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
+  - *ref_6
+  - !<!ObjectSchema> &ref_23
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_7
+      serializedName: httpCode
+      language: !<!Languages> 
+        default:
+          name: httpCode
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: C
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_24
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_8
+      serializedName: httpStatusCode
+      language: !<!Languages> 
+        default:
+          name: httpStatusCode
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: D
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
+  arrays:
+  - !<!ArraySchema> &ref_16
+    type: array
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    elementType: *ref_10
+    language: !<!Languages> 
+      default:
+        name: paths·1881m25·http-redirect-300·get·responses·300·content·application-json·schema
+        description: 'A list of location options for the request [''/http/success/get/200'']'
+    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_12
   schema: *ref_1
@@ -358,9 +361,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: httpInfrastructure
 operationGroups:
 - !<!OperationGroup> 
   $key: httpFailure
@@ -369,19 +369,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/emptybody/error
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -419,19 +420,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/nomodel/error
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -455,19 +457,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/nomodel/empty
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -499,19 +502,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/success/200
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -545,19 +549,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/success/200
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -595,19 +600,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/success/200
           method: options
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -645,14 +651,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -670,10 +676,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/200
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -698,8 +706,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put200
@@ -709,14 +715,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -734,10 +740,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/200
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -762,8 +770,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch200
@@ -773,14 +779,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -798,10 +804,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/200
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -826,8 +834,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post200
@@ -837,14 +843,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -862,10 +868,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/200
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -890,8 +898,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete200
@@ -901,14 +907,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -926,10 +932,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/201
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -954,8 +962,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put201
@@ -965,14 +971,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -990,10 +996,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/201
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1018,8 +1026,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post201
@@ -1029,14 +1035,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1054,10 +1060,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/202
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1082,8 +1090,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put202
@@ -1093,14 +1099,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1118,10 +1124,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/202
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1146,8 +1154,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch202
@@ -1157,14 +1163,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1182,10 +1188,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/202
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1210,8 +1218,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post202
@@ -1221,14 +1227,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1246,10 +1252,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/202
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1274,8 +1282,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete202
@@ -1285,19 +1291,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/success/204
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1331,14 +1338,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1356,10 +1363,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/204
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1384,8 +1393,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put204
@@ -1395,14 +1402,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1420,10 +1427,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/204
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1448,8 +1457,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch204
@@ -1459,14 +1466,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1484,10 +1491,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/204
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1512,8 +1521,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post204
@@ -1523,14 +1530,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1548,10 +1555,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/success/204
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1576,8 +1585,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete204
@@ -1587,19 +1594,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/success/404
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1650,19 +1658,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/300
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1709,19 +1718,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/300
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1772,19 +1782,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/301
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1831,19 +1842,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/301
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1890,14 +1902,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -1915,10 +1927,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/301
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1947,8 +1961,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put301
@@ -1958,19 +1970,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/302
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2017,19 +2030,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/302
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2076,14 +2090,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2101,10 +2115,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/302
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2133,8 +2149,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch302
@@ -2144,14 +2158,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2169,10 +2183,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/303
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2210,8 +2226,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post303
@@ -2221,19 +2235,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/307
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2280,19 +2295,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/307
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2339,19 +2355,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/redirect/307
           method: options
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2398,14 +2415,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2423,10 +2440,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/307
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2464,8 +2483,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put307
@@ -2475,14 +2492,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2500,10 +2517,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/307
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2541,8 +2560,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch307
@@ -2552,14 +2569,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2577,10 +2594,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/307
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2618,8 +2637,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post307
@@ -2629,14 +2646,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2654,10 +2671,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/redirect/307
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2695,8 +2714,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete307
@@ -2714,19 +2731,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/400
           method: head
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -2750,19 +2768,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/400
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -2786,19 +2805,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/400
           method: options
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -2822,14 +2842,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2847,10 +2867,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/400
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -2865,8 +2887,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put400
@@ -2876,14 +2896,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2901,10 +2921,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/400
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -2919,8 +2941,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch400
@@ -2930,14 +2950,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -2955,10 +2975,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/400
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -2973,8 +2995,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post400
@@ -2984,14 +3004,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3009,10 +3029,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/400
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3027,8 +3049,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete400
@@ -3038,19 +3058,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/401
           method: head
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3074,19 +3095,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/402
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3110,19 +3132,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/403
           method: options
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3146,19 +3169,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/403
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3182,14 +3206,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3207,10 +3231,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/404
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3225,8 +3251,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put404
@@ -3236,14 +3260,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3261,10 +3285,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/405
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3279,8 +3305,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch405
@@ -3290,14 +3314,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3315,10 +3339,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/406
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3333,8 +3359,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post406
@@ -3344,14 +3368,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3369,10 +3393,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/407
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3387,8 +3413,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete407
@@ -3398,14 +3422,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3423,10 +3447,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/409
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3441,8 +3467,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put409
@@ -3452,19 +3476,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/410
           method: head
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3488,19 +3513,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/411
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3524,19 +3550,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/412
           method: options
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3560,19 +3587,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/412
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3596,14 +3624,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3621,10 +3649,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/413
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3639,8 +3669,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put413
@@ -3650,14 +3678,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3675,10 +3703,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/414
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3693,8 +3723,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch414
@@ -3704,14 +3732,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3729,10 +3757,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/415
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3747,8 +3777,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post415
@@ -3758,19 +3786,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/416
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3794,14 +3823,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3819,10 +3848,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/client/417
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3837,8 +3868,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete417
@@ -3848,19 +3877,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/client/429
           method: head
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3892,19 +3922,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/server/501
           method: head
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3928,19 +3959,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/failure/server/501
           method: get
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -3964,14 +3996,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -3989,10 +4021,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/server/505
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -4007,8 +4041,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post505
@@ -4018,14 +4050,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4043,10 +4075,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/failure/server/505
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     exceptions:
     - !<!SchemaResponse> 
       schema: *ref_11
@@ -4061,8 +4095,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete505
@@ -4080,19 +4112,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/retry/408
           method: head
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4126,14 +4159,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4151,10 +4184,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/retry/500
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4179,8 +4214,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put500
@@ -4190,14 +4223,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4215,10 +4248,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/retry/500
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4243,8 +4278,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch500
@@ -4254,19 +4287,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/retry/502
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4300,19 +4334,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/retry/502
           method: options
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -4350,14 +4385,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4375,10 +4410,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/retry/503
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4403,8 +4440,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: post503
@@ -4414,14 +4449,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4439,10 +4474,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/retry/503
           method: delete
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4467,8 +4504,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: delete503
@@ -4478,14 +4513,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4503,10 +4538,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/retry/504
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4531,8 +4568,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: put504
@@ -4542,14 +4577,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_12
       - !<!Parameter> 
         schema: *ref_13
         implementation: Method
-        extensions:
-          x-ms-requestBody-name: booleanValue
         language: !<!Languages> 
           default:
             name: booleanValue
@@ -4567,10 +4602,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /http/retry/504
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -4595,8 +4632,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: patch504
@@ -4614,19 +4649,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/204/none/default/Error/response/200/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -4673,19 +4709,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/204/none/default/Error/response/204/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -4732,19 +4769,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/204/none/default/Error/response/201/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -4791,19 +4829,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/204/none/default/Error/response/202/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -4850,19 +4889,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/204/none/default/Error/response/400/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -4909,19 +4949,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/B/default/Error/response/200/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -4972,19 +5013,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/B/default/Error/response/201/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5035,19 +5077,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/B/default/Error/response/400/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5098,19 +5141,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/200/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5174,19 +5218,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/201/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5250,19 +5295,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/404/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5326,19 +5372,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/201/C/404/D/default/Error/response/400/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5402,19 +5449,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/Error/response/202/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5457,19 +5505,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/Error/response/204/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5512,19 +5561,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/Error/response/400/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5567,19 +5617,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/none/response/202/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5618,19 +5669,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/none/response/204/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5669,19 +5721,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/none/response/400/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5720,19 +5773,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/202/none/204/none/default/none/response/400/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5771,19 +5825,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/A/response/200/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5807,19 +5862,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/A/response/200/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -5843,19 +5899,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/A/response/400/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5889,19 +5946,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/A/response/400/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5935,19 +5993,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/none/response/200/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5967,19 +6026,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/none/response/200/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -5999,19 +6059,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/none/response/400/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6041,19 +6102,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/default/none/response/400/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -6083,19 +6145,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/200/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -6119,19 +6182,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/200/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -6155,19 +6219,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/200/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -6191,19 +6256,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/400/none
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -6227,19 +6293,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/400/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -6263,19 +6330,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/400/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5
@@ -6299,19 +6367,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_12
-      signatureParameters: []
+    parameters:
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /http/payloads/200/A/response/202/valid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_5

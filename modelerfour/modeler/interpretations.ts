@@ -19,6 +19,8 @@ const removeKnownParameters = [
   'x-ms-client-name',
   'x-ms-parameter-location',
   'x-ms-original',
+  'x-ms-requestBody-name',
+  'x-ms-requestBody-index'
 ];
 
 // ref: https://www.w3schools.com/charsets/ref_html_ascii.asp

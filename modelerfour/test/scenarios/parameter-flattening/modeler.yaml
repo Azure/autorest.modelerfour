@@ -1,30 +1,55 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Resource Flattening for AutoRest
+  title: parameter-flattening
 schemas: !<!Schemas> 
+  strings:
+  - !<!StringSchema> &ref_2
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maxLength: 80
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_1
+    type: dictionary
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: AvailabilitySetUpdateParameters-tags
+        description: A description about the set of tags.
+    protocol: !<!Protocols> {}
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_6
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_1
-        type: dictionary
-        elementType: !<!StringSchema> &ref_0
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: string
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: AvailabilitySetUpdateParameters-tags
-            description: A description about the set of tags.
-        protocol: !<!Protocols> {}
+      schema: *ref_1
       required: true
       serializedName: tags
       language: !<!Languages> 
@@ -37,28 +62,6 @@ schemas: !<!Schemas>
         name: AvailabilitySetUpdateParameters
         description: ''
         namespace: Api100
-    protocol: !<!Protocols> {}
-  dictionaries:
-  - *ref_1
-  strings:
-  - !<!StringSchema> &ref_2
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: simple string
-    protocol: !<!Protocols> {}
-  - *ref_0
-  - !<!StringSchema> &ref_3
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maxLength: 80
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
     protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_8
@@ -76,9 +79,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Resource Flattening for AutoRest
-  title: parameter-flattening
 operationGroups:
 - !<!OperationGroup> 
   $key: AvailabilitySets
@@ -87,39 +87,39 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_8
+    - !<!Parameter> &ref_4
+      schema: *ref_0
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: The name of the resource group.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_5
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: avset
+          description: The name of the storage availability set.
+          serializedName: availabilitySetName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_8
-      - !<!Parameter> &ref_5
-        schema: *ref_0
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: The name of the resource group.
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_6
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: avset
-            description: The name of the storage availability set.
-            serializedName: availabilitySetName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> &ref_7
-        schema: *ref_4
+        schema: *ref_6
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: tags
         language: !<!Languages> 
           default:
             name: tags
@@ -129,8 +129,6 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_5
-      - *ref_6
       - *ref_7
       language: !<!Languages> 
         default:
@@ -140,10 +138,14 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters:
+    - *ref_4
+    - *ref_5
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -154,8 +156,6 @@ operationGroups:
         http: !<!HttpResponse> 
           statusCodes:
           - '200'
-    extensions:
-      x-ms-requestBody-index: 2
     language: !<!Languages> 
       default:
         name: Update

@@ -1,83 +1,34 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest Swagger BAT
+  title: body-byte
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_5
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_3
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_3
+    type: integer
+    precision: 32
     language: !<!Languages> 
       default:
-        name: Error
+        name: integer
         description: ''
-        namespace: Api100
     protocol: !<!Protocols> {}
-  byteArrays:
-  - !<!ByteArraySchema> &ref_0
-    type: byte-array
-    format: byte
+  strings:
+  - !<!StringSchema> &ref_4
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     language: !<!Languages> 
       default:
-        name: paths·84fuql·byte-null·get·responses·200·content·application-json·schema
-        description: The null byte value
-    protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_1
-    type: byte-array
-    format: byte
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·1bty3es·byte-empty·get·responses·200·content·application-json·schema
-        description: The empty byte value ''
-    protocol: !<!Protocols> {}
-  - !<!ByteArraySchema> &ref_7
-    type: byte-array
-    format: byte
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: paths·1qymg0h·byte-nonascii·get·responses·200·content·application-json·schema
-        description: Non-ascii base-64 encoded byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
+        name: Error-message
+        description: ''
     protocol: !<!Protocols> {}
   constants:
   - !<!ConstantSchema> 
@@ -87,7 +38,17 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: null
-    valueType: *ref_0
+    valueType: !<!ByteArraySchema> &ref_0
+      type: byte-array
+      format: byte
+      apiVersions:
+      - !<!ApiVersion> 
+        version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·84fuql·byte-null·get·responses·200·content·application-json·schema
+          description: The null byte value
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·84fuql·byte-null·get·responses·200·content·application-json·schema
@@ -100,23 +61,65 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: ''
-    valueType: *ref_1
+    valueType: !<!ByteArraySchema> &ref_1
+      type: byte-array
+      format: byte
+      apiVersions:
+      - !<!ApiVersion> 
+        version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: paths·1bty3es·byte-empty·get·responses·200·content·application-json·schema
+          description: The empty byte value ''
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
         name: paths·1bty3es·byte-empty·get·responses·200·content·application-json·schema
         description: The empty byte value ''
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_3
-  strings:
-  - !<!StringSchema> &ref_4
-    type: string
+  byteArrays:
+  - *ref_0
+  - *ref_1
+  - !<!ByteArraySchema> &ref_7
+    type: byte-array
+    format: byte
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
     language: !<!Languages> 
       default:
-        name: string
-        description: simple string
+        name: paths·1qymg0h·byte-nonascii·get·responses·200·content·application-json·schema
+        description: Non-ascii base-64 encoded byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
     protocol: !<!Protocols> {}
-  - *ref_2
+  objects:
+  - !<!ObjectSchema> &ref_5
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_3
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_2
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_6
   schema: *ref_4
@@ -133,9 +136,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest Swagger BAT
-  title: body-byte
 operationGroups:
 - !<!OperationGroup> 
   $key: byte
@@ -144,19 +144,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /byte/null
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_0
@@ -194,19 +195,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /byte/empty
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_1
@@ -244,19 +246,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /byte/nonAscii
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_7
@@ -294,15 +297,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_6
       - !<!Parameter> &ref_8
         schema: *ref_7
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: byteBody
         language: !<!Languages> 
           default:
             name: byteBody
@@ -321,10 +324,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /byte/nonAscii
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -349,8 +354,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: putNonAscii
@@ -360,19 +363,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /byte/invalid
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_7

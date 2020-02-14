@@ -1,46 +1,201 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: additionalProperties
 schemas: !<!Schemas> 
+  booleans:
+  - !<!BooleanSchema> &ref_5
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_7
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_2
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: number
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_20
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_8
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAPTrue-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_9
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-message
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAPObject-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_13
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAPString-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_14
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAPInProperties-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_17
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAPInPropertiesWithAPString-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_18
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PetAPInPropertiesWithAPString-@odata.location
+        description: ''
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_4
+    type: dictionary
+    elementType: !<!AnySchema> &ref_0
+      type: any
+      language: !<!Languages> 
+        default:
+          name: any
+          description: Any object
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: PetAPTrue
+        description: Dictionary of <any>
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_10
+    type: dictionary
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: PetAPObject
+        description: Dictionary of <any>
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_12
+    type: dictionary
+    elementType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: PetAPString
+        description: Dictionary of <string>
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_15
+    type: dictionary
+    elementType: *ref_2
+    language: !<!Languages> 
+      default:
+        name: PetAPInProperties-additionalProperties
+        description: Dictionary of <number>
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_16
+    type: dictionary
+    elementType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: PetAPInPropertiesWithAPString
+        description: Dictionary of <string>
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_19
+    type: dictionary
+    elementType: *ref_2
+    language: !<!Languages> 
+      default:
+        name: PetAPInPropertiesWithAPString-additionalProperties
+        description: Dictionary of <number>
+    protocol: !<!Protocols> {}
   objects:
-  - !<!ObjectSchema> &ref_0
+  - !<!ObjectSchema> &ref_3
     type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     children: !<!Relations> 
       all:
-      - !<!ObjectSchema> &ref_1
+      - !<!ObjectSchema> &ref_6
         type: object
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
         parents: !<!Relations> 
           all:
-          - *ref_0
-          - !<!DictionarySchema> &ref_2
-            type: dictionary
-            elementType: !<!AnySchema> &ref_5
-              type: any
-              language: !<!Languages> 
-                default:
-                  name: any
-                  description: Any object
-              protocol: !<!Protocols> {}
-            language: !<!Languages> 
-              default:
-                name: PetAPTrue
-                description: Dictionary of <any>
-            protocol: !<!Protocols> {}
+          - *ref_3
+          - *ref_4
           immediate:
-          - *ref_0
+          - *ref_3
         properties:
         - !<!Property> 
-          schema: !<!BooleanSchema> &ref_3
-            type: boolean
-            language: !<!Languages> 
-              default:
-                name: boolean
-                description: ''
-            protocol: !<!Protocols> {}
+          schema: *ref_5
           serializedName: friendly
           language: !<!Languages> 
             default:
@@ -54,22 +209,15 @@ schemas: !<!Schemas>
             namespace: Api100
         protocol: !<!Protocols> {}
       immediate:
-      - *ref_1
+      - *ref_6
     parents: !<!Relations> 
       all:
-      - *ref_2
+      - *ref_4
       immediate:
-      - *ref_2
+      - *ref_4
     properties:
     - !<!Property> &ref_23
-      schema: !<!NumberSchema> &ref_4
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_7
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -78,16 +226,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> &ref_24
-      schema: !<!StringSchema> &ref_13
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAPTrue-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_8
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -96,7 +235,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_5
       readOnly: true
       required: false
       serializedName: status
@@ -118,7 +257,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: *ref_4
+      schema: *ref_7
       serializedName: status
       language: !<!Languages> 
         default:
@@ -126,16 +265,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_14
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_9
       serializedName: message
       language: !<!Languages> 
         default:
@@ -148,7 +278,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_1
+  - *ref_6
   - !<!ObjectSchema> &ref_29
     type: object
     apiVersions:
@@ -156,19 +286,12 @@ schemas: !<!Schemas>
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_6
-        type: dictionary
-        elementType: *ref_5
-        language: !<!Languages> 
-          default:
-            name: PetAPObject
-            description: Dictionary of <any>
-        protocol: !<!Protocols> {}
+      - *ref_10
       immediate:
-      - *ref_6
+      - *ref_10
     properties:
     - !<!Property> &ref_31
-      schema: *ref_4
+      schema: *ref_7
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -177,16 +300,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> &ref_32
-      schema: !<!StringSchema> &ref_15
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAPObject-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_11
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -195,7 +309,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_5
       readOnly: true
       required: false
       serializedName: status
@@ -217,28 +331,12 @@ schemas: !<!Schemas>
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_7
-        type: dictionary
-        elementType: !<!StringSchema> &ref_8
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: string
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: PetAPString
-            description: Dictionary of <string>
-        protocol: !<!Protocols> {}
+      - *ref_12
       immediate:
-      - *ref_7
+      - *ref_12
     properties:
     - !<!Property> &ref_37
-      schema: *ref_4
+      schema: *ref_7
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -247,16 +345,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> &ref_38
-      schema: !<!StringSchema> &ref_16
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAPString-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_13
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -265,7 +354,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_5
       readOnly: true
       required: false
       serializedName: status
@@ -287,7 +376,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: *ref_4
+      schema: *ref_7
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -296,16 +385,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_17
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAPInProperties-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_14
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -314,7 +394,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_5
       readOnly: true
       required: false
       serializedName: status
@@ -324,24 +404,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_11
-        type: dictionary
-        elementType: !<!NumberSchema> &ref_10
-          type: number
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          precision: 32
-          language: !<!Languages> 
-            default:
-              name: number
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: PetAPInProperties-additionalProperties
-            description: Dictionary of <number>
-        protocol: !<!Protocols> {}
+      schema: *ref_15
       required: false
       serializedName: additionalProperties
       language: !<!Languages> 
@@ -362,19 +425,12 @@ schemas: !<!Schemas>
       version: 1.0.0
     parents: !<!Relations> 
       all:
-      - !<!DictionarySchema> &ref_9
-        type: dictionary
-        elementType: *ref_8
-        language: !<!Languages> 
-          default:
-            name: PetAPInPropertiesWithAPString
-            description: Dictionary of <string>
-        protocol: !<!Protocols> {}
+      - *ref_16
       immediate:
-      - *ref_9
+      - *ref_16
     properties:
     - !<!Property> 
-      schema: *ref_4
+      schema: *ref_7
       required: true
       serializedName: id
       language: !<!Languages> 
@@ -383,16 +439,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_18
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAPInPropertiesWithAPString-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_17
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -401,7 +448,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_5
       readOnly: true
       required: false
       serializedName: status
@@ -411,16 +458,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_19
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: PetAPInPropertiesWithAPString-@odata.location
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_18
       required: true
       serializedName: '@odata.location'
       language: !<!Languages> 
@@ -429,14 +467,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_12
-        type: dictionary
-        elementType: *ref_10
-        language: !<!Languages> 
-          default:
-            name: PetAPInPropertiesWithAPString-additionalProperties
-            description: Dictionary of <number>
-        protocol: !<!Protocols> {}
+      schema: *ref_19
       required: false
       serializedName: additionalProperties
       language: !<!Languages> 
@@ -450,34 +481,6 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  dictionaries:
-  - *ref_2
-  - *ref_6
-  - *ref_7
-  - *ref_11
-  - *ref_9
-  - *ref_12
-  booleans:
-  - *ref_3
-  numbers:
-  - *ref_4
-  - *ref_10
-  strings:
-  - !<!StringSchema> &ref_20
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: simple string
-    protocol: !<!Protocols> {}
-  - *ref_13
-  - *ref_14
-  - *ref_15
-  - *ref_8
-  - *ref_16
-  - *ref_17
-  - *ref_18
-  - *ref_19
 globalParameters:
 - !<!Parameter> &ref_21
   schema: *ref_20
@@ -494,9 +497,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: additionalProperties
 operationGroups:
 - !<!OperationGroup> 
   $key: Pets
@@ -505,16 +505,16 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
       - !<!Parameter> &ref_22
-        schema: *ref_0
+        schema: *ref_3
         flattened: true
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: createParameters
         language: !<!Languages> 
           default:
             name: createParameters
@@ -524,7 +524,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_25
-        schema: *ref_4
+        schema: *ref_7
         implementation: Method
         originalParameter: *ref_22
         pathToProperty: []
@@ -537,7 +537,7 @@ operationGroups:
             description: ''
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_26
-        schema: *ref_13
+        schema: *ref_8
         implementation: Method
         originalParameter: *ref_22
         pathToProperty: []
@@ -560,13 +560,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /additionalProperties/true
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_3
       language: !<!Languages> 
         default:
           name: ''
@@ -592,8 +594,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: CreateAPTrue
@@ -603,15 +603,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
       - !<!Parameter> &ref_28
-        schema: *ref_1
+        schema: *ref_6
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: createParameters
         language: !<!Languages> 
           default:
             name: createParameters
@@ -630,13 +630,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /additionalProperties/true-subclass
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -662,8 +664,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: CreateCatAPTrue
@@ -673,16 +673,16 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
       - !<!Parameter> &ref_30
         schema: *ref_29
         flattened: true
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: createParameters
         language: !<!Languages> 
           default:
             name: createParameters
@@ -692,7 +692,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_33
-        schema: *ref_4
+        schema: *ref_7
         implementation: Method
         originalParameter: *ref_30
         pathToProperty: []
@@ -705,7 +705,7 @@ operationGroups:
             description: ''
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_34
-        schema: *ref_15
+        schema: *ref_11
         implementation: Method
         originalParameter: *ref_30
         pathToProperty: []
@@ -728,10 +728,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /additionalProperties/type/object
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_29
@@ -760,8 +762,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: CreateAPObject
@@ -771,16 +771,16 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
       - !<!Parameter> &ref_36
         schema: *ref_35
         flattened: true
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: createParameters
         language: !<!Languages> 
           default:
             name: createParameters
@@ -790,7 +790,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_39
-        schema: *ref_4
+        schema: *ref_7
         implementation: Method
         originalParameter: *ref_36
         pathToProperty: []
@@ -803,7 +803,7 @@ operationGroups:
             description: ''
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_40
-        schema: *ref_16
+        schema: *ref_13
         implementation: Method
         originalParameter: *ref_36
         pathToProperty: []
@@ -826,10 +826,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /additionalProperties/type/string
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_35
@@ -858,8 +860,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: CreateAPString
@@ -869,15 +869,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
       - !<!Parameter> &ref_42
         schema: *ref_41
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: createParameters
         language: !<!Languages> 
           default:
             name: createParameters
@@ -896,10 +896,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /additionalProperties/in/properties
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_41
@@ -928,8 +930,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: CreateAPInProperties
@@ -939,15 +939,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
       - !<!Parameter> &ref_44
         schema: *ref_43
         implementation: Method
         required: true
-        extensions:
-          x-ms-requestBody-name: createParameters
         language: !<!Languages> 
           default:
             name: createParameters
@@ -966,10 +966,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /additionalProperties/in/properties/with/additionalProperties/string
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_43
@@ -998,8 +1000,6 @@ operationGroups:
           - application/json
           statusCodes:
           - default
-    extensions:
-      x-ms-requestBody-index: 0
     language: !<!Languages> 
       default:
         name: CreateAPInPropertiesWithAPString

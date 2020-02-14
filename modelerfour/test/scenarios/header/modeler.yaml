@@ -1,50 +1,8 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: header
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_5
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_1
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_0
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: ''
-        namespace: Api100
-    protocol: !<!Protocols> {}
   booleans:
   - !<!BooleanSchema> &ref_24
     type: boolean
@@ -54,6 +12,124 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: boolean
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_8
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_12
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_16
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: number
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_20
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: number
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_2
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-message
+        description: ''
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_51
+    choices:
+    - !<!ChoiceValue> 
+      value: White
+      language:
+        default:
+          name: White
+          description: ''
+    - !<!ChoiceValue> 
+      value: black
+      language:
+        default:
+          name: black
+          description: ''
+    - !<!ChoiceValue> 
+      value: GREY
+      language:
+        default:
+          name: GREY
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_2
+    language: !<!Languages> 
+      default:
+        name: GreyscaleColors
         description: ''
         header: value
     protocol: !<!Protocols> {}
@@ -119,108 +195,35 @@ schemas: !<!Schemas>
         description: ''
         header: value
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_1
-  - !<!NumberSchema> &ref_8
-    type: integer
+  objects:
+  - !<!ObjectSchema> &ref_5
+    type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_12
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_16
-    type: number
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: number
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_20
-    type: number
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: number
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  sealedChoices:
-  - !<!SealedChoiceSchema> &ref_51
-    choices:
-    - !<!ChoiceValue> 
-      value: White
-      language:
-        default:
-          name: White
-          description: ''
-    - !<!ChoiceValue> 
-      value: black
-      language:
-        default:
-          name: black
-          description: ''
-    - !<!ChoiceValue> 
-      value: GREY
-      language:
-        default:
-          name: GREY
-          description: ''
-    type: sealed-choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: !<!StringSchema> &ref_2
-      type: string
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
       language: !<!Languages> 
         default:
-          name: string
-          description: simple string
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_0
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: GreyscaleColors
+        name: Error
         description: ''
-        header: value
+        namespace: Api100
     protocol: !<!Protocols> {}
-  strings:
-  - *ref_2
-  - !<!StringSchema> &ref_3
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - *ref_0
 globalParameters:
 - !<!Parameter> &ref_6
   schema: *ref_2
@@ -237,9 +240,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: header
 operationGroups:
 - !<!OperationGroup> 
   $key: header
@@ -248,32 +248,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_4
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: User-Agent
-            description: 'Send a post request with header value "User-Agent": "overwrite"'
-            serializedName: User-Agent
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_4
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_4
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: User-Agent
+          description: 'Send a post request with header value "User-Agent": "overwrite"'
+          serializedName: User-Agent
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/existingkey
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_4
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -307,19 +308,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/existingkey
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -357,32 +359,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_7
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: Content-Type
-            description: 'Send a post request with header value "Content-Type": "text/html"'
-            serializedName: Content-Type
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_7
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_7
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: Content-Type
+          description: 'Send a post request with header value "Content-Type": "text/html"'
+          serializedName: Content-Type
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/protectedkey
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_7
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -416,19 +419,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/protectedkey
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -466,45 +470,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_9
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_10
-        schema: *ref_8
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values 1 or -2
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_9
-      - *ref_10
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_9
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_10
+      schema: *ref_8
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values 1 or -2
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/integer
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_9
+    - *ref_10
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -538,32 +543,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_11
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_11
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_11
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/integer
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_11
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -601,45 +607,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_13
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_14
-        schema: *ref_12
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values 105 or -2
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_13
-      - *ref_14
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_13
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_14
+      schema: *ref_12
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values 105 or -2
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/long
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_13
+    - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -673,32 +680,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_15
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_15
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_15
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/long
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_15
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -736,45 +744,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_17
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_18
-        schema: *ref_16
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values 0.07 or -3.0
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_17
-      - *ref_18
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_17
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_18
+      schema: *ref_16
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values 0.07 or -3.0
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/float
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_17
+    - *ref_18
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -808,32 +817,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_19
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_19
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_19
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/float
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_19
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -871,45 +881,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_21
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_22
-        schema: *ref_20
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values 7e120 or -3.0
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_21
-      - *ref_22
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_21
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_22
+      schema: *ref_20
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values 7e120 or -3.0
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/double
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_21
+    - *ref_22
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -943,32 +954,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_23
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_23
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_23
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/double
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_23
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1006,45 +1018,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_25
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_26
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values true or false
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_25
-      - *ref_26
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_25
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_26
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values true or false
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/bool
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_25
+    - *ref_26
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1078,32 +1091,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_27
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_27
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_27
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/bool
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_27
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1141,44 +1155,45 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_28
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_29
-        schema: *ref_3
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or ""
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_28
-      - *ref_29
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_28
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_29
+      schema: *ref_3
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or ""
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/string
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_28
+    - *ref_29
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1212,32 +1227,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_30
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_30
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_30
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/string
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_30
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1275,45 +1291,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_32
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_33
-        schema: *ref_31
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values "2010-01-01" or "0001-01-01"
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_32
-      - *ref_33
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_32
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_33
+      schema: *ref_31
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values "2010-01-01" or "0001-01-01"
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/date
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_32
+    - *ref_33
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1347,32 +1364,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_34
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_34
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_34
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/date
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_34
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1410,45 +1428,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_36
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_37
-        schema: *ref_35
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: 'Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"'
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_36
-      - *ref_37
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_36
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_37
+      schema: *ref_35
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: 'Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"'
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/datetime
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_36
+    - *ref_37
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1482,32 +1501,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_38
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_38
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_38
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/datetime
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_38
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1545,44 +1565,45 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_40
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_41
-        schema: *ref_39
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: value
-            description: 'Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"'
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_40
-      - *ref_41
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_40
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_41
+      schema: *ref_39
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: value
+          description: 'Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"'
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/datetimerfc1123
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_40
+    - *ref_41
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1616,32 +1637,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_42
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_42
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_42
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/datetimerfc1123
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_42
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1679,45 +1701,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_44
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_45
-        schema: *ref_43
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values "P123DT22H14M12.011S"
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_44
-      - *ref_45
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_44
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_45
+      schema: *ref_43
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values "P123DT22H14M12.011S"
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/duration
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_44
+    - *ref_45
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1751,32 +1774,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_46
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_46
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_46
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/duration
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_46
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1814,45 +1838,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_48
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_49
-        schema: *ref_47
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: value
-            description: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_48
-      - *ref_49
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_48
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_49
+      schema: *ref_47
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: value
+          description: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/byte
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_48
+    - *ref_49
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1886,32 +1911,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_50
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_50
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_50
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/byte
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_50
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1949,44 +1975,45 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_52
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_53
-        schema: *ref_51
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: value
-            description: 'Send a post request with header values ''GREY'' '
-            serializedName: value
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_52
-      - *ref_53
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_52
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - !<!Parameter> &ref_53
+      schema: *ref_51
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: value
+          description: 'Send a post request with header values ''GREY'' '
+          serializedName: value
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/param/prim/enum
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_52
+    - *ref_53
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2020,32 +2047,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      - !<!Parameter> &ref_54
-        schema: *ref_3
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: scenario
-            description: 'Send a post request with header values "scenario": "positive" or "negative"'
-            serializedName: scenario
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_54
+    parameters:
+    - *ref_6
+    - !<!Parameter> &ref_54
+      schema: *ref_3
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: scenario
+          description: 'Send a post request with header values "scenario": "positive" or "negative"'
+          serializedName: scenario
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/response/prim/enum
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_54
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2083,19 +2111,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_6
-      signatureParameters: []
+    parameters:
+    - *ref_6
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
