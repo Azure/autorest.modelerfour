@@ -99,38 +99,39 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_4
-        schema: *ref_2
-        implementation: Method
-        required: true
-        extensions:
-          x-in: path
-          x-ms-skip-url-encoding: true
-          x-name: accountName
-          x-required: true
-          x-type: string
-        language: !<!Languages> 
-          default:
-            name: accountName
-            description: Account Name
-            serializedName: accountName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: uri
-      - *ref_3
-      signatureParameters:
-      - *ref_4
+    parameters:
+    - !<!Parameter> &ref_4
+      schema: *ref_2
+      implementation: Method
+      required: true
+      extensions:
+        x-in: path
+        x-ms-skip-url-encoding: true
+        x-name: accountName
+        x-required: true
+        x-type: string
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: Account Name
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: uri
+    - *ref_3
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /customuri
           method: get
           uri: 'http://{accountName}{host}'
+    signatureParameters:
+    - *ref_4
     responses:
     - !<!Response> 
       language: !<!Languages> 

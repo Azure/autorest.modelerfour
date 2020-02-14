@@ -425,12 +425,14 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_15
+    - *ref_16
+    - *ref_17
+    - *ref_18
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_15
-      - *ref_16
-      - *ref_17
-      - *ref_18
       - *ref_19
       - *ref_5
       signatureParameters:
@@ -443,10 +445,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/parameterGrouping/postRequired/{path}'
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -482,11 +486,13 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_15
+    - *ref_21
+    - *ref_22
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_15
-      - *ref_21
-      - *ref_22
       - *ref_8
       signatureParameters:
       - *ref_8
@@ -495,10 +501,11 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /parameterGrouping/postOptional
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -532,13 +539,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_15
+    - *ref_23
+    - *ref_24
+    - *ref_25
+    - *ref_26
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_15
-      - *ref_23
-      - *ref_24
-      - *ref_25
-      - *ref_26
       - *ref_10
       - *ref_13
       signatureParameters:
@@ -549,10 +558,11 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /parameterGrouping/postMultipleParameterGroups
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -586,11 +596,13 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_15
+    - *ref_27
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_15
-      - *ref_27
-      - *ref_28
       - *ref_11
       signatureParameters:
       - *ref_11
@@ -599,10 +611,11 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /parameterGrouping/sharedParameterGroupObject
           method: post
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 

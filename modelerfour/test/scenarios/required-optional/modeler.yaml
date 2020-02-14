@@ -465,32 +465,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_14
-        schema: *ref_9
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: pathParameter
-            description: ''
-            serializedName: pathParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_14
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_14
+      schema: *ref_9
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: pathParameter
+          description: ''
+          serializedName: pathParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/reqopt/implicit/required/path/{pathParameter}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_14
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -524,31 +525,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_17
-        schema: *ref_9
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: queryParameter
-            description: ''
-            serializedName: queryParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      signatureParameters:
-      - *ref_17
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_17
+      schema: *ref_9
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: queryParameter
+          description: ''
+          serializedName: queryParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/implicit/optional/query
           method: put
           uri: '{$host}'
+    signatureParameters:
+    - *ref_17
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -582,31 +584,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_18
-        schema: *ref_9
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: queryParameter
-            description: ''
-            serializedName: queryParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_18
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_18
+      schema: *ref_9
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: queryParameter
+          description: ''
+          serializedName: queryParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/implicit/optional/header
           method: put
           uri: '{$host}'
+    signatureParameters:
+    - *ref_18
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -640,9 +643,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_19
         schema: *ref_9
         implementation: Method
@@ -666,10 +671,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/implicit/optional/body
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -705,20 +712,21 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - *ref_54
-      signatureParameters: []
+    parameters:
+    - *ref_16
+    - *ref_54
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/reqopt/global/required/path/{required-global-path}'
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -752,20 +760,21 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - *ref_55
-      signatureParameters: []
+    parameters:
+    - *ref_16
+    - *ref_55
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/global/required/query
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -799,20 +808,21 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - *ref_56
-      signatureParameters: []
+    parameters:
+    - *ref_16
+    - *ref_56
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/global/optional/query
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -854,9 +864,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_21
         schema: *ref_20
         implementation: Method
@@ -881,10 +893,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/integer/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -920,9 +934,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_22
         schema: *ref_20
         implementation: Method
@@ -946,10 +962,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/integer/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -985,9 +1003,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_24
         schema: *ref_23
         implementation: Method
@@ -1012,10 +1032,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/integer/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1051,9 +1073,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_26
         schema: *ref_25
         implementation: Method
@@ -1077,10 +1101,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/integer/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1116,32 +1142,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_27
-        schema: *ref_20
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: headerParameter
-            description: ''
-            serializedName: headerParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_27
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_27
+      schema: *ref_20
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: headerParameter
+          description: ''
+          serializedName: headerParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/requied/integer/header
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_27
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1175,31 +1202,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_28
-        schema: *ref_20
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: headerParameter
-            description: ''
-            serializedName: headerParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_28
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_28
+      schema: *ref_20
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: headerParameter
+          description: ''
+          serializedName: headerParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/optional/integer/header
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_28
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1233,9 +1261,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_29
         schema: *ref_9
         implementation: Method
@@ -1260,10 +1290,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/string/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1299,9 +1331,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_30
         schema: *ref_9
         implementation: Method
@@ -1325,10 +1359,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/string/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1364,9 +1400,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_32
         schema: *ref_31
         implementation: Method
@@ -1391,10 +1429,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/string/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1430,9 +1470,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_34
         schema: *ref_33
         implementation: Method
@@ -1456,10 +1498,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/string/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1495,32 +1539,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_35
-        schema: *ref_9
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: headerParameter
-            description: ''
-            serializedName: headerParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_35
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_35
+      schema: *ref_9
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: headerParameter
+          description: ''
+          serializedName: headerParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/requied/string/header
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_35
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1554,31 +1599,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_36
-        schema: *ref_9
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: bodyParameter
-            description: ''
-            serializedName: bodyParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_36
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_36
+      schema: *ref_9
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: bodyParameter
+          description: ''
+          serializedName: bodyParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/optional/string/header
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_36
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1612,9 +1658,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_37
         schema: *ref_5
         implementation: Method
@@ -1639,10 +1687,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/class/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1678,9 +1728,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_38
         schema: *ref_5
         implementation: Method
@@ -1704,10 +1756,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/class/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1743,9 +1797,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_40
         schema: *ref_39
         implementation: Method
@@ -1770,10 +1826,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/class/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1809,9 +1867,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_42
         schema: *ref_41
         implementation: Method
@@ -1835,10 +1895,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/class/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1874,9 +1936,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_44
         schema: *ref_43
         implementation: Method
@@ -1901,10 +1965,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/array/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -1940,9 +2006,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_46
         schema: *ref_45
         implementation: Method
@@ -1966,10 +2034,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/array/parameter
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2005,9 +2075,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_48
         schema: *ref_47
         implementation: Method
@@ -2032,10 +2104,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/array/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2071,9 +2145,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_16
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_16
       - !<!Parameter> &ref_50
         schema: *ref_49
         implementation: Method
@@ -2097,10 +2173,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/array/property
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2136,33 +2214,34 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_52
-        schema: *ref_51
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: headerParameter
-            description: ''
-            serializedName: headerParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-            style: simple
-      signatureParameters:
-      - *ref_52
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_52
+      schema: *ref_51
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: headerParameter
+          description: ''
+          serializedName: headerParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+          style: simple
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/requied/array/header
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_52
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2196,32 +2275,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_16
-      - !<!Parameter> &ref_53
-        schema: *ref_45
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: headerParameter
-            description: ''
-            serializedName: headerParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-            style: simple
-      signatureParameters:
-      - *ref_53
+    parameters:
+    - *ref_16
+    - !<!Parameter> &ref_53
+      schema: *ref_45
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: headerParameter
+          description: ''
+          serializedName: headerParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+          style: simple
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /reqopt/optional/array/header
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_53
     responses:
     - !<!Response> 
       language: !<!Languages> 

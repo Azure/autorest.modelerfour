@@ -181,32 +181,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2016-07-07'
-    request: !<!Request> 
-      parameters:
-      - *ref_4
-      - !<!Parameter> &ref_6
-        schema: *ref_5
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: petId
-            description: Pet id
-            serializedName: petId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_6
+    parameters:
+    - *ref_4
+    - !<!Parameter> &ref_6
+      schema: *ref_5
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: petId
+          description: Pet id
+          serializedName: petId
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/extensibleenums/pet/{petId}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_6
     responses:
     - !<!SchemaResponse> 
       schema: *ref_7
@@ -230,9 +231,11 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2016-07-07'
-    request: !<!Request> 
+    parameters:
+    - *ref_4
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_4
       - !<!Parameter> &ref_8
         schema: *ref_7
         implementation: Method
@@ -256,10 +259,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /extensibleenums/pet/addPet
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_7

@@ -2046,31 +2046,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
-    request: !<!Request> 
+    parameters:
+    - *ref_95
+    - !<!Parameter> &ref_101
+      schema: *ref_60
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: model-version
+          description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
+          serializedName: model-version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_102
+      schema: *ref_96
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: showStats
+          description: '(Optional) if set to true, response will contain input and document level statistics.'
+          serializedName: showStats
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_95
-      - !<!Parameter> &ref_100
-        schema: *ref_60
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: model-version
-            description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
-            serializedName: model-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_101
-        schema: *ref_96
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: showStats
-            description: '(Optional) if set to true, response will contain input and document level statistics.'
-            serializedName: showStats
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_98
         schema: *ref_97
         flattened: true
@@ -2086,7 +2088,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_102
+      - !<!Parameter> &ref_100
         schema: *ref_21
         implementation: Method
         originalParameter: *ref_98
@@ -2101,8 +2103,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_100
-      - *ref_101
-      - *ref_102
       language: !<!Languages> 
         default:
           name: ''
@@ -2111,11 +2111,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /entities/recognition/general
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           - text/json
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
+    signatureParameters:
+    - *ref_101
+    - *ref_102
     responses:
     - !<!SchemaResponse> 
       schema: *ref_103
@@ -2216,31 +2220,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
-    request: !<!Request> 
+    parameters:
+    - *ref_95
+    - !<!Parameter> &ref_106
+      schema: *ref_60
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: model-version
+          description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
+          serializedName: model-version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_107
+      schema: *ref_96
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: showStats
+          description: '(Optional) if set to true, response will contain input and document level statistics.'
+          serializedName: showStats
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_95
-      - !<!Parameter> &ref_105
-        schema: *ref_60
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: model-version
-            description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
-            serializedName: model-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_106
-        schema: *ref_96
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: showStats
-            description: '(Optional) if set to true, response will contain input and document level statistics.'
-            serializedName: showStats
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_104
         schema: *ref_97
         flattened: true
@@ -2256,7 +2262,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_107
+      - !<!Parameter> &ref_105
         schema: *ref_21
         implementation: Method
         originalParameter: *ref_104
@@ -2271,8 +2277,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_105
-      - *ref_106
-      - *ref_107
       language: !<!Languages> 
         default:
           name: ''
@@ -2281,11 +2285,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /entities/recognition/pii
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           - text/json
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
+    signatureParameters:
+    - *ref_106
+    - *ref_107
     responses:
     - !<!SchemaResponse> 
       schema: *ref_103
@@ -2377,31 +2385,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
-    request: !<!Request> 
+    parameters:
+    - *ref_95
+    - !<!Parameter> &ref_110
+      schema: *ref_60
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: model-version
+          description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
+          serializedName: model-version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_111
+      schema: *ref_96
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: showStats
+          description: '(Optional) if set to true, response will contain input and document level statistics.'
+          serializedName: showStats
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_95
-      - !<!Parameter> &ref_109
-        schema: *ref_60
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: model-version
-            description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
-            serializedName: model-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_110
-        schema: *ref_96
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: showStats
-            description: '(Optional) if set to true, response will contain input and document level statistics.'
-            serializedName: showStats
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_108
         schema: *ref_97
         flattened: true
@@ -2417,7 +2427,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_111
+      - !<!Parameter> &ref_109
         schema: *ref_21
         implementation: Method
         originalParameter: *ref_108
@@ -2432,8 +2442,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_109
-      - *ref_110
-      - *ref_111
       language: !<!Languages> 
         default:
           name: ''
@@ -2442,11 +2450,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /entities/linking
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           - text/json
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
+    signatureParameters:
+    - *ref_110
+    - *ref_111
     responses:
     - !<!SchemaResponse> 
       schema: *ref_112
@@ -2548,31 +2560,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
-    request: !<!Request> 
+    parameters:
+    - *ref_95
+    - !<!Parameter> &ref_115
+      schema: *ref_60
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: model-version
+          description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
+          serializedName: model-version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_116
+      schema: *ref_96
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: showStats
+          description: '(Optional) if set to true, response will contain input and document level statistics.'
+          serializedName: showStats
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_95
-      - !<!Parameter> &ref_114
-        schema: *ref_60
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: model-version
-            description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
-            serializedName: model-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_115
-        schema: *ref_96
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: showStats
-            description: '(Optional) if set to true, response will contain input and document level statistics.'
-            serializedName: showStats
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_113
         schema: *ref_97
         flattened: true
@@ -2588,7 +2602,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_116
+      - !<!Parameter> &ref_114
         schema: *ref_21
         implementation: Method
         originalParameter: *ref_113
@@ -2603,8 +2617,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_114
-      - *ref_115
-      - *ref_116
       language: !<!Languages> 
         default:
           name: ''
@@ -2613,11 +2625,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /keyPhrases
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           - text/json
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
+    signatureParameters:
+    - *ref_115
+    - *ref_116
     responses:
     - !<!SchemaResponse> 
       schema: *ref_117
@@ -2695,31 +2711,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
-    request: !<!Request> 
+    parameters:
+    - *ref_95
+    - !<!Parameter> &ref_122
+      schema: *ref_60
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: model-version
+          description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
+          serializedName: model-version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_123
+      schema: *ref_96
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: showStats
+          description: '(Optional) if set to true, response will contain input and document level statistics.'
+          serializedName: showStats
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_95
-      - !<!Parameter> &ref_121
-        schema: *ref_60
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: model-version
-            description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
-            serializedName: model-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_122
-        schema: *ref_96
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: showStats
-            description: '(Optional) if set to true, response will contain input and document level statistics.'
-            serializedName: showStats
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_119
         schema: *ref_118
         flattened: true
@@ -2735,7 +2753,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_123
+      - !<!Parameter> &ref_121
         schema: *ref_33
         implementation: Method
         originalParameter: *ref_119
@@ -2750,8 +2768,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_121
-      - *ref_122
-      - *ref_123
       language: !<!Languages> 
         default:
           name: ''
@@ -2760,11 +2776,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /languages
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           - text/json
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
+    signatureParameters:
+    - *ref_122
+    - *ref_123
     responses:
     - !<!SchemaResponse> 
       schema: *ref_124
@@ -2845,31 +2865,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: v3.0-preview.1
-    request: !<!Request> 
+    parameters:
+    - *ref_95
+    - !<!Parameter> &ref_127
+      schema: *ref_60
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: model-version
+          description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
+          serializedName: model-version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_128
+      schema: *ref_96
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: showStats
+          description: '(Optional) if set to true, response will contain input and document level statistics.'
+          serializedName: showStats
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_95
-      - !<!Parameter> &ref_126
-        schema: *ref_60
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: model-version
-            description: '(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. '
-            serializedName: model-version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_127
-        schema: *ref_96
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: showStats
-            description: '(Optional) if set to true, response will contain input and document level statistics.'
-            serializedName: showStats
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
       - !<!Parameter> &ref_125
         schema: *ref_97
         flattened: true
@@ -2885,7 +2907,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_128
+      - !<!Parameter> &ref_126
         schema: *ref_21
         implementation: Method
         originalParameter: *ref_125
@@ -2900,8 +2922,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_126
-      - *ref_127
-      - *ref_128
       language: !<!Languages> 
         default:
           name: ''
@@ -2910,11 +2930,15 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /sentiment
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           - text/json
           uri: '{Endpoint}/text/analytics/v3.0-preview.1'
+    signatureParameters:
+    - *ref_127
+    - *ref_128
     responses:
     - !<!SchemaResponse> 
       schema: *ref_129

@@ -1959,38 +1959,39 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
-      parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - !<!Parameter> &ref_93
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: &ref_104
-            name: request-options
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_92
-      signatureParameters:
-      - *ref_93
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - !<!Parameter> &ref_93
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: &ref_104
+          name: request-options
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_92
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs/$count
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_93
     responses:
     - !<!SchemaResponse> 
       schema: *ref_94
@@ -2026,304 +2027,305 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
-      parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - !<!Parameter> &ref_105
-        schema: *ref_24
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: SearchText
-            description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
-            serializedName: search
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_106
-        schema: *ref_95
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: IncludeTotalResultCount
-            description: A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.
-            serializedName: $count
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_107
-        schema: *ref_96
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: Facets
-            description: 'The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.'
-            serializedName: facet
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-            style: form
-      - !<!Parameter> &ref_108
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: $filter
-            description: The OData $filter expression to apply to the search query.
-            serializedName: $filter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_109
-        schema: *ref_97
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: HighlightFields
-            description: The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.
-            serializedName: highlight
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_110
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: highlightPostTag
-            description: A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.
-            serializedName: highlightPostTag
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_111
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: highlightPreTag
-            description: A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.
-            serializedName: highlightPreTag
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_112
-        schema: *ref_98
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: minimumCoverage
-            description: >-
-              A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even
-              for services with only one replica. The default is 100.
-            serializedName: minimumCoverage
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_113
-        schema: *ref_99
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: OrderBy
-            description: >-
-              The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to
-              indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match
-              score. There can be at most 32 $orderby clauses.
-            serializedName: $orderby
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_114
-        schema: *ref_44
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: queryType
-            description: A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.
-            serializedName: queryType
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_115
-        schema: *ref_100
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: ScoringParameters
-            description: >-
-              The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the
-              parameter string would be "mylocation--122.2,44.8" (without the quotes).
-            serializedName: scoringParameter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-            style: form
-      - !<!Parameter> &ref_116
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: scoringProfile
-            description: The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.
-            serializedName: scoringProfile
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_117
-        schema: *ref_101
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: searchFields
-            description: >-
-              The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field
-              names listed in this parameter.
-            serializedName: searchFields
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_118
-        schema: *ref_45
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: searchMode
-            description: A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.
-            serializedName: searchMode
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_119
-        schema: *ref_102
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: $select
-            description: 'The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.'
-            serializedName: $select
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_120
-        schema: *ref_103
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: $skip
-            description: >-
-              The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and
-              $filter with a range query instead.
-            serializedName: $skip
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_121
-        schema: *ref_103
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SearchOptions
-        language: !<!Languages> 
-          default:
-            name: $top
-            description: >-
-              The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a
-              continuation token that can be used to issue another Search request for the next page of results.
-            serializedName: $top
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_92
-      - !<!Parameter> &ref_122
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_105
-      - *ref_106
-      - *ref_107
-      - *ref_108
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_112
-      - *ref_113
-      - *ref_114
-      - *ref_115
-      - *ref_116
-      - *ref_117
-      - *ref_118
-      - *ref_119
-      - *ref_120
-      - *ref_121
-      - *ref_122
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - !<!Parameter> &ref_105
+      schema: *ref_24
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: SearchText
+          description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
+          serializedName: search
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_106
+      schema: *ref_95
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: IncludeTotalResultCount
+          description: A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.
+          serializedName: $count
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_107
+      schema: *ref_96
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: Facets
+          description: 'The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.'
+          serializedName: facet
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+          style: form
+    - !<!Parameter> &ref_108
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: $filter
+          description: The OData $filter expression to apply to the search query.
+          serializedName: $filter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_109
+      schema: *ref_97
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: HighlightFields
+          description: The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.
+          serializedName: highlight
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_110
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: highlightPostTag
+          description: A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.
+          serializedName: highlightPostTag
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_111
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: highlightPreTag
+          description: A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.
+          serializedName: highlightPreTag
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_112
+      schema: *ref_98
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: minimumCoverage
+          description: >-
+            A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for
+            services with only one replica. The default is 100.
+          serializedName: minimumCoverage
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_113
+      schema: *ref_99
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: OrderBy
+          description: >-
+            The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to
+            indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match score.
+            There can be at most 32 $orderby clauses.
+          serializedName: $orderby
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_114
+      schema: *ref_44
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: queryType
+          description: A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.
+          serializedName: queryType
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_115
+      schema: *ref_100
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: ScoringParameters
+          description: >-
+            The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the
+            parameter string would be "mylocation--122.2,44.8" (without the quotes).
+          serializedName: scoringParameter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+          style: form
+    - !<!Parameter> &ref_116
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: scoringProfile
+          description: The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.
+          serializedName: scoringProfile
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_117
+      schema: *ref_101
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: searchFields
+          description: >-
+            The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field
+            names listed in this parameter.
+          serializedName: searchFields
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_118
+      schema: *ref_45
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: searchMode
+          description: A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.
+          serializedName: searchMode
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_119
+      schema: *ref_102
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: $select
+          description: 'The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.'
+          serializedName: $select
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_120
+      schema: *ref_103
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: $skip
+          description: >-
+            The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and
+            $filter with a range query instead.
+          serializedName: $skip
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_121
+      schema: *ref_103
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SearchOptions
+      language: !<!Languages> 
+        default:
+          name: $top
+          description: >-
+            The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation
+            token that can be used to issue another Search request for the next page of results.
+          serializedName: $top
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_92
+    - !<!Parameter> &ref_122
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_105
+    - *ref_106
+    - *ref_107
+    - *ref_108
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_112
+    - *ref_113
+    - *ref_114
+    - *ref_115
+    - *ref_116
+    - *ref_117
+    - *ref_118
+    - *ref_119
+    - *ref_120
+    - *ref_121
+    - *ref_122
     responses:
     - !<!SchemaResponse> 
       schema: *ref_123
@@ -2409,27 +2411,29 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - *ref_92
+    - !<!Parameter> &ref_125
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - *ref_92
       - !<!Parameter> &ref_124
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_125
         schema: *ref_5
         implementation: Method
         required: true
@@ -2445,7 +2449,6 @@ operationGroups:
             style: json
       signatureParameters:
       - *ref_124
-      - *ref_125
       language: !<!Languages> 
         default:
           name: ''
@@ -2454,10 +2457,13 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.post.search
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_125
     responses:
     - !<!SchemaResponse> 
       schema: *ref_123
@@ -2557,62 +2563,63 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
-      parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - !<!Parameter> &ref_127
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: key
-            description: The key of the document to retrieve.
-            serializedName: key
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_128
-        schema: *ref_126
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: SelectedFields
-            description: List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.
-            serializedName: $select
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_92
-      - !<!Parameter> &ref_129
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_127
-      - *ref_128
-      - *ref_129
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - !<!Parameter> &ref_127
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: key
+          description: The key of the document to retrieve.
+          serializedName: key
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_128
+      schema: *ref_126
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: SelectedFields
+          description: List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.
+          serializedName: $select
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_92
+    - !<!Parameter> &ref_129
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/docs(''{key}'')'
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_127
+    - *ref_128
+    - *ref_129
     responses:
     - !<!SchemaResponse> 
       schema: *ref_130
@@ -2655,205 +2662,206 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
-      parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - !<!Parameter> &ref_134
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: SearchText
-            description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
-            serializedName: search
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_135
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: suggesterName
-            description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
-            serializedName: suggesterName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_136
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: $filter
-            description: An OData expression that filters the documents considered for suggestions.
-            serializedName: $filter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_137
-        schema: *ref_95
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: UseFuzzyMatching
-            description: >-
-              A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this
-              provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.
-            serializedName: fuzzy
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_138
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: highlightPostTag
-            description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.'
-            serializedName: highlightPostTag
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_139
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: highlightPreTag
-            description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.'
-            serializedName: highlightPreTag
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_140
-        schema: *ref_98
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: minimumCoverage
-            description: >-
-              A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability
-              even for services with only one replica. The default is 80.
-            serializedName: minimumCoverage
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_141
-        schema: *ref_131
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: OrderBy
-            description: >-
-              The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to
-              indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match
-              score. There can be at most 32 $orderby clauses.
-            serializedName: $orderby
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_142
-        schema: *ref_132
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: searchFields
-            description: The list of field names to search for the specified search text. Target fields must be included in the specified suggester.
-            serializedName: searchFields
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_143
-        schema: *ref_133
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: $select
-            description: 'The list of fields to retrieve. If unspecified, only the key field will be included in the results.'
-            serializedName: $select
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_144
-        schema: *ref_103
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: SuggestOptions
-        language: !<!Languages> 
-          default:
-            name: $top
-            description: The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.
-            serializedName: $top
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_92
-      - !<!Parameter> &ref_145
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      signatureParameters:
-      - *ref_134
-      - *ref_135
-      - *ref_136
-      - *ref_137
-      - *ref_138
-      - *ref_139
-      - *ref_140
-      - *ref_141
-      - *ref_142
-      - *ref_143
-      - *ref_144
-      - *ref_145
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - !<!Parameter> &ref_134
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: SearchText
+          description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
+          serializedName: search
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_135
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: suggesterName
+          description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
+          serializedName: suggesterName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_136
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: $filter
+          description: An OData expression that filters the documents considered for suggestions.
+          serializedName: $filter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_137
+      schema: *ref_95
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: UseFuzzyMatching
+          description: >-
+            A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides
+            a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.
+          serializedName: fuzzy
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_138
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: highlightPostTag
+          description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.'
+          serializedName: highlightPostTag
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_139
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: highlightPreTag
+          description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.'
+          serializedName: highlightPreTag
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_140
+      schema: *ref_98
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: minimumCoverage
+          description: >-
+            A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even
+            for services with only one replica. The default is 80.
+          serializedName: minimumCoverage
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_141
+      schema: *ref_131
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: OrderBy
+          description: >-
+            The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to
+            indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score.
+            There can be at most 32 $orderby clauses.
+          serializedName: $orderby
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_142
+      schema: *ref_132
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: searchFields
+          description: The list of field names to search for the specified search text. Target fields must be included in the specified suggester.
+          serializedName: searchFields
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_143
+      schema: *ref_133
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: $select
+          description: 'The list of fields to retrieve. If unspecified, only the key field will be included in the results.'
+          serializedName: $select
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_144
+      schema: *ref_103
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: SuggestOptions
+      language: !<!Languages> 
+        default:
+          name: $top
+          description: The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.
+          serializedName: $top
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_92
+    - !<!Parameter> &ref_145
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs/search.suggest
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_134
+    - *ref_135
+    - *ref_136
+    - *ref_137
+    - *ref_138
+    - *ref_139
+    - *ref_140
+    - *ref_141
+    - *ref_142
+    - *ref_143
+    - *ref_144
+    - *ref_145
     responses:
     - !<!SchemaResponse> 
       schema: *ref_146
@@ -2915,27 +2923,29 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - *ref_92
+    - !<!Parameter> &ref_149
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - *ref_92
       - !<!Parameter> &ref_148
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - !<!Parameter> &ref_149
         schema: *ref_147
         implementation: Method
         required: true
@@ -2951,7 +2961,6 @@ operationGroups:
             style: json
       signatureParameters:
       - *ref_148
-      - *ref_149
       language: !<!Languages> 
         default:
           name: ''
@@ -2960,10 +2969,13 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.post.suggest
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_149
     responses:
     - !<!SchemaResponse> 
       schema: *ref_146
@@ -3019,26 +3031,28 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - *ref_92
+    - !<!Parameter> &ref_154
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - *ref_92
-      - !<!Parameter> &ref_153
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
       - !<!Parameter> &ref_151
         schema: *ref_150
         flattened: true
@@ -3054,7 +3068,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_154
+      - !<!Parameter> &ref_153
         schema: *ref_22
         implementation: Method
         originalParameter: *ref_151
@@ -3069,7 +3083,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_153
-      - *ref_154
       language: !<!Languages> 
         default:
           name: ''
@@ -3078,10 +3091,13 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.index
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_154
     responses:
     - !<!SchemaResponse> 
       schema: *ref_155
@@ -3181,187 +3197,188 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
-      parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
-      - !<!Parameter> &ref_157
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_92
-      - !<!Parameter> &ref_158
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: SearchText
-            description: The incomplete term which should be auto-completed.
-            serializedName: search
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_159
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: suggesterName
-            description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
-            serializedName: suggesterName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_160
-        schema: *ref_47
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: autocompleteMode
-            description: Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.
-            serializedName: autocompleteMode
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_161
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: $filter
-            description: An OData expression that filters the documents used to produce completed terms for the Autocomplete result.
-            serializedName: $filter
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_162
-        schema: *ref_95
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: UseFuzzyMatching
-            description: >-
-              A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this
-              provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.
-            serializedName: fuzzy
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_163
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: highlightPostTag
-            description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.'
-            serializedName: highlightPostTag
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_164
-        schema: *ref_24
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: highlightPreTag
-            description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.'
-            serializedName: highlightPreTag
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_165
-        schema: *ref_98
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: minimumCoverage
-            description: >-
-              A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability
-              even for services with only one replica. The default is 80.
-            serializedName: minimumCoverage
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_166
-        schema: *ref_156
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: searchFields
-            description: The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.
-            serializedName: searchFields
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_167
-        schema: *ref_103
-        implementation: Method
-        extensions:
-          x-ms-parameter-grouping:
-            name: AutocompleteOptions
-        language: !<!Languages> 
-          default:
-            name: $top
-            description: The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.
-            serializedName: $top
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      signatureParameters:
-      - *ref_157
-      - *ref_158
-      - *ref_159
-      - *ref_160
-      - *ref_161
-      - *ref_162
-      - *ref_163
-      - *ref_164
-      - *ref_165
-      - *ref_166
-      - *ref_167
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - !<!Parameter> &ref_157
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_92
+    - !<!Parameter> &ref_158
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: SearchText
+          description: The incomplete term which should be auto-completed.
+          serializedName: search
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_159
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: suggesterName
+          description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
+          serializedName: suggesterName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_160
+      schema: *ref_47
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: autocompleteMode
+          description: Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.
+          serializedName: autocompleteMode
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_161
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: $filter
+          description: An OData expression that filters the documents used to produce completed terms for the Autocomplete result.
+          serializedName: $filter
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_162
+      schema: *ref_95
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: UseFuzzyMatching
+          description: >-
+            A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this
+            provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.
+          serializedName: fuzzy
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_163
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: highlightPostTag
+          description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.'
+          serializedName: highlightPostTag
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_164
+      schema: *ref_24
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: highlightPreTag
+          description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.'
+          serializedName: highlightPreTag
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_165
+      schema: *ref_98
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: minimumCoverage
+          description: >-
+            A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability
+            even for services with only one replica. The default is 80.
+          serializedName: minimumCoverage
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_166
+      schema: *ref_156
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: searchFields
+          description: The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.
+          serializedName: searchFields
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_167
+      schema: *ref_103
+      implementation: Method
+      extensions:
+        x-ms-parameter-grouping:
+          name: AutocompleteOptions
+      language: !<!Languages> 
+        default:
+          name: $top
+          description: The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.
+          serializedName: $top
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs/search.autocomplete
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_157
+    - *ref_158
+    - *ref_159
+    - *ref_160
+    - *ref_161
+    - *ref_162
+    - *ref_163
+    - *ref_164
+    - *ref_165
+    - *ref_166
+    - *ref_167
     responses:
     - !<!SchemaResponse> 
       schema: *ref_168
@@ -3415,27 +3432,29 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_88
+    - *ref_89
+    - *ref_90
+    - !<!Parameter> &ref_171
+      schema: *ref_91
+      implementation: Method
+      extensions:
+        x-ms-client-request-id: true
+        x-ms-parameter-grouping: *ref_104
+      language: !<!Languages> 
+        default:
+          name: client-request-id
+          description: The tracking ID sent with the request to help with debugging.
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_92
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_88
-      - *ref_89
-      - *ref_90
       - !<!Parameter> &ref_170
-        schema: *ref_91
-        implementation: Method
-        extensions:
-          x-ms-client-request-id: true
-          x-ms-parameter-grouping: *ref_104
-        language: !<!Languages> 
-          default:
-            name: client-request-id
-            description: The tracking ID sent with the request to help with debugging.
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_92
-      - !<!Parameter> &ref_171
         schema: *ref_169
         implementation: Method
         required: true
@@ -3451,7 +3470,6 @@ operationGroups:
             style: json
       signatureParameters:
       - *ref_170
-      - *ref_171
       language: !<!Languages> 
         default:
           name: ''
@@ -3460,10 +3478,13 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.post.autocomplete
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_171
     responses:
     - !<!SchemaResponse> 
       schema: *ref_168

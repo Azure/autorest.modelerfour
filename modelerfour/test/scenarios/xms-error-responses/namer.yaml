@@ -492,32 +492,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 0.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_24
-      - !<!Parameter> &ref_26
-        schema: *ref_25
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: petId
-            description: pet id
-            serializedName: petId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_26
+    parameters:
+    - *ref_24
+    - !<!Parameter> &ref_26
+      schema: *ref_25
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: petId
+          description: pet id
+          serializedName: petId
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/errorStatusCodes/Pets/{petId}/GetPet'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_26
     responses:
     - !<!SchemaResponse> 
       schema: *ref_1
@@ -605,32 +606,33 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 0.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_24
-      - !<!Parameter> &ref_28
-        schema: *ref_25
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: whatAction
-            description: what action the pet should do
-            serializedName: whatAction
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_28
+    parameters:
+    - *ref_24
+    - !<!Parameter> &ref_28
+      schema: *ref_25
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: whatAction
+          description: what action the pet should do
+          serializedName: whatAction
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/errorStatusCodes/Pets/doSomething/{whatAction}'
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_28
     responses:
     - !<!SchemaResponse> 
       schema: *ref_29

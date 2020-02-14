@@ -2954,13 +2954,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_112
+    - *ref_113
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_112
-      - *ref_113
       - *ref_114
       signatureParameters:
       - *ref_114
@@ -2969,10 +2971,11 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs/$count
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_115
@@ -3008,44 +3011,45 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - !<!Parameter> &ref_134
+      schema: *ref_24
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: searchText
+          description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
+          serializedName: search
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_116
+    - *ref_117
+    - *ref_118
+    - *ref_119
+    - *ref_120
+    - *ref_121
+    - *ref_122
+    - *ref_123
+    - *ref_124
+    - *ref_125
+    - *ref_126
+    - *ref_127
+    - *ref_128
+    - *ref_129
+    - *ref_130
+    - *ref_131
+    - *ref_113
+    - *ref_132
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - !<!Parameter> &ref_134
-        schema: *ref_24
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: searchText
-            description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
-            serializedName: search
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_116
-      - *ref_117
-      - *ref_118
-      - *ref_119
-      - *ref_120
-      - *ref_121
-      - *ref_122
-      - *ref_123
-      - *ref_124
-      - *ref_125
-      - *ref_126
-      - *ref_127
-      - *ref_128
-      - *ref_129
-      - *ref_130
-      - *ref_131
-      - *ref_113
-      - *ref_132
       - *ref_35
       - *ref_133
       signatureParameters:
-      - *ref_134
       - *ref_35
       - *ref_133
       language: !<!Languages> 
@@ -3053,10 +3057,12 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_134
     responses:
     - !<!SchemaResponse> 
       schema: *ref_135
@@ -3142,13 +3148,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_113
+    - *ref_136
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_113
-      - *ref_136
       - !<!Parameter> &ref_138
         schema: *ref_5
         implementation: Method
@@ -3175,10 +3183,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.post.search
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_135
@@ -3278,50 +3288,53 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - !<!Parameter> &ref_142
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: key
+          description: The key of the document to retrieve.
+          serializedName: key
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_143
+      schema: *ref_139
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: selectedFields
+          description: List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.
+          serializedName: $select
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_113
+    - *ref_140
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - !<!Parameter> &ref_142
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: key
-            description: The key of the document to retrieve.
-            serializedName: key
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_143
-        schema: *ref_139
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: selectedFields
-            description: List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.
-            serializedName: $select
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_113
-      - *ref_140
       - *ref_141
       signatureParameters:
-      - *ref_142
-      - *ref_143
       - *ref_141
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/docs(''{key}'')'
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_142
+    - *ref_143
     responses:
     - !<!SchemaResponse> 
       schema: *ref_144
@@ -3364,51 +3377,51 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - !<!Parameter> &ref_156
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: searchText
+          description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
+          serializedName: search
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_157
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: suggesterName
+          description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
+          serializedName: suggesterName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_145
+    - *ref_146
+    - *ref_147
+    - *ref_148
+    - *ref_149
+    - *ref_150
+    - *ref_151
+    - *ref_152
+    - *ref_153
+    - *ref_113
+    - *ref_154
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - !<!Parameter> &ref_156
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: searchText
-            description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
-            serializedName: search
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_157
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: suggesterName
-            description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
-            serializedName: suggesterName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_145
-      - *ref_146
-      - *ref_147
-      - *ref_148
-      - *ref_149
-      - *ref_150
-      - *ref_151
-      - *ref_152
-      - *ref_153
-      - *ref_113
-      - *ref_154
       - *ref_46
       - *ref_155
       signatureParameters:
-      - *ref_156
-      - *ref_157
       - *ref_46
       - *ref_155
       language: !<!Languages> 
@@ -3416,10 +3429,13 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs/search.suggest
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_156
+    - *ref_157
     responses:
     - !<!SchemaResponse> 
       schema: *ref_158
@@ -3481,13 +3497,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_113
+    - *ref_159
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_113
-      - *ref_159
       - !<!Parameter> &ref_162
         schema: *ref_160
         implementation: Method
@@ -3514,10 +3532,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.post.suggest
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_158
@@ -3573,13 +3593,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_113
+    - *ref_163
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_113
-      - *ref_163
       - !<!Parameter> &ref_165
         schema: *ref_164
         flattened: true
@@ -3620,10 +3642,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.index
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_169
@@ -3723,50 +3747,50 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_170
+    - *ref_113
+    - !<!Parameter> &ref_180
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: searchText
+          description: The incomplete term which should be auto-completed.
+          serializedName: search
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_181
+      schema: *ref_24
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: suggesterName
+          description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
+          serializedName: suggesterName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_171
+    - *ref_172
+    - *ref_173
+    - *ref_174
+    - *ref_175
+    - *ref_176
+    - *ref_177
+    - *ref_178
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_170
-      - *ref_113
-      - !<!Parameter> &ref_180
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: searchText
-            description: The incomplete term which should be auto-completed.
-            serializedName: search
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_181
-        schema: *ref_24
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: suggesterName
-            description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
-            serializedName: suggesterName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - *ref_171
-      - *ref_172
-      - *ref_173
-      - *ref_174
-      - *ref_175
-      - *ref_176
-      - *ref_177
-      - *ref_178
       - *ref_179
       - *ref_52
       signatureParameters:
-      - *ref_180
-      - *ref_181
       - *ref_179
       - *ref_52
       language: !<!Languages> 
@@ -3774,10 +3798,13 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /docs/search.autocomplete
           method: get
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters:
+    - *ref_180
+    - *ref_181
     responses:
     - !<!SchemaResponse> 
       schema: *ref_182
@@ -3831,13 +3858,15 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    request: !<!Request> 
+    parameters:
+    - *ref_109
+    - *ref_110
+    - *ref_111
+    - *ref_183
+    - *ref_113
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_109
-      - *ref_110
-      - *ref_111
-      - *ref_183
-      - *ref_113
       - !<!Parameter> &ref_186
         schema: *ref_184
         implementation: Method
@@ -3864,10 +3893,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /docs/search.post.autocomplete
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: 'https://{searchServiceName}.{searchDnsSuffix}/indexes(''{indexName}'')'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_182

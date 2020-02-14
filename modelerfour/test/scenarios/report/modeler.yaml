@@ -113,31 +113,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_8
-      - !<!Parameter> &ref_5
-        schema: *ref_4
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: qualifier
-            description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
-            serializedName: qualifier
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      signatureParameters:
-      - *ref_5
+    parameters:
+    - *ref_8
+    - !<!Parameter> &ref_5
+      schema: *ref_4
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: qualifier
+          description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
+          serializedName: qualifier
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /report
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_5
     responses:
     - !<!SchemaResponse> 
       schema: *ref_6
@@ -175,31 +176,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_8
-      - !<!Parameter> &ref_9
-        schema: *ref_4
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: qualifier
-            description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
-            serializedName: qualifier
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      signatureParameters:
-      - *ref_9
+    parameters:
+    - *ref_8
+    - !<!Parameter> &ref_9
+      schema: *ref_4
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: qualifier
+          description: 'If specified, qualifies the generated report further (e.g. ''2.7'' vs ''3.5'' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.'
+          serializedName: qualifier
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /report/optional
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_9
     responses:
     - !<!SchemaResponse> 
       schema: *ref_6

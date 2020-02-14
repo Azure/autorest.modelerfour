@@ -173,7 +173,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_23
+  - !<!ObjectSchema> &ref_25
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -237,7 +237,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20140401Preview
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_28
+  - !<!ObjectSchema> &ref_30
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -402,34 +402,35 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
-    request: !<!Request> 
-      parameters:
-      - *ref_21
-      - *ref_32
-      - !<!Parameter> &ref_18
-        schema: *ref_16
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: Resource Group ID.
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_22
-      signatureParameters:
-      - *ref_18
+    parameters:
+    - *ref_21
+    - *ref_32
+    - !<!Parameter> &ref_18
+      schema: *ref_16
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: Resource Group ID.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_22
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_18
     responses:
     - !<!SchemaResponse> 
       schema: *ref_19
@@ -468,36 +469,38 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    - !<!Parameter> &ref_23
+      schema: *ref_16
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: subscriptionId
+          description: Subscription ID.
+          serializedName: subscriptionId
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_24
+      schema: *ref_16
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: Resource Group ID.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_22
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
-      - !<!Parameter> &ref_24
-        schema: *ref_16
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_25
-        schema: *ref_16
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: Resource Group ID.
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_22
       - !<!Parameter> &ref_26
-        schema: *ref_23
+        schema: *ref_25
         implementation: Method
         required: true
         extensions:
@@ -511,8 +514,6 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_24
-      - *ref_25
       - *ref_26
       language: !<!Languages> 
         default:
@@ -522,10 +523,14 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters:
+    - *ref_23
+    - *ref_24
     responses:
     - !<!SchemaResponse> 
       schema: *ref_27
@@ -566,36 +571,38 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
-    request: !<!Request> 
+    parameters:
+    - *ref_21
+    - !<!Parameter> &ref_28
+      schema: *ref_16
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: subscriptionId
+          description: Subscription ID.
+          serializedName: subscriptionId
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_29
+      schema: *ref_16
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: Resource Group ID.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_22
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_21
-      - !<!Parameter> &ref_29
-        schema: *ref_16
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: subscriptionId
-            description: Subscription ID.
-            serializedName: subscriptionId
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_30
-        schema: *ref_16
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: Resource Group ID.
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_22
       - !<!Parameter> &ref_31
-        schema: *ref_28
+        schema: *ref_30
         implementation: Method
         required: true
         extensions:
@@ -609,8 +616,6 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_29
-      - *ref_30
       - *ref_31
       language: !<!Languages> 
         default:
@@ -620,10 +625,14 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis'
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters:
+    - *ref_28
+    - *ref_29
     responses:
     - !<!SchemaResponse> 
       schema: *ref_19

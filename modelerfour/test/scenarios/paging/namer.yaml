@@ -732,19 +732,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/noitemname
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_27
@@ -783,19 +784,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/nullnextlink
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -836,19 +838,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/single
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -889,35 +892,38 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - !<!Parameter> &ref_31
+      schema: *ref_14
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: clientRequestId
+          description: ''
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_29
+    - *ref_30
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> &ref_31
-        schema: *ref_14
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: clientRequestId
-            description: ''
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_29
-      - *ref_30
       - *ref_9
       signatureParameters:
-      - *ref_31
       - *ref_9
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_31
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -958,35 +964,38 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - !<!Parameter> &ref_34
+      schema: *ref_14
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: clientRequestId
+          description: ''
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_32
+    - *ref_33
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> &ref_34
-        schema: *ref_14
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: clientRequestId
-            description: ''
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_32
-      - *ref_33
       - *ref_11
       signatureParameters:
-      - *ref_34
       - *ref_11
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple/odata
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_34
     responses:
     - !<!SchemaResponse> 
       schema: *ref_35
@@ -1027,36 +1036,39 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - !<!Parameter> &ref_39
+      schema: *ref_14
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: clientRequestId
+          description: ''
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_36
+    - *ref_37
+    - *ref_38
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> &ref_39
-        schema: *ref_14
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: clientRequestId
-            description: ''
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_36
-      - *ref_37
-      - *ref_38
       - *ref_13
       signatureParameters:
-      - *ref_39
       - *ref_13
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/paging/multiple/withpath/{offset}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_39
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -1097,19 +1109,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple/retryfirst
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -1150,19 +1163,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple/retrysecond
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -1203,19 +1217,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/single/failure
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -1256,19 +1271,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple/failure
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -1309,19 +1325,20 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple/failureuri
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28
@@ -1362,45 +1379,46 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      - !<!Parameter> &ref_40
-        schema: *ref_14
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: apiVersion
-            description: Sets the api version to use.
-            serializedName: api_version
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: query
-      - !<!Parameter> &ref_41
-        schema: *ref_14
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: tenant
-            description: Sets the tenant to use.
-            serializedName: tenant
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters:
-      - *ref_40
-      - *ref_41
+    parameters:
+    - *ref_26
+    - !<!Parameter> &ref_40
+      schema: *ref_14
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: apiVersion
+          description: Sets the api version to use.
+          serializedName: api_version
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_41
+      schema: *ref_14
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: tenant
+          description: Sets the tenant to use.
+          serializedName: tenant
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/paging/multiple/fragment/{tenant}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_40
+    - *ref_41
     responses:
     - !<!SchemaResponse> 
       schema: *ref_35
@@ -1443,60 +1461,61 @@ operationGroups:
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            request: !<!Request> 
-              parameters:
-              - *ref_26
-              - !<!Parameter> &ref_42
-                schema: *ref_14
-                implementation: Method
-                required: true
-                language: !<!Languages> 
-                  default:
-                    name: apiVersion
-                    description: Sets the api version to use.
-                    serializedName: api_version
-                protocol: !<!Protocols> 
-                  http: !<!HttpParameter> 
-                    in: query
-              - !<!Parameter> &ref_43
-                schema: *ref_14
-                implementation: Method
-                required: true
-                language: !<!Languages> 
-                  default:
-                    name: tenant
-                    description: Sets the tenant to use.
-                    serializedName: tenant
-                protocol: !<!Protocols> 
-                  http: !<!HttpParameter> 
-                    in: path
-              - !<!Parameter> &ref_44
-                schema: *ref_14
-                implementation: Method
-                required: true
-                extensions:
-                  x-ms-skip-url-encoding: true
-                language: !<!Languages> 
-                  default:
-                    name: nextLink
-                    description: Next link for list operation.
-                    serializedName: nextLink
-                protocol: !<!Protocols> 
-                  http: !<!HttpParameter> 
-                    in: path
-              signatureParameters:
-              - *ref_42
-              - *ref_43
-              - *ref_44
+            parameters:
+            - *ref_26
+            - !<!Parameter> &ref_42
+              schema: *ref_14
+              implementation: Method
+              required: true
+              language: !<!Languages> 
+                default:
+                  name: apiVersion
+                  description: Sets the api version to use.
+                  serializedName: api_version
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: query
+            - !<!Parameter> &ref_43
+              schema: *ref_14
+              implementation: Method
+              required: true
+              language: !<!Languages> 
+                default:
+                  name: tenant
+                  description: Sets the tenant to use.
+                  serializedName: tenant
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            - !<!Parameter> &ref_44
+              schema: *ref_14
+              implementation: Method
+              required: true
+              extensions:
+                x-ms-skip-url-encoding: true
+              language: !<!Languages> 
+                default:
+                  name: nextLink
+                  description: Next link for list operation.
+                  serializedName: nextLink
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            requests:
+            - !<!Request> 
               language: !<!Languages> 
                 default:
                   name: ''
                   description: ''
               protocol: !<!Protocols> 
-                http: !<!HttpRequest> 
+                http:
                   path: '/paging/multiple/fragment/{tenant}/{nextLink}'
                   method: get
                   uri: '{$host}'
+            signatureParameters:
+            - *ref_42
+            - *ref_43
+            - *ref_44
             responses:
             - !<!SchemaResponse> 
               schema: *ref_35
@@ -1542,11 +1561,13 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - *ref_46
+    - *ref_47
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - *ref_46
-      - *ref_47
       - *ref_16
       signatureParameters:
       - *ref_16
@@ -1555,10 +1576,11 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/paging/multiple/fragmentwithgrouping/{tenant}'
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_35
@@ -1601,38 +1623,41 @@ operationGroups:
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            request: !<!Request> 
+            parameters:
+            - *ref_26
+            - *ref_48
+            - *ref_49
+            - !<!Parameter> &ref_50
+              schema: *ref_14
+              implementation: Method
+              required: true
+              extensions:
+                x-ms-skip-url-encoding: true
+              language: !<!Languages> 
+                default:
+                  name: nextLink
+                  description: Next link for list operation.
+                  serializedName: nextLink
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            requests:
+            - !<!Request> 
               parameters:
-              - *ref_26
-              - *ref_48
-              - *ref_49
-              - !<!Parameter> &ref_50
-                schema: *ref_14
-                implementation: Method
-                required: true
-                extensions:
-                  x-ms-skip-url-encoding: true
-                language: !<!Languages> 
-                  default:
-                    name: nextLink
-                    description: Next link for list operation.
-                    serializedName: nextLink
-                protocol: !<!Protocols> 
-                  http: !<!HttpParameter> 
-                    in: path
               - *ref_17
               signatureParameters:
-              - *ref_50
               - *ref_17
               language: !<!Languages> 
                 default:
                   name: ''
                   description: ''
               protocol: !<!Protocols> 
-                http: !<!HttpRequest> 
+                http:
                   path: '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
                   method: get
                   uri: '{$host}'
+            signatureParameters:
+            - *ref_50
             responses:
             - !<!SchemaResponse> 
               schema: *ref_35
@@ -1678,35 +1703,38 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - !<!Parameter> &ref_54
+      schema: *ref_14
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: clientRequestId
+          description: ''
+          serializedName: client-request-id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    - *ref_52
+    - *ref_53
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> &ref_54
-        schema: *ref_14
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: clientRequestId
-            description: ''
-            serializedName: client-request-id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: header
-      - *ref_52
-      - *ref_53
       - *ref_19
       signatureParameters:
-      - *ref_54
       - *ref_19
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/multiple/lro
           method: post
           uri: '{$host}'
+    signatureParameters:
+    - *ref_54
     responses:
     - !<!SchemaResponse> 
       schema: *ref_28

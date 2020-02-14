@@ -178,34 +178,35 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 2014-04-01-preview
-    request: !<!Request> 
-      parameters:
-      - *ref_11
-      - *ref_10
-      - !<!Parameter> &ref_7
-        schema: *ref_5
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: Resource Group name 'testgroup101'.
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_12
-      signatureParameters:
-      - *ref_7
+    parameters:
+    - *ref_11
+    - *ref_10
+    - !<!Parameter> &ref_7
+      schema: *ref_5
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: Resource Group name 'testgroup101'.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_12
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_7
     responses:
     - !<!SchemaResponse> 
       schema: *ref_8

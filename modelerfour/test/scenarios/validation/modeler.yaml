@@ -488,47 +488,48 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      - *ref_27
-      - !<!Parameter> &ref_22
-        schema: *ref_19
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_23
-        schema: *ref_20
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: id
-            description: Required int multiple of 10 from 100 to 1000.
-            serializedName: id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_28
-      signatureParameters:
-      - *ref_22
-      - *ref_23
+    parameters:
+    - *ref_26
+    - *ref_27
+    - !<!Parameter> &ref_22
+      schema: *ref_19
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_23
+      schema: *ref_20
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: id
+          description: Required int multiple of 10 from 100 to 1000.
+          serializedName: id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_28
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: get
           uri: '{$host}'
+    signatureParameters:
+    - *ref_22
+    - *ref_23
     responses:
     - !<!SchemaResponse> 
       schema: *ref_24
@@ -567,35 +568,37 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - *ref_27
+    - !<!Parameter> &ref_29
+      schema: *ref_19
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_30
+      schema: *ref_20
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: id
+          description: Required int multiple of 10 from 100 to 1000.
+          serializedName: id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_28
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - *ref_27
-      - !<!Parameter> &ref_29
-        schema: *ref_19
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: 'Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.'
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_30
-        schema: *ref_20
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: id
-            description: Required int multiple of 10 from 100 to 1000.
-            serializedName: id
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - *ref_28
       - !<!Parameter> &ref_31
         schema: *ref_24
         implementation: Method
@@ -610,8 +613,6 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_29
-      - *ref_30
       - *ref_31
       language: !<!Languages> 
         default:
@@ -621,10 +622,14 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: put
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters:
+    - *ref_29
+    - *ref_30
     responses:
     - !<!SchemaResponse> 
       schema: *ref_24
@@ -665,31 +670,32 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - *ref_26
-      - !<!Parameter> 
-        schema: *ref_32
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: constantParam
-            description: ''
-            serializedName: constantParam
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      signatureParameters: []
+    parameters:
+    - *ref_26
+    - !<!Parameter> 
+      schema: *ref_32
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: constantParam
+          description: ''
+          serializedName: constantParam
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: '/validation/constantsInPath/{constantParam}/value'
           method: get
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -709,21 +715,23 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_26
+    - !<!Parameter> 
+      schema: *ref_32
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: constantParam
+          description: ''
+          serializedName: constantParam
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_26
-      - !<!Parameter> 
-        schema: *ref_32
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: constantParam
-            description: ''
-            serializedName: constantParam
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> &ref_33
         schema: *ref_24
         implementation: Method
@@ -747,10 +755,12 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/validation/constantsInPath/{constantParam}/value'
           method: post
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters: []
     responses:
     - !<!SchemaResponse> 
       schema: *ref_24

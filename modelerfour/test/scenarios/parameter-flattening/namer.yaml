@@ -87,33 +87,35 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
+    parameters:
+    - *ref_3
+    - !<!Parameter> &ref_9
+      schema: *ref_1
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: The name of the resource group.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_10
+      schema: *ref_4
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: avset
+          description: The name of the storage availability set.
+          serializedName: availabilitySetName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    requests:
+    - !<!Request> 
       parameters:
-      - *ref_3
-      - !<!Parameter> &ref_8
-        schema: *ref_1
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: resourceGroupName
-            description: The name of the resource group.
-            serializedName: resourceGroupName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
-      - !<!Parameter> &ref_9
-        schema: *ref_4
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: avset
-            description: The name of the storage availability set.
-            serializedName: availabilitySetName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: path
       - !<!Parameter> &ref_6
         schema: *ref_5
         flattened: true
@@ -129,7 +131,7 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_10
+      - !<!Parameter> &ref_8
         schema: *ref_0
         implementation: Method
         originalParameter: *ref_6
@@ -144,8 +146,6 @@ operationGroups:
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_8
-      - *ref_9
-      - *ref_10
       language: !<!Languages> 
         default:
           name: ''
@@ -154,10 +154,14 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'
           method: patch
+          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
           uri: '{$host}'
+    signatureParameters:
+    - *ref_9
+    - *ref_10
     responses:
     - !<!Response> 
       language: !<!Languages> 

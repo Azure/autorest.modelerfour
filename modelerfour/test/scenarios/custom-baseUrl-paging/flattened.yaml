@@ -217,38 +217,39 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_9
-        schema: *ref_7
-        implementation: Method
-        required: true
-        extensions:
-          x-in: path
-          x-ms-skip-url-encoding: true
-          x-name: accountName
-          x-required: true
-          x-type: string
-        language: !<!Languages> 
-          default:
-            name: accountName
-            description: Account Name
-            serializedName: accountName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: uri
-      - *ref_8
-      signatureParameters:
-      - *ref_9
+    parameters:
+    - !<!Parameter> &ref_9
+      schema: *ref_7
+      implementation: Method
+      required: true
+      extensions:
+        x-in: path
+        x-ms-skip-url-encoding: true
+        x-name: accountName
+        x-required: true
+        x-type: string
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: Account Name
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: uri
+    - *ref_8
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/customurl/partialnextlink
           method: get
           uri: 'http://{accountName}{host}'
+    signatureParameters:
+    - *ref_9
     responses:
     - !<!SchemaResponse> 
       schema: *ref_10
@@ -289,38 +290,39 @@ operationGroups:
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    request: !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_11
-        schema: *ref_7
-        implementation: Method
-        required: true
-        extensions:
-          x-in: path
-          x-ms-skip-url-encoding: true
-          x-name: accountName
-          x-required: true
-          x-type: string
-        language: !<!Languages> 
-          default:
-            name: accountName
-            description: Account Name
-            serializedName: accountName
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: uri
-      - *ref_8
-      signatureParameters:
-      - *ref_11
+    parameters:
+    - !<!Parameter> &ref_11
+      schema: *ref_7
+      implementation: Method
+      required: true
+      extensions:
+        x-in: path
+        x-ms-skip-url-encoding: true
+        x-name: accountName
+        x-required: true
+        x-type: string
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: Account Name
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: uri
+    - *ref_8
+    requests:
+    - !<!Request> 
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
+        http:
           path: /paging/customurl/partialnextlinkop
           method: get
           uri: 'http://{accountName}{host}'
+    signatureParameters:
+    - *ref_11
     responses:
     - !<!SchemaResponse> 
       schema: *ref_10
@@ -363,53 +365,54 @@ operationGroups:
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            request: !<!Request> 
-              parameters:
-              - !<!Parameter> &ref_13
-                schema: *ref_7
-                implementation: Method
-                required: true
-                extensions:
-                  x-in: path
-                  x-ms-skip-url-encoding: true
-                  x-name: accountName
-                  x-required: true
-                  x-type: string
-                language: !<!Languages> 
-                  default:
-                    name: accountName
-                    description: Account Name
-                    serializedName: accountName
-                protocol: !<!Protocols> 
-                  http: !<!HttpParameter> 
-                    in: uri
-              - *ref_8
-              - !<!Parameter> &ref_14
-                schema: *ref_12
-                implementation: Method
-                required: true
-                extensions:
-                  x-ms-skip-url-encoding: true
-                language: !<!Languages> 
-                  default:
-                    name: nextLink
-                    description: Next link for the list operation.
-                    serializedName: nextLink
-                protocol: !<!Protocols> 
-                  http: !<!HttpParameter> 
-                    in: path
-              signatureParameters:
-              - *ref_13
-              - *ref_14
+            parameters:
+            - !<!Parameter> &ref_13
+              schema: *ref_7
+              implementation: Method
+              required: true
+              extensions:
+                x-in: path
+                x-ms-skip-url-encoding: true
+                x-name: accountName
+                x-required: true
+                x-type: string
+              language: !<!Languages> 
+                default:
+                  name: accountName
+                  description: Account Name
+                  serializedName: accountName
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: uri
+            - *ref_8
+            - !<!Parameter> &ref_14
+              schema: *ref_12
+              implementation: Method
+              required: true
+              extensions:
+                x-ms-skip-url-encoding: true
+              language: !<!Languages> 
+                default:
+                  name: nextLink
+                  description: Next link for the list operation.
+                  serializedName: nextLink
+              protocol: !<!Protocols> 
+                http: !<!HttpParameter> 
+                  in: path
+            requests:
+            - !<!Request> 
               language: !<!Languages> 
                 default:
                   name: ''
                   description: ''
               protocol: !<!Protocols> 
-                http: !<!HttpRequest> 
+                http:
                   path: '/paging/customurl/{nextLink}'
                   method: get
                   uri: 'http://{accountName}{host}'
+            signatureParameters:
+            - *ref_13
+            - *ref_14
             responses:
             - !<!SchemaResponse> 
               schema: *ref_10
