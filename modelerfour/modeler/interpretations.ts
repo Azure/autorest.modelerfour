@@ -19,6 +19,7 @@ const removeKnownParameters = [
   'x-ms-client-name',
   'x-ms-parameter-location',
   'x-ms-original',
+  'x-ms-requestBody-name'
 ];
 
 // ref: https://www.w3schools.com/charsets/ref_html_ascii.asp
@@ -161,7 +162,7 @@ export class Interpretations {
         schema.enum.map(each => {
           const name = getValidEnumValueName(each);
           const value = this.getConstantValue(schema, each);
-          return new ChoiceValue(name, ``, value);
+          return new ChoiceValue(`${name}`, ``, value);
         });
     }
     return [];

@@ -1,4 +1,4 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema, ImplementationLocation } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema, ImplementationLocation, Operation, Request } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, length, Dictionary, when } from '@azure-tools/linq';
 import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler } from '@azure-tools/codegen';
@@ -202,26 +202,12 @@ export class PreNamer {
       setNameAllowEmpty(operationGroup, this.format.operationGroup, operationGroup.$key, this.format.override);
       for (const operation of operationGroup.operations) {
         setName(operation, this.format.operation, '', this.format.override);
-        for (const parameter of values(operation.request.signatureParameters)) {
-          if (parameter.schema.type === SchemaType.Constant) {
-            setName(parameter, this.format.constant, '', this.format.override);
-          } else {
-            setName(parameter, this.format.parameter, '', this.format.override);
-          }
+
+        this.setParameterNames(operation);
+        for (const request of values(operation.requests)) {
+          this.setParameterNames(request);
         }
-        for (const parameter of values(operation.request.parameters)) {
-          if ((operation.request.signatureParameters ?? []).indexOf(parameter) === -1) {
-            if (parameter.schema.type === SchemaType.Constant) {
-              setName(parameter, this.format.constant, '', this.format.override);
-            } else {
-              if (parameter.implementation === ImplementationLocation.Client) {
-                setName(parameter, this.format.global, '', this.format.override);
-              } else {
-                setName(parameter, this.format.local, '', this.format.override);
-              }
-            }
-          }
-        }
+
         const p = operation.language.default.paging;
         if (p) {
           p.group = p.group ? this.format.operationGroup(p.group, true, this.format.override) : undefined;
@@ -246,31 +232,60 @@ export class PreNamer {
 
     return this.codeModel;
   }
+  private setParameterNames(parameterContainer: Operation | Request) {
+    for (const parameter of values(parameterContainer.signatureParameters)) {
+      if (parameter.schema.type === SchemaType.Constant) {
+        setName(parameter, this.format.constant, '', this.format.override);
+      }
+      else {
+        setName(parameter, this.format.parameter, '', this.format.override);
+      }
+    }
+    for (const parameter of values(parameterContainer.parameters)) {
+      if ((parameterContainer.signatureParameters ?? []).indexOf(parameter) === -1) {
+        if (parameter.schema.type === SchemaType.Constant) {
+          setName(parameter, this.format.constant, '', this.format.override);
+        }
+        else {
+          if (parameter.implementation === ImplementationLocation.Client) {
+            setName(parameter, this.format.global, '', this.format.override);
+          }
+          else {
+            setName(parameter, this.format.local, '', this.format.override);
+          }
+        }
+      }
+    }
+  }
+
   fixParameterCollisions() {
     for (const operation of values(this.codeModel.operationGroups).selectMany(each => each.operations)) {
-      const parameters = values(operation.request.signatureParameters);
+      for (const request of values(operation.requests)) {
+        const parameters = values(operation.signatureParameters).concat(values(request.signatureParameters));
 
-      const usedNames = new Set<string>();
-      const collisions = new Set<Parameter>();
+        const usedNames = new Set<string>();
+        const collisions = new Set<Parameter>();
 
-      // we need to make sure we avoid name collisions. operation parameters get first crack.
-      for (const each of values(parameters)) {
-        const name = each.language.default.name;
-        if (usedNames.has(name)) {
-          collisions.add(each);
-        } else {
-          usedNames.add(name);
+        // we need to make sure we avoid name collisions. operation parameters get first crack.
+        for (const each of values(parameters)) {
+          const name = each.language.default.name;
+          if (usedNames.has(name)) {
+            collisions.add(each);
+          } else {
+            usedNames.add(name);
+          }
+        }
+
+        // handle operation parameters
+        for (const parameter of collisions) {
+          let options = [parameter.language.default.name];
+          if (isVirtualParameter(parameter)) {
+            options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]);
+          }
+          parameter.language.default.name = this.format.parameter(selectName(options, usedNames));
         }
       }
 
-      // handle operation parameters
-      for (const parameter of collisions) {
-        let options = [parameter.language.default.name];
-        if (isVirtualParameter(parameter)) {
-          options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]);
-        }
-        parameter.language.default.name = this.format.parameter(selectName(options, usedNames));
-      }
     }
 
   }

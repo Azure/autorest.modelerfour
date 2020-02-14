@@ -1,4 +1,4 @@
-import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation } from '@azure-tools/codemodel';
+import { CodeModel, Schema, ObjectSchema, isObjectSchema, SchemaType, Property, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation, Request } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 
@@ -55,9 +55,9 @@ export class Flattener {
     // ·
   }
   /** 
-   * This flattens an operation's parameters (ie, takes the parameters from an operation and if they are objects will attempt to create inline versions of them)
+   * This flattens an request's parameters (ie, takes the parameters from an operation and if they are objects will attempt to create inline versions of them)
    */
-  flattenPayload(operation: Operation, parameter: Parameter, schema: ObjectSchema) {
+  flattenPayload(request: Request, parameter: Parameter, schema: ObjectSchema) {
     // hide the original parameter
     parameter.flattened = true;
 
@@ -67,7 +67,7 @@ export class Flattener {
         continue;
       }
       for (const vp of this.getFlattenedParameters(parameter, property)) {
-        operation.request.parameters?.push(vp);
+        request.parameters?.push(vp);
       }
     }
   }
@@ -193,28 +193,30 @@ export class Flattener {
 
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
-          const body = values(operation.request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body && p.implementation === ImplementationLocation.Method);
+          for (const request of values(operation.requests)) {
+            const body = values(request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body && p.implementation === ImplementationLocation.Method);
 
-          if (body && isObjectSchema(body.schema)) {
-            let flattenOperationPayload = body?.extensions?.[xmsFlatten];
-            if (flattenOperationPayload === false) {
-              // told not to explicitly.
-              continue;
-            }
-
-            const schema = <ObjectSchema>body.schema;
-            if (!flattenOperationPayload) {
-              const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
-              if (threshold > 0) {
-                // get the count of the (non-readonly) properties in the schema
-
-                flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true && property.schema.type !== SchemaType.Constant)) <= threshold;
+            if (body && isObjectSchema(body.schema)) {
+              let flattenOperationPayload = body?.extensions?.[xmsFlatten];
+              if (flattenOperationPayload === false) {
+                // told not to explicitly.
+                continue;
               }
-            }
 
-            if (flattenOperationPayload) {
-              this.flattenPayload(operation, body, schema);
-              operation.request.updateSignatureParameters();
+              const schema = <ObjectSchema>body.schema;
+              if (!flattenOperationPayload) {
+                const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
+                if (threshold > 0) {
+                  // get the count of the (non-readonly) properties in the schema
+
+                  flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true && property.schema.type !== SchemaType.Constant)) <= threshold;
+                }
+              }
+
+              if (flattenOperationPayload) {
+                this.flattenPayload(request, body, schema);
+                request.updateSignatureParameters();
+              }
             }
           }
         }

@@ -1,4 +1,4 @@
-import { CodeModel, Schema, GroupSchema, isObjectSchema, SchemaType, GroupProperty, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation, OperationGroup } from '@azure-tools/codemodel';
+import { CodeModel, Schema, GroupSchema, isObjectSchema, SchemaType, GroupProperty, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation, OperationGroup, Request } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 import { pascalCase, camelCase } from '@azure-tools/codegen';
@@ -29,21 +29,25 @@ export class Grouper {
 
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
-          this.processParameterGroup(group, operation);
-          operation.request.updateSignatureParameters();
+          for (const request of values(operation.requests)) {
+            this.processParameterGroup(group, operation, request);
+            request.updateSignatureParameters();
+          }
+          operation.updateSignatureParameters();
         }
       }
     }
-
-    if (this.options[mergeReponseHeaders] === true) {
-
-      for (const group of this.codeModel.operationGroups) {
-        for (const operation of group.operations) {
-          this.processResponseHeaders(operation);
-          operation.request.updateSignatureParameters();
+    /*
+        if (this.options[mergeReponseHeaders] === true) {
+    
+          for (const group of this.codeModel.operationGroups) {
+            for (const operation of group.operations) {
+              this.processResponseHeaders(operation);
+              operation.request.updateSignatureParameters();
+            }
+          }
         }
-      }
-    }
+        */
     return this.codeModel;
   }
 
@@ -58,8 +62,8 @@ export class Grouper {
     return pascalCase(`${group.$key} ${operation.language.default.name} ${postfix}`);
   }
 
-  processParameterGroup(group: OperationGroup, operation: Operation) {
-    const grouped = [...values(operation.request.parameters).where(parameter => parameter.extensions?.[xmsParameterGrouping] && parameter.schema.type !== SchemaType.Constant && parameter.implementation !== ImplementationLocation.Client)];
+  processParameterGroup(group: OperationGroup, operation: Operation, request: Request) {
+    const grouped = [...values(operation.parameters).concat(values(request.parameters)).where(parameter => parameter.extensions?.[xmsParameterGrouping] && parameter.schema.type !== SchemaType.Constant && parameter.implementation !== ImplementationLocation.Client)];
 
     if (grouped.length > 0) {
       // create a parameter group object schema for the selected parameters.
@@ -94,7 +98,7 @@ export class Grouper {
 
         // check if this groupSchema has been added as a parameter for this operation yet.
         if (!addedGroupedParameters.has(schema)) {
-          addedGroupedParameters.set(schema, operation.request.addParameter(new Parameter(camelCase(schema.language.default.name), schema.language.default.description, schema, {
+          addedGroupedParameters.set(schema, request.addParameter(new Parameter(camelCase(schema.language.default.name), schema.language.default.description, schema, {
             implementation: ImplementationLocation.Method,
           })));
         }
