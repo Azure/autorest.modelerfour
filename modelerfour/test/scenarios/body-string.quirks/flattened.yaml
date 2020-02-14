@@ -1,117 +1,84 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest Swagger BAT
+  title: body-string.quirks
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_6
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_2
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_3
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
     language: !<!Languages> 
       default:
-        name: Error
+        name: integer
         description: ''
-        namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_17
-    type: object
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> &ref_19
-      schema: !<!ConstantSchema> &ref_1
-        type: constant
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        value: !<!ConstantValue> 
-          value: green-color
-        valueType: !<!StringSchema> &ref_0
-          type: string
-          language: !<!Languages> 
-            default:
-              name: string
-              description: simple string
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: ColorConstant
-            description: Referenced Color Constant Description.
-        protocol: !<!Protocols> {}
-      required: true
-      serializedName: ColorConstant
-      language: !<!Languages> 
-        default:
-          name: ColorConstant
-          description: Referenced Color Constant Description.
-      protocol: !<!Protocols> {}
-    - !<!Property> &ref_20
-      schema: !<!StringSchema> &ref_4
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: RefColorConstant-field1
-            description: Sample string.
-        protocol: !<!Protocols> {}
-      required: false
-      serializedName: field1
-      language: !<!Languages> 
-        default:
-          name: field1
-          description: Sample string.
-      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: RefColorConstant
+        name: Error-message
         description: ''
-        namespace: Api100
     protocol: !<!Protocols> {}
-  byteArrays:
-  - !<!ByteArraySchema> &ref_12
-    type: byte-array
-    format: base64url
+  - !<!StringSchema> &ref_7
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     language: !<!Languages> 
       default:
-        name: paths·q42kx1·string-base64encoding·get·responses·200·content·application-json·schema
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: RefColorConstant-field1
+        description: Sample string.
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_14
+    choices:
+    - !<!ChoiceValue> 
+      value: red color
+      language:
+        default:
+          name: red color
+          description: ''
+    - !<!ChoiceValue> 
+      value: green-color
+      language:
+        default:
+          name: green-color
+          description: ''
+    - !<!ChoiceValue> 
+      value: blue_color
+      language:
+        default:
+          name: blue_color
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: Colors
         description: ''
     protocol: !<!Protocols> {}
   constants:
@@ -167,54 +134,90 @@ schemas: !<!Schemas>
         name: paths·ka9kc·string-whitespace·get·responses·200·content·application-json·schema
         description: ''
     protocol: !<!Protocols> {}
-  - *ref_1
-  numbers:
-  - *ref_2
-  sealedChoices:
-  - !<!SealedChoiceSchema> &ref_14
-    choices:
-    - !<!ChoiceValue> 
-      value: red color
-      language:
-        default:
-          name: red color
-          description: ''
-    - !<!ChoiceValue> 
+  - !<!ConstantSchema> &ref_3
+    type: constant
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    value: !<!ConstantValue> 
       value: green-color
-      language:
-        default:
-          name: green-color
-          description: ''
-    - !<!ChoiceValue> 
-      value: blue_color
-      language:
-        default:
-          name: blue_color
-          description: ''
-    type: sealed-choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: *ref_0
+    valueType: *ref_0
     language: !<!Languages> 
       default:
-        name: Colors
-        description: ''
+        name: ColorConstant
+        description: Referenced Color Constant Description.
     protocol: !<!Protocols> {}
-  strings:
-  - *ref_0
-  - *ref_3
-  - !<!StringSchema> &ref_7
-    type: string
+  byteArrays:
+  - !<!ByteArraySchema> &ref_12
+    type: byte-array
+    format: base64url
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
     language: !<!Languages> 
       default:
-        name: string
+        name: paths·q42kx1·string-base64encoding·get·responses·200·content·application-json·schema
         description: ''
     protocol: !<!Protocols> {}
-  - *ref_4
+  objects:
+  - !<!ObjectSchema> &ref_6
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_2
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_17
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> &ref_19
+      schema: *ref_3
+      required: true
+      serializedName: ColorConstant
+      language: !<!Languages> 
+        default:
+          name: ColorConstant
+          description: Referenced Color Constant Description.
+      protocol: !<!Protocols> {}
+    - !<!Property> &ref_20
+      schema: *ref_4
+      required: false
+      serializedName: field1
+      language: !<!Languages> 
+        default:
+          name: field1
+          description: Sample string.
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: RefColorConstant
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_5
   schema: *ref_0
@@ -231,9 +234,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest Swagger BAT
-  title: body-string.quirks
 operationGroups:
 - !<!OperationGroup> 
   $key: string
@@ -1321,7 +1321,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> 
-        schema: *ref_1
+        schema: *ref_3
         implementation: Method
         originalParameter: *ref_18
         pathToProperty: []

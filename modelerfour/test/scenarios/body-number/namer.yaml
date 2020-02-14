@@ -1,49 +1,67 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: body-number
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_7
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_0
+    type: number
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_3
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_4
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
+    precision: 32
     language: !<!Languages> 
       default:
-        name: Error
+        name: Number
         description: ''
-        namespace: Api100
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_3
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_1
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Number
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_2
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 128
+    language: !<!Languages> 
+      default:
+        name: Number
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_5
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
     protocol: !<!Protocols> {}
   constants:
   - !<!ConstantSchema> 
@@ -53,17 +71,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 340282300000000000000
-    valueType: !<!NumberSchema> &ref_2
-      type: number
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 32
-      language: !<!Languages> 
-        default:
-          name: Number
-          description: ''
-      protocol: !<!Protocols> {}
+    valueType: *ref_0
     language: !<!Languages> 
       default:
         name: Constant0
@@ -76,17 +84,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 2.5976931e+101
-    valueType: !<!NumberSchema> &ref_0
-      type: number
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 64
-      language: !<!Languages> 
-        default:
-          name: Number
-          description: ''
-      protocol: !<!Protocols> {}
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: Constant1
@@ -99,7 +97,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 99999999.99
-    valueType: *ref_0
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: Constant2
@@ -112,7 +110,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: -99999999.99
-    valueType: *ref_0
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: Constant3
@@ -125,17 +123,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 2.5976931e+101
-    valueType: !<!NumberSchema> &ref_1
-      type: number
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 128
-      language: !<!Languages> 
-        default:
-          name: Number
-          description: ''
-      protocol: !<!Protocols> {}
+    valueType: *ref_2
     language: !<!Languages> 
       default:
         name: Constant4
@@ -148,7 +136,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 99999999.99
-    valueType: *ref_1
+    valueType: *ref_2
     language: !<!Languages> 
       default:
         name: Constant5
@@ -161,7 +149,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: -99999999.99
-    valueType: *ref_1
+    valueType: *ref_2
     language: !<!Languages> 
       default:
         name: Constant6
@@ -174,7 +162,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 3.402823e-20
-    valueType: *ref_0
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: Constant7
@@ -187,7 +175,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 2.5976931e-101
-    valueType: *ref_0
+    valueType: *ref_1
     language: !<!Languages> 
       default:
         name: Constant8
@@ -200,26 +188,41 @@ schemas: !<!Schemas>
       version: 1.0.0
     value: !<!ConstantValue> 
       value: 2.5976931e-101
-    valueType: *ref_1
+    valueType: *ref_2
     language: !<!Languages> 
       default:
         name: Constant9
         description: ''
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_2
-  - *ref_3
-  - *ref_0
-  - *ref_1
-  strings:
-  - !<!StringSchema> &ref_5
-    type: string
+  objects:
+  - !<!ObjectSchema> &ref_7
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_3
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_4
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: String
-        description: simple string
+        name: Error
+        description: ''
+        namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_4
 globalParameters:
 - !<!Parameter> &ref_6
   schema: *ref_5
@@ -236,9 +239,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: body-number
 operationGroups:
 - !<!OperationGroup> 
   $key: number
@@ -263,7 +263,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -314,7 +314,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -365,7 +365,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -416,7 +416,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -457,7 +457,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_8
-        schema: *ref_2
+        schema: *ref_0
         implementation: Method
         required: true
         extensions:
@@ -537,7 +537,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_2
+      schema: *ref_0
       language: !<!Languages> 
         default:
           name: ''
@@ -578,7 +578,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_9
-        schema: *ref_0
+        schema: *ref_1
         implementation: Method
         required: true
         extensions:
@@ -658,7 +658,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -778,7 +778,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -898,7 +898,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -939,7 +939,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_12
-        schema: *ref_1
+        schema: *ref_2
         implementation: Method
         required: true
         extensions:
@@ -1019,7 +1019,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1139,7 +1139,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1259,7 +1259,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''
@@ -1300,7 +1300,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_15
-        schema: *ref_2
+        schema: *ref_0
         implementation: Method
         required: true
         extensions:
@@ -1380,7 +1380,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1421,7 +1421,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_16
-        schema: *ref_0
+        schema: *ref_1
         implementation: Method
         required: true
         extensions:
@@ -1501,7 +1501,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_1
       language: !<!Languages> 
         default:
           name: ''
@@ -1542,7 +1542,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_17
-        schema: *ref_1
+        schema: *ref_2
         implementation: Method
         required: true
         extensions:
@@ -1622,7 +1622,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_1
+      schema: *ref_2
       language: !<!Languages> 
         default:
           name: ''

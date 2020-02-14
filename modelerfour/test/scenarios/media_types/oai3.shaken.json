@@ -1,0 +1,106 @@
+{
+ "openapi": "3.0.0",
+ "info": {
+  "version": "2.0-preview",
+  "title": "Media Types Client",
+  "description": "Play with produces/consumes and media-types in general."
+ },
+ "paths": {
+  "/mediatypes/analyze": {
+   "post": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "description": "Analyze body, that could be different media types.",
+    "operationId": "AnalyzeBody",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·qnky63·mediatypes-analyze·post·requestbody",
+     "description": "Input parameter."
+    },
+    "x-ms-requestBody-index": 0,
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·13dsn21·mediatypes-analyze·post·responses·200",
+      "description": "Received correct format"
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "requestBodies": {
+   "paths·qnky63·mediatypes-analyze·post·requestbody": {
+    "content": {
+     "application/pdf": {
+      "schema": {
+       "$ref": "https://github.com/Azure/autorest.testserver/blob/7a8dfca1861a264ee2723e842fc03f5e694ee417/swagger/media_types.json#/components/schemas/SourcePath"
+      }
+     },
+     "application/json": {
+      "schema": {
+       "$ref": "https://github.com/Azure/autorest.testserver/blob/7a8dfca1861a264ee2723e842fc03f5e694ee417/swagger/media_types.json#/components/schemas/SourcePath"
+      }
+     },
+     "image/jpeg": {
+      "schema": {
+       "$ref": "https://github.com/Azure/autorest.testserver/blob/7a8dfca1861a264ee2723e842fc03f5e694ee417/swagger/media_types.json#/components/schemas/SourcePath"
+      }
+     },
+     "image/png": {
+      "schema": {
+       "$ref": "https://github.com/Azure/autorest.testserver/blob/7a8dfca1861a264ee2723e842fc03f5e694ee417/swagger/media_types.json#/components/schemas/SourcePath"
+      }
+     },
+     "image/tiff": {
+      "schema": {
+       "$ref": "https://github.com/Azure/autorest.testserver/blob/7a8dfca1861a264ee2723e842fc03f5e694ee417/swagger/media_types.json#/components/schemas/SourcePath"
+      }
+     }
+    },
+    "x-ms-parameter-location": "method",
+    "description": "Input parameter.",
+    "x-ms-requestBody-name": "input"
+   }
+  },
+  "schemas": {
+   "paths·lfcezb·mediatypes-analyze·post·responses·200·content·application-json·schema": {
+    "type": "string"
+   },
+   "SourcePath": {
+    "description": "Uri or local path to source data.",
+    "type": "object",
+    "properties": {
+     "source": {
+      "$ref": "#/components/schemas/SourcePath-source",
+      "description": "File source path."
+     }
+    }
+   },
+   "SourcePath-source": {
+    "description": "File source path.",
+    "maxLength": 2048,
+    "minLength": 0,
+    "type": "string"
+   }
+  },
+  "responses": {
+   "paths·13dsn21·mediatypes-analyze·post·responses·200": {
+    "description": "Received correct format",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/paths·lfcezb·mediatypes-analyze·post·responses·200·content·application-json·schema"
+      }
+     }
+    }
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "http://localhost:3000/"
+  }
+ ]
+}

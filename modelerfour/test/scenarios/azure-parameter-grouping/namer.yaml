@@ -1,65 +1,74 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: azure-parameter-grouping
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_20
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_2
+    type: integer
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_12
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_13
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
+    defaultValue: 30
+    precision: 32
     language: !<!Languages> 
       default:
-        name: Error
+        name: Integer
         description: ''
-        namespace: Api100
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_4
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_12
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_14
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_13
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
     protocol: !<!Protocols> {}
   groups:
   - !<!GroupSchema> &ref_1
     type: group
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_0
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: String
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       originalParameter:
       - !<!Parameter> &ref_16
         schema: *ref_0
@@ -88,18 +97,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_2
-        type: integer
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        defaultValue: 30
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_2
       originalParameter:
       - !<!Parameter> &ref_17
         schema: *ref_2
@@ -143,17 +141,7 @@ schemas: !<!Schemas>
           description: Path parameter
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_4
-        type: integer
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       originalParameter:
       - !<!Parameter> &ref_19
         schema: *ref_4
@@ -384,20 +372,35 @@ schemas: !<!Schemas>
         name: ParameterGroupingPostMultiParamGroupsSecondParamGroup
         description: Parameter group
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_2
-  - *ref_4
-  - *ref_12
-  strings:
-  - !<!StringSchema> &ref_14
-    type: string
+  objects:
+  - !<!ObjectSchema> &ref_20
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_12
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_13
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: String
-        description: simple string
+        name: Error
+        description: ''
+        namespace: Api100
     protocol: !<!Protocols> {}
-  - *ref_0
-  - *ref_13
 globalParameters:
 - !<!Parameter> &ref_15
   schema: *ref_14
@@ -414,9 +417,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: azure-parameter-grouping
 operationGroups:
 - !<!OperationGroup> 
   $key: parameterGrouping

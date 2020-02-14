@@ -1,5 +1,126 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: required-optional
 schemas: !<!Schemas> 
+  numbers:
+  - !<!NumberSchema> &ref_0
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_13
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_14
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_9
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: StringWrapperValue
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: StringOptionalWrapperValue
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ProductName
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_8
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: PostContentSchemaItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_6
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ArrayWrapperValueItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_7
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ArrayOptionalWrapperValueItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_12
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Post0ItemsItem
+        description: ''
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_17
     type: object
@@ -8,14 +129,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_0
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_0
       serializedName: status
       language: !<!Languages> 
         default:
@@ -23,16 +137,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_5
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_1
       serializedName: message
       language: !<!Languages> 
         default:
@@ -93,16 +198,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> &ref_40
-      schema: !<!StringSchema> &ref_6
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: StringWrapperValue
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_2
       required: true
       serializedName: value
       language: !<!Languages> 
@@ -123,16 +219,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> &ref_44
-      schema: !<!StringSchema> &ref_7
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: StringOptionalWrapperValue
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       serializedName: value
       language: !<!Languages> 
         default:
@@ -145,7 +232,7 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_1
+  - !<!ObjectSchema> &ref_5
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -161,16 +248,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> &ref_50
-      schema: !<!StringSchema> &ref_8
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ProductName
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -191,7 +269,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> &ref_58
-      schema: *ref_1
+      schema: *ref_5
       required: true
       serializedName: value
       language: !<!Languages> 
@@ -212,7 +290,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> &ref_62
-      schema: *ref_1
+      schema: *ref_5
       serializedName: value
       language: !<!Languages> 
         default:
@@ -232,21 +310,12 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> &ref_70
-      schema: !<!ArraySchema> &ref_2
+      schema: !<!ArraySchema> &ref_10
         type: array
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: !<!StringSchema> &ref_10
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: ArrayWrapperValueItem
-              description: ''
-          protocol: !<!Protocols> {}
+        elementType: *ref_6
         language: !<!Languages> 
           default:
             name: ArrayWrapperValue
@@ -272,21 +341,12 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> &ref_74
-      schema: !<!ArraySchema> &ref_3
+      schema: !<!ArraySchema> &ref_11
         type: array
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        elementType: !<!StringSchema> &ref_11
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: ArrayOptionalWrapperValueItem
-              description: ''
-          protocol: !<!Protocols> {}
+        elementType: *ref_7
         language: !<!Languages> 
           default:
             name: ArrayOptionalWrapperValue
@@ -310,16 +370,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: !<!StringSchema> &ref_9
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: PostContentSchemaItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_8
     language: !<!Languages> 
       default:
         name: ArrayOfPostContentSchemaItem
@@ -330,76 +381,28 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: !<!StringSchema> &ref_4
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: String
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_9
     language: !<!Languages> 
       default:
         name: ArrayOfString
         description: Array of String
     protocol: !<!Protocols> {}
-  - *ref_2
-  - *ref_3
+  - *ref_10
+  - *ref_11
   - !<!ArraySchema> &ref_76
     type: array
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: !<!StringSchema> &ref_12
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: Post0ItemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_12
     language: !<!Languages> 
       default:
         name: ArrayOfPost0ItemsItem
         description: Array of Post0ItemsItem
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_0
-  - !<!NumberSchema> &ref_13
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: Integer
-        description: ''
-    protocol: !<!Protocols> {}
-  strings:
-  - !<!StringSchema> &ref_14
-    type: string
-    language: !<!Languages> 
-      default:
-        name: String
-        description: simple string
-    protocol: !<!Protocols> {}
-  - *ref_4
-  - *ref_5
-  - *ref_6
-  - *ref_7
-  - *ref_8
-  - *ref_9
-  - *ref_10
-  - *ref_11
-  - *ref_12
 globalParameters:
 - !<!Parameter> &ref_21
-  schema: *ref_4
+  schema: *ref_9
   implementation: Client
   required: true
   extensions:
@@ -413,7 +416,7 @@ globalParameters:
     http: !<!HttpParameter> 
       in: path
 - !<!Parameter> &ref_22
-  schema: *ref_4
+  schema: *ref_9
   implementation: Client
   required: true
   extensions:
@@ -454,9 +457,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: required-optional
 operationGroups:
 - !<!OperationGroup> 
   $key: implicit
@@ -468,7 +468,7 @@ operationGroups:
     parameters:
     - *ref_15
     - !<!Parameter> &ref_16
-      schema: *ref_4
+      schema: *ref_9
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -528,7 +528,7 @@ operationGroups:
     parameters:
     - *ref_15
     - !<!Parameter> &ref_18
-      schema: *ref_4
+      schema: *ref_9
       implementation: Method
       language: !<!Languages> 
         default:
@@ -587,7 +587,7 @@ operationGroups:
     parameters:
     - *ref_15
     - !<!Parameter> &ref_19
-      schema: *ref_4
+      schema: *ref_9
       implementation: Method
       language: !<!Languages> 
         default:
@@ -649,7 +649,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_20
-        schema: *ref_4
+        schema: *ref_9
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1294,7 +1294,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_36
-        schema: *ref_4
+        schema: *ref_9
         implementation: Method
         required: true
         extensions:
@@ -1364,7 +1364,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_37
-        schema: *ref_4
+        schema: *ref_9
         implementation: Method
         extensions:
           x-ms-requestBody-name: bodyParameter
@@ -1448,7 +1448,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_41
-        schema: *ref_6
+        schema: *ref_2
         implementation: Method
         originalParameter: *ref_39
         pathToProperty: []
@@ -1531,7 +1531,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_45
-        schema: *ref_7
+        schema: *ref_3
         implementation: Method
         originalParameter: *ref_43
         pathToProperty: []
@@ -1596,7 +1596,7 @@ operationGroups:
     parameters:
     - *ref_15
     - !<!Parameter> &ref_46
-      schema: *ref_4
+      schema: *ref_9
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -1656,7 +1656,7 @@ operationGroups:
     parameters:
     - *ref_15
     - !<!Parameter> &ref_47
-      schema: *ref_4
+      schema: *ref_9
       implementation: Method
       language: !<!Languages> 
         default:
@@ -1718,7 +1718,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_48
-        schema: *ref_1
+        schema: *ref_5
         flattened: true
         implementation: Method
         required: true
@@ -1746,7 +1746,7 @@ operationGroups:
             description: ''
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_52
-        schema: *ref_8
+        schema: *ref_4
         implementation: Method
         originalParameter: *ref_48
         pathToProperty: []
@@ -1816,7 +1816,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> &ref_53
-        schema: *ref_1
+        schema: *ref_5
         flattened: true
         implementation: Method
         extensions:
@@ -1843,7 +1843,7 @@ operationGroups:
             description: ''
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_55
-        schema: *ref_8
+        schema: *ref_4
         implementation: Method
         originalParameter: *ref_53
         pathToProperty: []
@@ -1928,7 +1928,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_59
-        schema: *ref_1
+        schema: *ref_5
         implementation: Method
         originalParameter: *ref_57
         pathToProperty: []
@@ -2011,7 +2011,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_63
-        schema: *ref_1
+        schema: *ref_5
         implementation: Method
         originalParameter: *ref_61
         pathToProperty: []
@@ -2233,7 +2233,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_71
-        schema: *ref_2
+        schema: *ref_10
         implementation: Method
         originalParameter: *ref_69
         pathToProperty: []
@@ -2316,7 +2316,7 @@ operationGroups:
             in: body
             style: json
       - !<!Parameter> &ref_75
-        schema: *ref_3
+        schema: *ref_11
         implementation: Method
         originalParameter: *ref_73
         pathToProperty: []

@@ -1,72 +1,28 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: report
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_8
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_0
+    type: integer
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_1
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
+    precision: 32
     language: !<!Languages> 
       default:
-        name: Error
+        name: Integer
         description: ''
-        namespace: Api100
     protocol: !<!Protocols> {}
-  dictionaries:
-  - !<!DictionarySchema> &ref_7
-    type: dictionary
-    elementType: !<!NumberSchema> &ref_0
-      type: integer
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      precision: 32
-      language: !<!Languages> 
-        default:
-          name: Integer
-          description: ''
-      protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
     language: !<!Languages> 
       default:
-        name: DictionaryOfInteger
-        description: Dictionary of <integer>
+        name: Integer
+        description: ''
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_0
-  - *ref_1
   strings:
   - !<!StringSchema> &ref_3
     type: string
@@ -85,7 +41,54 @@ schemas: !<!Schemas>
         name: String
         description: ''
     protocol: !<!Protocols> {}
-  - *ref_2
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_7
+    type: dictionary
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: DictionaryOfInteger
+        description: Dictionary of <integer>
+    protocol: !<!Protocols> {}
+  objects:
+  - !<!ObjectSchema> &ref_8
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_2
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: ''
+        namespace: Api100
+    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_4
   schema: *ref_3
@@ -102,9 +105,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: report
 operationGroups:
 - !<!OperationGroup> 
   $key: ''

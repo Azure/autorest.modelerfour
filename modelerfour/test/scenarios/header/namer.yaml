@@ -1,50 +1,8 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: header
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_6
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: !<!NumberSchema> &ref_0
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: Integer
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: status
-      language: !<!Languages> 
-        default:
-          name: status
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: ''
-        namespace: Api100
-    protocol: !<!Protocols> {}
   booleans:
   - !<!BooleanSchema> &ref_24
     type: boolean
@@ -54,6 +12,124 @@ schemas: !<!Schemas>
     language: !<!Languages> 
       default:
         name: Boolean
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_8
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_12
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_16
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Number
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_20
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Number
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+        header: value
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_51
+    choices:
+    - !<!ChoiceValue> 
+      value: White
+      language:
+        default:
+          name: White
+          description: ''
+    - !<!ChoiceValue> 
+      value: black
+      language:
+        default:
+          name: Black
+          description: ''
+    - !<!ChoiceValue> 
+      value: GREY
+      language:
+        default:
+          name: Grey
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: GreyscaleColors
         description: ''
         header: value
     protocol: !<!Protocols> {}
@@ -119,111 +195,38 @@ schemas: !<!Schemas>
         description: ''
         header: value
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_0
-  - !<!NumberSchema> &ref_8
-    type: integer
+  objects:
+  - !<!ObjectSchema> &ref_6
+    type: object
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: Integer
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_12
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: Integer
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_16
-    type: number
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: Number
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_20
-    type: number
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: Number
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  sealedChoices:
-  - !<!SealedChoiceSchema> &ref_51
-    choices:
-    - !<!ChoiceValue> 
-      value: White
-      language:
-        default:
-          name: White
-          description: ''
-    - !<!ChoiceValue> 
-      value: black
-      language:
-        default:
-          name: Black
-          description: ''
-    - !<!ChoiceValue> 
-      value: GREY
-      language:
-        default:
-          name: Grey
-          description: ''
-    type: sealed-choice
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    choiceType: !<!StringSchema> &ref_1
-      type: string
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
       language: !<!Languages> 
         default:
-          name: String
-          description: simple string
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_2
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: GreyscaleColors
+        name: Error
         description: ''
-        header: value
+        namespace: Api100
     protocol: !<!Protocols> {}
-  strings:
-  - *ref_1
-  - !<!StringSchema> &ref_4
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: String
-        description: ''
-        header: value
-    protocol: !<!Protocols> {}
-  - *ref_2
 globalParameters:
 - !<!Parameter> &ref_3
-  schema: *ref_1
+  schema: *ref_0
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   required: true
@@ -237,9 +240,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: header
 operationGroups:
 - !<!OperationGroup> 
   $key: header

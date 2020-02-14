@@ -1,5 +1,476 @@
 !<!CodeModel> 
+info: !<!Info> 
+  title: storage
 schemas: !<!Schemas> 
+  booleans:
+  - !<!BooleanSchema> &ref_35
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_36
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_46
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: Gets the current count of the allocated resources in the subscription.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_47
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: Gets the maximum count of the resources that can be allocated in the subscription.
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_8
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountCheckNameAvailabilityParameters-name
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    defaultValue: Microsoft.Storage/storageAccounts
+    language: !<!Languages> 
+      default:
+        name: StorageAccountCheckNameAvailabilityParameters-type
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: CheckNameAvailabilityResult-message
+        description: Gets an error message explaining the Reason value in more detail.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Resource-id
+        description: Resource Id
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_5
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Resource-name
+        description: Resource name
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_6
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Resource-type
+        description: Resource type
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_7
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Resource-location
+        description: Resource location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Endpoints-blob
+        description: Gets the blob endpoint.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_12
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Endpoints-queue
+        description: Gets the queue endpoint.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_13
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: Endpoints-table
+        description: Gets the table endpoint.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_15
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountProperties-primaryLocation
+        description: Gets the location of the primary for the storage account.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_16
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountProperties-secondaryLocation
+        description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_18
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: CustomDomain-name
+        description: Gets or sets the custom domain name. Name is the CNAME source.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_28
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountKeys-key1
+        description: Gets the value of key 1.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_29
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountListResult-nextLink
+        description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_30
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: UsageName-value
+        description: Gets a string describing the resource name.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_31
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: UsageName-localizedValue
+        description: Gets a localized string describing the resource name.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_34
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: SubResource-id
+        description: Resource Id
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_37
+    choices:
+    - !<!ChoiceValue> 
+      value: AccountNameInvalid
+      language:
+        default:
+          name: AccountNameInvalid
+          description: ''
+    - !<!ChoiceValue> 
+      value: AlreadyExists
+      language:
+        default:
+          name: AlreadyExists
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: Reason
+        description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_10
+    choices:
+    - !<!ChoiceValue> 
+      value: Standard_LRS
+      language:
+        default:
+          name: Standard_LRS
+          description: ''
+    - !<!ChoiceValue> 
+      value: Standard_ZRS
+      language:
+        default:
+          name: Standard_ZRS
+          description: ''
+    - !<!ChoiceValue> 
+      value: Standard_GRS
+      language:
+        default:
+          name: Standard_GRS
+          description: ''
+    - !<!ChoiceValue> 
+      value: Standard_RAGRS
+      language:
+        default:
+          name: Standard_RAGRS
+          description: ''
+    - !<!ChoiceValue> 
+      value: Premium_LRS
+      language:
+        default:
+          name: Premium_LRS
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: AccountType
+        description: Gets or sets the account type.
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_38
+    choices:
+    - !<!ChoiceValue> 
+      value: Creating
+      language:
+        default:
+          name: Creating
+          description: ''
+    - !<!ChoiceValue> 
+      value: ResolvingDNS
+      language:
+        default:
+          name: ResolvingDNS
+          description: ''
+    - !<!ChoiceValue> 
+      value: Succeeded
+      language:
+        default:
+          name: Succeeded
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ProvisioningState
+        description: Gets the status of the storage account at the time the operation was called.
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_17
+    choices:
+    - !<!ChoiceValue> 
+      value: Available
+      language:
+        default:
+          name: Available
+          description: ''
+    - !<!ChoiceValue> 
+      value: Unavailable
+      language:
+        default:
+          name: Unavailable
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: AccountStatus
+        description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_39
+    choices:
+    - !<!ChoiceValue> 
+      value: key1
+      language:
+        default:
+          name: key1
+          description: ''
+    - !<!ChoiceValue> 
+      value: key2
+      language:
+        default:
+          name: key2
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: KeyName
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_40
+    choices:
+    - !<!ChoiceValue> 
+      value: Count
+      language:
+        default:
+          name: Count
+          description: ''
+    - !<!ChoiceValue> 
+      value: Bytes
+      language:
+        default:
+          name: Bytes
+          description: ''
+    - !<!ChoiceValue> 
+      value: Seconds
+      language:
+        default:
+          name: Seconds
+          description: ''
+    - !<!ChoiceValue> 
+      value: Percent
+      language:
+        default:
+          name: Percent
+          description: ''
+    - !<!ChoiceValue> 
+      value: CountsPerSecond
+      language:
+        default:
+          name: CountsPerSecond
+          description: ''
+    - !<!ChoiceValue> 
+      value: BytesPerSecond
+      language:
+        default:
+          name: BytesPerSecond
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: UsageUnit
+        description: Gets the unit of measurement.
+    protocol: !<!Protocols> {}
+  constants:
+  - !<!ConstantSchema> &ref_48
+    type: constant
+    value: !<!ConstantValue> 
+      value: 2015-05-01-preview
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ApiVersion-2015-05-01-preview
+        description: Api Version (2015-05-01-preview)
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_41
+    type: dictionary
+    elementType: *ref_8
+    language: !<!Languages> 
+      default:
+        name: Resource-tags
+        description: Resource tags
+    protocol: !<!Protocols> {}
+  dateTimes:
+  - !<!DateTimeSchema> &ref_42
+    type: date-time
+    format: date-time
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountProperties-lastGeoFailoverTime
+        description: >-
+          Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the
+          accountType is StandardGRS or StandardRAGRS.
+    protocol: !<!Protocols> {}
+  - !<!DateTimeSchema> &ref_43
+    type: date-time
+    format: date-time
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2015-05-01-preview
+    language: !<!Languages> 
+      default:
+        name: StorageAccountProperties-creationTime
+        description: Gets the creation date and time of the storage account in UTC.
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_49
     type: object
@@ -8,16 +479,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_1
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: StorageAccountCheckNameAvailabilityParameters-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_1
       required: true
       serializedName: name
       language: !<!Languages> 
@@ -26,17 +488,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        defaultValue: Microsoft.Storage/storageAccounts
-        language: !<!Languages> 
-          default:
-            name: StorageAccountCheckNameAvailabilityParameters-type
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_2
       required: false
       serializedName: type
       language: !<!Languages> 
@@ -57,13 +509,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_35
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: boolean
-            description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
-        protocol: !<!Protocols> {}
+      schema: *ref_35
       serializedName: nameAvailable
       language: !<!Languages> 
         default:
@@ -71,36 +517,7 @@ schemas: !<!Schemas>
           description: 'Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_37
-        choices:
-        - !<!ChoiceValue> 
-          value: AccountNameInvalid
-          language:
-            default:
-              name: AccountNameInvalid
-              description: ''
-        - !<!ChoiceValue> 
-          value: AlreadyExists
-          language:
-            default:
-              name: AlreadyExists
-              description: ''
-        type: sealed-choice
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        choiceType: !<!StringSchema> &ref_0
-          type: string
-          language: !<!Languages> 
-            default:
-              name: string
-              description: simple string
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: Reason
-            description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
-        protocol: !<!Protocols> {}
+      schema: *ref_37
       serializedName: reason
       language: !<!Languages> 
         default:
@@ -108,16 +525,7 @@ schemas: !<!Schemas>
           description: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_3
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: CheckNameAvailabilityResult-message
-            description: Gets an error message explaining the Reason value in more detail.
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       serializedName: message
       language: !<!Languages> 
         default:
@@ -156,48 +564,7 @@ schemas: !<!Schemas>
               version: 2015-05-01-preview
             properties:
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_10
-                choices:
-                - !<!ChoiceValue> 
-                  value: Standard_LRS
-                  language:
-                    default:
-                      name: Standard_LRS
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Standard_ZRS
-                  language:
-                    default:
-                      name: Standard_ZRS
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Standard_GRS
-                  language:
-                    default:
-                      name: Standard_GRS
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Standard_RAGRS
-                  language:
-                    default:
-                      name: Standard_RAGRS
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Premium_LRS
-                  language:
-                    default:
-                      name: Premium_LRS
-                      description: ''
-                type: sealed-choice
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                choiceType: *ref_0
-                language: !<!Languages> 
-                  default:
-                    name: AccountType
-                    description: Gets or sets the account type.
-                protocol: !<!Protocols> {}
+              schema: *ref_10
               serializedName: accountType
               language: !<!Languages> 
                 default:
@@ -243,36 +610,7 @@ schemas: !<!Schemas>
               version: 2015-05-01-preview
             properties:
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_38
-                choices:
-                - !<!ChoiceValue> 
-                  value: Creating
-                  language:
-                    default:
-                      name: Creating
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: ResolvingDNS
-                  language:
-                    default:
-                      name: ResolvingDNS
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Succeeded
-                  language:
-                    default:
-                      name: Succeeded
-                      description: ''
-                type: sealed-choice
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                choiceType: *ref_0
-                language: !<!Languages> 
-                  default:
-                    name: ProvisioningState
-                    description: Gets the status of the storage account at the time the operation was called.
-                protocol: !<!Protocols> {}
+              schema: *ref_38
               serializedName: provisioningState
               language: !<!Languages> 
                 default:
@@ -295,16 +633,7 @@ schemas: !<!Schemas>
                   version: 2015-05-01-preview
                 properties:
                 - !<!Property> 
-                  schema: !<!StringSchema> &ref_11
-                    type: string
-                    apiVersions:
-                    - !<!ApiVersion> 
-                      version: 2015-05-01-preview
-                    language: !<!Languages> 
-                      default:
-                        name: Endpoints-blob
-                        description: Gets the blob endpoint.
-                    protocol: !<!Protocols> {}
+                  schema: *ref_11
                   serializedName: blob
                   language: !<!Languages> 
                     default:
@@ -312,16 +641,7 @@ schemas: !<!Schemas>
                       description: Gets the blob endpoint.
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: !<!StringSchema> &ref_12
-                    type: string
-                    apiVersions:
-                    - !<!ApiVersion> 
-                      version: 2015-05-01-preview
-                    language: !<!Languages> 
-                      default:
-                        name: Endpoints-queue
-                        description: Gets the queue endpoint.
-                    protocol: !<!Protocols> {}
+                  schema: *ref_12
                   serializedName: queue
                   language: !<!Languages> 
                     default:
@@ -329,16 +649,7 @@ schemas: !<!Schemas>
                       description: Gets the queue endpoint.
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: !<!StringSchema> &ref_13
-                    type: string
-                    apiVersions:
-                    - !<!ApiVersion> 
-                      version: 2015-05-01-preview
-                    language: !<!Languages> 
-                      default:
-                        name: Endpoints-table
-                        description: Gets the table endpoint.
-                    protocol: !<!Protocols> {}
+                  schema: *ref_13
                   serializedName: table
                   language: !<!Languages> 
                     default:
@@ -412,16 +723,7 @@ schemas: !<!Schemas>
                   description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!StringSchema> &ref_15
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                language: !<!Languages> 
-                  default:
-                    name: StorageAccountProperties-primaryLocation
-                    description: Gets the location of the primary for the storage account.
-                protocol: !<!Protocols> {}
+              schema: *ref_15
               serializedName: primaryLocation
               language: !<!Languages> 
                 default:
@@ -429,30 +731,7 @@ schemas: !<!Schemas>
                   description: Gets the location of the primary for the storage account.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!SealedChoiceSchema> &ref_17
-                choices:
-                - !<!ChoiceValue> 
-                  value: Available
-                  language:
-                    default:
-                      name: Available
-                      description: ''
-                - !<!ChoiceValue> 
-                  value: Unavailable
-                  language:
-                    default:
-                      name: Unavailable
-                      description: ''
-                type: sealed-choice
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                choiceType: *ref_0
-                language: !<!Languages> 
-                  default:
-                    name: AccountStatus
-                    description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
-                protocol: !<!Protocols> {}
+              schema: *ref_17
               serializedName: statusOfPrimary
               language: !<!Languages> 
                 default:
@@ -460,19 +739,7 @@ schemas: !<!Schemas>
                   description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!DateTimeSchema> &ref_42
-                type: date-time
-                format: date-time
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                language: !<!Languages> 
-                  default:
-                    name: StorageAccountProperties-lastGeoFailoverTime
-                    description: >-
-                      Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only
-                      available if the accountType is StandardGRS or StandardRAGRS.
-                protocol: !<!Protocols> {}
+              schema: *ref_42
               serializedName: lastGeoFailoverTime
               language: !<!Languages> 
                 default:
@@ -482,16 +749,7 @@ schemas: !<!Schemas>
                     if the accountType is StandardGRS or StandardRAGRS.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!StringSchema> &ref_16
-                type: string
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                language: !<!Languages> 
-                  default:
-                    name: StorageAccountProperties-secondaryLocation
-                    description: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                protocol: !<!Protocols> {}
+              schema: *ref_16
               serializedName: secondaryLocation
               language: !<!Languages> 
                 default:
@@ -507,17 +765,7 @@ schemas: !<!Schemas>
                   description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: !<!DateTimeSchema> &ref_43
-                type: date-time
-                format: date-time
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: 2015-05-01-preview
-                language: !<!Languages> 
-                  default:
-                    name: StorageAccountProperties-creationTime
-                    description: Gets the creation date and time of the storage account in UTC.
-                protocol: !<!Protocols> {}
+              schema: *ref_43
               serializedName: creationTime
               language: !<!Languages> 
                 default:
@@ -532,16 +780,7 @@ schemas: !<!Schemas>
                   version: 2015-05-01-preview
                 properties:
                 - !<!Property> 
-                  schema: !<!StringSchema> &ref_18
-                    type: string
-                    apiVersions:
-                    - !<!ApiVersion> 
-                      version: 2015-05-01-preview
-                    language: !<!Languages> 
-                      default:
-                        name: CustomDomain-name
-                        description: Gets or sets the custom domain name. Name is the CNAME source.
-                    protocol: !<!Protocols> {}
+                  schema: *ref_18
                   serializedName: name
                   language: !<!Languages> 
                     default:
@@ -549,13 +788,7 @@ schemas: !<!Schemas>
                       description: Gets or sets the custom domain name. Name is the CNAME source.
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: !<!BooleanSchema> &ref_36
-                    type: boolean
-                    language: !<!Languages> 
-                      default:
-                        name: boolean
-                        description: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates
-                    protocol: !<!Protocols> {}
+                  schema: *ref_36
                   serializedName: useSubDomain
                   language: !<!Languages> 
                     default:
@@ -662,16 +895,7 @@ schemas: !<!Schemas>
       - *ref_22
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_4
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: Resource-id
-            description: Resource Id
-        protocol: !<!Protocols> {}
+      schema: *ref_4
       readOnly: true
       required: false
       serializedName: id
@@ -681,16 +905,7 @@ schemas: !<!Schemas>
           description: Resource Id
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_5
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: Resource-name
-            description: Resource name
-        protocol: !<!Protocols> {}
+      schema: *ref_5
       readOnly: true
       required: false
       serializedName: name
@@ -700,16 +915,7 @@ schemas: !<!Schemas>
           description: Resource name
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_6
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: Resource-type
-            description: Resource type
-        protocol: !<!Protocols> {}
+      schema: *ref_6
       readOnly: true
       required: false
       serializedName: type
@@ -719,16 +925,7 @@ schemas: !<!Schemas>
           description: Resource type
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_7
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: Resource-location
-            description: Resource location
-        protocol: !<!Protocols> {}
+      schema: *ref_7
       required: true
       serializedName: location
       language: !<!Languages> 
@@ -737,23 +934,7 @@ schemas: !<!Schemas>
           description: Resource location
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_41
-        type: dictionary
-        elementType: !<!StringSchema> &ref_8
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 2015-05-01-preview
-          language: !<!Languages> 
-            default:
-              name: string
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: Resource-tags
-            description: Resource tags
-        protocol: !<!Protocols> {}
+      schema: *ref_41
       required: false
       serializedName: tags
       language: !<!Languages> 
@@ -786,16 +967,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_28
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: StorageAccountKeys-key1
-            description: Gets the value of key 1.
-        protocol: !<!Protocols> {}
+      schema: *ref_28
       serializedName: key1
       language: !<!Languages> 
         default:
@@ -841,16 +1013,7 @@ schemas: !<!Schemas>
           description: Gets the list of storage accounts and their properties.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_29
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: StorageAccountListResult-nextLink
-            description: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
-        protocol: !<!Protocols> {}
+      schema: *ref_29
       serializedName: nextLink
       language: !<!Languages> 
         default:
@@ -870,30 +1033,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_39
-        choices:
-        - !<!ChoiceValue> 
-          value: key1
-          language:
-            default:
-              name: key1
-              description: ''
-        - !<!ChoiceValue> 
-          value: key2
-          language:
-            default:
-              name: key2
-              description: ''
-        type: sealed-choice
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        choiceType: *ref_0
-        language: !<!Languages> 
-          default:
-            name: KeyName
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_39
       serializedName: keyName
       language: !<!Languages> 
         default:
@@ -925,54 +1065,7 @@ schemas: !<!Schemas>
             version: 2015-05-01-preview
           properties:
           - !<!Property> 
-            schema: !<!SealedChoiceSchema> &ref_40
-              choices:
-              - !<!ChoiceValue> 
-                value: Count
-                language:
-                  default:
-                    name: Count
-                    description: ''
-              - !<!ChoiceValue> 
-                value: Bytes
-                language:
-                  default:
-                    name: Bytes
-                    description: ''
-              - !<!ChoiceValue> 
-                value: Seconds
-                language:
-                  default:
-                    name: Seconds
-                    description: ''
-              - !<!ChoiceValue> 
-                value: Percent
-                language:
-                  default:
-                    name: Percent
-                    description: ''
-              - !<!ChoiceValue> 
-                value: CountsPerSecond
-                language:
-                  default:
-                    name: CountsPerSecond
-                    description: ''
-              - !<!ChoiceValue> 
-                value: BytesPerSecond
-                language:
-                  default:
-                    name: BytesPerSecond
-                    description: ''
-              type: sealed-choice
-              apiVersions:
-              - !<!ApiVersion> 
-                version: 2015-05-01-preview
-              choiceType: *ref_0
-              language: !<!Languages> 
-                default:
-                  name: UsageUnit
-                  description: Gets the unit of measurement.
-              protocol: !<!Protocols> {}
+            schema: *ref_40
             serializedName: unit
             language: !<!Languages> 
               default:
@@ -980,14 +1073,7 @@ schemas: !<!Schemas>
                 description: Gets the unit of measurement.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!NumberSchema> &ref_46
-              type: integer
-              precision: 32
-              language: !<!Languages> 
-                default:
-                  name: integer
-                  description: Gets the current count of the allocated resources in the subscription.
-              protocol: !<!Protocols> {}
+            schema: *ref_46
             serializedName: currentValue
             language: !<!Languages> 
               default:
@@ -995,14 +1081,7 @@ schemas: !<!Schemas>
                 description: Gets the current count of the allocated resources in the subscription.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!NumberSchema> &ref_47
-              type: integer
-              precision: 32
-              language: !<!Languages> 
-                default:
-                  name: integer
-                  description: Gets the maximum count of the resources that can be allocated in the subscription.
-              protocol: !<!Protocols> {}
+            schema: *ref_47
             serializedName: limit
             language: !<!Languages> 
               default:
@@ -1017,16 +1096,7 @@ schemas: !<!Schemas>
                 version: 2015-05-01-preview
               properties:
               - !<!Property> 
-                schema: !<!StringSchema> &ref_30
-                  type: string
-                  apiVersions:
-                  - !<!ApiVersion> 
-                    version: 2015-05-01-preview
-                  language: !<!Languages> 
-                    default:
-                      name: UsageName-value
-                      description: Gets a string describing the resource name.
-                  protocol: !<!Protocols> {}
+                schema: *ref_30
                 serializedName: value
                 language: !<!Languages> 
                   default:
@@ -1034,16 +1104,7 @@ schemas: !<!Schemas>
                     description: Gets a string describing the resource name.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!StringSchema> &ref_31
-                  type: string
-                  apiVersions:
-                  - !<!ApiVersion> 
-                    version: 2015-05-01-preview
-                  language: !<!Languages> 
-                    default:
-                      name: UsageName-localizedValue
-                      description: Gets a localized string describing the resource name.
-                  protocol: !<!Protocols> {}
+                schema: *ref_31
                 serializedName: localizedValue
                 language: !<!Languages> 
                   default:
@@ -1094,16 +1155,7 @@ schemas: !<!Schemas>
       version: 2015-05-01-preview
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_34
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 2015-05-01-preview
-        language: !<!Languages> 
-          default:
-            name: SubResource-id
-            description: Resource Id
-        protocol: !<!Protocols> {}
+      schema: *ref_34
       serializedName: id
       language: !<!Languages> 
         default:
@@ -1118,149 +1170,9 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20150501Preview
     protocol: !<!Protocols> {}
-  dictionaries:
-  - *ref_41
   arrays:
   - *ref_44
   - *ref_45
-  booleans:
-  - *ref_35
-  - *ref_36
-  constants:
-  - !<!ConstantSchema> &ref_48
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: 2015-05-01-preview
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2015-05-01-preview
-        description: Api Version (2015-05-01-preview)
-    protocol: !<!Protocols> {}
-  dateTimes:
-  - *ref_42
-  - *ref_43
-  numbers:
-  - *ref_46
-  - *ref_47
-  sealedChoices:
-  - *ref_37
-  - *ref_10
-  - *ref_38
-  - *ref_17
-  - *ref_39
-  - *ref_40
-  strings:
-  - *ref_0
-  - *ref_8
-  - *ref_1
-  - *ref_2
-  - *ref_3
-  - *ref_4
-  - *ref_5
-  - *ref_6
-  - *ref_7
-  - *ref_11
-  - *ref_12
-  - *ref_13
-  - *ref_15
-  - *ref_16
-  - *ref_18
-  - *ref_28
-  - *ref_29
-  - *ref_30
-  - *ref_31
-  - *ref_34
 globalParameters:
 - !<!Parameter> &ref_54
   schema: *ref_8
@@ -1303,8 +1215,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: query
-info: !<!Info> 
-  title: storage
 operationGroups:
 - !<!OperationGroup> 
   $key: StorageAccounts

@@ -1,5 +1,122 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: PetStore
+  title: extensible-enums-swagger
 schemas: !<!Schemas> 
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_5
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-07-07'
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-07-07'
+    language: !<!Languages> 
+      default:
+        name: Pet-name
+        description: ''
+    protocol: !<!Protocols> {}
+  choices:
+  - !<!ChoiceSchema> &ref_2
+    choices:
+    - !<!ChoiceValue> 
+      value: Monday
+      language:
+        default:
+          name: Monday
+          description: ''
+    - !<!ChoiceValue> 
+      value: Tuesday
+      language:
+        default:
+          name: Tuesday
+          description: ''
+    - !<!ChoiceValue> 
+      value: Wednesday
+      language:
+        default:
+          name: Wednesday
+          description: ''
+    - !<!ChoiceValue> 
+      value: Thursday
+      language:
+        default:
+          name: Thursday
+          description: ''
+    - !<!ChoiceValue> 
+      value: Friday
+      language:
+        default:
+          name: Friday
+          description: ''
+    - !<!ChoiceValue> 
+      value: Saturday
+      language:
+        default:
+          name: Saturday
+          description: ''
+    - !<!ChoiceValue> 
+      value: Sunday
+      language:
+        default:
+          name: Sunday
+          description: ''
+    type: choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-07-07'
+    choiceType: *ref_0
+    defaultValue: Friday
+    language: !<!Languages> 
+      default:
+        name: DaysOfWeekExtensibleEnum
+        description: Type of Pet
+    protocol: !<!Protocols> {}
+  - !<!ChoiceSchema> &ref_3
+    choices:
+    - !<!ChoiceValue> 
+      value: '1'
+      language:
+        default:
+          name: '1'
+          description: one
+    - !<!ChoiceValue> 
+      value: '2'
+      language:
+        default:
+          name: '2'
+          description: two
+    - !<!ChoiceValue> 
+      value: '3'
+      language:
+        default:
+          name: '3'
+          description: three
+    type: choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-07-07'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: IntEnum
+        description: ''
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_7
     type: object
@@ -8,16 +125,7 @@ schemas: !<!Schemas>
       version: '2016-07-07'
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_3
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2016-07-07'
-        language: !<!Languages> 
-          default:
-            name: Pet-name
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_1
       required: false
       serializedName: name
       language: !<!Languages> 
@@ -26,67 +134,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_1
-        choices:
-        - !<!ChoiceValue> 
-          value: Monday
-          language:
-            default:
-              name: Monday
-              description: ''
-        - !<!ChoiceValue> 
-          value: Tuesday
-          language:
-            default:
-              name: Tuesday
-              description: ''
-        - !<!ChoiceValue> 
-          value: Wednesday
-          language:
-            default:
-              name: Wednesday
-              description: ''
-        - !<!ChoiceValue> 
-          value: Thursday
-          language:
-            default:
-              name: Thursday
-              description: ''
-        - !<!ChoiceValue> 
-          value: Friday
-          language:
-            default:
-              name: Friday
-              description: ''
-        - !<!ChoiceValue> 
-          value: Saturday
-          language:
-            default:
-              name: Saturday
-              description: ''
-        - !<!ChoiceValue> 
-          value: Sunday
-          language:
-            default:
-              name: Sunday
-              description: ''
-        type: choice
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2016-07-07'
-        choiceType: !<!StringSchema> &ref_0
-          type: string
-          language: !<!Languages> 
-            default:
-              name: string
-              description: simple string
-          protocol: !<!Protocols> {}
-        defaultValue: Friday
-        language: !<!Languages> 
-          default:
-            name: DaysOfWeekExtensibleEnum
-            description: Type of Pet
-        protocol: !<!Protocols> {}
+      schema: *ref_2
       required: false
       serializedName: DaysOfWeek
       language: !<!Languages> 
@@ -95,36 +143,7 @@ schemas: !<!Schemas>
           description: Type of Pet
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ChoiceSchema> &ref_2
-        choices:
-        - !<!ChoiceValue> 
-          value: '1'
-          language:
-            default:
-              name: '1'
-              description: one
-        - !<!ChoiceValue> 
-          value: '2'
-          language:
-            default:
-              name: '2'
-              description: two
-        - !<!ChoiceValue> 
-          value: '3'
-          language:
-            default:
-              name: '3'
-              description: three
-        type: choice
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2016-07-07'
-        choiceType: *ref_0
-        language: !<!Languages> 
-          default:
-            name: IntEnum
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       required: true
       serializedName: IntEnum
       language: !<!Languages> 
@@ -138,22 +157,6 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api20160707
     protocol: !<!Protocols> {}
-  choices:
-  - *ref_1
-  - *ref_2
-  strings:
-  - *ref_0
-  - !<!StringSchema> &ref_5
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2016-07-07'
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-    protocol: !<!Protocols> {}
-  - *ref_3
 globalParameters:
 - !<!Parameter> &ref_4
   schema: *ref_0
@@ -170,9 +173,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: PetStore
-  title: extensible-enums-swagger
 operationGroups:
 - !<!OperationGroup> 
   $key: Pet

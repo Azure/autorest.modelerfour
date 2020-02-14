@@ -1,194 +1,242 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Resource Flattening for AutoRest
+  title: azure-resource
 schemas: !<!Schemas> 
-  objects:
-  - !<!ObjectSchema> &ref_0
-    type: object
+  numbers:
+  - !<!NumberSchema> &ref_9
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_14
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    children: !<!Relations> 
-      all:
-      - !<!ObjectSchema> &ref_1
-        type: object
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        parents: !<!Relations> 
-          all:
-          - *ref_0
-          immediate:
-          - *ref_0
-        properties:
-        - !<!Property> 
-          schema: !<!StringSchema> &ref_3
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: FlattenedResourcePropertiesPname
-                description: ''
-            protocol: !<!Protocols> {}
-          flattenedNames:
-          - properties
-          - pname
-          serializedName: pname
-          language: !<!Languages> 
-            default:
-              name: pname
-              description: ''
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: !<!NumberSchema> &ref_2
-            type: integer
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: Integer
-                description: ''
-            protocol: !<!Protocols> {}
-          flattenedNames:
-          - properties
-          - lsize
-          serializedName: lsize
-          language: !<!Languages> 
-            default:
-              name: lsize
-              description: ''
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: !<!StringSchema> &ref_4
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: 1.0.0
-            language: !<!Languages> 
-              default:
-                name: FlattenedResourcePropertiesProvisioningState
-                description: ''
-            protocol: !<!Protocols> {}
-          flattenedNames:
-          - properties
-          - provisioningState
-          serializedName: provisioningState
-          language: !<!Languages> 
-            default:
-              name: provisioningState
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: FlattenedProduct
-            description: ''
-            namespace: Api100
-        protocol: !<!Protocols> {}
-      immediate:
-      - *ref_1
-    properties:
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_8
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ResourceId
-            description: Resource Id
-        protocol: !<!Protocols> {}
-      readOnly: true
-      serializedName: id
-      language: !<!Languages> 
-        default:
-          name: id
-          description: Resource Id
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_9
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ResourceType
-            description: Resource Type
-        protocol: !<!Protocols> {}
-      readOnly: true
-      serializedName: type
-      language: !<!Languages> 
-        default:
-          name: type
-          description: Resource Type
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!DictionarySchema> &ref_5
-        type: dictionary
-        elementType: !<!StringSchema> &ref_10
-          type: string
+    language: !<!Languages> 
+      default:
+        name: ResourceId
+        description: Resource Id
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ResourceType
+        description: Resource Type
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_5
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ResourceLocation
+        description: Resource Location
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_6
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ResourceName
+        description: Resource Name
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_8
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: FlattenedResourcePropertiesPname
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_10
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: FlattenedResourcePropertiesProvisioningState
+        description: ''
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_4
+    type: dictionary
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ResourceTags
+        description: Dictionary of <string>
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_20
+    type: dictionary
+    elementType: !<!ObjectSchema> &ref_1
+      type: object
+      apiVersions:
+      - !<!ApiVersion> 
+        version: 1.0.0
+      parents: !<!Relations> 
+        all:
+        - !<!ObjectSchema> &ref_7
+          type: object
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
+          children: !<!Relations> 
+            all:
+            - *ref_1
+            immediate:
+            - *ref_1
+          properties:
+          - !<!Property> 
+            schema: *ref_2
+            readOnly: true
+            serializedName: id
+            language: !<!Languages> 
+              default:
+                name: id
+                description: Resource Id
+            protocol: !<!Protocols> {}
+          - !<!Property> 
+            schema: *ref_3
+            readOnly: true
+            serializedName: type
+            language: !<!Languages> 
+              default:
+                name: type
+                description: Resource Type
+            protocol: !<!Protocols> {}
+          - !<!Property> 
+            schema: *ref_4
+            serializedName: tags
+            language: !<!Languages> 
+              default:
+                name: tags
+                description: Dictionary of <string>
+            protocol: !<!Protocols> {}
+          - !<!Property> 
+            schema: *ref_5
+            serializedName: location
+            language: !<!Languages> 
+              default:
+                name: location
+                description: Resource Location
+            protocol: !<!Protocols> {}
+          - !<!Property> 
+            schema: *ref_6
+            readOnly: true
+            serializedName: name
+            language: !<!Languages> 
+              default:
+                name: name
+                description: Resource Name
+            protocol: !<!Protocols> {}
+          extensions:
+            x-ms-azure-resource: true
           language: !<!Languages> 
             default:
-              name: String
-              description: ''
+              name: Resource
+              description: Some resource
+              namespace: Api100
           protocol: !<!Protocols> {}
+        immediate:
+        - *ref_7
+      properties:
+      - !<!Property> 
+        schema: *ref_8
+        flattenedNames:
+        - properties
+        - pname
+        serializedName: pname
         language: !<!Languages> 
           default:
-            name: ResourceTags
-            description: Dictionary of <string>
+            name: pname
+            description: ''
         protocol: !<!Protocols> {}
-      serializedName: tags
-      language: !<!Languages> 
-        default:
-          name: tags
-          description: Dictionary of <string>
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_11
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
+      - !<!Property> 
+        schema: *ref_9
+        flattenedNames:
+        - properties
+        - lsize
+        serializedName: lsize
         language: !<!Languages> 
           default:
-            name: ResourceLocation
-            description: Resource Location
+            name: lsize
+            description: ''
         protocol: !<!Protocols> {}
-      serializedName: location
-      language: !<!Languages> 
-        default:
-          name: location
-          description: Resource Location
-      protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: !<!StringSchema> &ref_12
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
+      - !<!Property> 
+        schema: *ref_10
+        flattenedNames:
+        - properties
+        - provisioningState
+        serializedName: provisioningState
         language: !<!Languages> 
           default:
-            name: ResourceName
-            description: Resource Name
+            name: provisioningState
+            description: ''
         protocol: !<!Protocols> {}
-      readOnly: true
-      serializedName: name
       language: !<!Languages> 
         default:
-          name: name
-          description: Resource Name
+          name: FlattenedProduct
+          description: ''
+          namespace: Api100
       protocol: !<!Protocols> {}
-    extensions:
-      x-ms-azure-resource: true
     language: !<!Languages> 
       default:
-        name: Resource
-        description: Some resource
-        namespace: Api100
+        name: DictionaryOfFlattenedProduct
+        description: Dictionary of <FlattenedProduct>
     protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_12
+    type: dictionary
+    elementType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: ResourceCollectionDictionaryofresources
+        description: Dictionary of <FlattenedProduct>
+    protocol: !<!Protocols> {}
+  objects:
+  - *ref_7
   - !<!ObjectSchema> &ref_18
     type: object
     apiVersions:
@@ -196,7 +244,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: *ref_2
+      schema: *ref_9
       serializedName: status
       language: !<!Languages> 
         default:
@@ -204,16 +252,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_13
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: ErrorMessage
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_11
       serializedName: message
       language: !<!Languages> 
         default:
@@ -234,7 +273,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: *ref_3
+      schema: *ref_8
       serializedName: pname
       language: !<!Languages> 
         default:
@@ -242,7 +281,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_2
+      schema: *ref_9
       serializedName: lsize
       language: !<!Languages> 
         default:
@@ -250,7 +289,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: *ref_4
+      schema: *ref_10
       serializedName: provisioningState
       language: !<!Languages> 
         default:
@@ -280,7 +319,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!ArraySchema> &ref_7
+      schema: !<!ArraySchema> &ref_13
         type: array
         apiVersions:
         - !<!ApiVersion> 
@@ -298,14 +337,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_6
-        type: dictionary
-        elementType: *ref_1
-        language: !<!Languages> 
-          default:
-            name: ResourceCollectionDictionaryofresources
-            description: Dictionary of <FlattenedProduct>
-        protocol: !<!Protocols> {}
+      schema: *ref_12
       serializedName: dictionaryofresources
       language: !<!Languages> 
         default:
@@ -318,24 +350,13 @@ schemas: !<!Schemas>
         description: ''
         namespace: Api100
     protocol: !<!Protocols> {}
-  dictionaries:
-  - *ref_5
-  - !<!DictionarySchema> &ref_20
-    type: dictionary
-    elementType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: DictionaryOfFlattenedProduct
-        description: Dictionary of <FlattenedProduct>
-    protocol: !<!Protocols> {}
-  - *ref_6
   arrays:
   - !<!ArraySchema> &ref_16
     type: array
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: *ref_0
+    elementType: *ref_7
     language: !<!Languages> 
       default:
         name: ArrayOfResource
@@ -352,25 +373,7 @@ schemas: !<!Schemas>
         name: ArrayOfFlattenedProduct
         description: Array of FlattenedProduct
     protocol: !<!Protocols> {}
-  - *ref_7
-  numbers:
-  - *ref_2
-  strings:
-  - !<!StringSchema> &ref_14
-    type: string
-    language: !<!Languages> 
-      default:
-        name: String
-        description: simple string
-    protocol: !<!Protocols> {}
-  - *ref_8
-  - *ref_9
-  - *ref_10
-  - *ref_11
-  - *ref_12
   - *ref_13
-  - *ref_3
-  - *ref_4
 globalParameters:
 - !<!Parameter> &ref_15
   schema: *ref_14
@@ -387,9 +390,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Resource Flattening for AutoRest
-  title: azure-resource
 operationGroups:
 - !<!OperationGroup> 
   $key: ''

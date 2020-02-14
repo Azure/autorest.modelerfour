@@ -1,5 +1,55 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Test Infrastructure for AutoRest
+  title: url-multi-collectionFormat
 schemas: !<!Schemas> 
+  numbers:
+  - !<!NumberSchema> &ref_3
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_4
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: get-0-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: Error-message
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_7
     type: object
@@ -8,14 +58,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_3
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_3
       serializedName: status
       language: !<!Languages> 
         default:
@@ -23,16 +66,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_2
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-        language: !<!Languages> 
-          default:
-            name: Error-message
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_2
       serializedName: message
       language: !<!Languages> 
         default:
@@ -51,16 +85,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: !<!StringSchema> &ref_0
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: get-0-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_0
     language: !<!Languages> 
       default:
         name: paths·clhwmo·queries-array-multi-string-null·get·parameters·0·schema
@@ -71,34 +96,12 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    elementType: !<!StringSchema> &ref_1
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: string
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_1
     language: !<!Languages> 
       default:
         name: paths·1bxsii3·queries-array-multi-string-empty·get·parameters·0·schema
         description: ''
     protocol: !<!Protocols> {}
-  numbers:
-  - *ref_3
-  strings:
-  - !<!StringSchema> &ref_4
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: simple string
-    protocol: !<!Protocols> {}
-  - *ref_0
-  - *ref_2
-  - *ref_1
 globalParameters:
 - !<!Parameter> &ref_8
   schema: *ref_4
@@ -115,9 +118,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Test Infrastructure for AutoRest
-  title: url-multi-collectionFormat
 operationGroups:
 - !<!OperationGroup> 
   $key: queries

@@ -1,5 +1,884 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: 'Client that can be used to query an index and upload, merge, or delete documents.'
+  title: SearchIndexClient
 schemas: !<!Schemas> 
+  booleans:
+  - !<!BooleanSchema> &ref_94
+    type: boolean
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_33
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: IncludeTotalResultCount
+        description: A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_59
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: UseFuzzyMatching
+        description: >-
+          A value indicating whether to use fuzzy matching for the suggestion query. Default is false. When set to true, the query will find suggestions even if there's a substituted or missing character in the search text. While this
+          provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestion searches are slower and consume more resources.
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_25
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: Succeeded
+        description: A value indicating whether the indexing operation succeeded for the document identified by the key.
+    protocol: !<!Protocols> {}
+  - !<!BooleanSchema> &ref_78
+    type: boolean
+    language: !<!Languages> 
+      default:
+        name: UseFuzzyMatching
+        description: >-
+          A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will autocomplete terms even if there's a substituted or missing character in the search text. While this
+          provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_90
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_97
+    type: number
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: number
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_102
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_30
+    type: integer
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Count
+        description: >-
+          The total count of results found by the search operation, or null if the count was not requested. If present, the count may be greater than the number of results in this response. This can happen if you use the $top or $skip
+          parameters, or if Azure Cognitive Search can't return all the requested documents in a single Search response.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_31
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Coverage
+        description: 'A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not specified in the request.'
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_7
+    type: integer
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: The approximate count of documents falling within the bucket described by this facet.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_39
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: number
+        description: >-
+          A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for
+          services with only one replica. The default is 100.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_48
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: >-
+          The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use skip due to this limitation, consider using orderby on a totally-ordered key and filter
+          with a range query instead.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_49
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: >-
+          The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation
+          token that can be used to issue another Search request for the next page of results.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_12
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Score
+        description: The relevance score of the document compared to other documents returned by the query.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_56
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Coverage
+        description: 'A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not set in the request.'
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_62
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: number
+        description: >-
+          A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestion query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even
+          for services with only one replica. The default is 80.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_67
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: The number of suggestions to retrieve. This must be a value between 1 and 100. The default is 5.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_26
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: >-
+          The status code of the indexing operation. Possible values include: 200 for a successful update or delete, 201 for successful document creation, 400 for a malformed input document, 404 for document not found, 409 for a version
+          conflict, 422 when the index is temporarily unavailable, or 503 for when the service is too busy.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_72
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: Coverage
+        description: 'A value indicating the percentage of the index that was considered by the autocomplete request, or null if minimumCoverage was not specified in the request.'
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_81
+    type: number
+    precision: 64
+    language: !<!Languages> 
+      default:
+        name: number
+        description: >-
+          A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even
+          for services with only one replica. The default is 80.
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_84
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: integer
+        description: The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_18
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_1
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-2-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-4-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-8-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_4
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-10-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_5
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-12-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_6
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-14-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_9
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-facetsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_35
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-filter
+        description: The OData $filter expression to apply to the search query.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_36
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: HighlightFields
+        description: The comma-separated list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_37
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-highlightPostTag
+        description: A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_38
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-highlightPreTag
+        description: A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_40
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: OrderBy
+        description: >-
+          The comma-separated list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be
+          followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by
+          document match score. There can be at most 32 $orderby clauses.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_10
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-scoringParametersItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_43
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-scoringProfile
+        description: The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_44
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchText
+        description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_45
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-searchFields
+        description: >-
+          The comma-separated list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over
+          any field names listed in this parameter.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_47
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchRequest-select
+        description: 'The comma-separated list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_11
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchResult-@search.highlights-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_51
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: NextLink
+        description: >-
+          Continuation URL returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this URL to formulate another GET or POST Search request to get the next part of the search
+          response. Make sure to use the same verb (GET or POST) as the request that produced this response.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_16
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-1-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_17
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-7-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_19
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: get-9-itemsItem
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_20
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: Text
+        description: The text of the suggestion result.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_58
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SuggestRequest-filter
+        description: An OData expression that filters the documents considered for suggestions.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_60
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SuggestRequest-highlightPostTag
+        description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_61
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SuggestRequest-highlightPreTag
+        description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_63
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchText
+        description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_64
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SuggestRequest-searchFields
+        description: The comma-separated list of field names to search for the specified search text. Target fields must be included in the specified suggester.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_65
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SuggestRequest-select
+        description: 'The comma-separated list of fields to retrieve. If unspecified, only the key field will be included in the results.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_66
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SuggestRequest-suggesterName
+        description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_23
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: IndexingResult-key
+        description: The key of a document that was in the indexing request.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_24
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: IndexingResult-errorMessage
+        description: The error message explaining why the indexing operation failed for the document identified by the key; null if indexing succeeded.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_27
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteItem-text
+        description: The completed term.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_28
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteItem-queryPlusText
+        description: The query along with the completed term.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_75
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: SearchText
+        description: The search text on which to base autocomplete results.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_77
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteRequest-filter
+        description: An OData expression that filters the documents used to produce completed terms for the Autocomplete result.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_79
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteRequest-highlightPostTag
+        description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_80
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteRequest-highlightPreTag
+        description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.'
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_82
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteRequest-searchFields
+        description: The comma-separated list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_83
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: AutocompleteRequest-suggesterName
+        description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> 
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    defaultValue: search.windows.net
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  sealedChoices:
+  - !<!SealedChoiceSchema> &ref_41
+    choices:
+    - !<!ChoiceValue> 
+      value: simple
+      language:
+        default:
+          name: simple
+          description: ''
+    - !<!ChoiceValue> 
+      value: full
+      language:
+        default:
+          name: full
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: QueryType
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_46
+    choices:
+    - !<!ChoiceValue> 
+      value: any
+      language:
+        default:
+          name: any
+          description: ''
+    - !<!ChoiceValue> 
+      value: all
+      language:
+        default:
+          name: all
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: SearchMode
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_29
+    choices:
+    - !<!ChoiceValue> 
+      value: upload
+      language:
+        default:
+          name: upload
+          description: ''
+    - !<!ChoiceValue> 
+      value: merge
+      language:
+        default:
+          name: merge
+          description: ''
+    - !<!ChoiceValue> 
+      value: mergeOrUpload
+      language:
+        default:
+          name: mergeOrUpload
+          description: ''
+    - !<!ChoiceValue> 
+      value: delete
+      language:
+        default:
+          name: delete
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: IndexActionType
+        description: The operation to perform on a document in an indexing batch.
+    protocol: !<!Protocols> {}
+  - !<!SealedChoiceSchema> &ref_76
+    choices:
+    - !<!ChoiceValue> 
+      value: oneTerm
+      language:
+        default:
+          name: oneTerm
+          description: ''
+    - !<!ChoiceValue> 
+      value: twoTerms
+      language:
+        default:
+          name: twoTerms
+          description: ''
+    - !<!ChoiceValue> 
+      value: oneTermWithContext
+      language:
+        default:
+          name: oneTermWithContext
+          description: ''
+    type: sealed-choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    choiceType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: AutocompleteMode
+        description: ''
+    protocol: !<!Protocols> {}
+  constants:
+  - !<!ConstantSchema> &ref_88
+    type: constant
+    value: !<!ConstantValue> 
+      value: '2019-05-06'
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ApiVersion-2019-05-06
+        description: Api Version (2019-05-06)
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_8
+    type: dictionary
+    elementType: !<!AnySchema> &ref_14
+      type: any
+      language: !<!Languages> 
+        default:
+          name: any
+          description: Any object
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: FacetResult
+        description: A single bucket of a facet query result. Reports the number of documents with a field value falling within a particular range or having a particular value or interval.
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_85
+    type: dictionary
+    elementType: !<!ArraySchema> &ref_32
+      type: array
+      apiVersions:
+      - !<!ApiVersion> 
+        version: '2019-05-06'
+      elementType: !<!ObjectSchema> &ref_52
+        type: object
+        apiVersions:
+        - !<!ApiVersion> 
+          version: '2019-05-06'
+        parents: !<!Relations> 
+          all:
+          - *ref_8
+          immediate:
+          - *ref_8
+        properties:
+        - !<!Property> 
+          schema: *ref_7
+          readOnly: true
+          serializedName: count
+          language: !<!Languages> 
+            default:
+              name: count
+              description: The approximate count of documents falling within the bucket described by this facet.
+          protocol: !<!Protocols> {}
+        language: !<!Languages> 
+          default:
+            name: FacetResult
+            description: A single bucket of a facet query result. Reports the number of documents with a field value falling within a particular range or having a particular value or interval.
+            namespace: Api20190506
+        protocol: !<!Protocols> {}
+      language: !<!Languages> 
+        default:
+          name: components·5qj7l7·schemas·searchdocumentsresult·properties·search-facets·additionalproperties
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Facets
+        description: 'The facet query results for the search operation, organized as a collection of buckets for each faceted field; null if the query did not include any facet expressions.'
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_15
+    type: dictionary
+    elementType: *ref_14
+    language: !<!Languages> 
+      default:
+        name: SearchResult
+        description: 'Contains a document found by a search query, plus associated metadata.'
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_86
+    type: dictionary
+    elementType: !<!ArraySchema> &ref_13
+      type: array
+      apiVersions:
+      - !<!ApiVersion> 
+        version: '2019-05-06'
+      elementType: *ref_11
+      language: !<!Languages> 
+        default:
+          name: components·1fouik0·schemas·searchresult·properties·search-highlights·additionalproperties
+          description: ''
+      protocol: !<!Protocols> {}
+    language: !<!Languages> 
+      default:
+        name: Highlights
+        description: 'Text fragments from the document that indicate the matching search terms, organized by each applicable field; null if hit highlighting was not enabled for the query.'
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_21
+    type: dictionary
+    elementType: *ref_14
+    language: !<!Languages> 
+      default:
+        name: SuggestResult
+        description: 'A result containing a document found by a suggestion query, plus associated metadata.'
+    protocol: !<!Protocols> {}
+  - !<!DictionarySchema> &ref_22
+    type: dictionary
+    elementType: *ref_14
+    language: !<!Languages> 
+      default:
+        name: IndexAction
+        description: Represents an index action that operates on a document.
+    protocol: !<!Protocols> {}
+  uuids:
+  - !<!UuidSchema> &ref_87
+    type: uuid
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-05-06'
+    language: !<!Languages> 
+      default:
+        name: uuid
+        description: ''
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_123
     type: object
@@ -8,16 +887,7 @@ schemas: !<!Schemas>
       version: '2019-05-06'
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_30
-        type: integer
-        precision: 64
-        language: !<!Languages> 
-          default:
-            name: Count
-            description: >-
-              The total count of results found by the search operation, or null if the count was not requested. If present, the count may be greater than the number of results in this response. This can happen if you use the $top or $skip
-              parameters, or if Azure Cognitive Search can't return all the requested documents in a single Search response.
-        protocol: !<!Protocols> {}
+      schema: *ref_30
       readOnly: true
       serializedName: '@odata.count'
       language: !<!Languages> 
@@ -28,14 +898,7 @@ schemas: !<!Schemas>
             parameters, or if Azure Cognitive Search can't return all the requested documents in a single Search response.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_31
-        type: number
-        precision: 64
-        language: !<!Languages> 
-          default:
-            name: Coverage
-            description: 'A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not specified in the request.'
-        protocol: !<!Protocols> {}
+      schema: *ref_31
       readOnly: true
       serializedName: '@search.coverage'
       language: !<!Languages> 
@@ -44,69 +907,7 @@ schemas: !<!Schemas>
           description: 'A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not specified in the request.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_85
-        type: dictionary
-        elementType: !<!ArraySchema> &ref_32
-          type: array
-          apiVersions:
-          - !<!ApiVersion> 
-            version: '2019-05-06'
-          elementType: !<!ObjectSchema> &ref_52
-            type: object
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            parents: !<!Relations> 
-              all:
-              - !<!DictionarySchema> &ref_8
-                type: dictionary
-                elementType: !<!AnySchema> &ref_14
-                  type: any
-                  language: !<!Languages> 
-                    default:
-                      name: any
-                      description: Any object
-                  protocol: !<!Protocols> {}
-                language: !<!Languages> 
-                  default:
-                    name: FacetResult
-                    description: A single bucket of a facet query result. Reports the number of documents with a field value falling within a particular range or having a particular value or interval.
-                protocol: !<!Protocols> {}
-              immediate:
-              - *ref_8
-            properties:
-            - !<!Property> 
-              schema: !<!NumberSchema> &ref_7
-                type: integer
-                precision: 64
-                language: !<!Languages> 
-                  default:
-                    name: integer
-                    description: The approximate count of documents falling within the bucket described by this facet.
-                protocol: !<!Protocols> {}
-              readOnly: true
-              serializedName: count
-              language: !<!Languages> 
-                default:
-                  name: count
-                  description: The approximate count of documents falling within the bucket described by this facet.
-              protocol: !<!Protocols> {}
-            language: !<!Languages> 
-              default:
-                name: FacetResult
-                description: A single bucket of a facet query result. Reports the number of documents with a field value falling within a particular range or having a particular value or interval.
-                namespace: Api20190506
-            protocol: !<!Protocols> {}
-          language: !<!Languages> 
-            default:
-              name: components·5qj7l7·schemas·searchdocumentsresult·properties·search-facets·additionalproperties
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: Facets
-            description: 'The facet query results for the search operation, organized as a collection of buckets for each faceted field; null if the query did not include any facet expressions.'
-        protocol: !<!Protocols> {}
+      schema: *ref_85
       readOnly: true
       serializedName: '@search.facets'
       language: !<!Languages> 
@@ -122,13 +923,7 @@ schemas: !<!Schemas>
           version: '2019-05-06'
         properties:
         - !<!Property> 
-          schema: !<!BooleanSchema> &ref_33
-            type: boolean
-            language: !<!Languages> 
-              default:
-                name: IncludeTotalResultCount
-                description: A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.
-            protocol: !<!Protocols> {}
+          schema: *ref_33
           serializedName: count
           language: !<!Languages> 
             default:
@@ -141,16 +936,7 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: '2019-05-06'
-            elementType: !<!StringSchema> &ref_9
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: SearchRequest-facetsItem
-                  description: ''
-              protocol: !<!Protocols> {}
+            elementType: *ref_9
             language: !<!Languages> 
               default:
                 name: SearchRequest-facets
@@ -163,16 +949,7 @@ schemas: !<!Schemas>
               description: 'The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.'
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_35
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchRequest-filter
-                description: The OData $filter expression to apply to the search query.
-            protocol: !<!Protocols> {}
+          schema: *ref_35
           serializedName: filter
           language: !<!Languages> 
             default:
@@ -180,16 +957,7 @@ schemas: !<!Schemas>
               description: The OData $filter expression to apply to the search query.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_36
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: HighlightFields
-                description: The comma-separated list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.
-            protocol: !<!Protocols> {}
+          schema: *ref_36
           serializedName: highlight
           language: !<!Languages> 
             default:
@@ -197,16 +965,7 @@ schemas: !<!Schemas>
               description: The comma-separated list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_37
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchRequest-highlightPostTag
-                description: A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.
-            protocol: !<!Protocols> {}
+          schema: *ref_37
           serializedName: highlightPostTag
           language: !<!Languages> 
             default:
@@ -214,16 +973,7 @@ schemas: !<!Schemas>
               description: A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_38
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchRequest-highlightPreTag
-                description: A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.
-            protocol: !<!Protocols> {}
+          schema: *ref_38
           serializedName: highlightPreTag
           language: !<!Languages> 
             default:
@@ -231,16 +981,7 @@ schemas: !<!Schemas>
               description: A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_39
-            type: number
-            precision: 64
-            language: !<!Languages> 
-              default:
-                name: number
-                description: >-
-                  A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability
-                  even for services with only one replica. The default is 100.
-            protocol: !<!Protocols> {}
+          schema: *ref_39
           serializedName: minimumCoverage
           language: !<!Languages> 
             default:
@@ -250,19 +991,7 @@ schemas: !<!Schemas>
                 for services with only one replica. The default is 100.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_40
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: OrderBy
-                description: >-
-                  The comma-separated list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be
-                  followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending
-                  by document match score. There can be at most 32 $orderby clauses.
-            protocol: !<!Protocols> {}
+          schema: *ref_40
           serializedName: orderby
           language: !<!Languages> 
             default:
@@ -273,36 +1002,7 @@ schemas: !<!Schemas>
                 by document match score. There can be at most 32 $orderby clauses.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!SealedChoiceSchema> &ref_41
-            choices:
-            - !<!ChoiceValue> 
-              value: simple
-              language:
-                default:
-                  name: simple
-                  description: ''
-            - !<!ChoiceValue> 
-              value: full
-              language:
-                default:
-                  name: full
-                  description: ''
-            type: sealed-choice
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            choiceType: !<!StringSchema> &ref_0
-              type: string
-              language: !<!Languages> 
-                default:
-                  name: string
-                  description: simple string
-              protocol: !<!Protocols> {}
-            language: !<!Languages> 
-              default:
-                name: QueryType
-                description: ''
-            protocol: !<!Protocols> {}
+          schema: *ref_41
           serializedName: queryType
           language: !<!Languages> 
             default:
@@ -315,16 +1015,7 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: '2019-05-06'
-            elementType: !<!StringSchema> &ref_10
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: SearchRequest-scoringParametersItem
-                  description: ''
-              protocol: !<!Protocols> {}
+            elementType: *ref_10
             language: !<!Languages> 
               default:
                 name: SearchRequest-scoringParameters
@@ -341,16 +1032,7 @@ schemas: !<!Schemas>
                 the parameter string would be "mylocation--122.2,44.8" (without the quotes).
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_43
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchRequest-scoringProfile
-                description: The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.
-            protocol: !<!Protocols> {}
+          schema: *ref_43
           serializedName: scoringProfile
           language: !<!Languages> 
             default:
@@ -358,16 +1040,7 @@ schemas: !<!Schemas>
               description: The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_44
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchText
-                description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
-            protocol: !<!Protocols> {}
+          schema: *ref_44
           serializedName: search
           language: !<!Languages> 
             default:
@@ -375,18 +1048,7 @@ schemas: !<!Schemas>
               description: A full-text search query expression; Use "*" or omit this parameter to match all documents.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_45
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchRequest-searchFields
-                description: >-
-                  The comma-separated list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take
-                  precedence over any field names listed in this parameter.
-            protocol: !<!Protocols> {}
+          schema: *ref_45
           serializedName: searchFields
           language: !<!Languages> 
             default:
@@ -396,30 +1058,7 @@ schemas: !<!Schemas>
                 over any field names listed in this parameter.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!SealedChoiceSchema> &ref_46
-            choices:
-            - !<!ChoiceValue> 
-              value: any
-              language:
-                default:
-                  name: any
-                  description: ''
-            - !<!ChoiceValue> 
-              value: all
-              language:
-                default:
-                  name: all
-                  description: ''
-            type: sealed-choice
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            choiceType: *ref_0
-            language: !<!Languages> 
-              default:
-                name: SearchMode
-                description: ''
-            protocol: !<!Protocols> {}
+          schema: *ref_46
           serializedName: searchMode
           language: !<!Languages> 
             default:
@@ -427,16 +1066,7 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!StringSchema> &ref_47
-            type: string
-            apiVersions:
-            - !<!ApiVersion> 
-              version: '2019-05-06'
-            language: !<!Languages> 
-              default:
-                name: SearchRequest-select
-                description: 'The comma-separated list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.'
-            protocol: !<!Protocols> {}
+          schema: *ref_47
           serializedName: select
           language: !<!Languages> 
             default:
@@ -444,16 +1074,7 @@ schemas: !<!Schemas>
               description: 'The comma-separated list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.'
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_48
-            type: integer
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: integer
-                description: >-
-                  The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use skip due to this limitation, consider using orderby on a totally-ordered key and
-                  filter with a range query instead.
-            protocol: !<!Protocols> {}
+          schema: *ref_48
           serializedName: skip
           language: !<!Languages> 
             default:
@@ -463,16 +1084,7 @@ schemas: !<!Schemas>
                 filter with a range query instead.
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!NumberSchema> &ref_49
-            type: integer
-            precision: 32
-            language: !<!Languages> 
-              default:
-                name: integer
-                description: >-
-                  The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a
-                  continuation token that can be used to issue another Search request for the next page of results.
-            protocol: !<!Protocols> {}
+          schema: *ref_49
           serializedName: top
           language: !<!Languages> 
             default:
@@ -507,26 +1119,12 @@ schemas: !<!Schemas>
             version: '2019-05-06'
           parents: !<!Relations> 
             all:
-            - !<!DictionarySchema> &ref_15
-              type: dictionary
-              elementType: *ref_14
-              language: !<!Languages> 
-                default:
-                  name: SearchResult
-                  description: 'Contains a document found by a search query, plus associated metadata.'
-              protocol: !<!Protocols> {}
+            - *ref_15
             immediate:
             - *ref_15
           properties:
           - !<!Property> 
-            schema: !<!NumberSchema> &ref_12
-              type: number
-              precision: 64
-              language: !<!Languages> 
-                default:
-                  name: Score
-                  description: The relevance score of the document compared to other documents returned by the query.
-              protocol: !<!Protocols> {}
+            schema: *ref_12
             nullable: false
             readOnly: true
             serializedName: '@search.score'
@@ -536,33 +1134,7 @@ schemas: !<!Schemas>
                 description: The relevance score of the document compared to other documents returned by the query.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!DictionarySchema> &ref_86
-              type: dictionary
-              elementType: !<!ArraySchema> &ref_13
-                type: array
-                apiVersions:
-                - !<!ApiVersion> 
-                  version: '2019-05-06'
-                elementType: !<!StringSchema> &ref_11
-                  type: string
-                  apiVersions:
-                  - !<!ApiVersion> 
-                    version: '2019-05-06'
-                  language: !<!Languages> 
-                    default:
-                      name: SearchResult-@search.highlights-itemsItem
-                      description: ''
-                  protocol: !<!Protocols> {}
-                language: !<!Languages> 
-                  default:
-                    name: components·1fouik0·schemas·searchresult·properties·search-highlights·additionalproperties
-                    description: ''
-                protocol: !<!Protocols> {}
-              language: !<!Languages> 
-                default:
-                  name: Highlights
-                  description: 'Text fragments from the document that indicate the matching search terms, organized by each applicable field; null if hit highlighting was not enabled for the query.'
-              protocol: !<!Protocols> {}
+            schema: *ref_86
             readOnly: true
             serializedName: '@search.highlights'
             language: !<!Languages> 
@@ -589,18 +1161,7 @@ schemas: !<!Schemas>
           description: The sequence of results returned by the query.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_51
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: NextLink
-            description: >-
-              Continuation URL returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this URL to formulate another GET or POST Search request to get the next part of the search
-              response. Make sure to use the same verb (GET or POST) as the request that produced this response.
-        protocol: !<!Protocols> {}
+      schema: *ref_51
       readOnly: true
       serializedName: '@odata.nextLink'
       language: !<!Languages> 
@@ -649,28 +1210,12 @@ schemas: !<!Schemas>
             version: '2019-05-06'
           parents: !<!Relations> 
             all:
-            - !<!DictionarySchema> &ref_21
-              type: dictionary
-              elementType: *ref_14
-              language: !<!Languages> 
-                default:
-                  name: SuggestResult
-                  description: 'A result containing a document found by a suggestion query, plus associated metadata.'
-              protocol: !<!Protocols> {}
+            - *ref_21
             immediate:
             - *ref_21
           properties:
           - !<!Property> 
-            schema: !<!StringSchema> &ref_20
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: Text
-                  description: The text of the suggestion result.
-              protocol: !<!Protocols> {}
+            schema: *ref_20
             readOnly: true
             serializedName: '@search.text'
             language: !<!Languages> 
@@ -697,14 +1242,7 @@ schemas: !<!Schemas>
           description: The sequence of results returned by the query.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_56
-        type: number
-        precision: 64
-        language: !<!Languages> 
-          default:
-            name: Coverage
-            description: 'A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not set in the request.'
-        protocol: !<!Protocols> {}
+      schema: *ref_56
       readOnly: true
       serializedName: '@search.coverage'
       language: !<!Languages> 
@@ -726,16 +1264,7 @@ schemas: !<!Schemas>
       version: '2019-05-06'
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_58
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SuggestRequest-filter
-            description: An OData expression that filters the documents considered for suggestions.
-        protocol: !<!Protocols> {}
+      schema: *ref_58
       serializedName: filter
       language: !<!Languages> 
         default:
@@ -743,15 +1272,7 @@ schemas: !<!Schemas>
           description: An OData expression that filters the documents considered for suggestions.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_59
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: UseFuzzyMatching
-            description: >-
-              A value indicating whether to use fuzzy matching for the suggestion query. Default is false. When set to true, the query will find suggestions even if there's a substituted or missing character in the search text. While this
-              provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestion searches are slower and consume more resources.
-        protocol: !<!Protocols> {}
+      schema: *ref_59
       serializedName: fuzzy
       language: !<!Languages> 
         default:
@@ -761,16 +1282,7 @@ schemas: !<!Schemas>
             provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestion searches are slower and consume more resources.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_60
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SuggestRequest-highlightPostTag
-            description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.'
-        protocol: !<!Protocols> {}
+      schema: *ref_60
       serializedName: highlightPostTag
       language: !<!Languages> 
         default:
@@ -778,16 +1290,7 @@ schemas: !<!Schemas>
           description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_61
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SuggestRequest-highlightPreTag
-            description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.'
-        protocol: !<!Protocols> {}
+      schema: *ref_61
       serializedName: highlightPreTag
       language: !<!Languages> 
         default:
@@ -795,16 +1298,7 @@ schemas: !<!Schemas>
           description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_62
-        type: number
-        precision: 64
-        language: !<!Languages> 
-          default:
-            name: number
-            description: >-
-              A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestion query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability
-              even for services with only one replica. The default is 80.
-        protocol: !<!Protocols> {}
+      schema: *ref_62
       serializedName: minimumCoverage
       language: !<!Languages> 
         default:
@@ -825,16 +1319,7 @@ schemas: !<!Schemas>
             document match score. There can be at most 32 $orderby clauses.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_63
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SearchText
-            description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
-        protocol: !<!Protocols> {}
+      schema: *ref_63
       serializedName: search
       language: !<!Languages> 
         default:
@@ -842,16 +1327,7 @@ schemas: !<!Schemas>
           description: 'The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_64
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SuggestRequest-searchFields
-            description: The comma-separated list of field names to search for the specified search text. Target fields must be included in the specified suggester.
-        protocol: !<!Protocols> {}
+      schema: *ref_64
       serializedName: searchFields
       language: !<!Languages> 
         default:
@@ -859,16 +1335,7 @@ schemas: !<!Schemas>
           description: The comma-separated list of field names to search for the specified search text. Target fields must be included in the specified suggester.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_65
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SuggestRequest-select
-            description: 'The comma-separated list of fields to retrieve. If unspecified, only the key field will be included in the results.'
-        protocol: !<!Protocols> {}
+      schema: *ref_65
       serializedName: select
       language: !<!Languages> 
         default:
@@ -876,16 +1343,7 @@ schemas: !<!Schemas>
           description: 'The comma-separated list of fields to retrieve. If unspecified, only the key field will be included in the results.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_66
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SuggestRequest-suggesterName
-            description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
-        protocol: !<!Protocols> {}
+      schema: *ref_66
       serializedName: suggesterName
       language: !<!Languages> 
         default:
@@ -893,14 +1351,7 @@ schemas: !<!Schemas>
           description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_67
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: The number of suggestions to retrieve. This must be a value between 1 and 100. The default is 5.
-        protocol: !<!Protocols> {}
+      schema: *ref_67
       serializedName: top
       language: !<!Languages> 
         default:
@@ -932,54 +1383,12 @@ schemas: !<!Schemas>
             version: '2019-05-06'
           parents: !<!Relations> 
             all:
-            - !<!DictionarySchema> &ref_22
-              type: dictionary
-              elementType: *ref_14
-              language: !<!Languages> 
-                default:
-                  name: IndexAction
-                  description: Represents an index action that operates on a document.
-              protocol: !<!Protocols> {}
+            - *ref_22
             immediate:
             - *ref_22
           properties:
           - !<!Property> 
-            schema: !<!SealedChoiceSchema> &ref_29
-              choices:
-              - !<!ChoiceValue> 
-                value: upload
-                language:
-                  default:
-                    name: upload
-                    description: ''
-              - !<!ChoiceValue> 
-                value: merge
-                language:
-                  default:
-                    name: merge
-                    description: ''
-              - !<!ChoiceValue> 
-                value: mergeOrUpload
-                language:
-                  default:
-                    name: mergeOrUpload
-                    description: ''
-              - !<!ChoiceValue> 
-                value: delete
-                language:
-                  default:
-                    name: delete
-                    description: ''
-              type: sealed-choice
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              choiceType: *ref_0
-              language: !<!Languages> 
-                default:
-                  name: IndexActionType
-                  description: The operation to perform on a document in an indexing batch.
-              protocol: !<!Protocols> {}
+            schema: *ref_29
             serializedName: '@search.action'
             language: !<!Languages> 
               default:
@@ -1030,16 +1439,7 @@ schemas: !<!Schemas>
             version: '2019-05-06'
           properties:
           - !<!Property> 
-            schema: !<!StringSchema> &ref_23
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: IndexingResult-key
-                  description: The key of a document that was in the indexing request.
-              protocol: !<!Protocols> {}
+            schema: *ref_23
             readOnly: true
             serializedName: key
             language: !<!Languages> 
@@ -1048,16 +1448,7 @@ schemas: !<!Schemas>
                 description: The key of a document that was in the indexing request.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!StringSchema> &ref_24
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: IndexingResult-errorMessage
-                  description: The error message explaining why the indexing operation failed for the document identified by the key; null if indexing succeeded.
-              protocol: !<!Protocols> {}
+            schema: *ref_24
             readOnly: true
             serializedName: errorMessage
             language: !<!Languages> 
@@ -1066,13 +1457,7 @@ schemas: !<!Schemas>
                 description: The error message explaining why the indexing operation failed for the document identified by the key; null if indexing succeeded.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!BooleanSchema> &ref_25
-              type: boolean
-              language: !<!Languages> 
-                default:
-                  name: Succeeded
-                  description: A value indicating whether the indexing operation succeeded for the document identified by the key.
-              protocol: !<!Protocols> {}
+            schema: *ref_25
             nullable: false
             readOnly: true
             serializedName: status
@@ -1082,16 +1467,7 @@ schemas: !<!Schemas>
                 description: A value indicating whether the indexing operation succeeded for the document identified by the key.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!NumberSchema> &ref_26
-              type: integer
-              precision: 32
-              language: !<!Languages> 
-                default:
-                  name: integer
-                  description: >-
-                    The status code of the indexing operation. Possible values include: 200 for a successful update or delete, 201 for successful document creation, 400 for a malformed input document, 404 for document not found, 409 for a
-                    version conflict, 422 when the index is temporarily unavailable, or 503 for when the service is too busy.
-              protocol: !<!Protocols> {}
+            schema: *ref_26
             nullable: false
             readOnly: true
             serializedName: statusCode
@@ -1134,14 +1510,7 @@ schemas: !<!Schemas>
       version: '2019-05-06'
     properties:
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_72
-        type: number
-        precision: 64
-        language: !<!Languages> 
-          default:
-            name: Coverage
-            description: 'A value indicating the percentage of the index that was considered by the autocomplete request, or null if minimumCoverage was not specified in the request.'
-        protocol: !<!Protocols> {}
+      schema: *ref_72
       readOnly: true
       serializedName: '@search.coverage'
       language: !<!Languages> 
@@ -1162,16 +1531,7 @@ schemas: !<!Schemas>
             version: '2019-05-06'
           properties:
           - !<!Property> 
-            schema: !<!StringSchema> &ref_27
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: AutocompleteItem-text
-                  description: The completed term.
-              protocol: !<!Protocols> {}
+            schema: *ref_27
             readOnly: true
             serializedName: text
             language: !<!Languages> 
@@ -1180,16 +1540,7 @@ schemas: !<!Schemas>
                 description: The completed term.
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: !<!StringSchema> &ref_28
-              type: string
-              apiVersions:
-              - !<!ApiVersion> 
-                version: '2019-05-06'
-              language: !<!Languages> 
-                default:
-                  name: AutocompleteItem-queryPlusText
-                  description: The query along with the completed term.
-              protocol: !<!Protocols> {}
+            schema: *ref_28
             readOnly: true
             serializedName: queryPlusText
             language: !<!Languages> 
@@ -1229,16 +1580,7 @@ schemas: !<!Schemas>
       version: '2019-05-06'
     properties:
     - !<!Property> 
-      schema: !<!StringSchema> &ref_75
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: SearchText
-            description: The search text on which to base autocomplete results.
-        protocol: !<!Protocols> {}
+      schema: *ref_75
       serializedName: search
       language: !<!Languages> 
         default:
@@ -1246,36 +1588,7 @@ schemas: !<!Schemas>
           description: The search text on which to base autocomplete results.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!SealedChoiceSchema> &ref_76
-        choices:
-        - !<!ChoiceValue> 
-          value: oneTerm
-          language:
-            default:
-              name: oneTerm
-              description: ''
-        - !<!ChoiceValue> 
-          value: twoTerms
-          language:
-            default:
-              name: twoTerms
-              description: ''
-        - !<!ChoiceValue> 
-          value: oneTermWithContext
-          language:
-            default:
-              name: oneTermWithContext
-              description: ''
-        type: sealed-choice
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        choiceType: *ref_0
-        language: !<!Languages> 
-          default:
-            name: AutocompleteMode
-            description: ''
-        protocol: !<!Protocols> {}
+      schema: *ref_76
       serializedName: autocompleteMode
       language: !<!Languages> 
         default:
@@ -1283,16 +1596,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_77
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: AutocompleteRequest-filter
-            description: An OData expression that filters the documents used to produce completed terms for the Autocomplete result.
-        protocol: !<!Protocols> {}
+      schema: *ref_77
       serializedName: filter
       language: !<!Languages> 
         default:
@@ -1300,15 +1604,7 @@ schemas: !<!Schemas>
           description: An OData expression that filters the documents used to produce completed terms for the Autocomplete result.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!BooleanSchema> &ref_78
-        type: boolean
-        language: !<!Languages> 
-          default:
-            name: UseFuzzyMatching
-            description: >-
-              A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will autocomplete terms even if there's a substituted or missing character in the search text. While
-              this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.
-        protocol: !<!Protocols> {}
+      schema: *ref_78
       serializedName: fuzzy
       language: !<!Languages> 
         default:
@@ -1318,16 +1614,7 @@ schemas: !<!Schemas>
             provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_79
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: AutocompleteRequest-highlightPostTag
-            description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.'
-        protocol: !<!Protocols> {}
+      schema: *ref_79
       serializedName: highlightPostTag
       language: !<!Languages> 
         default:
@@ -1335,16 +1622,7 @@ schemas: !<!Schemas>
           description: 'A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_80
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: AutocompleteRequest-highlightPreTag
-            description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.'
-        protocol: !<!Protocols> {}
+      schema: *ref_80
       serializedName: highlightPreTag
       language: !<!Languages> 
         default:
@@ -1352,16 +1630,7 @@ schemas: !<!Schemas>
           description: 'A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.'
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_81
-        type: number
-        precision: 64
-        language: !<!Languages> 
-          default:
-            name: number
-            description: >-
-              A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability
-              even for services with only one replica. The default is 80.
-        protocol: !<!Protocols> {}
+      schema: *ref_81
       serializedName: minimumCoverage
       language: !<!Languages> 
         default:
@@ -1371,16 +1640,7 @@ schemas: !<!Schemas>
             even for services with only one replica. The default is 80.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_82
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: AutocompleteRequest-searchFields
-            description: The comma-separated list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.
-        protocol: !<!Protocols> {}
+      schema: *ref_82
       serializedName: searchFields
       language: !<!Languages> 
         default:
@@ -1388,16 +1648,7 @@ schemas: !<!Schemas>
           description: The comma-separated list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!StringSchema> &ref_83
-        type: string
-        apiVersions:
-        - !<!ApiVersion> 
-          version: '2019-05-06'
-        language: !<!Languages> 
-          default:
-            name: AutocompleteRequest-suggesterName
-            description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
-        protocol: !<!Protocols> {}
+      schema: *ref_83
       serializedName: suggesterName
       language: !<!Languages> 
         default:
@@ -1405,14 +1656,7 @@ schemas: !<!Schemas>
           description: The name of the suggester as specified in the suggesters collection that's part of the index definition.
       protocol: !<!Protocols> {}
     - !<!Property> 
-      schema: !<!NumberSchema> &ref_84
-        type: integer
-        precision: 32
-        language: !<!Languages> 
-          default:
-            name: integer
-            description: The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.
-        protocol: !<!Protocols> {}
+      schema: *ref_84
       serializedName: top
       language: !<!Languages> 
         default:
@@ -1425,29 +1669,13 @@ schemas: !<!Schemas>
         description: 'Parameters for fuzzy matching, and other autocomplete query behaviors.'
         namespace: Api20190506
     protocol: !<!Protocols> {}
-  dictionaries:
-  - *ref_8
-  - *ref_85
-  - *ref_15
-  - *ref_86
-  - *ref_21
-  - *ref_22
   arrays:
   - !<!ArraySchema> &ref_95
     type: array
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_1
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-2-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_1
     language: !<!Languages> 
       default:
         name: paths·1adzgki·docs·get·parameters·2·schema
@@ -1458,16 +1686,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_2
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-4-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_2
     language: !<!Languages> 
       default:
         name: paths·18nrber·docs·get·parameters·4·schema
@@ -1478,16 +1697,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_3
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-8-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_3
     language: !<!Languages> 
       default:
         name: paths·1qpycpw·docs·get·parameters·8·schema
@@ -1498,16 +1708,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_4
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-10-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_4
     language: !<!Languages> 
       default:
         name: paths·1fk4czm·docs·get·parameters·10·schema
@@ -1518,16 +1719,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_5
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-12-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_5
     language: !<!Languages> 
       default:
         name: paths·1ydkr4·docs·get·parameters·12·schema
@@ -1538,16 +1730,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_6
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-14-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_6
     language: !<!Languages> 
       default:
         name: paths·ittppp·docs·get·parameters·14·schema
@@ -1563,16 +1746,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_16
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-1-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_16
     language: !<!Languages> 
       default:
         name: paths·12hj56k·docs-key·get·parameters·1·schema
@@ -1583,16 +1757,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_17
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-7-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_17
     language: !<!Languages> 
       default:
         name: paths·8sf5uk·docs-search-suggest·get·parameters·7·schema
@@ -1603,16 +1768,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_18
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: string
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_18
     language: !<!Languages> 
       default:
         name: paths·a27jtj·docs-search-suggest·get·parameters·8·schema
@@ -1623,16 +1779,7 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
-    elementType: !<!StringSchema> &ref_19
-      type: string
-      apiVersions:
-      - !<!ApiVersion> 
-        version: '2019-05-06'
-      language: !<!Languages> 
-        default:
-          name: get-9-itemsItem
-          description: ''
-      protocol: !<!Protocols> {}
+    elementType: *ref_19
     language: !<!Languages> 
       default:
         name: paths·qhr0c7·docs-search-suggest·get·parameters·9·schema
@@ -1653,230 +1800,6 @@ schemas: !<!Schemas>
         description: ''
     protocol: !<!Protocols> {}
   - *ref_73
-  booleans:
-  - !<!BooleanSchema> &ref_94
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-05-06'
-    language: !<!Languages> 
-      default:
-        name: boolean
-        description: ''
-    protocol: !<!Protocols> {}
-  - *ref_33
-  - *ref_59
-  - *ref_25
-  - *ref_78
-  constants:
-  - !<!ConstantSchema> &ref_88
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> 
-    type: constant
-    value: !<!ConstantValue> 
-      value: '2019-05-06'
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: ApiVersion-2019-05-06
-        description: Api Version (2019-05-06)
-    protocol: !<!Protocols> {}
-  numbers:
-  - !<!NumberSchema> &ref_90
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-05-06'
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_97
-    type: number
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-05-06'
-    precision: 64
-    language: !<!Languages> 
-      default:
-        name: number
-        description: ''
-    protocol: !<!Protocols> {}
-  - !<!NumberSchema> &ref_102
-    type: integer
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-05-06'
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-    protocol: !<!Protocols> {}
-  - *ref_30
-  - *ref_31
-  - *ref_7
-  - *ref_39
-  - *ref_48
-  - *ref_49
-  - *ref_12
-  - *ref_56
-  - *ref_62
-  - *ref_67
-  - *ref_26
-  - *ref_72
-  - *ref_81
-  - *ref_84
-  sealedChoices:
-  - *ref_41
-  - *ref_46
-  - *ref_29
-  - *ref_76
-  strings:
-  - *ref_0
-  - *ref_18
-  - *ref_1
-  - *ref_2
-  - *ref_3
-  - *ref_4
-  - *ref_5
-  - *ref_6
-  - *ref_9
-  - *ref_35
-  - *ref_36
-  - *ref_37
-  - *ref_38
-  - *ref_40
-  - *ref_10
-  - *ref_43
-  - *ref_44
-  - *ref_45
-  - *ref_47
-  - *ref_11
-  - *ref_51
-  - *ref_16
-  - *ref_17
-  - *ref_19
-  - *ref_20
-  - *ref_58
-  - *ref_60
-  - *ref_61
-  - *ref_63
-  - *ref_64
-  - *ref_65
-  - *ref_66
-  - *ref_23
-  - *ref_24
-  - *ref_27
-  - *ref_28
-  - *ref_75
-  - *ref_77
-  - *ref_79
-  - *ref_80
-  - *ref_82
-  - *ref_83
-  - !<!StringSchema> 
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-05-06'
-    defaultValue: search.windows.net
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-    protocol: !<!Protocols> {}
-  uuids:
-  - !<!UuidSchema> &ref_87
-    type: uuid
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-05-06'
-    language: !<!Languages> 
-      default:
-        name: uuid
-        description: ''
-    protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_91
   schema: *ref_0
@@ -1948,9 +1871,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: query
-info: !<!Info> 
-  description: 'Client that can be used to query an index and upload, merge, or delete documents.'
-  title: SearchIndexClient
 operationGroups:
 - !<!OperationGroup> 
   $key: Documents

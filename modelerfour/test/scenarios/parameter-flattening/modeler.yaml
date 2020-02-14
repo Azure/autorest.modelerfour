@@ -1,5 +1,46 @@
 !<!CodeModel> 
+info: !<!Info> 
+  description: Resource Flattening for AutoRest
+  title: parameter-flattening
 schemas: !<!Schemas> 
+  strings:
+  - !<!StringSchema> &ref_2
+    type: string
+    language: !<!Languages> 
+      default:
+        name: string
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_0
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    maxLength: 80
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+    protocol: !<!Protocols> {}
+  dictionaries:
+  - !<!DictionarySchema> &ref_1
+    type: dictionary
+    elementType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: AvailabilitySetUpdateParameters-tags
+        description: A description about the set of tags.
+    protocol: !<!Protocols> {}
   objects:
   - !<!ObjectSchema> &ref_6
     type: object
@@ -8,23 +49,7 @@ schemas: !<!Schemas>
       version: 1.0.0
     properties:
     - !<!Property> 
-      schema: !<!DictionarySchema> &ref_1
-        type: dictionary
-        elementType: !<!StringSchema> &ref_0
-          type: string
-          apiVersions:
-          - !<!ApiVersion> 
-            version: 1.0.0
-          language: !<!Languages> 
-            default:
-              name: string
-              description: ''
-          protocol: !<!Protocols> {}
-        language: !<!Languages> 
-          default:
-            name: AvailabilitySetUpdateParameters-tags
-            description: A description about the set of tags.
-        protocol: !<!Protocols> {}
+      schema: *ref_1
       required: true
       serializedName: tags
       language: !<!Languages> 
@@ -37,28 +62,6 @@ schemas: !<!Schemas>
         name: AvailabilitySetUpdateParameters
         description: ''
         namespace: Api100
-    protocol: !<!Protocols> {}
-  dictionaries:
-  - *ref_1
-  strings:
-  - !<!StringSchema> &ref_2
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: simple string
-    protocol: !<!Protocols> {}
-  - *ref_0
-  - !<!StringSchema> &ref_3
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    maxLength: 80
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
     protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_8
@@ -76,9 +79,6 @@ globalParameters:
   protocol: !<!Protocols> 
     http: !<!HttpParameter> 
       in: uri
-info: !<!Info> 
-  description: Resource Flattening for AutoRest
-  title: parameter-flattening
 operationGroups:
 - !<!OperationGroup> 
   $key: AvailabilitySets
