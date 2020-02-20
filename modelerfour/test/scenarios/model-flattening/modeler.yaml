@@ -279,11 +279,6 @@ schemas: !<!Schemas>
       apiVersions:
       - !<!ApiVersion> 
         version: 1.0.0
-      contexts:
-      - output
-      - input
-      knownMediaTypes:
-      - json
       parents: !<!Relations> 
         all:
         - !<!ObjectSchema> &ref_9
@@ -296,10 +291,6 @@ schemas: !<!Schemas>
             - *ref_10
             immediate:
             - *ref_10
-          contexts:
-          - input
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_0
@@ -344,6 +335,11 @@ schemas: !<!Schemas>
                 name: name
                 description: Resource Name
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - input
+          - output
           language: !<!Languages> 
             default:
               name: Resource
@@ -359,11 +355,6 @@ schemas: !<!Schemas>
           apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
-          contexts:
-          - output
-          - input
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_5
@@ -398,6 +389,11 @@ schemas: !<!Schemas>
                 name: provisioningState
                 description: ''
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
+          - input
           extensions:
             x-ms-client-flatten: true
           language: !<!Languages> 
@@ -414,6 +410,11 @@ schemas: !<!Schemas>
             name: properties
             description: ''
         protocol: !<!Protocols> {}
+      serializationFormats:
+      - json
+      usage:
+      - output
+      - input
       language: !<!Languages> 
         default:
           name: FlattenedProduct
@@ -440,10 +441,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_30
@@ -469,6 +466,10 @@ schemas: !<!Schemas>
           name: parentError
           description: ''
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: Error
@@ -482,11 +483,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    contexts:
-    - input
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_14
@@ -496,6 +492,11 @@ schemas: !<!Schemas>
           name: value
           description: the product value
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
+    - output
     language: !<!Languages> 
       default:
         name: WrappedProduct
@@ -507,10 +508,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_15
@@ -522,6 +519,10 @@ schemas: !<!Schemas>
           name: property
           description: The wrapped produc.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: ProductWrapper
@@ -533,11 +534,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 1.0.0
-    contexts:
-    - input
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_10
@@ -573,6 +569,11 @@ schemas: !<!Schemas>
           name: dictionaryofresources
           description: Dictionary of <FlattenedProduct>
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
+    - output
     language: !<!Languages> 
       default:
         name: ResourceCollection
@@ -591,11 +592,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-        contexts:
-        - input
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_23
@@ -608,11 +604,6 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: 1.0.0
-            contexts:
-            - input
-            - output
-            knownMediaTypes:
-            - json
             properties:
             - !<!Property> 
               schema: *ref_18
@@ -638,11 +629,6 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
-                contexts:
-                - input
-                - output
-                knownMediaTypes:
-                - json
                 parents: !<!Relations> 
                   all:
                   - !<!ObjectSchema> &ref_22
@@ -664,6 +650,11 @@ schemas: !<!Schemas>
                           name: generic_value
                           description: Generic URL value.
                       protocol: !<!Protocols> {}
+                    serializationFormats:
+                    - json
+                    usage:
+                    - input
+                    - output
                     language: !<!Languages> 
                       default:
                         name: GenericUrl
@@ -681,6 +672,11 @@ schemas: !<!Schemas>
                       name: '@odata.value'
                       description: URL value.
                   protocol: !<!Protocols> {}
+                serializationFormats:
+                - json
+                usage:
+                - input
+                - output
                 language: !<!Languages> 
                   default:
                     name: ProductUrl
@@ -696,6 +692,11 @@ schemas: !<!Schemas>
                   name: max_product_image
                   description: The product URL.
               protocol: !<!Protocols> {}
+            serializationFormats:
+            - json
+            usage:
+            - input
+            - output
             language: !<!Languages> 
               default:
                 name: SimpleProductProperties
@@ -710,6 +711,11 @@ schemas: !<!Schemas>
               name: details
               description: The product documentation.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - input
+        - output
         language: !<!Languages> 
           default:
             name: SimpleProduct
@@ -737,6 +743,11 @@ schemas: !<!Schemas>
           name: description
           description: Description of product.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
+    - output
     language: !<!Languages> 
       default:
         name: BaseProduct

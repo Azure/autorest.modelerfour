@@ -17,7 +17,7 @@ function is(value: any): asserts value is object | string | number | boolean {
  * Contains usage information for one appearance of a schema.  Used to propagate
  * context from the usage of a schema to all schemas it references.
  */
-interface SchemaUsage {
+interface SchemaUsageDetails {
   context?: SchemaContext,
   knownMediaType?: string
 }
@@ -28,10 +28,10 @@ function pushIfMissing<T>(targetArray: T[], newValue: T): void {
   }
 }
 
-function applySchemaUsage(schemaUsage: SchemaUsage, schema: Schema): void {
+function trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsageDetails): void {
   const processedSchemas = new Set<Schema>();
 
-  function innerApplySchemaUsage(schema: Schema) {
+  function innerTrackSchemaUsage(schema: Schema) {
     if (processedSchemas.has(schema)) {
       return;
     }
@@ -39,21 +39,23 @@ function applySchemaUsage(schemaUsage: SchemaUsage, schema: Schema): void {
     processedSchemas.add(schema);
     if (schema instanceof ObjectSchema) {
       if (schemaUsage.context) {
-        pushIfMissing(schema.contexts = (schema.contexts || []), schemaUsage.context);
+        pushIfMissing(schema.usage = (schema.usage || []), schemaUsage.context);
       }
       if (schemaUsage.knownMediaType) {
-        pushIfMissing(schema.knownMediaTypes = (schema.knownMediaTypes || []), schemaUsage.knownMediaType);
+        pushIfMissing(schema.serializationFormats = (schema.serializationFormats || []), schemaUsage.knownMediaType);
       }
 
-      schema.properties?.forEach(p => innerApplySchemaUsage(p.schema));
+      schema.parents?.all?.forEach(innerTrackSchemaUsage);
+      schema.children?.all?.forEach(innerTrackSchemaUsage);
+      schema.properties?.forEach(p => innerTrackSchemaUsage(p.schema));
     } else if (schema instanceof DictionarySchema) {
-      innerApplySchemaUsage(schema.elementType);
+      innerTrackSchemaUsage(schema.elementType);
     } else if (schema instanceof ArraySchema) {
-      innerApplySchemaUsage(schema.elementType);
+      innerTrackSchemaUsage(schema.elementType);
     }
   }
 
-  innerApplySchemaUsage(schema);
+  innerTrackSchemaUsage(schema);
 }
 
 export class ModelerFour {
@@ -937,7 +939,7 @@ export class ModelerFour {
     return operation.addRequest(httpRequest);
   }
 
-  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>, usage?: SchemaUsage) {
+  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>, usage?: SchemaUsageDetails) {
     if (!body?.instance) {
       throw new Error('NO BODY DUDE.');
 
@@ -959,7 +961,7 @@ export class ModelerFour {
     const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
 
     // Track the usage of this schema as an input with media type
-    applySchemaUsage({ context: SchemaContext.Input, knownMediaType: kmt }, pSchema);
+    trackSchemaUsage(pSchema, { context: SchemaContext.Input, knownMediaType: kmt });
 
     httpRequest.addParameter(new Parameter(
       body.instance?.['x-ms-requestBody-name'] ?? 'body',
@@ -1225,7 +1227,7 @@ export class ModelerFour {
           const parameterSchema = this.processSchema(name || '', schema);
 
           // Track the usage of this schema as an input with media type
-          applySchemaUsage({ context: SchemaContext.Input }, parameterSchema);
+          trackSchemaUsage(parameterSchema, { context: SchemaContext.Input });
 
           const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
             required: parameter.required ? true : undefined,
@@ -1336,7 +1338,7 @@ export class ModelerFour {
             }
 
             // Track the usage of this schema as an output with media type
-            applySchemaUsage({ context: SchemaContext.Output, knownMediaType }, s);
+            trackSchemaUsage(s, { context: SchemaContext.Output, knownMediaType });
 
             const rsp = new SchemaResponse(s, {
               extensions: this.interpret.getExtensionProperties(response)

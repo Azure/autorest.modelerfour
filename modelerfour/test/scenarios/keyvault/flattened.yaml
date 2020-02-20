@@ -2163,10 +2163,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_261
       schema: *ref_2
@@ -2211,11 +2207,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - input
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - !<!ObjectSchema> &ref_6
@@ -2231,11 +2222,6 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 7.0-preview
-                contexts:
-                - input
-                - output
-                knownMediaTypes:
-                - json
                 parents: !<!Relations> 
                   all:
                   - *ref_6
@@ -2253,6 +2239,11 @@ schemas: !<!Schemas>
                         Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the
                         key, at the end of the retention interval.
                   protocol: !<!Protocols> {}
+                serializationFormats:
+                - json
+                usage:
+                - input
+                - output
                 language: !<!Languages> 
                   default:
                     name: SecretAttributes
@@ -2264,11 +2255,6 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 7.0-preview
-                contexts:
-                - output
-                - input
-                knownMediaTypes:
-                - json
                 parents: !<!Relations> 
                   all:
                   - *ref_6
@@ -2286,6 +2272,11 @@ schemas: !<!Schemas>
                         Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the
                         key, at the end of the retention interval.
                   protocol: !<!Protocols> {}
+                serializationFormats:
+                - json
+                usage:
+                - output
+                - input
                 language: !<!Languages> 
                   default:
                     name: CertificateAttributes
@@ -2339,6 +2330,11 @@ schemas: !<!Schemas>
                   name: updated
                   description: Last updated time in UTC.
               protocol: !<!Protocols> {}
+            serializationFormats:
+            - json
+            usage:
+            - input
+            - output
             language: !<!Languages> 
               default:
                 name: Attributes
@@ -2359,6 +2355,11 @@ schemas: !<!Schemas>
                 Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the key, at the
                 end of the retention interval.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - input
+        - output
         language: !<!Languages> 
           default:
             name: KeyAttributes
@@ -2390,6 +2391,10 @@ schemas: !<!Schemas>
           name: curve
           description: 'Elliptic curve name. For valid values, see JsonWebKeyCurveName.'
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeyCreateParameters
@@ -2410,10 +2415,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_17
@@ -2446,6 +2447,10 @@ schemas: !<!Schemas>
               name: deletedDate
               description: 'The time when the key was deleted, in UTC'
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: DeletedKeyBundle
@@ -2454,10 +2459,6 @@ schemas: !<!Schemas>
         protocol: !<!Protocols> {}
       immediate:
       - *ref_21
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ObjectSchema> &ref_38
@@ -2465,11 +2466,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        - input
-        knownMediaTypes:
-        - json
         properties:
         - !<!Property> 
           schema: *ref_22
@@ -2609,6 +2605,11 @@ schemas: !<!Schemas>
               name: 'y'
               description: Y component of an EC public key.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
+        - input
         language: !<!Languages> 
           default:
             name: JsonWebKey
@@ -2646,6 +2647,10 @@ schemas: !<!Schemas>
           name: managed
           description: 'True if the key''s lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.'
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: KeyBundle
@@ -2658,10 +2663,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ObjectSchema> &ref_41
@@ -2669,10 +2670,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         properties:
         - !<!Property> 
           schema: *ref_39
@@ -2701,6 +2698,10 @@ schemas: !<!Schemas>
               name: innerError
               description: The key vault server error.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: Error
@@ -2714,6 +2715,10 @@ schemas: !<!Schemas>
           name: error
           description: The key vault server error.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: KeyVaultError
@@ -2726,10 +2731,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_278
       schema: *ref_42
@@ -2767,6 +2768,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeyImportParameters
@@ -2779,10 +2784,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_292
       schema: !<!ArraySchema> &ref_235
@@ -2818,6 +2819,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeyUpdateParameters
@@ -2829,10 +2834,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_236
@@ -2852,10 +2853,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              knownMediaTypes:
-              - json
               parents: !<!Relations> 
                 all:
                 - *ref_45
@@ -2888,6 +2885,10 @@ schemas: !<!Schemas>
                     name: deletedDate
                     description: 'The time when the key was deleted, in UTC'
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
               language: !<!Languages> 
                 default:
                   name: DeletedKeyItem
@@ -2896,10 +2897,6 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             immediate:
             - *ref_47
-          contexts:
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_48
@@ -2934,6 +2931,10 @@ schemas: !<!Schemas>
                 name: managed
                 description: 'True if the key''s lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.'
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: KeyItem
@@ -2961,6 +2962,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of keys.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: KeyListResult
@@ -2973,10 +2978,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_51
@@ -2987,6 +2988,10 @@ schemas: !<!Schemas>
           name: value
           description: The backup blob containing the backed up key.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: BackupKeyResult
@@ -2998,10 +3003,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_316
       schema: *ref_52
@@ -3012,6 +3013,10 @@ schemas: !<!Schemas>
           name: keyBundleBackup
           description: The backup blob associated with a key bundle.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeyRestoreParameters
@@ -3023,10 +3028,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_321
       schema: *ref_53
@@ -3046,6 +3047,10 @@ schemas: !<!Schemas>
           name: value
           description: ''
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeyOperationsParameters
@@ -3057,10 +3062,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_55
@@ -3080,6 +3081,10 @@ schemas: !<!Schemas>
           name: result
           description: ''
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: KeyOperationResult
@@ -3091,10 +3096,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_337
       schema: *ref_57
@@ -3114,6 +3115,10 @@ schemas: !<!Schemas>
           name: value
           description: ''
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeySignParameters
@@ -3125,10 +3130,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_346
       schema: *ref_57
@@ -3157,6 +3158,10 @@ schemas: !<!Schemas>
           name: signature
           description: The signature to be verified.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: KeyVerifyParameters
@@ -3168,10 +3173,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_61
@@ -3182,6 +3183,10 @@ schemas: !<!Schemas>
           name: value
           description: 'True if the signature is verified, otherwise false.'
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: KeyVerifyResult
@@ -3193,10 +3198,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_237
@@ -3226,6 +3227,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of deleted keys.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: DeletedKeyListResult
@@ -3238,10 +3243,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_379
       schema: *ref_63
@@ -3279,6 +3280,10 @@ schemas: !<!Schemas>
           name: secretAttributes
           description: The secret management attributes.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SecretSetParameters
@@ -3298,10 +3303,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_66
@@ -3334,6 +3335,10 @@ schemas: !<!Schemas>
               name: deletedDate
               description: 'The time when the secret was deleted, in UTC'
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: DeletedSecretBundle
@@ -3342,10 +3347,6 @@ schemas: !<!Schemas>
         protocol: !<!Protocols> {}
       immediate:
       - *ref_70
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_71
@@ -3405,6 +3406,10 @@ schemas: !<!Schemas>
           name: managed
           description: 'True if the secret''s lifetime is managed by key vault. If this is a secret backing a certificate, then managed will be true.'
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: SecretBundle
@@ -3417,10 +3422,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_393
       schema: *ref_77
@@ -3446,6 +3447,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SecretUpdateParameters
@@ -3457,10 +3462,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_238
@@ -3480,10 +3481,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              knownMediaTypes:
-              - json
               parents: !<!Relations> 
                 all:
                 - *ref_79
@@ -3516,6 +3513,10 @@ schemas: !<!Schemas>
                     name: deletedDate
                     description: 'The time when the secret was deleted, in UTC'
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
               language: !<!Languages> 
                 default:
                   name: DeletedSecretItem
@@ -3524,10 +3525,6 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             immediate:
             - *ref_81
-          contexts:
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_82
@@ -3570,6 +3567,10 @@ schemas: !<!Schemas>
                 name: managed
                 description: 'True if the secret''s lifetime is managed by key vault. If this is a key backing a certificate, then managed will be true.'
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: SecretItem
@@ -3597,6 +3598,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of secrets.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: SecretListResult
@@ -3609,10 +3614,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_239
@@ -3642,6 +3643,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of deleted secrets.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: DeletedSecretListResult
@@ -3654,10 +3659,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_88
@@ -3668,6 +3669,10 @@ schemas: !<!Schemas>
           name: value
           description: The backup blob containing the backed up secret.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: BackupSecretResult
@@ -3679,10 +3684,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_425
       schema: *ref_89
@@ -3693,6 +3694,10 @@ schemas: !<!Schemas>
           name: secretBundleBackup
           description: The backup blob associated with a secret bundle.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SecretRestoreParameters
@@ -3704,10 +3709,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_240
@@ -3727,10 +3728,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              knownMediaTypes:
-              - json
               parents: !<!Relations> 
                 all:
                 - *ref_90
@@ -3763,6 +3760,10 @@ schemas: !<!Schemas>
                     name: deletedDate
                     description: 'The time when the certificate was deleted, in UTC'
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
               language: !<!Languages> 
                 default:
                   name: DeletedCertificateItem
@@ -3771,10 +3772,6 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             immediate:
             - *ref_94
-          contexts:
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_95
@@ -3808,6 +3805,10 @@ schemas: !<!Schemas>
                 name: X509Thumbprint
                 description: Thumbprint of the certificate.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: CertificateItem
@@ -3835,6 +3836,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of certificates.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: CertificateListResult
@@ -3855,10 +3860,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_99
@@ -3891,6 +3892,10 @@ schemas: !<!Schemas>
               name: deletedDate
               description: 'The time when the certificate was deleted, in UTC'
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: DeletedCertificateBundle
@@ -3899,10 +3904,6 @@ schemas: !<!Schemas>
         protocol: !<!Protocols> {}
       immediate:
       - *ref_101
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_102
@@ -3946,11 +3947,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - input
-        - output
-        knownMediaTypes:
-        - json
         properties:
         - !<!Property> 
           schema: *ref_105
@@ -3967,11 +3963,6 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: 7.0-preview
-            contexts:
-            - input
-            - output
-            knownMediaTypes:
-            - json
             properties:
             - !<!Property> 
               schema: *ref_106
@@ -4013,6 +4004,11 @@ schemas: !<!Schemas>
                   name: curve
                   description: 'Elliptic curve name. For valid values, see JsonWebKeyCurveName.'
               protocol: !<!Protocols> {}
+            serializationFormats:
+            - json
+            usage:
+            - output
+            - input
             language: !<!Languages> 
               default:
                 name: KeyProperties
@@ -4031,11 +4027,6 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: 7.0-preview
-            contexts:
-            - input
-            - output
-            knownMediaTypes:
-            - json
             properties:
             - !<!Property> 
               schema: *ref_108
@@ -4045,6 +4036,11 @@ schemas: !<!Schemas>
                   name: contentType
                   description: The media type (MIME type).
               protocol: !<!Protocols> {}
+            serializationFormats:
+            - json
+            usage:
+            - output
+            - input
             language: !<!Languages> 
               default:
                 name: SecretProperties
@@ -4063,11 +4059,6 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: 7.0-preview
-            contexts:
-            - input
-            - output
-            knownMediaTypes:
-            - json
             properties:
             - !<!Property> 
               schema: *ref_109
@@ -4101,11 +4092,6 @@ schemas: !<!Schemas>
                 apiVersions:
                 - !<!ApiVersion> 
                   version: 7.0-preview
-                contexts:
-                - input
-                - output
-                knownMediaTypes:
-                - json
                 properties:
                 - !<!Property> 
                   schema: !<!ArraySchema> &ref_242
@@ -4161,6 +4147,11 @@ schemas: !<!Schemas>
                       name: upns
                       description: User principal names.
                   protocol: !<!Protocols> {}
+                serializationFormats:
+                - json
+                usage:
+                - output
+                - input
                 language: !<!Languages> 
                   default:
                     name: SubjectAlternativeNames
@@ -4199,6 +4190,11 @@ schemas: !<!Schemas>
                   name: ValidityInMonths
                   description: The duration that the certificate is valid in months.
               protocol: !<!Protocols> {}
+            serializationFormats:
+            - json
+            usage:
+            - output
+            - input
             language: !<!Languages> 
               default:
                 name: X509CertificateProperties
@@ -4222,11 +4218,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - input
-              - output
-              knownMediaTypes:
-              - json
               properties:
               - !<!Property> 
                 schema: !<!ObjectSchema> &ref_131
@@ -4234,11 +4225,6 @@ schemas: !<!Schemas>
                   apiVersions:
                   - !<!ApiVersion> 
                     version: 7.0-preview
-                  contexts:
-                  - input
-                  - output
-                  knownMediaTypes:
-                  - json
                   properties:
                   - !<!Property> 
                     schema: *ref_116
@@ -4256,6 +4242,11 @@ schemas: !<!Schemas>
                         name: days_before_expiry
                         description: 'Days before expiry to attempt renewal. Value should be between 1 and validity_in_months multiplied by 27. If validity_in_months is 36, then value should be between 1 and 972 (36 * 27).'
                     protocol: !<!Protocols> {}
+                  serializationFormats:
+                  - json
+                  usage:
+                  - output
+                  - input
                   language: !<!Languages> 
                     default:
                       name: Trigger
@@ -4274,11 +4265,6 @@ schemas: !<!Schemas>
                   apiVersions:
                   - !<!ApiVersion> 
                     version: 7.0-preview
-                  contexts:
-                  - input
-                  - output
-                  knownMediaTypes:
-                  - json
                   properties:
                   - !<!Property> 
                     schema: *ref_118
@@ -4288,6 +4274,11 @@ schemas: !<!Schemas>
                         name: action_type
                         description: The type of the action.
                     protocol: !<!Protocols> {}
+                  serializationFormats:
+                  - json
+                  usage:
+                  - output
+                  - input
                   language: !<!Languages> 
                     default:
                       name: Action
@@ -4300,6 +4291,11 @@ schemas: !<!Schemas>
                     name: action
                     description: The action that will be executed.
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
+              - input
               language: !<!Languages> 
                 default:
                   name: LifetimeAction
@@ -4323,11 +4319,6 @@ schemas: !<!Schemas>
             apiVersions:
             - !<!ApiVersion> 
               version: 7.0-preview
-            contexts:
-            - input
-            - output
-            knownMediaTypes:
-            - json
             properties:
             - !<!Property> 
               schema: *ref_119
@@ -4353,6 +4344,11 @@ schemas: !<!Schemas>
                   name: CertificateTransparency
                   description: Indicates if the certificates generated under this policy should be published to certificate transparency logs.
               protocol: !<!Protocols> {}
+            serializationFormats:
+            - json
+            usage:
+            - output
+            - input
             language: !<!Languages> 
               default:
                 name: IssuerParameters
@@ -4373,6 +4369,11 @@ schemas: !<!Schemas>
               name: attributes
               description: The certificate management attributes.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
+        - input
         language: !<!Languages> 
           default:
             name: CertificatePolicy
@@ -4418,6 +4419,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: CertificateBundle
@@ -4439,11 +4444,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_134
@@ -4465,11 +4465,6 @@ schemas: !<!Schemas>
           apiVersions:
           - !<!ApiVersion> 
             version: 7.0-preview
-          contexts:
-          - input
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_135
@@ -4495,6 +4490,11 @@ schemas: !<!Schemas>
                 name: phone
                 description: Phone number.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - input
+          - output
           language: !<!Languages> 
             default:
               name: Contact
@@ -4512,6 +4512,11 @@ schemas: !<!Schemas>
           name: ContactList
           description: The contact list for the vault certificates.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
+    - output
     language: !<!Languages> 
       default:
         name: Contacts
@@ -4524,10 +4529,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_248
@@ -4540,10 +4541,6 @@ schemas: !<!Schemas>
           apiVersions:
           - !<!ApiVersion> 
             version: 7.0-preview
-          contexts:
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_139
@@ -4561,6 +4558,10 @@ schemas: !<!Schemas>
                 name: provider
                 description: The issuer provider.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: CertificateIssuerItem
@@ -4588,6 +4589,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of certificate issuers.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: CertificateIssuerListResult
@@ -4600,10 +4605,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_447
       schema: *ref_143
@@ -4620,11 +4621,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - input
-        - output
-        knownMediaTypes:
-        - json
         properties:
         - !<!Property> 
           schema: *ref_144
@@ -4642,6 +4638,11 @@ schemas: !<!Schemas>
               name: Password
               description: The password/secret/account key.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - input
+        - output
         language: !<!Languages> 
           default:
             name: IssuerCredentials
@@ -4661,11 +4662,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - input
-        - output
-        knownMediaTypes:
-        - json
         properties:
         - !<!Property> 
           schema: *ref_146
@@ -4686,11 +4682,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - input
-              - output
-              knownMediaTypes:
-              - json
               properties:
               - !<!Property> 
                 schema: *ref_147
@@ -4724,6 +4715,11 @@ schemas: !<!Schemas>
                     name: phone
                     description: Phone number.
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - input
+              - output
               language: !<!Languages> 
                 default:
                   name: AdministratorDetails
@@ -4741,6 +4737,11 @@ schemas: !<!Schemas>
               name: admin_details
               description: Details of the organization administrator.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - input
+        - output
         language: !<!Languages> 
           default:
             name: OrganizationDetails
@@ -4760,11 +4761,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - input
-        - output
-        knownMediaTypes:
-        - json
         properties:
         - !<!Property> 
           schema: *ref_150
@@ -4792,6 +4788,11 @@ schemas: !<!Schemas>
               name: updated
               description: Last updated time in UTC.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - input
+        - output
         language: !<!Languages> 
           default:
             name: IssuerAttributes
@@ -4805,6 +4806,10 @@ schemas: !<!Schemas>
           name: attributes
           description: The attributes of an issuer managed by the Key Vault service.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateIssuerSetParameters
@@ -4820,10 +4825,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_155
@@ -4866,6 +4867,10 @@ schemas: !<!Schemas>
           name: attributes
           description: The attributes of an issuer managed by the Key Vault service.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: IssuerBundle
@@ -4877,10 +4882,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_460
       schema: *ref_157
@@ -4914,6 +4915,10 @@ schemas: !<!Schemas>
           name: attributes
           description: The attributes of an issuer managed by the Key Vault service.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateIssuerUpdateParameters
@@ -4925,10 +4930,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_476
       schema: *ref_125
@@ -4954,6 +4955,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateCreateParameters
@@ -4965,10 +4970,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_159
@@ -5043,6 +5044,10 @@ schemas: !<!Schemas>
           name: request_id
           description: Identifier for the certificate operation.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: CertificateOperation
@@ -5054,10 +5059,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_487
       schema: *ref_166
@@ -5104,6 +5105,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateImportParameters
@@ -5115,10 +5120,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_509
       schema: *ref_125
@@ -5144,6 +5145,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateUpdateParameters
@@ -5155,10 +5160,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_523
       schema: *ref_161
@@ -5169,6 +5170,10 @@ schemas: !<!Schemas>
           name: cancellation_requested
           description: Indicates if cancellation was requested on the certificate operation.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateOperationUpdateParameter
@@ -5180,10 +5185,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_533
       schema: !<!ArraySchema> &ref_250
@@ -5222,6 +5223,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateMergeParameters
@@ -5233,10 +5238,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_172
@@ -5247,6 +5248,10 @@ schemas: !<!Schemas>
           name: value
           description: The backup blob containing the backed up certificate.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: BackupCertificateResult
@@ -5258,10 +5263,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_546
       schema: *ref_173
@@ -5272,6 +5273,10 @@ schemas: !<!Schemas>
           name: certificateBundleBackup
           description: The backup blob associated with a certificate bundle.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: CertificateRestoreParameters
@@ -5283,10 +5288,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_251
@@ -5316,6 +5317,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of deleted certificates.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: DeletedCertificateListResult
@@ -5328,10 +5333,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_252
@@ -5351,10 +5352,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              knownMediaTypes:
-              - json
               parents: !<!Relations> 
                 all:
                 - *ref_175
@@ -5387,6 +5384,10 @@ schemas: !<!Schemas>
                     name: deletedDate
                     description: 'The time when the storage account was deleted, in UTC'
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
               language: !<!Languages> 
                 default:
                   name: DeletedStorageAccountItem
@@ -5395,10 +5396,6 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             immediate:
             - *ref_179
-          contexts:
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_180
@@ -5424,11 +5421,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              - input
-              knownMediaTypes:
-              - json
               properties:
               - !<!Property> 
                 schema: *ref_182
@@ -5467,6 +5459,11 @@ schemas: !<!Schemas>
                       Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the key,
                       at the end of the retention interval.
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
+              - input
               language: !<!Languages> 
                 default:
                   name: StorageAccountAttributes
@@ -5489,6 +5486,10 @@ schemas: !<!Schemas>
                 name: tags
                 description: Application specific metadata in the form of key-value pairs.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: StorageAccountItem
@@ -5516,6 +5517,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of storage accounts.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: StorageListResult
@@ -5529,10 +5534,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_253
@@ -5562,6 +5563,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of deleted storage accounts.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: DeletedStorageListResult
@@ -5581,10 +5586,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_187
@@ -5617,6 +5618,10 @@ schemas: !<!Schemas>
               name: deletedDate
               description: 'The time when the storage account was deleted, in UTC'
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: DeletedStorageBundle
@@ -5625,10 +5630,6 @@ schemas: !<!Schemas>
         protocol: !<!Protocols> {}
       immediate:
       - *ref_189
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_190
@@ -5693,6 +5694,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: StorageBundle
@@ -5705,10 +5710,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_196
@@ -5719,6 +5720,10 @@ schemas: !<!Schemas>
           name: value
           description: The backup blob containing the backed up storage account.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: BackupStorageResult
@@ -5730,10 +5735,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_577
       schema: *ref_197
@@ -5744,6 +5745,10 @@ schemas: !<!Schemas>
           name: storageBundleBackup
           description: The backup blob associated with a storage account.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: StorageRestoreParameters
@@ -5755,10 +5760,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_586
       schema: *ref_198
@@ -5814,6 +5815,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: StorageAccountCreateParameters
@@ -5825,10 +5830,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_602
       schema: *ref_202
@@ -5870,6 +5871,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: StorageAccountUpdateParameters
@@ -5881,10 +5886,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_616
       schema: *ref_205
@@ -5895,6 +5896,10 @@ schemas: !<!Schemas>
           name: keyName
           description: The storage account key name.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: StorageAccountRegenerteKeyParameters
@@ -5906,10 +5911,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_254
@@ -5929,10 +5930,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              knownMediaTypes:
-              - json
               parents: !<!Relations> 
                 all:
                 - *ref_206
@@ -5965,6 +5962,10 @@ schemas: !<!Schemas>
                     name: deletedDate
                     description: 'The time when the SAS definition was deleted, in UTC'
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
               language: !<!Languages> 
                 default:
                   name: DeletedSasDefinitionItem
@@ -5973,10 +5974,6 @@ schemas: !<!Schemas>
               protocol: !<!Protocols> {}
             immediate:
             - *ref_210
-          contexts:
-          - output
-          knownMediaTypes:
-          - json
           properties:
           - !<!Property> 
             schema: *ref_211
@@ -6002,11 +5999,6 @@ schemas: !<!Schemas>
               apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-              contexts:
-              - output
-              - input
-              knownMediaTypes:
-              - json
               properties:
               - !<!Property> 
                 schema: *ref_182
@@ -6045,6 +6037,11 @@ schemas: !<!Schemas>
                       Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the key,
                       at the end of the retention interval.
                 protocol: !<!Protocols> {}
+              serializationFormats:
+              - json
+              usage:
+              - output
+              - input
               language: !<!Languages> 
                 default:
                   name: SasDefinitionAttributes
@@ -6067,6 +6064,10 @@ schemas: !<!Schemas>
                 name: tags
                 description: Application specific metadata in the form of key-value pairs.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: SasDefinitionItem
@@ -6094,6 +6095,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of SAS definitions.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: SasDefinitionListResult
@@ -6107,10 +6112,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: !<!ArraySchema> &ref_255
@@ -6140,6 +6141,10 @@ schemas: !<!Schemas>
           name: nextLink
           description: The URL to get the next set of deleted SAS definitions.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: DeletedSasDefinitionListResult
@@ -6159,10 +6164,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_217
@@ -6195,6 +6196,10 @@ schemas: !<!Schemas>
               name: deletedDate
               description: 'The time when the SAS definition was deleted, in UTC'
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: DeletedSasDefinitionBundle
@@ -6203,10 +6208,6 @@ schemas: !<!Schemas>
         protocol: !<!Protocols> {}
       immediate:
       - *ref_219
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_220
@@ -6271,6 +6272,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: SasDefinitionBundle
@@ -6283,10 +6288,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_642
       schema: *ref_226
@@ -6333,6 +6334,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SasDefinitionCreateParameters
@@ -6344,10 +6349,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 7.0-preview
-    contexts:
-    - input
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> &ref_657
       schema: *ref_229
@@ -6389,6 +6390,10 @@ schemas: !<!Schemas>
           name: tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SasDefinitionUpdateParameters

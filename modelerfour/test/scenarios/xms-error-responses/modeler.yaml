@@ -166,10 +166,6 @@ schemas: !<!Schemas>
         apiVersions:
         - !<!ApiVersion> 
           version: 0.0.0
-        contexts:
-        - output
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_2
@@ -185,6 +181,10 @@ schemas: !<!Schemas>
               name: name
               description: Gets the Pet by id.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: Pet
@@ -202,6 +202,10 @@ schemas: !<!Schemas>
           name: aniType
           description: ''
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: Animal
@@ -282,8 +286,6 @@ schemas: !<!Schemas>
           immediate:
           - *ref_12
           - *ref_13
-        contexts:
-        - output
         discriminator: !<!Discriminator> 
           all:
             AnimalNotFound: *ref_13
@@ -302,8 +304,6 @@ schemas: !<!Schemas>
                 description: ''
             protocol: !<!Protocols> {}
         discriminatorValue: NotFoundErrorBase
-        knownMediaTypes:
-        - json
         parents: !<!Relations> 
           all:
           - *ref_10
@@ -320,6 +320,10 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - *ref_7
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: NotFoundErrorBase
@@ -339,6 +343,10 @@ schemas: !<!Schemas>
           name: someBaseProp
           description: ''
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: BaseError
@@ -351,10 +359,6 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: 0.0.0
-    contexts:
-    - output
-    knownMediaTypes:
-    - json
     properties:
     - !<!Property> 
       schema: *ref_14
@@ -364,6 +368,10 @@ schemas: !<!Schemas>
           name: actionResponse
           description: action feedback
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: PetAction
@@ -452,8 +460,6 @@ schemas: !<!Schemas>
       - *ref_22
       immediate:
       - *ref_21
-    contexts:
-    - output
     discriminator: !<!Discriminator> 
       all:
         PetHungryOrThirstyError: *ref_22
@@ -461,8 +467,6 @@ schemas: !<!Schemas>
       immediate:
         PetSadError: *ref_21
       property: *ref_17
-    knownMediaTypes:
-    - json
     properties:
     - *ref_17
     - !<!Property> 
@@ -474,6 +478,10 @@ schemas: !<!Schemas>
           name: errorMessage
           description: the error message
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: PetActionError
