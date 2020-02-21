@@ -867,7 +867,9 @@ export class ModelerFour {
       );
 
       // add the parameter for the binary upload. 
-      httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs))
+      httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
+        implementation: ImplementationLocation.Method
+      }))
     }
 
     const bodyName = body.instance?.['x-ms-requestBody-name'] ?? 'data'
