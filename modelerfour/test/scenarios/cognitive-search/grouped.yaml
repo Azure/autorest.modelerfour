@@ -810,6 +810,10 @@ schemas: !<!Schemas>
               name: count
               description: The approximate count of documents falling within the bucket described by this facet.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
         language: !<!Languages> 
           default:
             name: FacetResult
@@ -1079,6 +1083,8 @@ schemas: !<!Schemas>
           name: client-request-id
           description: The tracking ID sent with the request to help with debugging.
       protocol: !<!Protocols> {}
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: request-options
@@ -1518,6 +1524,8 @@ schemas: !<!Schemas>
             The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation
             token that can be used to issue another Search request for the next page of results.
       protocol: !<!Protocols> {}
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SearchOptions
@@ -1766,6 +1774,8 @@ schemas: !<!Schemas>
           name: $top
           description: The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.
       protocol: !<!Protocols> {}
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SuggestOptions
@@ -1967,6 +1977,8 @@ schemas: !<!Schemas>
           name: $top
           description: The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.
       protocol: !<!Protocols> {}
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: AutocompleteOptions
@@ -2188,6 +2200,11 @@ schemas: !<!Schemas>
                 The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a
                 continuation token that can be used to issue another Search request for the next page of results.
           protocol: !<!Protocols> {}
+        serializationFormats:
+        - json
+        usage:
+        - output
+        - input
         language: !<!Languages> 
           default:
             name: SearchRequest
@@ -2237,6 +2254,10 @@ schemas: !<!Schemas>
                 name: Highlights
                 description: 'Text fragments from the document that indicate the matching search terms, organized by each applicable field; null if hit highlighting was not enabled for the query.'
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: SearchResult
@@ -2266,6 +2287,10 @@ schemas: !<!Schemas>
             Continuation URL returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this URL to formulate another GET or POST Search request to get the next part of the search
             response. Make sure to use the same verb (GET or POST) as the request that produced this response.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: SearchDocumentsResult
@@ -2280,6 +2305,10 @@ schemas: !<!Schemas>
     apiVersions:
     - !<!ApiVersion> 
       version: '2019-05-06'
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: paths·1y7tjlf·docs-key·get·responses·200·content·application-json·schema
@@ -2318,6 +2347,10 @@ schemas: !<!Schemas>
                 name: Text
                 description: The text of the suggestion result.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: SuggestResult
@@ -2345,6 +2378,10 @@ schemas: !<!Schemas>
           name: Coverage
           description: 'A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not set in the request.'
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: SuggestDocumentsResult
@@ -2453,6 +2490,10 @@ schemas: !<!Schemas>
           name: top
           description: The number of suggestions to retrieve. This must be a value between 1 and 100. The default is 5.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: SuggestRequest
@@ -2490,6 +2531,10 @@ schemas: !<!Schemas>
                 name: ActionType
                 description: The operation to perform on a document in an indexing batch.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - input
           language: !<!Languages> 
             default:
               name: IndexAction
@@ -2508,6 +2553,10 @@ schemas: !<!Schemas>
           name: Actions
           description: The actions in the batch.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: IndexBatch
@@ -2573,6 +2622,10 @@ schemas: !<!Schemas>
                   The status code of the indexing operation. Possible values include: 200 for a successful update or delete, 201 for successful document creation, 400 for a malformed input document, 404 for document not found, 409 for a
                   version conflict, 422 when the index is temporarily unavailable, or 503 for when the service is too busy.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: IndexingResult
@@ -2591,6 +2644,10 @@ schemas: !<!Schemas>
           name: Results
           description: The list of status information for each document in the indexing request.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: IndexDocumentsResult
@@ -2643,6 +2700,10 @@ schemas: !<!Schemas>
                 name: queryPlusText
                 description: The query along with the completed term.
             protocol: !<!Protocols> {}
+          serializationFormats:
+          - json
+          usage:
+          - output
           language: !<!Languages> 
             default:
               name: AutocompleteItem
@@ -2661,6 +2722,10 @@ schemas: !<!Schemas>
           name: Results
           description: The list of returned Autocompleted items.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
     language: !<!Languages> 
       default:
         name: AutocompleteResult
@@ -2758,6 +2823,10 @@ schemas: !<!Schemas>
           name: top
           description: The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.
       protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - input
     language: !<!Languages> 
       default:
         name: AutocompleteRequest

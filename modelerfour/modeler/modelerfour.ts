@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -11,6 +11,51 @@ function is(value: any): asserts value is object | string | number | boolean {
   if (value === undefined || value === null) {
     throw new Error(`Intenral assertion failure -- value must not be null`);
   }
+}
+
+/**
+ * Contains usage information for one appearance of a schema.  Used to propagate
+ * context from the usage of a schema to all schemas it references.
+ */
+interface SchemaUsageDetails {
+  context?: SchemaContext,
+  knownMediaType?: string
+}
+
+function pushIfMissing<T>(targetArray: T[], newValue: T): void {
+  if (targetArray.indexOf(newValue) === -1) {
+    targetArray.push(newValue);
+  }
+}
+
+function trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsageDetails): void {
+  const processedSchemas = new Set<Schema>();
+
+  function innerTrackSchemaUsage(schema: Schema) {
+    if (processedSchemas.has(schema)) {
+      return;
+    }
+
+    processedSchemas.add(schema);
+    if (schema instanceof ObjectSchema) {
+      if (schemaUsage.context) {
+        pushIfMissing(schema.usage = (schema.usage || []), schemaUsage.context);
+      }
+      if (schemaUsage.knownMediaType) {
+        pushIfMissing(schema.serializationFormats = (schema.serializationFormats || []), schemaUsage.knownMediaType);
+      }
+
+      schema.parents?.all?.forEach(innerTrackSchemaUsage);
+      schema.children?.all?.forEach(innerTrackSchemaUsage);
+      schema.properties?.forEach(p => innerTrackSchemaUsage(p.schema));
+    } else if (schema instanceof DictionarySchema) {
+      innerTrackSchemaUsage(schema.elementType);
+    } else if (schema instanceof ArraySchema) {
+      innerTrackSchemaUsage(schema.elementType);
+    }
+  }
+
+  innerTrackSchemaUsage(schema);
 }
 
 export class ModelerFour {
@@ -42,7 +87,7 @@ export class ModelerFour {
   }
 
   async init() {
-    // grab override-client-name 
+    // grab override-client-name
     const newTitle = await this.session.getValue('override-client-name', '');
     if (newTitle) {
       this.codeModel.info.title = newTitle;
@@ -503,7 +548,7 @@ export class ModelerFour {
     const hasProperties = length(schema.properties) > 0;
 
     if (!isMoreThanObject && !hasProperties) {
-      // it's an empty object? 
+      // it's an empty object?
       this.session.warning(`Schema '${name}' is an empty object without properties or modifiers.`, ['Modeler', 'EmptyObject'], aSchema);
     }
 
@@ -636,7 +681,7 @@ export class ModelerFour {
         case undefined:
         case null:
           if (schema.properties) {
-            // if the model has properties, then we're going to assume they meant to say JsonType.object 
+            // if the model has properties, then we're going to assume they meant to say JsonType.object
             // but we're going to warn them anyway.
 
             this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and decalared properties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
@@ -653,7 +698,7 @@ export class ModelerFour {
           }
 
           if (schema.allOf || schema.anyOf || schema.oneOf) {
-            // if the model has properties, then we're going to assume they meant to say JsonType.object 
+            // if the model has properties, then we're going to assume they meant to say JsonType.object
             // but we're going to warn them anyway.
             this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
             schema.type = OpenAPI.JsonType.Object;
@@ -661,7 +706,7 @@ export class ModelerFour {
           }
 
           {
-            // no type info at all!? 
+            // no type info at all!?
             // const err = `The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`;
             this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' has no type or format information whatsoever. ${this.location(schema)}`, ['Modeler', 'MissingType'], schema);
             // throw Error(err);
@@ -808,7 +853,7 @@ export class ModelerFour {
     //if (length(mediaTypeGroups.keys()) > 0) {
     // because the oai2-to-oai3 conversion doesn't have good logic to know
     // which produces type maps to each operation response,
-    // we have to go thru the possible combinations 
+    // we have to go thru the possible combinations
     // and eliminate ones that don't make sense.
     // (ie, a binary media type should have a binary response type, a json or xml media type should have a <not binary> type ).
     for (const [knownMediaType, mt] of [...mediaTypeGroups.entries()]) {
@@ -856,7 +901,7 @@ export class ModelerFour {
     });
 
     if (http.mediaTypes.length > 0) {
-      // we have multiple media types 
+      // we have multiple media types
       // make sure we have an enum for the content-type
       // and add a content type parameter to the request
       const choices = http.mediaTypes.sort().map(each => new ChoiceValue(each, `Content Type '${each}'`, each));
@@ -867,7 +912,7 @@ export class ModelerFour {
         new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
       );
 
-      // add the parameter for the binary upload. 
+      // add the parameter for the binary upload.
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
         implementation: ImplementationLocation.Method
       }))
@@ -895,7 +940,7 @@ export class ModelerFour {
     return operation.addRequest(httpRequest);
   }
 
-  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
+  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>, usage?: SchemaUsageDetails) {
     if (!body?.instance) {
       throw new Error('NO BODY DUDE.');
 
@@ -915,6 +960,9 @@ export class ModelerFour {
 
     const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
     const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
+
+    // Track the usage of this schema as an input with media type
+    trackSchemaUsage(pSchema, { context: SchemaContext.Input, knownMediaType: kmt });
 
     httpRequest.addParameter(new Parameter(
       body.instance?.['x-ms-requestBody-name'] ?? 'body',
@@ -971,13 +1019,13 @@ export class ModelerFour {
       // === Host Parameters ===
       const baseUri = this.processHostParameters(httpOperation, operation, path, pathItem);
 
-      // === Common Parameters === 
+      // === Common Parameters ===
       this.processParameters(httpOperation, operation, pathItem);
 
-      // === Requests === 
+      // === Requests ===
       this.processRequestBody(httpOperation, httpMethod, operationGroup, operation, path, baseUri);
 
-      // === Response === 
+      // === Response ===
       this.processResponses(httpOperation, operation);
     });
   }
@@ -1117,19 +1165,19 @@ export class ModelerFour {
       this.use(parameter.schema, (name, schema) => {
 
         if (this.interpret.isApiVersionParameter(parameter)) {
-          // use the API versions information for this operation to give the values that should be used 
-          // notes: 
+          // use the API versions information for this operation to give the values that should be used
+          // notes:
           // legal values for apiversion parameter, are the x-ms-metadata.apiversions values
 
           // if there is a single apiversion value, you'll see a constant parameter.
 
-          // if there are multiple apiversion values, 
+          // if there are multiple apiversion values,
           //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
           //  - otherwise, you'll get a sealed choice parameter.
 
           const apiversions = this.interpret.getApiVersionValues(pathItem);
           if (apiversions.length === 0) {
-            // !!! 
+            // !!!
             throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no apiversions but has an apiversion parameter.`);
           }
           if (apiversions.length === 1) {
@@ -1179,6 +1227,11 @@ export class ModelerFour {
           }
           const parameterSchema = this.processSchema(name || '', schema);
 
+
+          // Track the usage of this schema as an input with media type
+          trackSchemaUsage(parameterSchema, { context: SchemaContext.Input });
+
+
           /* regular, everyday parameter */
           const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
             required: parameter.required ? true : undefined,
@@ -1214,7 +1267,7 @@ export class ModelerFour {
   }
 
   processResponses(httpOperation: OpenAPI.HttpOperation, operation: Operation, ) {
-    // === Response === 
+    // === Response ===
     for (const { key: responseCode, value: response } of this.resolveDictionary(httpOperation.responses)) {
 
       const isErr = responseCode === 'default' || response['x-ms-error-response'];
@@ -1282,12 +1335,16 @@ export class ModelerFour {
           if (schema) {
             let s = this.processSchema('response', schema);
 
-            // response schemas should not be constant types. 
+            // response schemas should not be constant types.
             // this replaces the constant value with the value type itself.
 
             if (s.type === SchemaType.Constant) {
               s = (<ConstantSchema>s).valueType;
             }
+
+            // Track the usage of this schema as an output with media type
+            trackSchemaUsage(s, { context: SchemaContext.Output, knownMediaType });
+
             const rsp = new SchemaResponse(s, {
               extensions: this.interpret.getExtensionProperties(response)
             });
@@ -1343,17 +1400,17 @@ export class ModelerFour {
       }
       const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
       if (kmtJSON) {
-        this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody);
+        this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody, { context: SchemaContext.Input });
       }
       const kmtXML = groupedMediaTypes.get(KnownMediaType.Xml);
       if (kmtXML && !kmtJSON) {
         // only do XML if there is not a JSON body
-        this.processSerializedObject(KnownMediaType.Xml, kmtXML, operation, requestBody);
+        this.processSerializedObject(KnownMediaType.Xml, kmtXML, operation, requestBody, { context: SchemaContext.Input });
       }
       const kmtForm = groupedMediaTypes.get(KnownMediaType.Form);
       if (kmtForm && !kmtXML && !kmtJSON) {
         // only do FORM if there is not an JSON or XML body
-        this.processSerializedObject(KnownMediaType.Form, kmtForm, operation, requestBody);
+        this.processSerializedObject(KnownMediaType.Form, kmtForm, operation, requestBody, { context: SchemaContext.Input });
       }
       const kmtMultipart = groupedMediaTypes.get(KnownMediaType.Multipart);
       if (kmtMultipart) {
@@ -1363,7 +1420,7 @@ export class ModelerFour {
         // create multipart form upload for this.
         this.processMultipart(kmtMultipart, operation, requestBody);
       }
-      // ensure the protocol information is set on the requests 
+      // ensure the protocol information is set on the requests
       for (const request of values(operation.requests)) {
         is(request.protocol.http);
         request.protocol.http.method = httpMethod;

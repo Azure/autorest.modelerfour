@@ -1,4 +1,4 @@
-import { CodeModel, Schema, GroupSchema, isObjectSchema, SchemaType, GroupProperty, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation, OperationGroup, Request } from '@azure-tools/codemodel';
+import { CodeModel, Schema, GroupSchema, isObjectSchema, SchemaType, GroupProperty, ParameterLocation, Operation, Parameter, VirtualParameter, getAllProperties, ImplementationLocation, OperationGroup, Request, SchemaContext } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, items, length, Dictionary, refCount, clone } from '@azure-tools/linq';
 import { pascalCase, camelCase } from '@azure-tools/codegen';
@@ -76,6 +76,7 @@ export class Grouper {
         if (!this.groups[groupName]) {
           // create a new object schema for this group
           const schema = new GroupSchema(groupName, 'Parameter group');
+          schema.usage = [SchemaContext.Input];
           this.groups[groupName] = schema;
           this.codeModel.schemas.add(schema);
         }
