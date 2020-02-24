@@ -2171,7 +2171,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: kty
-          description: 'JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.'
+          description: 'The type of key to create. For valid values, see JsonWebKeyType.'
       protocol: !<!Protocols> {}
     - !<!Property> &ref_262
       schema: *ref_3
@@ -2236,8 +2236,8 @@ schemas: !<!Schemas>
                     default:
                       name: recoveryLevel
                       description: >-
-                        Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the
-                        key, at the end of the retention interval.
+                        Reflects the deletion recovery level currently in effect for secrets in the current vault. If it contains 'Purgeable', the secret can be permanently deleted by a privileged user; otherwise, only the system can purge
+                        the secret, at the end of the retention interval.
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -2264,8 +2264,8 @@ schemas: !<!Schemas>
                     default:
                       name: recoveryLevel
                       description: >-
-                        Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the
-                        key, at the end of the retention interval.
+                        Reflects the deletion recovery level currently in effect for certificates in the current vault. If it contains 'Purgeable', the certificate can be permanently deleted by a privileged user; otherwise, only the system
+                        can purge the certificate, at the end of the retention interval.
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -2587,7 +2587,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: key
-          description: 'As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18'
+          description: The Json web key.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_5
@@ -2595,7 +2595,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The attributes of a key managed by the key vault service.
+          description: The key management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_36
@@ -2703,7 +2703,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: key
-          description: 'As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18'
+          description: The Json web key
       protocol: !<!Protocols> {}
     - !<!Property> &ref_280
       schema: *ref_5
@@ -2712,7 +2712,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: keyAttributes
-          description: The attributes of a key managed by the key vault service.
+          description: The key management attributes.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_281
       schema: *ref_43
@@ -2855,7 +2855,7 @@ schemas: !<!Schemas>
             language: !<!Languages> 
               default:
                 name: attributes
-                description: The attributes of a key managed by the key vault service.
+                description: The key management attributes.
             protocol: !<!Protocols> {}
           - !<!Property> 
             schema: *ref_49
@@ -3053,7 +3053,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: algorithm
-          description: 'The signing/verification algorithm identifier. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
+          description: 'The signing/verification algorithm. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
       protocol: !<!Protocols> {}
     - !<!Property> &ref_347
       schema: *ref_59
@@ -3825,7 +3825,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: keyType
-                  description: 'JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.'
+                  description: The type of key pair to be used for the certificate.
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: *ref_3
@@ -3861,7 +3861,7 @@ schemas: !<!Schemas>
           language: !<!Languages> 
             default:
               name: KeyProperties
-              description: Properties of the key pair backing a certificate.
+              description: Properties of the key backing a certificate.
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!ObjectSchema> &ref_127
@@ -3888,7 +3888,7 @@ schemas: !<!Schemas>
           language: !<!Languages> 
             default:
               name: SecretProperties
-              description: Properties of the key backing a certificate.
+              description: Properties of the secret backing a certificate.
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!ObjectSchema> &ref_128
@@ -3994,7 +3994,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: SubjectAlternativeNames
-                  description: The subject alternate names of a X509 object.
+                  description: The subject alternative names.
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: !<!ArraySchema> &ref_245
@@ -4079,7 +4079,7 @@ schemas: !<!Schemas>
                 language: !<!Languages> 
                   default:
                     name: trigger
-                    description: A condition to be satisfied for an action to be executed.
+                    description: The condition that will execute the action.
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: !<!ObjectSchema> &ref_132
@@ -4174,7 +4174,7 @@ schemas: !<!Schemas>
           language: !<!Languages> 
             default:
               name: attributes
-              description: The certificate management attributes.
+              description: The certificate attributes.
           protocol: !<!Protocols> {}
         language: !<!Languages> 
           default:
@@ -4187,7 +4187,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: policy
-          description: Management policy for a certificate.
+          description: The management policy.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_122
@@ -4211,7 +4211,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The certificate management attributes.
+          description: The certificate attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_124
@@ -4429,7 +4429,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: credentials
-          description: The credentials to be used for the certificate issuer.
+          description: The credentials to be used for the issuer.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_449
       schema: !<!ObjectSchema> &ref_152
@@ -4518,7 +4518,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: OrganizationDetails
-          description: Details of the organization of the certificate issuer.
+          description: Details of the organization as provided to the issuer.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_450
       schema: !<!ObjectSchema> &ref_154
@@ -4564,7 +4564,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The attributes of an issuer managed by the Key Vault service.
+          description: Attributes of the issuer object.
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -4605,7 +4605,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: credentials
-          description: The credentials to be used for the certificate issuer.
+          description: The credentials to be used for the issuer.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_152
@@ -4613,7 +4613,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: OrganizationDetails
-          description: Details of the organization of the certificate issuer.
+          description: Details of the organization as provided to the issuer.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_154
@@ -4621,7 +4621,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The attributes of an issuer managed by the Key Vault service.
+          description: Attributes of the issuer object.
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -4649,7 +4649,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: credentials
-          description: The credentials to be used for the certificate issuer.
+          description: The credentials to be used for the issuer.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_462
       schema: *ref_152
@@ -4657,7 +4657,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: OrganizationDetails
-          description: Details of the organization of the certificate issuer.
+          description: Details of the organization as provided to the issuer.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_463
       schema: *ref_154
@@ -4665,7 +4665,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The attributes of an issuer managed by the Key Vault service.
+          description: Attributes of the issuer object.
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -4685,7 +4685,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificatePolicy
-          description: Management policy for a certificate.
+          description: The management policy for the certificate.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_477
       schema: *ref_9
@@ -4693,7 +4693,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificateAttributes
-          description: The certificate management attributes.
+          description: The attributes of the certificate (optional).
       protocol: !<!Protocols> {}
     - !<!Property> &ref_478
       schema: *ref_158
@@ -4770,7 +4770,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: error
-          description: The key vault server error.
+          description: 'Error encountered, if any, during the certificate operation.'
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_164
@@ -4825,7 +4825,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificatePolicy
-          description: Management policy for a certificate.
+          description: The management policy for the certificate.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_490
       schema: *ref_9
@@ -4834,7 +4834,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificateAttributes
-          description: The certificate management attributes.
+          description: The attributes of the certificate (optional).
       protocol: !<!Protocols> {}
     - !<!Property> &ref_491
       schema: *ref_168
@@ -4863,7 +4863,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificatePolicy
-          description: Management policy for a certificate.
+          description: The management policy for the certificate.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_510
       schema: *ref_9
@@ -4871,7 +4871,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificateAttributes
-          description: The certificate management attributes.
+          description: The attributes of the certificate (optional).
       protocol: !<!Protocols> {}
     - !<!Property> &ref_511
       schema: *ref_169
@@ -4940,7 +4940,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: CertificateAttributes
-          description: The certificate management attributes.
+          description: The attributes of the certificate (optional).
       protocol: !<!Protocols> {}
     - !<!Property> &ref_535
       schema: *ref_171
@@ -5164,8 +5164,8 @@ schemas: !<!Schemas>
                   default:
                     name: recoveryLevel
                     description: >-
-                      Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the key,
-                      at the end of the retention interval.
+                      Reflects the deletion recovery level currently in effect for storage accounts in the current vault. If it contains 'Purgeable' the storage account can be permanently deleted by a privileged user; otherwise, only the
+                      system can purge the storage account, at the end of the retention interval.
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
@@ -5370,7 +5370,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The storage account management attributes.
+          description: The storage account attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_195
@@ -5479,7 +5479,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: StorageAccountAttributes
-          description: The storage account management attributes.
+          description: The attributes of the storage account.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_591
       schema: *ref_201
@@ -5532,7 +5532,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: StorageAccountAttributes
-          description: The storage account management attributes.
+          description: The attributes of the storage account.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_606
       schema: *ref_204
@@ -5693,8 +5693,8 @@ schemas: !<!Schemas>
                   default:
                     name: recoveryLevel
                     description: >-
-                      Reflects the deletion recovery level currently in effect for keys in the current vault. If it contains 'Purgeable' the key can be permanently deleted by a privileged user; otherwise, only the system can purge the key,
-                      at the end of the retention interval.
+                      Reflects the deletion recovery level currently in effect for SAS definitions in the current vault. If it contains 'Purgeable' the SAS definition can be permanently deleted by a privileged user; otherwise, only the
+                      system can purge the SAS definition, at the end of the retention interval.
                 protocol: !<!Protocols> {}
               language: !<!Languages> 
                 default:
@@ -5899,7 +5899,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: attributes
-          description: The SAS definition management attributes.
+          description: The SAS definition attributes.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_225
@@ -5957,7 +5957,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: SasDefinitionAttributes
-          description: The SAS definition management attributes.
+          description: The attributes of the SAS definition.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_646
       schema: *ref_228
@@ -6010,7 +6010,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: SasDefinitionAttributes
-          description: The SAS definition management attributes.
+          description: The attributes of the SAS definition.
       protocol: !<!Protocols> {}
     - !<!Property> &ref_661
       schema: *ref_231
@@ -6153,7 +6153,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: kty
-            description: 'JsonWebKey Key Type (kty), as defined in https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40.'
+            description: 'The type of key to create. For valid values, see JsonWebKeyType.'
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_268
         schema: *ref_3
@@ -6399,7 +6399,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: key
-            description: 'As of http://tools.ietf.org/html/draft-ietf-jose-json-web-key-18'
+            description: The Json web key
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_284
         schema: *ref_5
@@ -6412,7 +6412,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: keyAttributes
-            description: The attributes of a key managed by the key vault service.
+            description: The key management attributes.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_285
         schema: *ref_43
@@ -8003,7 +8003,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: algorithm
-            description: 'The signing/verification algorithm identifier. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
+            description: 'The signing/verification algorithm. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_350
         schema: *ref_59
@@ -11036,7 +11036,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: credentials
-            description: The credentials to be used for the certificate issuer.
+            description: The credentials to be used for the issuer.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_453
         schema: *ref_152
@@ -11049,7 +11049,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: OrganizationDetails
-            description: Details of the organization of the certificate issuer.
+            description: Details of the organization as provided to the issuer.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_454
         schema: *ref_154
@@ -11062,7 +11062,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: attributes
-            description: The attributes of an issuer managed by the Key Vault service.
+            description: Attributes of the issuer object.
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_451
@@ -11230,7 +11230,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: credentials
-            description: The credentials to be used for the certificate issuer.
+            description: The credentials to be used for the issuer.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_466
         schema: *ref_152
@@ -11242,7 +11242,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: OrganizationDetails
-            description: Details of the organization of the certificate issuer.
+            description: Details of the organization as provided to the issuer.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_467
         schema: *ref_154
@@ -11254,7 +11254,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: attributes
-            description: The attributes of an issuer managed by the Key Vault service.
+            description: Attributes of the issuer object.
         protocol: !<!Protocols> {}
       signatureParameters:
       - *ref_464
@@ -11620,7 +11620,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificatePolicy
-            description: Management policy for a certificate.
+            description: The management policy for the certificate.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_480
         schema: *ref_9
@@ -11632,7 +11632,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificateAttributes
-            description: The certificate management attributes.
+            description: The attributes of the certificate (optional).
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_481
         schema: *ref_158
@@ -11826,7 +11826,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificatePolicy
-            description: Management policy for a certificate.
+            description: The management policy for the certificate.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_495
         schema: *ref_9
@@ -11839,7 +11839,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificateAttributes
-            description: The certificate management attributes.
+            description: The attributes of the certificate (optional).
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_496
         schema: *ref_168
@@ -12455,7 +12455,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificatePolicy
-            description: Management policy for a certificate.
+            description: The management policy for the certificate.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_513
         schema: *ref_9
@@ -12467,7 +12467,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificateAttributes
-            description: The certificate management attributes.
+            description: The attributes of the certificate (optional).
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_514
         schema: *ref_169
@@ -13104,7 +13104,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: CertificateAttributes
-            description: The certificate management attributes.
+            description: The attributes of the certificate (optional).
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_538
         schema: *ref_171
@@ -15089,7 +15089,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: StorageAccountAttributes
-            description: The storage account management attributes.
+            description: The attributes of the storage account.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_597
         schema: *ref_201
@@ -15294,7 +15294,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: StorageAccountAttributes
-            description: The storage account management attributes.
+            description: The attributes of the storage account.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_611
         schema: *ref_204
@@ -16389,7 +16389,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: SasDefinitionAttributes
-            description: The SAS definition management attributes.
+            description: The attributes of the SAS definition.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_651
         schema: *ref_228
@@ -16600,7 +16600,7 @@ operationGroups:
         language: !<!Languages> 
           default:
             name: SasDefinitionAttributes
-            description: The SAS definition management attributes.
+            description: The attributes of the SAS definition.
         protocol: !<!Protocols> {}
       - !<!Parameter> &ref_666
         schema: *ref_231

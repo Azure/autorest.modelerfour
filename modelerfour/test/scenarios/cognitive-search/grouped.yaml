@@ -2102,7 +2102,7 @@ schemas: !<!Schemas>
           language: !<!Languages> 
             default:
               name: queryType
-              description: ''
+              description: A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: !<!ArraySchema> &ref_76
@@ -2158,7 +2158,7 @@ schemas: !<!Schemas>
           language: !<!Languages> 
             default:
               name: searchMode
-              description: ''
+              description: A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.
           protocol: !<!Protocols> {}
         - !<!Property> 
           schema: *ref_22
@@ -2199,7 +2199,9 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: NextPageParameters
-          description: 'Parameters for filtering, sorting, faceting, paging, and other search query behaviors.'
+          description: >-
+            Continuation JSON payload returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this JSON along with @odata.nextLink to formulate another POST Search request to get
+            the next part of the search response.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: !<!ArraySchema> &ref_78
@@ -2688,7 +2690,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: autocompleteMode
-          description: ''
+          description: Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.
       protocol: !<!Protocols> {}
     - !<!Property> 
       schema: *ref_60

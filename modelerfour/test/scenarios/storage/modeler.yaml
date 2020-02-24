@@ -623,7 +623,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: accountType
-                  description: Gets or sets the account type.
+                  description: Gets the type of the storage account.
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: !<!ObjectSchema> &ref_14
@@ -662,7 +662,7 @@ schemas: !<!Schemas>
                   language: !<!Languages> 
                     default:
                       name: dummyEndPoint
-                      description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                      description: Dummy EndPoint
                   protocol: !<!Protocols> {}
                 - !<!Property> 
                   schema: !<!ObjectSchema> &ref_25
@@ -684,7 +684,7 @@ schemas: !<!Schemas>
                           language: !<!Languages> 
                             default:
                               name: RecursivePoint
-                              description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                              description: Recursive Endpoints
                           protocol: !<!Protocols> {}
                         language: !<!Languages> 
                           default:
@@ -696,7 +696,7 @@ schemas: !<!Schemas>
                       language: !<!Languages> 
                         default:
                           name: Bar.Point
-                          description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                          description: Bar point
                       protocol: !<!Protocols> {}
                     language: !<!Languages> 
                       default:
@@ -708,7 +708,7 @@ schemas: !<!Schemas>
                   language: !<!Languages> 
                     default:
                       name: FooPoint
-                      description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                      description: Foo point
                   protocol: !<!Protocols> {}
                 language: !<!Languages> 
                   default:
@@ -720,7 +720,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: primaryEndpoints
-                  description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                  description: 'Gets the URLs that are used to perform a retrieval of a public blob, queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob endpoint.'
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: *ref_15
@@ -762,7 +762,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: statusOfSecondary
-                  description: Gets the status indicating whether the primary location of the storage account is available or unavailable.
+                  description: Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS.
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: *ref_43
@@ -805,7 +805,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: customDomain
-                  description: The custom domain assigned to this storage account. This can be set via Update.
+                  description: Gets the user assigned custom domain assigned to this storage account.
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: *ref_14
@@ -813,7 +813,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: secondaryEndpoints
-                  description: 'The URIs that are used to perform a retrieval of a public blob, queue or table object.'
+                  description: 'Gets the URLs that are used to perform a retrieval of a public blob, queue or table object from the secondary location of the storage account. Only available if the accountType is StandardRAGRS.'
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -859,7 +859,7 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: accountType
-                  description: Gets or sets the account type.
+                  description: 'Gets or sets the account type. Note that StandardZRS and PremiumLRS accounts cannot be changed to other account types, and other account types cannot be changed to StandardZRS or PremiumLRS.'
               protocol: !<!Protocols> {}
             - !<!Property> 
               schema: *ref_19
@@ -867,7 +867,9 @@ schemas: !<!Schemas>
               language: !<!Languages> 
                 default:
                   name: customDomain
-                  description: The custom domain assigned to this storage account. This can be set via Update.
+                  description: >-
+                    User domain assigned to the storage account. Name is the CNAME source. Only one custom domain is supported per storage account at this time. To clear the existing custom domain, use an empty string for the custom domain
+                    name property.
               protocol: !<!Protocols> {}
             language: !<!Languages> 
               default:
@@ -980,7 +982,7 @@ schemas: !<!Schemas>
       language: !<!Languages> 
         default:
           name: key2
-          description: Gets the value of key 1.
+          description: Gets the value of key 2.
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -1121,7 +1123,7 @@ schemas: !<!Schemas>
             language: !<!Languages> 
               default:
                 name: name
-                description: The Usage Names.
+                description: Gets the name of the type of usage.
             protocol: !<!Protocols> {}
           language: !<!Languages> 
             default:
