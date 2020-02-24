@@ -513,6 +513,7 @@ export class ModelerFour {
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
           extensions: this.interpret.getExtensionProperties(property, propertyDeclaration),
+          clientDefaultValue: this.interpret.getClientDefault(property, propertyDeclaration)
         }));
         if (prop.isDiscriminator) {
           objectSchema.discriminator = new Discriminator(prop);
@@ -1226,9 +1227,12 @@ export class ModelerFour {
           }
           const parameterSchema = this.processSchema(name || '', schema);
 
+
           // Track the usage of this schema as an input with media type
           trackSchemaUsage(parameterSchema, { context: SchemaContext.Input });
 
+
+          /* regular, everyday parameter */
           const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
             required: parameter.required ? true : undefined,
             implementation,
@@ -1242,7 +1246,8 @@ export class ModelerFour {
               default: {
                 serializedName: parameter.name
               }
-            }
+            },
+            clientDefaultValue: this.interpret.getClientDefault(parameter, schema)
           }));
 
           // if allowReserved is present, add the extension attribute too.

@@ -351,6 +351,9 @@ export class Interpretations {
     }
     return main;
   }
+  getClientDefault(dictionary: Dictionary<any>, additional?: Dictionary<any>): string | number | boolean | undefined {
+    return dictionary?.['x-ms-client-default'] || additional?.['x-ms-client-default'] || undefined;
+  }
 
   static getExtensionProperties(dictionary: Dictionary<any>): Dictionary<any> | undefined {
     const result = ToDictionary(OpenAPI.includeXDash(dictionary), each => dictionary[each]);
