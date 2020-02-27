@@ -127,7 +127,7 @@ async function cts<TInputModel>(config: any, filename: string, content: string) 
     },
     Message: (message: any): void => {
       // test 
-      if (message.Channel === 'warning' || message.Channel === 'error') {
+      if (message.Channel === 'warning' || message.Channel === 'error' || message.Channel === 'verbose') {
         if (message.Channel === 'error') {
           errorCount++;
         }
@@ -164,7 +164,7 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
     },
     Message: (message: any): void => {
       // test 
-      if (message.Channel === 'warning' || message.Channel === 'error') {
+      if (message.Channel === 'warning' || message.Channel === 'error' || message.Channel === 'verbose') {
         if (message.Channel === 'error') {
 
           errorCount++;
@@ -198,7 +198,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
     },
     Message: (message: any): void => {
       // test 
-      if (message.Channel === 'warning' || message.Channel === 'error') {
+      if (message.Channel === 'warning' || message.Channel === 'error' || message.Channel === 'verbose') {
         if (message.Channel === 'error') {
           errorCount++;
         }
@@ -218,7 +218,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
     const session = await createTestSession<Model>({}, resources, ['input2.yaml'], ['output1.yaml']);
 
     // process OAI model
-    const modeler = new ModelerFour(session);
+    const modeler = await new ModelerFour(session).init();
 
     // go!
     const codeModel = await modeler.process();

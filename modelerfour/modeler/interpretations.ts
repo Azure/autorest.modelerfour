@@ -2,7 +2,7 @@ import { Session } from '@azure-tools/autorest-extension-base';
 import * as OpenAPI from '@azure-tools/openapi';
 import { values, length, items, ToDictionary, Dictionary, keys } from '@azure-tools/linq';
 import { CodeModel, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
-import { StringFormat, JsonType } from '@azure-tools/openapi';
+import { StringFormat, JsonType, ParameterLocation } from '@azure-tools/openapi';
 import { getPascalIdentifier } from '@azure-tools/codegen';
 
 export interface XMSEnum {
@@ -62,6 +62,7 @@ const specialCharacterMapping: { [character: string]: string } = {
 const apiVersionParameterNames = [
   'api-version',
   'apiversion',
+  'x-ms-api-version'
 ];
 
 export function getValidEnumValueName(originalString: string): string {
@@ -148,6 +149,9 @@ export class Interpretations {
   }
 
   isApiVersionParameter(parameter: OpenAPI.Parameter): boolean {
+    if (parameter.in !== ParameterLocation.Query) {
+      return false;
+    }
     return !!(parameter['x-ms-api-version'] || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
   }
   getEnumChoices(schema: OpenAPI.Schema): Array<ChoiceValue> {
@@ -230,6 +234,10 @@ export class Interpretations {
   xmsMeta(obj: any, key: string) {
     const m = obj['x-ms-metadata'];
     return m ? m[key] : undefined;
+  }
+
+  xmsMetaFallback(obj: any, obj2: any, key: string) {
+    return this.xmsMeta(obj, key) || this.xmsMeta(obj2, key)
   }
 
   splitOpId(opId: string) {

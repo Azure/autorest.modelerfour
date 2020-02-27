@@ -103,6 +103,10 @@ modelerfour:
   # this will flatten parameters when payload-flattening-threshold is specified (or marked in the input spec)
   # defaults to false if not specified
   flatten-payloads: false|true  
+
+  # setting this to false will skip parameter flattening 
+  # for operations that have multiple requests (ie, JSON and BINARY)
+  multiple-request-parameter-flattening: true|false
   
   # this runs a pre-namer step to clean up names 
   # defaults to true if not specified
@@ -228,3 +232,16 @@ deduplicate-inline-models: true
 
 ```
 
+``` yaml $(inspector) 
+pipeline:
+  inspector/codemodel/reset-identity:
+    input: 
+      - modelerfour/identity
+      - inspector
+
+    to: inspect-document
+  
+  inspector/emitter:
+    input: 
+      - inspector/codemodel/reset-identity    
+```

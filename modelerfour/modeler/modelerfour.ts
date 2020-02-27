@@ -2,7 +2,7 @@ import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFor
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
 import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
-import { Session } from '@azure-tools/autorest-extension-base';
+import { Session, Channel } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
 
@@ -58,10 +58,53 @@ function trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsageDetails): void
   innerTrackSchemaUsage(schema);
 }
 
+/** Acts as a cache for processing inputs.
+ * 
+ * If the input is undefined, the ouptut is always undefined.
+ * for a given input, the process is only ever called once.
+ * 
+ * 
+*/
+class ProcessingCache<In, Out> {
+  private results = new Map<In, Out>();
+  constructor(private transform: (orig: In, ...args: Array<any>) => Out) {
+  }
+  has(original: In | undefined) {
+    return !!original && !!this.results.get(original);
+  }
+  set(original: In, result: Out) {
+    this.results.set(original, result);
+    return result;
+  }
+  process(original: In | undefined, ...args: Array<any>): Out | undefined {
+    if (original) {
+      const result: Out = this.results.get(original) || this.transform(original, ...args);
+      this.results.set(original, result);
+      return result;
+    }
+    return undefined;
+  }
+}
+
+interface InputOperation {
+  operation: OpenAPI.HttpOperation;
+  method: string;
+  path: string;
+  pathItem: OpenAPI.PathItem
+}
+
 export class ModelerFour {
   codeModel: CodeModel
   private input: oai3;
+  private inputOperations = new Array<InputOperation>();
   protected interpret: Interpretations;
+
+  private apiVersionMode!: 'auto' | 'client' | 'method' | 'profile' | 'none';
+  private apiVersionParameter!: 'choice' | 'constant' | undefined;
+  private useModelNamespace!: boolean | undefined;
+  private profileFilter!: Array<string>;
+  private apiVersionFilter!: Array<string>;
+  private schemaCache = new ProcessingCache((schema: OpenAPI.Schema, name: string) => this.processSchemaImpl(schema, name));
 
   constructor(protected session: Session<oai3>) {
     this.input = session.model;// shadow(session.model, filename);
@@ -84,6 +127,62 @@ export class ModelerFour {
     });
     this.interpret = new Interpretations(session, this.codeModel);
 
+    this.preprocessOperations();
+  }
+
+  preprocessOperations() {
+    // preprocess to get all http operations flattend out into a nice neat collection
+    for (const { key: path, value: pathItem } of this.resolveDictionary(this.input.paths)) {
+      for (const httpMethod of [HttpMethod.Delete, HttpMethod.Get, HttpMethod.Head, HttpMethod.Options, HttpMethod.Patch, HttpMethod.Post, HttpMethod.Put, HttpMethod.Trace]) {
+        const httpOperation = pathItem[httpMethod];
+        if (httpOperation) {
+          this.inputOperations.push({
+            method: httpMethod,
+            path: this.interpret.getPath(pathItem, httpOperation, path),
+            pathItem,
+            operation: httpOperation
+          })
+        }
+      };
+    };
+  }
+
+  initApiVersionMode(apiVersionParameter: 'choice' | 'constant' | undefined, useModelNamespace: boolean | undefined) {
+    if (this.profileFilter.length > 0) {
+      // must be profile mode.
+      return 'profile';
+    }
+
+    // see how many api versions there are for all the operations
+    const allApiVersions = values(this.inputOperations).selectMany(each => {
+      const apiv = <Array<string>>this.interpret.xmsMetaFallback(each.operation, each.pathItem, 'apiVersions');
+
+      return apiv;
+    }).distinct().toArray();
+    switch (allApiVersions.length) {
+      case 0:
+        this.useModelNamespace = false;
+        return 'none';
+
+      case 1:
+        this.apiVersionParameter = apiVersionParameter || 'constant';
+        this.useModelNamespace = useModelNamespace || false;
+        return 'client';
+    }
+
+    // multiple api versions in play.
+    const multiVersionPerOperation = values(this.inputOperations).select(each => length(<Array<string>>this.interpret.xmsMetaFallback(each.operation, each.pathItem, 'apiVersions'))).any(each => each > 1);
+    if (!multiVersionPerOperation) {
+      // operations have one single api version each
+      this.apiVersionParameter = apiVersionParameter || 'constant';
+      this.useModelNamespace = useModelNamespace || false;
+      return 'method';
+    }
+
+    // methods can have more than one api version 
+    this.apiVersionParameter = apiVersionParameter || 'choice';
+    this.useModelNamespace = useModelNamespace || true;
+    return 'method';
   }
 
   async init() {
@@ -93,17 +192,27 @@ export class ModelerFour {
       this.codeModel.info.title = newTitle;
     }
 
-    return this;
-  }
+    this.profileFilter = await this.session.getValue('profile', []);
+    this.apiVersionFilter = await this.session.getValue('api-version', []);
 
-  private processed = new Map<any, any>();
-  private should<T, O>(original: T | undefined, processIt: (orig: T) => O): O | undefined {
-    if (original) {
-      const result: O = this.processed.get(original) || processIt(original);
-      this.processed.set(original, result);
-      return result;
+    const apiVersionMode = await this.session.getValue('api-version-mode', 'auto');
+
+    const apiVersionParameter = await this.session.getValue<'choice' | 'constant' | null>('api-version-parameter', null) ?? undefined;
+    const useModelNamespace = await this.session.getValue<boolean | null>('use-model-namespace', null) ?? undefined;
+
+    if (apiVersionMode === 'auto') {
+      // detect the apiversion mode
+      this.apiVersionMode = this.initApiVersionMode(apiVersionParameter, useModelNamespace);
+    } else {
+      // just set the other parameters
+      this.initApiVersionMode(apiVersionParameter, useModelNamespace);
     }
-    return undefined;
+
+    this.session.message({ Channel: Channel.Warning, Text: `  ModelerFour/api-version-mode:${this.apiVersionMode}` });
+    this.session.message({ Channel: Channel.Warning, Text: `  ModelerFour/api-version-parameter:${this.apiVersionParameter}` });
+    this.session.message({ Channel: Channel.Warning, Text: `  ModelerFour/use-model-namespace:${this.useModelNamespace}` });
+
+    return this;
   }
 
   private resolve<T>(item: Refable<T>): Dereferenced<T> {
@@ -127,7 +236,7 @@ export class ModelerFour {
     return items(source).linq.select(each => ({
       key: each.key,
       value: dereference(this.input, each.value).instance
-    }));
+    })).where(each => each.value !== undefined);
   }
 
   location(obj: any): string {
@@ -501,7 +610,7 @@ export class ModelerFour {
     }));
 
     // cache this now before we accidentally recurse on this type.
-    this.processed.set(schema, objectSchema);
+    this.schemaCache.set(schema, objectSchema);
     for (const { key: propertyName, value: propertyDeclaration } of items(schema.properties)) {
       const property = this.resolve(propertyDeclaration);
       this.use(<OpenAPI.Refable<OpenAPI.Schema>>propertyDeclaration, (pSchemaName, pSchema) => {
@@ -524,7 +633,7 @@ export class ModelerFour {
     return objectSchema;
   }
 
-  processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema {
+  processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AnySchema {
     let i = 0;
     const parents: Array<ComplexSchema> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
       return this.processSchema(n || `${name}.allOf.${i++}`, s);
@@ -549,7 +658,8 @@ export class ModelerFour {
 
     if (!isMoreThanObject && !hasProperties) {
       // it's an empty object?
-      this.session.warning(`Schema '${name}' is an empty object without properties or modifiers.`, ['Modeler', 'EmptyObject'], aSchema);
+      // this.session.warning(`Schema '${name}' is an empty object without properties or modifiers.`, ['Modeler', 'EmptyObject'], aSchema);
+      return this.anySchema;
     }
 
     const dictionarySchema = dictionaryDef ? this.processDictionarySchema(name, aSchema) : undefined;
@@ -564,7 +674,7 @@ export class ModelerFour {
 
     // set the apiversion namespace
     const m = minimum(values(objectSchema.apiVersions).select(each => each.version).toArray());
-    objectSchema.language.default.namespace = pascalCase(`Api ${m}`, false);
+    objectSchema.language.default.namespace = this.useModelNamespace ? pascalCase(`Api ${m}`, false) : '';
 
     // tell it should be internal if possible
     // objectSchema.language.default.internal = true;
@@ -650,191 +760,192 @@ export class ModelerFour {
     }));
   }
 
-  trap = new Set();
+
   processSchema(name: string, schema: OpenAPI.Schema): Schema {
-    return this.should(schema, (schema) => {
+    return this.schemaCache.process(schema, name) || fail('Unable to process schema.');
+  }
 
-      //console.error(`Process Schema ${this.interpret.getName(name, schema)}/${schema.description}`);
-      if (this.trap.has(schema)) {
-        throw new Error('RECURSING!');
-      }
-      this.trap.add(schema);
+  trap = new Set();
+  processSchemaImpl(schema: OpenAPI.Schema, name: string): Schema {
+    if (this.trap.has(schema)) {
+      throw new Error('RECURSING!');
+    }
+    this.trap.add(schema);
 
+    // handle enums differently early
+    if (schema.enum || schema['x-ms-enum']) {
+      return this.processChoiceSchema(name, schema);
+    }
 
-      // handle enums differently early
-      if (schema.enum || schema['x-ms-enum']) {
-        return this.processChoiceSchema(name, schema);
-      }
+    if (<any>schema.type === 'file' || <any>schema.format === 'file' || <any>schema.format === 'binary') {
+      // handle inconsistency in file format handling.
+      this.session.hint(
+        `'The schema ${schema?.['x-ms-metadata']?.name || name} with 'type: ${schema.type}', format: ${schema.format}' will be treated as a binary blob for binary media types.`,
+        ['Modeler', 'Superflous type information'], schema);
+      schema.type = OpenAPI.JsonType.String;
+      schema.format = StringFormat.Binary;
+    }
 
-      if (<any>schema.type === 'file' || <any>schema.format === 'file' || <any>schema.format === 'binary') {
-        // handle inconsistency in file format handling.
-        this.session.hint(
-          `'The schema ${schema?.['x-ms-metadata']?.name || name} with 'type: ${schema.type}', format: ${schema.format}' will be treated as a binary blob for binary media types.`,
-          ['Modeler', 'Superflous type information'], schema);
-        schema.type = OpenAPI.JsonType.String;
-        schema.format = StringFormat.Binary;
-      }
+    // if they haven't set the schema.type then we're going to have to guess what
+    // they meant to do.
+    switch (schema.type) {
+      case undefined:
+      case null:
+        if (schema.properties) {
+          // if the model has properties, then we're going to assume they meant to say JsonType.object
+          // but we're going to warn them anyway.
 
-      // if they haven't set the schema.type then we're going to have to guess what
-      // they meant to do.
-      switch (schema.type) {
-        case undefined:
-        case null:
-          if (schema.properties) {
-            // if the model has properties, then we're going to assume they meant to say JsonType.object
-            // but we're going to warn them anyway.
-
-            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and decalared properties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
-            schema.type = OpenAPI.JsonType.Object;
-            break;
-          }
-
-          if (schema.additionalProperties) {
-            // this looks like it's going to be a dictionary
-            // we'll mark it as object and let the processObjectSchema sort it out.
-            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and additionalProperties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler'], schema);
-            schema.type = OpenAPI.JsonType.Object;
-            break;
-          }
-
-          if (schema.allOf || schema.anyOf || schema.oneOf) {
-            // if the model has properties, then we're going to assume they meant to say JsonType.object
-            // but we're going to warn them anyway.
-            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
-            schema.type = OpenAPI.JsonType.Object;
-            break;
-          }
-
-          {
-            // no type info at all!?
-            // const err = `The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`;
-            this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' has no type or format information whatsoever. ${this.location(schema)}`, ['Modeler', 'MissingType'], schema);
-            // throw Error(err);
-            return this.anySchema;
-          }
-      }
-
-      // ok, figure out what kind of schema this is.
-      switch (schema.type) {
-        case JsonType.Array:
-          switch (schema.format) {
-            case undefined:
-              return this.processArraySchema(name, schema);
-            default:
-              this.session.error(`Array schema '${schema?.['x-ms-metadata']?.name || name}' with unknown format: '${schema.format} ' is not valid`, ['Modeler'], schema);
-          }
+          this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and decalared properties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
+          schema.type = OpenAPI.JsonType.Object;
           break;
+        }
 
-        case JsonType.Boolean:
-          switch (schema.format) {
-            case undefined:
-              return this.processBooleanSchema(name, schema);
-            default:
-              this.session.error(`Boolean schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
-          }
+        if (schema.additionalProperties) {
+          // this looks like it's going to be a dictionary
+          // we'll mark it as object and let the processObjectSchema sort it out.
+          this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and additionalProperties is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler'], schema);
+          schema.type = OpenAPI.JsonType.Object;
           break;
+        }
 
-        case JsonType.Integer:
-          schema.format = schema.format ? schema.format.toLowerCase() : schema.format;
-          switch (schema.format) {
-            case IntegerFormat.UnixTime:
-              return this.processUnixTimeSchema(name, schema);
-
-            case IntegerFormat.Int64:
-            case IntegerFormat.Int32:
-            case IntegerFormat.None:
-            case undefined:
-              return this.processIntegerSchema(name, schema);
-
-            case NumberFormat.Double:
-            case NumberFormat.Float:
-            case NumberFormat.Decimal:
-              return this.processNumberSchema(name, schema)
-
-            default:
-              this.session.error(`Integer schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
-          }
+        if (schema.allOf || schema.anyOf || schema.oneOf) {
+          // if the model has properties, then we're going to assume they meant to say JsonType.object
+          // but we're going to warn them anyway.
+          this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`, ['Modeler', 'MissingType'], schema);
+          schema.type = OpenAPI.JsonType.Object;
           break;
+        }
 
-        case JsonType.Number:
-          switch (schema.format) {
-            case undefined:
-            case NumberFormat.None:
-            case NumberFormat.Double:
-            case NumberFormat.Float:
-            case NumberFormat.Decimal:
-              return this.processNumberSchema(name, schema);
+        {
+          // no type info at all!?
+          // const err = `The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`;
+          this.session.warning(`The schema '${schema?.['x-ms-metadata']?.name || name}' has no type or format information whatsoever. ${this.location(schema)}`, ['Modeler', 'MissingType'], schema);
+          // throw Error(err);
+          return this.anySchema;
+        }
+    }
 
-            case IntegerFormat.Int64:
-            case IntegerFormat.Int32:
-              return this.processIntegerSchema(name, schema);
+    // ok, figure out what kind of schema this is.
+    switch (schema.type) {
+      case JsonType.Array:
+        switch (schema.format) {
+          case undefined:
+            return this.processArraySchema(name, schema);
+          default:
+            this.session.error(`Array schema '${schema?.['x-ms-metadata']?.name || name}' with unknown format: '${schema.format} ' is not valid`, ['Modeler'], schema);
+        }
+        break;
+
+      case JsonType.Boolean:
+        switch (schema.format) {
+          case undefined:
+            return this.processBooleanSchema(name, schema);
+          default:
+            this.session.error(`Boolean schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+        }
+        break;
+
+      case JsonType.Integer:
+        schema.format = schema.format ? schema.format.toLowerCase() : schema.format;
+        switch (schema.format) {
+          case IntegerFormat.UnixTime:
+            return this.processUnixTimeSchema(name, schema);
+
+          case IntegerFormat.Int64:
+          case IntegerFormat.Int32:
+          case IntegerFormat.None:
+          case undefined:
+            return this.processIntegerSchema(name, schema);
+
+          case NumberFormat.Double:
+          case NumberFormat.Float:
+          case NumberFormat.Decimal:
+            return this.processNumberSchema(name, schema)
+
+          default:
+            this.session.error(`Integer schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+        }
+        break;
+
+      case JsonType.Number:
+        switch (schema.format) {
+          case undefined:
+          case NumberFormat.None:
+          case NumberFormat.Double:
+          case NumberFormat.Float:
+          case NumberFormat.Decimal:
+            return this.processNumberSchema(name, schema);
+
+          case IntegerFormat.Int64:
+          case IntegerFormat.Int32:
+            return this.processIntegerSchema(name, schema);
 
 
-            default:
-              this.session.error(`Number schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
-          }
-          break;
+          default:
+            this.session.error(`Number schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+        }
+        break;
 
-        case JsonType.Object:
-          return this.processObjectSchema(name, schema);
+      case JsonType.Object:
+        return this.processObjectSchema(name, schema);
 
-        case JsonType.String:
-          switch (schema.format) {
-            // member should be byte array
-            // on wire format should be base64url
-            case StringFormat.Base64Url:
-            case StringFormat.Byte:
-            case StringFormat.Certificate:
-              return this.processByteArraySchema(name, schema);
+      case JsonType.String:
+        switch (schema.format) {
+          // member should be byte array
+          // on wire format should be base64url
+          case StringFormat.Base64Url:
+          case StringFormat.Byte:
+          case StringFormat.Certificate:
+            return this.processByteArraySchema(name, schema);
 
-            case StringFormat.Binary:
-              // represent as a binary
-              // wire format is stream of bytes
-              // This is actually a different kind of response or request
-              // and should not be treated as a trivial 'type'
-              return this.processBinarySchema(name, schema);
+          case StringFormat.Binary:
+            // represent as a binary
+            // wire format is stream of bytes
+            // This is actually a different kind of response or request
+            // and should not be treated as a trivial 'type'
+            return this.processBinarySchema(name, schema);
 
-            case StringFormat.Char:
-              // a single character
-              return this.processCharacterSchema(name, schema);
+          case StringFormat.Char:
+            // a single character
+            return this.processCharacterSchema(name, schema);
 
-            case StringFormat.Date:
-              return this.processDateSchema(name, schema);
+          case StringFormat.Date:
+            return this.processDateSchema(name, schema);
 
-            case StringFormat.DateTime:
-            case StringFormat.DateTimeRfc1123:
-              return this.processDateTimeSchema(name, schema);
+          case StringFormat.DateTime:
+          case StringFormat.DateTimeRfc1123:
+            return this.processDateTimeSchema(name, schema);
 
-            case StringFormat.Duration:
-              return this.processDurationSchema(name, schema);
+          case StringFormat.Duration:
+            return this.processDurationSchema(name, schema);
 
-            case StringFormat.Uuid:
-              return this.processUuidSchema(name, schema);
+          case StringFormat.Uuid:
+            return this.processUuidSchema(name, schema);
 
-            case StringFormat.Url:
-              return this.processUriSchema(name, schema);
+          case StringFormat.Url:
+            return this.processUriSchema(name, schema);
 
-            case StringFormat.Password:
-              return this.processCredentialSchema(name, schema);
+          case StringFormat.Password:
+            return this.processCredentialSchema(name, schema);
 
-            case StringFormat.OData:
-              return this.processOdataSchema(name, schema);
+          case StringFormat.OData:
+            return this.processOdataSchema(name, schema);
 
-            case StringFormat.None:
-            case undefined:
-            case null:
-              return this.processStringSchema(name, schema);
+          case StringFormat.None:
+          case undefined:
+          case null:
+            return this.processStringSchema(name, schema);
 
-            default:
-              // console.error(`String schema '${name}' with unknown format: '${schema.format}' is treated as simple string.`);
-              return this.processStringSchema(name, schema);
+          default:
+            // console.error(`String schema '${name}' with unknown format: '${schema.format}' is treated as simple string.`);
+            return this.processStringSchema(name, schema);
 
-            //              this.session.error(`String schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
-          }
-      }
-      this.session.error(`The model ${name} does not have a recognized schema type '${schema.type}' ${JSON.stringify(schema)} `, ['Modeler', 'UnknownSchemaType']);
-      throw new Error(`Unrecognized schema type:'${schema.type}' / format: ${schema.format} ${JSON.stringify(schema)} `);
-    }) || fail('Unable to process schema.');
+          //              this.session.error(`String schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+        }
+    }
+    this.session.error(`The model ${name} does not have a recognized schema type '${schema.type}' ${JSON.stringify(schema)} `, ['Modeler', 'UnknownSchemaType']);
+    throw new Error(`Unrecognized schema type:'${schema.type}' / format: ${schema.format} ${JSON.stringify(schema)} `);
+
   }
 
   groupMediaTypes(oai3Content: Dictionary<MediaType> | undefined) {
@@ -858,29 +969,47 @@ export class ModelerFour {
     // (ie, a binary media type should have a binary response type, a json or xml media type should have a <not binary> type ).
     for (const [knownMediaType, mt] of [...mediaTypeGroups.entries()]) {
       for (const fmt of mt) {
-        switch (knownMediaType) {
-          case KnownMediaType.Json:
-          case KnownMediaType.Xml:
-          case KnownMediaType.Form:
-            if (this.interpret.isBinarySchema(fmt.schema.instance)) {
-              // bad combo, remove.
-              mediaTypeGroups.delete(knownMediaType);
-              continue;
-            }
-            break;
-          case KnownMediaType.Binary:
-          case KnownMediaType.Text:
-            if (!this.interpret.isBinarySchema(fmt.schema.instance)) {
-              // bad combo, remove.
-              mediaTypeGroups.delete(knownMediaType);
-              continue;
-            }
-            break;
+        if (this.interpret.isBinarySchema(fmt.schema.instance)) {
+          // if the schema really says 'type: file', we have to accept all the formats 
+          // that were listed in the original 'produces' collection
+          // because we *can't* infer that a json/xml/form media type means deserialize
 
-          default:
-            throw new Error(`Not able to process media type ${fmt.mediaType} at this moment.`);
+        } else {
+          switch (knownMediaType) {
+            case KnownMediaType.Json:
+            case KnownMediaType.Xml:
+            case KnownMediaType.Form:
+              if (!fmt.schema) {
+                // is this a good check?
+                throw new Error(`Object Response ${knownMediaType}:${fmt.mediaType} has no schema for the response, and can't deserialize.`)
+              }
+              // if the schema is binary, then it shouldn't be an object deserialization step. (oai2-to-oai3 upconversion ugly)
+              if (this.interpret.isBinarySchema(fmt.schema.instance)) {
+                // bad combo, remove.
+                mediaTypeGroups.delete(knownMediaType);
+                continue;
+              }
+              break;
+            case KnownMediaType.Binary:
+            case KnownMediaType.Text:
+              if (!fmt.schema.instance) {
+                // if we don't have a schema at all, should we infer a binary schema anyway? 
+                // dunno.
+
+              }
+              if (!this.interpret.isBinarySchema(fmt.schema.instance)) {
+                // bad combo, remove.
+                mediaTypeGroups.delete(knownMediaType);
+                continue;
+              }
+              break;
+
+            default:
+              throw new Error(`Not able to process media type ${fmt.mediaType} at this moment.`);
+          }
         }
       }
+
     }
     // }
     return mediaTypeGroups;
@@ -900,7 +1029,7 @@ export class ModelerFour {
       }
     });
 
-    if (http.mediaTypes.length > 0) {
+    if (http.mediaTypes.length > 1) {
       // we have multiple media types
       // make sure we have an enum for the content-type
       // and add a content type parameter to the request
@@ -948,7 +1077,6 @@ export class ModelerFour {
     const http = new HttpWithBodyRequest({
       knownMediaType: kmt,
       mediaTypes: kmtObject.map(each => each.mediaType),
-      binary: true,
     });
 
     // create the request object
@@ -985,49 +1113,46 @@ export class ModelerFour {
     throw new Error('Multipart forms not implemented yet..');
   }
 
-  processOperation(httpOp: OpenAPI.HttpOperation | undefined, httpMethod: string, path: string, pathItem: OpenAPI.PathItem) {
-    return this.should(httpOp, (httpOperation) => {
-      path = this.interpret.getPath(pathItem, httpOperation, path);
-      const p = path.indexOf('?');
-      path = p > -1 ? path.substr(0, p) : path;
+  processOperation(httpOperation: OpenAPI.HttpOperation, method: string, path: string, pathItem: OpenAPI.PathItem) {
+    const p = path.indexOf('?');
+    path = p > -1 ? path.substr(0, p) : path;
 
-      const { group, member } = this.interpret.getOperationId(httpMethod, path, httpOperation);
-      // get group and operation name
-      // const opGroup = this.codeModel.
-      const memberName = httpOperation['x-ms-client-name'] ?? member;
-      const operationGroup = this.codeModel.getOperationGroup(group);
-      const operation = operationGroup.addOperation(new Operation(memberName, this.interpret.getDescription('', httpOperation), {
-        extensions: this.interpret.getExtensionProperties(httpOperation),
-        apiVersions: this.interpret.getApiVersions(pathItem),
-        language: {
-          default: {
-            summary: httpOperation.summary
-          }
-        }
-      }));
-
-      // tag the pageable operation with pagable info and the linked operation if specified.
-      if (httpOperation['x-ms-pageable']) {
-        const nextLink = httpOperation['x-ms-pageable']?.operationName;
-        operation.language.default.paging = {
-          ...httpOperation['x-ms-pageable'],
-          ...nextLink ? this.interpret.splitOpId(nextLink) : {},
-          operationName: nextLink ? undefined : httpOperation['x-ms-pageable'].opearationName,
+    // get group and operation name
+    const { group, member } = this.interpret.getOperationId(method, path, httpOperation);
+    const memberName = httpOperation['x-ms-client-name'] ?? member;
+    const operationGroup = this.codeModel.getOperationGroup(group);
+    const operation = operationGroup.addOperation(new Operation(memberName, this.interpret.getDescription('', httpOperation), {
+      extensions: this.interpret.getExtensionProperties(httpOperation),
+      apiVersions: this.interpret.getApiVersions(pathItem),
+      language: {
+        default: {
+          summary: httpOperation.summary
         }
       }
+    }));
 
-      // === Host Parameters ===
-      const baseUri = this.processHostParameters(httpOperation, operation, path, pathItem);
+    // tag the pageable operation with pagable info and the linked operation if specified.
+    if (httpOperation['x-ms-pageable']) {
+      const nextLink = httpOperation['x-ms-pageable']?.operationName;
+      operation.language.default.paging = {
+        ...httpOperation['x-ms-pageable'],
+        ...nextLink ? this.interpret.splitOpId(nextLink) : {},
+        operationName: nextLink ? undefined : httpOperation['x-ms-pageable'].opearationName,
+      }
+    }
 
-      // === Common Parameters ===
-      this.processParameters(httpOperation, operation, pathItem);
+    // === Host Parameters ===
+    const baseUri = this.processHostParameters(httpOperation, operation, path, pathItem);
 
-      // === Requests ===
-      this.processRequestBody(httpOperation, httpMethod, operationGroup, operation, path, baseUri);
+    // === Common Parameters ===
+    this.processParameters(httpOperation, operation, pathItem);
 
-      // === Response ===
-      this.processResponses(httpOperation, operation);
-    });
+    // === Requests ===
+    this.processRequestBody(httpOperation, method, operationGroup, operation, path, baseUri);
+
+    // === Response ===
+    this.processResponses(httpOperation, operation);
+
   }
 
   processHostParameters(httpOperation: OpenAPI.HttpOperation, operation: Operation, path: string, pathItem: OpenAPI.PathItem) {
@@ -1159,109 +1284,138 @@ export class ModelerFour {
     return baseUri;
   }
 
+  processApiVersionParameterForProfile() {
+    throw new Error('Profile Support for API Verison Parameters not implemented.');
+  }
+
+  addApiVersionParameter(parameter: OpenAPI.Parameter, operation: Operation, pathItem: OpenAPI.PathItem, apiVersionParameterSchema: ChoiceSchema | ConstantSchema) {
+    const p = new Parameter('ApiVersion', 'Api Version', apiVersionParameterSchema, {
+      required: parameter.required ? true : undefined,
+      protocol: {
+        http: new HttpParameter(ParameterLocation.Query)
+      },
+      language: {
+        default: {
+          serializedName: parameter.name
+        }
+      }
+    });
+
+    switch (this.apiVersionMode) {
+      case 'method':
+        p.implementation = ImplementationLocation.Method;
+        return operation.addParameter(p);
+
+      case 'client':
+        let pp = this.codeModel.findGlobalParameter(each => each.language.default.name === 'ApiVersion');
+        if (!pp) {
+          p.implementation = ImplementationLocation.Client;
+          pp = this.codeModel.addGlobalParameter(p);
+        }
+        return operation.addParameter(pp);
+    }
+    throw new Error(`addApiVersionParameter : Invalid state api-version-mode: '${this.apiVersionMode}'`);
+  }
+
+  processChoiceApiVersionParameter(parameter: OpenAPI.Parameter, operation: Operation, pathItem: OpenAPI.PathItem, apiversions: Array<string>) {
+    const apiVersionChoice = this.codeModel.schemas.add(new ChoiceSchema(`ApiVersion-${apiversions[0]}`, `Api Versions`, {
+      choiceType: this.stringSchema,
+      choices: apiversions.map(each => new ChoiceValue(each, `Api Version '${each}'`, each))
+    }));
+
+    return this.addApiVersionParameter(parameter, operation, pathItem, apiVersionChoice);
+  }
+
+  processConstantApiVersionParameter(parameter: OpenAPI.Parameter, operation: Operation, pathItem: OpenAPI.PathItem, apiversions: Array<string>) {
+    if (apiversions.length > 1) {
+      throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has more than one ApiVersion possibility, but 'api-version-parameter'='constant' `);
+    }
+    const apiVersionConst = this.codeModel.schemas.add(new ConstantSchema(`ApiVersion-${apiversions[0]}`, `Api Version (${apiversions[0]})`, {
+      valueType: this.stringSchema,
+      value: new ConstantValue(apiversions[0])
+    }));
+
+    return this.addApiVersionParameter(parameter, operation, pathItem, apiVersionConst);
+  }
+
+  processApiVersionParameter(parameter: OpenAPI.Parameter, operation: Operation, pathItem: OpenAPI.PathItem) {
+    const apiversions = this.interpret.getApiVersionValues(pathItem);
+    if (apiversions.length === 0) {
+      // !!!
+      throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no apiversions but has an apiversion parameter.`);
+    }
+
+    if (this.apiVersionMode === 'profile') {
+      return this.processApiVersionParameterForProfile();
+    }
+
+    switch (this.apiVersionParameter) {
+      case 'constant':
+        return this.processConstantApiVersionParameter(parameter, operation, pathItem, apiversions);
+
+      case 'choice':
+        return this.processChoiceApiVersionParameter(parameter, operation, pathItem, apiversions);
+    }
+
+    throw new Error(`Invalid api-version-parameter: ${this.apiVersionParameter}`);
+  }
+
+
   processParameters(httpOperation: OpenAPI.HttpOperation, operation: Operation, pathItem: OpenAPI.PathItem) {
     values(httpOperation.parameters).select(each => dereference(this.input, each)).select(pp => {
       const parameter = pp.instance;
       this.use(parameter.schema, (name, schema) => {
-
-        if (this.interpret.isApiVersionParameter(parameter)) {
-          // use the API versions information for this operation to give the values that should be used
-          // notes:
-          // legal values for apiversion parameter, are the x-ms-metadata.apiversions values
-
-          // if there is a single apiversion value, you'll see a constant parameter.
-
-          // if there are multiple apiversion values,
-          //  - and profile are provided, you'll get a sealed conditional parameter that has values dependent upon choosing a profile.
-          //  - otherwise, you'll get a sealed choice parameter.
-
-          const apiversions = this.interpret.getApiVersionValues(pathItem);
-          if (apiversions.length === 0) {
-            // !!!
-            throw new Error(`Operation ${pathItem?.['x-ms-metadata']?.path} has no apiversions but has an apiversion parameter.`);
-          }
-          if (apiversions.length === 1) {
-            const apiVersionConst = this.codeModel.schemas.add(new ConstantSchema(`ApiVersion-${apiversions[0]}`, `Api Version (${apiversions[0]})`, {
-              valueType: this.stringSchema,
-              value: new ConstantValue(apiversions[0])
-            }));
-
-            const p = this.codeModel.findGlobalParameter(each => each.language.default.name === 'ApiVersion');
-            if (p) {
-              return operation.addParameter(p);
-            }
-
-            const apiVersionParameter = operation.addParameter(new Parameter('ApiVersion', 'Api Version', apiVersionConst, {
-              required: parameter.required ? true : undefined,
-              //implementation: 'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method,
-              implementation: ImplementationLocation.Client,
-              protocol: {
-                http: new HttpParameter(ParameterLocation.Query)
-              },
-              language: {
-                default: {
-                  serializedName: parameter.name
-                }
-              }
-            }));
-
-            this.codeModel.addGlobalParameter(apiVersionParameter);
-            return apiVersionParameter;
-          }
-
-          // multiple api versions. okaledokaley
-          throw new Error('MultiApiVersion Not Ready Yet');
-
-        } else {
-          // Not an APIVersion Parameter
-          const implementation = pp.fromRef ?
-            'method' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Method : ImplementationLocation.Client :
-            'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method;
-
-          if (implementation === ImplementationLocation.Client) {
-            // check to see of it's already in the global parameters
-            const p = this.codeModel.findGlobalParameter(each => each.language.default.name === parameter.name);
-            if (p) {
-              return operation.addParameter(p);
-            }
-          }
-          const parameterSchema = this.processSchema(name || '', schema);
-
-
-          // Track the usage of this schema as an input with media type
-          trackSchemaUsage(parameterSchema, { context: SchemaContext.Input });
-
-
-          /* regular, everyday parameter */
-          const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
-            required: parameter.required ? true : undefined,
-            implementation,
-            extensions: this.interpret.getExtensionProperties(parameter),
-            protocol: {
-              http: new HttpParameter(parameter.in, parameter.style ? {
-                style: <SerializationStyle><unknown>parameter.style,
-              } : undefined),
-            },
-            language: {
-              default: {
-                serializedName: parameter.name
-              }
-            },
-            clientDefaultValue: this.interpret.getClientDefault(parameter, schema)
-          }));
-
-          // if allowReserved is present, add the extension attribute too.
-          if (parameter.allowReserved) {
-            newParam.extensions = newParam.extensions ?? {};
-            newParam.extensions['x-ms-skip-url-encoding'] = true;
-          }
-
-          if (implementation === ImplementationLocation.Client) {
-            this.codeModel.addGlobalParameter(newParam);
-          }
-
-          return newParam;
+        if (this.apiVersionMode !== 'none' && this.interpret.isApiVersionParameter(parameter)) {
+          return this.processApiVersionParameter(parameter, operation, pathItem)
         }
+
+        // Not an APIVersion Parameter
+        const implementation = pp.fromRef ?
+          'method' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Method : ImplementationLocation.Client :
+          'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method;
+
+        if (implementation === ImplementationLocation.Client) {
+          // check to see of it's already in the global parameters
+          const p = this.codeModel.findGlobalParameter(each => each.language.default.name === parameter.name);
+          if (p) {
+            return operation.addParameter(p);
+          }
+        }
+        const parameterSchema = this.processSchema(name || '', schema);
+
+        // Track the usage of this schema as an input with media type
+        trackSchemaUsage(parameterSchema, { context: SchemaContext.Input });
+
+        /* regular, everyday parameter */
+        const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
+          required: parameter.required ? true : undefined,
+          implementation,
+          extensions: this.interpret.getExtensionProperties(parameter),
+          protocol: {
+            http: new HttpParameter(parameter.in, parameter.style ? {
+              style: <SerializationStyle><unknown>parameter.style,
+            } : undefined),
+          },
+          language: {
+            default: {
+              serializedName: parameter.name
+            }
+          },
+          clientDefaultValue: this.interpret.getClientDefault(parameter, schema)
+        }));
+
+        // if allowReserved is present, add the extension attribute too.
+        if (parameter.allowReserved) {
+          newParam.extensions = newParam.extensions ?? {};
+          newParam.extensions['x-ms-skip-url-encoding'] = true;
+        }
+
+        if (implementation === ImplementationLocation.Client) {
+          this.codeModel.addGlobalParameter(newParam);
+        }
+
+        return newParam;
+
       });
     }).toArray();
   }
@@ -1271,6 +1425,7 @@ export class ModelerFour {
     for (const { key: responseCode, value: response } of this.resolveDictionary(httpOperation.responses)) {
 
       const isErr = responseCode === 'default' || response['x-ms-error-response'];
+
       const knownMediaTypes = this.filterMediaTypes(response.content);
 
       if (length(knownMediaTypes) === 0) {
@@ -1434,11 +1589,11 @@ export class ModelerFour {
       // added to the operation.
       operation.addRequest(new Request({
         protocol: {
-          http: {
+          http: new HttpRequest({
             method: httpMethod,
             path: path,
             uri: baseUri
-          }
+          })
         }
       }));
     }
@@ -1446,7 +1601,7 @@ export class ModelerFour {
 
   process() {
     let priority = 0;
-    for (const { key: name, value: parameter } of this.resolveDictionary(this.input.components?.parameters).where(each => !this.processed.has(each.value))) {
+    for (const { key: name, value: parameter } of this.resolveDictionary(this.input.components?.parameters)) {
       if (parameter['x-ms-parameter-location'] !== 'method') {
         if (parameter['x-ms-priority'] === undefined) {
           parameter['x-ms-priority'] = priority++;
@@ -1455,12 +1610,8 @@ export class ModelerFour {
     }
 
     if (this.input.paths) {
-      for (const { key: path, value: pathItem } of this.resolveDictionary(this.input.paths).where(each => !this.processed.has(each.value))) {
-        this.should(pathItem, (pathItem) => {
-          for (const httpMethod of [HttpMethod.Delete, HttpMethod.Get, HttpMethod.Head, HttpMethod.Options, HttpMethod.Patch, HttpMethod.Post, HttpMethod.Put, HttpMethod.Trace]) {
-            this.processOperation(pathItem[httpMethod], httpMethod, path, pathItem);
-          }
-        });
+      for (const { operation, method, path, pathItem } of this.inputOperations) {
+        this.processOperation(operation, method, path, pathItem);
       }
 
       for (const group of this.codeModel.operationGroups) {
@@ -1475,19 +1626,18 @@ export class ModelerFour {
       }
     }
     if (this.input.components) {
-      for (const { key: name, value: header } of this.resolveDictionary(this.input.components.headers).where(each => !this.processed.has(each.value))) {
-        // this.processed.add(header);
-      }
-
-      for (const { key: name, value: request } of this.resolveDictionary(this.input.components.requestBodies).where(each => !this.processed.has(each.value))) {
-        // this.processed.add(request);
+      for (const { key: name, value: header } of this.resolveDictionary(this.input.components.headers)) {
 
       }
-      for (const { key: name, value: response } of this.resolveDictionary(this.input.components.responses).where(each => !this.processed.has(each.value))) {
-        // this.processed.add(response);
+
+      for (const { key: name, value: request } of this.resolveDictionary(this.input.components.requestBodies)) {
+
 
       }
-      for (const { key: name, value: schema } of this.resolveDictionary(this.input.components.schemas).where(each => !this.processed.has(each.value))) {
+      for (const { key: name, value: response } of this.resolveDictionary(this.input.components.responses)) {
+
+      }
+      for (const { key: name, value: schema } of this.resolveDictionary(this.input.components.schemas)) {
         // we don't process binary schemas
         if (this.interpret.isBinarySchema(schema)) {
           continue;
@@ -1499,8 +1649,6 @@ export class ModelerFour {
         }
         this.processSchema(name, schema);
       }
-
-
     }
     return this.codeModel;
   }

@@ -152,7 +152,7 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_26
     type: object
@@ -177,7 +177,7 @@ schemas: !<!Schemas>
       default:
         name: int-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_30
     type: object
@@ -201,7 +201,7 @@ schemas: !<!Schemas>
       default:
         name: int-optional-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_38
     type: object
@@ -226,7 +226,7 @@ schemas: !<!Schemas>
       default:
         name: string-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_42
     type: object
@@ -250,7 +250,7 @@ schemas: !<!Schemas>
       default:
         name: string-optional-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_5
     type: object
@@ -284,7 +284,7 @@ schemas: !<!Schemas>
       default:
         name: product
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_56
     type: object
@@ -309,7 +309,7 @@ schemas: !<!Schemas>
       default:
         name: class-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_60
     type: object
@@ -333,7 +333,7 @@ schemas: !<!Schemas>
       default:
         name: class-optional-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_68
     type: object
@@ -368,7 +368,7 @@ schemas: !<!Schemas>
       default:
         name: array-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_72
     type: object
@@ -402,7 +402,7 @@ schemas: !<!Schemas>
       default:
         name: array-optional-wrapper
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   arrays:
   - !<!ArraySchema> &ref_64
@@ -526,7 +526,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: '/reqopt/implicit/required/path/{pathParameter}'
           method: get
           uri: '{$host}'
@@ -585,7 +585,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/implicit/optional/query
           method: put
           uri: '{$host}'
@@ -644,7 +644,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/implicit/optional/header
           method: put
           uri: '{$host}'
@@ -709,7 +709,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/implicit/optional/body
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -758,7 +757,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: '/reqopt/global/required/path/{required-global-path}'
           method: get
           uri: '{$host}'
@@ -806,7 +805,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/global/required/query
           method: get
           uri: '{$host}'
@@ -854,7 +853,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/global/optional/query
           method: get
           uri: '{$host}'
@@ -927,7 +926,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/integer/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -992,7 +990,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/integer/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1072,7 +1069,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/integer/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1150,7 +1146,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/integer/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1210,7 +1205,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/requied/integer/header
           method: post
           uri: '{$host}'
@@ -1269,7 +1264,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/optional/integer/header
           method: post
           uri: '{$host}'
@@ -1335,7 +1330,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/string/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1400,7 +1394,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/string/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1480,7 +1473,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/string/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1558,7 +1550,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/string/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1618,7 +1609,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/requied/string/header
           method: post
           uri: '{$host}'
@@ -1677,7 +1668,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/optional/string/header
           method: post
           uri: '{$host}'
@@ -1771,7 +1762,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/class/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1864,7 +1854,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/class/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1944,7 +1933,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/class/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2022,7 +2010,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/class/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2088,7 +2075,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/array/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2153,7 +2139,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/array/parameter
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2233,7 +2218,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/requied/array/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2311,7 +2295,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /reqopt/optional/array/property
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -2372,7 +2355,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/requied/array/header
           method: post
           uri: '{$host}'
@@ -2432,7 +2415,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /reqopt/optional/array/header
           method: post
           uri: '{$host}'

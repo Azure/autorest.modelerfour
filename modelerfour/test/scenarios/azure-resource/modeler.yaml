@@ -183,7 +183,7 @@ schemas: !<!Schemas>
             default:
               name: Resource
               description: Some resource
-              namespace: Api100
+              namespace: ''
           protocol: !<!Protocols> {}
         immediate:
         - *ref_7
@@ -228,7 +228,7 @@ schemas: !<!Schemas>
             default:
               name: FlattenedResourceProperties
               description: ''
-              namespace: Api100
+              namespace: ''
           protocol: !<!Protocols> {}
         serializedName: properties
         extensions:
@@ -247,7 +247,7 @@ schemas: !<!Schemas>
         default:
           name: FlattenedProduct
           description: ''
-          namespace: Api100
+          namespace: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -294,7 +294,7 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - *ref_8
   - *ref_11
@@ -347,7 +347,7 @@ schemas: !<!Schemas>
       default:
         name: ResourceCollection
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   arrays:
   - !<!ArraySchema> &ref_16
@@ -423,7 +423,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /azure/resource-flatten/array
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -471,7 +470,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /azure/resource-flatten/array
           method: get
           uri: '{$host}'
@@ -539,7 +538,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /azure/resource-flatten/dictionary
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -587,7 +585,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /azure/resource-flatten/dictionary
           method: get
           uri: '{$host}'
@@ -655,7 +653,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /azure/resource-flatten/resourcecollection
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -703,7 +700,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /azure/resource-flatten/resourcecollection
           method: get
           uri: '{$host}'
