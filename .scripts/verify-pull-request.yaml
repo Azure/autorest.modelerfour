@@ -28,8 +28,12 @@ steps:
 
   displayName: 'Rush install, build and test'
 
-- script: npm install -g @autorest/compare@~0.2.0
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+
+- script: npm install -g @autorest/compare@~0.3.0
   displayName: Install autorest-compare
 
-- script: autorest-compare --compare:.scripts/regression-compare.yaml
-  displayName: Regression Test - @autorest/typescript
+- script: autorest-compare --compare:.scripts/regression-compare.yaml --language:python
+  displayName: Regression Test - @autorest/python
