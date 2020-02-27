@@ -344,7 +344,7 @@ schemas: !<!Schemas>
             default:
               name: Resource
               description: ''
-              namespace: Api100
+              namespace: ''
           protocol: !<!Protocols> {}
         immediate:
         - *ref_9
@@ -400,7 +400,7 @@ schemas: !<!Schemas>
             default:
               name: FlattenedProduct-properties
               description: ''
-              namespace: Api100
+              namespace: ''
           protocol: !<!Protocols> {}
         serializedName: properties
         extensions:
@@ -419,7 +419,7 @@ schemas: !<!Schemas>
         default:
           name: FlattenedProduct
           description: Flattened product.
-          namespace: Api100
+          namespace: ''
       protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
@@ -474,7 +474,7 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - *ref_10
   - *ref_13
@@ -501,7 +501,7 @@ schemas: !<!Schemas>
       default:
         name: WrappedProduct
         description: The wrapped produc.
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_28
     type: object
@@ -527,7 +527,7 @@ schemas: !<!Schemas>
       default:
         name: ProductWrapper
         description: The wrapped produc.
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_42
     type: object
@@ -578,7 +578,7 @@ schemas: !<!Schemas>
       default:
         name: ResourceCollection
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - !<!ObjectSchema> &ref_23
     type: object
@@ -659,7 +659,7 @@ schemas: !<!Schemas>
                       default:
                         name: GenericUrl
                         description: The Generic URL.
-                        namespace: Api100
+                        namespace: ''
                     protocol: !<!Protocols> {}
                   immediate:
                   - *ref_22
@@ -681,7 +681,7 @@ schemas: !<!Schemas>
                   default:
                     name: ProductUrl
                     description: The product URL.
-                    namespace: Api100
+                    namespace: ''
                 protocol: !<!Protocols> {}
               required: false
               serializedName: max_product_image
@@ -701,7 +701,7 @@ schemas: !<!Schemas>
               default:
                 name: SimpleProductProperties
                 description: The product documentation.
-                namespace: Api100
+                namespace: ''
             protocol: !<!Protocols> {}
           serializedName: details
           extensions:
@@ -720,7 +720,7 @@ schemas: !<!Schemas>
           default:
             name: SimpleProduct
             description: The product documentation.
-            namespace: Api100
+            namespace: ''
         protocol: !<!Protocols> {}
       immediate:
       - *ref_24
@@ -752,7 +752,7 @@ schemas: !<!Schemas>
       default:
         name: BaseProduct
         description: The product documentation.
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - *ref_24
   - *ref_25
@@ -854,7 +854,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /model-flatten/array
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -902,7 +901,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /model-flatten/array
           method: get
           uri: '{$host}'
@@ -970,7 +969,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /model-flatten/wrappedarray
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1018,7 +1016,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /model-flatten/wrappedarray
           method: get
           uri: '{$host}'
@@ -1086,7 +1084,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /model-flatten/dictionary
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1134,7 +1131,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /model-flatten/dictionary
           method: get
           uri: '{$host}'
@@ -1202,7 +1199,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /model-flatten/resourcecollection
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1250,7 +1246,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /model-flatten/resourcecollection
           method: get
           uri: '{$host}'
@@ -1318,7 +1314,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /model-flatten/customFlattening
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1389,7 +1384,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: /model-flatten/customFlattening
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -1477,7 +1471,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/model-flatten/customFlattening/parametergrouping/{name}/'
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json

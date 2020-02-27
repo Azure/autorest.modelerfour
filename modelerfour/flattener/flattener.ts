@@ -193,6 +193,13 @@ export class Flattener {
 
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
+          // when there are multiple requests in an operation
+          // and the 
+          // skip flattening of requests when  
+          if (length(operation.requests) > 1 && this.options['multiple-request-parameter-flattening'] === false) {
+            continue;
+          }
+
           for (const request of values(operation.requests)) {
             const body = values(request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body && p.implementation === ImplementationLocation.Method);
 
@@ -208,7 +215,6 @@ export class Flattener {
                 const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
                 if (threshold > 0) {
                   // get the count of the (non-readonly) properties in the schema
-
                   flattenOperationPayload = length(values(getAllProperties(schema)).where(property => property.readOnly !== true && property.schema.type !== SchemaType.Constant)) <= threshold;
                 }
               }

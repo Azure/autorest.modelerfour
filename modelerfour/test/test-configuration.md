@@ -41,4 +41,5 @@ pipeline:
     is-object: true 
 
 output-artifact: test-document
+pipeline-model: v3
 ```

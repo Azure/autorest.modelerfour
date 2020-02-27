@@ -313,7 +313,7 @@ schemas: !<!Schemas>
           default:
             name: ChildProduct
             description: The product documentation.
-            namespace: Api100
+            namespace: ''
         protocol: !<!Protocols> {}
       required: true
       serializedName: child
@@ -356,7 +356,7 @@ schemas: !<!Schemas>
           default:
             name: ConstantProduct
             description: The product documentation.
-            namespace: Api100
+            namespace: ''
         protocol: !<!Protocols> {}
       required: true
       serializedName: constChild
@@ -401,7 +401,7 @@ schemas: !<!Schemas>
       default:
         name: Product
         description: The product documentation.
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   - *ref_12
   - *ref_13
@@ -443,7 +443,7 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
   arrays:
   - *ref_17
@@ -532,7 +532,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: get
           uri: '{$host}'
@@ -629,7 +629,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
           method: put
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json
@@ -696,7 +695,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: '/validation/constantsInPath/{constantParam}/value'
           method: get
           uri: '{$host}'
@@ -758,7 +757,6 @@ operationGroups:
         http: !<!HttpWithBodyRequest> 
           path: '/validation/constantsInPath/{constantParam}/value'
           method: post
-          binary: true
           knownMediaType: json
           mediaTypes:
           - application/json

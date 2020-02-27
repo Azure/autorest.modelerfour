@@ -30,8 +30,19 @@ schemas: !<!Schemas>
         name: Error-message
         description: ''
     protocol: !<!Protocols> {}
+  binaries:
+  - !<!BinarySchema> &ref_4
+    type: binary
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: binary
+        description: ''
+    protocol: !<!Protocols> {}
   objects:
-  - !<!ObjectSchema> &ref_4
+  - !<!ObjectSchema> &ref_5
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -61,7 +72,7 @@ schemas: !<!Schemas>
       default:
         name: Error
         description: ''
-        namespace: Api100
+        namespace: ''
     protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_3
@@ -96,7 +107,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /files/stream/nonempty
           method: get
           uri: '{$host}'
@@ -109,15 +120,28 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
+        http: !<!HttpBinaryResponse> 
           knownMediaType: binary
           mediaTypes:
           - image/png
           statusCodes:
           - '200'
-    exceptions:
     - !<!SchemaResponse> 
       schema: *ref_4
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -147,7 +171,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /files/stream/verylarge
           method: get
           uri: '{$host}'
@@ -160,15 +184,28 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
+        http: !<!HttpBinaryResponse> 
           knownMediaType: binary
           mediaTypes:
           - image/png
           statusCodes:
           - '200'
-    exceptions:
     - !<!SchemaResponse> 
       schema: *ref_4
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
@@ -198,7 +235,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http:
+        http: !<!HttpRequest> 
           path: /files/stream/empty
           method: get
           uri: '{$host}'
@@ -211,15 +248,28 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
+        http: !<!HttpBinaryResponse> 
           knownMediaType: binary
           mediaTypes:
           - image/png
           statusCodes:
           - '200'
-    exceptions:
     - !<!SchemaResponse> 
       schema: *ref_4
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_5
       language: !<!Languages> 
         default:
           name: ''
