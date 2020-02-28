@@ -195,7 +195,7 @@ export class Flattener {
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
           // when there are multiple requests in an operation
-          // and the geneator asks not to flatten them
+          // and the generator asks not to flatten them
           if (length(operation.requests) > 1 && this.options['multiple-request-parameter-flattening'] === false) {
             continue;
           }
