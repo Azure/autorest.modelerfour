@@ -970,6 +970,24 @@ export class ModelerFour {
           // that were listed in the original 'produces' collection
           // because we *can't* infer that a json/xml/form media type means deserialize
 
+          switch (knownMediaType) {
+            case KnownMediaType.Json:
+            case KnownMediaType.Xml:
+            case KnownMediaType.Form:
+              // it's been mis-categorized as a deserialization
+              // but they said,"stream please"
+              // then we have to move it to the binary bucket.
+              let b = mediaTypeGroups.get(KnownMediaType.Binary);
+              if (!b) {
+                // we don't have a binary group at all.
+                // let's just create one
+                b = [];
+                mediaTypeGroups.set(KnownMediaType.Binary, b);
+              }
+              b.push(fmt);
+              // remove the current group 
+              mediaTypeGroups.delete(knownMediaType);
+          }
         } else {
           switch (knownMediaType) {
             case KnownMediaType.Json:
