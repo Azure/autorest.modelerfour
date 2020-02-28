@@ -1,7 +1,7 @@
 import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema, ImplementationLocation, Operation, Request } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
 import { values, length, Dictionary, when } from '@azure-tools/linq';
-import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler } from '@azure-tools/codegen';
+import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler, pascalCase } from '@azure-tools/codegen';
 
 function getNameOptions(typeName: string, components: Array<string>) {
   const result = new Set<string>();
@@ -268,7 +268,8 @@ export class PreNamer {
 
         // we need to make sure we avoid name collisions. operation parameters get first crack.
         for (const each of values(parameters)) {
-          const name = each.language.default.name;
+          const name = this.format.parameter(each.language.default.name);
+
           if (usedNames.has(name)) {
             collisions.add(each);
           } else {
@@ -280,7 +281,7 @@ export class PreNamer {
         for (const parameter of collisions) {
           let options = [parameter.language.default.name];
           if (isVirtualParameter(parameter)) {
-            options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]);
+            options = getNameOptions(parameter.schema.language.default.name, [parameter.language.default.name, ...parameter.pathToProperty.map(each => each.language.default.name)]).map(each => this.format.parameter(each));
           }
           parameter.language.default.name = this.format.parameter(selectName(options, usedNames));
         }
