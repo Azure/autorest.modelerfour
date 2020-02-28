@@ -154,11 +154,7 @@ export class ModelerFour {
     }
 
     // see how many api versions there are for all the operations
-    const allApiVersions = values(this.inputOperations).selectMany(each => {
-      const apiv = <Array<string>>this.interpret.xmsMetaFallback(each.operation, each.pathItem, 'apiVersions');
-
-      return apiv;
-    }).distinct().toArray();
+    const allApiVersions = values(this.inputOperations).selectMany(each => <Array<string>>this.interpret.xmsMetaFallback(each.operation, each.pathItem, 'apiVersions')).distinct().toArray();
     switch (allApiVersions.length) {
       case 0:
         this.useModelNamespace = false;
