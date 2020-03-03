@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
 import { Session, Channel } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -11,51 +11,6 @@ function is(value: any): asserts value is object | string | number | boolean {
   if (value === undefined || value === null) {
     throw new Error(`Intenral assertion failure -- value must not be null`);
   }
-}
-
-/**
- * Contains usage information for one appearance of a schema.  Used to propagate
- * context from the usage of a schema to all schemas it references.
- */
-interface SchemaUsageDetails {
-  context?: SchemaContext,
-  knownMediaType?: string
-}
-
-function pushIfMissing<T>(targetArray: T[], newValue: T): void {
-  if (targetArray.indexOf(newValue) === -1) {
-    targetArray.push(newValue);
-  }
-}
-
-function trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsageDetails): void {
-  const processedSchemas = new Set<Schema>();
-
-  function innerTrackSchemaUsage(schema: Schema) {
-    if (processedSchemas.has(schema)) {
-      return;
-    }
-
-    processedSchemas.add(schema);
-    if (schema instanceof ObjectSchema) {
-      if (schemaUsage.context) {
-        pushIfMissing(schema.usage = (schema.usage || []), schemaUsage.context);
-      }
-      if (schemaUsage.knownMediaType) {
-        pushIfMissing(schema.serializationFormats = (schema.serializationFormats || []), schemaUsage.knownMediaType);
-      }
-
-      schema.parents?.all?.forEach(innerTrackSchemaUsage);
-      schema.children?.all?.forEach(innerTrackSchemaUsage);
-      schema.properties?.forEach(p => innerTrackSchemaUsage(p.schema));
-    } else if (schema instanceof DictionarySchema) {
-      innerTrackSchemaUsage(schema.elementType);
-    } else if (schema instanceof ArraySchema) {
-      innerTrackSchemaUsage(schema.elementType);
-    }
-  }
-
-  innerTrackSchemaUsage(schema);
 }
 
 /** Acts as a cache for processing inputs.
@@ -1083,7 +1038,7 @@ export class ModelerFour {
     return operation.addRequest(httpRequest);
   }
 
-  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>, usage?: SchemaUsageDetails) {
+  processSerializedObject(kmt: KnownMediaType, kmtObject: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
     if (!body?.instance) {
       throw new Error('NO BODY DUDE.');
 
@@ -1104,7 +1059,7 @@ export class ModelerFour {
     const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
 
     // Track the usage of this schema as an input with media type
-    trackSchemaUsage(pSchema, { context: SchemaContext.Input, knownMediaType: kmt });
+    this.trackSchemaUsage(pSchema, { usage: [ SchemaContext.Input ], serializationFormats: [ kmt ] });
 
     httpRequest.addParameter(new Parameter(
       body.instance?.['x-ms-requestBody-name'] ?? 'body',
@@ -1398,7 +1353,7 @@ export class ModelerFour {
         const parameterSchema = this.processSchema(name || '', schema);
 
         // Track the usage of this schema as an input with media type
-        trackSchemaUsage(parameterSchema, { context: SchemaContext.Input });
+        this.trackSchemaUsage(parameterSchema, { usage: [ SchemaContext.Input ] });
 
         /* regular, everyday parameter */
         const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
@@ -1512,7 +1467,7 @@ export class ModelerFour {
             }
 
             // Track the usage of this schema as an output with media type
-            trackSchemaUsage(s, { context: SchemaContext.Output, knownMediaType });
+            this.trackSchemaUsage(s, { usage: [ SchemaContext.Output ], serializationFormats: [ knownMediaType as KnownMediaType ] });
 
             const rsp = new SchemaResponse(s, {
               extensions: this.interpret.getExtensionProperties(response)
@@ -1569,17 +1524,17 @@ export class ModelerFour {
       }
       const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
       if (kmtJSON) {
-        this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody, { context: SchemaContext.Input });
+        this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody);
       }
       const kmtXML = groupedMediaTypes.get(KnownMediaType.Xml);
       if (kmtXML && !kmtJSON) {
         // only do XML if there is not a JSON body
-        this.processSerializedObject(KnownMediaType.Xml, kmtXML, operation, requestBody, { context: SchemaContext.Input });
+        this.processSerializedObject(KnownMediaType.Xml, kmtXML, operation, requestBody);
       }
       const kmtForm = groupedMediaTypes.get(KnownMediaType.Form);
       if (kmtForm && !kmtXML && !kmtJSON) {
         // only do FORM if there is not an JSON or XML body
-        this.processSerializedObject(KnownMediaType.Form, kmtForm, operation, requestBody, { context: SchemaContext.Input });
+        this.processSerializedObject(KnownMediaType.Form, kmtForm, operation, requestBody);
       }
       const kmtMultipart = groupedMediaTypes.get(KnownMediaType.Multipart);
       if (kmtMultipart) {
@@ -1664,6 +1619,83 @@ export class ModelerFour {
         this.processSchema(name, schema);
       }
     }
+
+    // Propagate schema usage information to other object schemas.
+    // This must occur after all schemas have been visited to ensure
+    // nothing gets missed (like discriminator schemas).
+    this.codeModel.schemas.objects?.forEach(o => this.propagateSchemaUsage(o));
+
     return this.codeModel;
+  }
+
+  private propagateSchemaUsage(schema: Schema): void {
+    const processedSchemas = new Set<Schema>();
+
+    const innerApplySchemaUsage = (schema: Schema, schemaUsage: SchemaUsage) => {
+      this.trackSchemaUsage(schema, schemaUsage);
+      innerPropagateSchemaUsage(schema);
+    };
+
+    const innerPropagateSchemaUsage = (schema: Schema) => {
+      const schemaUsage = schema as SchemaUsage;
+      if (!schemaUsage.usage && !schemaUsage.serializationFormats) {
+        return;
+      }
+
+      if (processedSchemas.has(schema)) {
+        return;
+      }
+
+      processedSchemas.add(schema);
+      if (schema instanceof ObjectSchema) {
+        if (schema.usage || schema.serializationFormats) {
+          schema.properties?.forEach(p => innerApplySchemaUsage(p.schema, schemaUsage));
+
+          schema.parents?.all?.forEach(p => innerApplySchemaUsage(p, schemaUsage));
+          schema.parents?.immediate?.forEach(p => innerApplySchemaUsage(p, schemaUsage));
+
+          schema.children?.all?.forEach(c => innerApplySchemaUsage(c, schemaUsage));
+          schema.children?.immediate?.forEach(c => innerApplySchemaUsage(c, schemaUsage));
+
+          items(schema.discriminator?.all).forEach(({ key: k, value: d }) => {
+            innerApplySchemaUsage(d, schemaUsage);
+          });
+          values(schema.discriminator?.immediate).forEach(d => {
+            innerApplySchemaUsage(d, schemaUsage);
+          });
+        }
+      } else if (schema instanceof DictionarySchema) {
+        innerApplySchemaUsage(schema.elementType, schemaUsage);
+      } else if (schema instanceof ArraySchema) {
+        innerApplySchemaUsage(schema.elementType, schemaUsage);
+      }
+    }
+
+    innerPropagateSchemaUsage(schema);
+  }
+
+  private trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsage): void {
+    function mergeIfMissing<T>(targetArray: T[], newValues: T[]): void {
+      newValues.forEach(newValue => {
+        if (targetArray.indexOf(newValue) === -1) {
+          targetArray.push(newValue);
+        }
+      })
+    }
+
+    if (schema instanceof ObjectSchema) {
+      if (schemaUsage.usage) {
+        mergeIfMissing(schema.usage = schema.usage || [], schemaUsage.usage);
+      }
+      if (schemaUsage.serializationFormats) {
+        mergeIfMissing(
+          schema.serializationFormats = schema.serializationFormats || [],
+          schemaUsage.serializationFormats);
+      }
+    } else if (schema instanceof DictionarySchema) {
+      this.trackSchemaUsage(schema.elementType, schemaUsage);
+    } else if (schema instanceof ArraySchema) {
+      this.trackSchemaUsage(schema.elementType, schemaUsage);
+    }
   }
 }
