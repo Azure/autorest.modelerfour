@@ -143,7 +143,12 @@ export class Flattener {
         // reset on every pass
         dirty = false;
         // remove unreferenced models 
-        for (const { key, value: schema } of items(this.codeModel.schemas.objects)) {
+        for (const { key, value: schema } of items(this.codeModel.schemas.objects).toArray()) {
+          // only remove unreferenced models that have been flattened.
+          if (!schema.extensions?.[hasBeenFlattened]) {
+            continue;
+          }
+
           if (schema.discriminatorValue || schema.discriminator) {
             // it's polymorphic -- I don't think we can remove this 
             continue;
@@ -155,8 +160,9 @@ export class Flattener {
           }
 
           if (refCount(this.codeModel, schema) === 1) {
-            delete this.codeModel.schemas.objects?.[key];
+            this.codeModel.schemas.objects?.splice(key, 1);
             dirty = true;
+            break;
           }
         }
       } while (dirty);
