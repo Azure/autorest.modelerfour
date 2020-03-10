@@ -116,6 +116,10 @@ modelerfour:
   # off by default 
   resolve-schema-name-collisons: false|true
 
+  # if you want to keep the flattened models even if they are not used
+  # off by default
+  keep-unused-flattened-models: false|true
+
   # merges response headers into response objects 
   # defaults to false if not specified
   # not implemented

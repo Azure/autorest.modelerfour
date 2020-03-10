@@ -138,34 +138,37 @@ export class Flattener {
         this.flattenSchema(schema);
       }
 
-      let dirty = false;
-      do {
-        // reset on every pass
-        dirty = false;
-        // remove unreferenced models 
-        for (const { key, value: schema } of items(this.codeModel.schemas.objects).toArray()) {
-          // only remove unreferenced models that have been flattened.
-          if (!schema.extensions?.[hasBeenFlattened]) {
-            continue;
-          }
+      if (!this.options['keep-unused-flattened-models']) {
+        let dirty = false;
+        do {
+          // reset on every pass
+          dirty = false;
+          // remove unreferenced models 
+          for (const { key, value: schema } of items(this.codeModel.schemas.objects).toArray()) {
+            // only remove unreferenced models that have been flattened.
+            if (!schema.extensions?.[hasBeenFlattened]) {
+              continue;
+            }
 
-          if (schema.discriminatorValue || schema.discriminator) {
-            // it's polymorphic -- I don't think we can remove this 
-            continue;
-          }
+            if (schema.discriminatorValue || schema.discriminator) {
+              // it's polymorphic -- I don't think we can remove this 
+              continue;
+            }
 
-          if (schema.children?.all || schema.parents?.all) {
-            // it's got either a parent or child schema. 
-            continue;
-          }
+            if (schema.children?.all || schema.parents?.all) {
+              // it's got either a parent or child schema. 
+              continue;
+            }
 
-          if (refCount(this.codeModel, schema) === 1) {
-            this.codeModel.schemas.objects?.splice(key, 1);
-            dirty = true;
-            break;
+            if (refCount(this.codeModel, schema) === 1) {
+              this.codeModel.schemas.objects?.splice(key, 1);
+              dirty = true;
+              break;
+            }
           }
-        }
-      } while (dirty);
+        } while (dirty);
+      }
+
 
       for (const schema of values(this.codeModel.schemas.objects)) {
         if (schema.extensions) {
