@@ -1059,7 +1059,7 @@ export class ModelerFour {
     const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
 
     // Track the usage of this schema as an input with media type
-    this.trackSchemaUsage(pSchema, { usage: [ SchemaContext.Input ], serializationFormats: [ kmt ] });
+    this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
 
     httpRequest.addParameter(new Parameter(
       body.instance?.['x-ms-requestBody-name'] ?? 'body',
@@ -1353,7 +1353,7 @@ export class ModelerFour {
         const parameterSchema = this.processSchema(name || '', schema);
 
         // Track the usage of this schema as an input with media type
-        this.trackSchemaUsage(parameterSchema, { usage: [ SchemaContext.Input ] });
+        this.trackSchemaUsage(parameterSchema, { usage: [SchemaContext.Input] });
 
         /* regular, everyday parameter */
         const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
@@ -1467,7 +1467,7 @@ export class ModelerFour {
             }
 
             // Track the usage of this schema as an output with media type
-            this.trackSchemaUsage(s, { usage: [ SchemaContext.Output ], serializationFormats: [ knownMediaType as KnownMediaType ] });
+            this.trackSchemaUsage(s, { usage: [SchemaContext.Output], serializationFormats: [knownMediaType as KnownMediaType] });
 
             const rsp = new SchemaResponse(s, {
               extensions: this.interpret.getExtensionProperties(response)
