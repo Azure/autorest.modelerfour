@@ -20,7 +20,8 @@ const removeKnownParameters = [
   'x-ms-parameter-location',
   'x-ms-original',
   'x-ms-requestBody-name',
-  'x-ms-requestBody-index'
+  'x-ms-requestBody-index',
+  'x-ms-api-version'
 ];
 
 // ref: https://www.w3schools.com/charsets/ref_html_ascii.asp
@@ -150,6 +151,9 @@ export class Interpretations {
 
   isApiVersionParameter(parameter: OpenAPI.Parameter): boolean {
     if (parameter.in !== ParameterLocation.Query) {
+      return false;
+    }
+    if (parameter['x-ms-api-version'] === false) {
       return false;
     }
     return !!(parameter['x-ms-api-version'] || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
