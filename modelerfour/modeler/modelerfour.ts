@@ -1334,9 +1334,6 @@ export class ModelerFour {
     values(httpOperation.parameters).select(each => dereference(this.input, each)).select(pp => {
       const parameter = pp.instance;
       this.use(parameter.schema, (name, schema) => {
-        if (parameter.description === `This should appear as a method parameter, use value '2.0'`) {
-          debugger;
-        }
         if (this.apiVersionMode !== 'none' && this.interpret.isApiVersionParameter(parameter)) {
           return this.processApiVersionParameter(parameter, operation, pathItem)
         }
