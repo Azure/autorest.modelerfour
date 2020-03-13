@@ -63,7 +63,8 @@ const specialCharacterMapping: { [character: string]: string } = {
 const apiVersionParameterNames = [
   'api-version',
   'apiversion',
-  'x-ms-api-version'
+  'x-ms-api-version',
+  'x-ms-version'
 ];
 
 export function getValidEnumValueName(originalString: string): string {
@@ -156,7 +157,7 @@ export class Interpretations {
     if (parameter['x-ms-api-version'] === false) {
       return false;
     }
-    return !!(parameter['x-ms-api-version'] || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
+    return !!(parameter['x-ms-api-version'] === true || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
   }
   getEnumChoices(schema: OpenAPI.Schema): Array<ChoiceValue> {
     if (schema && schema.enum) {

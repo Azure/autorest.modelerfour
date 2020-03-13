@@ -40,21 +40,6 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/Count-Documents"
     },
-    "x-ms-examples": {
-     "SearchIndexCountDocuments": {
-      "parameters": {
-       "searchServiceName": "myservice",
-       "searchDnsSuffix": "search.windows.net",
-       "indexName": "myindex",
-       "api-version": "2017-11-11-Preview"
-      },
-      "responses": {
-       "200": {
-        "body": 427
-       }
-      }
-     }
-    },
     "description": "Queries the number of documents in the index.",
     "parameters": [
      {
@@ -73,6 +58,21 @@
        "format": "int64"
       }
      }
+    },
+    "x-ms-examples": {
+     "SearchIndexCountDocuments": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06"
+      },
+      "responses": {
+       "200": {
+        "body": 427
+       }
+      }
+     }
     }
    }
   },
@@ -84,6 +84,222 @@
     "operationId": "Documents_SearchGet",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
+    },
+    "description": "Searches for documents in the index.",
+    "parameters": [
+     {
+      "name": "search",
+      "in": "query",
+      "type": "string",
+      "description": "A full-text search query expression; Use \"*\" or omit this parameter to match all documents.",
+      "x-ms-client-name": "SearchText"
+     },
+     {
+      "name": "$count",
+      "in": "query",
+      "type": "boolean",
+      "description": "A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.",
+      "x-nullable": false,
+      "x-ms-client-name": "IncludeTotalResultCount",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "facet",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "collectionFormat": "multi",
+      "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.",
+      "x-ms-client-name": "Facets",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "$filter",
+      "in": "query",
+      "type": "string",
+      "description": "The OData $filter expression to apply to the search query.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "highlight",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
+      "x-ms-client-name": "HighlightFields",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "highlightPostTag",
+      "in": "query",
+      "type": "string",
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "highlightPreTag",
+      "in": "query",
+      "type": "string",
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "minimumCoverage",
+      "in": "query",
+      "type": "number",
+      "format": "double",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 100.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "$orderby",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+      "x-ms-client-name": "OrderBy",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "queryType",
+      "in": "query",
+      "type": "string",
+      "enum": [
+       "simple",
+       "full"
+      ],
+      "x-ms-enum": {
+       "name": "QueryType",
+       "modelAsString": false
+      },
+      "x-nullable": false,
+      "description": "A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "scoringParameter",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "collectionFormat": "multi",
+      "x-ms-client-name": "ScoringParameters",
+      "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes).",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "scoringProfile",
+      "in": "query",
+      "type": "string",
+      "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "searchFields",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "searchMode",
+      "in": "query",
+      "type": "string",
+      "enum": [
+       "any",
+       "all"
+      ],
+      "x-ms-enum": {
+       "name": "SearchMode",
+       "modelAsString": false
+      },
+      "x-nullable": false,
+      "description": "A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "$select",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "$skip",
+      "in": "query",
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and $filter with a range query instead.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "name": "$top",
+      "in": "query",
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation token that can be used to issue another Search request for the next page of results.",
+      "x-ms-parameter-grouping": {
+       "name": "SearchParameters"
+      }
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing documents that match the search criteria.",
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/DocumentSearchResult"
+      }
+     }
     },
     "x-ms-examples": {
      "SearchIndexSearchDocumentsGet": {
@@ -171,206 +387,29 @@
        }
       }
      }
+    }
+   }
+  },
+  "/docs/search.post.search": {
+   "post": {
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_SearchPost",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
     },
     "description": "Searches for documents in the index.",
     "parameters": [
      {
-      "name": "search",
-      "in": "query",
-      "type": "string",
-      "description": "A full-text search query expression; Use \"*\" or omit this parameter to match all documents.",
-      "x-ms-client-name": "SearchText"
-     },
-     {
-      "name": "$count",
-      "in": "query",
-      "type": "boolean",
-      "description": "A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.",
-      "x-nullable": false,
-      "x-ms-client-name": "IncludeTotalResultCount",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "facet",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
+      "name": "searchRequest",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SearchRequest",
+       "description": "The Search request."
       },
-      "collectionFormat": "multi",
-      "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.",
-      "x-ms-client-name": "Facets",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "$filter",
-      "in": "query",
-      "type": "string",
-      "description": "The OData $filter expression to apply to the search query.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "highlight",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
-      "x-ms-client-name": "HighlightFields",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "highlightPostTag",
-      "in": "query",
-      "type": "string",
-      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "highlightPreTag",
-      "in": "query",
-      "type": "string",
-      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "minimumCoverage",
-      "in": "query",
-      "type": "number",
-      "format": "double",
-      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 100.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "$orderby",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
-      "x-ms-client-name": "OrderBy",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "queryType",
-      "in": "query",
-      "type": "string",
-      "enum": [
-       "simple",
-       "full"
-      ],
-      "x-ms-enum": {
-       "name": "QueryType",
-       "modelAsString": false
-      },
-      "x-nullable": false,
-      "description": "A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "scoringParameter",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "collectionFormat": "multi",
-      "x-ms-client-name": "ScoringParameters",
-      "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes).",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "scoringProfile",
-      "in": "query",
-      "type": "string",
-      "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "searchFields",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "searchMode",
-      "in": "query",
-      "type": "string",
-      "enum": [
-       "any",
-       "all"
-      ],
-      "x-ms-enum": {
-       "name": "SearchMode",
-       "modelAsString": false
-      },
-      "x-nullable": false,
-      "description": "A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "$select",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "$skip",
-      "in": "query",
-      "type": "integer",
-      "format": "int32",
-      "description": "The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and $filter with a range query instead.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
-     },
-     {
-      "name": "$top",
-      "in": "query",
-      "type": "integer",
-      "format": "int32",
-      "description": "The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation token that can be used to issue another Search request for the next page of results.",
-      "x-ms-parameter-grouping": {
-       "name": "SearchOptions"
-      }
+      "description": "The definition of the Search request."
      },
      {
       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
@@ -384,20 +423,9 @@
      "200": {
       "description": "Response containing documents that match the search criteria.",
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SearchDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/DocumentSearchResult"
       }
      }
-    }
-   }
-  },
-  "/docs/search.post.search": {
-   "post": {
-    "tags": [
-     "Documents"
-    ],
-    "operationId": "Documents_SearchPost",
-    "externalDocs": {
-     "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
     },
     "x-ms-examples": {
      "SearchIndexSearchDocumentsPost": {
@@ -498,34 +526,6 @@
        }
       }
      }
-    },
-    "description": "Searches for documents in the index.",
-    "parameters": [
-     {
-      "name": "searchRequest",
-      "in": "body",
-      "required": true,
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SearchRequest",
-       "description": "The Search request."
-      },
-      "description": "The definition of the Search request."
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
-     }
-    ],
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "description": "Response containing documents that match the search criteria.",
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SearchDocumentsResult"
-      }
-     }
     }
    }
   },
@@ -537,31 +537,6 @@
     "operationId": "Documents_Get",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/lookup-document"
-    },
-    "x-ms-examples": {
-     "SearchIndexGetDocument": {
-      "parameters": {
-       "searchServiceName": "myservice",
-       "searchDnsSuffix": "search.windows.net",
-       "indexName": "myindex",
-       "api-version": "2019-05-06",
-       "key": "1",
-       "$select": [
-        "docId",
-        "title",
-        "description"
-       ]
-      },
-      "responses": {
-       "200": {
-        "body": {
-         "description": "Cheapest hotel in town",
-         "docId": "1",
-         "title": "Nice Hotel"
-        }
-       }
-      }
-     }
     },
     "description": "Retrieves a document from the index.",
     "parameters": [
@@ -596,6 +571,31 @@
        "type": "object"
       }
      }
+    },
+    "x-ms-examples": {
+     "SearchIndexGetDocument": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "key": "1",
+       "$select": [
+        "docId",
+        "title",
+        "description"
+       ]
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "description": "Cheapest hotel in town",
+         "docId": "1",
+         "title": "Nice Hotel"
+        }
+       }
+      }
+     }
     }
    }
   },
@@ -607,6 +607,134 @@
     "operationId": "Documents_SuggestGet",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
+    },
+    "description": "Suggests documents in the index that match the given partial query text.",
+    "parameters": [
+     {
+      "name": "search",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "description": "The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.",
+      "x-ms-client-name": "SearchText"
+     },
+     {
+      "name": "suggesterName",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
+     },
+     {
+      "name": "$filter",
+      "in": "query",
+      "type": "string",
+      "description": "An OData expression that filters the documents considered for suggestions.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "fuzzy",
+      "in": "query",
+      "type": "boolean",
+      "description": "A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.",
+      "x-ms-client-name": "UseFuzzyMatching",
+      "x-nullable": false,
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "highlightPostTag",
+      "in": "query",
+      "type": "string",
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "highlightPreTag",
+      "in": "query",
+      "type": "string",
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "minimumCoverage",
+      "in": "query",
+      "type": "number",
+      "format": "double",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "$orderby",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "x-ms-client-name": "OrderBy",
+      "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "searchFields",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of field names to search for the specified search text. Target fields must be included in the specified suggester.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "$select",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of fields to retrieve. If unspecified, only the key field will be included in the results.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "name": "$top",
+      "in": "query",
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.",
+      "x-ms-parameter-grouping": {
+       "name": "SuggestParameters"
+      }
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "Response containing suggested documents that match the partial input.",
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/DocumentSuggestResult"
+      }
+     }
     },
     "x-ms-examples": {
      "SearchIndexSuggestDocumentsGet": {
@@ -657,117 +785,27 @@
        }
       }
      }
+    }
+   }
+  },
+  "/docs/search.post.suggest": {
+   "post": {
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_SuggestPost",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
     },
     "description": "Suggests documents in the index that match the given partial query text.",
     "parameters": [
      {
-      "name": "search",
-      "in": "query",
+      "name": "suggestRequest",
+      "in": "body",
       "required": true,
-      "type": "string",
-      "description": "The search text to use to suggest documents. Must be at least 1 character, and no more than 100 characters.",
-      "x-ms-client-name": "SearchText"
-     },
-     {
-      "name": "suggesterName",
-      "in": "query",
-      "required": true,
-      "type": "string",
-      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
-     },
-     {
-      "name": "$filter",
-      "in": "query",
-      "type": "string",
-      "description": "An OData expression that filters the documents considered for suggestions.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "fuzzy",
-      "in": "query",
-      "type": "boolean",
-      "description": "A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.",
-      "x-ms-client-name": "UseFuzzyMatching",
-      "x-nullable": false,
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "highlightPostTag",
-      "in": "query",
-      "type": "string",
-      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "highlightPreTag",
-      "in": "query",
-      "type": "string",
-      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "minimumCoverage",
-      "in": "query",
-      "type": "number",
-      "format": "double",
-      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "$orderby",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "x-ms-client-name": "OrderBy",
-      "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "searchFields",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of field names to search for the specified search text. Target fields must be included in the specified suggester.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "$select",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of fields to retrieve. If unspecified, only the key field will be included in the results.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
-      }
-     },
-     {
-      "name": "$top",
-      "in": "query",
-      "type": "integer",
-      "format": "int32",
-      "description": "The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.",
-      "x-ms-parameter-grouping": {
-       "name": "SuggestOptions"
+      "description": "The Suggest request.",
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SuggestRequest"
       }
      },
      {
@@ -782,20 +820,9 @@
      "200": {
       "description": "Response containing suggested documents that match the partial input.",
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SuggestDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/DocumentSuggestResult"
       }
      }
-    }
-   }
-  },
-  "/docs/search.post.suggest": {
-   "post": {
-    "tags": [
-     "Documents"
-    ],
-    "operationId": "Documents_SuggestPost",
-    "externalDocs": {
-     "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
     },
     "x-ms-examples": {
      "SearchIndexSuggestDocumentsPost": {
@@ -837,16 +864,27 @@
        }
       }
      }
+    }
+   }
+  },
+  "/docs/search.index": {
+   "post": {
+    "tags": [
+     "Documents"
+    ],
+    "operationId": "Documents_Index",
+    "externalDocs": {
+     "url": "https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents"
     },
-    "description": "Suggests documents in the index that match the given partial query text.",
+    "description": "Sends a batch of document write actions to the index.",
     "parameters": [
      {
-      "name": "suggestRequest",
+      "name": "batch",
       "in": "body",
+      "description": "The batch of index actions.",
       "required": true,
-      "description": "The Suggest request.",
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SuggestRequest"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/IndexBatch"
       }
      },
      {
@@ -859,22 +897,17 @@
     "x-ms-request-id": "request-id",
     "responses": {
      "200": {
-      "description": "Response containing suggested documents that match the partial input.",
+      "description": "Response containing the status of operations for all actions in the batch.",
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/SuggestDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/DocumentIndexResult"
+      }
+     },
+     "207": {
+      "description": "Response containing the status of operations for all actions in the batch.",
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/DocumentIndexResult"
       }
      }
-    }
-   }
-  },
-  "/docs/search.index": {
-   "post": {
-    "tags": [
-     "Documents"
-    ],
-    "operationId": "Documents_Index",
-    "externalDocs": {
-     "url": "https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents"
     },
     "x-ms-examples": {
      "SearchIndexIndexDocuments": {
@@ -971,39 +1004,6 @@
        }
       }
      }
-    },
-    "description": "Sends a batch of document write actions to the index.",
-    "parameters": [
-     {
-      "name": "batch",
-      "in": "body",
-      "description": "The batch of index actions.",
-      "required": true,
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/IndexBatch"
-      }
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
-     }
-    ],
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "description": "Response containing the status of operations for all actions in the batch.",
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/IndexDocumentsResult"
-      }
-     },
-     "207": {
-      "description": "Response containing the status of operations for all actions in the batch.",
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/IndexDocumentsResult"
-      }
-     }
     }
    }
   },
@@ -1015,6 +1015,128 @@
     "operationId": "Documents_AutocompleteGet",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/autocomplete"
+    },
+    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
+    "parameters": [
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
+     },
+     {
+      "name": "search",
+      "in": "query",
+      "type": "string",
+      "required": true,
+      "description": "The incomplete term which should be auto-completed.",
+      "x-ms-client-name": "SearchText"
+     },
+     {
+      "name": "suggesterName",
+      "in": "query",
+      "type": "string",
+      "required": true,
+      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
+     },
+     {
+      "name": "autocompleteMode",
+      "in": "query",
+      "type": "string",
+      "x-nullable": false,
+      "enum": [
+       "oneTerm",
+       "twoTerms",
+       "oneTermWithContext"
+      ],
+      "x-ms-enum": {
+       "name": "AutocompleteMode",
+       "modelAsString": false
+      },
+      "description": "Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "$filter",
+      "in": "query",
+      "type": "string",
+      "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "fuzzy",
+      "in": "query",
+      "type": "boolean",
+      "description": "A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.",
+      "x-ms-client-name": "UseFuzzyMatching",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "highlightPostTag",
+      "in": "query",
+      "type": "string",
+      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "highlightPreTag",
+      "in": "query",
+      "type": "string",
+      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "minimumCoverage",
+      "in": "query",
+      "type": "number",
+      "format": "double",
+      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "searchFields",
+      "in": "query",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     },
+     {
+      "name": "$top",
+      "in": "query",
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.",
+      "x-ms-parameter-grouping": {
+       "name": "AutocompleteParameters"
+      }
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "",
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/AutocompleteResult",
+       "description": "The result of Autocomplete query."
+      }
+     }
     },
     "x-ms-examples": {
      "SearchIndexAutocompleteDocumentsGet": {
@@ -1056,127 +1178,6 @@
        }
       }
      }
-    },
-    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
-    "parameters": [
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
-     },
-     {
-      "name": "search",
-      "in": "query",
-      "type": "string",
-      "required": true,
-      "description": "The incomplete term which should be auto-completed.",
-      "x-ms-client-name": "SearchText"
-     },
-     {
-      "name": "suggesterName",
-      "in": "query",
-      "type": "string",
-      "required": true,
-      "description": "The name of the suggester as specified in the suggesters collection that's part of the index definition."
-     },
-     {
-      "name": "autocompleteMode",
-      "in": "query",
-      "type": "string",
-      "x-nullable": false,
-      "enum": [
-       "oneTerm",
-       "twoTerms",
-       "oneTermWithContext"
-      ],
-      "x-ms-enum": {
-       "name": "AutocompleteMode",
-       "modelAsString": false
-      },
-      "description": "Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "$filter",
-      "in": "query",
-      "type": "string",
-      "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "fuzzy",
-      "in": "query",
-      "type": "boolean",
-      "description": "A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.",
-      "x-ms-client-name": "UseFuzzyMatching",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "highlightPostTag",
-      "in": "query",
-      "type": "string",
-      "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "highlightPreTag",
-      "in": "query",
-      "type": "string",
-      "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "minimumCoverage",
-      "in": "query",
-      "type": "number",
-      "format": "double",
-      "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "searchFields",
-      "in": "query",
-      "type": "array",
-      "items": {
-       "type": "string"
-      },
-      "description": "The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     },
-     {
-      "name": "$top",
-      "in": "query",
-      "type": "integer",
-      "format": "int32",
-      "description": "The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.",
-      "x-ms-parameter-grouping": {
-       "name": "AutocompleteOptions"
-      }
-     }
-    ],
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "description": "Response containing suggested query terms that complete the partial input.",
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/AutocompleteResult"
-      }
-     }
     }
    }
   },
@@ -1189,13 +1190,41 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/autocomplete"
     },
+    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
+    "parameters": [
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
+     },
+     {
+      "name": "autocompleteRequest",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/AutocompleteRequest"
+      },
+      "description": "The definition of the Autocomplete request."
+     }
+    ],
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "description": "",
+      "schema": {
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/AutocompleteResult",
+       "description": "The result of Autocomplete query."
+      }
+     }
+    },
     "x-ms-examples": {
      "SearchIndexAutocompleteDocumentsPost": {
       "parameters": {
        "searchServiceName": "myservice",
        "searchDnsSuffix": "search.windows.net",
        "indexName": "myindex",
-       "api-version": "2017-11-11-Preview",
+       "api-version": "2019-05-06",
        "autocompleteRequest": {
         "autocompleteMode": "oneTerm",
         "search": "washington medic",
@@ -1227,39 +1256,12 @@
        }
       }
      }
-    },
-    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
-    "parameters": [
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ClientRequestIdParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/parameters/ApiVersionParameter"
-     },
-     {
-      "name": "autocompleteRequest",
-      "in": "body",
-      "required": true,
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/AutocompleteRequest"
-      },
-      "description": "The definition of the Autocomplete request."
-     }
-    ],
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "description": "Response containing suggested query terms that complete the partial input.",
-      "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/definitions/AutocompleteResult"
-      }
-     }
     }
    }
   }
  },
  "definitions": {
-  "SuggestDocumentsResult": {
+  "DocumentSuggestResult": {
    "properties": {
     "value": {
      "type": "array",
@@ -1304,7 +1306,7 @@
    "additionalProperties": true,
    "description": "A single bucket of a facet query result. Reports the number of documents with a field value falling within a particular range or having a particular value or interval."
   },
-  "SearchDocumentsResult": {
+  "DocumentSearchResult": {
    "properties": {
     "@odata.count": {
      "type": "integer",
@@ -1448,7 +1450,7 @@
    },
    "description": "Status of an indexing operation for a single document."
   },
-  "IndexDocumentsResult": {
+  "DocumentIndexResult": {
    "properties": {
     "value": {
      "x-ms-client-name": "Results",
@@ -1702,13 +1704,6 @@
   },
   "AutocompleteResult": {
    "properties": {
-    "@search.coverage": {
-     "type": "number",
-     "format": "double",
-     "readOnly": true,
-     "x-ms-client-name": "Coverage",
-     "description": "A value indicating the percentage of the index that was considered by the autocomplete request, or null if minimumCoverage was not specified in the request."
-    },
     "value": {
      "type": "array",
      "readOnly": true,
@@ -1754,7 +1749,7 @@
    "description": "The tracking ID sent with the request to help with debugging.",
    "x-ms-client-request-id": true,
    "x-ms-parameter-grouping": {
-    "name": "request-options"
+    "name": "search-request-options"
    },
    "x-ms-parameter-location": "method"
   },

@@ -1,7 +1,7 @@
 !<!CodeModel> 
 info: !<!Info> 
   description: Play with produces/consumes and media-types in general.
-  title: Media Types Client
+  title: media_types
 schemas: !<!Schemas> 
   strings:
   - !<!StringSchema> &ref_1
@@ -157,7 +157,7 @@ operationGroups:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
+        http: !<!HttpBinaryRequest> 
           path: /mediatypes/analyze
           method: post
           binary: true
@@ -182,12 +182,11 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!Parameter> &ref_10
+      - !<!VirtualParameter> &ref_10
         schema: *ref_0
         implementation: Method
         originalParameter: *ref_8
         pathToProperty: []
-        serializedName: source
         targetProperty: *ref_9
         language: !<!Languages> 
           default:
@@ -235,7 +234,7 @@ operationGroups:
   protocol: !<!Protocols> {}
 language: !<!Languages> 
   default:
-    name: MediaTypesClient
+    name: MediaTypes
     description: ''
 protocol: !<!Protocols> 
   http: !<!HttpModel> {}

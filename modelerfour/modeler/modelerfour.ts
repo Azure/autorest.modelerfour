@@ -1343,9 +1343,10 @@ export class ModelerFour {
           'method' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Method : ImplementationLocation.Client :
           'client' === <any>parameter['x-ms-parameter-location'] ? ImplementationLocation.Client : ImplementationLocation.Method;
 
+        const preferredName = this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name);
         if (implementation === ImplementationLocation.Client) {
           // check to see of it's already in the global parameters
-          const p = this.codeModel.findGlobalParameter(each => each.language.default.name === parameter.name);
+          const p = this.codeModel.findGlobalParameter(each => each.language.default.name === preferredName);
           if (p) {
             return operation.addParameter(p);
           }
@@ -1356,7 +1357,7 @@ export class ModelerFour {
         this.trackSchemaUsage(parameterSchema, { usage: [SchemaContext.Input] });
 
         /* regular, everyday parameter */
-        const newParam = operation.addParameter(new Parameter(this.interpret.getPreferredName(parameter, schema['x-ms-client-name'] || parameter.name), this.interpret.getDescription('', parameter), parameterSchema, {
+        const newParam = operation.addParameter(new Parameter(preferredName, this.interpret.getDescription('', parameter), parameterSchema, {
           required: parameter.required ? true : undefined,
           implementation,
           extensions: this.interpret.getExtensionProperties(parameter),

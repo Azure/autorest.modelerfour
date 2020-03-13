@@ -65,21 +65,6 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/Count-Documents"
     },
-    "x-ms-examples": {
-     "SearchIndexCountDocuments": {
-      "parameters": {
-       "searchServiceName": "myservice",
-       "searchDnsSuffix": "search.windows.net",
-       "indexName": "myindex",
-       "api-version": "2017-11-11-Preview"
-      },
-      "responses": {
-       "200": {
-        "body": 427
-       }
-      }
-     }
-    },
     "description": "Queries the number of documents in the index.",
     "parameters": [
      {
@@ -94,6 +79,21 @@
      "200": {
       "$ref": "#/components/responses/paths·17t17zj·docs-count·get·responses·200",
       "description": "OK"
+     }
+    },
+    "x-ms-examples": {
+     "SearchIndexCountDocuments": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06"
+      },
+      "responses": {
+       "200": {
+        "body": 427
+       }
+      }
      }
     }
    }
@@ -152,93 +152,6 @@
     "operationId": "Documents_SearchGet",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
-    },
-    "x-ms-examples": {
-     "SearchIndexSearchDocumentsGet": {
-      "parameters": {
-       "searchServiceName": "myservice",
-       "searchDnsSuffix": "search.windows.net",
-       "indexName": "myindex",
-       "api-version": "2019-05-06",
-       "$count": true,
-       "facet": [
-        "category,count:10,sort:count"
-       ],
-       "$filter": "rating gt 10",
-       "highlight": [
-        "title"
-       ],
-       "highlightPostTag": "</em>",
-       "highlightPreTag": "<em>",
-       "minimumCoverage": 80,
-       "$orderby": [
-        "search.score() desc",
-        "rating desc"
-       ],
-       "queryType": "simple",
-       "scoringParameters": [
-        "currentLocation--122.123,44.77233"
-       ],
-       "scoringProfile": "sp",
-       "search": "nice hotels",
-       "searchFields": [
-        "title",
-        "description"
-       ],
-       "searchMode": "any",
-       "$select": [
-        "docId",
-        "title",
-        "description"
-       ],
-       "$skip": 100,
-       "$top": 10
-      },
-      "responses": {
-       "200": {
-        "body": {
-         "@odata.count": 25,
-         "@search.coverage": 80,
-         "@search.facets": {
-          "category": [
-           {
-            "count": 1,
-            "value": "Economy"
-           },
-           {
-            "count": 1,
-            "value": "Luxury"
-           }
-          ]
-         },
-         "value": [
-          {
-           "@search.score": 1.5,
-           "@search.highlights": {
-            "title": [
-             "<em>Nice</em> <em>Hotel</em>"
-            ]
-           },
-           "description": "Cheapest hotel in town",
-           "docId": "1",
-           "title": "Nice Hotel"
-          },
-          {
-           "@search.score": 0.7,
-           "@search.highlights": {
-            "title": [
-             "Fancy <em>Hotel</em>"
-            ]
-           },
-           "description": "Best hotel in town",
-           "docId": "2",
-           "title": "Fancy Hotel"
-          }
-         ]
-        }
-       }
-      }
-     }
     },
     "description": "Searches for documents in the index.",
     "parameters": [
@@ -329,6 +242,93 @@
       "$ref": "#/components/responses/paths·1apgb02·docs·get·responses·200",
       "description": "Response containing documents that match the search criteria."
      }
+    },
+    "x-ms-examples": {
+     "SearchIndexSearchDocumentsGet": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "$count": true,
+       "facet": [
+        "category,count:10,sort:count"
+       ],
+       "$filter": "rating gt 10",
+       "highlight": [
+        "title"
+       ],
+       "highlightPostTag": "</em>",
+       "highlightPreTag": "<em>",
+       "minimumCoverage": 80,
+       "$orderby": [
+        "search.score() desc",
+        "rating desc"
+       ],
+       "queryType": "simple",
+       "scoringParameters": [
+        "currentLocation--122.123,44.77233"
+       ],
+       "scoringProfile": "sp",
+       "search": "nice hotels",
+       "searchFields": [
+        "title",
+        "description"
+       ],
+       "searchMode": "any",
+       "$select": [
+        "docId",
+        "title",
+        "description"
+       ],
+       "$skip": 100,
+       "$top": 10
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "@odata.count": 25,
+         "@search.coverage": 80,
+         "@search.facets": {
+          "category": [
+           {
+            "count": 1,
+            "value": "Economy"
+           },
+           {
+            "count": 1,
+            "value": "Luxury"
+           }
+          ]
+         },
+         "value": [
+          {
+           "@search.score": 1.5,
+           "@search.highlights": {
+            "title": [
+             "<em>Nice</em> <em>Hotel</em>"
+            ]
+           },
+           "description": "Cheapest hotel in town",
+           "docId": "1",
+           "title": "Nice Hotel"
+          },
+          {
+           "@search.score": 0.7,
+           "@search.highlights": {
+            "title": [
+             "Fancy <em>Hotel</em>"
+            ]
+           },
+           "description": "Best hotel in town",
+           "docId": "2",
+           "title": "Fancy Hotel"
+          }
+         ]
+        }
+       }
+      }
+     }
     }
    }
   },
@@ -386,6 +386,27 @@
     "operationId": "Documents_SearchPost",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/Search-Documents"
+    },
+    "description": "Searches for documents in the index.",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·56vpw5·docs-search-post-search·post·requestbody",
+     "description": "The definition of the Search request."
+    },
+    "parameters": [
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·1ecftfz·docs-search-post-search·post·responses·200",
+      "description": "Response containing documents that match the search criteria."
+     }
     },
     "x-ms-examples": {
      "SearchIndexSearchDocumentsPost": {
@@ -486,27 +507,6 @@
        }
       }
      }
-    },
-    "description": "Searches for documents in the index.",
-    "requestBody": {
-     "$ref": "#/components/requestBodies/paths·56vpw5·docs-search-post-search·post·requestbody",
-     "description": "The definition of the Search request."
-    },
-    "parameters": [
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
-     }
-    ],
-    "x-ms-requestBody-index": 0,
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·1ecftfz·docs-search-post-search·post·responses·200",
-      "description": "Response containing documents that match the search criteria."
-     }
     }
    }
   },
@@ -565,6 +565,30 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/lookup-document"
     },
+    "description": "Retrieves a document from the index.",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·1hfcirq·docs-key·get·parameters·0",
+      "description": "The key of the document to retrieve."
+     },
+     {
+      "$ref": "#/components/parameters/paths·1ddvlxf·docs-key·get·parameters·1",
+      "description": "List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.",
+      "x-ms-client-name": "SelectedFields"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·oe6x2a·docs-key·get·responses·200",
+      "description": "Response containing the requested document."
+     }
+    },
     "x-ms-examples": {
      "SearchIndexGetDocument": {
       "parameters": {
@@ -588,30 +612,6 @@
         }
        }
       }
-     }
-    },
-    "description": "Retrieves a document from the index.",
-    "parameters": [
-     {
-      "$ref": "#/components/parameters/paths·1hfcirq·docs-key·get·parameters·0",
-      "description": "The key of the document to retrieve."
-     },
-     {
-      "$ref": "#/components/parameters/paths·1ddvlxf·docs-key·get·parameters·1",
-      "description": "List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document.",
-      "x-ms-client-name": "SelectedFields"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
-     }
-    ],
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·oe6x2a·docs-key·get·responses·200",
-      "description": "Response containing the requested document."
      }
     }
    }
@@ -670,56 +670,6 @@
     "operationId": "Documents_SuggestGet",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
-    },
-    "x-ms-examples": {
-     "SearchIndexSuggestDocumentsGet": {
-      "parameters": {
-       "searchServiceName": "myservice",
-       "searchDnsSuffix": "search.windows.net",
-       "indexName": "myindex",
-       "api-version": "2019-05-06",
-       "$filter": "rating gt 10",
-       "fuzzy": false,
-       "highlightPostTag": "</em>",
-       "highlightPreTag": "<em>",
-       "minimumCoverage": 80,
-       "$orderby": [
-        "search.score() desc",
-        "rating desc"
-       ],
-       "search": "hote",
-       "searchFields": [
-        "title"
-       ],
-       "suggesterName": "sg",
-       "$select": [
-        "docId",
-        "title",
-        "description"
-       ],
-       "$top": 10
-      },
-      "responses": {
-       "200": {
-        "body": {
-         "value": [
-          {
-           "@search.text": "Nice <em>Hotel</em>",
-           "description": "Cheapest hotel in town",
-           "docId": "1",
-           "title": "Nice Hotel"
-          },
-          {
-           "@search.text": "Fancy <em>Hotel</em>",
-           "description": "Best hotel in town",
-           "docId": "2",
-           "title": "Fancy Hotel"
-          }
-         ]
-        }
-       }
-      }
-     }
     },
     "description": "Suggests documents in the index that match the given partial query text.",
     "parameters": [
@@ -783,6 +733,56 @@
       "$ref": "#/components/responses/paths·gb78nj·docs-search-suggest·get·responses·200",
       "description": "Response containing suggested documents that match the partial input."
      }
+    },
+    "x-ms-examples": {
+     "SearchIndexSuggestDocumentsGet": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "$filter": "rating gt 10",
+       "fuzzy": false,
+       "highlightPostTag": "</em>",
+       "highlightPreTag": "<em>",
+       "minimumCoverage": 80,
+       "$orderby": [
+        "search.score() desc",
+        "rating desc"
+       ],
+       "search": "hote",
+       "searchFields": [
+        "title"
+       ],
+       "suggesterName": "sg",
+       "$select": [
+        "docId",
+        "title",
+        "description"
+       ],
+       "$top": 10
+      },
+      "responses": {
+       "200": {
+        "body": {
+         "value": [
+          {
+           "@search.text": "Nice <em>Hotel</em>",
+           "description": "Cheapest hotel in town",
+           "docId": "1",
+           "title": "Nice Hotel"
+          },
+          {
+           "@search.text": "Fancy <em>Hotel</em>",
+           "description": "Best hotel in town",
+           "docId": "2",
+           "title": "Fancy Hotel"
+          }
+         ]
+        }
+       }
+      }
+     }
     }
    }
   },
@@ -841,6 +841,27 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/suggestions"
     },
+    "description": "Suggests documents in the index that match the given partial query text.",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·3h5jgz·docs-search-post-suggest·post·requestbody",
+     "description": "The Suggest request."
+    },
+    "parameters": [
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·umxn1r·docs-search-post-suggest·post·responses·200",
+      "description": "Response containing suggested documents that match the partial input."
+     }
+    },
     "x-ms-examples": {
      "SearchIndexSuggestDocumentsPost": {
       "parameters": {
@@ -880,27 +901,6 @@
         }
        }
       }
-     }
-    },
-    "description": "Suggests documents in the index that match the given partial query text.",
-    "requestBody": {
-     "$ref": "#/components/requestBodies/paths·3h5jgz·docs-search-post-suggest·post·requestbody",
-     "description": "The Suggest request."
-    },
-    "parameters": [
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
-     }
-    ],
-    "x-ms-requestBody-index": 0,
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·umxn1r·docs-search-post-suggest·post·responses·200",
-      "description": "Response containing suggested documents that match the partial input."
      }
     }
    }
@@ -959,6 +959,31 @@
     "operationId": "Documents_Index",
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents"
+    },
+    "description": "Sends a batch of document write actions to the index.",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·1m2z9i0·docs-search-index·post·requestbody",
+     "description": "The batch of index actions."
+    },
+    "parameters": [
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·7qh6vr·docs-search-index·post·responses·200",
+      "description": "Response containing the status of operations for all actions in the batch."
+     },
+     "207": {
+      "$ref": "#/components/responses/paths·gt56ok·docs-search-index·post·responses·207",
+      "description": "Response containing the status of operations for all actions in the batch."
+     }
     },
     "x-ms-examples": {
      "SearchIndexIndexDocuments": {
@@ -1055,31 +1080,6 @@
        }
       }
      }
-    },
-    "description": "Sends a batch of document write actions to the index.",
-    "requestBody": {
-     "$ref": "#/components/requestBodies/paths·1m2z9i0·docs-search-index·post·requestbody",
-     "description": "The batch of index actions."
-    },
-    "parameters": [
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
-     }
-    ],
-    "x-ms-requestBody-index": 0,
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·7qh6vr·docs-search-index·post·responses·200",
-      "description": "Response containing the status of operations for all actions in the batch."
-     },
-     "207": {
-      "$ref": "#/components/responses/paths·gt56ok·docs-search-index·post·responses·207",
-      "description": "Response containing the status of operations for all actions in the batch."
-     }
     }
    }
   },
@@ -1138,47 +1138,6 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/autocomplete"
     },
-    "x-ms-examples": {
-     "SearchIndexAutocompleteDocumentsGet": {
-      "parameters": {
-       "searchServiceName": "myservice",
-       "searchDnsSuffix": "search.windows.net",
-       "indexName": "myindex",
-       "api-version": "2019-05-06",
-       "autocompleteMode": "oneTerm",
-       "search": "washington medic",
-       "suggesterName": "sg",
-       "filter": "search.in(docId,'101,102,105')",
-       "fuzzy": false,
-       "highlightPostTag": "</em>",
-       "highlightPreTag": "<em>",
-       "minimumCoverage": 80,
-       "searchFields": [
-        "title",
-        "description"
-       ],
-       "top": 10
-      },
-      "responses": {
-       "200": {
-        "body": [
-         {
-          "text": "medicaid",
-          "queryPlusText": "washington medicaid"
-         },
-         {
-          "text": "medicare",
-          "queryPlusText": "washington medicare"
-         },
-         {
-          "text": "medicine",
-          "queryPlusText": "washington medicine"
-         }
-        ]
-       }
-      }
-     }
-    },
     "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
     "parameters": [
      {
@@ -1234,7 +1193,48 @@
     "responses": {
      "200": {
       "$ref": "#/components/responses/paths·c9s3r·docs-search-autocomplete·get·responses·200",
-      "description": "Response containing suggested query terms that complete the partial input."
+      "description": "OK"
+     }
+    },
+    "x-ms-examples": {
+     "SearchIndexAutocompleteDocumentsGet": {
+      "parameters": {
+       "searchServiceName": "myservice",
+       "searchDnsSuffix": "search.windows.net",
+       "indexName": "myindex",
+       "api-version": "2019-05-06",
+       "autocompleteMode": "oneTerm",
+       "search": "washington medic",
+       "suggesterName": "sg",
+       "filter": "search.in(docId,'101,102,105')",
+       "fuzzy": false,
+       "highlightPostTag": "</em>",
+       "highlightPreTag": "<em>",
+       "minimumCoverage": 80,
+       "searchFields": [
+        "title",
+        "description"
+       ],
+       "top": 10
+      },
+      "responses": {
+       "200": {
+        "body": [
+         {
+          "text": "medicaid",
+          "queryPlusText": "washington medicaid"
+         },
+         {
+          "text": "medicare",
+          "queryPlusText": "washington medicare"
+         },
+         {
+          "text": "medicine",
+          "queryPlusText": "washington medicine"
+         }
+        ]
+       }
+      }
      }
     }
    }
@@ -1294,13 +1294,34 @@
     "externalDocs": {
      "url": "https://docs.microsoft.com/rest/api/searchservice/autocomplete"
     },
+    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
+    "parameters": [
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
+     },
+     {
+      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·wzq3eb·docs-search-post-autocomplete·post·requestbody",
+     "description": "The definition of the Autocomplete request."
+    },
+    "x-ms-requestBody-index": 2,
+    "x-ms-request-id": "request-id",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·1c3gxv8·docs-search-post-autocomplete·post·responses·200",
+      "description": "OK"
+     }
+    },
     "x-ms-examples": {
      "SearchIndexAutocompleteDocumentsPost": {
       "parameters": {
        "searchServiceName": "myservice",
        "searchDnsSuffix": "search.windows.net",
        "indexName": "myindex",
-       "api-version": "2017-11-11-Preview",
+       "api-version": "2019-05-06",
        "autocompleteRequest": {
         "autocompleteMode": "oneTerm",
         "search": "washington medic",
@@ -1332,27 +1353,6 @@
        }
       }
      }
-    },
-    "description": "Autocompletes incomplete query terms based on input text and matching terms in the index.",
-    "parameters": [
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ClientRequestIdParameter"
-     },
-     {
-      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/parameters/ApiVersionParameter"
-     }
-    ],
-    "requestBody": {
-     "$ref": "#/components/requestBodies/paths·wzq3eb·docs-search-post-autocomplete·post·requestbody",
-     "description": "The definition of the Autocomplete request."
-    },
-    "x-ms-requestBody-index": 2,
-    "x-ms-request-id": "request-id",
-    "responses": {
-     "200": {
-      "$ref": "#/components/responses/paths·1c3gxv8·docs-search-post-autocomplete·post·responses·200",
-      "description": "Response containing suggested query terms that complete the partial input."
-     }
     }
    }
   }
@@ -1374,7 +1374,7 @@
     "in": "query",
     "description": "A value that specifies whether to fetch the total count of results. Default is false. Setting this value to true may have a performance impact. Note that the count returned is an approximation.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "x-ms-client-name": "IncludeTotalResultCount",
     "schema": {
@@ -1387,7 +1387,7 @@
     "in": "query",
     "description": "The list of facet expressions to apply to the search query. Each facet expression contains a field name, optionally followed by a comma-separated list of name:value pairs.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "x-ms-client-name": "Facets",
     "style": "form",
@@ -1402,7 +1402,7 @@
     "in": "query",
     "description": "The OData $filter expression to apply to the search query.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1cf1xpd·docs·get·parameters·3·schema"
@@ -1414,7 +1414,7 @@
     "in": "query",
     "description": "The list of field names to use for hit highlights. Only searchable fields can be used for hit highlighting.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "x-ms-client-name": "HighlightFields",
     "schema": {
@@ -1427,7 +1427,7 @@
     "in": "query",
     "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. Default is &lt;/em&gt;.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·iesdrg·docs·get·parameters·5·schema"
@@ -1439,7 +1439,7 @@
     "in": "query",
     "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. Default is &lt;em&gt;.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·l1b6iy·docs·get·parameters·6·schema"
@@ -1451,7 +1451,7 @@
     "in": "query",
     "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a search query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 100.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·t5iu1e·docs·get·parameters·7·schema"
@@ -1463,7 +1463,7 @@
     "in": "query",
     "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, and desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no OrderBy is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "x-ms-client-name": "OrderBy",
     "schema": {
@@ -1476,7 +1476,7 @@
     "in": "query",
     "description": "A value that specifies the syntax of the search query. The default is 'simple'. Use 'full' if your query uses the Lucene query syntax.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·u04kh7·docs·get·parameters·9·schema"
@@ -1488,7 +1488,7 @@
     "in": "query",
     "description": "The list of parameter values to be used in scoring functions (for example, referencePointParameter) using the format name-values. For example, if the scoring profile defines a function with a parameter called 'mylocation' the parameter string would be \"mylocation--122.2,44.8\" (without the quotes).",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "x-ms-client-name": "ScoringParameters",
     "style": "form",
@@ -1503,7 +1503,7 @@
     "in": "query",
     "description": "The name of a scoring profile to evaluate match scores for matching documents in order to sort the results.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1cou4om·docs·get·parameters·11·schema"
@@ -1515,7 +1515,7 @@
     "in": "query",
     "description": "The list of field names to which to scope the full-text search. When using fielded search (fieldName:searchExpression) in a full Lucene query, the field names of each fielded search expression take precedence over any field names listed in this parameter.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1ydkr4·docs·get·parameters·12·schema"
@@ -1527,7 +1527,7 @@
     "in": "query",
     "description": "A value that specifies whether any or all of the search terms must be matched in order to count the document as a match.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·131pnxq·docs·get·parameters·13·schema"
@@ -1539,7 +1539,7 @@
     "in": "query",
     "description": "The list of fields to retrieve. If unspecified, all fields marked as retrievable in the schema are included.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·ittppp·docs·get·parameters·14·schema"
@@ -1551,7 +1551,7 @@
     "in": "query",
     "description": "The number of search results to skip. This value cannot be greater than 100,000. If you need to scan documents in sequence, but cannot use $skip due to this limitation, consider using $orderby on a totally-ordered key and $filter with a range query instead.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1m277f1·docs·get·parameters·15·schema"
@@ -1563,7 +1563,7 @@
     "in": "query",
     "description": "The number of search results to retrieve. This can be used in conjunction with $skip to implement client-side paging of search results. If results are truncated due to server-side paging, the response will include a continuation token that can be used to issue another Search request for the next page of results.",
     "x-ms-parameter-grouping": {
-     "name": "SearchOptions"
+     "name": "SearchParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1hjb5q7·docs·get·parameters·16·schema"
@@ -1616,7 +1616,7 @@
     "in": "query",
     "description": "An OData expression that filters the documents considered for suggestions.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1g0c446·docs-search-suggest·get·parameters·2·schema"
@@ -1628,7 +1628,7 @@
     "in": "query",
     "description": "A value indicating whether to use fuzzy matching for the suggestions query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy suggestions queries are slower and consume more resources.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "x-ms-client-name": "UseFuzzyMatching",
     "schema": {
@@ -1641,7 +1641,7 @@
     "in": "query",
     "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting of suggestions is disabled.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1bvf311·docs-search-suggest·get·parameters·4·schema"
@@ -1653,7 +1653,7 @@
     "in": "query",
     "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting of suggestions is disabled.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1mhbla6·docs-search-suggest·get·parameters·5·schema"
@@ -1665,7 +1665,7 @@
     "in": "query",
     "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by a suggestions query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·kvlmm9·docs-search-suggest·get·parameters·6·schema"
@@ -1677,7 +1677,7 @@
     "in": "query",
     "description": "The list of OData $orderby expressions by which to sort the results. Each expression can be either a field name or a call to either the geo.distance() or the search.score() functions. Each expression can be followed by asc to indicate ascending, or desc to indicate descending. The default is ascending order. Ties will be broken by the match scores of documents. If no $orderby is specified, the default sort order is descending by document match score. There can be at most 32 $orderby clauses.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "x-ms-client-name": "OrderBy",
     "schema": {
@@ -1690,7 +1690,7 @@
     "in": "query",
     "description": "The list of field names to search for the specified search text. Target fields must be included in the specified suggester.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·a27jtj·docs-search-suggest·get·parameters·8·schema"
@@ -1702,7 +1702,7 @@
     "in": "query",
     "description": "The list of fields to retrieve. If unspecified, only the key field will be included in the results.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·qhr0c7·docs-search-suggest·get·parameters·9·schema"
@@ -1714,7 +1714,7 @@
     "in": "query",
     "description": "The number of suggestions to retrieve. The value must be a number between 1 and 100. The default is 5.",
     "x-ms-parameter-grouping": {
-     "name": "SuggestOptions"
+     "name": "SuggestParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·4z41df·docs-search-suggest·get·parameters·10·schema"
@@ -1747,7 +1747,7 @@
     "in": "query",
     "description": "Specifies the mode for Autocomplete. The default is 'oneTerm'. Use 'twoTerms' to get shingles and 'oneTermWithContext' to use the current context while producing auto-completed terms.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1sn7rrk·docs-search-autocomplete·get·parameters·4·schema"
@@ -1759,7 +1759,7 @@
     "in": "query",
     "description": "An OData expression that filters the documents used to produce completed terms for the Autocomplete result.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1obf6gx·docs-search-autocomplete·get·parameters·5·schema"
@@ -1771,7 +1771,7 @@
     "in": "query",
     "description": "A value indicating whether to use fuzzy matching for the autocomplete query. Default is false. When set to true, the query will find terms even if there's a substituted or missing character in the search text. While this provides a better experience in some scenarios, it comes at a performance cost as fuzzy autocomplete queries are slower and consume more resources.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "x-ms-client-name": "UseFuzzyMatching",
     "schema": {
@@ -1784,7 +1784,7 @@
     "in": "query",
     "description": "A string tag that is appended to hit highlights. Must be set with highlightPreTag. If omitted, hit highlighting is disabled.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·adk2mj·docs-search-autocomplete·get·parameters·7·schema"
@@ -1796,7 +1796,7 @@
     "in": "query",
     "description": "A string tag that is prepended to hit highlights. Must be set with highlightPostTag. If omitted, hit highlighting is disabled.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·18efowh·docs-search-autocomplete·get·parameters·8·schema"
@@ -1808,7 +1808,7 @@
     "in": "query",
     "description": "A number between 0 and 100 indicating the percentage of the index that must be covered by an autocomplete query in order for the query to be reported as a success. This parameter can be useful for ensuring search availability even for services with only one replica. The default is 80.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1ekq3gt·docs-search-autocomplete·get·parameters·9·schema"
@@ -1820,7 +1820,7 @@
     "in": "query",
     "description": "The list of field names to consider when querying for auto-completed terms. Target fields must be included in the specified suggester.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·2a1zqo·docs-search-autocomplete·get·parameters·10·schema"
@@ -1832,7 +1832,7 @@
     "in": "query",
     "description": "The number of auto-completed terms to retrieve. This must be a value between 1 and 100. The default is 5.",
     "x-ms-parameter-grouping": {
-     "name": "AutocompleteOptions"
+     "name": "AutocompleteParameters"
     },
     "schema": {
      "$ref": "#/components/schemas/paths·1rfq491·docs-search-autocomplete·get·parameters·11·schema"
@@ -1854,7 +1854,7 @@
     "description": "The tracking ID sent with the request to help with debugging.",
     "x-ms-parameter-location": "method",
     "x-ms-parameter-grouping": {
-     "name": "request-options"
+     "name": "search-request-options"
     },
     "x-ms-client-request-id": true,
     "schema": {
@@ -1912,7 +1912,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/DocumentSearchResult"
       }
      }
     }
@@ -1922,7 +1922,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/DocumentSearchResult"
       }
      }
     }
@@ -1942,7 +1942,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/DocumentSuggestResult"
       }
      }
     }
@@ -1952,7 +1952,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/DocumentSuggestResult"
       }
      }
     }
@@ -1962,7 +1962,7 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/DocumentIndexResult"
       }
      }
     }
@@ -1972,27 +1972,29 @@
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/IndexDocumentsResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/DocumentIndexResult"
       }
      }
     }
    },
    "paths·c9s3r·docs-search-autocomplete·get·responses·200": {
-    "description": "Response containing suggested query terms that complete the partial input.",
+    "description": "OK",
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteResult",
+       "description": "The result of Autocomplete query."
       }
      }
     }
    },
    "paths·1c3gxv8·docs-search-post-autocomplete·post·responses·200": {
-    "description": "Response containing suggested query terms that complete the partial input.",
+    "description": "OK",
     "content": {
      "application/json": {
       "schema": {
-       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteResult"
+       "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/AutocompleteResult",
+       "description": "The result of Autocomplete query."
       }
      }
     }
@@ -2224,10 +2226,10 @@
     "format": "int32",
     "type": "integer"
    },
-   "SuggestDocumentsResult": {
+   "DocumentSuggestResult": {
     "properties": {
      "value": {
-      "$ref": "#/components/schemas/SuggestDocumentsResult-value",
+      "$ref": "#/components/schemas/DocumentSuggestResult-value",
       "description": "The sequence of results returned by the query.",
       "x-ms-client-name": "Results",
       "readOnly": true
@@ -2242,7 +2244,7 @@
     },
     "description": "Response containing suggestion query results from an index."
    },
-   "SuggestDocumentsResult-value": {
+   "DocumentSuggestResult-value": {
     "type": "array",
     "items": {
      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SuggestResult"
@@ -2291,7 +2293,7 @@
    "components·1fm1tva·schemas·facetresult·additionalproperties": {
     "type": "object"
    },
-   "SearchDocumentsResult": {
+   "DocumentSearchResult": {
     "properties": {
      "@odata.count": {
       "type": "integer",
@@ -2308,7 +2310,7 @@
       "description": "A value indicating the percentage of the index that was included in the query, or null if minimumCoverage was not specified in the request."
      },
      "@search.facets": {
-      "$ref": "#/components/schemas/SearchDocumentsResult-@search.facets",
+      "$ref": "#/components/schemas/DocumentSearchResult-@search.facets",
       "description": "The facet query results for the search operation, organized as a collection of buckets for each faceted field; null if the query did not include any facet expressions.",
       "x-ms-client-name": "Facets",
       "readOnly": true
@@ -2320,13 +2322,13 @@
       "description": "Continuation JSON payload returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this JSON along with @odata.nextLink to formulate another POST Search request to get the next part of the search response."
      },
      "value": {
-      "$ref": "#/components/schemas/SearchDocumentsResult-value",
+      "$ref": "#/components/schemas/DocumentSearchResult-value",
       "description": "The sequence of results returned by the query.",
       "x-ms-client-name": "Results",
       "readOnly": true
      },
      "@odata.nextLink": {
-      "$ref": "#/components/schemas/SearchDocumentsResult-@odata.nextLink",
+      "$ref": "#/components/schemas/DocumentSearchResult-@odata.nextLink",
       "description": "Continuation URL returned when Azure Cognitive Search can't return all the requested results in a single Search response. You can use this URL to formulate another GET or POST Search request to get the next part of the search response. Make sure to use the same verb (GET or POST) as the request that produced this response.",
       "x-ms-client-name": "NextLink",
       "readOnly": true
@@ -2334,22 +2336,22 @@
     },
     "description": "Response containing search results from an index."
    },
-   "SearchDocumentsResult-@search.facets": {
+   "DocumentSearchResult-@search.facets": {
     "type": "object",
     "additionalProperties": {
-     "$ref": "#/components/schemas/components·5qj7l7·schemas·searchdocumentsresult·properties·search-facets·additionalproperties"
+     "$ref": "#/components/schemas/components·1039crn·schemas·documentsearchresult·properties·search-facets·additionalproperties"
     },
     "readOnly": true,
     "x-ms-client-name": "Facets",
     "description": "The facet query results for the search operation, organized as a collection of buckets for each faceted field; null if the query did not include any facet expressions."
    },
-   "components·5qj7l7·schemas·searchdocumentsresult·properties·search-facets·additionalproperties": {
+   "components·1039crn·schemas·documentsearchresult·properties·search-facets·additionalproperties": {
     "type": "array",
     "items": {
      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/FacetResult"
     }
    },
-   "SearchDocumentsResult-value": {
+   "DocumentSearchResult-value": {
     "type": "array",
     "items": {
      "$ref": "https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json#/components/schemas/SearchResult"
@@ -2358,7 +2360,7 @@
     "x-ms-client-name": "Results",
     "description": "The sequence of results returned by the query."
    },
-   "SearchDocumentsResult-@odata.nextLink": {
+   "DocumentSearchResult-@odata.nextLink": {
     "type": "string",
     "readOnly": true,
     "x-ms-client-name": "NextLink",
@@ -2498,10 +2500,10 @@
     "readOnly": true,
     "description": "The error message explaining why the indexing operation failed for the document identified by the key; null if indexing succeeded."
    },
-   "IndexDocumentsResult": {
+   "DocumentIndexResult": {
     "properties": {
      "value": {
-      "$ref": "#/components/schemas/IndexDocumentsResult-value",
+      "$ref": "#/components/schemas/DocumentIndexResult-value",
       "description": "The list of status information for each document in the indexing request.",
       "x-ms-client-name": "Results",
       "readOnly": true
@@ -2509,7 +2511,7 @@
     },
     "description": "Response containing the status of operations for all documents in the indexing request."
    },
-   "IndexDocumentsResult-value": {
+   "DocumentIndexResult-value": {
     "x-ms-client-name": "Results",
     "type": "array",
     "readOnly": true,
@@ -2870,13 +2872,6 @@
    },
    "AutocompleteResult": {
     "properties": {
-     "@search.coverage": {
-      "type": "number",
-      "format": "double",
-      "readOnly": true,
-      "x-ms-client-name": "Coverage",
-      "description": "A value indicating the percentage of the index that was considered by the autocomplete request, or null if minimumCoverage was not specified in the request."
-     },
      "value": {
       "$ref": "#/components/schemas/AutocompleteResult-value",
       "description": "The list of returned Autocompleted items.",
