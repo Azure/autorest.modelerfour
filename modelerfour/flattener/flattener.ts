@@ -44,6 +44,11 @@ export class Flattener {
         targetProperty: property,
         pathToProperty: path
       });
+      delete (<any>vp).serializedName;
+      delete (<any>vp).readOnly;
+      delete (<any>vp).isDiscriminator;
+      delete (<any>vp).flattenedNames;
+
 
       // if the parameter has "x-ms-parameter-grouping" extension, (and this is a top level parameter) then we should copy that to the vp.
       if (path.length === 0 && parameter.extensions?.['x-ms-parameter-grouping']) {

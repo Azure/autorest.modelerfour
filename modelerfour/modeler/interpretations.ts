@@ -156,7 +156,7 @@ export class Interpretations {
     if (parameter['x-ms-api-version'] === false) {
       return false;
     }
-    return !!(parameter['x-ms-api-version'] || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
+    return !!(parameter['x-ms-api-version'] === true || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
   }
   getEnumChoices(schema: OpenAPI.Schema): Array<ChoiceValue> {
     if (schema && schema.enum) {
