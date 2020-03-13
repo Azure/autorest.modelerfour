@@ -1291,7 +1291,7 @@ schemas: !<!Schemas>
         name: PrivateLinkResourceProperties-requiredZoneNamesItem
         description: ''
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_410
+  - !<!StringSchema> &ref_409
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -1475,6 +1475,17 @@ schemas: !<!Schemas>
         name: LegalHold-tagsItem
         description: ''
     protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_479
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-06-01'
+    language: !<!Languages> 
+      default:
+        name: string
+        description: ''
+        header: ETag
+    protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_484
     type: string
     apiVersions:
@@ -1498,17 +1509,6 @@ schemas: !<!Schemas>
         header: ETag
     protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_494
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-06-01'
-    language: !<!Languages> 
-      default:
-        name: string
-        description: ''
-        header: ETag
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_499
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -2919,7 +2919,7 @@ schemas: !<!Schemas>
         name: RuleType
         description: The valid value is Lifecycle
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_428
+  - !<!ConstantSchema> &ref_427
     type: constant
     value: !<!ConstantValue> 
       value: default
@@ -5420,7 +5420,7 @@ schemas: !<!Schemas>
               name: lastModifiedTime
               description: Returns the date and time the ManagementPolicies was last modified.
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_390
+        - !<!Property> &ref_389
           schema: !<!ObjectSchema> &ref_255
             type: object
             apiVersions:
@@ -5743,7 +5743,7 @@ schemas: !<!Schemas>
                 description: 'The Storage Account ManagementPolicies Rules. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.'
                 namespace: ''
             protocol: !<!Protocols> {}
-          flattenedNames: &ref_388
+          flattenedNames:
           - properties
           - policy
           serializedName: policy
@@ -6709,9 +6709,9 @@ schemas: !<!Schemas>
               immediate:
               - *ref_166
             properties:
-            - !<!Property> &ref_441
+            - !<!Property> &ref_439
               schema: *ref_167
-              flattenedNames: &ref_439
+              flattenedNames:
               - properties
               - publicAccess
               serializedName: publicAccess
@@ -6768,9 +6768,9 @@ schemas: !<!Schemas>
                   name: leaseDuration
                   description: 'Specifies whether the lease on a container is of infinite or fixed duration, only when the container is leased.'
               protocol: !<!Protocols> {}
-            - !<!Property> &ref_443
+            - !<!Property> &ref_440
               schema: *ref_172
-              flattenedNames: &ref_442
+              flattenedNames:
               - properties
               - metadata
               serializedName: metadata
@@ -6854,9 +6854,9 @@ schemas: !<!Schemas>
               immediate:
               - *ref_166
             properties:
-            - !<!Property> &ref_475
+            - !<!Property> &ref_471
               schema: *ref_175
-              flattenedNames: &ref_473
+              flattenedNames:
               - properties
               - immutabilityPeriodSinceCreationInDays
               serializedName: immutabilityPeriodSinceCreationInDays
@@ -6877,9 +6877,9 @@ schemas: !<!Schemas>
                   name: state
                   description: 'The ImmutabilityPolicy state of a blob container, possible values include: Locked and Unlocked.'
               protocol: !<!Protocols> {}
-            - !<!Property> &ref_477
+            - !<!Property> &ref_472
               schema: *ref_181
-              flattenedNames: &ref_476
+              flattenedNames:
               - properties
               - allowProtectedAppendWrites
               serializedName: allowProtectedAppendWrites
@@ -6982,9 +6982,9 @@ schemas: !<!Schemas>
                   name: lastModifiedTime
                   description: Returns the date and time the share was last modified.
               protocol: !<!Protocols> {}
-            - !<!Property> &ref_535
+            - !<!Property> &ref_527
               schema: *ref_192
-              flattenedNames: &ref_533
+              flattenedNames:
               - properties
               - metadata
               serializedName: metadata
@@ -6993,9 +6993,9 @@ schemas: !<!Schemas>
                   name: metadata
                   description: A name-value pair to associate with the share as metadata.
               protocol: !<!Protocols> {}
-            - !<!Property> &ref_537
+            - !<!Property> &ref_528
               schema: *ref_193
-              flattenedNames: &ref_536
+              flattenedNames:
               - properties
               - shareQuota
               serializedName: shareQuota
@@ -7070,9 +7070,9 @@ schemas: !<!Schemas>
               name: sku
               description: Sku name and tier.
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_519
+        - !<!Property> &ref_513
           schema: *ref_200
-          flattenedNames: &ref_517
+          flattenedNames:
           - properties
           - cors
           serializedName: cors
@@ -7083,9 +7083,9 @@ schemas: !<!Schemas>
                 Specifies CORS rules for the File service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for
                 the File service.
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_521
+        - !<!Property> &ref_514
           schema: *ref_165
-          flattenedNames: &ref_520
+          flattenedNames:
           - properties
           - shareDeleteRetentionPolicy
           serializedName: shareDeleteRetentionPolicy
@@ -7926,7 +7926,7 @@ schemas: !<!Schemas>
   - *ref_260
   - *ref_261
   - *ref_262
-  - !<!ObjectSchema> &ref_399
+  - !<!ObjectSchema> &ref_398
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -7958,7 +7958,7 @@ schemas: !<!Schemas>
         description: An error response from the storage resource provider.
         namespace: ''
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_409
+  - !<!ObjectSchema> &ref_408
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -7995,7 +7995,7 @@ schemas: !<!Schemas>
   - *ref_202
   - *ref_203
   - *ref_265
-  - !<!ObjectSchema> &ref_424
+  - !<!ObjectSchema> &ref_423
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8039,7 +8039,7 @@ schemas: !<!Schemas>
         description: 'List of encryption scopes requested, and if paging is required, a URL to the next page of encryption scopes.'
         namespace: ''
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_427
+  - !<!ObjectSchema> &ref_426
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8080,7 +8080,7 @@ schemas: !<!Schemas>
   - *ref_165
   - *ref_268
   - *ref_269
-  - !<!ObjectSchema> &ref_438
+  - !<!ObjectSchema> &ref_437
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8131,7 +8131,7 @@ schemas: !<!Schemas>
   - *ref_190
   - *ref_272
   - *ref_195
-  - !<!ObjectSchema> &ref_461
+  - !<!ObjectSchema> &ref_458
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8149,7 +8149,7 @@ schemas: !<!Schemas>
             The hasLegalHold public property is set to true by SRP if there are at least one existing tag. The hasLegalHold public property is set to false by SRP if all existing legal hold tags are cleared out. There can be a maximum of
             1000 blob containers with hasLegalHold=true for a given account.
       protocol: !<!Protocols> {}
-    - !<!Property> &ref_463
+    - !<!Property> &ref_460
       schema: !<!ArraySchema> &ref_317
         type: array
         apiVersions:
@@ -8180,7 +8180,7 @@ schemas: !<!Schemas>
         namespace: ''
     protocol: !<!Protocols> {}
   - *ref_196
-  - !<!ObjectSchema> &ref_507
+  - !<!ObjectSchema> &ref_502
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8241,7 +8241,7 @@ schemas: !<!Schemas>
         description: Lease Container request schema.
         namespace: ''
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_512
+  - !<!ObjectSchema> &ref_507
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8273,7 +8273,7 @@ schemas: !<!Schemas>
         description: Lease Container response schema.
         namespace: ''
     protocol: !<!Protocols> {}
-  - !<!ObjectSchema> &ref_515
+  - !<!ObjectSchema> &ref_510
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8309,7 +8309,7 @@ schemas: !<!Schemas>
         namespace: ''
     protocol: !<!Protocols> {}
   - *ref_205
-  - !<!ObjectSchema> &ref_516
+  - !<!ObjectSchema> &ref_511
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8395,7 +8395,7 @@ schemas: !<!Schemas>
         namespace: ''
     protocol: !<!Protocols> {}
   - *ref_284
-  - !<!ObjectSchema> &ref_532
+  - !<!ObjectSchema> &ref_525
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -8657,7 +8657,6 @@ operationGroups:
         originalParameter: *ref_329
         pathToProperty: []
         required: true
-        serializedName: name
         targetProperty: *ref_330
         language: !<!Languages> 
           default:
@@ -8670,7 +8669,6 @@ operationGroups:
         originalParameter: *ref_329
         pathToProperty: []
         required: true
-        serializedName: type
         targetProperty: *ref_331
         language: !<!Languages> 
           default:
@@ -9271,7 +9269,6 @@ operationGroups:
         originalParameter: *ref_357
         pathToProperty: []
         required: true
-        serializedName: keyName
         targetProperty: *ref_358
         language: !<!Languages> 
           default:
@@ -9610,7 +9607,6 @@ operationGroups:
         originalParameter: *ref_374
         pathToProperty: []
         required: true
-        serializedName: timeToRestore
         targetProperty: *ref_375
         language: !<!Languages> 
           default:
@@ -9623,7 +9619,6 @@ operationGroups:
         originalParameter: *ref_374
         pathToProperty: []
         required: true
-        serializedName: blobRanges
         targetProperty: *ref_376
         language: !<!Languages> 
           default:
@@ -9901,7 +9896,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_392
+    - !<!Parameter> &ref_391
       schema: *ref_334
       implementation: Method
       required: true
@@ -9913,7 +9908,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_393
+    - !<!Parameter> &ref_392
       schema: *ref_335
       implementation: Method
       required: true
@@ -9942,7 +9937,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_389
+      - !<!Parameter> &ref_388
         schema: *ref_201
         flattened: true
         implementation: Method
@@ -9955,21 +9950,19 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!VirtualParameter> &ref_391
+      - !<!VirtualParameter> &ref_390
         schema: *ref_255
-        flattenedNames: *ref_388
         implementation: Method
-        originalParameter: *ref_389
+        originalParameter: *ref_388
         pathToProperty: []
-        serializedName: policy
-        targetProperty: *ref_390
+        targetProperty: *ref_389
         language: !<!Languages> 
           default:
             name: policy
             description: 'The Storage Account ManagementPolicy, in JSON format. See more details in: https://docs.microsoft.com/en-us/azure/storage/common/storage-lifecycle-managment-concepts.'
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_391
+      - *ref_390
       language: !<!Languages> 
         default:
           name: ''
@@ -9983,8 +9976,8 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
+    - *ref_391
     - *ref_392
-    - *ref_393
     responses:
     - !<!SchemaResponse> 
       schema: *ref_201
@@ -10010,7 +10003,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_394
+    - !<!Parameter> &ref_393
       schema: *ref_334
       implementation: Method
       required: true
@@ -10022,7 +10015,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_395
+    - !<!Parameter> &ref_394
       schema: *ref_335
       implementation: Method
       required: true
@@ -10060,8 +10053,8 @@ operationGroups:
           method: delete
           uri: '{$host}'
     signatureParameters:
+    - *ref_393
     - *ref_394
-    - *ref_395
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -10100,7 +10093,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_396
+    - !<!Parameter> &ref_395
       schema: *ref_334
       implementation: Method
       required: true
@@ -10112,7 +10105,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_397
+    - !<!Parameter> &ref_396
       schema: *ref_335
       implementation: Method
       required: true
@@ -10126,7 +10119,7 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_398
+    - !<!Parameter> &ref_397
       schema: *ref_1
       implementation: Method
       required: true
@@ -10150,9 +10143,9 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_395
     - *ref_396
     - *ref_397
-    - *ref_398
     responses:
     - !<!SchemaResponse> 
       schema: *ref_134
@@ -10169,7 +10162,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_399
+      schema: *ref_398
       language: !<!Languages> 
         default:
           name: ''
@@ -10192,7 +10185,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_401
+    - !<!Parameter> &ref_400
       schema: *ref_334
       implementation: Method
       required: true
@@ -10204,7 +10197,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_402
+    - !<!Parameter> &ref_401
       schema: *ref_335
       implementation: Method
       required: true
@@ -10218,7 +10211,7 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_403
+    - !<!Parameter> &ref_402
       schema: *ref_1
       implementation: Method
       required: true
@@ -10233,7 +10226,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_400
+      - !<!Parameter> &ref_399
         schema: *ref_134
         implementation: Method
         required: true
@@ -10246,7 +10239,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_400
+      - *ref_399
       language: !<!Languages> 
         default:
           name: ''
@@ -10260,9 +10253,9 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
+    - *ref_400
     - *ref_401
     - *ref_402
-    - *ref_403
     responses:
     - !<!SchemaResponse> 
       schema: *ref_134
@@ -10279,7 +10272,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_399
+      schema: *ref_398
       language: !<!Languages> 
         default:
           name: ''
@@ -10302,7 +10295,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_404
+    - !<!Parameter> &ref_403
       schema: *ref_334
       implementation: Method
       required: true
@@ -10314,7 +10307,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_405
+    - !<!Parameter> &ref_404
       schema: *ref_335
       implementation: Method
       required: true
@@ -10328,7 +10321,7 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_406
+    - !<!Parameter> &ref_405
       schema: *ref_1
       implementation: Method
       required: true
@@ -10352,9 +10345,9 @@ operationGroups:
           method: delete
           uri: '{$host}'
     signatureParameters:
+    - *ref_403
     - *ref_404
     - *ref_405
-    - *ref_406
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -10376,7 +10369,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_399
+      schema: *ref_398
       language: !<!Languages> 
         default:
           name: ''
@@ -10407,7 +10400,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_407
+    - !<!Parameter> &ref_406
       schema: *ref_334
       implementation: Method
       required: true
@@ -10419,7 +10412,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_408
+    - !<!Parameter> &ref_407
       schema: *ref_335
       implementation: Method
       required: true
@@ -10445,11 +10438,11 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_406
     - *ref_407
-    - *ref_408
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_409
+      schema: *ref_408
       language: !<!Languages> 
         default:
           name: ''
@@ -10480,7 +10473,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_412
+    - !<!Parameter> &ref_411
       schema: *ref_334
       implementation: Method
       required: true
@@ -10492,7 +10485,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_413
+    - !<!Parameter> &ref_412
       schema: *ref_335
       implementation: Method
       required: true
@@ -10506,8 +10499,8 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_414
-      schema: *ref_410
+    - !<!Parameter> &ref_413
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -10523,7 +10516,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_411
+      - !<!Parameter> &ref_410
         schema: *ref_203
         implementation: Method
         required: true
@@ -10536,7 +10529,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_411
+      - *ref_410
       language: !<!Languages> 
         default:
           name: ''
@@ -10550,9 +10543,9 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
+    - *ref_411
     - *ref_412
     - *ref_413
-    - *ref_414
     responses:
     - !<!SchemaResponse> 
       schema: *ref_203
@@ -10582,7 +10575,7 @@ operationGroups:
           - '201'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_399
+      schema: *ref_398
       language: !<!Languages> 
         default:
           name: ''
@@ -10607,7 +10600,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_416
+    - !<!Parameter> &ref_415
       schema: *ref_334
       implementation: Method
       required: true
@@ -10619,7 +10612,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_417
+    - !<!Parameter> &ref_416
       schema: *ref_335
       implementation: Method
       required: true
@@ -10633,8 +10626,8 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_418
-      schema: *ref_410
+    - !<!Parameter> &ref_417
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -10650,7 +10643,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_415
+      - !<!Parameter> &ref_414
         schema: *ref_203
         implementation: Method
         required: true
@@ -10663,7 +10656,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_415
+      - *ref_414
       language: !<!Languages> 
         default:
           name: ''
@@ -10677,9 +10670,9 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
+    - *ref_415
     - *ref_416
     - *ref_417
-    - *ref_418
     responses:
     - !<!SchemaResponse> 
       schema: *ref_203
@@ -10696,7 +10689,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_399
+      schema: *ref_398
       language: !<!Languages> 
         default:
           name: ''
@@ -10719,7 +10712,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_419
+    - !<!Parameter> &ref_418
       schema: *ref_334
       implementation: Method
       required: true
@@ -10731,7 +10724,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_420
+    - !<!Parameter> &ref_419
       schema: *ref_335
       implementation: Method
       required: true
@@ -10745,8 +10738,8 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_421
-      schema: *ref_410
+    - !<!Parameter> &ref_420
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -10771,9 +10764,9 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_418
     - *ref_419
     - *ref_420
-    - *ref_421
     responses:
     - !<!SchemaResponse> 
       schema: *ref_203
@@ -10790,7 +10783,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_399
+      schema: *ref_398
       language: !<!Languages> 
         default:
           name: ''
@@ -10813,7 +10806,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_422
+    - !<!Parameter> &ref_421
       schema: *ref_334
       implementation: Method
       required: true
@@ -10825,7 +10818,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_423
+    - !<!Parameter> &ref_422
       schema: *ref_335
       implementation: Method
       required: true
@@ -10851,11 +10844,11 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_421
     - *ref_422
-    - *ref_423
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_424
+      schema: *ref_423
       language: !<!Languages> 
         default:
           name: ''
@@ -10891,7 +10884,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_425
+    - !<!Parameter> &ref_424
       schema: *ref_334
       implementation: Method
       required: true
@@ -10903,7 +10896,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_426
+    - !<!Parameter> &ref_425
       schema: *ref_335
       implementation: Method
       required: true
@@ -10929,11 +10922,11 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_424
     - *ref_425
-    - *ref_426
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_427
+      schema: *ref_426
       language: !<!Languages> 
         default:
           name: ''
@@ -10961,7 +10954,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_430
+    - !<!Parameter> &ref_429
       schema: *ref_334
       implementation: Method
       required: true
@@ -10973,7 +10966,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_431
+    - !<!Parameter> &ref_430
       schema: *ref_335
       implementation: Method
       required: true
@@ -10988,7 +10981,7 @@ operationGroups:
     - *ref_324
     - *ref_326
     - !<!Parameter> 
-      schema: *ref_428
+      schema: *ref_427
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11002,7 +10995,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_429
+      - !<!Parameter> &ref_428
         schema: *ref_204
         implementation: Method
         required: true
@@ -11015,7 +11008,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_429
+      - *ref_428
       language: !<!Languages> 
         default:
           name: ''
@@ -11029,8 +11022,8 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
+    - *ref_429
     - *ref_430
-    - *ref_431
     responses:
     - !<!SchemaResponse> 
       schema: *ref_204
@@ -11056,7 +11049,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_432
+    - !<!Parameter> &ref_431
       schema: *ref_334
       implementation: Method
       required: true
@@ -11068,7 +11061,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_433
+    - !<!Parameter> &ref_432
       schema: *ref_335
       implementation: Method
       required: true
@@ -11083,7 +11076,7 @@ operationGroups:
     - *ref_324
     - *ref_326
     - !<!Parameter> 
-      schema: *ref_428
+      schema: *ref_427
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11106,8 +11099,8 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_431
     - *ref_432
-    - *ref_433
     responses:
     - !<!SchemaResponse> 
       schema: *ref_204
@@ -11141,7 +11134,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_434
+    - !<!Parameter> &ref_433
       schema: *ref_334
       implementation: Method
       required: true
@@ -11153,7 +11146,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_435
+    - !<!Parameter> &ref_434
       schema: *ref_335
       implementation: Method
       required: true
@@ -11167,7 +11160,7 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_436
+    - !<!Parameter> &ref_435
       schema: *ref_1
       implementation: Method
       language: !<!Languages> 
@@ -11178,7 +11171,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: query
-    - !<!Parameter> &ref_437
+    - !<!Parameter> &ref_436
       schema: *ref_1
       implementation: Method
       language: !<!Languages> 
@@ -11201,13 +11194,13 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
+    - *ref_433
     - *ref_434
     - *ref_435
     - *ref_436
-    - *ref_437
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_438
+      schema: *ref_437
       language: !<!Languages> 
         default:
           name: ''
@@ -11235,7 +11228,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_446
+    - !<!Parameter> &ref_443
       schema: *ref_334
       implementation: Method
       required: true
@@ -11247,7 +11240,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_447
+    - !<!Parameter> &ref_444
       schema: *ref_335
       implementation: Method
       required: true
@@ -11259,8 +11252,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_448
-      schema: *ref_410
+    - !<!Parameter> &ref_445
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11278,7 +11271,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_440
+      - !<!Parameter> &ref_438
         schema: *ref_195
         flattened: true
         implementation: Method
@@ -11291,35 +11284,31 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!VirtualParameter> &ref_444
+      - !<!VirtualParameter> &ref_441
         schema: *ref_167
-        flattenedNames: *ref_439
         implementation: Method
-        originalParameter: *ref_440
+        originalParameter: *ref_438
         pathToProperty: []
-        serializedName: publicAccess
-        targetProperty: *ref_441
+        targetProperty: *ref_439
         language: !<!Languages> 
           default:
             name: publicAccess
             description: Specifies whether data in the container may be accessed publicly and the level of access.
         protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_445
+      - !<!VirtualParameter> &ref_442
         schema: *ref_172
-        flattenedNames: *ref_442
         implementation: Method
-        originalParameter: *ref_440
+        originalParameter: *ref_438
         pathToProperty: []
-        serializedName: metadata
-        targetProperty: *ref_443
+        targetProperty: *ref_440
         language: !<!Languages> 
           default:
             name: metadata
             description: A name-value pair to associate with the container as metadata.
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_444
-      - *ref_445
+      - *ref_441
+      - *ref_442
       language: !<!Languages> 
         default:
           name: ''
@@ -11333,9 +11322,9 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
-    - *ref_446
-    - *ref_447
-    - *ref_448
+    - *ref_443
+    - *ref_444
+    - *ref_445
     responses:
     - !<!SchemaResponse> 
       schema: *ref_195
@@ -11374,6 +11363,128 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
+    - !<!Parameter> &ref_449
+      schema: *ref_334
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: The name of the resource group within the user's subscription. The name is case insensitive.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_450
+      schema: *ref_335
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_451
+      schema: *ref_409
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: containerName
+          description: >-
+            The name of the blob container within the specified storage account. Blob container names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be
+            immediately preceded and followed by a letter or number.
+          serializedName: containerName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_324
+    - *ref_326
+    requests:
+    - !<!Request> 
+      parameters:
+      - !<!Parameter> &ref_446
+        schema: *ref_195
+        flattened: true
+        implementation: Method
+        required: true
+        language: !<!Languages> 
+          default:
+            name: blobContainer
+            description: Properties to update for the blob container.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      - !<!VirtualParameter> &ref_447
+        schema: *ref_167
+        implementation: Method
+        originalParameter: *ref_446
+        pathToProperty: []
+        targetProperty: *ref_439
+        language: !<!Languages> 
+          default:
+            name: publicAccess
+            description: Specifies whether data in the container may be accessed publicly and the level of access.
+        protocol: !<!Protocols> {}
+      - !<!VirtualParameter> &ref_448
+        schema: *ref_172
+        implementation: Method
+        originalParameter: *ref_446
+        pathToProperty: []
+        targetProperty: *ref_440
+        language: !<!Languages> 
+          default:
+            name: metadata
+            description: A name-value pair to associate with the container as metadata.
+        protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_447
+      - *ref_448
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}'
+          method: patch
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    signatureParameters:
+    - *ref_449
+    - *ref_450
+    - *ref_451
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_195
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    language: !<!Languages> 
+      default:
+        name: Update
+        description: 'Updates container properties as specified in request body. Properties not mentioned in the request will be unchanged. Update fails if the specified container doesn''t already exist. '
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-06-01'
+    parameters:
+    - *ref_323
     - !<!Parameter> &ref_452
       schema: *ref_334
       implementation: Method
@@ -11399,7 +11510,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> &ref_454
-      schema: *ref_410
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11416,60 +11527,14 @@ operationGroups:
     - *ref_326
     requests:
     - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_449
-        schema: *ref_195
-        flattened: true
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: blobContainer
-            description: Properties to update for the blob container.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      - !<!VirtualParameter> &ref_450
-        schema: *ref_167
-        flattenedNames: *ref_439
-        implementation: Method
-        originalParameter: *ref_449
-        pathToProperty: []
-        serializedName: publicAccess
-        targetProperty: *ref_441
-        language: !<!Languages> 
-          default:
-            name: publicAccess
-            description: Specifies whether data in the container may be accessed publicly and the level of access.
-        protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_451
-        schema: *ref_172
-        flattenedNames: *ref_442
-        implementation: Method
-        originalParameter: *ref_449
-        pathToProperty: []
-        serializedName: metadata
-        targetProperty: *ref_443
-        language: !<!Languages> 
-          default:
-            name: metadata
-            description: A name-value pair to associate with the container as metadata.
-        protocol: !<!Protocols> {}
-      signatureParameters:
-      - *ref_450
-      - *ref_451
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
+        http: !<!HttpRequest> 
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}'
-          method: patch
-          knownMediaType: json
-          mediaTypes:
-          - application/json
+          method: get
           uri: '{$host}'
     signatureParameters:
     - *ref_452
@@ -11491,8 +11556,8 @@ operationGroups:
           - '200'
     language: !<!Languages> 
       default:
-        name: Update
-        description: 'Updates container properties as specified in request body. Properties not mentioned in the request will be unchanged. Update fails if the specified container doesn''t already exist. '
+        name: Get
+        description: 'Gets properties of a specified container. '
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11525,87 +11590,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> &ref_457
-      schema: *ref_410
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: containerName
-          description: >-
-            The name of the blob container within the specified storage account. Blob container names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be
-            immediately preceded and followed by a letter or number.
-          serializedName: containerName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - *ref_324
-    - *ref_326
-    requests:
-    - !<!Request> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}'
-          method: get
-          uri: '{$host}'
-    signatureParameters:
-    - *ref_455
-    - *ref_456
-    - *ref_457
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_195
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    language: !<!Languages> 
-      default:
-        name: Get
-        description: 'Gets properties of a specified container. '
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-06-01'
-    parameters:
-    - *ref_323
-    - !<!Parameter> &ref_458
-      schema: *ref_334
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: resourceGroupName
-          description: The name of the resource group within the user's subscription. The name is case insensitive.
-          serializedName: resourceGroupName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_459
-      schema: *ref_335
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: accountName
-          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-          serializedName: accountName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_460
-      schema: *ref_410
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11632,9 +11617,9 @@ operationGroups:
           method: delete
           uri: '{$host}'
     signatureParameters:
-    - *ref_458
-    - *ref_459
-    - *ref_460
+    - *ref_455
+    - *ref_456
+    - *ref_457
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -11665,7 +11650,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_465
+    - !<!Parameter> &ref_462
       schema: *ref_334
       implementation: Method
       required: true
@@ -11677,7 +11662,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_466
+    - !<!Parameter> &ref_463
       schema: *ref_335
       implementation: Method
       required: true
@@ -11689,8 +11674,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_467
-      schema: *ref_410
+    - !<!Parameter> &ref_464
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11708,8 +11693,8 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_462
-        schema: *ref_461
+      - !<!Parameter> &ref_459
+        schema: *ref_458
         flattened: true
         implementation: Method
         required: true
@@ -11721,21 +11706,20 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!VirtualParameter> &ref_464
+      - !<!VirtualParameter> &ref_461
         schema: *ref_317
         implementation: Method
-        originalParameter: *ref_462
+        originalParameter: *ref_459
         pathToProperty: []
         required: true
-        serializedName: tags
-        targetProperty: *ref_463
+        targetProperty: *ref_460
         language: !<!Languages> 
           default:
             name: tags
             description: Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP.
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_464
+      - *ref_461
       language: !<!Languages> 
         default:
           name: ''
@@ -11749,12 +11733,12 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
-    - *ref_465
-    - *ref_466
-    - *ref_467
+    - *ref_462
+    - *ref_463
+    - *ref_464
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_461
+      schema: *ref_458
       language: !<!Languages> 
         default:
           name: ''
@@ -11777,7 +11761,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_470
+    - !<!Parameter> &ref_467
       schema: *ref_334
       implementation: Method
       required: true
@@ -11789,7 +11773,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_471
+    - !<!Parameter> &ref_468
       schema: *ref_335
       implementation: Method
       required: true
@@ -11801,8 +11785,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_472
-      schema: *ref_410
+    - !<!Parameter> &ref_469
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11820,8 +11804,8 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_468
-        schema: *ref_461
+      - !<!Parameter> &ref_465
+        schema: *ref_458
         flattened: true
         implementation: Method
         required: true
@@ -11833,21 +11817,20 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!VirtualParameter> &ref_469
+      - !<!VirtualParameter> &ref_466
         schema: *ref_317
         implementation: Method
-        originalParameter: *ref_468
+        originalParameter: *ref_465
         pathToProperty: []
         required: true
-        serializedName: tags
-        targetProperty: *ref_463
+        targetProperty: *ref_460
         language: !<!Languages> 
           default:
             name: tags
             description: Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP.
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_469
+      - *ref_466
       language: !<!Languages> 
         default:
           name: ''
@@ -11861,12 +11844,12 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
-    - *ref_470
-    - *ref_471
-    - *ref_472
+    - *ref_467
+    - *ref_468
+    - *ref_469
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_461
+      schema: *ref_458
       language: !<!Languages> 
         default:
           name: ''
@@ -11882,6 +11865,157 @@ operationGroups:
       default:
         name: ClearLegalHold
         description: Clears legal hold tags. Clearing the same or non-existent tag results in an idempotent operation. ClearLegalHold clears out only the specified tags in the request.
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-06-01'
+    parameters:
+    - *ref_323
+    - !<!Parameter> &ref_475
+      schema: *ref_334
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: The name of the resource group within the user's subscription. The name is case insensitive.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_476
+      schema: *ref_335
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_477
+      schema: *ref_409
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: containerName
+          description: >-
+            The name of the blob container within the specified storage account. Blob container names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be
+            immediately preceded and followed by a letter or number.
+          serializedName: containerName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> 
+      schema: *ref_427
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: immutabilityPolicyName
+          description: The name of the blob container immutabilityPolicy within the specified storage account. ImmutabilityPolicy Name must be 'default'
+          serializedName: immutabilityPolicyName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_324
+    - *ref_326
+    - !<!Parameter> &ref_478
+      schema: *ref_1
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: If-Match
+          description: 'The entity state (ETag) version of the immutability policy to update. A value of "*" can be used to apply the operation only if the immutability policy already exists. If omitted, this operation will always be applied.'
+          serializedName: If-Match
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: header
+    requests:
+    - !<!Request> 
+      parameters:
+      - !<!Parameter> &ref_470
+        schema: *ref_196
+        flattened: true
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: parameters
+            description: The ImmutabilityPolicy Properties that will be created or updated to a blob container.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      - !<!VirtualParameter> &ref_473
+        schema: *ref_175
+        implementation: Method
+        originalParameter: *ref_470
+        pathToProperty: []
+        targetProperty: *ref_471
+        language: !<!Languages> 
+          default:
+            name: immutabilityPeriodSinceCreationInDays
+            description: 'The immutability period for the blobs in the container since the policy creation, in days.'
+        protocol: !<!Protocols> {}
+      - !<!VirtualParameter> &ref_474
+        schema: *ref_181
+        implementation: Method
+        originalParameter: *ref_470
+        pathToProperty: []
+        targetProperty: *ref_472
+        language: !<!Languages> 
+          default:
+            name: allowProtectedAppendWrites
+            description: >-
+              This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and
+              any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
+        protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_473
+      - *ref_474
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}'
+          method: put
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    signatureParameters:
+    - *ref_475
+    - *ref_476
+    - *ref_477
+    - *ref_478
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_196
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          headers:
+          - !<!HttpHeader> 
+            schema: *ref_1
+            header: ETag
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    language: !<!Languages> 
+      default:
+        name: CreateOrUpdateImmutabilityPolicy
+        description: Creates or updates an unlocked immutability policy. ETag in If-Match is honored if given but not required for this operation.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -11914,7 +12048,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> &ref_482
-      schema: *ref_410
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11928,7 +12062,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> 
-      schema: *ref_428
+      schema: *ref_427
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -11942,7 +12076,7 @@ operationGroups:
     - *ref_324
     - *ref_326
     - !<!Parameter> &ref_483
-      schema: *ref_1
+      schema: *ref_479
       implementation: Method
       language: !<!Languages> 
         default:
@@ -11954,61 +12088,14 @@ operationGroups:
           in: header
     requests:
     - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_474
-        schema: *ref_196
-        flattened: true
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: parameters
-            description: The ImmutabilityPolicy Properties that will be created or updated to a blob container.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      - !<!VirtualParameter> &ref_478
-        schema: *ref_175
-        flattenedNames: *ref_473
-        implementation: Method
-        originalParameter: *ref_474
-        pathToProperty: []
-        serializedName: immutabilityPeriodSinceCreationInDays
-        targetProperty: *ref_475
-        language: !<!Languages> 
-          default:
-            name: immutabilityPeriodSinceCreationInDays
-            description: 'The immutability period for the blobs in the container since the policy creation, in days.'
-        protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_479
-        schema: *ref_181
-        flattenedNames: *ref_476
-        implementation: Method
-        originalParameter: *ref_474
-        pathToProperty: []
-        serializedName: allowProtectedAppendWrites
-        targetProperty: *ref_477
-        language: !<!Languages> 
-          default:
-            name: allowProtectedAppendWrites
-            description: >-
-              This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and
-              any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
-        protocol: !<!Protocols> {}
-      signatureParameters:
-      - *ref_478
-      - *ref_479
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
+        http: !<!HttpRequest> 
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}'
-          method: put
-          knownMediaType: json
-          mediaTypes:
-          - application/json
+          method: get
           uri: '{$host}'
     signatureParameters:
     - *ref_480
@@ -12026,7 +12113,7 @@ operationGroups:
         http: !<!HttpResponse> 
           headers:
           - !<!HttpHeader> 
-            schema: *ref_1
+            schema: *ref_479
             header: ETag
           knownMediaType: json
           mediaTypes:
@@ -12035,8 +12122,8 @@ operationGroups:
           - '200'
     language: !<!Languages> 
       default:
-        name: CreateOrUpdateImmutabilityPolicy
-        description: Creates or updates an unlocked immutability policy. ETag in If-Match is honored if given but not required for this operation.
+        name: GetImmutabilityPolicy
+        description: Gets the existing immutability policy along with the corresponding ETag in response headers and body.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12069,7 +12156,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> &ref_487
-      schema: *ref_410
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12083,7 +12170,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> 
-      schema: *ref_428
+      schema: *ref_427
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12099,6 +12186,7 @@ operationGroups:
     - !<!Parameter> &ref_488
       schema: *ref_484
       implementation: Method
+      required: true
       language: !<!Languages> 
         default:
           name: If-Match
@@ -12116,7 +12204,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
           path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}'
-          method: get
+          method: delete
           uri: '{$host}'
     signatureParameters:
     - *ref_485
@@ -12143,8 +12231,10 @@ operationGroups:
           - '200'
     language: !<!Languages> 
       default:
-        name: GetImmutabilityPolicy
-        description: Gets the existing immutability policy along with the corresponding ETag in response headers and body.
+        name: DeleteImmutabilityPolicy
+        description: >-
+          Aborts an unlocked immutability policy. The response of delete has immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required for this operation. Deleting a locked immutability policy is not allowed, only way is
+          to delete the container after deleting all blobs inside the container.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12177,7 +12267,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> &ref_492
-      schema: *ref_410
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12187,18 +12277,6 @@ operationGroups:
             The name of the blob container within the specified storage account. Blob container names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be
             immediately preceded and followed by a letter or number.
           serializedName: containerName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> 
-      schema: *ref_428
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: immutabilityPolicyName
-          description: The name of the blob container immutabilityPolicy within the specified storage account. ImmutabilityPolicy Name must be 'default'
-          serializedName: immutabilityPolicyName
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
@@ -12224,8 +12302,8 @@ operationGroups:
           description: ''
       protocol: !<!Protocols> 
         http: !<!HttpRequest> 
-          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}'
-          method: delete
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/default/lock'
+          method: post
           uri: '{$host}'
     signatureParameters:
     - *ref_490
@@ -12252,10 +12330,8 @@ operationGroups:
           - '200'
     language: !<!Languages> 
       default:
-        name: DeleteImmutabilityPolicy
-        description: >-
-          Aborts an unlocked immutability policy. The response of delete has immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required for this operation. Deleting a locked immutability policy is not allowed, only way is
-          to delete the container after deleting all blobs inside the container.
+        name: LockImmutabilityPolicy
+        description: Sets the ImmutabilityPolicy to Locked state. The only action allowed on a Locked policy is ExtendImmutabilityPolicy action. ETag in If-Match is required for this operation.
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -12263,7 +12339,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_495
+    - !<!Parameter> &ref_498
       schema: *ref_334
       implementation: Method
       required: true
@@ -12275,7 +12351,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_496
+    - !<!Parameter> &ref_499
       schema: *ref_335
       implementation: Method
       required: true
@@ -12287,8 +12363,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_497
-      schema: *ref_410
+    - !<!Parameter> &ref_500
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12303,7 +12379,7 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_498
+    - !<!Parameter> &ref_501
       schema: *ref_494
       implementation: Method
       required: true
@@ -12317,20 +12393,63 @@ operationGroups:
           in: header
     requests:
     - !<!Request> 
+      parameters:
+      - !<!Parameter> &ref_495
+        schema: *ref_196
+        flattened: true
+        implementation: Method
+        language: !<!Languages> 
+          default:
+            name: parameters
+            description: The ImmutabilityPolicy Properties that will be extended for a blob container.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      - !<!VirtualParameter> &ref_496
+        schema: *ref_175
+        implementation: Method
+        originalParameter: *ref_495
+        pathToProperty: []
+        targetProperty: *ref_471
+        language: !<!Languages> 
+          default:
+            name: immutabilityPeriodSinceCreationInDays
+            description: 'The immutability period for the blobs in the container since the policy creation, in days.'
+        protocol: !<!Protocols> {}
+      - !<!VirtualParameter> &ref_497
+        schema: *ref_181
+        implementation: Method
+        originalParameter: *ref_495
+        pathToProperty: []
+        targetProperty: *ref_472
+        language: !<!Languages> 
+          default:
+            name: allowProtectedAppendWrites
+            description: >-
+              This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and
+              any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
+        protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_496
+      - *ref_497
       language: !<!Languages> 
         default:
           name: ''
           description: ''
       protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/default/lock'
+        http: !<!HttpWithBodyRequest> 
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/default/extend'
           method: post
+          knownMediaType: json
+          mediaTypes:
+          - application/json
           uri: '{$host}'
     signatureParameters:
-    - *ref_495
-    - *ref_496
-    - *ref_497
     - *ref_498
+    - *ref_499
+    - *ref_500
+    - *ref_501
     responses:
     - !<!SchemaResponse> 
       schema: *ref_196
@@ -12351,150 +12470,6 @@ operationGroups:
           - '200'
     language: !<!Languages> 
       default:
-        name: LockImmutabilityPolicy
-        description: Sets the ImmutabilityPolicy to Locked state. The only action allowed on a Locked policy is ExtendImmutabilityPolicy action. ETag in If-Match is required for this operation.
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-06-01'
-    parameters:
-    - *ref_323
-    - !<!Parameter> &ref_503
-      schema: *ref_334
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: resourceGroupName
-          description: The name of the resource group within the user's subscription. The name is case insensitive.
-          serializedName: resourceGroupName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_504
-      schema: *ref_335
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: accountName
-          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-          serializedName: accountName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_505
-      schema: *ref_410
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: containerName
-          description: >-
-            The name of the blob container within the specified storage account. Blob container names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be
-            immediately preceded and followed by a letter or number.
-          serializedName: containerName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - *ref_324
-    - *ref_326
-    - !<!Parameter> &ref_506
-      schema: *ref_499
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: If-Match
-          description: 'The entity state (ETag) version of the immutability policy to update. A value of "*" can be used to apply the operation only if the immutability policy already exists. If omitted, this operation will always be applied.'
-          serializedName: If-Match
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: header
-    requests:
-    - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_500
-        schema: *ref_196
-        flattened: true
-        implementation: Method
-        language: !<!Languages> 
-          default:
-            name: parameters
-            description: The ImmutabilityPolicy Properties that will be extended for a blob container.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      - !<!VirtualParameter> &ref_501
-        schema: *ref_175
-        flattenedNames: *ref_473
-        implementation: Method
-        originalParameter: *ref_500
-        pathToProperty: []
-        serializedName: immutabilityPeriodSinceCreationInDays
-        targetProperty: *ref_475
-        language: !<!Languages> 
-          default:
-            name: immutabilityPeriodSinceCreationInDays
-            description: 'The immutability period for the blobs in the container since the policy creation, in days.'
-        protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_502
-        schema: *ref_181
-        flattenedNames: *ref_476
-        implementation: Method
-        originalParameter: *ref_500
-        pathToProperty: []
-        serializedName: allowProtectedAppendWrites
-        targetProperty: *ref_477
-        language: !<!Languages> 
-          default:
-            name: allowProtectedAppendWrites
-            description: >-
-              This property can only be changed for unlocked time-based retention policies. When enabled, new blocks can be written to an append blob while maintaining immutability protection and compliance. Only new blocks can be added and
-              any existing blocks cannot be modified or deleted. This property cannot be changed with ExtendImmutabilityPolicy API
-        protocol: !<!Protocols> {}
-      signatureParameters:
-      - *ref_501
-      - *ref_502
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/default/extend'
-          method: post
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    signatureParameters:
-    - *ref_503
-    - *ref_504
-    - *ref_505
-    - *ref_506
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_196
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          headers:
-          - !<!HttpHeader> 
-            schema: *ref_499
-            header: ETag
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    language: !<!Languages> 
-      default:
         name: ExtendImmutabilityPolicy
         description: Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action allowed on a Locked policy will be this action. ETag in If-Match is required for this operation.
     protocol: !<!Protocols> {}
@@ -12504,7 +12479,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_509
+    - !<!Parameter> &ref_504
       schema: *ref_334
       implementation: Method
       required: true
@@ -12516,7 +12491,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_510
+    - !<!Parameter> &ref_505
       schema: *ref_335
       implementation: Method
       required: true
@@ -12528,8 +12503,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_511
-      schema: *ref_410
+    - !<!Parameter> &ref_506
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12547,8 +12522,8 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_508
-        schema: *ref_507
+      - !<!Parameter> &ref_503
+        schema: *ref_502
         implementation: Method
         language: !<!Languages> 
           default:
@@ -12559,7 +12534,7 @@ operationGroups:
             in: body
             style: json
       signatureParameters:
-      - *ref_508
+      - *ref_503
       language: !<!Languages> 
         default:
           name: ''
@@ -12573,12 +12548,12 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
-    - *ref_509
-    - *ref_510
-    - *ref_511
+    - *ref_504
+    - *ref_505
+    - *ref_506
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_512
+      schema: *ref_507
       language: !<!Languages> 
         default:
           name: ''
@@ -12609,7 +12584,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_513
+    - !<!Parameter> &ref_508
       schema: *ref_334
       implementation: Method
       required: true
@@ -12621,7 +12596,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_514
+    - !<!Parameter> &ref_509
       schema: *ref_335
       implementation: Method
       required: true
@@ -12647,11 +12622,11 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
-    - *ref_513
-    - *ref_514
+    - *ref_508
+    - *ref_509
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_515
+      schema: *ref_510
       language: !<!Languages> 
         default:
           name: ''
@@ -12665,7 +12640,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_516
+      schema: *ref_511
       language: !<!Languages> 
         default:
           name: ''
@@ -12688,7 +12663,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_524
+    - !<!Parameter> &ref_517
       schema: *ref_334
       implementation: Method
       required: true
@@ -12700,7 +12675,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_525
+    - !<!Parameter> &ref_518
       schema: *ref_335
       implementation: Method
       required: true
@@ -12715,7 +12690,7 @@ operationGroups:
     - *ref_324
     - *ref_326
     - !<!Parameter> 
-      schema: *ref_428
+      schema: *ref_427
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12729,7 +12704,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_518
+      - !<!Parameter> &ref_512
         schema: *ref_205
         flattened: true
         implementation: Method
@@ -12742,14 +12717,12 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!VirtualParameter> &ref_522
+      - !<!VirtualParameter> &ref_515
         schema: *ref_200
-        flattenedNames: *ref_517
         implementation: Method
-        originalParameter: *ref_518
+        originalParameter: *ref_512
         pathToProperty: []
-        serializedName: cors
-        targetProperty: *ref_519
+        targetProperty: *ref_513
         language: !<!Languages> 
           default:
             name: cors
@@ -12757,22 +12730,20 @@ operationGroups:
               Specifies CORS rules for the File service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for
               the File service.
         protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_523
+      - !<!VirtualParameter> &ref_516
         schema: *ref_165
-        flattenedNames: *ref_520
         implementation: Method
-        originalParameter: *ref_518
+        originalParameter: *ref_512
         pathToProperty: []
-        serializedName: shareDeleteRetentionPolicy
-        targetProperty: *ref_521
+        targetProperty: *ref_514
         language: !<!Languages> 
           default:
             name: shareDeleteRetentionPolicy
             description: The file service properties for share soft delete.
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_522
-      - *ref_523
+      - *ref_515
+      - *ref_516
       language: !<!Languages> 
         default:
           name: ''
@@ -12786,8 +12757,8 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
-    - *ref_524
-    - *ref_525
+    - *ref_517
+    - *ref_518
     responses:
     - !<!SchemaResponse> 
       schema: *ref_205
@@ -12804,7 +12775,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_516
+      schema: *ref_511
       language: !<!Languages> 
         default:
           name: ''
@@ -12827,7 +12798,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_526
+    - !<!Parameter> &ref_519
       schema: *ref_334
       implementation: Method
       required: true
@@ -12839,7 +12810,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_527
+    - !<!Parameter> &ref_520
       schema: *ref_335
       implementation: Method
       required: true
@@ -12854,7 +12825,7 @@ operationGroups:
     - *ref_324
     - *ref_326
     - !<!Parameter> 
-      schema: *ref_428
+      schema: *ref_427
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -12877,8 +12848,8 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
-    - *ref_526
-    - *ref_527
+    - *ref_519
+    - *ref_520
     responses:
     - !<!SchemaResponse> 
       schema: *ref_205
@@ -12895,7 +12866,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_516
+      schema: *ref_511
       language: !<!Languages> 
         default:
           name: ''
@@ -12926,7 +12897,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_528
+    - !<!Parameter> &ref_521
       schema: *ref_334
       implementation: Method
       required: true
@@ -12938,7 +12909,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_529
+    - !<!Parameter> &ref_522
       schema: *ref_335
       implementation: Method
       required: true
@@ -12952,7 +12923,7 @@ operationGroups:
           in: path
     - *ref_324
     - *ref_326
-    - !<!Parameter> &ref_530
+    - !<!Parameter> &ref_523
       schema: *ref_3
       implementation: Method
       language: !<!Languages> 
@@ -12963,7 +12934,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: query
-    - !<!Parameter> &ref_531
+    - !<!Parameter> &ref_524
       schema: *ref_3
       implementation: Method
       language: !<!Languages> 
@@ -12986,13 +12957,13 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
-    - *ref_528
-    - *ref_529
-    - *ref_530
-    - *ref_531
+    - *ref_521
+    - *ref_522
+    - *ref_523
+    - *ref_524
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_532
+      schema: *ref_525
       language: !<!Languages> 
         default:
           name: ''
@@ -13006,7 +12977,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_516
+      schema: *ref_511
       language: !<!Languages> 
         default:
           name: ''
@@ -13027,6 +12998,291 @@ operationGroups:
         description: Lists all shares.
         paging:
           nextLinkName: nextLink
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-06-01'
+    parameters:
+    - *ref_323
+    - !<!Parameter> &ref_531
+      schema: *ref_334
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: The name of the resource group within the user's subscription. The name is case insensitive.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_532
+      schema: *ref_335
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_533
+      schema: *ref_409
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: shareName
+          description: >-
+            The name of the file share within the specified storage account. File share names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be immediately
+            preceded and followed by a letter or number.
+          serializedName: shareName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_324
+    - *ref_326
+    requests:
+    - !<!Request> 
+      parameters:
+      - !<!Parameter> &ref_526
+        schema: *ref_198
+        flattened: true
+        implementation: Method
+        required: true
+        language: !<!Languages> 
+          default:
+            name: fileShare
+            description: Properties of the file share to create.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      - !<!VirtualParameter> &ref_529
+        schema: *ref_192
+        implementation: Method
+        originalParameter: *ref_526
+        pathToProperty: []
+        targetProperty: *ref_527
+        language: !<!Languages> 
+          default:
+            name: metadata
+            description: A name-value pair to associate with the share as metadata.
+        protocol: !<!Protocols> {}
+      - !<!VirtualParameter> &ref_530
+        schema: *ref_193
+        implementation: Method
+        originalParameter: *ref_526
+        pathToProperty: []
+        targetProperty: *ref_528
+        language: !<!Languages> 
+          default:
+            name: shareQuota
+            description: 'The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.'
+        protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_529
+      - *ref_530
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/default/shares/{shareName}'
+          method: put
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    signatureParameters:
+    - *ref_531
+    - *ref_532
+    - *ref_533
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_198
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    - !<!SchemaResponse> 
+      schema: *ref_198
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '201'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_511
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: Create
+        description: 'Creates a new share under the specified account as described by request body. The share resource includes metadata and properties for that share. It does not include a list of the files contained by the share. '
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2019-06-01'
+    parameters:
+    - *ref_323
+    - !<!Parameter> &ref_537
+      schema: *ref_334
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: resourceGroupName
+          description: The name of the resource group within the user's subscription. The name is case insensitive.
+          serializedName: resourceGroupName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_538
+      schema: *ref_335
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: accountName
+          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+          serializedName: accountName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - !<!Parameter> &ref_539
+      schema: *ref_409
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: shareName
+          description: >-
+            The name of the file share within the specified storage account. File share names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be immediately
+            preceded and followed by a letter or number.
+          serializedName: shareName
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: path
+    - *ref_324
+    - *ref_326
+    requests:
+    - !<!Request> 
+      parameters:
+      - !<!Parameter> &ref_534
+        schema: *ref_198
+        flattened: true
+        implementation: Method
+        required: true
+        language: !<!Languages> 
+          default:
+            name: fileShare
+            description: Properties to update for the file share.
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      - !<!VirtualParameter> &ref_535
+        schema: *ref_192
+        implementation: Method
+        originalParameter: *ref_534
+        pathToProperty: []
+        targetProperty: *ref_527
+        language: !<!Languages> 
+          default:
+            name: metadata
+            description: A name-value pair to associate with the share as metadata.
+        protocol: !<!Protocols> {}
+      - !<!VirtualParameter> &ref_536
+        schema: *ref_193
+        implementation: Method
+        originalParameter: *ref_534
+        pathToProperty: []
+        targetProperty: *ref_528
+        language: !<!Languages> 
+          default:
+            name: shareQuota
+            description: 'The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.'
+        protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_535
+      - *ref_536
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/default/shares/{shareName}'
+          method: patch
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    signatureParameters:
+    - *ref_537
+    - *ref_538
+    - *ref_539
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_198
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_511
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: Update
+        description: 'Updates share properties as specified in request body. Properties not mentioned in the request will not be changed. Update fails if the specified share does not already exist. '
     protocol: !<!Protocols> {}
   - !<!Operation> 
     apiVersions:
@@ -13059,300 +13315,7 @@ operationGroups:
         http: !<!HttpParameter> 
           in: path
     - !<!Parameter> &ref_542
-      schema: *ref_410
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: shareName
-          description: >-
-            The name of the file share within the specified storage account. File share names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be immediately
-            preceded and followed by a letter or number.
-          serializedName: shareName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - *ref_324
-    - *ref_326
-    requests:
-    - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_534
-        schema: *ref_198
-        flattened: true
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: fileShare
-            description: Properties of the file share to create.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      - !<!VirtualParameter> &ref_538
-        schema: *ref_192
-        flattenedNames: *ref_533
-        implementation: Method
-        originalParameter: *ref_534
-        pathToProperty: []
-        serializedName: metadata
-        targetProperty: *ref_535
-        language: !<!Languages> 
-          default:
-            name: metadata
-            description: A name-value pair to associate with the share as metadata.
-        protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_539
-        schema: *ref_193
-        flattenedNames: *ref_536
-        implementation: Method
-        originalParameter: *ref_534
-        pathToProperty: []
-        serializedName: shareQuota
-        targetProperty: *ref_537
-        language: !<!Languages> 
-          default:
-            name: shareQuota
-            description: 'The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.'
-        protocol: !<!Protocols> {}
-      signatureParameters:
-      - *ref_538
-      - *ref_539
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/default/shares/{shareName}'
-          method: put
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    signatureParameters:
-    - *ref_540
-    - *ref_541
-    - *ref_542
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_198
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    - !<!SchemaResponse> 
-      schema: *ref_198
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '201'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_516
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: Create
-        description: 'Creates a new share under the specified account as described by request body. The share resource includes metadata and properties for that share. It does not include a list of the files contained by the share. '
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-06-01'
-    parameters:
-    - *ref_323
-    - !<!Parameter> &ref_546
-      schema: *ref_334
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: resourceGroupName
-          description: The name of the resource group within the user's subscription. The name is case insensitive.
-          serializedName: resourceGroupName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_547
-      schema: *ref_335
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: accountName
-          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-          serializedName: accountName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_548
-      schema: *ref_410
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: shareName
-          description: >-
-            The name of the file share within the specified storage account. File share names must be between 3 and 63 characters in length and use numbers, lower-case letters and dash (-) only. Every dash (-) character must be immediately
-            preceded and followed by a letter or number.
-          serializedName: shareName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - *ref_324
-    - *ref_326
-    requests:
-    - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_543
-        schema: *ref_198
-        flattened: true
-        implementation: Method
-        required: true
-        language: !<!Languages> 
-          default:
-            name: fileShare
-            description: Properties to update for the file share.
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      - !<!VirtualParameter> &ref_544
-        schema: *ref_192
-        flattenedNames: *ref_533
-        implementation: Method
-        originalParameter: *ref_543
-        pathToProperty: []
-        serializedName: metadata
-        targetProperty: *ref_535
-        language: !<!Languages> 
-          default:
-            name: metadata
-            description: A name-value pair to associate with the share as metadata.
-        protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_545
-        schema: *ref_193
-        flattenedNames: *ref_536
-        implementation: Method
-        originalParameter: *ref_543
-        pathToProperty: []
-        serializedName: shareQuota
-        targetProperty: *ref_537
-        language: !<!Languages> 
-          default:
-            name: shareQuota
-            description: 'The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5TB (5120). For Large File Shares, the maximum size is 102400.'
-        protocol: !<!Protocols> {}
-      signatureParameters:
-      - *ref_544
-      - *ref_545
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/default/shares/{shareName}'
-          method: patch
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    signatureParameters:
-    - *ref_546
-    - *ref_547
-    - *ref_548
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_198
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_516
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: Update
-        description: 'Updates share properties as specified in request body. Properties not mentioned in the request will not be changed. Update fails if the specified share does not already exist. '
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2019-06-01'
-    parameters:
-    - *ref_323
-    - !<!Parameter> &ref_549
-      schema: *ref_334
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: resourceGroupName
-          description: The name of the resource group within the user's subscription. The name is case insensitive.
-          serializedName: resourceGroupName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_550
-      schema: *ref_335
-      implementation: Method
-      required: true
-      language: !<!Languages> 
-        default:
-          name: accountName
-          description: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-          serializedName: accountName
-      protocol: !<!Protocols> 
-        http: !<!HttpParameter> 
-          in: path
-    - !<!Parameter> &ref_551
-      schema: *ref_410
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -13379,9 +13342,9 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
-    - *ref_549
-    - *ref_550
-    - *ref_551
+    - *ref_540
+    - *ref_541
+    - *ref_542
     responses:
     - !<!SchemaResponse> 
       schema: *ref_198
@@ -13398,7 +13361,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_516
+      schema: *ref_511
       language: !<!Languages> 
         default:
           name: ''
@@ -13421,7 +13384,7 @@ operationGroups:
       version: '2019-06-01'
     parameters:
     - *ref_323
-    - !<!Parameter> &ref_552
+    - !<!Parameter> &ref_543
       schema: *ref_334
       implementation: Method
       required: true
@@ -13433,7 +13396,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_553
+    - !<!Parameter> &ref_544
       schema: *ref_335
       implementation: Method
       required: true
@@ -13445,8 +13408,8 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_554
-      schema: *ref_410
+    - !<!Parameter> &ref_545
+      schema: *ref_409
       implementation: Method
       required: true
       language: !<!Languages> 
@@ -13473,9 +13436,9 @@ operationGroups:
           method: delete
           uri: '{$host}'
     signatureParameters:
-    - *ref_552
-    - *ref_553
-    - *ref_554
+    - *ref_543
+    - *ref_544
+    - *ref_545
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -13497,7 +13460,7 @@ operationGroups:
           - '204'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_516
+      schema: *ref_511
       language: !<!Languages> 
         default:
           name: ''

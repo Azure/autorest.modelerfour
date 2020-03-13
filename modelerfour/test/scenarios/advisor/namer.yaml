@@ -980,9 +980,9 @@ schemas: !<!Schemas>
                     immediate:
                     - *ref_27
                   properties:
-                  - !<!Property> &ref_94
+                  - !<!Property> &ref_93
                     schema: *ref_28
-                    flattenedNames: &ref_92
+                    flattenedNames:
                     - properties
                     - suppressionId
                     serializedName: suppressionId
@@ -991,9 +991,9 @@ schemas: !<!Schemas>
                         name: suppressionId
                         description: The GUID of the suppression.
                     protocol: !<!Protocols> {}
-                  - !<!Property> &ref_96
+                  - !<!Property> &ref_94
                     schema: *ref_29
-                    flattenedNames: &ref_95
+                    flattenedNames:
                     - properties
                     - ttl
                     serializedName: ttl
@@ -1381,7 +1381,7 @@ schemas: !<!Schemas>
   - *ref_53
   - *ref_54
   - *ref_30
-  - !<!ObjectSchema> &ref_107
+  - !<!ObjectSchema> &ref_105
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -2239,7 +2239,7 @@ operationGroups:
       version: '2017-04-19'
     parameters:
     - *ref_67
-    - !<!Parameter> &ref_99
+    - !<!Parameter> &ref_97
       schema: *ref_2
       implementation: Method
       required: true
@@ -2251,7 +2251,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_100
+    - !<!Parameter> &ref_98
       schema: *ref_2
       implementation: Method
       required: true
@@ -2263,7 +2263,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_101
+    - !<!Parameter> &ref_99
       schema: *ref_2
       implementation: Method
       required: true
@@ -2279,7 +2279,7 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> &ref_93
+      - !<!Parameter> &ref_92
         schema: *ref_30
         flattened: true
         implementation: Method
@@ -2292,35 +2292,31 @@ operationGroups:
           http: !<!HttpParameter> 
             in: body
             style: json
-      - !<!VirtualParameter> &ref_97
+      - !<!VirtualParameter> &ref_95
         schema: *ref_28
-        flattenedNames: *ref_92
         implementation: Method
-        originalParameter: *ref_93
+        originalParameter: *ref_92
         pathToProperty: []
-        serializedName: suppressionId
-        targetProperty: *ref_94
+        targetProperty: *ref_93
         language: !<!Languages> 
           default:
             name: suppressionId
             description: The GUID of the suppression.
         protocol: !<!Protocols> {}
-      - !<!VirtualParameter> &ref_98
+      - !<!VirtualParameter> &ref_96
         schema: *ref_29
-        flattenedNames: *ref_95
         implementation: Method
-        originalParameter: *ref_93
+        originalParameter: *ref_92
         pathToProperty: []
-        serializedName: ttl
-        targetProperty: *ref_96
+        targetProperty: *ref_94
         language: !<!Languages> 
           default:
             name: ttl
             description: The duration for which the suppression is valid.
         protocol: !<!Protocols> {}
       signatureParameters:
-      - *ref_97
-      - *ref_98
+      - *ref_95
+      - *ref_96
       language: !<!Languages> 
         default:
           name: ''
@@ -2334,9 +2330,9 @@ operationGroups:
           - application/json
           uri: '{$host}'
     signatureParameters:
+    - *ref_97
+    - *ref_98
     - *ref_99
-    - *ref_100
-    - *ref_101
     responses:
     - !<!SchemaResponse> 
       schema: *ref_30
@@ -2362,7 +2358,7 @@ operationGroups:
       version: '2017-04-19'
     parameters:
     - *ref_67
-    - !<!Parameter> &ref_102
+    - !<!Parameter> &ref_100
       schema: *ref_2
       implementation: Method
       required: true
@@ -2374,7 +2370,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_103
+    - !<!Parameter> &ref_101
       schema: *ref_2
       implementation: Method
       required: true
@@ -2386,7 +2382,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: path
-    - !<!Parameter> &ref_104
+    - !<!Parameter> &ref_102
       schema: *ref_2
       implementation: Method
       required: true
@@ -2411,9 +2407,9 @@ operationGroups:
           method: delete
           uri: '{$host}'
     signatureParameters:
+    - *ref_100
+    - *ref_101
     - *ref_102
-    - *ref_103
-    - *ref_104
     responses:
     - !<!Response> 
       language: !<!Languages> 
@@ -2437,7 +2433,7 @@ operationGroups:
     - *ref_67
     - *ref_72
     - *ref_68
-    - !<!Parameter> &ref_105
+    - !<!Parameter> &ref_103
       schema: *ref_81
       implementation: Method
       language: !<!Languages> 
@@ -2448,7 +2444,7 @@ operationGroups:
       protocol: !<!Protocols> 
         http: !<!HttpParameter> 
           in: query
-    - !<!Parameter> &ref_106
+    - !<!Parameter> &ref_104
       schema: *ref_2
       implementation: Method
       language: !<!Languages> 
@@ -2471,11 +2467,11 @@ operationGroups:
           method: get
           uri: '{$host}'
     signatureParameters:
-    - *ref_105
-    - *ref_106
+    - *ref_103
+    - *ref_104
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_107
+      schema: *ref_105
       language: !<!Languages> 
         default:
           name: ''
