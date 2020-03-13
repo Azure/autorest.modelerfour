@@ -63,7 +63,8 @@ const specialCharacterMapping: { [character: string]: string } = {
 const apiVersionParameterNames = [
   'api-version',
   'apiversion',
-  'x-ms-api-version'
+  'x-ms-api-version',
+  'x-ms-version'
 ];
 
 export function getValidEnumValueName(originalString: string): string {
