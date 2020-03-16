@@ -327,6 +327,24 @@ schemas: !<!Schemas>
   - !<!ChoiceSchema> &ref_50
     choices:
     - !<!ChoiceValue> 
+      value: Kind1
+      language:
+        default:
+          name: Kind1
+          description: ''
+    type: choice
+    apiVersions:
+    - !<!ApiVersion> 
+      version: '2016-02-29'
+    choiceType: *ref_1
+    language: !<!Languages> 
+      default:
+        name: MyKind
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!ChoiceSchema> &ref_51
+    choices:
+    - !<!ChoiceValue> 
       value: pink
       language:
         default:
@@ -365,19 +383,6 @@ schemas: !<!Schemas>
       default:
         name: ApiVersion-2016-02-29
         description: Api Version (2016-02-29)
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_51
-    type: constant
-    apiVersions:
-    - !<!ApiVersion> 
-      version: '2016-02-29'
-    value: !<!ConstantValue> 
-      value: Kind1
-    valueType: *ref_1
-    language: !<!Languages> 
-      default:
-        name: MyKind
-        description: ''
     protocol: !<!Protocols> {}
   dictionaries:
   - !<!DictionarySchema> &ref_67
@@ -1319,7 +1324,7 @@ schemas: !<!Schemas>
                   description: ''
               protocol: !<!Protocols> {}
             - !<!Property> 
-              schema: *ref_50
+              schema: *ref_51
               serializedName: color
               language: !<!Languages> 
                 default:
@@ -1714,7 +1719,7 @@ schemas: !<!Schemas>
       immediate:
         Kind1: *ref_46
       property: !<!Property> &ref_43
-        schema: *ref_51
+        schema: *ref_50
         isDiscriminator: true
         required: true
         serializedName: kind

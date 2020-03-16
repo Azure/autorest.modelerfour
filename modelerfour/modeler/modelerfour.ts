@@ -60,6 +60,7 @@ export class ModelerFour {
   private profileFilter!: Array<string>;
   private apiVersionFilter!: Array<string>;
   private schemaCache = new ProcessingCache((schema: OpenAPI.Schema, name: string) => this.processSchemaImpl(schema, name));
+  private options: Dictionary<any> = {};
 
   constructor(protected session: Session<oai3>) {
     this.input = session.model;// shadow(session.model, filename);
@@ -137,6 +138,8 @@ export class ModelerFour {
   }
 
   async init() {
+    this.options = await this.session.getValue('modelerfour', {});
+
     // grab override-client-name
     const newTitle = await this.session.getValue('override-client-name', '');
     if (newTitle) {
@@ -458,7 +461,8 @@ export class ModelerFour {
     name = (xmse && xmse.name) || this.interpret.getName(name, schema);
     const sealed = xmse && !(xmse.modelAsString);
 
-    if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
+    // model as string forces it to be a choice/enum.
+    if (xmse?.modelAsString !== true && (length(schema.enum) === 1 || length(xmse?.values) === 1)) {
       const constVal = length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0];
 
       return this.codeModel.schemas.add(new ConstantSchema(name, this.interpret.getDescription(``, schema), {
@@ -998,7 +1002,7 @@ export class ModelerFour {
       }
     });
 
-    if (http.mediaTypes.length > 1) {
+    if (this.options[`always-create-content-type-parameter`] === true || http.mediaTypes.length > 1) {
       // we have multiple media types
       // make sure we have an enum for the content-type
       // and add a content type parameter to the request

@@ -133,6 +133,10 @@ modelerfour:
   # defaults to false
   additional-checks: false|true
 
+  # always create the content-type parameter for binary requests 
+  # when it's only one possible value, make it a constant.
+  always-create-content-type-parameter: true
+
   # customization of the identifier normalization and naming provided by the prenamer.
   # pascal|pascalcase - MultiWordIdentifier 
   # camel|camelcase - multiWordIdentifier 
