@@ -988,6 +988,24 @@ export class ModelerFour {
     return mediaTypeGroups;
   }
 
+  getContentTypeParameterSchema(http: HttpWithBodyRequest, alwaysConstant = false) {
+    if (http.mediaTypes.length === 1 || alwaysConstant) {
+      return this.codeModel.schemas.add(
+        new ConstantSchema(http.mediaTypes[0], `Content Type '${http.mediaTypes[0]}'`, {
+          valueType: this.stringSchema,
+          value: new ConstantValue(http.mediaTypes[0])
+        })
+      );
+    }
+    const choices = http.mediaTypes.sort().map(each => new ChoiceValue(each, `Content Type '${each}'`, each));
+    const check = JSON.stringify(choices);
+
+    // look for a sealed choice schema with that set of choices
+    return this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
+      new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
+    );
+  }
+
   processBinary(kmt: KnownMediaType, kmtBinary: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
     const http = new HttpBinaryRequest({
       knownMediaType: kmt,
@@ -1003,16 +1021,7 @@ export class ModelerFour {
     });
 
     if (this.options[`always-create-content-type-parameter`] === true || http.mediaTypes.length > 1) {
-      // we have multiple media types
-      // make sure we have an enum for the content-type
-      // and add a content type parameter to the request
-      const choices = http.mediaTypes.sort().map(each => new ChoiceValue(each, `Content Type '${each}'`, each));
-      const check = JSON.stringify(choices);
-
-      // look for a sealed choice schema with that set of choices
-      const scs = this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
-        new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
-      );
+      const scs = this.getContentTypeParameterSchema(http);
 
       // add the parameter for the binary upload.
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
@@ -1052,12 +1061,25 @@ export class ModelerFour {
       mediaTypes: kmtObject.map(each => each.mediaType),
     });
 
+
+
     // create the request object
     const httpRequest = new Request({
       protocol: {
         http
       }
     });
+
+    if (this.options[`always-create-content-type-parameter`] === true) {
+      const scs = this.getContentTypeParameterSchema(http, true);
+
+      // add the parameter for the binary upload.
+      httpRequest.addParameter(new Parameter('content-type', 'Body Parameter content-type', scs, {
+        implementation: ImplementationLocation.Method
+      }));
+
+
+    }
 
     const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
     const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
