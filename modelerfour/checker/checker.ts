@@ -39,7 +39,7 @@ export class Checker {
 
     const types = values(<Schema[]>this.codeModel.schemas.objects).concat(values(this.codeModel.schemas.groups)).concat(values(this.codeModel.schemas.choices)).concat(values(this.codeModel.schemas.sealedChoices)).toArray()
     for (const dupe of values(types).duplicates(each => each.language.default.name)) {
-      this.session.error(`Duplicate Object Schema '${dupe}' detected.`, []);
+      this.session.error(`Object schemas with '${dupe}' name  detected.`, []);
     };
 
     /* for (const dupe of values(this.codeModel.schemas.numbers).select(each => each.type).duplicates()) {
@@ -48,13 +48,12 @@ export class Checker {
   }
 
   process() {
-    if (this.options['additional-checks'] === true) {
+    if (this.options['additional-checks'] !== false) {
       this.checkOperationGroups();
 
       this.checkOperations();
 
       this.checkSchemas();
-
     }
     return this.codeModel;
   }
