@@ -262,6 +262,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
               'cmyk': 'CMYK'
             },
             local: "_ + camel",
+            constantParameter: 'pascal',
             /*
             for when playing with python style settings :
             
