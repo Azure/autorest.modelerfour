@@ -450,8 +450,9 @@ export class ModelerFour {
       case JsonType.Boolean:
         return this.booleanSchema;
       case JsonType.Number:
-      case JsonType.Integer:
         return this.processNumberSchema('number', schema);
+      case JsonType.Integer:
+        return this.processIntegerSchema('integer', schema);
     }
     throw Error(`Enum types of '${schema.type}' and format '${schema.format}' are not supported. Correct your input (${schema['x-ms-metadata']?.name}).`);
   }
