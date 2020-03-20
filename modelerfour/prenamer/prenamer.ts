@@ -43,6 +43,7 @@ export class PreNamer {
     choice: Style.pascal,
     choiceValue: Style.pascal,
     constant: Style.pascal,
+    constantParameter: Style.camel,
     type: Style.pascal,
     client: Style.pascal,
     local: Style.camel,
@@ -70,6 +71,7 @@ export class PreNamer {
       choice: Style.select(naming.choice, Style.pascal, maxPreserve),
       choiceValue: Style.select(naming.choiceValue, Style.pascal, maxPreserve),
       constant: Style.select(naming.constant, Style.pascal, maxPreserve),
+      constantParameter: Style.select(naming.constantParameter, Style.camel, maxPreserve),
       client: Style.select(naming.client, Style.pascal, maxPreserve),
       type: Style.select(naming.type, Style.pascal, maxPreserve),
       local: Style.select(naming.local, Style.camel, maxPreserve),
@@ -192,7 +194,7 @@ export class PreNamer {
 
     for (const parameter of values(this.codeModel.globalParameters)) {
       if (parameter.schema.type === SchemaType.Constant) {
-        setName(parameter, this.format.constant, '', this.format.override);
+        setName(parameter, this.format.constantParameter, '', this.format.override);
       } else {
         setName(parameter, this.format.parameter, '', this.format.override);
       }
@@ -235,7 +237,7 @@ export class PreNamer {
   private setParameterNames(parameterContainer: Operation | Request) {
     for (const parameter of values(parameterContainer.signatureParameters)) {
       if (parameter.schema.type === SchemaType.Constant) {
-        setName(parameter, this.format.constant, '', this.format.override);
+        setName(parameter, this.format.constantParameter, '', this.format.override);
       }
       else {
         setName(parameter, this.format.parameter, '', this.format.override);
@@ -244,7 +246,7 @@ export class PreNamer {
     for (const parameter of values(parameterContainer.parameters)) {
       if ((parameterContainer.signatureParameters ?? []).indexOf(parameter) === -1) {
         if (parameter.schema.type === SchemaType.Constant) {
-          setName(parameter, this.format.constant, '', this.format.override);
+          setName(parameter, this.format.constantParameter, '', this.format.override);
         }
         else {
           if (parameter.implementation === ImplementationLocation.Client) {

@@ -176,6 +176,15 @@ pipeline-model: v3
 modelerfour-loaded: true
 ```
 
+
+``` yaml !$(enable-deduplication)
+# By default, modeler-four based generators will not use the deduplicator or subset reducer
+# if we need to easily disable this set the enable-deduplication flag.
+pass-thru:
+  - model-deduplicator
+  - subset-reducer
+```
+
 ``` yaml
 modelerfour:
   naming:
