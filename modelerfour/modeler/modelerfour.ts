@@ -1061,8 +1061,6 @@ export class ModelerFour {
       mediaTypes: kmtObject.map(each => each.mediaType),
     });
 
-
-
     // create the request object
     const httpRequest = new Request({
       protocol: {
