@@ -1027,9 +1027,7 @@ export class ModelerFour {
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
         implementation: ImplementationLocation.Method,
         protocol: {
-          http: {
-            in: 'header'
-          }
+          http: new HttpParameter(ParameterLocation.Header)
         }
       }))
     }
@@ -1080,9 +1078,7 @@ export class ModelerFour {
       httpRequest.addParameter(new Parameter('content-type', 'Body Parameter content-type', scs, {
         implementation: ImplementationLocation.Method,
         protocol: {
-          http: {
-            in: 'header'
-          }
+          http: new HttpParameter(ParameterLocation.Header)
         }
       }));
 
