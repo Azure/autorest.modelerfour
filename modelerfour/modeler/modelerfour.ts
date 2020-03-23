@@ -1028,7 +1028,7 @@ export class ModelerFour {
         implementation: ImplementationLocation.Method,
         language: {
           default: {
-            serializedName: 'contentType'
+            serializedName: 'Content-Type'
           }
         },
         protocol: {
@@ -1086,7 +1086,7 @@ export class ModelerFour {
           http: new HttpParameter(ParameterLocation.Header)
         }, language: {
           default: {
-            serializedName: 'contentType'
+            serializedName: 'Content-Type'
           }
         },
 
