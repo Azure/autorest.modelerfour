@@ -256,6 +256,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
           'group-parameters': true,
           'resolve-schema-name-collisons': true,
           'additional-checks': true,
+          //'always-create-content-type-parameter': true,
           naming: {
             override: {
               '$host': '$host',
