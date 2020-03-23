@@ -1026,6 +1026,11 @@ export class ModelerFour {
       // add the parameter for the binary upload.
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
         implementation: ImplementationLocation.Method,
+        language: {
+          default: {
+            serializedName: 'contentType'
+          }
+        },
         protocol: {
           http: new HttpParameter(ParameterLocation.Header)
         }
@@ -1079,7 +1084,12 @@ export class ModelerFour {
         implementation: ImplementationLocation.Method,
         protocol: {
           http: new HttpParameter(ParameterLocation.Header)
-        }
+        }, language: {
+          default: {
+            serializedName: 'contentType'
+          }
+        },
+
       }));
 
 
