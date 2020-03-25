@@ -7,8 +7,6 @@ const xmsFlatten = 'x-ms-client-flatten';
 const isCurrentlyFlattening = 'x-ms-flattening';
 const hasBeenFlattened = 'x-ms-flattened';
 
-
-
 export class Flattener {
   codeModel: CodeModel
   options: Dictionary<any> = {};
@@ -218,13 +216,19 @@ export class Flattener {
             const body = values(request.parameters).first(p => p.protocol.http?.in === ParameterLocation.Body && p.implementation === ImplementationLocation.Method);
 
             if (body && isObjectSchema(body.schema)) {
+              const schema = <ObjectSchema>body.schema;
+              if (schema.discriminator) {
+                // skip flattening on polymorphic payloads, since you don't know the actual type.
+                continue;
+              }
+
               let flattenOperationPayload = body?.extensions?.[xmsFlatten];
               if (flattenOperationPayload === false) {
                 // told not to explicitly.
                 continue;
               }
 
-              const schema = <ObjectSchema>body.schema;
+
               if (!flattenOperationPayload) {
                 const threshold = <number>operation.extensions?.[xmsThreshold] ?? this.threshold;
                 if (threshold > 0) {

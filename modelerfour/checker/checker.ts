@@ -31,7 +31,7 @@ export class Checker {
   }
 
   checkSchemas() {
-    const allSchemas = values(<Dictionary<Schema[]>><any>this.codeModel.schemas).selectMany(schemas => values(schemas)).toArray();
+    const allSchemas = values(<Dictionary<Schema[]>><any>this.codeModel.schemas).selectMany(schemas => Array.isArray(schemas) ? values(schemas) : []).toArray();
 
     for (const each of values(allSchemas).where(each => !each.language.default.name)) {
       this.session.warning(`Schema Missing Name '${JSON.stringify(each)}'.`, []);
