@@ -39,7 +39,7 @@ export class Checker {
 
     const types = values(<Schema[]>this.codeModel.schemas.objects).concat(values(this.codeModel.schemas.groups)).concat(values(this.codeModel.schemas.choices)).concat(values(this.codeModel.schemas.sealedChoices)).toArray()
     for (const dupe of values(types).duplicates(each => each.language.default.name)) {
-      this.session.error(`Object schemas with '${dupe}' name  detected.`, []);
+      this.session.error(`Duplicate object schemas with '${dupe.language.default.name}' name  detected.`, []);
     };
 
     /* for (const dupe of values(this.codeModel.schemas.numbers).select(each => each.type).duplicates()) {
