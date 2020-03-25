@@ -327,6 +327,7 @@ export class ModelerFour {
       format: schema.format === StringFormat.DateTimeRfc1123 ? StringFormat.DateTimeRfc1123 : StringFormat.DateTime,
     }));
   }
+
   processDateSchema(name: string, schema: OpenAPI.Schema): DateSchema {
     return this.codeModel.schemas.add(new DateSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
@@ -571,7 +572,7 @@ export class ModelerFour {
       this.use(<OpenAPI.Refable<OpenAPI.Schema>>propertyDeclaration, (pSchemaName, pSchema) => {
         const pType = this.processSchema(pSchemaName || `type·for·${propertyName}`, pSchema);
         const prop = objectSchema.addProperty(new Property(this.interpret.getPreferredName(propertyDeclaration, propertyName), propertyDeclaration.description || this.interpret.getDescription(pType.language.default.description, property), pType, {
-          readOnly: propertyDeclaration.readOnly,
+          readOnly: propertyDeclaration.readOnly || pSchema.readOnly,
           nullable: propertyDeclaration.nullable,
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
           serializedName: propertyName,
@@ -1026,6 +1027,8 @@ export class ModelerFour {
       // add the parameter for the binary upload.
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
         implementation: ImplementationLocation.Method,
+        required: true,
+
         language: {
           default: {
             serializedName: 'Content-Type'
@@ -1053,7 +1056,8 @@ export class ModelerFour {
           style: SerializationStyle.Binary,
         })
       },
-      implementation: ImplementationLocation.Method
+      implementation: ImplementationLocation.Method,
+      required: true
     }));
 
     return operation.addRequest(httpRequest);
@@ -1082,6 +1086,7 @@ export class ModelerFour {
       // add the parameter for the binary upload.
       httpRequest.addParameter(new Parameter('content-type', 'Body Parameter content-type', scs, {
         implementation: ImplementationLocation.Method,
+        required: true,
         protocol: {
           http: new HttpParameter(ParameterLocation.Header)
         }, language: {
@@ -1089,10 +1094,7 @@ export class ModelerFour {
             serializedName: 'Content-Type'
           }
         },
-
       }));
-
-
     }
 
     const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
@@ -1104,10 +1106,9 @@ export class ModelerFour {
     httpRequest.addParameter(new Parameter(
       body.instance?.['x-ms-requestBody-name'] ?? 'body',
       this.interpret.getDescription('', body?.instance || {}),
-
       pSchema, {
       extensions: this.interpret.getExtensionProperties(body.instance),
-      required: body.instance.required,
+      required: !!body.instance.required,
       protocol: {
         http: new HttpParameter(ParameterLocation.Body, {
           style: <SerializationStyle><any>kmt,
