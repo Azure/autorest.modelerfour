@@ -14,7 +14,7 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
+    
 - script: |
     npm install -g npm
     npm cache clear --force
@@ -26,7 +26,29 @@ steps:
     npx @microsoft/rush test
     rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
 
+    # set the actual package versions
+    npx @microsoft/rush set-versions
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    npx @microsoft/rush publish --publish --pack --include-all --tag latest
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    v=`node -e "console.log(require('./package.json').version)"`
+    echo "##vso[task.setvariable variable=artname]v$v"
+
   displayName: 'Rush install, build and test'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/common/temp/artifacts/packages'
+    artifact: '$(artname)'
+    publishLocation: 'pipeline'
+
+- task: GitHubComment@0
+  inputs:
+    gitHubConnection: 'Azure'
+    repositoryName: '$(Build.Repository.Name)'
+    comment: 'PR pkg created: $(artname)'
 
 - task: UsePythonVersion@0
   inputs:
