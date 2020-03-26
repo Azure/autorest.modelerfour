@@ -57,7 +57,13 @@ steps:
   inputs:
     gitHubConnection: 'Azure'
     repositoryName: '$(Build.Repository.Name)'
-    comment: 'PR pkg created: $(DOWNURL)'
+    comment: |
+      You may test this build by using the following in your autorest configuration:
+      
+      ``` yaml 
+      use-extension:
+        "@autorest/modelerfour": "$(DOWNURL)" 
+      ```
 
 - task: UsePythonVersion@0
   inputs:
