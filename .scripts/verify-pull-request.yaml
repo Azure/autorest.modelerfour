@@ -50,7 +50,8 @@ steps:
     $ArtifactDownloadURL= $buildPipeline.resource.downloadUrl
     $ArtifactDownloadURL = $ArtifactDownloadURL  -replace "format=zip","format=file&subPath=%2Fautorest-modelerfour-$(artver).tgz" 
     echo $ArtifactDownloadURL
-    echo "##vso[task.setvariable variable=DOWNURL]$ArtifactDownloadURL"
+    $downurl = (iwr "http://tinyurl.com/api-create.php?url=$( [System.Web.HttpUtility]::UrlEncode($ArtifactDownloadURL))" ).Content
+    echo "##vso[task.setvariable variable=DOWNURL]$downurl"
 
 - task: GitHubComment@0
   inputs:
