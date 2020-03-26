@@ -40,7 +40,12 @@ specs:
      - httpInfrastructure.json
      - httpInfrastructure.quirks.json
      - lro.json
+     - media_types.json
      - model-flattening.json
+     - multiapi-v1.json
+     - multiapi-v2.json
+     - multiapi-v3.json
+     - object-type.json
      - paging.json
      - parameter-flattening.json
      - report.json
@@ -61,34 +66,31 @@ languages:
     outputPath: ../modelerfour/test/regression/python
     oldArgs:
       - --v3
-      - --use:@autorest/python@5.0.0-dev.20200225.1
+      - --use:@autorest/python@5.0.0-dev.20200314.1
     newArgs:
       - --v3
       - --use:../modelerfour
-      - --use:@autorest/python@5.0.0-dev.20200225.1
+      - --use:@autorest/python@5.0.0-dev.20200314.1
   - language: typescript
     excludeSpecs:
       # The following specs currently crash the v3 TypeScript generator
-      - additionalProperties.json
-      - azure-parameter-grouping.json
       - azure-special-properties.json
-      - body-array.json
-      - body-dictionary.json
       - body-formdata-urlencoded.json
       - body-formdata.json
-      - custom-baseUrl-paging.json
-      - header.json
       - lro.json
+      - media_types.json
       - model-flattening.json
-      - paging.json
+      - multiapi-v3.json
       - required-optional.json
     outputPath: ../modelerfour/test/regression/typescript
     oldArgs:
       - --v3
       - --package-name:test-package
-      - --use:@autorest/typescript@0.1.0-dev.20200203.1
+      - --title:TestClient
+      - --use:@autorest/typescript@6.0.0-dev.20200325.1
     newArgs:
       - --v3
       - --package-name:test-package
+      - --title:TestClient
       - --use:../modelerfour
-      - --use:@autorest/typescript@0.1.0-dev.20200203.1
+      - --use:@autorest/typescript@6.0.0-dev.20200325.1
