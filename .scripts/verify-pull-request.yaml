@@ -33,22 +33,22 @@ steps:
     npx @microsoft/rush publish --publish --pack --include-all --tag latest
     rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
 
-    v=`node -e "console.log(require('./package.json').version)"`
-    echo "##vso[task.setvariable variable=artname]v$v"
+    v=`node -e "console.log(require('modelerfour/package.json').version)"`
+    echo "##vso[task.setvariable variable=artver]$v"
 
   displayName: 'Rush install, build and test'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/common/temp/artifacts/packages'
-    artifact: '$(artname)'
+    targetPath: '$(Pipeline.Workspace)/common/temp/artifacts/packages/autorest-modelerfour-$(artver).tgz'
+    artifact: 'v$(artver)'
     publishLocation: 'pipeline'
 
 - task: GitHubComment@0
   inputs:
     gitHubConnection: 'Azure'
     repositoryName: '$(Build.Repository.Name)'
-    comment: 'PR pkg created: $(artname)'
+    comment: 'PR pkg created: $(artver)'
 
 - task: UsePythonVersion@0
   inputs:
