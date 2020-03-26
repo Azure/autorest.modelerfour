@@ -62,16 +62,24 @@ steps:
       
       run `autorest --reset`
 
-      and then use the following in your autorest configuration:
+      then either: 
+      <br>
+      add `--use:` to the command line:
+      
+      `autorest --use:$(DOWNURL) ...` 
+
+      <br>
+      or use the following in your autorest configuration:
       
       ``` yaml 
       use-extension:
         "@autorest/modelerfour": "$(DOWNURL)" 
       ```
+      <br>
 
       If this build is good for you, give this comment a thumbs up.
       
-      and you should run `autorest --reset` again to remove it.
+      And you should run `autorest --reset`  again once you're finished testing to remove it.
 
 - task: UsePythonVersion@0
   inputs:
