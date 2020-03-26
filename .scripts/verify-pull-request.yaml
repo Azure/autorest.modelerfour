@@ -58,12 +58,20 @@ steps:
     gitHubConnection: 'Azure'
     repositoryName: '$(Build.Repository.Name)'
     comment: |
-      You may test this build by using the following in your autorest configuration:
+      You may test this build by:
+      
+      run `autorest --reset`
+
+      and then use the following in your autorest configuration:
       
       ``` yaml 
       use-extension:
         "@autorest/modelerfour": "$(DOWNURL)" 
       ```
+
+      If this build is good for you, give this comment a thumbs up.
+      
+      and you should run `autorest --reset` again to remove it.
 
 - task: UsePythonVersion@0
   inputs:
