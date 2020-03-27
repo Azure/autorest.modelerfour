@@ -1027,7 +1027,7 @@ export class ModelerFour {
       // add the parameter for the binary upload.
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
         implementation: ImplementationLocation.Method,
-        required: true,
+        required: !!body.instance?.required, // if the body is there we pick up required from it. (defaults to false otherwise.)
 
         language: {
           default: {
