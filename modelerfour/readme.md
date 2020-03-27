@@ -1,6 +1,9 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
+#### 4.12.x
+  - (updating.)
+
 #### 4.6.x
   - add additional checks for empty names, collisions
   - fix errant processing on APString => Apstring 
