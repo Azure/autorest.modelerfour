@@ -3,6 +3,7 @@
 ## Changelog:
 
 #### 4.12.x
+  - updated CI to build packages
   - any is in a category in schemas
   - times is a new category in schemas (not populated yet, next build)
   - polymorphic payloads are not flattened (when it's the class that declares the discriminator)
