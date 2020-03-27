@@ -46,12 +46,11 @@ steps:
 
 - pwsh: |
     $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/$(Build.BuildId)/artifacts?artifactName=packages&api-version=5.1"
-    $buildPipeline= Invoke-RestMethod -Uri $url  -Method Get
+    $buildPipeline= Invoke-RestMethod -Uri $url -Headers @{ Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN" } -Method Get
     $ArtifactDownloadURL= $buildPipeline.resource.downloadUrl
     $ArtifactDownloadURL = $ArtifactDownloadURL  -replace "format=zip","format=file&subPath=%2Fautorest-modelerfour-$(artver).tgz" 
-    echo  "URL: '$ArtifactDownloadURL'"
-    $enc =  [System.Web.HttpUtility]::UrlEncode($ArtifactDownloadURL)
-    $downurl = (iwr "http://tinyurl.com/api-create.php?url=$enc" ).Content
+    echo "Raw Artifact Url: '$ArtifactDownloadURL'"
+    $downurl = (iwr "http://tinyurl.com/api-create.php?url=$( [System.Web.HttpUtility]::UrlEncode($ArtifactDownloadURL))" ).Content
     echo "##vso[task.setvariable variable=DOWNURL]$downurl"
 
 - task: GitHubComment@0
