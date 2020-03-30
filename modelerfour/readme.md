@@ -224,7 +224,7 @@ pipeline:
     input: modelerfour/pre-namer/new-transform
 
   modelerfour/identity:
-    input: modelerfour/pre-namer/new-transform
+    input: modelerfour/checker
 
   modelerfour/emitter:
     input: modelerfour/identity
