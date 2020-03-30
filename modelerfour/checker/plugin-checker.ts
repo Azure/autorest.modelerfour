@@ -20,9 +20,9 @@ export async function processRequest(host: Host) {
 
     // go!
     const result = plugin.process();
-    if (session.errorCount > 0) {
-      throw new Error(`${session.errorCount} errors occured -- cannot continue.`);
-    }
+
+    // throw on errors.
+    session.checkpoint();
 
     // output the model to the pipeline
     if (options['emit-yaml-tags'] !== false) {
