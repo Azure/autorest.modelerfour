@@ -1,6 +1,11 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
+
+#### 4.6.12
+  - when an enum without type is presented, if the values are all strings, assume 'string'
+
+
 #### 4.6.x
   - add additional checks for empty names, collisions
   - fix errant processing on APString => Apstring 
