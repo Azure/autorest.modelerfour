@@ -2,7 +2,8 @@
 
 ## Changelog:
 #### 4.12.x
-  - (updating.)
+  - the checker plugin will now halt on errors (can be disabled by `modelerfour.additional-checks: false`)
+  
 
 #### 4.6.x
   - add additional checks for empty names, collisions
@@ -134,7 +135,7 @@ modelerfour:
 
   # some additional sanity checks to help debugging
   # defaults to false
-  additional-checks: false|true
+  additional-checks: true|false
 
   # always create the content-type parameter for binary requests 
   # when it's only one possible value, make it a constant.
