@@ -884,6 +884,9 @@ export class ModelerFour {
           case StringFormat.Date:
             return this.processDateSchema(name, schema);
 
+          case StringFormat.Time:
+            return this.processTimeSchema(name, schema);
+
           case StringFormat.DateTime:
           case StringFormat.DateTimeRfc1123:
             return this.processDateTimeSchema(name, schema);
