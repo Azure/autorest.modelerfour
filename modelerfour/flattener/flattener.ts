@@ -97,6 +97,14 @@ export class Flattener {
     schema.extensions = schema.extensions || {};
     schema.extensions[isCurrentlyFlattening] = true;
 
+    // ensure that parent schemas are done first -- this should remove 
+    // the problem when the order isn't just right.
+    for (const parent of values(schema.parents?.immediate)) {
+      if (isObjectSchema(parent)) {
+        this.flattenSchema(parent);
+      }
+    }
+
     if (schema.properties) {
       for (const { key: index, value: property } of items(schema.properties).toArray().reverse()) {
 
