@@ -8,7 +8,6 @@ import { Host, startSession } from '@azure-tools/autorest-extension-base';
 import { codeModelSchema, CodeModel } from '@azure-tools/codemodel';
 import { Checker } from './checker';
 
-
 export async function processRequest(host: Host) {
   const debug = await host.GetValue('debug') || false;
 
@@ -21,6 +20,9 @@ export async function processRequest(host: Host) {
 
     // go!
     const result = plugin.process();
+
+    // throw on errors.
+    session.checkpoint();
 
     // output the model to the pipeline
     if (options['emit-yaml-tags'] !== false) {
