@@ -2,6 +2,15 @@
 
 ## Changelog:
 #### 4.12.x
+  - updated CI to build packages
+  - any is in a category in schemas
+  - times is a new category in schemas (not populated yet, next build)
+  - polymorphic payloads are not flattened (when it's the class that declares the discriminator)
+  - readonly is pulled from the schema if it's there
+  - body parameters should have the required flag set correctly
+  - content-type is now a header parameter (wasn't set before)
+  - added `modelerfour.always-create-content-type-parameter` to always get the content type parameter even when there are only one option.
+  - add support for x-ms-api-version extension to force enabling/disabling parameter to be treated as an api-version parameter
   - the checker plugin will now halt on errors (can be disabled by `modelerfour.additional-checks: false`)
   
 
