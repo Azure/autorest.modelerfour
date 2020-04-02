@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup, TimeSchema } from '@azure-tools/codemodel';
 import { Session, Channel } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -328,6 +328,19 @@ export class ModelerFour {
     }));
   }
 
+  processTimeSchema(name: string, schema: OpenAPI.Schema): TimeSchema {
+    return this.codeModel.schemas.add(new TimeSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), {
+      extensions: this.interpret.getExtensionProperties(schema),
+      summary: schema.title,
+      defaultValue: schema.default,
+      deprecated: this.interpret.getDeprecation(schema),
+      apiVersions: this.interpret.getApiVersions(schema),
+      example: this.interpret.getExample(schema),
+      externalDocs: this.interpret.getExternalDocs(schema),
+      serialization: this.interpret.getSerialization(schema)
+    }));
+  }
+
   processDateSchema(name: string, schema: OpenAPI.Schema): DateSchema {
     return this.codeModel.schemas.add(new DateSchema(this.interpret.getName(name, schema), this.interpret.getDescription('', schema), {
       extensions: this.interpret.getExtensionProperties(schema),
@@ -419,6 +432,9 @@ export class ModelerFour {
 
       case StringFormat.Date:
         return this.processDateSchema('', schema);
+
+      case StringFormat.Time:
+        return this.processTimeSchema('', schema);
 
       case StringFormat.DateTime:
       case StringFormat.DateTimeRfc1123:
@@ -585,7 +601,7 @@ export class ModelerFour {
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
           extensions: this.interpret.getExtensionProperties(property, propertyDeclaration),
-          clientDefaultValue: this.interpret.getClientDefault(property, propertyDeclaration)
+          clientDefaultValue: this.interpret.getClientDefault(property, propertyDeclaration),
         }));
         if (prop.isDiscriminator) {
           objectSchema.discriminator = new Discriminator(prop);
@@ -875,6 +891,9 @@ export class ModelerFour {
           case StringFormat.Date:
             return this.processDateSchema(name, schema);
 
+          case StringFormat.Time:
+            return this.processTimeSchema(name, schema);
+
           case StringFormat.DateTime:
           case StringFormat.DateTimeRfc1123:
             return this.processDateTimeSchema(name, schema);
@@ -1035,6 +1054,7 @@ export class ModelerFour {
       httpRequest.addParameter(new Parameter('content-type', 'Upload file type', scs, {
         implementation: ImplementationLocation.Method,
         required: true,
+        origin: 'modelerfour:synthesized/content-type',
 
         language: {
           default: {
@@ -1094,6 +1114,7 @@ export class ModelerFour {
       httpRequest.addParameter(new Parameter('content-type', 'Body Parameter content-type', scs, {
         implementation: ImplementationLocation.Method,
         required: true,
+        origin: 'modelerfour:synthesized/content-type',
         protocol: {
           http: new HttpParameter(ParameterLocation.Header)
         }, language: {
@@ -1199,6 +1220,7 @@ export class ModelerFour {
           // check if we have the $host parameter foor this uri yet.
           operation.addParameter(this.codeModel.addGlobalParameter(each => each.language.default.name === '$host' && each.clientDefaultValue === uri, () => new Parameter('$host', 'server parameter', this.stringSchema, {
             required: true,
+            origin: 'modelerfour:synthesized/host',
             implementation: ImplementationLocation.Client,
             protocol: {
               http: new HttpParameter(ParameterLocation.Uri)
@@ -1278,6 +1300,7 @@ export class ModelerFour {
           new Parameter('$host', 'server parameter', choiceSchema, {
             required: true,
             implementation: ImplementationLocation.Client,
+            origin: 'modelerfour:synthesized/host',
             protocol: {
               http: new HttpParameter(ParameterLocation.Uri)
             },
@@ -1308,6 +1331,7 @@ export class ModelerFour {
   addApiVersionParameter(parameter: OpenAPI.Parameter, operation: Operation, pathItem: OpenAPI.PathItem, apiVersionParameterSchema: ChoiceSchema | ConstantSchema) {
     const p = new Parameter('ApiVersion', 'Api Version', apiVersionParameterSchema, {
       required: parameter.required ? true : undefined,
+      origin: 'modelerfour:synthesized/api-version',
       protocol: {
         http: new HttpParameter(ParameterLocation.Query)
       },

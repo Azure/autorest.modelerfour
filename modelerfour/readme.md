@@ -1,11 +1,19 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
-
-#### 4.6.12
+#### 4.12.x
+  - updated CI to build packages
+  - any is in a category in schemas
+  - times is a new category in schemas (not populated yet, next build)
+  - polymorphic payloads are not flattened (when it's the class that declares the discriminator)
+  - readonly is pulled from the schema if it's there
+  - body parameters should have the required flag set correctly
+  - content-type is now a header parameter (wasn't set before)
+  - added `modelerfour.always-create-content-type-parameter` to always get the content type parameter even when there are only one option.
+  - add support for x-ms-api-version extension to force enabling/disabling parameter to be treated as an api-version parameter
+  - the checker plugin will now halt on errors (can be disabled by `modelerfour.additional-checks: false`)
   - when an enum without type is presented, if the values are all strings, assume 'string'
-
-
+  
 #### 4.6.x
   - add additional checks for empty names, collisions
   - fix errant processing on APString => Apstring 
@@ -136,7 +144,7 @@ modelerfour:
 
   # some additional sanity checks to help debugging
   # defaults to false
-  additional-checks: false|true
+  additional-checks: true|false
 
   # always create the content-type parameter for binary requests 
   # when it's only one possible value, make it a constant.
@@ -226,7 +234,7 @@ pipeline:
     input: modelerfour/pre-namer/new-transform
 
   modelerfour/identity:
-    input: modelerfour/pre-namer/new-transform
+    input: modelerfour/checker
 
   modelerfour/emitter:
     input: modelerfour/identity
