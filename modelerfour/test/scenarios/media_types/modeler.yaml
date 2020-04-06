@@ -4,14 +4,14 @@ info: !<!Info>
   title: media_types
 schemas: !<!Schemas> 
   strings:
-  - !<!StringSchema> &ref_1
+  - !<!StringSchema> &ref_0
     type: string
     language: !<!Languages> 
       default:
         name: string
         description: simple string
     protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_0
+  - !<!StringSchema> &ref_1
     type: string
     apiVersions:
     - !<!ApiVersion> 
@@ -60,6 +60,7 @@ schemas: !<!Schemas>
           name: image/tiff
           description: Content Type 'image/tiff'
     type: sealed-choice
+    choiceType: *ref_0
     language: !<!Languages> 
       default:
         name: ContentType
@@ -84,7 +85,7 @@ schemas: !<!Schemas>
       version: 2.0-preview
     properties:
     - !<!Property> 
-      schema: *ref_0
+      schema: *ref_1
       serializedName: source
       language: !<!Languages> 
         default:
@@ -103,7 +104,7 @@ schemas: !<!Schemas>
     protocol: !<!Protocols> {}
 globalParameters:
 - !<!Parameter> &ref_9
-  schema: *ref_1
+  schema: *ref_0
   clientDefaultValue: 'http://localhost:3000'
   implementation: Client
   origin: 'modelerfour:synthesized/host'
