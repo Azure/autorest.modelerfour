@@ -470,6 +470,13 @@ export class ModelerFour {
         return this.processNumberSchema('number', schema);
       case JsonType.Integer:
         return this.processIntegerSchema('integer', schema);
+      case undefined:
+        if (length(schema.enum) > 0 && values(schema.enum).all(each => typeof each === 'string')) {
+          this.session.warning(`The enum schema '${schema?.['x-ms-metadata']?.name}' with an undefined type and enum values is ambigious. This has been auto-corrected to 'type:string'`, ['Modeler', 'MissingType'], schema);
+          schema.type = JsonType.String;
+          return this.getSchemaForString(schema);
+        }
+
     }
     throw Error(`Enum types of '${schema.type}' and format '${schema.format}' are not supported. Correct your input (${schema['x-ms-metadata']?.name}).`);
   }
