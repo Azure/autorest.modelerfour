@@ -1759,22 +1759,14 @@ export class ModelerFour {
   }
 
   private trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsage): void {
-    function mergeIfMissing<T>(targetArray: T[], newValues: T[]): void {
-      newValues.forEach(newValue => {
-        if (targetArray.indexOf(newValue) === -1) {
-          targetArray.push(newValue);
-        }
-      })
-    }
-
     if (schema instanceof ObjectSchema) {
       if (schemaUsage.usage) {
-        mergeIfMissing(schema.usage = schema.usage || [], schemaUsage.usage);
+        pushDistinct(schema.usage = schema.usage || [], ...schemaUsage.usage);
       }
       if (schemaUsage.serializationFormats) {
-        mergeIfMissing(
+        pushDistinct(
           schema.serializationFormats = schema.serializationFormats || [],
-          schemaUsage.serializationFormats);
+          ...schemaUsage.serializationFormats);
       }
     } else if (schema instanceof DictionarySchema) {
       this.trackSchemaUsage(schema.elementType, schemaUsage);
