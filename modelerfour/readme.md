@@ -14,6 +14,7 @@
   - the checker plugin will now halt on errors (can be disabled by `modelerfour.additional-checks: false`)
   - when an enum without type is presented, if the values are all strings, assume 'string'
   - flatten parents first for consistency
+  - adding quality prechecker step as a way to test the OAI document for quality before modelerfour runs.
   
 #### 4.6.x
   - add additional checks for empty names, collisions
