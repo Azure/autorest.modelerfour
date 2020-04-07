@@ -90,7 +90,6 @@ export class QualityPreChecker {
 
     if (schema.allOf) {
       const myProperties = this.getProperties(schema);
-
       for (const { name: parentName, schema: parentSchema } of this.getAllParents(schemaName, schema)) {
         this.checkForHiddenProperties(parentName, parentSchema, completed);
         for (const [propName, prop] of this.getProperties(parentSchema).entries()) {
