@@ -15,6 +15,8 @@
   - when an enum without type is presented, if the values are all strings, assume 'string'
   - flatten parents first for consistency
   - adding quality prechecker step as a way to test the OAI document for quality before modelerfour runs.
+  - report duplicate parents via allOf as an error. 
+  - added choiceType for content-type schema 
   
 #### 4.6.x
   - add additional checks for empty names, collisions

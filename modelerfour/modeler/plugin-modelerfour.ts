@@ -23,6 +23,9 @@ export async function processRequest(host: Host) {
     // go!
     const codeModel = modeler.process();
 
+    // check for errors
+    session.checkpoint()
+
     // output the model to the pipeline
     if (options['emit-yaml-tags'] !== false) {
       host.WriteFile('code-model-v4.yaml', serialize(codeModel, codeModelSchema), undefined, 'code-model-v4');

@@ -6,6 +6,20 @@ import { Session, Channel } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
 
+/** adds only if the item is not in the collection already 
+ * 
+ * @note  While this isn't very efficient, it doesn't disturb the original
+ * collection, so you won't get inadvertent side effects from using Set, etc. 
+*/
+function pushDistinct<T>(targetArray: Array<T>, ...items: Array<T>): Array<T> {
+  for (const i of items) {
+    if (!targetArray.includes(i)) {
+      targetArray.push(i);
+    }
+  }
+  return targetArray;
+};
+
 /** asserts that the value is not null or undefined  */
 function is(value: any): asserts value is object | string | number | boolean {
   if (value === undefined || value === null) {
@@ -680,18 +694,22 @@ export class ModelerFour {
           const parent = (<ObjectSchema>p);
           const grandparents = parent.parents?.all || [];
           const allParents = [...parents, ...grandparents];
+          for (const myParent of parents) {
+            if (grandparents.indexOf(myParent) > -1) {
+              this.session.error(`The schema ${myParent.language.default.name} is already referenced in an allOf by ${parent.language.default.name} (or one of its parents)`, ['Modeler', 'DuplicateParentReference']);
+            }
+          }
+          pushDistinct(objectSchema.parents.all, ...allParents);
 
-          objectSchema.parents.all.push(...allParents);
           parent.children = parent.children || new Relations();
-          parent.children.immediate.push(objectSchema);
-          parent.children.all.push(objectSchema);
-
+          pushDistinct(parent.children.immediate, objectSchema);
+          pushDistinct(parent.children.all, objectSchema);
 
           for (const pp of grandparents) {
             if (pp.type === SchemaType.Object) {
               const pparent = (<ObjectSchema>pp);
               pparent.children = pparent.children || new Relations();
-              pparent.children.all.push(objectSchema);
+              pushDistinct(pparent.children.all, objectSchema);
               if (pparent.discriminator && objectSchema.discriminatorValue) {
                 pparent.discriminator.all[objectSchema.discriminatorValue] = objectSchema;
                 // make sure parent has a discriminator, because grandparent does.
@@ -705,7 +723,7 @@ export class ModelerFour {
             parent.discriminator.all[objectSchema.discriminatorValue] = objectSchema;
           }
         } else {
-          objectSchema.parents.all.push(p);
+          pushDistinct(objectSchema.parents.all, p);
         }
       }
     }
@@ -1029,7 +1047,7 @@ export class ModelerFour {
 
     // look for a sealed choice schema with that set of choices
     return this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
-      new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
+      new SealedChoiceSchema('ContentType', 'Content type for upload', { choiceType: this.stringSchema, choices })
     );
   }
 
@@ -1748,22 +1766,14 @@ export class ModelerFour {
   }
 
   private trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsage): void {
-    function mergeIfMissing<T>(targetArray: T[], newValues: T[]): void {
-      newValues.forEach(newValue => {
-        if (targetArray.indexOf(newValue) === -1) {
-          targetArray.push(newValue);
-        }
-      })
-    }
-
     if (schema instanceof ObjectSchema) {
       if (schemaUsage.usage) {
-        mergeIfMissing(schema.usage = schema.usage || [], schemaUsage.usage);
+        pushDistinct(schema.usage = schema.usage || [], ...schemaUsage.usage);
       }
       if (schemaUsage.serializationFormats) {
-        mergeIfMissing(
+        pushDistinct(
           schema.serializationFormats = schema.serializationFormats || [],
-          schemaUsage.serializationFormats);
+          ...schemaUsage.serializationFormats);
       }
     } else if (schema instanceof DictionarySchema) {
       this.trackSchemaUsage(schema.elementType, schemaUsage);

@@ -1,0 +1,509 @@
+!<!CodeModel> 
+info: !<!Info> 
+  description: Service client for multiapi client testing
+  title: multiapi-v2
+schemas: !<!Schemas> 
+  booleans:
+  - !<!BooleanSchema> &ref_18
+    type: boolean
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    language: !<!Languages> 
+      default:
+        name: Boolean
+        description: ''
+    protocol: !<!Protocols> {}
+  numbers:
+  - !<!NumberSchema> &ref_6
+    type: integer
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!NumberSchema> &ref_1
+    type: integer
+    precision: 32
+    language: !<!Languages> 
+      default:
+        name: Integer
+        description: ''
+    protocol: !<!Protocols> {}
+  strings:
+  - !<!StringSchema> &ref_0
+    type: string
+    language: !<!Languages> 
+      default:
+        name: String
+        description: simple string
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_7
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_2
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    language: !<!Languages> 
+      default:
+        name: ModelTwoMessage
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_3
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    language: !<!Languages> 
+      default:
+        name: ErrorMessage
+        description: ''
+    protocol: !<!Protocols> {}
+  - !<!StringSchema> 
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    minLength: 1
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+    protocol: !<!Protocols> {}
+  constants:
+  - !<!ConstantSchema> &ref_4
+    type: constant
+    value: !<!ConstantValue> 
+      value: 2.0.0
+    valueType: *ref_0
+    language: !<!Languages> 
+      default:
+        name: ApiVersion20
+        description: Api Version (2.0.0)
+    protocol: !<!Protocols> {}
+  objects:
+  - !<!ObjectSchema> &ref_11
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    properties:
+    - !<!Property> &ref_14
+      schema: *ref_1
+      required: true
+      serializedName: id
+      language: !<!Languages> 
+        default:
+          name: id
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> &ref_15
+      schema: *ref_2
+      required: false
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
+    - input
+    language: !<!Languages> 
+      default:
+        name: ModelTwo
+        description: Only exists in api version 2.0.0
+        namespace: ''
+    protocol: !<!Protocols> {}
+  - !<!ObjectSchema> &ref_12
+    type: object
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    properties:
+    - !<!Property> 
+      schema: *ref_1
+      serializedName: status
+      language: !<!Languages> 
+        default:
+          name: status
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!Property> 
+      schema: *ref_3
+      serializedName: message
+      language: !<!Languages> 
+        default:
+          name: message
+          description: ''
+      protocol: !<!Protocols> {}
+    serializationFormats:
+    - json
+    usage:
+    - output
+    language: !<!Languages> 
+      default:
+        name: Error
+        description: ''
+        namespace: ''
+    protocol: !<!Protocols> {}
+globalParameters:
+- !<!Parameter> &ref_5
+  schema: *ref_0
+  clientDefaultValue: ''
+  implementation: Client
+  origin: 'modelerfour:synthesized/host'
+  required: true
+  extensions:
+    x-ms-skip-url-encoding: true
+  language: !<!Languages> 
+    default:
+      name: $host
+      description: server parameter
+      serializedName: $host
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: uri
+- !<!Parameter> &ref_8
+  schema: *ref_4
+  implementation: Client
+  origin: 'modelerfour:synthesized/api-version'
+  required: true
+  language: !<!Languages> 
+    default:
+      name: ApiVersion
+      description: Api Version
+      serializedName: api-version
+  protocol: !<!Protocols> 
+    http: !<!HttpParameter> 
+      in: query
+operationGroups:
+- !<!OperationGroup> 
+  $key: ''
+  operations:
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    parameters:
+    - *ref_5
+    - !<!Parameter> &ref_9
+      schema: *ref_6
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: id
+          description: An int parameter
+          serializedName: id
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - !<!Parameter> &ref_10
+      schema: *ref_7
+      implementation: Method
+      language: !<!Languages> 
+        default:
+          name: message
+          description: An optional string parameter
+          serializedName: message
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_8
+    requests:
+    - !<!Request> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: /multiapi/testOneEndpoint
+          method: put
+          uri: '{$host}'
+    signatureParameters:
+    - *ref_9
+    - *ref_10
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_11
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_12
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: TestOne
+        description: TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo
+    protocol: !<!Protocols> {}
+  language: !<!Languages> 
+    default:
+      name: ''
+      description: ''
+  protocol: !<!Protocols> {}
+- !<!OperationGroup> 
+  $key: OperationGroupOne
+  operations:
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    parameters:
+    - *ref_5
+    - *ref_8
+    requests:
+    - !<!Request> 
+      parameters:
+      - !<!Parameter> &ref_13
+        schema: *ref_11
+        flattened: true
+        implementation: Method
+        required: false
+        language: !<!Languages> 
+          default:
+            name: _parameterOne
+            description: A ModelTwo parameter
+        protocol: !<!Protocols> 
+          http: !<!HttpParameter> 
+            in: body
+            style: json
+      - !<!VirtualParameter> &ref_16
+        schema: *ref_1
+        implementation: Method
+        originalParameter: *ref_13
+        pathToProperty: []
+        required: true
+        targetProperty: *ref_14
+        language: !<!Languages> 
+          default:
+            name: id
+            description: ''
+        protocol: !<!Protocols> {}
+      - !<!VirtualParameter> &ref_17
+        schema: *ref_2
+        implementation: Method
+        originalParameter: *ref_13
+        pathToProperty: []
+        required: false
+        targetProperty: *ref_15
+        language: !<!Languages> 
+          default:
+            name: message
+            description: ''
+        protocol: !<!Protocols> {}
+      signatureParameters:
+      - *ref_16
+      - *ref_17
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpWithBodyRequest> 
+          path: /multiapi/one/testTwoEndpoint
+          method: get
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          uri: '{$host}'
+    signatureParameters: []
+    responses:
+    - !<!SchemaResponse> 
+      schema: *ref_11
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_12
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: TestTwo
+        description: TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo
+    protocol: !<!Protocols> {}
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    parameters:
+    - *ref_5
+    - *ref_8
+    requests:
+    - !<!Request> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: /multiapi/one/testThreeEndpoint
+          method: put
+          uri: '{$host}'
+    signatureParameters: []
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_12
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    language: !<!Languages> 
+      default:
+        name: TestThree
+        description: TestThree should be in OperationGroupOneOperations. Takes in ModelTwo
+    protocol: !<!Protocols> {}
+  language: !<!Languages> 
+    default:
+      name: OperationGroupOne
+      description: ''
+  protocol: !<!Protocols> {}
+- !<!OperationGroup> 
+  $key: OperationGroupTwo
+  operations:
+  - !<!Operation> 
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 2.0.0
+    parameters:
+    - *ref_5
+    - !<!Parameter> &ref_19
+      schema: *ref_18
+      implementation: Method
+      required: true
+      language: !<!Languages> 
+        default:
+          name: parameterOne
+          description: A boolean parameter
+          serializedName: parameterOne
+      protocol: !<!Protocols> 
+        http: !<!HttpParameter> 
+          in: query
+    - *ref_8
+    requests:
+    - !<!Request> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpRequest> 
+          path: /multiapi/two/testFourEndpoint
+          method: post
+          uri: '{$host}'
+    signatureParameters:
+    - *ref_19
+    responses:
+    - !<!Response> 
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          statusCodes:
+          - '200'
+    exceptions:
+    - !<!SchemaResponse> 
+      schema: *ref_12
+      language: !<!Languages> 
+        default:
+          name: ''
+          description: ''
+      protocol: !<!Protocols> 
+        http: !<!HttpResponse> 
+          knownMediaType: json
+          mediaTypes:
+          - application/json
+          statusCodes:
+          - default
+    extensions:
+      x-ms-request-id: request-id
+    language: !<!Languages> 
+      default:
+        name: TestFour
+        description: TestFour should be in OperationGroupTwoOperations.
+    protocol: !<!Protocols> {}
+  language: !<!Languages> 
+    default:
+      name: OperationGroupTwo
+      description: ''
+  protocol: !<!Protocols> {}
+language: !<!Languages> 
+  default:
+    name: MultiapiV2
+    description: ''
+protocol: !<!Protocols> 
+  http: !<!HttpModel> {}

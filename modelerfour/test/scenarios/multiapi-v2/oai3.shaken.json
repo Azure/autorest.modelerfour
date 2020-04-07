@@ -1,0 +1,290 @@
+{
+ "openapi": "3.0.0",
+ "info": {
+  "title": "Multiapi Service Client",
+  "description": "Service client for multiapi client testing",
+  "version": "2.0.0"
+ },
+ "paths": {
+  "/multiapi/testOneEndpoint": {
+   "put": {
+    "servers": [],
+    "operationId": "testOne",
+    "description": "TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·lmgkdf·multiapi-testoneendpoint·put·parameters·0",
+      "description": "An int parameter"
+     },
+     {
+      "$ref": "#/components/parameters/paths·ix74um·multiapi-testoneendpoint·put·parameters·1",
+      "description": "An optional string parameter"
+     },
+     {
+      "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·14279b6·multiapi-testoneendpoint·put·responses·200",
+      "description": "Returns ModelTwo"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·1q2jb1i·multiapi-testoneendpoint·put·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/multiapi/one/testTwoEndpoint": {
+   "get": {
+    "servers": [],
+    "operationId": "OperationGroupOne_testTwo",
+    "description": "TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·t6bbj9·multiapi-one-testtwoendpoint·get·requestbody",
+     "description": "A ModelTwo parameter"
+    },
+    "parameters": [
+     {
+      "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "x-ms-requestBody-index": 0,
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·1ag7·multiapi-one-testtwoendpoint·get·responses·200",
+      "description": "Returns ModelTwo"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·pcl15w·multiapi-one-testtwoendpoint·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/multiapi/one/testThreeEndpoint": {
+   "put": {
+    "servers": [],
+    "operationId": "OperationGroupOne_testThree",
+    "description": "TestThree should be in OperationGroupOneOperations. Takes in ModelTwo",
+    "parameters": [
+     {
+      "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·14x1pve·multiapi-one-testthreeendpoint·put·responses·200",
+      "description": "Empty response"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·19qd35e·multiapi-one-testthreeendpoint·put·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/multiapi/two/testFourEndpoint": {
+   "post": {
+    "servers": [],
+    "operationId": "OperationGroupTwo_testFour",
+    "description": "TestFour should be in OperationGroupTwoOperations.",
+    "x-ms-request-id": "request-id",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·6g33tx·multiapi-two-testfourendpoint·post·parameters·0",
+      "description": "A boolean parameter"
+     },
+     {
+      "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·1oihsge·multiapi-two-testfourendpoint·post·responses·200",
+      "description": "Empty response"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·1369lnc·multiapi-two-testfourendpoint·post·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "parameters": {
+   "paths·lmgkdf·multiapi-testoneendpoint·put·parameters·0": {
+    "name": "id",
+    "in": "query",
+    "description": "An int parameter",
+    "schema": {
+     "$ref": "#/components/schemas/paths·j908cq·multiapi-testoneendpoint·put·parameters·0·schema"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·ix74um·multiapi-testoneendpoint·put·parameters·1": {
+    "name": "message",
+    "in": "query",
+    "description": "An optional string parameter",
+    "schema": {
+     "$ref": "#/components/schemas/paths·1a3yat·multiapi-testoneendpoint·put·parameters·1·schema"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "paths·6g33tx·multiapi-two-testfourendpoint·post·parameters·0": {
+    "name": "parameterOne",
+    "in": "query",
+    "description": "A boolean parameter",
+    "schema": {
+     "$ref": "#/components/schemas/paths·1yu5p0q·multiapi-two-testfourendpoint·post·parameters·0·schema"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "ApiVersionParameter": {
+    "name": "api-version",
+    "in": "query",
+    "description": "The API version to use for this operation.",
+    "schema": {
+     "$ref": "#/components/schemas/components·18mzsjh·parameters·apiversionparameter·schema"
+    },
+    "required": true
+   }
+  },
+  "schemas": {
+   "paths·j908cq·multiapi-testoneendpoint·put·parameters·0·schema": {
+    "format": "int32",
+    "type": "integer"
+   },
+   "paths·1a3yat·multiapi-testoneendpoint·put·parameters·1·schema": {
+    "type": "string"
+   },
+   "paths·1yu5p0q·multiapi-two-testfourendpoint·post·parameters·0·schema": {
+    "type": "boolean"
+   },
+   "Error": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "message": {
+      "$ref": "#/components/schemas/Error-message"
+     }
+    }
+   },
+   "Error-message": {
+    "type": "string"
+   },
+   "ModelTwo": {
+    "type": "object",
+    "description": "Only exists in api version 2.0.0",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "message": {
+      "$ref": "#/components/schemas/ModelTwo-message"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "ModelTwo-message": {
+    "type": "string"
+   },
+   "components·18mzsjh·parameters·apiversionparameter·schema": {
+    "minLength": 1,
+    "type": "string"
+   }
+  },
+  "responses": {
+   "paths·14279b6·multiapi-testoneendpoint·put·responses·200": {
+    "description": "Returns ModelTwo",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/ModelTwo"
+      }
+     }
+    }
+   },
+   "paths·1q2jb1i·multiapi-testoneendpoint·put·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
+   "paths·1ag7·multiapi-one-testtwoendpoint·get·responses·200": {
+    "description": "Returns ModelTwo",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/ModelTwo"
+      }
+     }
+    }
+   },
+   "paths·pcl15w·multiapi-one-testtwoendpoint·get·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
+   "paths·14x1pve·multiapi-one-testthreeendpoint·put·responses·200": {
+    "description": "Empty response"
+   },
+   "paths·19qd35e·multiapi-one-testthreeendpoint·put·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
+   "paths·1oihsge·multiapi-two-testfourendpoint·post·responses·200": {
+    "description": "Empty response"
+   },
+   "paths·1369lnc·multiapi-two-testfourendpoint·post·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/Error"
+      }
+     }
+    }
+   }
+  },
+  "requestBodies": {
+   "paths·t6bbj9·multiapi-one-testtwoendpoint·get·requestbody": {
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v2.json#/components/schemas/ModelTwo"
+      }
+     }
+    },
+    "description": "A ModelTwo parameter",
+    "x-ms-requestBody-name": "parameterOne"
+   }
+  }
+ },
+ "servers": []
+}
