@@ -484,6 +484,13 @@ export class ModelerFour {
         return this.processNumberSchema('number', schema);
       case JsonType.Integer:
         return this.processIntegerSchema('integer', schema);
+      case undefined:
+        if (length(schema.enum) > 0 && values(schema.enum).all(each => typeof each === 'string')) {
+          this.session.warning(`The enum schema '${schema?.['x-ms-metadata']?.name}' with an undefined type and enum values is ambigious. This has been auto-corrected to 'type:string'`, ['Modeler', 'MissingType'], schema);
+          schema.type = JsonType.String;
+          return this.getSchemaForString(schema);
+        }
+
     }
     throw Error(`Enum types of '${schema.type}' and format '${schema.format}' are not supported. Correct your input (${schema['x-ms-metadata']?.name}).`);
   }
@@ -1040,7 +1047,7 @@ export class ModelerFour {
 
     // look for a sealed choice schema with that set of choices
     return this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
-      new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
+      new SealedChoiceSchema('ContentType', 'Content type for upload', { choiceType: this.stringSchema, choices })
     );
   }
 
