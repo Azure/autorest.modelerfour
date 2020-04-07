@@ -115,17 +115,18 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
         // test 
       },
       Message: (message: Message): void => {
-        const i = expected[message.Channel].indexOf(message.Text.trim());
+        if (expected[message.Channel]) {
+          const i = expected[message.Channel].indexOf(message.Text.trim());
 
-        if (i > -1) {
-          // expected message found. remove it 
-          expected[message.Channel].splice(i, 1);
-          if (expected[message.Channel].length === 0) {
-            delete expected[message.Channel];
+          if (i > -1) {
+            // expected message found. remove it 
+            expected[message.Channel].splice(i, 1);
+            if (expected[message.Channel].length === 0) {
+              delete expected[message.Channel];
+            }
+            return;
           }
-          return;
         }
-
         unexpectedErrorCount++;
         unexpected[message.Channel] = unexpected[message.Channel] || new Array<string>();
 
@@ -168,7 +169,6 @@ async function createTestSession<TInputModel>(config: any, folder: string, input
       // go!
       await prechecker.process();
 
-      console.error(``);
       assert(unexpectedErrorCount === 0, `Unexpected messages encountered -- these should be in the 'unexpected.yaml' file:\n\n=========\n\n${serialize(unexpected)}\n\n=========`);
 
       assert(length(expected) === 0, `Did not hit expected messages -- the following are present in the 'expected.yaml' file, but not hit: \n\n=========\n\n${serialize(expected)}\n\n=========`);

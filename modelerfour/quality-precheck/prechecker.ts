@@ -58,26 +58,41 @@ export class QualityPreChecker {
     return items(schema.properties).toMap(each => <string>this.interpret.getPreferredName(each.value, each.key), each => this.resolve(each.value).instance);
   }
 
-  * getAllParents(schema: Schema) {
-    for (const { instance: parent, name } of values(schema.allOf).select(a => this.resolve(a))) {
-      yield {
+  getSchemasFromArray(tag: string, schemas: Array<Refable<Schema>> | undefined): Iterable<{ name: string, schema: Schema, tag: string }> {
+    return values(schemas).select(a => {
+      const { instance: schema, name } = this.resolve(a);
+      return {
         name: this.interpret.getName(name, schema),
-        schema: parent
+        schema,
+        tag
       }
+    });
+  }
+
+  * getAllParents(tag: string, schema: Schema): Iterable<{ name: string, schema: Schema, tag: string }> {
+    for (const parent of this.getSchemasFromArray(tag, schema.allOf)) {
+      yield parent;
+      yield* this.getAllParents(parent.name, parent.schema);
     }
   }
 
-  checkForHiddenProperties(schemaName: string, schema: Schema, cache = new WeakSet<Schema>()) {
-    if (cache.has(schema)) {
+  * getGrandParents(tag: string, schema: Schema): Iterable<{ name: string, schema: Schema, tag: string }> {
+    for (const parent of this.getSchemasFromArray(tag, schema.allOf)) {
+      yield* this.getAllParents(parent.name, parent.schema);
+    }
+  }
+
+  checkForHiddenProperties(schemaName: string, schema: Schema, completed = new WeakSet<Schema>()) {
+    if (completed.has(schema)) {
       return;
     }
-    cache.add(schema);
+    completed.add(schema);
 
     if (schema.allOf) {
       const myProperties = this.getProperties(schema);
 
-      for (const { name: parentName, schema: parentSchema } of this.getAllParents(schema)) {
-        this.checkForHiddenProperties(parentName, parentSchema, cache);
+      for (const { name: parentName, schema: parentSchema } of this.getAllParents(schemaName, schema)) {
+        this.checkForHiddenProperties(parentName, parentSchema, completed);
         for (const [propName, prop] of this.getProperties(parentSchema).entries()) {
           if (myProperties.has(propName)) {
             this.session.error(`Schema '${schemaName}' has a property '${propName}' that is conflicting with a property in the parent schema '${parentName}'`, ['PreCheck', 'PropertyRedeclaration']);
@@ -87,10 +102,36 @@ export class QualityPreChecker {
     }
   }
 
-  process() {
-    for (const { instance: schema, name, fromRef } of values(this.input.components?.schemas).select(s => this.resolve(s))) {
-      this.checkForHiddenProperties(this.interpret.getName(name, schema), schema);
+  checkForDuplicateParents(schemaName: string, schema: Schema, completed = new WeakSet<Schema>()) {
+    if (completed.has(schema)) {
+      return;
     }
+    completed.add(schema);
+
+    if (schema.allOf) {
+
+      const grandParents = [...this.getGrandParents(schemaName, schema)];
+      const direct = [...this.getSchemasFromArray(schemaName, schema.allOf)];
+
+      for (const myParent of direct) {
+        for (const duplicate of grandParents.filter(each => each.schema === myParent.schema)) {
+          this.session.error(`Schema '${schemaName}' inherits '${duplicate.tag}' via an \`allOf\` that is already coming from parent '${myParent.name}'`, ['PreCheck', 'DuplicateInheritance']);
+        }
+      }
+    }
+  }
+
+  process() {
+    let onlyOnce = new WeakSet<Schema>();
+    for (const { instance: schema, name, fromRef } of values(this.input.components?.schemas).select(s => this.resolve(s))) {
+      this.checkForHiddenProperties(this.interpret.getName(name, schema), schema, onlyOnce);
+    }
+
+    onlyOnce = new WeakSet<Schema>();
+    for (const { instance: schema, name, fromRef } of values(this.input.components?.schemas).select(s => this.resolve(s))) {
+      this.checkForDuplicateParents(this.interpret.getName(name, schema), schema, onlyOnce);
+    }
+
     return this.input;
   }
 

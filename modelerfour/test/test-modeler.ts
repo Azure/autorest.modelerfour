@@ -213,7 +213,7 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
   }, {}, codeModelSchema);
 }
 
-@suite
+//@suite
 class Process {
   @test
   async 'simple model test'() {
