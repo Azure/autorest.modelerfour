@@ -1,7 +1,7 @@
 import { Session } from '@azure-tools/autorest-extension-base';
 import * as OpenAPI from '@azure-tools/openapi';
-import { values, length, items, ToDictionary, Dictionary, keys } from '@azure-tools/linq';
-import { CodeModel, StringSchema, ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, HttpModel, SetType } from '@azure-tools/codemodel';
+import { values, length, items, ToDictionary, Dictionary } from '@azure-tools/linq';
+import { ChoiceSchema, XmlSerlializationFormat, ExternalDocumentation, ApiVersion, Deprecation, ChoiceValue, SetType } from '@azure-tools/codemodel';
 import { StringFormat, JsonType, ParameterLocation } from '@azure-tools/openapi';
 import { getPascalIdentifier } from '@azure-tools/codegen';
 
@@ -233,7 +233,7 @@ export class Interpretations {
     return undefined;
   }
 
-  constructor(private session: Session<OpenAPI.Model>, private codeModel: CodeModel) {
+  constructor(private session: Session<OpenAPI.Model>) {
   }
 
   xmsMeta(obj: any, key: string) {

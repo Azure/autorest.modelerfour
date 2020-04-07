@@ -1,0 +1,102 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "myservice",
+    "description": "REST API for Azure",
+    "version": "2019-12-01"
+  },
+  "host": "management.azure.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "azure_auth": [
+        "user_impersonation"
+      ]
+    }
+  ],
+  "paths": {
+    "/someFunction/{name}": {
+      "get": {
+        "operationId": "something_Get",
+        "description": "Retrieves the details of a something.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Thename of the something."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request successful. Returns the details of the item retrieved.",
+            "schema": {
+              "$ref": "#/definitions/ChildHidingParentProperty"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ChildHidingParentProperty": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name overrides the parent name. bad!"
+        },
+        "etag": {
+          "type": "string",
+          "readOnly": true,
+          "description": "A unique read-only string that changes whenever the resource is updated."
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "description": "VpnServerConfiguration Resource."
+    },
+    "Resource": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Resource ID."
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Resource name."
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string",
+          "description": "Resource type."
+        },
+        "location": {
+          "type": "string",
+          "description": "Resource location."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Resource tags."
+        }
+      },
+      "description": "Common resource representation.",
+      "x-ms-azure-resource": true
+    }
+  }
+}

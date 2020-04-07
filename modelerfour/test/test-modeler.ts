@@ -213,8 +213,10 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
   }, {}, codeModelSchema);
 }
 
-@suite class Process {
-  @test async 'simple model test'() {
+@suite
+class Process {
+  @test
+  async 'simple model test'() {
     const session = await createTestSession<Model>({}, resources, ['input2.yaml'], ['output1.yaml']);
 
     // process OAI model
@@ -233,7 +235,8 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
     assert.strictEqual(true, cms instanceof CodeModel, 'Type Info is maintained in deserialization.');
   }
 
-  @test async 'acceptance-suite'() {
+  @test
+  async 'acceptance-suite'() {
     const folders = await readdir(`${__dirname}/../../test/scenarios/`);
     for (const each of folders) {
       if ([
@@ -292,7 +295,6 @@ async function createPassThruSession(config: any, input: string, inputArtifactTy
       const yaml = serialize(codeModel, codeModelSchema);
       await mkdir(`${__dirname}/../../test/scenarios/${each}`);
       await (writeFile(`${__dirname}/../../test/scenarios/${each}/modeler.yaml`, yaml));
-
 
       const flattener = await new Flattener(await createPassThruSession(cfg, yaml, 'code-model-v4')).init();
       const flattened = await flattener.process();

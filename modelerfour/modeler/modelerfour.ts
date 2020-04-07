@@ -81,7 +81,7 @@ export class ModelerFour {
         http: new HttpModel()
       }
     });
-    this.interpret = new Interpretations(session, this.codeModel);
+    this.interpret = new Interpretations(session);
 
     this.preprocessOperations();
   }
