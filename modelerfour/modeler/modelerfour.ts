@@ -1029,7 +1029,7 @@ export class ModelerFour {
 
     // look for a sealed choice schema with that set of choices
     return this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
-      new SealedChoiceSchema('ContentType', 'Content type for upload', { choices })
+      new SealedChoiceSchema('ContentType', 'Content type for upload', { choiceType: this.stringSchema, choices })
     );
   }
 
