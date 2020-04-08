@@ -210,11 +210,11 @@ modelerfour:
       $host: $host
 
 pipeline:
-  prechecker:
-    input: openapi-document/multi-api/identity
+  #prechecker:
+  #  input: openapi-document/multi-api/identity
 
   modelerfour:
-    input: prechecker 
+    input: openapi-document/multi-api/identity 
 
   modelerfour/new-transform:
     input: modelerfour

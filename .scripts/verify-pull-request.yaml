@@ -26,6 +26,9 @@ steps:
     npx @microsoft/rush test
     rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
 
+    # check to see if any files changed after the test run.
+    git status
+
     # set the actual package versions
     npx @microsoft/rush set-versions
     rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
