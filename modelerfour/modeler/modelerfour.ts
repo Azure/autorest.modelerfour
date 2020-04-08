@@ -79,7 +79,7 @@ export class ModelerFour {
       extensions: Interpretations.getExtensionProperties(this.input),
       protocol: {
         http: new HttpModel()
-      }
+      },
     });
     this.interpret = new Interpretations(session, this.codeModel);
 
@@ -1642,6 +1642,15 @@ export class ModelerFour {
   }
 
   process() {
+    if (length(this.input.security) > 0) {
+      // we don't currently handle security information directly, but we can 
+      // tell if there is something in there. 
+      // if there is any security information, mark it auth-required true.
+
+
+      this.codeModel.security.authenticationRequired = true;
+    }
+
     let priority = 0;
     for (const { key: name, value: parameter } of this.resolveDictionary(this.input.components?.parameters)) {
       if (parameter['x-ms-parameter-location'] !== 'method') {
