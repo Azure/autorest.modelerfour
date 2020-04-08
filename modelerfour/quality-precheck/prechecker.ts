@@ -22,7 +22,7 @@ export async function processRequest(host: Host) {
     // throw on errors.
     session.checkpoint();
 
-    host.WriteFile('openapi-document.json', serialize(result), undefined, 'openapi-document');
+    // host.WriteFile('openapi-document.json', serialize(result), undefined, 'openapi-document');
   } catch (E) {
     if (debug) {
       console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);

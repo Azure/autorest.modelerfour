@@ -214,7 +214,9 @@ pipeline:
     input: openapi-document/multi-api/identity
 
   modelerfour:
-    input: openapi-document/multi-api/identity 
+    input: 
+      - openapi-document/multi-api/identity 
+      - prechecker
 
   modelerfour/new-transform:
     input: modelerfour
@@ -238,7 +240,9 @@ pipeline:
     input: modelerfour/pre-namer
 
   modelerfour/checker:
-    input: modelerfour/pre-namer/new-transform
+    input: 
+      - modelerfour/pre-namer/new-transform
+      - prechecker
 
   modelerfour/identity:
     input: modelerfour/checker
