@@ -1,6 +1,11 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
+#### 4.13.x 
+  - add security info
+  - sync version of m4 and perks/codemodel == 4.13.x
+
+
 #### 4.12.x
   - updated CI to build packages
   - any is in a category in schemas
