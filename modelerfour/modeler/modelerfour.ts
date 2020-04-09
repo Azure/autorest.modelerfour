@@ -1642,12 +1642,10 @@ export class ModelerFour {
   }
 
   process() {
-    if (length(this.input.security) > 0) {
+    if (keys(this.input.components?.securitySchemes).any()) {
       // we don't currently handle security information directly, but we can 
       // tell if there is something in there. 
       // if there is any security information, mark it auth-required true.
-
-
       this.codeModel.security.authenticationRequired = true;
     }
 

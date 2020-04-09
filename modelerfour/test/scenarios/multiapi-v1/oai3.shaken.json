@@ -1,0 +1,153 @@
+{
+ "openapi": "3.0.0",
+ "info": {
+  "title": "Multiapi Service Client",
+  "description": "Service client for multiapi client testing",
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/multiapi/testOneEndpoint": {
+   "put": {
+    "servers": [],
+    "operationId": "testOne",
+    "description": "TestOne should be in an FirstVersionOperationsMixin",
+    "x-ms-request-id": "request-id",
+    "parameters": [
+     {
+      "$ref": "#/components/parameters/paths·lmgkdf·multiapi-testoneendpoint·put·parameters·0",
+      "description": "An int parameter"
+     },
+     {
+      "$ref": "#/components/parameters/paths·ix74um·multiapi-testoneendpoint·put·parameters·1",
+      "description": "An optional string parameter"
+     },
+     {
+      "$ref": "http://localhost:3000/__files/multiapi-v1.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·14279b6·multiapi-testoneendpoint·put·responses·200",
+      "description": "The empty return value of testOne"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·1q2jb1i·multiapi-testoneendpoint·put·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/multiapi/one/testTwoEndpoint": {
+   "get": {
+    "servers": [],
+    "operationId": "OperationGroupOne_testTwo",
+    "description": "TestTwo should be in OperationGroupOneOperations",
+    "x-ms-request-id": "request-id",
+    "parameters": [
+     {
+      "$ref": "http://localhost:3000/__files/multiapi-v1.json#/components/parameters/ApiVersionParameter"
+     }
+    ],
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·1ag7·multiapi-one-testtwoendpoint·get·responses·200",
+      "description": "The empty return value of testTwo"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·pcl15w·multiapi-one-testtwoendpoint·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "parameters": {
+   "paths·lmgkdf·multiapi-testoneendpoint·put·parameters·0": {
+    "name": "id",
+    "in": "query",
+    "description": "An int parameter",
+    "schema": {
+     "$ref": "#/components/schemas/paths·j908cq·multiapi-testoneendpoint·put·parameters·0·schema"
+    },
+    "required": true,
+    "x-ms-parameter-location": "method"
+   },
+   "paths·ix74um·multiapi-testoneendpoint·put·parameters·1": {
+    "name": "message",
+    "in": "query",
+    "description": "An optional string parameter",
+    "schema": {
+     "$ref": "#/components/schemas/paths·1a3yat·multiapi-testoneendpoint·put·parameters·1·schema"
+    },
+    "x-ms-parameter-location": "method"
+   },
+   "ApiVersionParameter": {
+    "name": "api-version",
+    "in": "query",
+    "description": "The API version to use for this operation.",
+    "schema": {
+     "$ref": "#/components/schemas/components·18mzsjh·parameters·apiversionparameter·schema"
+    },
+    "required": true
+   }
+  },
+  "schemas": {
+   "paths·j908cq·multiapi-testoneendpoint·put·parameters·0·schema": {
+    "format": "int32",
+    "type": "integer"
+   },
+   "paths·1a3yat·multiapi-testoneendpoint·put·parameters·1·schema": {
+    "type": "string"
+   },
+   "Error": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "integer",
+      "format": "int32"
+     },
+     "message": {
+      "$ref": "#/components/schemas/Error-message"
+     }
+    }
+   },
+   "Error-message": {
+    "type": "string"
+   },
+   "components·18mzsjh·parameters·apiversionparameter·schema": {
+    "minLength": 1,
+    "type": "string"
+   }
+  },
+  "responses": {
+   "paths·14279b6·multiapi-testoneendpoint·put·responses·200": {
+    "description": "The empty return value of testOne"
+   },
+   "paths·1q2jb1i·multiapi-testoneendpoint·put·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v1.json#/components/schemas/Error"
+      }
+     }
+    }
+   },
+   "paths·1ag7·multiapi-one-testtwoendpoint·get·responses·200": {
+    "description": "The empty return value of testTwo"
+   },
+   "paths·pcl15w·multiapi-one-testtwoendpoint·get·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/multiapi-v1.json#/components/schemas/Error"
+      }
+     }
+    }
+   }
+  }
+ },
+ "servers": []
+}

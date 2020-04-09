@@ -20,6 +20,16 @@ schemas: !<!Schemas>
         name: String
         description: simple string
     protocol: !<!Protocols> {}
+  - !<!StringSchema> &ref_6
+    type: string
+    apiVersions:
+    - !<!ApiVersion> 
+      version: 1.0.0
+    language: !<!Languages> 
+      default:
+        name: String
+        description: ''
+    protocol: !<!Protocols> {}
   - !<!StringSchema> &ref_2
     type: string
     apiVersions:
@@ -39,16 +49,6 @@ schemas: !<!Schemas>
       default:
         name: RefColorConstantField1
         description: Sample string.
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_11
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: String
-        description: ''
     protocol: !<!Protocols> {}
   sealedChoices:
   - !<!SealedChoiceSchema> &ref_14
@@ -82,33 +82,7 @@ schemas: !<!Schemas>
         description: ''
     protocol: !<!Protocols> {}
   constants:
-  - !<!ConstantSchema> &ref_7
-    type: constant
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    value: !<!ConstantValue> 
-      value: null
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: Constant1
-        description: ''
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_8
-    type: constant
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    value: !<!ConstantValue> 
-      value: ''
-    valueType: *ref_0
-    language: !<!Languages> 
-      default:
-        name: Constant2
-        description: ''
-    protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_9
+  - !<!ConstantSchema> &ref_10
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -118,10 +92,10 @@ schemas: !<!Schemas>
     valueType: *ref_0
     language: !<!Languages> 
       default:
-        name: Constant3
+        name: Constant1
         description: ''
     protocol: !<!Protocols> {}
-  - !<!ConstantSchema> &ref_10
+  - !<!ConstantSchema> &ref_11
     type: constant
     apiVersions:
     - !<!ApiVersion> 
@@ -131,7 +105,7 @@ schemas: !<!Schemas>
     valueType: *ref_0
     language: !<!Languages> 
       default:
-        name: Constant4
+        name: Constant2
         description: ''
     protocol: !<!Protocols> {}
   - !<!ConstantSchema> &ref_3
@@ -160,7 +134,7 @@ schemas: !<!Schemas>
         description: ''
     protocol: !<!Protocols> {}
   objects:
-  - !<!ObjectSchema> &ref_6
+  - !<!ObjectSchema> &ref_7
     type: object
     apiVersions:
     - !<!ApiVersion> 
@@ -268,7 +242,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -282,7 +256,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -308,19 +282,20 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> 
-        schema: *ref_7
+      - !<!Parameter> &ref_8
+        schema: *ref_6
         implementation: Method
         required: false
         language: !<!Languages> 
           default:
-            name: StringBody
+            name: stringBody
             description: ''
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: body
             style: json
-      signatureParameters: []
+      signatureParameters:
+      - *ref_8
       language: !<!Languages> 
         default:
           name: ''
@@ -346,7 +321,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -383,7 +358,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_0
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -397,7 +372,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -423,19 +398,20 @@ operationGroups:
     requests:
     - !<!Request> 
       parameters:
-      - !<!Parameter> 
-        schema: *ref_8
+      - !<!Parameter> &ref_9
+        schema: *ref_6
         implementation: Method
         required: true
         language: !<!Languages> 
           default:
-            name: StringBody
+            name: stringBody
             description: ''
         protocol: !<!Protocols> 
           http: !<!HttpParameter> 
             in: body
             style: json
-      signatureParameters: []
+      signatureParameters:
+      - *ref_9
       language: !<!Languages> 
         default:
           name: ''
@@ -461,7 +437,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -512,7 +488,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -539,7 +515,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> 
-        schema: *ref_9
+        schema: *ref_10
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -576,7 +552,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -627,7 +603,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -654,7 +630,7 @@ operationGroups:
     - !<!Request> 
       parameters:
       - !<!Parameter> 
-        schema: *ref_10
+        schema: *ref_11
         implementation: Method
         required: true
         language: !<!Languages> 
@@ -691,7 +667,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -728,7 +704,7 @@ operationGroups:
     signatureParameters: []
     responses:
     - !<!SchemaResponse> 
-      schema: *ref_11
+      schema: *ref_6
       language: !<!Languages> 
         default:
           name: ''
@@ -742,7 +718,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -793,7 +769,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -844,7 +820,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -909,7 +885,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -960,7 +936,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1019,7 +995,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1084,7 +1060,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1135,7 +1111,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1200,7 +1176,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1251,7 +1227,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1341,7 +1317,7 @@ operationGroups:
           - '200'
     exceptions:
     - !<!SchemaResponse> 
-      schema: *ref_6
+      schema: *ref_7
       language: !<!Languages> 
         default:
           name: ''
@@ -1363,6 +1339,8 @@ operationGroups:
       name: Enum
       description: ''
   protocol: !<!Protocols> {}
+security: !<!Security> 
+  authenticationRequired: false
 language: !<!Languages> 
   default:
     name: BodyString

@@ -1,0 +1,121 @@
+{
+ "openapi": "3.0.0",
+ "info": {
+  "title": "Object Type Client",
+  "description": "Service client for testing basic type: object swaggers",
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/objectType/get": {
+   "get": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "operationId": "get",
+    "description": "Basic get that returns an object",
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·gge2m9·objecttype-get·get·responses·200",
+      "description": "The empty return value of testOne"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·1chpfy6·objecttype-get·get·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  },
+  "/objectType/put": {
+   "put": {
+    "servers": [
+     {
+      "url": "http://localhost:3000/"
+     }
+    ],
+    "operationId": "put",
+    "description": "Basic put that puts an object",
+    "requestBody": {
+     "$ref": "#/components/requestBodies/paths·10ioov9·objecttype-put·put·requestbody"
+    },
+    "x-ms-requestBody-index": 0,
+    "responses": {
+     "200": {
+      "$ref": "#/components/responses/paths·1mog6ux·objecttype-put·put·responses·200",
+      "description": "The empty return value"
+     },
+     "default": {
+      "$ref": "#/components/responses/paths·112c9fw·objecttype-put·put·responses·default",
+      "description": "Unexpected error"
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "responses": {
+   "paths·gge2m9·objecttype-get·get·responses·200": {
+    "description": "The empty return value of testOne",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/object-type.json#/components/schemas/Object"
+      }
+     }
+    }
+   },
+   "paths·1chpfy6·objecttype-get·get·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/object-type.json#/components/schemas/Object"
+      }
+     }
+    }
+   },
+   "paths·1mog6ux·objecttype-put·put·responses·200": {
+    "description": "The empty return value"
+   },
+   "paths·112c9fw·objecttype-put·put·responses·default": {
+    "description": "Unexpected error",
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "http://localhost:3000/__files/object-type.json#/components/schemas/Object"
+      }
+     }
+    }
+   }
+  },
+  "schemas": {
+   "paths·1yjr1ls·objecttype-put·put·requestbody·content·application-json·schema": {
+    "type": "object",
+    "properties": {}
+   },
+   "Object": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  "requestBodies": {
+   "paths·10ioov9·objecttype-put·put·requestbody": {
+    "content": {
+     "application/json": {
+      "schema": {
+       "$ref": "#/components/schemas/paths·1yjr1ls·objecttype-put·put·requestbody·content·application-json·schema"
+      }
+     }
+    },
+    "required": true,
+    "x-ms-requestBody-name": "putObject"
+   }
+  }
+ },
+ "servers": [
+  {
+   "url": "http://localhost:3000/"
+  }
+ ]
+}

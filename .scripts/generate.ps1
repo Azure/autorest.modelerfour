@@ -27,7 +27,7 @@ if( $swaggers -ne $null) {
 $swaggerRoot = "http://localhost:3000/__files/"
  
 # AutoRest Choice
-$autorest = (get-command autorest-beta).Source 
+$autorest = (get-command autorest).Source 
 
 $success = @{}
 $errors = @{}
@@ -72,16 +72,16 @@ $errors.Keys |% {
 }
 
 # datalake storage
-autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:$outputRoot\scenarios\datalake-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
+autorest --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/storage/data-plane/Microsoft.StorageDataLake/stable/2019-10-31/DataLakeStorage.json  --output-folder:$outputRoot\scenarios\datalake-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
 
 # text analytics
-autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json  --output-folder:$outputRoot\scenarios\text-analytics --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
+autorest --version:$root\..\autorest --pipeline-model:v3 --input-file:https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/cognitiveservices/data-plane/TextAnalytics/preview/v3.0-preview.1/TextAnalytics.json  --output-folder:$outputRoot\scenarios\text-analytics --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
 
 # keyvault
-autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/28adfecc8c8d9a425451a5b7f6f2688e471a60f4/specification/keyvault/data-plane/Microsoft.KeyVault/preview/7.0/keyvault.json  --output-folder:$outputRoot\scenarios\keyvault --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
+autorest --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/28adfecc8c8d9a425451a5b7f6f2688e471a60f4/specification/keyvault/data-plane/Microsoft.KeyVault/preview/7.0/keyvault.json  --output-folder:$outputRoot\scenarios\keyvault --verbose --debug --no-network-check "$outputRoot/test-configuration.md"
 
 # blob storage
-autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/12ff3b96ec4ede0a56a7315bcdaefe9ae8aa9168/specification/storage/data-plane/Microsoft.BlobStorage/preview/2019-02-02/blob.json  --output-folder:$outputRoot\scenarios\blob-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 
+autorest --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/12ff3b96ec4ede0a56a7315bcdaefe9ae8aa9168/specification/storage/data-plane/Microsoft.BlobStorage/preview/2019-02-02/blob.json  --output-folder:$outputRoot\scenarios\blob-storage --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 
 
 # search
-autorest-beta --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json  --output-folder:$outputRoot\scenarios\cognitive-search --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 
+autorest --version:$root\..\autorest --pipeline-model:v3 --input-file:https://github.com/Azure/azure-rest-api-specs/blob/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json  --output-folder:$outputRoot\scenarios\cognitive-search --verbose --debug --no-network-check "$outputRoot/test-configuration.md" 
