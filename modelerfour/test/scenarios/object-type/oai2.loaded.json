@@ -1,0 +1,71 @@
+{
+ "swagger": "2.0",
+ "info": {
+  "title": "Object Type Client",
+  "description": "Service client for testing basic type: object swaggers",
+  "version": "1.0.0"
+ },
+ "host": "localhost:3000",
+ "schemes": [
+  "http"
+ ],
+ "produces": [
+  "application/json"
+ ],
+ "paths": {
+  "/objectType/get": {
+   "get": {
+    "operationId": "get",
+    "description": "Basic get that returns an object",
+    "responses": {
+     "200": {
+      "description": "The empty return value of testOne",
+      "schema": {
+       "$ref": "http://localhost:3000/__files/object-type.json#/definitions/Object"
+      }
+     },
+     "default": {
+      "description": "Unexpected error",
+      "schema": {
+       "$ref": "http://localhost:3000/__files/object-type.json#/definitions/Object"
+      }
+     }
+    }
+   }
+  },
+  "/objectType/put": {
+   "put": {
+    "operationId": "put",
+    "description": "Basic put that puts an object",
+    "parameters": [
+     {
+      "name": "putObject",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "type": "object",
+       "properties": {}
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "The empty return value"
+     },
+     "default": {
+      "description": "Unexpected error",
+      "schema": {
+       "$ref": "http://localhost:3000/__files/object-type.json#/definitions/Object"
+      }
+     }
+    }
+   }
+  }
+ },
+ "definitions": {
+  "Object": {
+   "type": "object",
+   "properties": {}
+  }
+ }
+}

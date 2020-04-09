@@ -2,7 +2,7 @@
 
 ## Changelog:
 #### 4.13.x 
-  - add security info
+  - add security info (checks to see if `input.components?.securitySchemes` has any content)
   - sync version of m4 and perks/codemodel == 4.13.x
 
 
