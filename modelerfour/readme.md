@@ -215,7 +215,6 @@ pipeline:
 
   modelerfour:
     input: 
-      - openapi-document/multi-api/identity 
       - prechecker
 
   modelerfour/new-transform:
