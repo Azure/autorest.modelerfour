@@ -282,7 +282,7 @@ export class QualityPreChecker {
   }
 
   fixUpObjectsWithoutType() {
-    this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
+
 
     for (const { instance: schema, name, fromRef } of values(this.input.components?.schemas).select(s => this.resolve(s))) {
       if (<any>schema.type === 'file' || <any>schema.format === 'file' || <any>schema.format === 'binary') {
@@ -327,6 +327,9 @@ export class QualityPreChecker {
 
 
   process() {
+
+    this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
+
     this.fixUpObjectsWithoutType();
 
     this.checkForDuplicateSchemas();
