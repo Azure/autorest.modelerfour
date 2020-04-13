@@ -267,7 +267,7 @@ export class QualityPreChecker {
             const text = JSON.stringify(this.input);
             this.input = JSON.parse(text.replace(new RegExp(`"\\#\\/components\\/schemas\\/${key}"`, 'g'), `"${$ref}"`));
             const location = schema['x-ms-metadata'].originalLocations[0].replace(/^.*\//, '')
-            if (schema['x-anonymous-schema']) {
+            if (schema['x-internal-autorest-anonymous-schema']) {
               this.session.warning(`An anonymous inline schema for property '${location.replace(/-/g, '.')}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code. Don't do that. - removing.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
             } else {
               this.session.warning(`Schema '${location}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code. Don't do that. - removing.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
@@ -282,8 +282,6 @@ export class QualityPreChecker {
   }
 
   fixUpObjectsWithoutType() {
-
-
     for (const { instance: schema, name, fromRef } of values(this.input.components?.schemas).select(s => this.resolve(s))) {
       if (<any>schema.type === 'file' || <any>schema.format === 'file' || <any>schema.format === 'binary') {
         // handle inconsistency in file format handling.
