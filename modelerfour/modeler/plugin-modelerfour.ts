@@ -14,7 +14,7 @@ export async function processRequest(host: Host) {
   const debug = await host.GetValue('debug') || false;
 
   try {
-    const session = await startSession<OpenAPI.Model>(host);
+    const session = await startSession<OpenAPI.Model>(host, undefined, undefined, 'prechecked-openapi-document');
     const options = <any>await session.getValue('modelerfour', {});
 
     // process
@@ -23,8 +23,11 @@ export async function processRequest(host: Host) {
     // go!
     const codeModel = modeler.process();
 
-    // check for errors
-    session.checkpoint()
+    // throw on errors.
+    if (!await session.getValue('ignore-errors', false)) {
+      session.checkpoint();
+    }
+
 
     // output the model to the pipeline
     if (options['emit-yaml-tags'] !== false) {

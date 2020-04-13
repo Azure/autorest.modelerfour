@@ -22,7 +22,9 @@ export async function processRequest(host: Host) {
     const result = plugin.process();
 
     // throw on errors.
-    session.checkpoint();
+    if (!await session.getValue('no-errors', false)) {
+      session.checkpoint();
+    }
 
     // output the model to the pipeline
     if (options['emit-yaml-tags'] !== false) {
