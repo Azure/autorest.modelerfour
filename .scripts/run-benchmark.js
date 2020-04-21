@@ -47,6 +47,7 @@ function executeBenchmark(readmePath) {
       `autorest --v3 \
                 --debug \
                 --use=./modelerfour \
+                --modelerfour.deduplicate-schema-names:true \
                 --inspector \
                 --inspector.output-folder="./${outputPath}" \
                 --output-folder="./${outputPath}" \
