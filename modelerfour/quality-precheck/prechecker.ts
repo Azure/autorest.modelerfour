@@ -241,7 +241,12 @@ export class QualityPreChecker {
       }
     }
     for (const each of errors) {
-      this.session.error(each, ['PreCheck', 'DuplicateSchema']);
+      // Allow duplicate schemas if requested
+      if (!!this.options["lenient-model-deduplication"]) {
+        this.session.warning(each, ['PreCheck', 'DuplicateSchema']);
+      } else {
+        this.session.error(each, ['PreCheck', 'DuplicateSchema']);
+      }
     }
     return undefined;
   }

@@ -114,7 +114,7 @@ export class PreNamer {
       return this.codeModel;
     }
 
-    const deduplicateSchemaNames = !!this.options['deduplicate-schema-names'];
+    const deduplicateSchemaNames = !!this.options['lenient-model-deduplication'];
 
     // choice
     const choiceSchemaNames = new Set<string>();
