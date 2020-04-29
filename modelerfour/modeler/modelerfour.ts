@@ -1548,7 +1548,7 @@ export class ModelerFour {
           const schema = mediatypes[0].schema.instance;
 
           if (schema) {
-            let s = this.processSchema('response', schema);
+            let s = this.processSchema(mediatypes[0].schema.name || 'response', schema);
 
             // response schemas should not be constant types.
             // this replaces the constant value with the value type itself.
@@ -1731,22 +1731,17 @@ export class ModelerFour {
 
     const innerApplySchemaUsage = (schema: Schema, schemaUsage: SchemaUsage) => {
       this.trackSchemaUsage(schema, schemaUsage);
-      innerPropagateSchemaUsage(schema);
+      innerPropagateSchemaUsage(schema, schemaUsage);
     };
 
-    const innerPropagateSchemaUsage = (schema: Schema) => {
-      const schemaUsage = schema as SchemaUsage;
-      if (!schemaUsage.usage && !schemaUsage.serializationFormats) {
-        return;
-      }
-
+    const innerPropagateSchemaUsage = (schema: Schema, schemaUsage: SchemaUsage) => {
       if (processedSchemas.has(schema)) {
         return;
       }
 
       processedSchemas.add(schema);
       if (schema instanceof ObjectSchema) {
-        if (schema.usage || schema.serializationFormats) {
+        if (schemaUsage.usage || schemaUsage.serializationFormats) {
           schema.properties?.forEach(p => innerApplySchemaUsage(p.schema, schemaUsage));
 
           schema.parents?.all?.forEach(p => innerApplySchemaUsage(p, schemaUsage));
@@ -1769,7 +1764,8 @@ export class ModelerFour {
       }
     }
 
-    innerPropagateSchemaUsage(schema);
+    // Propagate the usage of the initial schema itself
+    innerPropagateSchemaUsage(schema, schema as SchemaUsage);
   }
 
   private trackSchemaUsage(schema: Schema, schemaUsage: SchemaUsage): void {
