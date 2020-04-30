@@ -46,7 +46,9 @@ function executeBenchmark(readmePath) {
     const autoRestProcess = cp.execSync(
       `autorest --v3 \
                 --debug \
+                --verbose \
                 --use=./modelerfour \
+                --modelerfour.lenient-model-deduplication \
                 --inspector \
                 --inspector.output-folder="./${outputPath}" \
                 --output-folder="./${outputPath}" \
