@@ -27,8 +27,8 @@ export async function processRequest(host: Host) {
       session.checkpoint();
     }
 
-    host.WriteFile('prechecked-openapi-document.yaml', serialize(result), undefined, 'prechecked-openapi-document');
-    host.WriteFile('original-openapi-document.yaml', serialize(input), undefined, 'openapi-document');
+    host.WriteFile('prechecked-openapi-document.yaml', serialize(result, { sortKeys: false }), undefined, 'prechecked-openapi-document');
+    host.WriteFile('original-openapi-document.yaml', serialize(input, { sortKeys: false }), undefined, 'openapi-document');
   } catch (E) {
     if (debug) {
       console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);
