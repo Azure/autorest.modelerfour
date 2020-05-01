@@ -126,6 +126,7 @@ export class QualityPreChecker {
               if (diff[0].path[0] === 'readOnly') {
                 this.session.warning(`Schema '${schemaName}' has a property '${propName}' that is already declared the parent schema '${parentName}' but 'readonly' has been changed -- this is not permitted. The property has been removed from ${schemaName}`, ['PreCheck', 'PropertyRedeclarationWarning']);
                 delete schema.properties[myProp.key];
+                continue;
               }
             }
 
