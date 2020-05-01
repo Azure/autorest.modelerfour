@@ -65,9 +65,6 @@ function deduplicateSchemaName(
   // We haven't seen the name before, add it
   schemaNames.add(indexer(schema, schemaName));
 }
-function schemaNameComparer(s1: Schema, s2: Schema): number {
-  return s1.language.default.name.localeCompare(s2.language.default.name);
-}
 
 export class PreNamer {
   codeModel: CodeModel
@@ -133,7 +130,7 @@ export class PreNamer {
 
     // choice
     const choiceSchemaNames = new Set<string>();
-    for (const schema of values(this.codeModel.schemas.choices).toArray().sort(schemaNameComparer)) {
+    for (const schema of values(this.codeModel.schemas.choices)) {
       setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override);
 
       if (deduplicateSchemaNames) {
@@ -147,7 +144,7 @@ export class PreNamer {
 
     // sealed choice
     const sealedChoiceSchemaNames = new Set<string>();
-    for (const schema of values(this.codeModel.schemas.sealedChoices).toArray().sort(schemaNameComparer)) {
+    for (const schema of values(this.codeModel.schemas.sealedChoices)) {
       setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override);
 
       if (deduplicateSchemaNames) {
@@ -231,7 +228,7 @@ export class PreNamer {
     }
 
     const objectSchemaNames = new Set<string>();
-    for (const schema of values(this.codeModel.schemas.objects).toArray().sort(schemaNameComparer)) {
+    for (const schema of values(this.codeModel.schemas.objects)) {
       setName(schema, this.format.type, '', this.format.override);
 
       if (deduplicateSchemaNames) {
@@ -249,7 +246,7 @@ export class PreNamer {
     }
 
     const groupSchemaNames = new Set<string>();
-    for (const schema of values(this.codeModel.schemas.groups).toArray().sort(schemaNameComparer)) {
+    for (const schema of values(this.codeModel.schemas.groups)) {
       setName(schema, this.format.type, '', this.format.override);
 
       if (deduplicateSchemaNames) {
