@@ -27,8 +27,8 @@ export async function processRequest(host: Host) {
       session.checkpoint();
     }
 
-    host.WriteFile('prechecked-openapi-document.yaml', serialize(result), undefined, 'prechecked-openapi-document');
-    host.WriteFile('original-openapi-document.yaml', serialize(input), undefined, 'openapi-document');
+    host.WriteFile('prechecked-openapi-document.yaml', serialize(result, { sortKeys: false }), undefined, 'prechecked-openapi-document');
+    host.WriteFile('original-openapi-document.yaml', serialize(input, { sortKeys: false }), undefined, 'openapi-document');
   } catch (E) {
     if (debug) {
       console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);
@@ -126,6 +126,7 @@ export class QualityPreChecker {
               if (diff[0].path[0] === 'readOnly') {
                 this.session.warning(`Schema '${schemaName}' has a property '${propName}' that is already declared the parent schema '${parentName}' but 'readonly' has been changed -- this is not permitted. The property has been removed from ${schemaName}`, ['PreCheck', 'PropertyRedeclarationWarning']);
                 delete schema.properties[myProp.key];
+                continue;
               }
             }
 
@@ -267,7 +268,6 @@ export class QualityPreChecker {
             }
 
             const $ref = schema?.allOf?.[0]?.$ref;
-            delete schemas[key];
 
             const text = JSON.stringify(this.input);
             this.input = JSON.parse(text.replace(new RegExp(`"\\#\\/components\\/schemas\\/${key}"`, 'g'), `"${$ref}"`));
@@ -275,8 +275,13 @@ export class QualityPreChecker {
             if (schema['x-internal-autorest-anonymous-schema']) {
               this.session.warning(`An anonymous inline schema for property '${location.replace(/-/g, '.')}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code. Don't do that. - removing.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
             } else {
-              this.session.warning(`Schema '${location}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code. Don't do that. - removing.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
+              // NOTE: Disabled removing of non-anonymous schema for now until
+              // it has been discussed in Azure/autorest.modelerfour#278
+              this.session.warning(`Schema '${location}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
+              continue;
             }
+
+            delete schemas[key];
 
             this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
             return;
