@@ -268,7 +268,6 @@ export class QualityPreChecker {
             }
 
             const $ref = schema?.allOf?.[0]?.$ref;
-            delete schemas[key];
 
             const text = JSON.stringify(this.input);
             this.input = JSON.parse(text.replace(new RegExp(`"\\#\\/components\\/schemas\\/${key}"`, 'g'), `"${$ref}"`));
@@ -276,8 +275,13 @@ export class QualityPreChecker {
             if (schema['x-internal-autorest-anonymous-schema']) {
               this.session.warning(`An anonymous inline schema for property '${location.replace(/-/g, '.')}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code. Don't do that. - removing.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
             } else {
-              this.session.warning(`Schema '${location}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code. Don't do that. - removing.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
+              // NOTE: Disabled removing of non-anonymous schema for now until
+              // it has been discussed in Azure/autorest.modelerfour#278
+              this.session.warning(`Schema '${location}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code.`, ['PreCheck', 'AllOfWhenYouMeantRef']);
+              continue;
             }
+
+            delete schemas[key];
 
             this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
             return;
@@ -332,8 +336,7 @@ export class QualityPreChecker {
 
   process() {
 
-    // NOTE: Disabled for now until it has been discussed in Azure/autorest.modelerfour#278
-    // this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
+    this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
 
     this.fixUpObjectsWithoutType();
 
