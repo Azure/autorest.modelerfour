@@ -332,7 +332,8 @@ export class QualityPreChecker {
 
   process() {
 
-    this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
+    // NOTE: Disabled for now until it has been discussed in Azure/autorest.modelerfour#278
+    // this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
 
     this.fixUpObjectsWithoutType();
 
