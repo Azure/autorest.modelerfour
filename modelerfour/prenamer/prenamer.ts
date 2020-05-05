@@ -21,15 +21,29 @@ function isUnassigned(value: string) {
   return !value || (value.indexOf('·') > -1);
 }
 
-function setName(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>) {
-  thing.language.default.name = styler(defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
+interface SetNameOptions {
+  removeDuplicates: boolean
+};
+
+function setName(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>, options?: SetNameOptions) {
+  options = {
+    removeDuplicates: true,
+    ...options
+  };
+
+  thing.language.default.name = styler(defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, options.removeDuplicates, overrides);
   if (!thing.language.default.name) {
     throw new Error('Name is empty!');
   }
 }
 
-function setNameAllowEmpty(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>) {
-  thing.language.default.name = styler(defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, true, overrides);
+function setNameAllowEmpty(thing: { language: Languages }, styler: Styler, defaultValue: string, overrides: Dictionary<string>, options?: SetNameOptions) {
+  options = {
+    removeDuplicates: true,
+    ...options
+  };
+
+  thing.language.default.name = styler(defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name, options.removeDuplicates, overrides);
 }
 
 /*
@@ -141,7 +155,7 @@ export class PreNamer {
       }
 
       for (const choice of values(schema.choices)) {
-        setName(choice, this.format.choiceValue, '', this.format.override);
+        setName(choice, this.format.choiceValue, '', this.format.override, { removeDuplicates: false });
       }
     }
 
@@ -155,7 +169,7 @@ export class PreNamer {
       }
 
       for (const choice of values(schema.choices)) {
-        setName(choice, this.format.choiceValue, '', this.format.override);
+        setName(choice, this.format.choiceValue, '', this.format.override, { removeDuplicates: false });
       }
     }
 
