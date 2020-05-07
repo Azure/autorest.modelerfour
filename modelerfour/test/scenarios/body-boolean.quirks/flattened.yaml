@@ -4,436 +4,436 @@ info: !<!Info>
   title: body-boolean.quirks
 schemas: !<!Schemas> 
   booleans:
-  - !<!BooleanSchema> &ref_4
-    type: boolean
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: boolean
-        description: ''
-    protocol: !<!Protocols> {}
+    - !<!BooleanSchema> &ref_4
+      type: boolean
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: boolean
+          description: ''
+      protocol: !<!Protocols> {}
   numbers:
-  - !<!NumberSchema> &ref_0
-    type: integer
-    precision: 32
-    language: !<!Languages> 
-      default:
-        name: integer
-        description: ''
-    protocol: !<!Protocols> {}
+    - !<!NumberSchema> &ref_0
+      type: integer
+      precision: 32
+      language: !<!Languages> 
+        default:
+          name: integer
+          description: ''
+      protocol: !<!Protocols> {}
   strings:
-  - !<!StringSchema> &ref_2
-    type: string
-    language: !<!Languages> 
-      default:
-        name: string
-        description: simple string
-    protocol: !<!Protocols> {}
-  - !<!StringSchema> &ref_1
-    type: string
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    language: !<!Languages> 
-      default:
-        name: Error-message
-        description: ''
-    protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_2
+      type: string
+      language: !<!Languages> 
+        default:
+          name: string
+          description: simple string
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_1
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: Error-message
+          description: ''
+      protocol: !<!Protocols> {}
   objects:
-  - !<!ObjectSchema> &ref_5
-    type: object
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    properties:
-    - !<!Property> 
-      schema: *ref_0
-      serializedName: status
+    - !<!ObjectSchema> &ref_5
+      type: object
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      properties:
+        - !<!Property> 
+          schema: *ref_0
+          serializedName: status
+          language: !<!Languages> 
+            default:
+              name: status
+              description: ''
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_1
+          serializedName: message
+          language: !<!Languages> 
+            default:
+              name: message
+              description: ''
+          protocol: !<!Protocols> {}
+      serializationFormats:
+        - json
+      usage:
+        - output
       language: !<!Languages> 
         default:
-          name: status
+          name: Error
           description: ''
+          namespace: ''
       protocol: !<!Protocols> {}
-    - !<!Property> 
-      schema: *ref_1
-      serializedName: message
-      language: !<!Languages> 
-        default:
-          name: message
-          description: ''
-      protocol: !<!Protocols> {}
-    serializationFormats:
-    - json
-    usage:
-    - output
-    language: !<!Languages> 
-      default:
-        name: Error
-        description: ''
-        namespace: ''
-    protocol: !<!Protocols> {}
 globalParameters:
-- !<!Parameter> &ref_3
-  schema: *ref_2
-  clientDefaultValue: 'http://localhost:3000'
-  implementation: Client
-  origin: 'modelerfour:synthesized/host'
-  required: true
-  extensions:
-    x-ms-skip-url-encoding: true
-  language: !<!Languages> 
-    default:
-      name: $host
-      description: server parameter
-      serializedName: $host
-  protocol: !<!Protocols> 
-    http: !<!HttpParameter> 
-      in: uri
+  - !<!Parameter> &ref_3
+    schema: *ref_2
+    clientDefaultValue: 'http://localhost:3000'
+    implementation: Client
+    origin: 'modelerfour:synthesized/host'
+    required: true
+    extensions:
+      x-ms-skip-url-encoding: true
+    language: !<!Languages> 
+      default:
+        name: $host
+        description: server parameter
+        serializedName: $host
+    protocol: !<!Protocols> 
+      http: !<!HttpParameter> 
+        in: uri
 operationGroups:
-- !<!OperationGroup> 
-  $key: bool
-  operations:
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    parameters:
-    - *ref_3
-    requests:
-    - !<!Request> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: /bool/true
-          method: get
-          uri: '{$host}'
-    signatureParameters: []
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_4
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_5
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: getTrue
-        description: Get true Boolean value
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    parameters:
-    - *ref_3
-    requests:
-    - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_6
-        schema: *ref_4
-        implementation: Method
-        required: true
+  - !<!OperationGroup> 
+    $key: bool
+    operations:
+      - !<!Operation> 
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        parameters:
+          - *ref_3
+        requests:
+          - !<!Request> 
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpRequest> 
+                path: /bool/true
+                method: get
+                uri: '{$host}'
+        signatureParameters: []
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_4
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
         language: !<!Languages> 
           default:
-            name: boolBody
-            description: ''
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      signatureParameters:
-      - *ref_6
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: /bool/true
-          method: put
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    signatureParameters: []
-    responses:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_5
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: putTrue
-        description: Set Boolean value true
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    parameters:
-    - *ref_3
-    requests:
-    - !<!Request> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: /bool/false
-          method: get
-          uri: '{$host}'
-    signatureParameters: []
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_4
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_5
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: getFalse
-        description: Get false Boolean value
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    parameters:
-    - *ref_3
-    requests:
-    - !<!Request> 
-      parameters:
-      - !<!Parameter> &ref_7
-        schema: *ref_4
-        implementation: Method
-        required: true
+            name: getTrue
+            description: Get true Boolean value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        parameters:
+          - *ref_3
+        requests:
+          - !<!Request> 
+            parameters:
+              - !<!Parameter> &ref_6
+                schema: *ref_4
+                implementation: Method
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: boolBody
+                    description: ''
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: body
+                    style: json
+            signatureParameters:
+              - *ref_6
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpWithBodyRequest> 
+                path: /bool/true
+                method: put
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                uri: '{$host}'
+        signatureParameters: []
+        responses:
+          - !<!Response> 
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
         language: !<!Languages> 
           default:
-            name: boolBody
-            description: ''
-        protocol: !<!Protocols> 
-          http: !<!HttpParameter> 
-            in: body
-            style: json
-      signatureParameters:
-      - *ref_7
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpWithBodyRequest> 
-          path: /bool/false
-          method: put
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          uri: '{$host}'
-    signatureParameters: []
-    responses:
-    - !<!Response> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_5
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
+            name: putTrue
+            description: Set Boolean value true
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        parameters:
+          - *ref_3
+        requests:
+          - !<!Request> 
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpRequest> 
+                path: /bool/false
+                method: get
+                uri: '{$host}'
+        signatureParameters: []
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_4
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getFalse
+            description: Get false Boolean value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        parameters:
+          - *ref_3
+        requests:
+          - !<!Request> 
+            parameters:
+              - !<!Parameter> &ref_7
+                schema: *ref_4
+                implementation: Method
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: boolBody
+                    description: ''
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: body
+                    style: json
+            signatureParameters:
+              - *ref_7
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpWithBodyRequest> 
+                path: /bool/false
+                method: put
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                uri: '{$host}'
+        signatureParameters: []
+        responses:
+          - !<!Response> 
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: putFalse
+            description: Set Boolean value false
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        parameters:
+          - *ref_3
+        requests:
+          - !<!Request> 
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpRequest> 
+                path: /bool/null
+                method: get
+                uri: '{$host}'
+        signatureParameters: []
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_4
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getNull
+            description: Get null Boolean value
+        protocol: !<!Protocols> {}
+      - !<!Operation> 
+        apiVersions:
+          - !<!ApiVersion> 
+            version: 1.0.0
+        parameters:
+          - *ref_3
+        requests:
+          - !<!Request> 
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpRequest> 
+                path: /bool/invalid
+                method: get
+                uri: '{$host}'
+        signatureParameters: []
+        responses:
+          - !<!SchemaResponse> 
+            schema: *ref_4
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - '200'
+        exceptions:
+          - !<!SchemaResponse> 
+            schema: *ref_5
+            language: !<!Languages> 
+              default:
+                name: ''
+                description: ''
+            protocol: !<!Protocols> 
+              http: !<!HttpResponse> 
+                knownMediaType: json
+                mediaTypes:
+                  - application/json
+                statusCodes:
+                  - default
+        language: !<!Languages> 
+          default:
+            name: getInvalid
+            description: Get invalid Boolean value
+        protocol: !<!Protocols> {}
     language: !<!Languages> 
       default:
-        name: putFalse
-        description: Set Boolean value false
+        name: bool
+        description: ''
     protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    parameters:
-    - *ref_3
-    requests:
-    - !<!Request> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: /bool/null
-          method: get
-          uri: '{$host}'
-    signatureParameters: []
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_4
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_5
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: getNull
-        description: Get null Boolean value
-    protocol: !<!Protocols> {}
-  - !<!Operation> 
-    apiVersions:
-    - !<!ApiVersion> 
-      version: 1.0.0
-    parameters:
-    - *ref_3
-    requests:
-    - !<!Request> 
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpRequest> 
-          path: /bool/invalid
-          method: get
-          uri: '{$host}'
-    signatureParameters: []
-    responses:
-    - !<!SchemaResponse> 
-      schema: *ref_4
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - '200'
-    exceptions:
-    - !<!SchemaResponse> 
-      schema: *ref_5
-      language: !<!Languages> 
-        default:
-          name: ''
-          description: ''
-      protocol: !<!Protocols> 
-        http: !<!HttpResponse> 
-          knownMediaType: json
-          mediaTypes:
-          - application/json
-          statusCodes:
-          - default
-    language: !<!Languages> 
-      default:
-        name: getInvalid
-        description: Get invalid Boolean value
-    protocol: !<!Protocols> {}
-  language: !<!Languages> 
-    default:
-      name: bool
-      description: ''
-  protocol: !<!Protocols> {}
 security: !<!Security> 
   authenticationRequired: false
 language: !<!Languages> 
