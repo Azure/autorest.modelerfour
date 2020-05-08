@@ -185,62 +185,73 @@ export class QualityPreChecker {
 
   checkForDuplicateSchemas(): undefined {
     const errors = new Set<string>();
-    if (this.input.components && this.input.components.schemas) {
-      const dupedNames = items(this.input.components?.schemas).select(s => ({ key: s.key, value: this.resolve(s.value) })).groupBy(each => each.value.instance['x-ms-metadata']?.name, each => each);
-      for (const [name, schemas] of dupedNames.entries()) {
-        if (name && schemas.length > 1) {
+
+    // Returns true if scanning should be restarted
+    const innerCheckForDuplicateSchemas = (): any => {
+      if (this.input.components && this.input.components.schemas) {
+        const dupedNames = items(this.input.components?.schemas).select(s => ({ key: s.key, value: this.resolve(s.value) })).groupBy(each => each.value.instance['x-ms-metadata']?.name, each => each);
+        for (const [name, schemas] of dupedNames.entries()) {
+          if (name && schemas.length > 1) {
 
 
-          const diff = getDiff(schemas[0].value.instance, schemas[1].value.instance).filter(each => each.path[0] !== 'description' && each.path[0] !== 'x-ms-metadata');
+            const diff = getDiff(schemas[0].value.instance, schemas[1].value.instance).filter(each => each.path[0] !== 'description' && each.path[0] !== 'x-ms-metadata');
 
-          if (diff.length === 0) {
-            // found two schemas that are indeed the same.
-            // stop, find all the $refs to the second one, and rewrite them to go to the first one.
-            // then go back and start again.
+            if (diff.length === 0) {
+              // found two schemas that are indeed the same.
+              // stop, find all the $refs to the second one, and rewrite them to go to the first one.
+              // then go back and start again.
 
-            delete this.input.components.schemas[schemas[1].key];
-            const text = JSON.stringify(this.input);
-            this.input = JSON.parse(text.replace(new RegExp(`"\\#\\/components\\/schemas\\/${schemas[1].key}"`, 'g'), `"#/components/schemas/${schemas[0].key}"`));
+              delete this.input.components.schemas[schemas[1].key];
+              const text = JSON.stringify(this.input);
+              this.input = JSON.parse(text.replace(new RegExp(`"\\#\\/components\\/schemas\\/${schemas[1].key}"`, 'g'), `"#/components/schemas/${schemas[0].key}"`));
 
-            // update metadata to match
-            if (this.input?.components?.schemas?.[schemas[0].key]) {
+              // update metadata to match
+              if (this.input?.components?.schemas?.[schemas[0].key]) {
 
-              const primarySchema = this.resolve(this.input.components.schemas[schemas[0].key])
-              const primaryMetadata = primarySchema.instance['x-ms-metadata'];
-              const secondaryMetadata = schemas[1].value.instance['x-ms-metadata'];
+                const primarySchema = this.resolve(this.input.components.schemas[schemas[0].key])
+                const primaryMetadata = primarySchema.instance['x-ms-metadata'];
+                const secondaryMetadata = schemas[1].value.instance['x-ms-metadata'];
 
-              if (primaryMetadata && secondaryMetadata) {
-                primaryMetadata.apiVersions = [...new Set<string>([...primaryMetadata.apiVersions || [], ...secondaryMetadata.apiVersions || []])]
-                primaryMetadata.filename = [...new Set<string>([...primaryMetadata.filename || [], ...secondaryMetadata.filename || []])]
-                primaryMetadata.originalLocations = [...new Set<string>([...primaryMetadata.originalLocations || [], ...secondaryMetadata.originalLocations || []])]
-                primaryMetadata['x-ms-secondary-file'] = !(!primaryMetadata['x-ms-secondary-file'] || !secondaryMetadata['x-ms-secondary-file'])
-              }
-            }
-            this.session.verbose(`Schema ${name} has multiple identical declarations, reducing to just one - removing ${schemas[1].key} `, ['PreCheck', 'ReducingSchema']);
-            return this.checkForDuplicateSchemas();
-          }
-
-          // it may not be identical, but if it's not an object, I'm not sure we care too much.
-          if (values(schemas).any(each => this.isObjectOrEnum(each.value.instance))) {
-            const rdiff = getDiff(schemas[1].value.instance, schemas[0].value.instance).filter(each => each.path[0] !== 'description' && each.path[0] !== 'x-ms-metadata');
-            if (diff.length > 0) {
-              const details = diff.map(each => {
-                const path = each.path.join('.');
-                let iValue = each.op === 'add' ? '<none>' : JSON.stringify(each.oldVal);
-                if (each.op !== 'update') {
-                  const v = rdiff.find(each => each.path.join('.') === path)
-                  iValue = JSON.stringify(v?.val);
+                if (primaryMetadata && secondaryMetadata) {
+                  primaryMetadata.apiVersions = [...new Set<string>([...primaryMetadata.apiVersions || [], ...secondaryMetadata.apiVersions || []])]
+                  primaryMetadata.filename = [...new Set<string>([...primaryMetadata.filename || [], ...secondaryMetadata.filename || []])]
+                  primaryMetadata.originalLocations = [...new Set<string>([...primaryMetadata.originalLocations || [], ...secondaryMetadata.originalLocations || []])]
+                  primaryMetadata['x-ms-secondary-file'] = !(!primaryMetadata['x-ms-secondary-file'] || !secondaryMetadata['x-ms-secondary-file'])
                 }
-                const nValue = each.op === 'delete' ? '<none>' : JSON.stringify(each.val);
-                return `${path}: ${iValue} => ${nValue}`;
-              }).join(',');
-              errors.add(`Duplicate Schema named ${name} -- ${details} `);
-              continue;
+              }
+              this.session.verbose(`Schema ${name} has multiple identical declarations, reducing to just one - removing ${schemas[1].key} `, ['PreCheck', 'ReducingSchema']);
+
+              // Restart the scan now that the duplicate has been removed
+              return true;
+            }
+
+            // it may not be identical, but if it's not an object, I'm not sure we care too much.
+            if (values(schemas).any(each => this.isObjectOrEnum(each.value.instance))) {
+              const rdiff = getDiff(schemas[1].value.instance, schemas[0].value.instance).filter(each => each.path[0] !== 'description' && each.path[0] !== 'x-ms-metadata');
+              if (diff.length > 0) {
+                const details = diff.map(each => {
+                  const path = each.path.join('.');
+                  let iValue = each.op === 'add' ? '<none>' : JSON.stringify(each.oldVal);
+                  if (each.op !== 'update') {
+                    const v = rdiff.find(each => each.path.join('.') === path)
+                    iValue = JSON.stringify(v?.val);
+                  }
+                  const nValue = each.op === 'delete' ? '<none>' : JSON.stringify(each.val);
+                  return `${path}: ${iValue} => ${nValue}`;
+                }).join(',');
+                errors.add(`Duplicate Schema named ${name} -- ${details} `);
+                continue;
+              }
             }
           }
         }
       }
     }
+
+    while (!!innerCheckForDuplicateSchemas()) {
+      // Loops until the scanning is complete
+    }
+
     for (const each of errors) {
       // Allow duplicate schemas if requested
       if (!!this.options["lenient-model-deduplication"]) {
