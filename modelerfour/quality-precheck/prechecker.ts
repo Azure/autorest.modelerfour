@@ -186,6 +186,8 @@ export class QualityPreChecker {
   checkForDuplicateSchemas(): undefined {
     const errors = new Set<string>();
 
+    this.session.warning('Checking for duplicate schemas, this could take a (long) while.  Run with --verbose for more detail.', ['PreCheck', 'CheckDuplicateSchemas']);
+
     // Returns true if scanning should be restarted
     const innerCheckForDuplicateSchemas = (): any => {
       if (this.input.components && this.input.components.schemas) {
