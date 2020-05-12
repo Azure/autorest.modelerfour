@@ -190,7 +190,13 @@ export class QualityPreChecker {
     const innerCheckForDuplicateSchemas = (): any => {
       const errors = new Set<string>();
       if (this.input.components && this.input.components.schemas) {
-        const dupedNames = items(this.input.components?.schemas).select(s => ({ key: s.key, value: this.resolve(s.value) })).groupBy(each => each.value.instance['x-ms-metadata']?.name, each => each);
+        const dupedNames = items(this.input.components?.schemas)
+          .select(s => ({ key: s.key, value: this.resolve(s.value) }))
+          .groupBy(
+            // Make sure to check x-ms-client-name first to see if the schema is already being renamed
+            each => each.value.instance['x-ms-client-name'] || each.value.instance['x-ms-metadata']?.name,
+            each => each);
+
         for (const [name, schemas] of dupedNames.entries()) {
           if (name && schemas.length > 1) {
 
@@ -253,7 +259,7 @@ export class QualityPreChecker {
         if (!!this.options["lenient-model-deduplication"]) {
           this.session.warning(each, ['PreCheck', 'DuplicateSchema']);
         } else {
-          this.session.error(each, ['PreCheck', 'DuplicateSchema']);
+          this.session.error(`${each}; This error can be *temporarily* avoided by using the 'modelerfour.lenient-model-deduplication' setting.  NOTE: This setting will be removed in a future version of @autorest/modelerfour; schemas should be updated to fix this issue sooner than that.`, ['PreCheck', 'DuplicateSchema']);
         }
       }
     }
