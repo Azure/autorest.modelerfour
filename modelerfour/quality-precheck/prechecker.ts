@@ -184,12 +184,11 @@ export class QualityPreChecker {
   }
 
   checkForDuplicateSchemas(): undefined {
-    const errors = new Set<string>();
-
     this.session.warning('Checking for duplicate schemas, this could take a (long) while.  Run with --verbose for more detail.', ['PreCheck', 'CheckDuplicateSchemas']);
 
     // Returns true if scanning should be restarted
     const innerCheckForDuplicateSchemas = (): any => {
+      const errors = new Set<string>();
       if (this.input.components && this.input.components.schemas) {
         const dupedNames = items(this.input.components?.schemas).select(s => ({ key: s.key, value: this.resolve(s.value) })).groupBy(each => each.value.instance['x-ms-metadata']?.name, each => each);
         for (const [name, schemas] of dupedNames.entries()) {
@@ -248,20 +247,21 @@ export class QualityPreChecker {
           }
         }
       }
+
+      for (const each of errors) {
+        // Allow duplicate schemas if requested
+        if (!!this.options["lenient-model-deduplication"]) {
+          this.session.warning(each, ['PreCheck', 'DuplicateSchema']);
+        } else {
+          this.session.error(each, ['PreCheck', 'DuplicateSchema']);
+        }
+      }
     }
 
     while (!!innerCheckForDuplicateSchemas()) {
-      // Loops until the scanning is complete
+      // Loop until the scan is complete
     }
 
-    for (const each of errors) {
-      // Allow duplicate schemas if requested
-      if (!!this.options["lenient-model-deduplication"]) {
-        this.session.warning(each, ['PreCheck', 'DuplicateSchema']);
-      } else {
-        this.session.error(each, ['PreCheck', 'DuplicateSchema']);
-      }
-    }
     return undefined;
   }
 
