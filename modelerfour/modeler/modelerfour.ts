@@ -1557,8 +1557,13 @@ export class ModelerFour {
               s = (<ConstantSchema>s).valueType;
             }
 
-            // Track the usage of this schema as an output with media type
-            this.trackSchemaUsage(s, { usage: [SchemaContext.Output], serializationFormats: [knownMediaType as KnownMediaType] });
+            if (isErr) {
+              // Track the usage of this schema as an exception with media type
+              this.trackSchemaUsage(s, { usage: [SchemaContext.Exception], serializationFormats: [knownMediaType as KnownMediaType] });
+            } else {
+              // Track the usage of this schema as an output with media type
+              this.trackSchemaUsage(s, { usage: [SchemaContext.Output], serializationFormats: [knownMediaType as KnownMediaType] });
+            }
 
             const rsp = new SchemaResponse(s, {
               extensions: this.interpret.getExtensionProperties(response)
