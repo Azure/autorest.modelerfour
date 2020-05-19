@@ -407,6 +407,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
+      nullableItems: itemSchema.instance.nullable,
       serialization: this.interpret.getSerialization(schema),
       maxItems: schema.maxItems ? Number(schema.maxItems) : undefined,
       minItems: schema.minItems ? Number(schema.minItems) : undefined,
@@ -553,6 +554,7 @@ export class ModelerFour {
   }
   processDictionarySchema(name: string, schema: OpenAPI.Schema): DictionarySchema {
     let elementSchema: Schema;
+    let elementNullable: boolean | undefined;
     if (schema.additionalProperties === true) {
       elementSchema = this.anySchema;
     } else {
@@ -561,11 +563,13 @@ export class ModelerFour {
       if (ei && this.interpret.isEmptyObject(ei)) {
         elementSchema = this.anySchema;
       } else {
-
+        elementNullable = (ei && ei.nullable) || false;
         elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance);
       }
     }
+
     return this.codeModel.schemas.add(new DictionarySchema(this.interpret.getName(name, schema), this.interpret.getDescription(`Dictionary of <${elementSchema.language.default.name}>`, schema), elementSchema, {
+      nullableItems: elementNullable
     }));
   }
 
@@ -610,7 +614,7 @@ export class ModelerFour {
         const pType = this.processSchema(pSchemaName || `type·for·${propertyName}`, pSchema);
         const prop = objectSchema.addProperty(new Property(this.interpret.getPreferredName(propertyDeclaration, propertyName), propertyDeclaration.description || this.interpret.getDescription(pType.language.default.description, property), pType, {
           readOnly: propertyDeclaration.readOnly || pSchema.readOnly,
-          nullable: propertyDeclaration.nullable,
+          nullable: propertyDeclaration.nullable || pSchema.nullable,
           required: schema.required ? schema.required.indexOf(propertyName) > -1 : undefined,
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
@@ -1451,6 +1455,7 @@ export class ModelerFour {
           required: parameter.required ? true : undefined,
           implementation,
           extensions: this.interpret.getExtensionProperties(parameter),
+          nullable: parameter.nullable || schema.nullable,
           protocol: {
             http: new HttpParameter(parameter.in, parameter.style ? {
               style: <SerializationStyle><unknown>parameter.style,
