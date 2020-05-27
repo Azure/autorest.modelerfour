@@ -1,6 +1,10 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
+#### 4.14.x
+  - added `exception` SchemaContext for `usage` when used as an exception response
+  - changed `output` SchemaContext for `usage` to no longer include exception response uses
+
 #### 4.13.x 
   - add security info (checks to see if `input.components?.securitySchemes` has any content)
   - sync version of m4 and perks/codemodel == 4.13.x
