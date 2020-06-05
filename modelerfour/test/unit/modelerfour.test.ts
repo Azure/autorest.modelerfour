@@ -201,8 +201,7 @@ function assertSchema(
   }
 }
 
-// @suite
-@suite.only
+@suite
 class Modeler {
   @test
   async "preserves 'info' metadata"() {
@@ -365,5 +364,86 @@ class Modeler {
       s => s.usage.sort(),
       ["input", "output"]
     );
+  }
+
+  @test
+  async "propagates 'nullable' to properties, parameters, and collections"() {
+    const spec = createTestSpec();
+
+    addSchema(spec, "WannaBeNullable", {
+      type: "object",
+      nullable: true,
+      properties: {
+        iIsHere: {
+          type: "boolean"
+        }
+      }
+    });
+
+    addSchema(spec, "NullableArray", {
+      type: "array",
+      items: {
+        $ref: "#/components/schemas/WannaBeNullable"
+      }
+    });
+
+    addSchema(spec, "NullableDictionary", {
+      additionalProperties: {
+        $ref: "#/components/schemas/WannaBeNullable"
+      }
+    });
+
+    addSchema(spec, "NullableProperty", {
+      type: "object",
+      properties: {
+        willBeNullable: {
+          $ref: "#/components/schemas/WannaBeNullable"
+        }
+      }
+    });
+
+    addOperation(spec, "/test", {
+      post: {
+        description: "Post it.",
+        parameters: [
+          {
+            name: "nullableParam",
+            in: "body",
+            description: "Input parameter",
+            required: true,
+            schema: {
+              $ref: "#/components/schemas/WannaBeNullable"
+            }
+          }
+        ]
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    assertSchema(
+      "NullableArray",
+      codeModel.schemas.arrays,
+      s => s.nullableItems,
+      true
+    );
+
+    assertSchema(
+      "NullableDictionary",
+      codeModel.schemas.dictionaries,
+      s => s.nullableItems,
+      true
+    );
+
+    assertSchema(
+      "NullableProperty",
+      codeModel.schemas.objects,
+      s => s.properties[0].nullable,
+      true
+    );
+
+    // $host param comes first then the parameter we're looking for
+    const param = codeModel.operationGroups[0].operations[0].parameters?.[1];
+    assert.strictEqual(param?.nullable, true);
   }
 }
