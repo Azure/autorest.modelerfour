@@ -367,6 +367,34 @@ class Modeler {
   }
 
   @test
+  async "allows integer schemas with unexpected 'format'"() {
+    const spec = createTestSpec();
+
+    addSchema(spec, "Int16", {
+      type: "integer",
+      format: "int16"
+    });
+
+    addSchema(spec, "Goose", {
+      type: "integer",
+      format: "goose"
+    });
+
+    addSchema(spec, "Int64", {
+      type: "integer",
+      format: "int64"
+    });
+
+    const codeModel = await runModeler(spec);
+
+    assertSchema("Int16", codeModel.schemas.numbers, s => s.precision, 32);
+    assertSchema("Goose", codeModel.schemas.numbers, s => s.precision, 32);
+
+    // Make sure a legitimate format is detected correctly
+    assertSchema("Int64", codeModel.schemas.numbers, s => s.precision, 64);
+  }
+
+  @test
   async "propagates 'nullable' to properties, parameters, and collections"() {
     const spec = createTestSpec();
 

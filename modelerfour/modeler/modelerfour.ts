@@ -864,7 +864,10 @@ export class ModelerFour {
             return this.processNumberSchema(name, schema)
 
           default:
-            this.session.error(`Integer schema '${name}' with unknown format: '${schema.format}' is not valid`, ['Modeler'], schema);
+            // According to the OpenAPI v3 spec, an unexpected format should be ignored,
+            // so treat this as an `integer` with no format.
+            this.session.warning(`Integer schema '${name}' with unknown format: '${schema.format}' is not valid.  Treating it as 'int32'.`, ['Modeler'], schema);
+            return this.processIntegerSchema(name, schema);
         }
         break;
 
