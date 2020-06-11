@@ -144,17 +144,7 @@ schemas: !<!Schemas>
           version: '2016-02-29'
       language: !<!Languages> 
         default:
-          name: pet-name
-          description: ''
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_16
-      type: string
-      apiVersions:
-        - !<!ApiVersion> 
-          version: '2016-02-29'
-      language: !<!Languages> 
-        default:
-          name: cat-color
+          name: siamese-breed
           description: ''
       protocol: !<!Protocols> {}
     - !<!StringSchema> &ref_14
@@ -164,17 +154,27 @@ schemas: !<!Schemas>
           version: '2016-02-29'
       language: !<!Languages> 
         default:
-          name: dog-food
+          name: cat-color
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_18
+    - !<!StringSchema> &ref_15
       type: string
       apiVersions:
         - !<!ApiVersion> 
           version: '2016-02-29'
       language: !<!Languages> 
         default:
-          name: siamese-breed
+          name: dog-food
+          description: ''
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_16
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: '2016-02-29'
+      language: !<!Languages> 
+        default:
+          name: pet-name
           description: ''
       protocol: !<!Protocols> {}
     - !<!StringSchema> &ref_21
@@ -1005,68 +1005,82 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - !<!ObjectSchema> &ref_15
+    - !<!ObjectSchema> &ref_19
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: '2016-02-29'
-      children: !<!Relations> 
+      parents: !<!Relations> 
         all:
-          - !<!ObjectSchema> &ref_17
-            type: object
-            apiVersions:
-              - !<!ApiVersion> 
-                version: '2016-02-29'
-            parents: !<!Relations> 
-              all:
-                - *ref_15
-              immediate:
-                - *ref_15
-            properties:
-              - !<!Property> 
-                schema: *ref_14
-                serializedName: food
-                language: !<!Languages> 
-                  default:
-                    name: food
-                    description: ''
-                protocol: !<!Protocols> {}
-            serializationFormats:
-              - json
-            usage:
-              - output
-              - input
-            language: !<!Languages> 
-              default:
-                name: dog
-                description: ''
-                namespace: ''
-            protocol: !<!Protocols> {}
-          - !<!ObjectSchema> &ref_19
+          - !<!ObjectSchema> &ref_18
             type: object
             apiVersions:
               - !<!ApiVersion> 
                 version: '2016-02-29'
             children: !<!Relations> 
               all:
+                - *ref_19
+              immediate:
+                - *ref_19
+            parents: !<!Relations> 
+              all:
                 - !<!ObjectSchema> &ref_20
                   type: object
                   apiVersions:
                     - !<!ApiVersion> 
                       version: '2016-02-29'
-                  parents: !<!Relations> 
+                  children: !<!Relations> 
                     all:
+                      - !<!ObjectSchema> &ref_17
+                        type: object
+                        apiVersions:
+                          - !<!ApiVersion> 
+                            version: '2016-02-29'
+                        parents: !<!Relations> 
+                          all:
+                            - *ref_20
+                          immediate:
+                            - *ref_20
+                        properties:
+                          - !<!Property> 
+                            schema: *ref_15
+                            serializedName: food
+                            language: !<!Languages> 
+                              default:
+                                name: food
+                                description: ''
+                            protocol: !<!Protocols> {}
+                        serializationFormats:
+                          - json
+                        usage:
+                          - output
+                          - input
+                        language: !<!Languages> 
+                          default:
+                            name: dog
+                            description: ''
+                            namespace: ''
+                        protocol: !<!Protocols> {}
+                      - *ref_18
                       - *ref_19
-                      - *ref_15
                     immediate:
-                      - *ref_19
+                      - *ref_17
+                      - *ref_18
                   properties:
                     - !<!Property> 
-                      schema: *ref_18
-                      serializedName: breed
+                      schema: *ref_3
+                      serializedName: id
                       language: !<!Languages> 
                         default:
-                          name: breed
+                          name: id
+                          description: ''
+                      protocol: !<!Protocols> {}
+                    - !<!Property> 
+                      schema: *ref_16
+                      serializedName: name
+                      language: !<!Languages> 
+                        default:
+                          name: name
                           description: ''
                       protocol: !<!Protocols> {}
                   serializationFormats:
@@ -1076,20 +1090,15 @@ schemas: !<!Schemas>
                     - input
                   language: !<!Languages> 
                     default:
-                      name: siamese
+                      name: pet
                       description: ''
                       namespace: ''
                   protocol: !<!Protocols> {}
               immediate:
                 - *ref_20
-            parents: !<!Relations> 
-              all:
-                - *ref_15
-              immediate:
-                - *ref_15
             properties:
               - !<!Property> 
-                schema: *ref_16
+                schema: *ref_14
                 serializedName: color
                 language: !<!Languages> 
                   default:
@@ -1127,23 +1136,14 @@ schemas: !<!Schemas>
             protocol: !<!Protocols> {}
           - *ref_20
         immediate:
-          - *ref_17
-          - *ref_19
+          - *ref_18
       properties:
         - !<!Property> 
-          schema: *ref_3
-          serializedName: id
-          language: !<!Languages> 
-            default:
-              name: id
-              description: ''
-          protocol: !<!Protocols> {}
-        - !<!Property> 
           schema: *ref_13
-          serializedName: name
+          serializedName: breed
           language: !<!Languages> 
             default:
-              name: name
+              name: breed
               description: ''
           protocol: !<!Protocols> {}
       serializationFormats:
@@ -1153,11 +1153,11 @@ schemas: !<!Schemas>
         - input
       language: !<!Languages> 
         default:
-          name: pet
+          name: siamese
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - *ref_19
+    - *ref_18
     - *ref_17
     - *ref_20
     - !<!ObjectSchema> &ref_23
@@ -4109,7 +4109,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_20
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
@@ -4150,7 +4150,7 @@ operationGroups:
           - !<!Request> 
             parameters:
               - !<!Parameter> &ref_104
-                schema: *ref_20
+                schema: *ref_19
                 implementation: Method
                 required: true
                 language: !<!Languages> 
