@@ -286,7 +286,7 @@ export class PreNamer {
     }
 
     for (const operationGroup of this.codeModel.operationGroups) {
-      setNameAllowEmpty(operationGroup, this.format.operationGroup, operationGroup.$key, this.format.override);
+      setNameAllowEmpty(operationGroup, this.format.operationGroup, operationGroup.$key, this.format.override, { removeDuplicates: false });
       for (const operation of operationGroup.operations) {
         setName(operation, this.format.operation, '', this.format.override);
 
