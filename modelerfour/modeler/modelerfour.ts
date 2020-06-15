@@ -630,25 +630,12 @@ export class ModelerFour {
     return objectSchema;
   }
 
-  processObjectSchema(name: string, aSchema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AnySchema {
-    let i = 0;
-    const parents: Array<ComplexSchema> = <any>values(aSchema.allOf).select(sch => this.use(sch, (n, s) => {
-      return this.processSchema(n || `${name}.allOf.${i++}`, s);
-    })).toArray();
-    const orTypes = values(aSchema.anyOf).select(sch => this.use(sch, (n, s) => {
-      return this.processSchema(n || `${name}.anyOf.${i++}`, s);
-    })).toArray();
-    const xorTypes = values(aSchema.oneOf).select(sch => this.use(sch, (n, s) => {
-      return this.processSchema(n || `${name}.oneOf.${i++}`, s);
-    })).toArray();
-
-    const dictionaryDef = aSchema.additionalProperties;
-
-    const schema = aSchema;
-
+  processObjectSchema(name: string, schema: OpenAPI.Schema): ObjectSchema | DictionarySchema | OrSchema | XorSchema | AnySchema {
+    const dictionaryDef = schema.additionalProperties;
 
     // is this more than a straightforward object?
-    const isMoreThanObject = (parents.length + orTypes.length + xorTypes.length) > 0 || !!dictionaryDef;
+    const parentCount = length(schema.allOf);
+    const isMoreThanObject = (parentCount + length(schema.anyOf) + length(schema.oneOf)) > 0 || !!dictionaryDef;
 
     // do we have properties at all?
     const hasProperties = length(schema.properties) > 0;
@@ -659,12 +646,23 @@ export class ModelerFour {
       return this.anySchema;
     }
 
-    const dictionarySchema = dictionaryDef ? this.processDictionarySchema(name, aSchema) : undefined;
-    if (parents.length === 0 && !hasProperties && dictionarySchema) {
+    const dictionarySchema = dictionaryDef ? this.processDictionarySchema(name, schema) : undefined;
+    if (parentCount === 0 && !hasProperties && dictionarySchema) {
       return dictionarySchema;
     }
 
     const objectSchema = this.createObjectSchema(name, schema);
+
+    let i = 0;
+    const parents: Array<ComplexSchema> = <any>values(schema.allOf).select(sch => this.use(sch, (n, s) => {
+      return this.processSchema(n || `${name}.allOf.${i++}`, s);
+    })).toArray();
+    const orTypes = values(schema.anyOf).select(sch => this.use(sch, (n, s) => {
+      return this.processSchema(n || `${name}.anyOf.${i++}`, s);
+    })).toArray();
+    const xorTypes = values(schema.oneOf).select(sch => this.use(sch, (n, s) => {
+      return this.processSchema(n || `${name}.oneOf.${i++}`, s);
+    })).toArray();
 
     // add it to the upcoming and schema set
     // andTypes.unshift(objectSchema);
@@ -769,7 +767,7 @@ export class ModelerFour {
   trap = new Set();
   processSchemaImpl(schema: OpenAPI.Schema, name: string): Schema {
     if (this.trap.has(schema)) {
-      throw new Error('RECURSING!');
+      throw new Error(`RECURSING!  Saw schema ${schema.title} more than once.`);
     }
     this.trap.add(schema);
 

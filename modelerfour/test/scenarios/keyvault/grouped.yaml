@@ -56,21 +56,21 @@ schemas: !<!Schemas>
           name: boolean
           description: ''
       protocol: !<!Protocols> {}
-    - !<!BooleanSchema> &ref_106
+    - !<!BooleanSchema> &ref_104
       type: boolean
       language: !<!Languages> 
         default:
           name: boolean
           description: Indicates if the private key can be exported.
       protocol: !<!Protocols> {}
-    - !<!BooleanSchema> &ref_107
+    - !<!BooleanSchema> &ref_105
       type: boolean
       language: !<!Languages> 
         default:
           name: boolean
           description: Indicates if the same key pair will be used on certificate renewal.
       protocol: !<!Protocols> {}
-    - !<!BooleanSchema> &ref_121
+    - !<!BooleanSchema> &ref_119
       type: boolean
       language: !<!Languages> 
         default:
@@ -98,7 +98,7 @@ schemas: !<!Schemas>
           name: boolean
           description: the enabled state of the object.
       protocol: !<!Protocols> {}
-    - !<!BooleanSchema> &ref_193
+    - !<!BooleanSchema> &ref_191
       type: boolean
       language: !<!Languages> 
         default:
@@ -127,7 +127,7 @@ schemas: !<!Schemas>
           name: integer
           description: ''
       protocol: !<!Protocols> {}
-    - !<!NumberSchema> &ref_115
+    - !<!NumberSchema> &ref_113
       type: integer
       minimum: 0
       precision: 32
@@ -136,7 +136,7 @@ schemas: !<!Schemas>
           name: ValidityInMonths
           description: The duration that the certificate is valid in months.
       protocol: !<!Protocols> {}
-    - !<!NumberSchema> &ref_116
+    - !<!NumberSchema> &ref_114
       type: integer
       maximum: 99
       minimum: 1
@@ -146,7 +146,7 @@ schemas: !<!Schemas>
           name: integer
           description: Percentage of lifetime at which to trigger. Value should be between 1 and 99.
       protocol: !<!Protocols> {}
-    - !<!NumberSchema> &ref_117
+    - !<!NumberSchema> &ref_115
       type: integer
       precision: 32
       language: !<!Languages> 
@@ -433,7 +433,17 @@ schemas: !<!Schemas>
           name: CertificateListResult-nextLink
           description: The URL to get the next set of certificates.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_102
+    - !<!StringSchema> &ref_124
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 7.0-preview
+      language: !<!Languages> 
+        default:
+          name: DeletedCertificateBundle-recoveryId
+          description: 'The url of the recovery object, used to identify and recover the deleted certificate.'
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_100
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -443,7 +453,7 @@ schemas: !<!Schemas>
           name: CertificateBundle-id
           description: The certificate id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_103
+    - !<!StringSchema> &ref_101
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -453,7 +463,7 @@ schemas: !<!Schemas>
           name: CertificateBundle-kid
           description: The key id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_104
+    - !<!StringSchema> &ref_102
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -463,7 +473,7 @@ schemas: !<!Schemas>
           name: CertificateBundle-sid
           description: The secret id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_105
+    - !<!StringSchema> &ref_103
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -473,7 +483,7 @@ schemas: !<!Schemas>
           name: CertificatePolicy-id
           description: The certificate id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_108
+    - !<!StringSchema> &ref_106
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -483,7 +493,7 @@ schemas: !<!Schemas>
           name: SecretProperties-contentType
           description: The media type (MIME type).
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_109
+    - !<!StringSchema> &ref_107
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -493,7 +503,7 @@ schemas: !<!Schemas>
           name: X509CertificateProperties-subject
           description: The subject name. Should be a valid X509 distinguished Name.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_110
+    - !<!StringSchema> &ref_108
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -503,7 +513,7 @@ schemas: !<!Schemas>
           name: X509CertificateProperties-ekusItem
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_111
+    - !<!StringSchema> &ref_109
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -513,7 +523,7 @@ schemas: !<!Schemas>
           name: SubjectAlternativeNames-emailsItem
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_112
+    - !<!StringSchema> &ref_110
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -523,7 +533,7 @@ schemas: !<!Schemas>
           name: SubjectAlternativeNames-dns_namesItem
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_113
+    - !<!StringSchema> &ref_111
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -533,7 +543,7 @@ schemas: !<!Schemas>
           name: SubjectAlternativeNames-upnsItem
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_119
+    - !<!StringSchema> &ref_117
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -543,7 +553,7 @@ schemas: !<!Schemas>
           name: IssuerParameters-name
           description: 'Name of the referenced issuer object or reserved names; for example, ''Self'' or ''Unknown''.'
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_120
+    - !<!StringSchema> &ref_118
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -553,7 +563,7 @@ schemas: !<!Schemas>
           name: CertificateType
           description: 'Certificate type as supported by the provider (optional); for example ''OV-SSL'', ''EV-SSL'''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_123
+    - !<!StringSchema> &ref_121
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -562,16 +572,6 @@ schemas: !<!Schemas>
         default:
           name: CertificateBundle-contentType
           description: The content type of the secret.
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_100
-      type: string
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 7.0-preview
-      language: !<!Languages> 
-        default:
-          name: DeletedCertificateBundle-recoveryId
-          description: 'The url of the recovery object, used to identify and recover the deleted certificate.'
       protocol: !<!Protocols> {}
     - !<!StringSchema> &ref_134
       type: string
@@ -894,7 +894,17 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_190
+    - !<!StringSchema> &ref_195
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 7.0-preview
+      language: !<!Languages> 
+        default:
+          name: DeletedStorageBundle-recoveryId
+          description: 'The url of the recovery object, used to identify and recover the deleted storage account.'
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_188
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -904,7 +914,7 @@ schemas: !<!Schemas>
           name: StorageBundle-id
           description: The storage account id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_191
+    - !<!StringSchema> &ref_189
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -914,7 +924,7 @@ schemas: !<!Schemas>
           name: StorageBundle-resourceId
           description: The storage account resource id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_192
+    - !<!StringSchema> &ref_190
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -924,7 +934,7 @@ schemas: !<!Schemas>
           name: StorageBundle-activeKeyName
           description: The current active storage account key name.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_194
+    - !<!StringSchema> &ref_192
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -933,16 +943,6 @@ schemas: !<!Schemas>
         default:
           name: StorageBundle-regenerationPeriod
           description: The key regeneration time duration specified in ISO-8601 format.
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_188
-      type: string
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 7.0-preview
-      language: !<!Languages> 
-        default:
-          name: DeletedStorageBundle-recoveryId
-          description: 'The url of the recovery object, used to identify and recover the deleted storage account.'
       protocol: !<!Protocols> {}
     - !<!StringSchema> &ref_198
       type: string
@@ -1054,7 +1054,17 @@ schemas: !<!Schemas>
           name: DeletedSasDefinitionListResult-nextLink
           description: The URL to get the next set of deleted SAS definitions.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_220
+    - !<!StringSchema> &ref_225
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 7.0-preview
+      language: !<!Languages> 
+        default:
+          name: DeletedSasDefinitionBundle-recoveryId
+          description: 'The url of the recovery object, used to identify and recover the deleted SAS definition.'
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_218
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -1064,7 +1074,7 @@ schemas: !<!Schemas>
           name: SasDefinitionBundle-id
           description: The SAS definition id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_221
+    - !<!StringSchema> &ref_219
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -1074,7 +1084,7 @@ schemas: !<!Schemas>
           name: SecretId
           description: Storage account SAS definition secret id.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_222
+    - !<!StringSchema> &ref_220
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -1084,7 +1094,7 @@ schemas: !<!Schemas>
           name: SasDefinitionBundle-templateUri
           description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_224
+    - !<!StringSchema> &ref_222
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -1093,16 +1103,6 @@ schemas: !<!Schemas>
         default:
           name: SasDefinitionBundle-validityPeriod
           description: The validity period of SAS tokens created according to the SAS definition.
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_218
-      type: string
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 7.0-preview
-      language: !<!Languages> 
-        default:
-          name: DeletedSasDefinitionBundle-recoveryId
-          description: 'The url of the recovery object, used to identify and recover the deleted SAS definition.'
       protocol: !<!Protocols> {}
     - !<!StringSchema> &ref_226
       type: string
@@ -1427,7 +1427,7 @@ schemas: !<!Schemas>
           name: JsonWebKeySignatureAlgorithm
           description: 'The signing/verification algorithm identifier. For more information on possible algorithm types, see JsonWebKeySignatureAlgorithm.'
       protocol: !<!Protocols> {}
-    - !<!ChoiceSchema> &ref_114
+    - !<!ChoiceSchema> &ref_112
       choices:
         - !<!ChoiceValue> 
           value: digitalSignature
@@ -1493,7 +1493,7 @@ schemas: !<!Schemas>
           name: KeyUsageType
           description: ''
       protocol: !<!Protocols> {}
-    - !<!ChoiceSchema> &ref_223
+    - !<!ChoiceSchema> &ref_221
       choices:
         - !<!ChoiceValue> 
           value: account
@@ -1518,7 +1518,7 @@ schemas: !<!Schemas>
           description: The type of SAS token the SAS definition will create.
       protocol: !<!Protocols> {}
   sealedChoices:
-    - !<!SealedChoiceSchema> &ref_118
+    - !<!SealedChoiceSchema> &ref_116
       choices:
         - !<!ChoiceValue> 
           value: EmailContacts
@@ -1644,7 +1644,7 @@ schemas: !<!Schemas>
           name: CertificateItem-tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
-    - !<!DictionarySchema> &ref_124
+    - !<!DictionarySchema> &ref_122
       type: dictionary
       elementType: *ref_1
       nullableItems: false
@@ -1698,7 +1698,7 @@ schemas: !<!Schemas>
           name: StorageAccountItem-tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
-    - !<!DictionarySchema> &ref_195
+    - !<!DictionarySchema> &ref_193
       type: dictionary
       elementType: *ref_1
       nullableItems: false
@@ -1734,7 +1734,7 @@ schemas: !<!Schemas>
           name: SasDefinitionItem-tags
           description: Application specific metadata in the form of key-value pairs.
       protocol: !<!Protocols> {}
-    - !<!DictionarySchema> &ref_225
+    - !<!DictionarySchema> &ref_223
       type: dictionary
       elementType: *ref_1
       nullableItems: false
@@ -2004,7 +2004,7 @@ schemas: !<!Schemas>
           name: X509Thumbprint
           description: Thumbprint of the certificate.
       protocol: !<!Protocols> {}
-    - !<!ByteArraySchema> &ref_122
+    - !<!ByteArraySchema> &ref_120
       type: byte-array
       format: byte
       apiVersions:
@@ -2427,8 +2427,8 @@ schemas: !<!Schemas>
           description: The key create parameters.
           namespace: ''
       protocol: !<!Protocols> {}
-    - *ref_6
     - *ref_5
+    - *ref_6
     - !<!ObjectSchema> &ref_17
       type: object
       apiVersions:
@@ -3880,14 +3880,14 @@ schemas: !<!Schemas>
       apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-      children: !<!Relations> 
+      parents: !<!Relations> 
         all:
-          - !<!ObjectSchema> &ref_101
+          - !<!ObjectSchema> &ref_123
             type: object
             apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-            parents: !<!Relations> 
+            children: !<!Relations> 
               all:
                 - *ref_99
               immediate:
@@ -3895,88 +3895,6 @@ schemas: !<!Schemas>
             properties:
               - !<!Property> 
                 schema: *ref_100
-                serializedName: recoveryId
-                language: !<!Languages> 
-                  default:
-                    name: recoveryId
-                    description: 'The url of the recovery object, used to identify and recover the deleted certificate.'
-                protocol: !<!Protocols> {}
-              - !<!Property> 
-                schema: *ref_92
-                readOnly: true
-                serializedName: scheduledPurgeDate
-                language: !<!Languages> 
-                  default:
-                    name: scheduledPurgeDate
-                    description: 'The time when the certificate is scheduled to be purged, in UTC'
-                protocol: !<!Protocols> {}
-              - !<!Property> 
-                schema: *ref_93
-                readOnly: true
-                serializedName: deletedDate
-                language: !<!Languages> 
-                  default:
-                    name: deletedDate
-                    description: 'The time when the certificate was deleted, in UTC'
-                protocol: !<!Protocols> {}
-            serializationFormats:
-              - json
-            usage:
-              - output
-            language: !<!Languages> 
-              default:
-                name: DeletedCertificateBundle
-                description: 'A Deleted Certificate consisting of its previous id, attributes and its tags, as well as information on when it will be purged.'
-                namespace: ''
-            protocol: !<!Protocols> {}
-        immediate:
-          - *ref_101
-      properties:
-        - !<!Property> 
-          schema: *ref_102
-          readOnly: true
-          serializedName: id
-          language: !<!Languages> 
-            default:
-              name: id
-              description: The certificate id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_103
-          readOnly: true
-          serializedName: kid
-          language: !<!Languages> 
-            default:
-              name: kid
-              description: The key id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_104
-          readOnly: true
-          serializedName: sid
-          language: !<!Languages> 
-            default:
-              name: sid
-              description: The secret id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_97
-          readOnly: true
-          serializedName: x5t
-          language: !<!Languages> 
-            default:
-              name: X509Thumbprint
-              description: Thumbprint of the certificate.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: !<!ObjectSchema> &ref_125
-            type: object
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 7.0-preview
-            properties:
-              - !<!Property> 
-                schema: *ref_105
                 readOnly: true
                 serializedName: id
                 language: !<!Languages> 
@@ -3985,194 +3903,94 @@ schemas: !<!Schemas>
                     description: The certificate id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!ObjectSchema> &ref_126
-                  type: object
-                  apiVersions:
-                    - !<!ApiVersion> 
-                      version: 7.0-preview
-                  properties:
-                    - !<!Property> 
-                      schema: *ref_106
-                      serializedName: exportable
-                      language: !<!Languages> 
-                        default:
-                          name: exportable
-                          description: Indicates if the private key can be exported.
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: *ref_2
-                      serializedName: kty
-                      language: !<!Languages> 
-                        default:
-                          name: keyType
-                          description: The type of key pair to be used for the certificate.
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: *ref_3
-                      serializedName: key_size
-                      language: !<!Languages> 
-                        default:
-                          name: key_size
-                          description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: *ref_107
-                      serializedName: reuse_key
-                      language: !<!Languages> 
-                        default:
-                          name: reuse_key
-                          description: Indicates if the same key pair will be used on certificate renewal.
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: *ref_16
-                      serializedName: crv
-                      language: !<!Languages> 
-                        default:
-                          name: curve
-                          description: 'Elliptic curve name. For valid values, see JsonWebKeyCurveName.'
-                      protocol: !<!Protocols> {}
-                  serializationFormats:
-                    - json
-                  usage:
-                    - output
-                    - input
-                  language: !<!Languages> 
-                    default:
-                      name: KeyProperties
-                      description: Properties of the key pair backing a certificate.
-                      namespace: ''
-                  protocol: !<!Protocols> {}
-                serializedName: key_props
+                schema: *ref_101
+                readOnly: true
+                serializedName: kid
                 language: !<!Languages> 
                   default:
-                    name: KeyProperties
-                    description: Properties of the key backing a certificate.
+                    name: kid
+                    description: The key id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!ObjectSchema> &ref_127
-                  type: object
-                  apiVersions:
-                    - !<!ApiVersion> 
-                      version: 7.0-preview
-                  properties:
-                    - !<!Property> 
-                      schema: *ref_108
-                      serializedName: contentType
-                      language: !<!Languages> 
-                        default:
-                          name: contentType
-                          description: The media type (MIME type).
-                      protocol: !<!Protocols> {}
-                  serializationFormats:
-                    - json
-                  usage:
-                    - output
-                    - input
-                  language: !<!Languages> 
-                    default:
-                      name: SecretProperties
-                      description: Properties of the key backing a certificate.
-                      namespace: ''
-                  protocol: !<!Protocols> {}
-                serializedName: secret_props
+                schema: *ref_102
+                readOnly: true
+                serializedName: sid
                 language: !<!Languages> 
                   default:
-                    name: SecretProperties
-                    description: Properties of the secret backing a certificate.
+                    name: sid
+                    description: The secret id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: !<!ObjectSchema> &ref_128
+                schema: *ref_97
+                readOnly: true
+                serializedName: x5t
+                language: !<!Languages> 
+                  default:
+                    name: X509Thumbprint
+                    description: Thumbprint of the certificate.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: !<!ObjectSchema> &ref_125
                   type: object
                   apiVersions:
                     - !<!ApiVersion> 
                       version: 7.0-preview
                   properties:
                     - !<!Property> 
-                      schema: *ref_109
-                      serializedName: subject
+                      schema: *ref_103
+                      readOnly: true
+                      serializedName: id
                       language: !<!Languages> 
                         default:
-                          name: subject
-                          description: The subject name. Should be a valid X509 distinguished Name.
+                          name: id
+                          description: The certificate id.
                       protocol: !<!Protocols> {}
                     - !<!Property> 
-                      schema: !<!ArraySchema> &ref_241
-                        type: array
-                        apiVersions:
-                          - !<!ApiVersion> 
-                            version: 7.0-preview
-                        elementType: *ref_110
-                        language: !<!Languages> 
-                          default:
-                            name: X509CertificateProperties-ekus
-                            description: The enhanced key usage.
-                        protocol: !<!Protocols> {}
-                      serializedName: ekus
-                      language: !<!Languages> 
-                        default:
-                          name: ekus
-                          description: The enhanced key usage.
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: !<!ObjectSchema> &ref_129
+                      schema: !<!ObjectSchema> &ref_126
                         type: object
                         apiVersions:
                           - !<!ApiVersion> 
                             version: 7.0-preview
                         properties:
                           - !<!Property> 
-                            schema: !<!ArraySchema> &ref_242
-                              type: array
-                              apiVersions:
-                                - !<!ApiVersion> 
-                                  version: 7.0-preview
-                              elementType: *ref_111
-                              language: !<!Languages> 
-                                default:
-                                  name: SubjectAlternativeNames-emails
-                                  description: Email addresses.
-                              protocol: !<!Protocols> {}
-                            serializedName: emails
+                            schema: *ref_104
+                            serializedName: exportable
                             language: !<!Languages> 
                               default:
-                                name: emails
-                                description: Email addresses.
+                                name: exportable
+                                description: Indicates if the private key can be exported.
                             protocol: !<!Protocols> {}
                           - !<!Property> 
-                            schema: !<!ArraySchema> &ref_243
-                              type: array
-                              apiVersions:
-                                - !<!ApiVersion> 
-                                  version: 7.0-preview
-                              elementType: *ref_112
-                              language: !<!Languages> 
-                                default:
-                                  name: SubjectAlternativeNames-dns_names
-                                  description: Domain names.
-                              protocol: !<!Protocols> {}
-                            serializedName: dns_names
+                            schema: *ref_2
+                            serializedName: kty
                             language: !<!Languages> 
                               default:
-                                name: dns_names
-                                description: Domain names.
+                                name: keyType
+                                description: The type of key pair to be used for the certificate.
                             protocol: !<!Protocols> {}
                           - !<!Property> 
-                            schema: !<!ArraySchema> &ref_244
-                              type: array
-                              apiVersions:
-                                - !<!ApiVersion> 
-                                  version: 7.0-preview
-                              elementType: *ref_113
-                              language: !<!Languages> 
-                                default:
-                                  name: SubjectAlternativeNames-upns
-                                  description: User principal names.
-                              protocol: !<!Protocols> {}
-                            serializedName: upns
+                            schema: *ref_3
+                            serializedName: key_size
                             language: !<!Languages> 
                               default:
-                                name: upns
-                                description: User principal names.
+                                name: key_size
+                                description: 'The key size in bits. For example: 2048, 3072, or 4096 for RSA.'
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: *ref_105
+                            serializedName: reuse_key
+                            language: !<!Languages> 
+                              default:
+                                name: reuse_key
+                                description: Indicates if the same key pair will be used on certificate renewal.
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: *ref_16
+                            serializedName: crv
+                            language: !<!Languages> 
+                              default:
+                                name: curve
+                                description: 'Elliptic curve name. For valid values, see JsonWebKeyCurveName.'
                             protocol: !<!Protocols> {}
                         serializationFormats:
                           - json
@@ -4181,93 +3999,285 @@ schemas: !<!Schemas>
                           - input
                         language: !<!Languages> 
                           default:
-                            name: SubjectAlternativeNames
-                            description: The subject alternate names of a X509 object.
+                            name: KeyProperties
+                            description: Properties of the key pair backing a certificate.
                             namespace: ''
                         protocol: !<!Protocols> {}
-                      serializedName: sans
+                      serializedName: key_props
                       language: !<!Languages> 
                         default:
-                          name: SubjectAlternativeNames
-                          description: The subject alternative names.
+                          name: KeyProperties
+                          description: Properties of the key backing a certificate.
                       protocol: !<!Protocols> {}
                     - !<!Property> 
-                      schema: !<!ArraySchema> &ref_245
+                      schema: !<!ObjectSchema> &ref_127
+                        type: object
+                        apiVersions:
+                          - !<!ApiVersion> 
+                            version: 7.0-preview
+                        properties:
+                          - !<!Property> 
+                            schema: *ref_106
+                            serializedName: contentType
+                            language: !<!Languages> 
+                              default:
+                                name: contentType
+                                description: The media type (MIME type).
+                            protocol: !<!Protocols> {}
+                        serializationFormats:
+                          - json
+                        usage:
+                          - output
+                          - input
+                        language: !<!Languages> 
+                          default:
+                            name: SecretProperties
+                            description: Properties of the key backing a certificate.
+                            namespace: ''
+                        protocol: !<!Protocols> {}
+                      serializedName: secret_props
+                      language: !<!Languages> 
+                        default:
+                          name: SecretProperties
+                          description: Properties of the secret backing a certificate.
+                      protocol: !<!Protocols> {}
+                    - !<!Property> 
+                      schema: !<!ObjectSchema> &ref_128
+                        type: object
+                        apiVersions:
+                          - !<!ApiVersion> 
+                            version: 7.0-preview
+                        properties:
+                          - !<!Property> 
+                            schema: *ref_107
+                            serializedName: subject
+                            language: !<!Languages> 
+                              default:
+                                name: subject
+                                description: The subject name. Should be a valid X509 distinguished Name.
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: !<!ArraySchema> &ref_241
+                              type: array
+                              apiVersions:
+                                - !<!ApiVersion> 
+                                  version: 7.0-preview
+                              elementType: *ref_108
+                              language: !<!Languages> 
+                                default:
+                                  name: X509CertificateProperties-ekus
+                                  description: The enhanced key usage.
+                              protocol: !<!Protocols> {}
+                            serializedName: ekus
+                            language: !<!Languages> 
+                              default:
+                                name: ekus
+                                description: The enhanced key usage.
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: !<!ObjectSchema> &ref_129
+                              type: object
+                              apiVersions:
+                                - !<!ApiVersion> 
+                                  version: 7.0-preview
+                              properties:
+                                - !<!Property> 
+                                  schema: !<!ArraySchema> &ref_242
+                                    type: array
+                                    apiVersions:
+                                      - !<!ApiVersion> 
+                                        version: 7.0-preview
+                                    elementType: *ref_109
+                                    language: !<!Languages> 
+                                      default:
+                                        name: SubjectAlternativeNames-emails
+                                        description: Email addresses.
+                                    protocol: !<!Protocols> {}
+                                  serializedName: emails
+                                  language: !<!Languages> 
+                                    default:
+                                      name: emails
+                                      description: Email addresses.
+                                  protocol: !<!Protocols> {}
+                                - !<!Property> 
+                                  schema: !<!ArraySchema> &ref_243
+                                    type: array
+                                    apiVersions:
+                                      - !<!ApiVersion> 
+                                        version: 7.0-preview
+                                    elementType: *ref_110
+                                    language: !<!Languages> 
+                                      default:
+                                        name: SubjectAlternativeNames-dns_names
+                                        description: Domain names.
+                                    protocol: !<!Protocols> {}
+                                  serializedName: dns_names
+                                  language: !<!Languages> 
+                                    default:
+                                      name: dns_names
+                                      description: Domain names.
+                                  protocol: !<!Protocols> {}
+                                - !<!Property> 
+                                  schema: !<!ArraySchema> &ref_244
+                                    type: array
+                                    apiVersions:
+                                      - !<!ApiVersion> 
+                                        version: 7.0-preview
+                                    elementType: *ref_111
+                                    language: !<!Languages> 
+                                      default:
+                                        name: SubjectAlternativeNames-upns
+                                        description: User principal names.
+                                    protocol: !<!Protocols> {}
+                                  serializedName: upns
+                                  language: !<!Languages> 
+                                    default:
+                                      name: upns
+                                      description: User principal names.
+                                  protocol: !<!Protocols> {}
+                              serializationFormats:
+                                - json
+                              usage:
+                                - output
+                                - input
+                              language: !<!Languages> 
+                                default:
+                                  name: SubjectAlternativeNames
+                                  description: The subject alternate names of a X509 object.
+                                  namespace: ''
+                              protocol: !<!Protocols> {}
+                            serializedName: sans
+                            language: !<!Languages> 
+                              default:
+                                name: SubjectAlternativeNames
+                                description: The subject alternative names.
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: !<!ArraySchema> &ref_245
+                              type: array
+                              apiVersions:
+                                - !<!ApiVersion> 
+                                  version: 7.0-preview
+                              elementType: *ref_112
+                              language: !<!Languages> 
+                                default:
+                                  name: X509CertificateProperties-key_usage
+                                  description: List of key usages.
+                              protocol: !<!Protocols> {}
+                            serializedName: key_usage
+                            language: !<!Languages> 
+                              default:
+                                name: key_usage
+                                description: List of key usages.
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: *ref_113
+                            serializedName: validity_months
+                            language: !<!Languages> 
+                              default:
+                                name: ValidityInMonths
+                                description: The duration that the certificate is valid in months.
+                            protocol: !<!Protocols> {}
+                        serializationFormats:
+                          - json
+                        usage:
+                          - output
+                          - input
+                        language: !<!Languages> 
+                          default:
+                            name: X509CertificateProperties
+                            description: Properties of the X509 component of a certificate.
+                            namespace: ''
+                        protocol: !<!Protocols> {}
+                      serializedName: x509_props
+                      language: !<!Languages> 
+                        default:
+                          name: X509CertificateProperties
+                          description: Properties of the X509 component of a certificate.
+                      protocol: !<!Protocols> {}
+                    - !<!Property> 
+                      schema: !<!ArraySchema> &ref_246
                         type: array
                         apiVersions:
                           - !<!ApiVersion> 
                             version: 7.0-preview
-                        elementType: *ref_114
-                        language: !<!Languages> 
-                          default:
-                            name: X509CertificateProperties-key_usage
-                            description: List of key usages.
-                        protocol: !<!Protocols> {}
-                      serializedName: key_usage
-                      language: !<!Languages> 
-                        default:
-                          name: key_usage
-                          description: List of key usages.
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: *ref_115
-                      serializedName: validity_months
-                      language: !<!Languages> 
-                        default:
-                          name: ValidityInMonths
-                          description: The duration that the certificate is valid in months.
-                      protocol: !<!Protocols> {}
-                  serializationFormats:
-                    - json
-                  usage:
-                    - output
-                    - input
-                  language: !<!Languages> 
-                    default:
-                      name: X509CertificateProperties
-                      description: Properties of the X509 component of a certificate.
-                      namespace: ''
-                  protocol: !<!Protocols> {}
-                serializedName: x509_props
-                language: !<!Languages> 
-                  default:
-                    name: X509CertificateProperties
-                    description: Properties of the X509 component of a certificate.
-                protocol: !<!Protocols> {}
-              - !<!Property> 
-                schema: !<!ArraySchema> &ref_246
-                  type: array
-                  apiVersions:
-                    - !<!ApiVersion> 
-                      version: 7.0-preview
-                  elementType: !<!ObjectSchema> &ref_130
-                    type: object
-                    apiVersions:
-                      - !<!ApiVersion> 
-                        version: 7.0-preview
-                    properties:
-                      - !<!Property> 
-                        schema: !<!ObjectSchema> &ref_131
+                        elementType: !<!ObjectSchema> &ref_130
                           type: object
                           apiVersions:
                             - !<!ApiVersion> 
                               version: 7.0-preview
                           properties:
                             - !<!Property> 
-                              schema: *ref_116
-                              serializedName: lifetime_percentage
+                              schema: !<!ObjectSchema> &ref_131
+                                type: object
+                                apiVersions:
+                                  - !<!ApiVersion> 
+                                    version: 7.0-preview
+                                properties:
+                                  - !<!Property> 
+                                    schema: *ref_114
+                                    serializedName: lifetime_percentage
+                                    language: !<!Languages> 
+                                      default:
+                                        name: lifetime_percentage
+                                        description: Percentage of lifetime at which to trigger. Value should be between 1 and 99.
+                                    protocol: !<!Protocols> {}
+                                  - !<!Property> 
+                                    schema: *ref_115
+                                    serializedName: days_before_expiry
+                                    language: !<!Languages> 
+                                      default:
+                                        name: days_before_expiry
+                                        description: 'Days before expiry to attempt renewal. Value should be between 1 and validity_in_months multiplied by 27. If validity_in_months is 36, then value should be between 1 and 972 (36 * 27).'
+                                    protocol: !<!Protocols> {}
+                                serializationFormats:
+                                  - json
+                                usage:
+                                  - output
+                                  - input
+                                language: !<!Languages> 
+                                  default:
+                                    name: Trigger
+                                    description: A condition to be satisfied for an action to be executed.
+                                    namespace: ''
+                                protocol: !<!Protocols> {}
+                              serializedName: trigger
                               language: !<!Languages> 
                                 default:
-                                  name: lifetime_percentage
-                                  description: Percentage of lifetime at which to trigger. Value should be between 1 and 99.
+                                  name: trigger
+                                  description: The condition that will execute the action.
                               protocol: !<!Protocols> {}
                             - !<!Property> 
-                              schema: *ref_117
-                              serializedName: days_before_expiry
+                              schema: !<!ObjectSchema> &ref_132
+                                type: object
+                                apiVersions:
+                                  - !<!ApiVersion> 
+                                    version: 7.0-preview
+                                properties:
+                                  - !<!Property> 
+                                    schema: *ref_116
+                                    serializedName: action_type
+                                    language: !<!Languages> 
+                                      default:
+                                        name: action_type
+                                        description: The type of the action.
+                                    protocol: !<!Protocols> {}
+                                serializationFormats:
+                                  - json
+                                usage:
+                                  - output
+                                  - input
+                                language: !<!Languages> 
+                                  default:
+                                    name: Action
+                                    description: The action that will be executed.
+                                    namespace: ''
+                                protocol: !<!Protocols> {}
+                              serializedName: action
                               language: !<!Languages> 
                                 default:
-                                  name: days_before_expiry
-                                  description: 'Days before expiry to attempt renewal. Value should be between 1 and validity_in_months multiplied by 27. If validity_in_months is 36, then value should be between 1 and 972 (36 * 27).'
+                                  name: action
+                                  description: The action that will be executed.
                               protocol: !<!Protocols> {}
                           serializationFormats:
                             - json
@@ -4276,100 +4286,76 @@ schemas: !<!Schemas>
                             - input
                           language: !<!Languages> 
                             default:
-                              name: Trigger
-                              description: A condition to be satisfied for an action to be executed.
+                              name: LifetimeAction
+                              description: Action and its trigger that will be performed by Key Vault over the lifetime of a certificate.
                               namespace: ''
                           protocol: !<!Protocols> {}
-                        serializedName: trigger
                         language: !<!Languages> 
                           default:
-                            name: trigger
-                            description: The condition that will execute the action.
+                            name: CertificatePolicy-lifetime_actions
+                            description: Actions that will be performed by Key Vault over the lifetime of a certificate.
                         protocol: !<!Protocols> {}
-                      - !<!Property> 
-                        schema: !<!ObjectSchema> &ref_132
-                          type: object
-                          apiVersions:
-                            - !<!ApiVersion> 
-                              version: 7.0-preview
-                          properties:
-                            - !<!Property> 
-                              schema: *ref_118
-                              serializedName: action_type
-                              language: !<!Languages> 
-                                default:
-                                  name: action_type
-                                  description: The type of the action.
-                              protocol: !<!Protocols> {}
-                          serializationFormats:
-                            - json
-                          usage:
-                            - output
-                            - input
-                          language: !<!Languages> 
-                            default:
-                              name: Action
-                              description: The action that will be executed.
-                              namespace: ''
-                          protocol: !<!Protocols> {}
-                        serializedName: action
+                      serializedName: lifetime_actions
+                      language: !<!Languages> 
+                        default:
+                          name: lifetime_actions
+                          description: Actions that will be performed by Key Vault over the lifetime of a certificate.
+                      protocol: !<!Protocols> {}
+                    - !<!Property> 
+                      schema: !<!ObjectSchema> &ref_133
+                        type: object
+                        apiVersions:
+                          - !<!ApiVersion> 
+                            version: 7.0-preview
+                        properties:
+                          - !<!Property> 
+                            schema: *ref_117
+                            serializedName: name
+                            language: !<!Languages> 
+                              default:
+                                name: name
+                                description: 'Name of the referenced issuer object or reserved names; for example, ''Self'' or ''Unknown''.'
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: *ref_118
+                            serializedName: cty
+                            language: !<!Languages> 
+                              default:
+                                name: CertificateType
+                                description: 'Certificate type as supported by the provider (optional); for example ''OV-SSL'', ''EV-SSL'''
+                            protocol: !<!Protocols> {}
+                          - !<!Property> 
+                            schema: *ref_119
+                            serializedName: cert_transparency
+                            language: !<!Languages> 
+                              default:
+                                name: CertificateTransparency
+                                description: Indicates if the certificates generated under this policy should be published to certificate transparency logs.
+                            protocol: !<!Protocols> {}
+                        serializationFormats:
+                          - json
+                        usage:
+                          - output
+                          - input
                         language: !<!Languages> 
                           default:
-                            name: action
-                            description: The action that will be executed.
+                            name: IssuerParameters
+                            description: Parameters for the issuer of the X509 component of a certificate.
+                            namespace: ''
                         protocol: !<!Protocols> {}
-                    serializationFormats:
-                      - json
-                    usage:
-                      - output
-                      - input
-                    language: !<!Languages> 
-                      default:
-                        name: LifetimeAction
-                        description: Action and its trigger that will be performed by Key Vault over the lifetime of a certificate.
-                        namespace: ''
-                    protocol: !<!Protocols> {}
-                  language: !<!Languages> 
-                    default:
-                      name: CertificatePolicy-lifetime_actions
-                      description: Actions that will be performed by Key Vault over the lifetime of a certificate.
-                  protocol: !<!Protocols> {}
-                serializedName: lifetime_actions
-                language: !<!Languages> 
-                  default:
-                    name: lifetime_actions
-                    description: Actions that will be performed by Key Vault over the lifetime of a certificate.
-                protocol: !<!Protocols> {}
-              - !<!Property> 
-                schema: !<!ObjectSchema> &ref_133
-                  type: object
-                  apiVersions:
-                    - !<!ApiVersion> 
-                      version: 7.0-preview
-                  properties:
-                    - !<!Property> 
-                      schema: *ref_119
-                      serializedName: name
+                      serializedName: issuer
                       language: !<!Languages> 
                         default:
-                          name: name
-                          description: 'Name of the referenced issuer object or reserved names; for example, ''Self'' or ''Unknown''.'
+                          name: IssuerParameters
+                          description: Parameters for the issuer of the X509 component of a certificate.
                       protocol: !<!Protocols> {}
                     - !<!Property> 
-                      schema: *ref_120
-                      serializedName: cty
+                      schema: *ref_9
+                      serializedName: attributes
                       language: !<!Languages> 
                         default:
-                          name: CertificateType
-                          description: 'Certificate type as supported by the provider (optional); for example ''OV-SSL'', ''EV-SSL'''
-                      protocol: !<!Protocols> {}
-                    - !<!Property> 
-                      schema: *ref_121
-                      serializedName: cert_transparency
-                      language: !<!Languages> 
-                        default:
-                          name: CertificateTransparency
-                          description: Indicates if the certificates generated under this policy should be published to certificate transparency logs.
+                          name: attributes
+                          description: The certificate attributes.
                       protocol: !<!Protocols> {}
                   serializationFormats:
                     - json
@@ -4378,15 +4364,32 @@ schemas: !<!Schemas>
                     - input
                   language: !<!Languages> 
                     default:
-                      name: IssuerParameters
-                      description: Parameters for the issuer of the X509 component of a certificate.
+                      name: CertificatePolicy
+                      description: Management policy for a certificate.
                       namespace: ''
                   protocol: !<!Protocols> {}
-                serializedName: issuer
+                readOnly: true
+                serializedName: policy
                 language: !<!Languages> 
                   default:
-                    name: IssuerParameters
-                    description: Parameters for the issuer of the X509 component of a certificate.
+                    name: policy
+                    description: The management policy.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_120
+                serializedName: cer
+                language: !<!Languages> 
+                  default:
+                    name: cer
+                    description: CER contents of x509 certificate.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_121
+                serializedName: contentType
+                language: !<!Languages> 
+                  default:
+                    name: contentType
+                    description: The content type of the secret.
                 protocol: !<!Protocols> {}
               - !<!Property> 
                 schema: *ref_9
@@ -4396,55 +4399,52 @@ schemas: !<!Schemas>
                     name: attributes
                     description: The certificate attributes.
                 protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_122
+                serializedName: tags
+                language: !<!Languages> 
+                  default:
+                    name: tags
+                    description: Application specific metadata in the form of key-value pairs
+                protocol: !<!Protocols> {}
             serializationFormats:
               - json
             usage:
               - output
-              - input
             language: !<!Languages> 
               default:
-                name: CertificatePolicy
-                description: Management policy for a certificate.
+                name: CertificateBundle
+                description: A certificate bundle consists of a certificate (X509) plus its attributes.
                 namespace: ''
             protocol: !<!Protocols> {}
-          readOnly: true
-          serializedName: policy
-          language: !<!Languages> 
-            default:
-              name: policy
-              description: The management policy.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_122
-          serializedName: cer
-          language: !<!Languages> 
-            default:
-              name: cer
-              description: CER contents of x509 certificate.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_123
-          serializedName: contentType
-          language: !<!Languages> 
-            default:
-              name: contentType
-              description: The content type of the secret.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_9
-          serializedName: attributes
-          language: !<!Languages> 
-            default:
-              name: attributes
-              description: The certificate attributes.
-          protocol: !<!Protocols> {}
+        immediate:
+          - *ref_123
+      properties:
         - !<!Property> 
           schema: *ref_124
-          serializedName: tags
+          serializedName: recoveryId
           language: !<!Languages> 
             default:
-              name: tags
-              description: Application specific metadata in the form of key-value pairs
+              name: recoveryId
+              description: 'The url of the recovery object, used to identify and recover the deleted certificate.'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_92
+          readOnly: true
+          serializedName: scheduledPurgeDate
+          language: !<!Languages> 
+            default:
+              name: scheduledPurgeDate
+              description: 'The time when the certificate is scheduled to be purged, in UTC'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_93
+          readOnly: true
+          serializedName: deletedDate
+          language: !<!Languages> 
+            default:
+              name: deletedDate
+              description: 'The time when the certificate was deleted, in UTC'
           protocol: !<!Protocols> {}
       serializationFormats:
         - json
@@ -4452,10 +4452,11 @@ schemas: !<!Schemas>
         - output
       language: !<!Languages> 
         default:
-          name: CertificateBundle
-          description: A certificate bundle consists of a certificate (X509) plus its attributes.
+          name: DeletedCertificateBundle
+          description: 'A Deleted Certificate consisting of its previous id, attributes and its tags, as well as information on when it will be purged.'
           namespace: ''
       protocol: !<!Protocols> {}
+    - *ref_123
     - *ref_125
     - *ref_126
     - *ref_127
@@ -4465,7 +4466,6 @@ schemas: !<!Schemas>
     - *ref_131
     - *ref_132
     - *ref_133
-    - *ref_101
     - !<!ObjectSchema> &ref_435
       type: object
       apiVersions:
@@ -5607,14 +5607,14 @@ schemas: !<!Schemas>
       apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-      children: !<!Relations> 
+      parents: !<!Relations> 
         all:
-          - !<!ObjectSchema> &ref_189
+          - !<!ObjectSchema> &ref_194
             type: object
             apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-            parents: !<!Relations> 
+            children: !<!Relations> 
               all:
                 - *ref_187
               immediate:
@@ -5622,29 +5622,66 @@ schemas: !<!Schemas>
             properties:
               - !<!Property> 
                 schema: *ref_188
-                serializedName: recoveryId
+                readOnly: true
+                serializedName: id
                 language: !<!Languages> 
                   default:
-                    name: recoveryId
-                    description: 'The url of the recovery object, used to identify and recover the deleted storage account.'
+                    name: id
+                    description: The storage account id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: *ref_177
+                schema: *ref_189
                 readOnly: true
-                serializedName: scheduledPurgeDate
+                serializedName: resourceId
                 language: !<!Languages> 
                   default:
-                    name: scheduledPurgeDate
-                    description: 'The time when the storage account is scheduled to be purged, in UTC'
+                    name: resourceId
+                    description: The storage account resource id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: *ref_178
+                schema: *ref_190
                 readOnly: true
-                serializedName: deletedDate
+                serializedName: activeKeyName
                 language: !<!Languages> 
                   default:
-                    name: deletedDate
-                    description: 'The time when the storage account was deleted, in UTC'
+                    name: activeKeyName
+                    description: The current active storage account key name.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_191
+                readOnly: true
+                serializedName: autoRegenerateKey
+                language: !<!Languages> 
+                  default:
+                    name: autoRegenerateKey
+                    description: whether keyvault should manage the storage account for the user.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_192
+                readOnly: true
+                serializedName: regenerationPeriod
+                language: !<!Languages> 
+                  default:
+                    name: regenerationPeriod
+                    description: The key regeneration time duration specified in ISO-8601 format.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_185
+                readOnly: true
+                serializedName: attributes
+                language: !<!Languages> 
+                  default:
+                    name: attributes
+                    description: The storage account attributes.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_193
+                readOnly: true
+                serializedName: tags
+                language: !<!Languages> 
+                  default:
+                    name: tags
+                    description: Application specific metadata in the form of key-value pairs
                 protocol: !<!Protocols> {}
             serializationFormats:
               - json
@@ -5652,75 +5689,38 @@ schemas: !<!Schemas>
               - output
             language: !<!Languages> 
               default:
-                name: DeletedStorageBundle
-                description: 'A deleted storage account bundle consisting of its previous id, attributes and its tags, as well as information on when it will be purged.'
+                name: StorageBundle
+                description: A Storage account bundle consists of key vault storage account details plus its attributes.
                 namespace: ''
             protocol: !<!Protocols> {}
         immediate:
-          - *ref_189
+          - *ref_194
       properties:
         - !<!Property> 
-          schema: *ref_190
-          readOnly: true
-          serializedName: id
-          language: !<!Languages> 
-            default:
-              name: id
-              description: The storage account id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_191
-          readOnly: true
-          serializedName: resourceId
-          language: !<!Languages> 
-            default:
-              name: resourceId
-              description: The storage account resource id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_192
-          readOnly: true
-          serializedName: activeKeyName
-          language: !<!Languages> 
-            default:
-              name: activeKeyName
-              description: The current active storage account key name.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_193
-          readOnly: true
-          serializedName: autoRegenerateKey
-          language: !<!Languages> 
-            default:
-              name: autoRegenerateKey
-              description: whether keyvault should manage the storage account for the user.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_194
-          readOnly: true
-          serializedName: regenerationPeriod
-          language: !<!Languages> 
-            default:
-              name: regenerationPeriod
-              description: The key regeneration time duration specified in ISO-8601 format.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_185
-          readOnly: true
-          serializedName: attributes
-          language: !<!Languages> 
-            default:
-              name: attributes
-              description: The storage account attributes.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
           schema: *ref_195
-          readOnly: true
-          serializedName: tags
+          serializedName: recoveryId
           language: !<!Languages> 
             default:
-              name: tags
-              description: Application specific metadata in the form of key-value pairs
+              name: recoveryId
+              description: 'The url of the recovery object, used to identify and recover the deleted storage account.'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_177
+          readOnly: true
+          serializedName: scheduledPurgeDate
+          language: !<!Languages> 
+            default:
+              name: scheduledPurgeDate
+              description: 'The time when the storage account is scheduled to be purged, in UTC'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_178
+          readOnly: true
+          serializedName: deletedDate
+          language: !<!Languages> 
+            default:
+              name: deletedDate
+              description: 'The time when the storage account was deleted, in UTC'
           protocol: !<!Protocols> {}
       serializationFormats:
         - json
@@ -5728,11 +5728,11 @@ schemas: !<!Schemas>
         - output
       language: !<!Languages> 
         default:
-          name: StorageBundle
-          description: A Storage account bundle consists of key vault storage account details plus its attributes.
+          name: DeletedStorageBundle
+          description: 'A deleted storage account bundle consisting of its previous id, attributes and its tags, as well as information on when it will be purged.'
           namespace: ''
       protocol: !<!Protocols> {}
-    - *ref_189
+    - *ref_194
     - !<!ObjectSchema> &ref_574
       type: object
       apiVersions:
@@ -5808,7 +5808,7 @@ schemas: !<!Schemas>
               description: Current active storage account key name.
           protocol: !<!Protocols> {}
         - !<!Property> &ref_588
-          schema: *ref_193
+          schema: *ref_191
           required: true
           serializedName: autoRegenerateKey
           language: !<!Languages> 
@@ -5868,7 +5868,7 @@ schemas: !<!Schemas>
               description: The current active storage account key name.
           protocol: !<!Protocols> {}
         - !<!Property> &ref_603
-          schema: *ref_193
+          schema: *ref_191
           serializedName: autoRegenerateKey
           language: !<!Languages> 
             default:
@@ -6186,14 +6186,14 @@ schemas: !<!Schemas>
       apiVersions:
         - !<!ApiVersion> 
           version: 7.0-preview
-      children: !<!Relations> 
+      parents: !<!Relations> 
         all:
-          - !<!ObjectSchema> &ref_219
+          - !<!ObjectSchema> &ref_224
             type: object
             apiVersions:
               - !<!ApiVersion> 
                 version: 7.0-preview
-            parents: !<!Relations> 
+            children: !<!Relations> 
               all:
                 - *ref_217
               immediate:
@@ -6201,29 +6201,66 @@ schemas: !<!Schemas>
             properties:
               - !<!Property> 
                 schema: *ref_218
-                serializedName: recoveryId
+                readOnly: true
+                serializedName: id
                 language: !<!Languages> 
                   default:
-                    name: recoveryId
-                    description: 'The url of the recovery object, used to identify and recover the deleted SAS definition.'
+                    name: id
+                    description: The SAS definition id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: *ref_208
+                schema: *ref_219
                 readOnly: true
-                serializedName: scheduledPurgeDate
+                serializedName: sid
                 language: !<!Languages> 
                   default:
-                    name: scheduledPurgeDate
-                    description: 'The time when the SAS definition is scheduled to be purged, in UTC'
+                    name: SecretId
+                    description: Storage account SAS definition secret id.
                 protocol: !<!Protocols> {}
               - !<!Property> 
-                schema: *ref_209
+                schema: *ref_220
                 readOnly: true
-                serializedName: deletedDate
+                serializedName: templateUri
                 language: !<!Languages> 
                   default:
-                    name: deletedDate
-                    description: 'The time when the SAS definition was deleted, in UTC'
+                    name: templateUri
+                    description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_221
+                readOnly: true
+                serializedName: sasType
+                language: !<!Languages> 
+                  default:
+                    name: sasType
+                    description: The type of SAS token the SAS definition will create.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_222
+                readOnly: true
+                serializedName: validityPeriod
+                language: !<!Languages> 
+                  default:
+                    name: validityPeriod
+                    description: The validity period of SAS tokens created according to the SAS definition.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_215
+                readOnly: true
+                serializedName: attributes
+                language: !<!Languages> 
+                  default:
+                    name: attributes
+                    description: The SAS definition attributes.
+                protocol: !<!Protocols> {}
+              - !<!Property> 
+                schema: *ref_223
+                readOnly: true
+                serializedName: tags
+                language: !<!Languages> 
+                  default:
+                    name: tags
+                    description: Application specific metadata in the form of key-value pairs
                 protocol: !<!Protocols> {}
             serializationFormats:
               - json
@@ -6231,75 +6268,38 @@ schemas: !<!Schemas>
               - output
             language: !<!Languages> 
               default:
-                name: DeletedSasDefinitionBundle
-                description: 'A deleted SAS definition bundle consisting of its previous id, attributes and its tags, as well as information on when it will be purged.'
+                name: SasDefinitionBundle
+                description: A SAS definition bundle consists of key vault SAS definition details plus its attributes.
                 namespace: ''
             protocol: !<!Protocols> {}
         immediate:
-          - *ref_219
+          - *ref_224
       properties:
         - !<!Property> 
-          schema: *ref_220
-          readOnly: true
-          serializedName: id
-          language: !<!Languages> 
-            default:
-              name: id
-              description: The SAS definition id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_221
-          readOnly: true
-          serializedName: sid
-          language: !<!Languages> 
-            default:
-              name: SecretId
-              description: Storage account SAS definition secret id.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_222
-          readOnly: true
-          serializedName: templateUri
-          language: !<!Languages> 
-            default:
-              name: templateUri
-              description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_223
-          readOnly: true
-          serializedName: sasType
-          language: !<!Languages> 
-            default:
-              name: sasType
-              description: The type of SAS token the SAS definition will create.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_224
-          readOnly: true
-          serializedName: validityPeriod
-          language: !<!Languages> 
-            default:
-              name: validityPeriod
-              description: The validity period of SAS tokens created according to the SAS definition.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
-          schema: *ref_215
-          readOnly: true
-          serializedName: attributes
-          language: !<!Languages> 
-            default:
-              name: attributes
-              description: The SAS definition attributes.
-          protocol: !<!Protocols> {}
-        - !<!Property> 
           schema: *ref_225
-          readOnly: true
-          serializedName: tags
+          serializedName: recoveryId
           language: !<!Languages> 
             default:
-              name: tags
-              description: Application specific metadata in the form of key-value pairs
+              name: recoveryId
+              description: 'The url of the recovery object, used to identify and recover the deleted SAS definition.'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_208
+          readOnly: true
+          serializedName: scheduledPurgeDate
+          language: !<!Languages> 
+            default:
+              name: scheduledPurgeDate
+              description: 'The time when the SAS definition is scheduled to be purged, in UTC'
+          protocol: !<!Protocols> {}
+        - !<!Property> 
+          schema: *ref_209
+          readOnly: true
+          serializedName: deletedDate
+          language: !<!Languages> 
+            default:
+              name: deletedDate
+              description: 'The time when the SAS definition was deleted, in UTC'
           protocol: !<!Protocols> {}
       serializationFormats:
         - json
@@ -6307,11 +6307,11 @@ schemas: !<!Schemas>
         - output
       language: !<!Languages> 
         default:
-          name: SasDefinitionBundle
-          description: A SAS definition bundle consists of key vault SAS definition details plus its attributes.
+          name: DeletedSasDefinitionBundle
+          description: 'A deleted SAS definition bundle consisting of its previous id, attributes and its tags, as well as information on when it will be purged.'
           namespace: ''
       protocol: !<!Protocols> {}
-    - *ref_219
+    - *ref_224
     - !<!ObjectSchema> &ref_640
       type: object
       apiVersions:
@@ -6328,7 +6328,7 @@ schemas: !<!Schemas>
               description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
           protocol: !<!Protocols> {}
         - !<!Property> &ref_643
-          schema: *ref_223
+          schema: *ref_221
           required: true
           serializedName: sasType
           language: !<!Languages> 
@@ -6388,7 +6388,7 @@ schemas: !<!Schemas>
               description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
           protocol: !<!Protocols> {}
         - !<!Property> &ref_658
-          schema: *ref_223
+          schema: *ref_221
           serializedName: sasType
           language: !<!Languages> 
             default:
@@ -10827,7 +10827,7 @@ operationGroups:
           - *ref_434
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_101
+            schema: *ref_99
             language: !<!Languages> 
               default:
                 name: ''
@@ -12215,7 +12215,7 @@ operationGroups:
           - *ref_498
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_99
+            schema: *ref_123
             language: !<!Languages> 
               default:
                 name: ''
@@ -12836,7 +12836,7 @@ operationGroups:
           - *ref_517
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_99
+            schema: *ref_123
             language: !<!Languages> 
               default:
                 name: ''
@@ -12964,7 +12964,7 @@ operationGroups:
           - *ref_520
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_99
+            schema: *ref_123
             language: !<!Languages> 
               default:
                 name: ''
@@ -13467,7 +13467,7 @@ operationGroups:
           - *ref_540
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_99
+            schema: *ref_123
             language: !<!Languages> 
               default:
                 name: ''
@@ -13717,7 +13717,7 @@ operationGroups:
           - *ref_548
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_99
+            schema: *ref_123
             language: !<!Languages> 
               default:
                 name: ''
@@ -13981,7 +13981,7 @@ operationGroups:
           - *ref_554
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_101
+            schema: *ref_99
             language: !<!Languages> 
               default:
                 name: ''
@@ -14211,7 +14211,7 @@ operationGroups:
           - *ref_558
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_99
+            schema: *ref_123
             language: !<!Languages> 
               default:
                 name: ''
@@ -14589,7 +14589,7 @@ operationGroups:
           - *ref_567
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_189
+            schema: *ref_187
             language: !<!Languages> 
               default:
                 name: ''
@@ -14793,7 +14793,7 @@ operationGroups:
           - *ref_571
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_187
+            schema: *ref_194
             language: !<!Languages> 
               default:
                 name: ''
@@ -15018,7 +15018,7 @@ operationGroups:
           - *ref_579
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_187
+            schema: *ref_194
             language: !<!Languages> 
               default:
                 name: ''
@@ -15129,7 +15129,7 @@ operationGroups:
           - *ref_581
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_189
+            schema: *ref_187
             language: !<!Languages> 
               default:
                 name: ''
@@ -15239,7 +15239,7 @@ operationGroups:
           - *ref_583
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_187
+            schema: *ref_194
             language: !<!Languages> 
               default:
                 name: ''
@@ -15373,7 +15373,7 @@ operationGroups:
                     description: Current active storage account key name.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_594
-                schema: *ref_193
+                schema: *ref_191
                 implementation: Method
                 originalParameter: *ref_585
                 pathToProperty: []
@@ -15444,7 +15444,7 @@ operationGroups:
           - *ref_599
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_187
+            schema: *ref_194
             language: !<!Languages> 
               default:
                 name: ''
@@ -15575,7 +15575,7 @@ operationGroups:
                     description: The current active storage account key name.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_608
-                schema: *ref_193
+                schema: *ref_191
                 implementation: Method
                 originalParameter: *ref_601
                 pathToProperty: []
@@ -15641,7 +15641,7 @@ operationGroups:
           - *ref_613
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_187
+            schema: *ref_194
             language: !<!Languages> 
               default:
                 name: ''
@@ -15784,7 +15784,7 @@ operationGroups:
           - *ref_619
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_187
+            schema: *ref_194
             language: !<!Languages> 
               default:
                 name: ''
@@ -16165,7 +16165,7 @@ operationGroups:
           - *ref_630
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_219
+            schema: *ref_217
             language: !<!Languages> 
               default:
                 name: ''
@@ -16287,7 +16287,7 @@ operationGroups:
           - *ref_633
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_217
+            schema: *ref_224
             language: !<!Languages> 
               default:
                 name: ''
@@ -16406,7 +16406,7 @@ operationGroups:
           - *ref_636
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_219
+            schema: *ref_217
             language: !<!Languages> 
               default:
                 name: ''
@@ -16527,7 +16527,7 @@ operationGroups:
           - *ref_639
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_217
+            schema: *ref_224
             language: !<!Languages> 
               default:
                 name: ''
@@ -16659,7 +16659,7 @@ operationGroups:
                     description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_648
-                schema: *ref_223
+                schema: *ref_221
                 implementation: Method
                 originalParameter: *ref_641
                 pathToProperty: []
@@ -16730,7 +16730,7 @@ operationGroups:
           - *ref_654
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_217
+            schema: *ref_224
             language: !<!Languages> 
               default:
                 name: ''
@@ -16867,7 +16867,7 @@ operationGroups:
                     description: The SAS definition token template signed with an arbitrary key.  Tokens created according to the SAS definition will have the same properties as the template.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_663
-                schema: *ref_223
+                schema: *ref_221
                 implementation: Method
                 originalParameter: *ref_656
                 pathToProperty: []
@@ -16934,7 +16934,7 @@ operationGroups:
           - *ref_669
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_217
+            schema: *ref_224
             language: !<!Languages> 
               default:
                 name: ''

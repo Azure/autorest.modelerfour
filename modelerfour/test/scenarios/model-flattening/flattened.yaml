@@ -120,27 +120,7 @@ schemas: !<!Schemas>
           name: WrappedProduct-value
           description: the product value
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_24
-      type: string
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: productId
-          description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_25
-      type: string
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      language: !<!Languages> 
-        default:
-          name: description
-          description: Description of product.
-      protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_19
+    - !<!StringSchema> &ref_22
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -150,7 +130,17 @@ schemas: !<!Schemas>
           name: SimpleProductProperties-max_product_display_name
           description: Display name of product.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_21
+    - !<!StringSchema> &ref_25
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: ProductUrl-@odata.value
+          description: URL value.
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_24
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -160,15 +150,25 @@ schemas: !<!Schemas>
           name: GenericUrl-generic_value
           description: Generic URL value.
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_22
+    - !<!StringSchema> &ref_19
       type: string
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
       language: !<!Languages> 
         default:
-          name: ProductUrl-@odata.value
-          description: URL value.
+          name: productId
+          description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
+      protocol: !<!Protocols> {}
+    - !<!StringSchema> &ref_20
+      type: string
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      language: !<!Languages> 
+        default:
+          name: description
+          description: Description of product.
       protocol: !<!Protocols> {}
   choices:
     - !<!ChoiceSchema> &ref_11
@@ -250,7 +250,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
   constants:
-    - !<!ConstantSchema> &ref_20
+    - !<!ConstantSchema> &ref_23
       type: constant
       apiVersions:
         - !<!ApiVersion> 
@@ -574,64 +574,36 @@ schemas: !<!Schemas>
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-      children: !<!Relations> 
+      parents: !<!Relations> 
         all:
-          - !<!ObjectSchema> &ref_23
+          - !<!ObjectSchema> &ref_21
             type: object
             apiVersions:
               - !<!ApiVersion> 
                 version: 1.0.0
-            parents: !<!Relations> 
+            children: !<!Relations> 
               all:
                 - *ref_18
               immediate:
                 - *ref_18
             properties:
-              - !<!Property> &ref_46
+              - !<!Property> &ref_44
                 schema: *ref_19
-                flattenedNames:
-                  - details
-                  - max_product_display_name
-                serializedName: max_product_display_name
+                required: true
+                serializedName: base_product_id
                 language: !<!Languages> 
                   default:
-                    name: max_product_display_name
-                    description: Display name of product.
+                    name: productId
+                    description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
                 protocol: !<!Protocols> {}
-              - !<!Property> &ref_47
+              - !<!Property> &ref_45
                 schema: *ref_20
-                flattenedNames:
-                  - details
-                  - max_product_capacity
-                serializedName: max_product_capacity
+                required: false
+                serializedName: base_product_description
                 language: !<!Languages> 
                   default:
-                    name: capacity
-                    description: 'Capacity of product. For example, 4 people.'
-                protocol: !<!Protocols> {}
-              - !<!Property> &ref_48
-                schema: *ref_21
-                flattenedNames:
-                  - details
-                  - max_product_image
-                  - generic_value
-                serializedName: generic_value
-                language: !<!Languages> 
-                  default:
-                    name: generic_value
-                    description: Generic URL value.
-                protocol: !<!Protocols> {}
-              - !<!Property> &ref_49
-                schema: *ref_22
-                flattenedNames:
-                  - details
-                  - max_product_image
-                  - '@odata.value'
-                serializedName: '@odata.value'
-                language: !<!Languages> 
-                  default:
-                    name: '@odata.value'
-                    description: URL value.
+                    name: description
+                    description: Description of product.
                 protocol: !<!Protocols> {}
             serializationFormats:
               - json
@@ -640,93 +612,59 @@ schemas: !<!Schemas>
               - output
             language: !<!Languages> 
               default:
-                name: SimpleProduct
+                name: BaseProduct
                 description: The product documentation.
                 namespace: ''
             protocol: !<!Protocols> {}
         immediate:
-          - *ref_23
+          - *ref_21
       properties:
-        - !<!Property> &ref_44
+        - !<!Property> &ref_46
+          schema: *ref_22
+          flattenedNames:
+            - details
+            - max_product_display_name
+          serializedName: max_product_display_name
+          language: !<!Languages> 
+            default:
+              name: max_product_display_name
+              description: Display name of product.
+          protocol: !<!Protocols> {}
+        - !<!Property> &ref_47
+          schema: *ref_23
+          flattenedNames:
+            - details
+            - max_product_capacity
+          serializedName: max_product_capacity
+          language: !<!Languages> 
+            default:
+              name: capacity
+              description: 'Capacity of product. For example, 4 people.'
+          protocol: !<!Protocols> {}
+        - !<!Property> &ref_48
           schema: *ref_24
-          required: true
-          serializedName: base_product_id
-          language: !<!Languages> 
-            default:
-              name: productId
-              description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
-          protocol: !<!Protocols> {}
-        - !<!Property> &ref_45
-          schema: *ref_25
-          required: false
-          serializedName: base_product_description
-          language: !<!Languages> 
-            default:
-              name: description
-              description: Description of product.
-          protocol: !<!Protocols> {}
-      serializationFormats:
-        - json
-      usage:
-        - input
-        - output
-      language: !<!Languages> 
-        default:
-          name: BaseProduct
-          description: The product documentation.
-          namespace: ''
-      protocol: !<!Protocols> {}
-    - *ref_23
-    - !<!ObjectSchema> &ref_26
-      type: object
-      apiVersions:
-        - !<!ApiVersion> 
-          version: 1.0.0
-      children: !<!Relations> 
-        all:
-          - !<!ObjectSchema> &ref_27
-            type: object
-            apiVersions:
-              - !<!ApiVersion> 
-                version: 1.0.0
-            parents: !<!Relations> 
-              all:
-                - *ref_26
-              immediate:
-                - *ref_26
-            properties:
-              - !<!Property> 
-                schema: *ref_22
-                serializedName: '@odata.value'
-                language: !<!Languages> 
-                  default:
-                    name: '@odata.value'
-                    description: URL value.
-                protocol: !<!Protocols> {}
-            serializationFormats:
-              - json
-            usage:
-              - input
-              - output
-            extensions:
-              x-ms-flattened: true
-            language: !<!Languages> 
-              default:
-                name: ProductUrl
-                description: The product URL.
-                namespace: ''
-            protocol: !<!Protocols> {}
-        immediate:
-          - *ref_27
-      properties:
-        - !<!Property> 
-          schema: *ref_21
+          flattenedNames:
+            - details
+            - max_product_image
+            - generic_value
           serializedName: generic_value
           language: !<!Languages> 
             default:
               name: generic_value
               description: Generic URL value.
           protocol: !<!Protocols> {}
+        - !<!Property> &ref_49
+          schema: *ref_25
+          flattenedNames:
+            - details
+            - max_product_image
+            - '@odata.value'
+          serializedName: '@odata.value'
+          language: !<!Languages> 
+            default:
+              name: '@odata.value'
+              description: URL value.
+          protocol: !<!Protocols> {}
       serializationFormats:
         - json
       usage:
@@ -734,11 +672,73 @@ schemas: !<!Schemas>
         - output
       language: !<!Languages> 
         default:
-          name: GenericUrl
-          description: The Generic URL.
+          name: SimpleProduct
+          description: The product documentation.
+          namespace: ''
+      protocol: !<!Protocols> {}
+    - !<!ObjectSchema> &ref_26
+      type: object
+      apiVersions:
+        - !<!ApiVersion> 
+          version: 1.0.0
+      parents: !<!Relations> 
+        all:
+          - !<!ObjectSchema> &ref_27
+            type: object
+            apiVersions:
+              - !<!ApiVersion> 
+                version: 1.0.0
+            children: !<!Relations> 
+              all:
+                - *ref_26
+              immediate:
+                - *ref_26
+            properties:
+              - !<!Property> 
+                schema: *ref_24
+                serializedName: generic_value
+                language: !<!Languages> 
+                  default:
+                    name: generic_value
+                    description: Generic URL value.
+                protocol: !<!Protocols> {}
+            serializationFormats:
+              - json
+            usage:
+              - input
+              - output
+            language: !<!Languages> 
+              default:
+                name: GenericUrl
+                description: The Generic URL.
+                namespace: ''
+            protocol: !<!Protocols> {}
+        immediate:
+          - *ref_27
+      properties:
+        - !<!Property> 
+          schema: *ref_25
+          serializedName: '@odata.value'
+          language: !<!Languages> 
+            default:
+              name: '@odata.value'
+              description: URL value.
+          protocol: !<!Protocols> {}
+      serializationFormats:
+        - json
+      usage:
+        - input
+        - output
+      extensions:
+        x-ms-flattened: true
+      language: !<!Languages> 
+        default:
+          name: ProductUrl
+          description: The product URL.
           namespace: ''
       protocol: !<!Protocols> {}
     - *ref_27
+    - *ref_21
   arrays:
     - !<!ArraySchema> &ref_32
       type: array
@@ -1280,7 +1280,7 @@ operationGroups:
           - !<!Request> 
             parameters:
               - !<!Parameter> &ref_42
-                schema: *ref_23
+                schema: *ref_18
                 implementation: Method
                 required: false
                 language: !<!Languages> 
@@ -1308,7 +1308,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_23
+            schema: *ref_18
             language: !<!Languages> 
               default:
                 name: ''
@@ -1349,7 +1349,7 @@ operationGroups:
           - !<!Request> 
             parameters:
               - !<!Parameter> &ref_43
-                schema: *ref_23
+                schema: *ref_18
                 flattened: true
                 implementation: Method
                 required: false
@@ -1364,7 +1364,7 @@ operationGroups:
                     in: body
                     style: json
               - !<!VirtualParameter> &ref_50
-                schema: *ref_24
+                schema: *ref_19
                 implementation: Method
                 originalParameter: *ref_43
                 pathToProperty: []
@@ -1376,7 +1376,7 @@ operationGroups:
                     description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_51
-                schema: *ref_25
+                schema: *ref_20
                 implementation: Method
                 originalParameter: *ref_43
                 pathToProperty: []
@@ -1388,7 +1388,7 @@ operationGroups:
                     description: Description of product.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_52
-                schema: *ref_19
+                schema: *ref_22
                 implementation: Method
                 originalParameter: *ref_43
                 pathToProperty: []
@@ -1399,7 +1399,7 @@ operationGroups:
                     description: Display name of product.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> 
-                schema: *ref_20
+                schema: *ref_23
                 implementation: Method
                 originalParameter: *ref_43
                 pathToProperty: []
@@ -1410,7 +1410,7 @@ operationGroups:
                     description: 'Capacity of product. For example, 4 people.'
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_53
-                schema: *ref_21
+                schema: *ref_24
                 implementation: Method
                 originalParameter: *ref_43
                 pathToProperty: []
@@ -1421,7 +1421,7 @@ operationGroups:
                     description: Generic URL value.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_54
-                schema: *ref_22
+                schema: *ref_25
                 implementation: Method
                 originalParameter: *ref_43
                 pathToProperty: []
@@ -1452,7 +1452,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_23
+            schema: *ref_18
             language: !<!Languages> 
               default:
                 name: ''
@@ -1508,7 +1508,7 @@ operationGroups:
           - !<!Request> 
             parameters:
               - !<!Parameter> &ref_55
-                schema: *ref_23
+                schema: *ref_18
                 flattened: true
                 implementation: Method
                 required: false
@@ -1525,7 +1525,7 @@ operationGroups:
                     in: body
                     style: json
               - !<!VirtualParameter> &ref_57
-                schema: *ref_24
+                schema: *ref_19
                 implementation: Method
                 originalParameter: *ref_55
                 pathToProperty: []
@@ -1539,7 +1539,7 @@ operationGroups:
                     description: 'Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.'
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_58
-                schema: *ref_25
+                schema: *ref_20
                 implementation: Method
                 originalParameter: *ref_55
                 pathToProperty: []
@@ -1553,7 +1553,7 @@ operationGroups:
                     description: Description of product.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_59
-                schema: *ref_19
+                schema: *ref_22
                 implementation: Method
                 originalParameter: *ref_55
                 pathToProperty: []
@@ -1566,7 +1566,7 @@ operationGroups:
                     description: Display name of product.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> 
-                schema: *ref_20
+                schema: *ref_23
                 implementation: Method
                 originalParameter: *ref_55
                 pathToProperty: []
@@ -1579,7 +1579,7 @@ operationGroups:
                     description: 'Capacity of product. For example, 4 people.'
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_60
-                schema: *ref_21
+                schema: *ref_24
                 implementation: Method
                 originalParameter: *ref_55
                 pathToProperty: []
@@ -1592,7 +1592,7 @@ operationGroups:
                     description: Generic URL value.
                 protocol: !<!Protocols> {}
               - !<!VirtualParameter> &ref_61
-                schema: *ref_22
+                schema: *ref_25
                 implementation: Method
                 originalParameter: *ref_55
                 pathToProperty: []
@@ -1626,7 +1626,7 @@ operationGroups:
           - *ref_62
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_23
+            schema: *ref_18
             language: !<!Languages> 
               default:
                 name: ''
