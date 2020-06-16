@@ -347,12 +347,52 @@ export class QualityPreChecker {
     }
   }
 
+  isEmptyObjectSchema(schema: Schema): boolean {
+    if (length(schema.properties) > 0 ||
+        length(schema.allOf) > 0 ||
+        schema.additionalProperties === true) {
+      return false;
+    }
+
+    if (schema.additionalProperties !== false) {
+      const resolved = this.resolve(schema.additionalProperties);
+      return !resolved.instance || this.isEmptyObjectSchema(resolved.instance);
+    }
+
+    return true;
+  }
+
+  fixUpSchemasWithEmptyObjectParent() {
+    const schemas = this.input.components?.schemas;
+    if (schemas) {
+      for (const { key, instance: schema, name, fromRef } of items(schemas).select(s => ({ key: s.key, ... this.resolve(s.value) }))) {
+        if (schema.type === JsonType.Object) {
+          if (length(schema.allOf) > 1) {
+            const schemaName = schema['x-ms-metadata']?.name || name;
+            schema.allOf = schema.allOf?.filter(p => {
+              const parent = this.resolve(p).instance;
+
+              if (this.isEmptyObjectSchema(parent)) {
+                this.session.warning(`Schema '${schemaName}' has an allOf list with an empty object schema as a parent, removing it.`, ['PreCheck', 'EmptyParentSchemaWarning']);
+                return false;
+              }
+
+              return true;
+            });
+          }
+        }
+      }
+    }
+  }
+
 
   process() {
 
     this.fixUpSchemasThatUseAllOfInsteadOfJustRef()
 
     this.fixUpObjectsWithoutType();
+
+    this.fixUpSchemasWithEmptyObjectParent();
 
     this.checkForDuplicateSchemas();
 
