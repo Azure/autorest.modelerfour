@@ -265,6 +265,40 @@ class Modeler {
   }
 
   @test
+  async "modelAsString=true creates ChoiceSchema for single-value enum"() {
+    const spec = createTestSpec();
+
+    addSchema(spec, "ShouldBeConstant", {
+      type: "string",
+      enum: ["html_strip"]
+    });
+
+    addSchema(spec, "ShouldBeChoice", {
+      type: "string",
+      enum: ["html_strip"],
+      "x-ms-enum": {
+        modelAsString: true
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    assertSchema(
+      "ShouldBeConstant",
+      codeModel.schemas.constants,
+      s => s.value.value,
+      "html_strip"
+    );
+
+    assertSchema(
+      "ShouldBeChoice",
+      codeModel.schemas.choices,
+      s => s.choices[0].value,
+      "html_strip"
+    );
+  }
+
+  @test
   async "propagates 'nullable' to properties, parameters, and collections"() {
     const spec = createTestSpec();
 
