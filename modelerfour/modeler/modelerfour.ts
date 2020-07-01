@@ -501,7 +501,8 @@ export class ModelerFour {
     name = (xmse && xmse.name) || this.interpret.getName(name, schema);
     const sealed = xmse && !(xmse.modelAsString);
 
-    if (length(schema.enum) === 1 || length(xmse?.values) === 1) {
+    // model as string forces it to be a choice/enum.
+    if (xmse?.modelAsString !== true && (length(schema.enum) === 1 || length(xmse?.values) === 1)) {
       const constVal = length(xmse?.values) === 1 ? xmse?.values?.[0]?.value : schema?.enum?.[0];
 
       return this.codeModel.schemas.add(new ConstantSchema(name, this.interpret.getDescription(``, schema), {

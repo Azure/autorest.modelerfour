@@ -1,6 +1,9 @@
 # AutoRest Modeler Four 
 
 ## Changelog:
+#### 4.15.x
+  - Schemas with `x-ms-enum`'s `modelAsString` set to `true` will now be represented as `ChoiceSchema` even with a single value.
+
 #### 4.14.x
   - added `exception` SchemaContext for `usage` when used as an exception response
   - changed `output` SchemaContext for `usage` to no longer include exception response uses
