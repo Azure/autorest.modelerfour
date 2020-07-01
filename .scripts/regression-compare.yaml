@@ -22,8 +22,9 @@ specs:
      - body-duration.json
      - body-dictionary.json
      - body-file.json
-     - body-formdata-urlencoded.json
-     - body-formdata.json
+     # Not yet supported by AutoRest v3 and Modelerfour
+     # - body-formdata-urlencoded.json
+     # - body-formdata.json
      - body-integer.json
      - body-number.json
      - body-number.quirks.json
@@ -59,38 +60,26 @@ specs:
      - xms-error-responses.json
 languages:
   - language: python
-    excludeSpecs:
-      # The following specs aren't yet supported by @autorest/modelerfour
-      - body-formdata-urlencoded.json
-      - body-formdata.json
     outputPath: ../modelerfour/test/regression/python
     oldArgs:
       - --v3
-      - --use:@autorest/python@5.0.0-dev.20200326.1
+      - --use:@autorest/python@5.1.0-preview.3
+      - --use:@autorest/modelerfour@4.15.375
     newArgs:
       - --v3
       - --use:../modelerfour
-      - --use:@autorest/python@5.0.0-dev.20200326.1
+      - --use:@autorest/python@5.1.0-preview.3
   - language: typescript
-    excludeSpecs:
-      # The following specs currently crash the v3 TypeScript generator
-      - azure-special-properties.json
-      - body-formdata-urlencoded.json
-      - body-formdata.json
-      - lro.json
-      - media_types.json
-      - model-flattening.json
-      - multiapi-v3.json
-      - required-optional.json
     outputPath: ../modelerfour/test/regression/typescript
     oldArgs:
       - --v3
       - --package-name:test-package
       - --title:TestClient
-      - --use:@autorest/typescript@6.0.0-dev.20200325.1
+      - --use:@autorest/typescript@6.0.0-dev.20200626.1
+      - --use:@autorest/modelerfour@4.15.375
     newArgs:
       - --v3
       - --package-name:test-package
       - --title:TestClient
       - --use:../modelerfour
-      - --use:@autorest/typescript@6.0.0-dev.20200325.1
+      - --use:@autorest/typescript@6.0.0-dev.20200626.1
