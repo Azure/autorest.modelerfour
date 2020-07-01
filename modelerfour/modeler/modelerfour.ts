@@ -1109,6 +1109,7 @@ export class ModelerFour {
       },
       implementation: ImplementationLocation.Method,
       required: true,
+      nullable: requestSchema?.instance?.nullable,
       clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
     }));
 
@@ -1162,6 +1163,7 @@ export class ModelerFour {
       pSchema, {
       extensions: this.interpret.getExtensionProperties(body.instance),
       required: !!body.instance.required,
+      nullable: requestSchema?.instance?.nullable,
       protocol: {
         http: new HttpParameter(ParameterLocation.Body, {
           style: <SerializationStyle><any>kmt,
@@ -1575,7 +1577,8 @@ export class ModelerFour {
             }
 
             const rsp = new SchemaResponse(s, {
-              extensions: this.interpret.getExtensionProperties(response)
+              extensions: this.interpret.getExtensionProperties(response),
+              nullable: schema.nullable
             });
 
             rsp.protocol.http = SetType(HttpResponse, {

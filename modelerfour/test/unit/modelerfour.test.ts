@@ -22,7 +22,8 @@ import {
   ObjectSchema,
   OperationGroup,
   Operation,
-  Parameter
+  Parameter,
+  SchemaResponse
 } from "@azure-tools/codemodel";
 
 const cfg = {
@@ -312,7 +313,7 @@ class Modeler {
   }
 
   @test
-  async "propagates 'nullable' to properties, parameters, and collections"() {
+  async "propagates 'nullable' to properties, parameters, collections, and responses"() {
     const spec = createTestSpec();
 
     addSchema(spec, "WannaBeNullable", {
@@ -360,7 +361,19 @@ class Modeler {
               $ref: "#/components/schemas/WannaBeNullable"
             }
           }
-        ]
+        ],
+        responses: {
+          "200": {
+            content: {
+              "application/json": {
+                schema: {
+                  type: "string",
+                  nullable: true
+                }
+              }
+            }
+          }
+        }
       }
     });
 
@@ -388,8 +401,11 @@ class Modeler {
     );
 
     // $host param comes first then the parameter we're looking for
-    const param = codeModel.operationGroups[0].operations[0].parameters?.[1];
-    assert.strictEqual(param?.nullable, true);
+    const operation = codeModel.operationGroups[0].operations[0];
+    const param = operation.parameters![1];
+    const response: SchemaResponse = <SchemaResponse>operation.responses![0];
+    assert.strictEqual(param.nullable, true);
+    assert.strictEqual(response.nullable, true);
   }
 
   @test
