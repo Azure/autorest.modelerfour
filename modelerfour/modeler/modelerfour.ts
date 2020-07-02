@@ -407,7 +407,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      nullableItems: itemSchema.instance.nullable,
+      nullableItems: (<any>schema.items).nullable || itemSchema.instance?.nullable,
       serialization: this.interpret.getSerialization(schema),
       maxItems: schema.maxItems ? Number(schema.maxItems) : undefined,
       minItems: schema.minItems ? Number(schema.minItems) : undefined,
