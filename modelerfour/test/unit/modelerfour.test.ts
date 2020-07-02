@@ -326,14 +326,39 @@ class Modeler {
       }
     });
 
-    addSchema(spec, "NullableArray", {
+    addSchema(spec, "NotNullable", {
+      type: "object",
+      nullable: true,
+      properties: {
+        iIsHere: {
+          type: "boolean"
+        }
+      }
+    });
+
+    addSchema(spec, "NullableArrayElement", {
+      type: "array",
+      items: {
+        nullable: true,
+        $ref: "#/components/schemas/NotNullable"
+      }
+    });
+
+    addSchema(spec, "NullableArrayElementSchema", {
       type: "array",
       items: {
         $ref: "#/components/schemas/WannaBeNullable"
       }
     });
 
-    addSchema(spec, "NullableDictionary", {
+    addSchema(spec, "NullableDictionaryElement", {
+      additionalProperties: {
+        nullable: true,
+        $ref: "#/components/schemas/NotNullable"
+      }
+    });
+
+    addSchema(spec, "NullableDictionaryElementSchema", {
       additionalProperties: {
         $ref: "#/components/schemas/WannaBeNullable"
       }
@@ -380,14 +405,28 @@ class Modeler {
     const codeModel = await runModeler(spec);
 
     assertSchema(
-      "NullableArray",
+      "NullableArrayElement",
       codeModel.schemas.arrays,
       s => s.nullableItems,
       true
     );
 
     assertSchema(
-      "NullableDictionary",
+      "NullableArrayElementSchema",
+      codeModel.schemas.arrays,
+      s => s.nullableItems,
+      true
+    );
+
+    assertSchema(
+      "NullableDictionaryElement",
+      codeModel.schemas.dictionaries,
+      s => s.nullableItems,
+      true
+    );
+
+    assertSchema(
+      "NullableDictionaryElementSchema",
       codeModel.schemas.dictionaries,
       s => s.nullableItems,
       true
@@ -403,6 +442,7 @@ class Modeler {
     // $host param comes first then the parameter we're looking for
     const operation = codeModel.operationGroups[0].operations[0];
     const param = operation.parameters![1];
+
     const response: SchemaResponse = <SchemaResponse>operation.responses![0];
     assert.strictEqual(param.nullable, true);
     assert.strictEqual(response.nullable, true);
