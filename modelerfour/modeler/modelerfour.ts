@@ -564,7 +564,7 @@ export class ModelerFour {
       if (ei && this.interpret.isEmptyObject(ei)) {
         elementSchema = this.anySchema;
       } else {
-        elementNullable = (ei && ei.nullable) || false;
+        elementNullable = (<any>schema.additionalProperties)["nullable"] || (ei && ei.nullable) || undefined;
         elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance);
       }
     }
