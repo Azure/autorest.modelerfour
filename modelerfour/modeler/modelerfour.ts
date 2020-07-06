@@ -620,7 +620,7 @@ export class ModelerFour {
           serializedName: propertyName,
           isDiscriminator: discriminatorProperty === propertyName ? true : undefined,
           extensions: this.interpret.getExtensionProperties(property, propertyDeclaration),
-          clientDefaultValue: this.interpret.getClientDefault(property, propertyDeclaration),
+          clientDefaultValue: this.interpret.getClientDefault(property.instance, propertyDeclaration),
         }));
         if (prop.isDiscriminator) {
           objectSchema.discriminator = new Discriminator(prop);
@@ -1108,7 +1108,8 @@ export class ModelerFour {
         })
       },
       implementation: ImplementationLocation.Method,
-      required: true
+      required: true,
+      clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
     }));
 
     return operation.addRequest(httpRequest);
@@ -1166,7 +1167,8 @@ export class ModelerFour {
           style: <SerializationStyle><any>kmt,
         })
       },
-      implementation: ImplementationLocation.Method
+      implementation: ImplementationLocation.Method,
+      clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
     }));
     return operation.addRequest(httpRequest);
   }

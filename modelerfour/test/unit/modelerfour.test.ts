@@ -19,7 +19,10 @@ import {
   CodeModel,
   Schema,
   SchemaUsage,
-  ObjectSchema
+  ObjectSchema,
+  OperationGroup,
+  Operation,
+  Parameter
 } from "@azure-tools/codemodel";
 
 const cfg = {
@@ -52,6 +55,16 @@ async function runModeler(spec: any): Promise<CodeModel> {
   return modeler.process();
 }
 
+export function findByName<T>(
+  name: string,
+  items: T[] | undefined
+): T | undefined {
+  return (
+    (items && items.find(i => (<any>i).language.default.name === name)) ||
+    undefined
+  );
+}
+
 function assertSchema(
   schemaName: string,
   schemaList: any[] | undefined,
@@ -65,7 +78,7 @@ function assertSchema(
 
   // We've already asserted, but make the compiler happy
   if (schemaList) {
-    const schema = schemaList.find(s => s.language.default.name === schemaName);
+    const schema = findByName(schemaName, schemaList);
     assert(schema, `Could not find schema in code model: ${schemaName}`);
     assert.deepEqual(accessor(schema), expected);
   }
@@ -377,5 +390,107 @@ class Modeler {
     // $host param comes first then the parameter we're looking for
     const param = codeModel.operationGroups[0].operations[0].parameters?.[1];
     assert.strictEqual(param?.nullable, true);
+  }
+
+  @test
+  async "propagates clientDefaultValue from x-ms-client-default"() {
+    const spec = createTestSpec();
+
+    addSchema(spec, "HasClientDefault", {
+      type: "object",
+      nullable: true,
+      properties: {
+        hasDefaultValue: {
+          type: "boolean",
+          required: true,
+          "x-ms-client-default": true
+        }
+      }
+    });
+
+    addOperation(spec, "/test", {
+      post: {
+        operationId: "postIt",
+        description: "Post it.",
+        requestBody: {
+          in: "body",
+          description: "Input parameter",
+          required: true,
+          "x-ms-client-default": "Bodied",
+          "x-ms-requestBody-name": "defaultedBodyParam",
+          content: {
+            "application/json": {
+              schema: {
+                type: "string"
+              }
+            }
+          }
+        },
+        parameters: [
+          {
+            name: "defaultedQueryParam",
+            in: "query",
+            description: "Input parameter",
+            "x-ms-client-default": 42,
+            schema: {
+              type: "number"
+            }
+          }
+        ]
+      }
+    });
+
+    addOperation(spec, "/memes", {
+      post: {
+        operationId: "postMeme",
+        description: "Gimmie ur memes.",
+        requestBody: {
+          description: "Input parameter",
+          required: true,
+          "x-ms-requestBody-name": "defaultedBodyMeme",
+          "x-ms-client-default": "meme.jpg",
+          content: {
+            "image/jpeg": {
+              schema: {
+                type: "string",
+                format: "binary"
+              }
+            }
+          }
+        }
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    assertSchema(
+      "HasClientDefault",
+      codeModel.schemas.objects,
+      s => s.properties[0].clientDefaultValue,
+      true
+    );
+
+    const postIt = findByName(
+      "postIt",
+      codeModel.operationGroups[0].operations
+    );
+    const bodyParam = findByName<Parameter | undefined>(
+      "defaultedBodyParam",
+      <Parameter[] | undefined>postIt!.requests?.[0].parameters
+    );
+    assert.strictEqual(bodyParam?.clientDefaultValue, "Bodied");
+
+    const queryParam = findByName("defaultedQueryParam", postIt!.parameters);
+    assert.strictEqual(queryParam!.clientDefaultValue, 42);
+
+    const postMeme = findByName(
+      "postMeme",
+      codeModel.operationGroups[0].operations
+    );
+    const memeBodyParam = findByName<Parameter | undefined>(
+      "defaultedBodyMeme",
+      <Parameter[] | undefined>postMeme!.requests?.[0].parameters
+    );
+    assert.strictEqual(memeBodyParam?.clientDefaultValue, "meme.jpg");
   }
 }
