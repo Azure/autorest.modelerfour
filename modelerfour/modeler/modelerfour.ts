@@ -768,7 +768,7 @@ export class ModelerFour {
   trap = new Set();
   processSchemaImpl(schema: OpenAPI.Schema, name: string): Schema {
     if (this.trap.has(schema)) {
-      throw new Error(`RECURSING!  Saw schema ${schema.title} more than once.`);
+      throw new Error(`RECURSING!  Saw schema ${schema.title || schema['x-ms-metadata']?.name || name} more than once.`);
     }
     this.trap.add(schema);
 
