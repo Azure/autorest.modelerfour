@@ -1463,6 +1463,7 @@ export class ModelerFour {
           protocol: {
             http: new HttpParameter(parameter.in, parameter.style ? {
               style: <SerializationStyle><unknown>parameter.style,
+              explode: parameter.explode
             } : undefined),
           },
           language: {

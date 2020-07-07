@@ -493,4 +493,49 @@ class Modeler {
     );
     assert.strictEqual(memeBodyParam?.clientDefaultValue, "meme.jpg");
   }
+
+  @test
+  async "propagates parameter 'expand' value"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/test", {
+      post: {
+        operationId: "getIt",
+        description: "Get operation.",
+        parameters: [
+          {
+            name: "explodedParam",
+            in: "query",
+            style: "form",
+            explode: true,
+            schema: {
+              type: "array",
+              items: {
+                type: "string"
+              }
+            }
+          },
+          {
+            name: "nonExplodedParam",
+            in: "query",
+            style: "form",
+            schema: {
+              type: "array",
+              items: {
+                type: "string"
+              }
+            }
+          }
+        ]
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    const getIt = findByName("getIt", codeModel.operationGroups[0].operations);
+    const explodedParam = findByName("explodedParam", getIt!.parameters);
+    assert.strictEqual(explodedParam!.protocol.http!.explode, true);
+    const nonExplodedParam = findByName("nonExplodedParam", getIt!.parameters);
+    assert.strictEqual(nonExplodedParam!.protocol.http!.explode, undefined);
+  }
 }
