@@ -1509,8 +1509,11 @@ export class ModelerFour {
         const headers = new Array<HttpHeader>();
         for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
           this.use(hh.schema, (n, sch) => {
-            const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
+            // Override the name picked from the schema if the header has its own
+            const hsch = this.processSchema('', sch);
+            hsch.language.default.name = this.interpret.getName(hsch.language.default.name, hh)
             hsch.language.default.header = header;
+            hsch.language.default.description = this.interpret.getDescription('', hh);
             headers.push(new HttpHeader(header, hsch));
           });
         }
@@ -1529,8 +1532,11 @@ export class ModelerFour {
           const headers = new Array<HttpHeader>();
           for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
             this.use(hh.schema, (n, sch) => {
-              const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
+              // Override the name picked from the schema if the header has its own
+              const hsch = this.processSchema('', sch);
+              hsch.language.default.name = this.interpret.getName(hsch.language.default.name, hh)
               hsch.language.default.header = header;
+              hsch.language.default.description = this.interpret.getDescription('', hh);
               headers.push(new HttpHeader(header, hsch));
             });
           }
