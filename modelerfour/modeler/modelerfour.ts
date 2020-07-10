@@ -407,7 +407,7 @@ export class ModelerFour {
       apiVersions: this.interpret.getApiVersions(schema),
       example: this.interpret.getExample(schema),
       externalDocs: this.interpret.getExternalDocs(schema),
-      nullableItems: itemSchema.instance.nullable,
+      nullableItems: (<any>schema.items).nullable || itemSchema.instance?.nullable,
       serialization: this.interpret.getSerialization(schema),
       maxItems: schema.maxItems ? Number(schema.maxItems) : undefined,
       minItems: schema.minItems ? Number(schema.minItems) : undefined,
@@ -564,7 +564,7 @@ export class ModelerFour {
       if (ei && this.interpret.isEmptyObject(ei)) {
         elementSchema = this.anySchema;
       } else {
-        elementNullable = (ei && ei.nullable) || false;
+        elementNullable = (<any>schema.additionalProperties)["nullable"] || (ei && ei.nullable) || undefined;
         elementSchema = this.processSchema(eschema.name || '', <OpenAPI.Schema>eschema.instance);
       }
     }
@@ -1109,6 +1109,7 @@ export class ModelerFour {
       },
       implementation: ImplementationLocation.Method,
       required: true,
+      nullable: requestSchema?.instance?.nullable,
       clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
     }));
 
@@ -1162,6 +1163,7 @@ export class ModelerFour {
       pSchema, {
       extensions: this.interpret.getExtensionProperties(body.instance),
       required: !!body.instance.required,
+      nullable: requestSchema?.instance?.nullable,
       protocol: {
         http: new HttpParameter(ParameterLocation.Body, {
           style: <SerializationStyle><any>kmt,
@@ -1576,7 +1578,8 @@ export class ModelerFour {
             }
 
             const rsp = new SchemaResponse(s, {
-              extensions: this.interpret.getExtensionProperties(response)
+              extensions: this.interpret.getExtensionProperties(response),
+              nullable: schema.nullable
             });
 
             rsp.protocol.http = SetType(HttpResponse, {
