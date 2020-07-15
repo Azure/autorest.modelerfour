@@ -71,7 +71,8 @@ export function response(
   code: number | "default",
   contentType: string,
   schema: any,
-  description: string = "The response."
+  description: string = "The response.",
+  extraProperties?: any
 ) {
   return {
     [code]: {
@@ -80,7 +81,8 @@ export function response(
         [contentType]: {
           schema
         }
-      }
+      },
+      ...extraProperties
     }
   };
 }
