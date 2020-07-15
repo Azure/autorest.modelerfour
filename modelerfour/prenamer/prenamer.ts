@@ -1,6 +1,6 @@
-import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema, ImplementationLocation, Operation, Request } from '@azure-tools/codemodel';
+import { CodeModel, Parameter, isVirtualParameter, ObjectSchema, isObjectSchema, getAllParentProperties, Languages, SchemaType, Schema, ChoiceSchema, SealedChoiceSchema, GroupSchema, ImplementationLocation, Operation, Request, Response } from '@azure-tools/codemodel';
 import { Session } from '@azure-tools/autorest-extension-base';
-import { values, length, Dictionary, when } from '@azure-tools/linq';
+import { values, length, Dictionary, when, items } from '@azure-tools/linq';
 import { removeSequentialDuplicates, fixLeadingNumber, deconstruct, selectName, Style, Styler, pascalCase } from '@azure-tools/codegen';
 
 function getNameOptions(typeName: string, components: Array<string>) {
@@ -88,6 +88,7 @@ export class PreNamer {
     property: Style.camel,
     operation: Style.pascal,
     operationGroup: Style.pascal,
+    responseHeader: Style.pascal,
     choice: Style.pascal,
     choiceValue: Style.pascal,
     constant: Style.pascal,
@@ -111,11 +112,11 @@ export class PreNamer {
     const naming = this.options.naming || {};
     const maxPreserve = Number(naming['preserve-uppercase-max-length']) || 3;
     this.format = {
-
       parameter: Style.select(naming.parameter, Style.camel, maxPreserve),
       property: Style.select(naming.property, Style.camel, maxPreserve),
       operation: Style.select(naming.operation, Style.pascal, maxPreserve),
       operationGroup: Style.select(naming.operationGroup, Style.pascal, maxPreserve),
+      responseHeader: Style.select(naming.header, Style.pascal, maxPreserve),
       choice: Style.select(naming.choice, Style.pascal, maxPreserve),
       choiceValue: Style.select(naming.choiceValue, Style.pascal, maxPreserve),
       constant: Style.select(naming.constant, Style.pascal, maxPreserve),
@@ -295,6 +296,13 @@ export class PreNamer {
           this.setParameterNames(request);
         }
 
+        for (const response of values(operation.responses)) {
+          this.setResponseHeaderNames(response);
+        }
+        for (const response of values(operation.exceptions)) {
+          this.setResponseHeaderNames(response);
+        }
+
         const p = operation.language.default.paging;
         if (p) {
           p.group = p.group ? this.format.operationGroup(p.group, true, this.format.override) : undefined;
@@ -314,6 +322,7 @@ export class PreNamer {
 
     return this.codeModel;
   }
+
   private setParameterNames(parameterContainer: Operation | Request) {
     for (const parameter of values(parameterContainer.signatureParameters)) {
       if (parameter.schema.type === SchemaType.Constant) {
@@ -336,6 +345,14 @@ export class PreNamer {
             setName(parameter, this.format.local, '', this.format.override);
           }
         }
+      }
+    }
+  }
+
+  private setResponseHeaderNames(response: Response) {
+    if (response.protocol.http) {
+      for (const { value: header } of items(response.protocol.http.headers)) {
+        setName(header as {language: Languages}, this.format.responseHeader, '', this.format.override);
       }
     }
   }

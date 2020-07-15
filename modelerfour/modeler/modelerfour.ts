@@ -1509,12 +1509,16 @@ export class ModelerFour {
         const headers = new Array<HttpHeader>();
         for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
           this.use(hh.schema, (n, sch) => {
-            // Override the name picked from the schema if the header has its own
-            const hsch = this.processSchema('', sch);
-            hsch.language.default.name = this.interpret.getName(hsch.language.default.name, hh)
+            const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
             hsch.language.default.header = header;
-            hsch.language.default.description = this.interpret.getDescription('', hh);
-            headers.push(new HttpHeader(header, hsch));
+            headers.push(new HttpHeader(header, hsch, {
+              language: {
+                default: {
+                  name: hh['x-ms-client-name'] || header,
+                  description: this.interpret.getDescription('', hh)
+                }
+              }
+            }));
           });
         }
         rsp.protocol.http = SetType(HttpResponse, {
@@ -1532,12 +1536,16 @@ export class ModelerFour {
           const headers = new Array<HttpHeader>();
           for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
             this.use(hh.schema, (n, sch) => {
-              // Override the name picked from the schema if the header has its own
-              const hsch = this.processSchema('', sch);
-              hsch.language.default.name = this.interpret.getName(hsch.language.default.name, hh)
+              const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
               hsch.language.default.header = header;
-              hsch.language.default.description = this.interpret.getDescription('', hh);
-              headers.push(new HttpHeader(header, hsch));
+              headers.push(new HttpHeader(header, hsch, {
+                language: {
+                  default: {
+                    name: hh['x-ms-client-name'] || header,
+                    description: this.interpret.getDescription('', hh)
+                  }
+                }
+              }));
             });
           }
 

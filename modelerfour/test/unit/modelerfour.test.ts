@@ -594,4 +594,63 @@ class Modeler {
     const nonExplodedParam = findByName("nonExplodedParam", getIt!.parameters);
     assert.strictEqual(nonExplodedParam!.protocol.http!.explode, undefined);
   }
+
+  @test
+  async "stores header name and description in HttpHeader language field"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/header", {
+      post: {
+        operationId: "namedHeaders",
+        description: "Operation with named header response.",
+        parameters: [],
+        responses: responses(
+          response(
+            200,
+            "application/json",
+            {
+              type: "string"
+            },
+            "Response with a named header.",
+            {
+              headers: {
+                "x-named-header": {
+                  "x-ms-client-name": "NamedHeader",
+                  // No description on purpose
+                  schema: {
+                    type: "string"
+                  }
+                },
+                "x-unnamed-header": {
+                  description: "Header with no client name",
+                  schema: {
+                    type: "string"
+                  }
+                }
+              }
+            }
+          )
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    const namedHeaders = findByName(
+      "namedHeaders",
+      codeModel.operationGroups[0].operations
+    );
+
+    const namedHeader = namedHeaders?.responses?.[0].protocol.http!.headers[0];
+    assert.strictEqual(namedHeader.language.default.name, "NamedHeader");
+    assert.strictEqual(namedHeader.language.default.description, "");
+
+    const unnamedHeader = namedHeaders?.responses?.[0].protocol.http!
+      .headers[1];
+    assert.strictEqual(unnamedHeader.language.default.name, "x-unnamed-header");
+    assert.strictEqual(
+      unnamedHeader.language.default.description,
+      "Header with no client name"
+    );
+  }
 }
