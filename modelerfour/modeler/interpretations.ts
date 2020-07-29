@@ -21,7 +21,8 @@ const removeKnownParameters = [
   'x-ms-original',
   'x-ms-requestBody-name',
   'x-ms-requestBody-index',
-  'x-ms-api-version'
+  'x-ms-api-version',
+  'x-ms-text'
 ];
 
 // ref: https://www.w3schools.com/charsets/ref_html_ascii.asp
@@ -193,9 +194,14 @@ export class Interpretations {
 
   getXmlSerialization(schema: OpenAPI.Schema): XmlSerlializationFormat | undefined {
     if (schema.xml) {
+      if (schema.xml['x-ms-text'] && schema.xml.attribute) {
+        throw new Error(`XML serialization for a schema cannot be in both 'text' and 'attribute'`);
+      }
+
       return {
         attribute: schema.xml.attribute || false,
         wrapped: schema.xml.wrapped || false,
+        text: schema.xml['x-ms-text'] || false,
         name: schema.xml.name || undefined,
         namespace: schema.xml.namespace || undefined,
         prefix: schema.xml.prefix || undefined,

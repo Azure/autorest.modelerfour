@@ -653,4 +653,49 @@ class Modeler {
       "Header with no client name"
     );
   }
+
+  @test
+  async "x-ms-text extension in xml object will be moved to 'text' property"() {
+    const spec = createTestSpec();
+
+    addSchema(spec, "HasOnlyText", {
+      type: "object",
+      properties: {
+        message: {
+          type: "string",
+          xml: {
+            "x-ms-text": true
+          }
+        }
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    assertSchema(
+      "HasOnlyText",
+      codeModel.schemas.objects,
+      o => o.properties[0].schema.serialization.xml.text,
+      true
+    );
+
+    addSchema(spec, "HasTextAndAttribute", {
+      type: "object",
+      properties: {
+        message: {
+          type: "string",
+          xml: {
+            "x-ms-text": true,
+            attribute: true
+          }
+        }
+      }
+    });
+
+    // Should throw when both 'text' and 'attribute' are true
+    await assert.rejects(
+      () => runModeler(spec),
+      /XML serialization for a schema cannot be in both 'text' and 'attribute'$/
+    );
+  }
 }
