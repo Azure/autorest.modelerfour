@@ -1121,10 +1121,17 @@ export class ModelerFour {
       throw new Error('NO BODY DUDE.');
 
     }
-    const http = new HttpWithBodyRequest({
-      knownMediaType: kmt,
-      mediaTypes: kmtObject.map(each => each.mediaType),
-    });
+
+    const http: HttpWithBodyRequest =
+      kmt === KnownMediaType.Multipart
+      ? new HttpMultipartRequest({
+          knownMediaType: kmt,
+          mediaTypes: ['multipart/form-data']
+      })
+      : new HttpWithBodyRequest({
+          knownMediaType: kmt,
+          mediaTypes: kmtObject.map(each => each.mediaType),
+      });
 
     // create the request object
     const httpRequest = new Request({
@@ -1152,71 +1159,6 @@ export class ModelerFour {
     }
 
     const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
-    const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
-
-    // Track the usage of this schema as an input with media type
-    this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
-
-    httpRequest.addParameter(new Parameter(
-      body.instance?.['x-ms-requestBody-name'] ?? 'body',
-      this.interpret.getDescription('', body?.instance || {}),
-      pSchema, {
-      extensions: this.interpret.getExtensionProperties(body.instance),
-      required: !!body.instance.required,
-      nullable: requestSchema?.instance?.nullable,
-      protocol: {
-        http: new HttpParameter(ParameterLocation.Body, {
-          style: <SerializationStyle><any>kmt,
-        })
-      },
-      implementation: ImplementationLocation.Method,
-      clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
-    }));
-    return operation.addRequest(httpRequest);
-  }
-
-  processMultipart(kmtMulti: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
-    if (!body?.instance) {
-      throw new Error('NO BODY DUDE.');
-    }
-
-    // We assume that this request doesn't have any other media types
-    // since the multipart/form-data type wraps properties that represent
-    // different media types
-    const multiPartType = kmtMulti[0];
-    const kmt = KnownMediaType.Multipart;
-
-    const http = new HttpMultipartRequest({
-      knownMediaType: kmt,
-      mediaTypes: [multiPartType.mediaType]
-    });
-
-    // create the request object
-    const httpRequest = new Request({
-      protocol: {
-        http
-      }
-    });
-
-    if (this.options[`always-create-content-type-parameter`] === true) {
-      const scs = this.getContentTypeParameterSchema(http, true);
-
-      // add the parameter for the binary upload.
-      httpRequest.addParameter(new Parameter('content-type', 'Body Parameter content-type', scs, {
-        implementation: ImplementationLocation.Method,
-        required: true,
-        origin: 'modelerfour:synthesized/content-type',
-        protocol: {
-          http: new HttpParameter(ParameterLocation.Header)
-        }, language: {
-          default: {
-            serializedName: 'Content-Type'
-          }
-        },
-      }));
-    }
-
-    const requestSchema = multiPartType.schema;
     const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
 
     // Track the usage of this schema as an input with media type
@@ -1726,7 +1668,7 @@ export class ModelerFour {
           throw new Error(`Requests with 'multipart/formdata' can not be combined in a single operation with other media types ${keys(requestBody.instance.content).toArray()} `);
         }
         // create multipart form upload for this.
-        this.processMultipart(kmtMultipart, operation, requestBody);
+        this.processSerializedObject(KnownMediaType.Multipart, kmtMultipart, operation, requestBody);
       }
       // ensure the protocol information is set on the requests
       for (const request of values(operation.requests)) {
