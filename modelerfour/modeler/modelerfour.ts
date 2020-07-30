@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup, TimeSchema } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup, TimeSchema, HttpMultipartRequest } from '@azure-tools/codemodel';
 import { Session, Channel } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -1176,7 +1176,68 @@ export class ModelerFour {
   }
 
   processMultipart(kmtMulti: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
-    throw new Error('Multipart forms not implemented yet..');
+    if (!body?.instance) {
+      throw new Error('NO BODY DUDE.');
+    }
+
+    // We assume that this request doesn't have any other media types
+    // since the multipart/form-data type wraps properties that represent
+    // different media types
+    const multiPartType = kmtMulti[0];
+    const kmt = KnownMediaType.Multipart;
+
+    const http = new HttpMultipartRequest({
+      knownMediaType: kmt,
+      mediaTypes: [multiPartType.mediaType]
+    });
+
+    // create the request object
+    const httpRequest = new Request({
+      protocol: {
+        http
+      }
+    });
+
+    if (this.options[`always-create-content-type-parameter`] === true) {
+      const scs = this.getContentTypeParameterSchema(http, true);
+
+      // add the parameter for the binary upload.
+      httpRequest.addParameter(new Parameter('content-type', 'Body Parameter content-type', scs, {
+        implementation: ImplementationLocation.Method,
+        required: true,
+        origin: 'modelerfour:synthesized/content-type',
+        protocol: {
+          http: new HttpParameter(ParameterLocation.Header)
+        }, language: {
+          default: {
+            serializedName: 'Content-Type'
+          }
+        },
+      }));
+    }
+
+    const requestSchema = multiPartType.schema;
+    const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
+
+    // Track the usage of this schema as an input with media type
+    this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+
+    httpRequest.addParameter(new Parameter(
+      body.instance?.['x-ms-requestBody-name'] ?? 'body',
+      this.interpret.getDescription('', body?.instance || {}),
+      pSchema, {
+      extensions: this.interpret.getExtensionProperties(body.instance),
+      required: !!body.instance.required,
+      nullable: requestSchema?.instance?.nullable,
+      protocol: {
+        http: new HttpParameter(ParameterLocation.Body, {
+          style: <SerializationStyle><any>kmt,
+        })
+      },
+      implementation: ImplementationLocation.Method,
+      clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
+    }));
+    return operation.addRequest(httpRequest);
   }
 
   processOperation(httpOperation: OpenAPI.HttpOperation, method: string, path: string, pathItem: OpenAPI.PathItem) {
