@@ -1159,26 +1159,71 @@ export class ModelerFour {
     }
 
     const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
-    const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
 
-    // Track the usage of this schema as an input with media type
-    this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+    if (kmt === KnownMediaType.Multipart) {
+      if (!requestSchema || !requestSchema.instance) {
+        throw new Error('Cannot process a multipart/form-data body without a schema.');
+      }
 
-    httpRequest.addParameter(new Parameter(
-      body.instance?.['x-ms-requestBody-name'] ?? 'body',
-      this.interpret.getDescription('', body?.instance || {}),
-      pSchema, {
-      extensions: this.interpret.getExtensionProperties(body.instance),
-      required: !!body.instance.required,
-      nullable: requestSchema?.instance?.nullable,
-      protocol: {
-        http: new HttpParameter(ParameterLocation.Body, {
-          style: <SerializationStyle><any>kmt,
-        })
-      },
-      implementation: ImplementationLocation.Method,
-      clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
-    }));
+      // Convert schema properties into parameters.  OpenAPI 3 requires that
+      // multipart/form-data parameters be modeled as object schema properties
+      // but we must turn them back into operation parameters so that code
+      // generators will generate them as method parameters.
+      for (const { key: propertyName, value: propertyDeclaration } of items(requestSchema.instance.properties)) {
+        const property = this.resolve(propertyDeclaration);
+        this.use(<OpenAPI.Refable<OpenAPI.Schema>>propertyDeclaration, (pSchemaName, pSchema) => {
+          const pType = this.processSchema(pSchemaName || `type·for·${propertyName}`, pSchema);
+          httpRequest.addParameter(new Parameter(
+            propertyName,
+            propertyDeclaration.description || this.interpret.getDescription(pType.language.default.description, property),
+            pType, {
+              schema: pType,
+              required:
+                requestSchema.instance?.required
+                && requestSchema.instance?.required.indexOf(propertyName) > -1 ? true : undefined,
+              implementation: ImplementationLocation.Method,
+              extensions: this.interpret.getExtensionProperties(propertyDeclaration),
+              nullable: propertyDeclaration.nullable || pSchema.nullable,
+              protocol: {
+                http: new HttpParameter(ParameterLocation.Body)
+              },
+              language: {
+                default: {
+                  name: propertyName,
+                  description: propertyDeclaration.description,
+                  serializedName: propertyName
+                }
+              },
+              clientDefaultValue: this.interpret.getClientDefault(propertyDeclaration, pSchema)
+            }));
+
+          // Track the usage of this schema as an input with media type
+          this.trackSchemaUsage(pType, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+        });
+      }
+    } else {
+      const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
+
+      // Track the usage of this schema as an input with media type
+      this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+
+      httpRequest.addParameter(new Parameter(
+        body.instance?.['x-ms-requestBody-name'] ?? 'body',
+        this.interpret.getDescription('', body?.instance || {}),
+        pSchema, {
+        extensions: this.interpret.getExtensionProperties(body.instance),
+        required: !!body.instance.required,
+        nullable: requestSchema?.instance?.nullable,
+        protocol: {
+          http: new HttpParameter(ParameterLocation.Body, {
+            style: <SerializationStyle><any>kmt,
+          })
+        },
+        implementation: ImplementationLocation.Method,
+        clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
+      }));
+    }
+
     return operation.addRequest(httpRequest);
   }
 
