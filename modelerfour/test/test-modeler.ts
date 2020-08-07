@@ -239,17 +239,6 @@ class Process {
   async 'acceptance-suite'() {
     const folders = await readdir(`${__dirname}/../../test/scenarios/`);
     for (const each of folders) {
-      if ([
-        'body-formdata',
-        'body-formdata-urlencoded',
-      ].indexOf(each) > -1) {
-        console.log(`Skipping: ${each}`);
-        continue;
-      }
-      /* if ('body-complex' !== each) {
-        console.log(`Skipping: ${each}`);
-        continue;
-      } */
       console.log(`Processing: ${each}`);
 
       const cfg = {

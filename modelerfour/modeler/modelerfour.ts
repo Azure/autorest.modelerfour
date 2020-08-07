@@ -1,7 +1,7 @@
 import { Model as oai3, Dereferenced, dereference, Refable, JsonType, IntegerFormat, StringFormat, NumberFormat, MediaType, filterOutXDash } from '@azure-tools/openapi';
 import * as OpenAPI from '@azure-tools/openapi';
 import { items, values, Dictionary, length, keys } from '@azure-tools/linq';
-import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup, TimeSchema } from '@azure-tools/codemodel';
+import { HttpMethod, HttpModel, CodeModel, Operation, SetType, HttpRequest, BooleanSchema, Schema, NumberSchema, ArraySchema, Parameter, ChoiceSchema, StringSchema, ObjectSchema, ByteArraySchema, CharSchema, DateSchema, DateTimeSchema, DurationSchema, UuidSchema, UriSchema, CredentialSchema, ODataQuerySchema, UnixTimeSchema, SchemaType, SchemaContext, OrSchema, XorSchema, DictionarySchema, ParameterLocation, SerializationStyle, ImplementationLocation, Property, ComplexSchema, HttpWithBodyRequest, HttpBinaryRequest, HttpParameter, Response, HttpResponse, HttpBinaryResponse, SchemaResponse, SchemaUsage, SealedChoiceSchema, ExternalDocumentation, BinaryResponse, BinarySchema, Discriminator, Relations, AnySchema, ConstantSchema, ConstantValue, HttpHeader, ChoiceValue, Language, Request, OperationGroup, TimeSchema, HttpMultipartRequest } from '@azure-tools/codemodel';
 import { Session, Channel } from '@azure-tools/autorest-extension-base';
 import { Interpretations, XMSEnum } from './interpretations';
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from '@azure-tools/codegen';
@@ -1121,10 +1121,17 @@ export class ModelerFour {
       throw new Error('NO BODY DUDE.');
 
     }
-    const http = new HttpWithBodyRequest({
-      knownMediaType: kmt,
-      mediaTypes: kmtObject.map(each => each.mediaType),
-    });
+
+    const http: HttpWithBodyRequest =
+      kmt === KnownMediaType.Multipart
+      ? new HttpMultipartRequest({
+          knownMediaType: kmt,
+          mediaTypes: ['multipart/form-data']
+      })
+      : new HttpWithBodyRequest({
+          knownMediaType: kmt,
+          mediaTypes: kmtObject.map(each => each.mediaType),
+      });
 
     // create the request object
     const httpRequest = new Request({
@@ -1152,31 +1159,72 @@ export class ModelerFour {
     }
 
     const requestSchema = values(kmtObject).first(each => !!each.schema.instance)?.schema;
-    const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
 
-    // Track the usage of this schema as an input with media type
-    this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+    if (kmt === KnownMediaType.Multipart) {
+      if (!requestSchema || !requestSchema.instance) {
+        throw new Error('Cannot process a multipart/form-data body without a schema.');
+      }
 
-    httpRequest.addParameter(new Parameter(
-      body.instance?.['x-ms-requestBody-name'] ?? 'body',
-      this.interpret.getDescription('', body?.instance || {}),
-      pSchema, {
-      extensions: this.interpret.getExtensionProperties(body.instance),
-      required: !!body.instance.required,
-      nullable: requestSchema?.instance?.nullable,
-      protocol: {
-        http: new HttpParameter(ParameterLocation.Body, {
-          style: <SerializationStyle><any>kmt,
-        })
-      },
-      implementation: ImplementationLocation.Method,
-      clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
-    }));
+      // Convert schema properties into parameters.  OpenAPI 3 requires that
+      // multipart/form-data parameters be modeled as object schema properties
+      // but we must turn them back into operation parameters so that code
+      // generators will generate them as method parameters.
+      for (const { key: propertyName, value: propertyDeclaration } of items(requestSchema.instance.properties)) {
+        const property = this.resolve(propertyDeclaration);
+        this.use(<OpenAPI.Refable<OpenAPI.Schema>>propertyDeclaration, (pSchemaName, pSchema) => {
+          const pType = this.processSchema(pSchemaName || `type·for·${propertyName}`, pSchema);
+          httpRequest.addParameter(new Parameter(
+            propertyName,
+            propertyDeclaration.description || this.interpret.getDescription(pType.language.default.description, property),
+            pType, {
+              schema: pType,
+              required:
+                requestSchema.instance?.required
+                && requestSchema.instance?.required.indexOf(propertyName) > -1 ? true : undefined,
+              implementation: ImplementationLocation.Method,
+              extensions: this.interpret.getExtensionProperties(propertyDeclaration),
+              nullable: propertyDeclaration.nullable || pSchema.nullable,
+              protocol: {
+                http: new HttpParameter(ParameterLocation.Body)
+              },
+              language: {
+                default: {
+                  name: propertyName,
+                  description: propertyDeclaration.description,
+                  serializedName: propertyName
+                }
+              },
+              clientDefaultValue: this.interpret.getClientDefault(propertyDeclaration, pSchema)
+            }));
+
+          // Track the usage of this schema as an input with media type
+          this.trackSchemaUsage(pType, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+        });
+      }
+    } else {
+      const pSchema = this.processSchema(requestSchema?.name || 'requestBody', requestSchema?.instance || <OpenAPI.Schema>{})
+
+      // Track the usage of this schema as an input with media type
+      this.trackSchemaUsage(pSchema, { usage: [SchemaContext.Input], serializationFormats: [kmt] });
+
+      httpRequest.addParameter(new Parameter(
+        body.instance?.['x-ms-requestBody-name'] ?? 'body',
+        this.interpret.getDescription('', body?.instance || {}),
+        pSchema, {
+        extensions: this.interpret.getExtensionProperties(body.instance),
+        required: !!body.instance.required,
+        nullable: requestSchema?.instance?.nullable,
+        protocol: {
+          http: new HttpParameter(ParameterLocation.Body, {
+            style: <SerializationStyle><any>kmt,
+          })
+        },
+        implementation: ImplementationLocation.Method,
+        clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {})
+      }));
+    }
+
     return operation.addRequest(httpRequest);
-  }
-
-  processMultipart(kmtMulti: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
-    throw new Error('Multipart forms not implemented yet..');
   }
 
   processOperation(httpOperation: OpenAPI.HttpOperation, method: string, path: string, pathItem: OpenAPI.PathItem) {
@@ -1665,7 +1713,7 @@ export class ModelerFour {
           throw new Error(`Requests with 'multipart/formdata' can not be combined in a single operation with other media types ${keys(requestBody.instance.content).toArray()} `);
         }
         // create multipart form upload for this.
-        this.processMultipart(kmtMultipart, operation, requestBody);
+        this.processSerializedObject(KnownMediaType.Multipart, kmtMultipart, operation, requestBody);
       }
       // ensure the protocol information is set on the requests
       for (const request of values(operation.requests)) {
