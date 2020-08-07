@@ -698,4 +698,84 @@ class Modeler {
       /XML serialization for a schema cannot be in both 'text' and 'attribute'$/
     );
   }
+
+  @test
+  async "converts multipart/form-data schema to operation parameters"() {
+    const multiPartSchema = {
+      type: "object",
+      properties: {
+        fileContent: {
+          type: "string",
+          format: "binary"
+        },
+        fileName: {
+          type: "string"
+        }
+      },
+      required: ["fileContent"]
+    };
+
+    const spec = createTestSpec();
+
+    addSchema(spec, "MultiPartSchema", {
+      type: "object",
+      properties: {
+        fileContent: {
+          type: "string",
+          format: "binary"
+        },
+        fileName: {
+          type: "string"
+        }
+      },
+      required: ["fileContent"]
+    });
+
+    addOperation(spec, "/upload-file", {
+      post: {
+        operationId: "uploadFile",
+        description: "Upload a file.",
+        requestBody: {
+          description: "File details",
+          required: true,
+          content: {
+            "multipart/form-data": {
+              schema: {
+                type: "object",
+                properties: {
+                  fileContent: {
+                    type: "string",
+                    format: "binary"
+                  },
+                  fileName: {
+                    type: "string"
+                  }
+                },
+                required: ["fileContent"]
+              }
+            }
+          }
+        },
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    const uploadFile = findByName(
+      "uploadFile",
+      codeModel.operationGroups[0].operations
+    );
+
+    const fileContentParam = uploadFile?.requests?.[0].parameters?.[0];
+    assert.strictEqual(fileContentParam?.language.default.name, "fileContent");
+    assert.strictEqual(fileContentParam?.required, true);
+    const fileNameParam = uploadFile?.requests?.[0].parameters?.[1];
+    assert.strictEqual(fileNameParam?.language.default.name, "fileName");
+    assert.strictEqual(fileNameParam?.required, undefined);
+  }
 }
