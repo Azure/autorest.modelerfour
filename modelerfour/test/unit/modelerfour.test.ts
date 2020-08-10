@@ -23,7 +23,8 @@ import {
   OperationGroup,
   Operation,
   Parameter,
-  SchemaResponse
+  SchemaResponse,
+  ConstantSchema
 } from "@azure-tools/codemodel";
 
 const cfg = {
@@ -777,5 +778,41 @@ class Modeler {
     const fileNameParam = uploadFile?.requests?.[0].parameters?.[1];
     assert.strictEqual(fileNameParam?.language.default.name, "fileName");
     assert.strictEqual(fileNameParam?.required, undefined);
+  }
+
+  @test
+  async "synthesizes accept header based on response media types"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/accept", {
+      post: {
+        operationId: "hasAcceptHeader",
+        description: "Receives an Accept header.",
+        parameters: [],
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          }),
+          response(400, "application/xml", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    const hasAcceptHeader = findByName(
+      "hasAcceptHeader",
+      codeModel.operationGroups[0].operations
+    );
+
+    const acceptParam = hasAcceptHeader?.requests?.[0].parameters?.[0];
+    assert.strictEqual(acceptParam!.language.default.serializedName, "Accept");
+    assert.strictEqual(acceptParam!.schema.type, "constant");
+    assert.strictEqual(
+      (<ConstantSchema>acceptParam!.schema).value.value,
+      "application/json, application/xml"
+    );
   }
 }

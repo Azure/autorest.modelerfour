@@ -1057,6 +1057,19 @@ export class ModelerFour {
     );
   }
 
+  getAcceptParameterSchema(mediaTypes: string[]) {
+    const acceptTypes = mediaTypes.join(", ");
+    return this.codeModel.schemas.constants?.find(
+      each =>
+        each.language.default.name === "Accept"
+        && each.value.value === acceptTypes) ||
+      this.codeModel.schemas.add(
+        new ConstantSchema('Accept', `Accept: ${acceptTypes}`, {
+          valueType: this.stringSchema,
+          value: new ConstantValue(acceptTypes)
+        }));
+  }
+
   processBinary(kmt: KnownMediaType, kmtBinary: Array<{ mediaType: string; schema: Dereferenced<OpenAPI.Schema | undefined>; }>, operation: Operation, body: Dereferenced<OpenAPI.RequestBody | undefined>) {
     const http = new HttpBinaryRequest({
       knownMediaType: kmt,
@@ -1541,6 +1554,8 @@ export class ModelerFour {
   }
 
   processResponses(httpOperation: OpenAPI.HttpOperation, operation: Operation, ) {
+    const acceptTypes = new Set<string>();
+
     // === Response ===
     for (const { key: responseCode, value: response } of this.resolveDictionary(httpOperation.responses)) {
 
@@ -1581,6 +1596,10 @@ export class ModelerFour {
       } else {
         for (const { key: knownMediaType, value: mediatypes } of items(knownMediaTypes)) {
           const allMt = mediatypes.map(each => each.mediaType);
+          for (const mediaType of allMt) {
+            acceptTypes.add(mediaType);
+          }
+
           const headers = new Array<HttpHeader>();
           for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
             this.use(hh.schema, (n, sch) => {
@@ -1658,6 +1677,28 @@ export class ModelerFour {
             }
           }
         }
+      }
+    }
+
+    // Synthesize an 'Accept' header based on the media types in this
+    // operation and add it to all requests
+    const mediaTypes = Array.from(acceptTypes);
+    if (acceptTypes.size > 0) {
+      const acceptSchema = this.getAcceptParameterSchema(mediaTypes);
+      for (const request of values(operation.requests)) {
+        request.addParameter(new Parameter('accept', 'Accept header', acceptSchema, {
+          implementation: ImplementationLocation.Method,
+          required: true,
+          origin: 'modelerfour:synthesized/accept',
+          protocol: {
+            http: new HttpParameter(ParameterLocation.Header)
+          },
+          language: {
+            default: {
+              serializedName: 'Accept'
+            }
+          },
+        }));
       }
     }
   }
