@@ -63,7 +63,7 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
   sealedChoices:
-    - !<!SealedChoiceSchema> &ref_13
+    - !<!SealedChoiceSchema> &ref_14
       choices:
         - !<!ChoiceValue> 
           value: application/pdf
@@ -107,8 +107,18 @@ schemas: !<!Schemas>
           name: ApiVersion-3.0.0
           description: Api Version (3.0.0)
       protocol: !<!Protocols> {}
+    - !<!ConstantSchema> &ref_9
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   binaries:
-    - !<!BinarySchema> &ref_14
+    - !<!BinarySchema> &ref_15
       type: binary
       apiVersions:
         - !<!ApiVersion> 
@@ -125,7 +135,7 @@ schemas: !<!Schemas>
         - !<!ApiVersion> 
           version: 3.0.0
       properties:
-        - !<!Property> &ref_10
+        - !<!Property> &ref_11
           schema: *ref_1
           serializedName: optionalProperty
           language: !<!Languages> 
@@ -144,7 +154,7 @@ schemas: !<!Schemas>
           description: Only exists in api version 3.0.0
           namespace: ''
       protocol: !<!Protocols> {}
-    - !<!ObjectSchema> &ref_12
+    - !<!ObjectSchema> &ref_13
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -176,13 +186,13 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - !<!ObjectSchema> &ref_17
+    - !<!ObjectSchema> &ref_18
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: 3.0.0
       properties:
-        - !<!Property> &ref_19
+        - !<!Property> &ref_20
           schema: *ref_4
           serializedName: source
           language: !<!Languages> 
@@ -244,7 +254,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_9
+              - !<!Parameter> &ref_10
                 schema: *ref_8
                 flattened: true
                 implementation: Method
@@ -257,19 +267,32 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_11
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_12
                 schema: *ref_1
                 implementation: Method
-                originalParameter: *ref_9
+                originalParameter: *ref_10
                 pathToProperty: []
-                targetProperty: *ref_10
+                targetProperty: *ref_11
                 language: !<!Languages> 
                   default:
                     name: optionalProperty
                     description: ''
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_11
+              - *ref_12
             language: !<!Languages> 
               default:
                 name: ''
@@ -299,7 +322,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_12
+            schema: *ref_13
             language: !<!Languages> 
               default:
                 name: ''
@@ -334,8 +357,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_15
-                schema: *ref_13
+              - !<!Parameter> &ref_16
+                schema: *ref_14
                 implementation: Method
                 origin: 'modelerfour:synthesized/content-type'
                 required: true
@@ -347,8 +370,8 @@ operationGroups:
                 protocol: !<!Protocols> 
                   http: !<!HttpParameter> 
                     in: header
-              - !<!Parameter> &ref_16
-                schema: *ref_14
+              - !<!Parameter> &ref_17
+                schema: *ref_15
                 implementation: Method
                 required: true
                 language: !<!Languages> 
@@ -359,9 +382,22 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: binary
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_15
               - *ref_16
+              - *ref_17
             language: !<!Languages> 
               default:
                 name: ''
@@ -380,8 +416,8 @@ operationGroups:
                 uri: '{$host}'
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_18
-                schema: *ref_17
+              - !<!Parameter> &ref_19
+                schema: *ref_18
                 flattened: true
                 implementation: Method
                 required: false
@@ -393,19 +429,32 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_20
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_21
                 schema: *ref_4
                 implementation: Method
-                originalParameter: *ref_18
+                originalParameter: *ref_19
                 pathToProperty: []
-                targetProperty: *ref_19
+                targetProperty: *ref_20
                 language: !<!Languages> 
                   default:
                     name: source
                     description: File source path.
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_20
+              - *ref_21
             language: !<!Languages> 
               default:
                 name: ''
@@ -431,7 +480,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_12
+            schema: *ref_13
             language: !<!Languages> 
               default:
                 name: ''
@@ -459,6 +508,21 @@ operationGroups:
           - *ref_7
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -481,7 +545,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_12
+            schema: *ref_13
             language: !<!Languages> 
               default:
                 name: ''

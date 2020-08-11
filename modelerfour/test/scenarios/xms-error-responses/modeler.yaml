@@ -4,7 +4,7 @@ info: !<!Info>
   title: xms-error-responses
 schemas: !<!Schemas> 
   numbers:
-    - !<!NumberSchema> &ref_26
+    - !<!NumberSchema> &ref_27
       type: integer
       apiVersions:
         - !<!ApiVersion> 
@@ -152,6 +152,17 @@ schemas: !<!Schemas>
         default:
           name: PetHungryOrThirstyError-hungryOrThirsty
           description: is the pet hungry or thirsty or both
+      protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_26
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_23
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
       protocol: !<!Protocols> {}
   objects:
     - !<!ObjectSchema> &ref_2
@@ -362,7 +373,7 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
     - *ref_12
-    - !<!ObjectSchema> &ref_29
+    - !<!ObjectSchema> &ref_30
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -509,7 +520,7 @@ schemas: !<!Schemas>
     - *ref_21
     - *ref_22
 globalParameters:
-  - !<!Parameter> &ref_27
+  - !<!Parameter> &ref_28
     schema: *ref_23
     clientDefaultValue: 'http://localhost'
     implementation: Client
@@ -534,7 +545,7 @@ operationGroups:
           - !<!ApiVersion> 
             version: 0.0.0
         parameters:
-          - *ref_27
+          - *ref_28
           - !<!Parameter> &ref_25
             schema: *ref_24
             implementation: Method
@@ -549,6 +560,21 @@ operationGroups:
                 in: path
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_26
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -615,7 +641,7 @@ operationGroups:
                 statusCodes:
                   - '404'
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             extensions:
               x-ms-error-response: true
             language: !<!Languages> 
@@ -648,8 +674,8 @@ operationGroups:
           - !<!ApiVersion> 
             version: 0.0.0
         parameters:
-          - *ref_27
-          - !<!Parameter> &ref_28
+          - *ref_28
+          - !<!Parameter> &ref_29
             schema: *ref_24
             implementation: Method
             required: true
@@ -663,6 +689,21 @@ operationGroups:
                 in: path
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_26
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -673,10 +714,10 @@ operationGroups:
                 method: post
                 uri: '{$host}'
         signatureParameters:
-          - *ref_28
+          - *ref_29
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_29
+            schema: *ref_30
             language: !<!Languages> 
               default:
                 name: ''

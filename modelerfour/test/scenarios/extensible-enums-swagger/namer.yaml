@@ -117,8 +117,19 @@ schemas: !<!Schemas>
           name: IntEnum
           description: ''
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_6
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_7
+    - !<!ObjectSchema> &ref_8
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -189,7 +200,7 @@ operationGroups:
             version: '2016-07-07'
         parameters:
           - *ref_4
-          - !<!Parameter> &ref_6
+          - !<!Parameter> &ref_7
             schema: *ref_5
             implementation: Method
             required: true
@@ -203,6 +214,21 @@ operationGroups:
                 in: path
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_6
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -213,10 +239,10 @@ operationGroups:
                 method: get
                 uri: '{$host}'
         signatureParameters:
-          - *ref_6
+          - *ref_7
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_7
+            schema: *ref_8
             language: !<!Languages> 
               default:
                 name: ''
@@ -242,8 +268,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_8
-                schema: *ref_7
+              - !<!Parameter> &ref_9
+                schema: *ref_8
                 implementation: Method
                 required: false
                 language: !<!Languages> 
@@ -254,8 +280,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_6
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_8
+              - *ref_9
             language: !<!Languages> 
               default:
                 name: ''
@@ -271,7 +310,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_7
+            schema: *ref_8
             language: !<!Languages> 
               default:
                 name: ''

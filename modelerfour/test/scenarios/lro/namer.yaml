@@ -12,7 +12,7 @@ schemas: !<!Schemas>
           name: Integer
           description: ''
       protocol: !<!Protocols> {}
-    - !<!NumberSchema> &ref_35
+    - !<!NumberSchema> &ref_36
       type: integer
       apiVersions:
         - !<!ApiVersion> 
@@ -396,6 +396,17 @@ schemas: !<!Schemas>
           name: OperationResultStatus
           description: The status of the request
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_25
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   dictionaries:
     - !<!DictionarySchema> &ref_5
       type: dictionary
@@ -518,7 +529,7 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
     - *ref_8
-    - !<!ObjectSchema> &ref_26
+    - !<!ObjectSchema> &ref_27
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -552,13 +563,13 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - !<!ObjectSchema> &ref_40
+    - !<!ObjectSchema> &ref_41
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
       properties:
-        - !<!Property> &ref_42
+        - !<!Property> &ref_43
           schema: *ref_13
           serializedName: name
           language: !<!Languages> 
@@ -566,7 +577,7 @@ schemas: !<!Schemas>
               name: name
               description: ''
           protocol: !<!Protocols> {}
-        - !<!Property> &ref_43
+        - !<!Property> &ref_44
           schema: *ref_14
           serializedName: id
           language: !<!Languages> 
@@ -628,7 +639,7 @@ schemas: !<!Schemas>
         immediate:
           - *ref_17
       properties:
-        - !<!Property> &ref_50
+        - !<!Property> &ref_51
           schema: *ref_18
           flattenedNames:
             - properties
@@ -749,7 +760,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_25
+              - !<!Parameter> &ref_26
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -761,8 +772,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_25
+              - *ref_26
             language: !<!Languages> 
               default:
                 name: ''
@@ -801,7 +825,7 @@ operationGroups:
                   - '204'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -829,7 +853,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_27
+              - !<!Parameter> &ref_28
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -841,8 +865,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_27
+              - *ref_28
             language: !<!Languages> 
               default:
                 name: ''
@@ -872,7 +909,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -900,7 +937,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_28
+              - !<!Parameter> &ref_29
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -912,8 +949,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_28
+              - *ref_29
             language: !<!Languages> 
               default:
                 name: ''
@@ -943,7 +993,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -971,7 +1021,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_29
+              - !<!Parameter> &ref_30
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -983,8 +1033,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_29
+              - *ref_30
             language: !<!Languages> 
               default:
                 name: ''
@@ -1027,7 +1090,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1055,7 +1118,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_30
+              - !<!Parameter> &ref_31
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1067,8 +1130,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_30
+              - *ref_31
             language: !<!Languages> 
               default:
                 name: ''
@@ -1098,7 +1174,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1126,7 +1202,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_31
+              - !<!Parameter> &ref_32
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1138,8 +1214,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_31
+              - *ref_32
             language: !<!Languages> 
               default:
                 name: ''
@@ -1182,7 +1271,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1210,7 +1299,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_32
+              - !<!Parameter> &ref_33
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1222,8 +1311,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_32
+              - *ref_33
             language: !<!Languages> 
               default:
                 name: ''
@@ -1253,7 +1355,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1281,7 +1383,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_33
+              - !<!Parameter> &ref_34
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1293,8 +1395,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_33
+              - *ref_34
             language: !<!Languages> 
               default:
                 name: ''
@@ -1332,7 +1447,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1360,7 +1475,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_34
+              - !<!Parameter> &ref_35
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1372,8 +1487,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_34
+              - *ref_35
             language: !<!Languages> 
               default:
                 name: ''
@@ -1412,7 +1540,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -1425,7 +1553,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1453,7 +1581,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_36
+              - !<!Parameter> &ref_37
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1465,8 +1593,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_36
+              - *ref_37
             language: !<!Languages> 
               default:
                 name: ''
@@ -1511,7 +1652,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1539,7 +1680,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_37
+              - !<!Parameter> &ref_38
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1551,8 +1692,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_37
+              - *ref_38
             language: !<!Languages> 
               default:
                 name: ''
@@ -1591,7 +1745,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -1604,7 +1758,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1632,7 +1786,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_38
+              - !<!Parameter> &ref_39
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1644,8 +1798,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_38
+              - *ref_39
             language: !<!Languages> 
               default:
                 name: ''
@@ -1690,7 +1857,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1718,7 +1885,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_39
+              - !<!Parameter> &ref_40
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -1730,8 +1897,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_39
+              - *ref_40
             language: !<!Languages> 
               default:
                 name: ''
@@ -1769,7 +1949,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1797,8 +1977,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_41
-                schema: *ref_40
+              - !<!Parameter> &ref_42
+                schema: *ref_41
                 flattened: true
                 implementation: Method
                 required: false
@@ -1810,31 +1990,44 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_44
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_45
                 schema: *ref_13
                 implementation: Method
-                originalParameter: *ref_41
+                originalParameter: *ref_42
                 pathToProperty: []
-                targetProperty: *ref_42
+                targetProperty: *ref_43
                 language: !<!Languages> 
                   default:
                     name: name
                     description: ''
                 protocol: !<!Protocols> {}
-              - !<!VirtualParameter> &ref_45
+              - !<!VirtualParameter> &ref_46
                 schema: *ref_14
                 implementation: Method
-                originalParameter: *ref_41
+                originalParameter: *ref_42
                 pathToProperty: []
-                targetProperty: *ref_43
+                targetProperty: *ref_44
                 language: !<!Languages> 
                   default:
                     name: id
                     description: ''
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_44
               - *ref_45
+              - *ref_46
             language: !<!Languages> 
               default:
                 name: ''
@@ -1850,7 +2043,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_40
+            schema: *ref_41
             language: !<!Languages> 
               default:
                 name: ''
@@ -1864,7 +2057,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1892,8 +2085,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_46
-                schema: *ref_40
+              - !<!Parameter> &ref_47
+                schema: *ref_41
                 flattened: true
                 implementation: Method
                 required: false
@@ -1905,31 +2098,44 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_47
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_48
                 schema: *ref_13
                 implementation: Method
-                originalParameter: *ref_46
+                originalParameter: *ref_47
                 pathToProperty: []
-                targetProperty: *ref_42
+                targetProperty: *ref_43
                 language: !<!Languages> 
                   default:
                     name: name
                     description: ''
                 protocol: !<!Protocols> {}
-              - !<!VirtualParameter> &ref_48
+              - !<!VirtualParameter> &ref_49
                 schema: *ref_14
                 implementation: Method
-                originalParameter: *ref_46
+                originalParameter: *ref_47
                 pathToProperty: []
-                targetProperty: *ref_43
+                targetProperty: *ref_44
                 language: !<!Languages> 
                   default:
                     name: id
                     description: ''
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_47
               - *ref_48
+              - *ref_49
             language: !<!Languages> 
               default:
                 name: ''
@@ -1945,7 +2151,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_40
+            schema: *ref_41
             language: !<!Languages> 
               default:
                 name: ''
@@ -1959,7 +2165,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1987,7 +2193,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_49
+              - !<!Parameter> &ref_50
                 schema: *ref_15
                 flattened: true
                 implementation: Method
@@ -2000,19 +2206,32 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_51
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_52
                 schema: *ref_18
                 implementation: Method
-                originalParameter: *ref_49
+                originalParameter: *ref_50
                 pathToProperty: []
-                targetProperty: *ref_50
+                targetProperty: *ref_51
                 language: !<!Languages> 
                   default:
                     name: provisioningState
                     description: ''
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_51
+              - *ref_52
             language: !<!Languages> 
               default:
                 name: ''
@@ -2042,7 +2261,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2070,7 +2289,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_52
+              - !<!Parameter> &ref_53
                 schema: *ref_15
                 flattened: true
                 implementation: Method
@@ -2083,19 +2302,32 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_53
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_54
                 schema: *ref_18
                 implementation: Method
-                originalParameter: *ref_52
+                originalParameter: *ref_53
                 pathToProperty: []
-                targetProperty: *ref_50
+                targetProperty: *ref_51
                 language: !<!Languages> 
                   default:
                     name: provisioningState
                     description: ''
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_53
+              - *ref_54
             language: !<!Languages> 
               default:
                 name: ''
@@ -2125,7 +2357,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2152,6 +2384,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2193,7 +2440,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2206,7 +2453,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2235,6 +2482,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2276,7 +2538,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2289,7 +2551,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2316,6 +2578,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2357,7 +2634,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2370,7 +2647,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2399,6 +2676,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2421,7 +2713,7 @@ operationGroups:
                   - '204'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2448,6 +2740,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2488,7 +2795,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2498,7 +2805,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2525,6 +2832,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2565,7 +2887,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2575,7 +2897,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2602,6 +2924,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2641,7 +2978,7 @@ operationGroups:
                   - '204'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2668,6 +3005,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2707,7 +3059,7 @@ operationGroups:
                   - '204'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2734,6 +3086,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2768,7 +3135,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2778,7 +3145,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2805,6 +3172,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2839,7 +3221,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2849,7 +3231,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2876,6 +3258,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2910,7 +3307,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2920,7 +3317,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -2947,6 +3344,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -2981,7 +3393,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -2991,7 +3403,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3018,6 +3430,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -3030,7 +3457,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_40
+            schema: *ref_41
             language: !<!Languages> 
               default:
                 name: ''
@@ -3043,7 +3470,7 @@ operationGroups:
                 statusCodes:
                   - '200'
           - !<!SchemaResponse> 
-            schema: *ref_40
+            schema: *ref_41
             language: !<!Languages> 
               default:
                 name: ''
@@ -3057,7 +3484,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3085,7 +3512,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_54
+              - !<!Parameter> &ref_55
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3097,8 +3524,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_54
+              - *ref_55
             language: !<!Languages> 
               default:
                 name: ''
@@ -3129,7 +3569,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3139,7 +3579,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3167,7 +3607,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_55
+              - !<!Parameter> &ref_56
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3179,8 +3619,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_55
+              - *ref_56
             language: !<!Languages> 
               default:
                 name: ''
@@ -3212,7 +3665,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3225,7 +3678,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3252,6 +3705,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -3278,7 +3746,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3307,6 +3775,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -3333,7 +3816,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3362,6 +3845,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -3388,7 +3886,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3418,7 +3916,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_56
+              - !<!Parameter> &ref_57
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3430,8 +3928,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_56
+              - *ref_57
             language: !<!Languages> 
               default:
                 name: ''
@@ -3482,7 +3993,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3492,7 +4003,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3520,7 +4031,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_57
+              - !<!Parameter> &ref_58
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3532,8 +4043,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_57
+              - *ref_58
             language: !<!Languages> 
               default:
                 name: ''
@@ -3584,7 +4108,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3594,7 +4118,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3622,7 +4146,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_58
+              - !<!Parameter> &ref_59
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3634,8 +4158,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_58
+              - *ref_59
             language: !<!Languages> 
               default:
                 name: ''
@@ -3673,7 +4210,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3683,7 +4220,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3711,7 +4248,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_59
+              - !<!Parameter> &ref_60
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3723,8 +4260,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_59
+              - *ref_60
             language: !<!Languages> 
               default:
                 name: ''
@@ -3762,7 +4312,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3772,7 +4322,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3808,7 +4358,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_60
+              - !<!Parameter> &ref_61
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3820,8 +4370,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_60
+              - *ref_61
             language: !<!Languages> 
               default:
                 name: ''
@@ -3864,7 +4427,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3894,7 +4457,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_61
+              - !<!Parameter> &ref_62
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -3906,8 +4469,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_61
+              - *ref_62
             language: !<!Languages> 
               default:
                 name: ''
@@ -3946,7 +4522,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -3959,7 +4535,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -3986,6 +4562,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -4027,7 +4618,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4040,7 +4631,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4069,6 +4660,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -4096,7 +4702,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4106,7 +4712,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4133,6 +4739,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -4167,7 +4788,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4177,7 +4798,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4205,7 +4826,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_62
+              - !<!Parameter> &ref_63
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4217,8 +4838,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_62
+              - *ref_63
             language: !<!Languages> 
               default:
                 name: ''
@@ -4249,7 +4883,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4259,7 +4893,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4287,7 +4921,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_63
+              - !<!Parameter> &ref_64
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4299,8 +4933,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_63
+              - *ref_64
             language: !<!Languages> 
               default:
                 name: ''
@@ -4338,7 +4985,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4348,7 +4995,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4386,7 +5033,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_64
+              - !<!Parameter> &ref_65
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4398,8 +5045,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_64
+              - *ref_65
             language: !<!Languages> 
               default:
                 name: ''
@@ -4442,7 +5102,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4470,7 +5130,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_65
+              - !<!Parameter> &ref_66
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4482,8 +5142,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_65
+              - *ref_66
             language: !<!Languages> 
               default:
                 name: ''
@@ -4526,7 +5199,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4554,7 +5227,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_66
+              - !<!Parameter> &ref_67
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4566,8 +5239,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_66
+              - *ref_67
             language: !<!Languages> 
               default:
                 name: ''
@@ -4610,7 +5296,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4638,7 +5324,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_67
+              - !<!Parameter> &ref_68
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4650,8 +5336,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_67
+              - *ref_68
             language: !<!Languages> 
               default:
                 name: ''
@@ -4690,7 +5389,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4703,7 +5402,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4730,6 +5429,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -4757,7 +5471,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4767,7 +5481,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4794,6 +5508,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -4821,7 +5550,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4831,7 +5560,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4858,6 +5587,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -4892,7 +5636,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4902,7 +5646,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -4930,7 +5674,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_68
+              - !<!Parameter> &ref_69
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -4942,8 +5686,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_68
+              - *ref_69
             language: !<!Languages> 
               default:
                 name: ''
@@ -4974,7 +5731,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -4984,7 +5741,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5012,7 +5769,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_69
+              - !<!Parameter> &ref_70
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5024,8 +5781,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_69
+              - *ref_70
             language: !<!Languages> 
               default:
                 name: ''
@@ -5056,7 +5826,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5066,7 +5836,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5094,7 +5864,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_70
+              - !<!Parameter> &ref_71
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5106,8 +5876,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_70
+              - *ref_71
             language: !<!Languages> 
               default:
                 name: ''
@@ -5145,7 +5928,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5155,7 +5938,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5183,7 +5966,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_71
+              - !<!Parameter> &ref_72
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5195,8 +5978,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_71
+              - *ref_72
             language: !<!Languages> 
               default:
                 name: ''
@@ -5239,7 +6035,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5267,7 +6063,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_72
+              - !<!Parameter> &ref_73
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5279,8 +6075,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_72
+              - *ref_73
             language: !<!Languages> 
               default:
                 name: ''
@@ -5319,7 +6128,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5332,7 +6141,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5360,7 +6169,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_73
+              - !<!Parameter> &ref_74
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5372,8 +6181,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_73
+              - *ref_74
             language: !<!Languages> 
               default:
                 name: ''
@@ -5412,7 +6234,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5425,7 +6247,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5452,6 +6274,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -5474,7 +6311,7 @@ operationGroups:
                   - '204'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5501,6 +6338,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -5535,7 +6387,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5545,7 +6397,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5573,7 +6425,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_74
+              - !<!Parameter> &ref_75
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5585,8 +6437,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_74
+              - *ref_75
             language: !<!Languages> 
               default:
                 name: ''
@@ -5617,7 +6482,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5627,7 +6492,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5655,7 +6520,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_75
+              - !<!Parameter> &ref_76
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5667,8 +6532,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_75
+              - *ref_76
             language: !<!Languages> 
               default:
                 name: ''
@@ -5706,7 +6584,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5716,7 +6594,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5744,7 +6622,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_76
+              - !<!Parameter> &ref_77
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5756,8 +6634,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_76
+              - *ref_77
             language: !<!Languages> 
               default:
                 name: ''
@@ -5796,7 +6687,7 @@ operationGroups:
                   - '204'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5824,7 +6715,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_77
+              - !<!Parameter> &ref_78
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5836,8 +6727,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_77
+              - *ref_78
             language: !<!Languages> 
               default:
                 name: ''
@@ -5876,7 +6780,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5889,7 +6793,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -5917,7 +6821,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_78
+              - !<!Parameter> &ref_79
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -5929,8 +6833,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_78
+              - *ref_79
             language: !<!Languages> 
               default:
                 name: ''
@@ -5969,7 +6886,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -5982,7 +6899,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6009,6 +6926,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -6036,7 +6968,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6046,7 +6978,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6073,6 +7005,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -6107,7 +7054,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6117,7 +7064,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6144,6 +7091,21 @@ operationGroups:
           - *ref_24
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -6178,7 +7140,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6188,7 +7150,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6216,7 +7178,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_79
+              - !<!Parameter> &ref_80
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6228,8 +7190,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_79
+              - *ref_80
             language: !<!Languages> 
               default:
                 name: ''
@@ -6260,7 +7235,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6270,7 +7245,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6298,7 +7273,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_80
+              - !<!Parameter> &ref_81
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6310,8 +7285,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_80
+              - *ref_81
             language: !<!Languages> 
               default:
                 name: ''
@@ -6349,7 +7337,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6359,7 +7347,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6387,7 +7375,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_81
+              - !<!Parameter> &ref_82
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6399,8 +7387,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_81
+              - *ref_82
             language: !<!Languages> 
               default:
                 name: ''
@@ -6438,7 +7439,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6448,7 +7449,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6484,7 +7485,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_82
+              - !<!Parameter> &ref_83
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6496,8 +7497,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_82
+              - *ref_83
             language: !<!Languages> 
               default:
                 name: ''
@@ -6536,7 +7550,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6549,7 +7563,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6579,7 +7593,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_83
+              - !<!Parameter> &ref_84
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6591,8 +7605,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_83
+              - *ref_84
             language: !<!Languages> 
               default:
                 name: ''
@@ -6635,7 +7662,7 @@ operationGroups:
                   - '201'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6665,7 +7692,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_84
+              - !<!Parameter> &ref_85
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6677,8 +7704,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_84
+              - *ref_85
             language: !<!Languages> 
               default:
                 name: ''
@@ -6709,7 +7749,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6719,7 +7759,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -6749,7 +7789,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_85
+              - !<!Parameter> &ref_86
                 schema: *ref_2
                 implementation: Method
                 required: false
@@ -6761,8 +7801,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_25
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_85
+              - *ref_86
             language: !<!Languages> 
               default:
                 name: ''
@@ -6800,7 +7853,7 @@ operationGroups:
                         name: Location
                         description: 'Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults'
                   - !<!HttpHeader> 
-                    schema: *ref_35
+                    schema: *ref_36
                     header: Retry-After
                     language:
                       default:
@@ -6810,7 +7863,7 @@ operationGroups:
                   - '202'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''

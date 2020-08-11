@@ -62,8 +62,19 @@ schemas: !<!Schemas>
           name: string
           description: ''
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_9
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_2
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_9
+    - !<!ObjectSchema> &ref_10
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -96,7 +107,7 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
 globalParameters:
-  - !<!Parameter> &ref_10
+  - !<!Parameter> &ref_11
     schema: *ref_3
     implementation: Client
     required: true
@@ -110,7 +121,7 @@ globalParameters:
     protocol: !<!Protocols> 
       http: !<!HttpParameter> 
         in: path
-  - !<!Parameter> &ref_11
+  - !<!Parameter> &ref_12
     schema: *ref_2
     clientDefaultValue: host
     implementation: Client
@@ -175,7 +186,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: uri
-          - *ref_11
+          - *ref_12
           - !<!Parameter> &ref_7
             schema: *ref_3
             implementation: Method
@@ -188,7 +199,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: path
-          - *ref_10
+          - *ref_11
           - !<!Parameter> &ref_8
             schema: *ref_4
             implementation: Method
@@ -202,6 +213,21 @@ operationGroups:
                 in: query
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -228,7 +254,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_9
+            schema: *ref_10
             language: !<!Languages> 
               default:
                 name: ''

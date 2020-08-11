@@ -4,7 +4,7 @@ info: !<!Info>
   title: azure-resource
 schemas: !<!Schemas> 
   numbers:
-    - !<!NumberSchema> &ref_9
+    - !<!NumberSchema> &ref_10
       type: integer
       precision: 32
       language: !<!Languages> 
@@ -13,14 +13,14 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
   strings:
-    - !<!StringSchema> &ref_14
+    - !<!StringSchema> &ref_0
       type: string
       language: !<!Languages> 
         default:
           name: String
           description: simple string
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_2
+    - !<!StringSchema> &ref_3
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
           name: ResourceId
           description: Resource Id
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_3
+    - !<!StringSchema> &ref_4
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -40,7 +40,7 @@ schemas: !<!Schemas>
           name: ResourceType
           description: Resource Type
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_0
+    - !<!StringSchema> &ref_1
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -50,7 +50,7 @@ schemas: !<!Schemas>
           name: String
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_5
+    - !<!StringSchema> &ref_6
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -60,7 +60,7 @@ schemas: !<!Schemas>
           name: ResourceLocation
           description: Resource Location
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_6
+    - !<!StringSchema> &ref_7
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -70,7 +70,7 @@ schemas: !<!Schemas>
           name: ResourceName
           description: Resource Name
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_11
+    - !<!StringSchema> &ref_12
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -80,7 +80,7 @@ schemas: !<!Schemas>
           name: ErrorMessage
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_8
+    - !<!StringSchema> &ref_9
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -90,7 +90,7 @@ schemas: !<!Schemas>
           name: FlattenedResourcePropertiesPname
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_10
+    - !<!StringSchema> &ref_11
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -100,37 +100,48 @@ schemas: !<!Schemas>
           name: FlattenedResourcePropertiesProvisioningState
           description: ''
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_17
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   dictionaries:
-    - !<!DictionarySchema> &ref_4
+    - !<!DictionarySchema> &ref_5
       type: dictionary
-      elementType: *ref_0
+      elementType: *ref_1
       language: !<!Languages> 
         default:
           name: ResourceTags
           description: Dictionary of <string>
       protocol: !<!Protocols> {}
-    - !<!DictionarySchema> &ref_20
+    - !<!DictionarySchema> &ref_21
       type: dictionary
-      elementType: !<!ObjectSchema> &ref_1
+      elementType: !<!ObjectSchema> &ref_2
         type: object
         apiVersions:
           - !<!ApiVersion> 
             version: 1.0.0
         parents: !<!Relations> 
           all:
-            - !<!ObjectSchema> &ref_7
+            - !<!ObjectSchema> &ref_8
               type: object
               apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
               children: !<!Relations> 
                 all:
-                  - *ref_1
+                  - *ref_2
                 immediate:
-                  - *ref_1
+                  - *ref_2
               properties:
                 - !<!Property> 
-                  schema: *ref_2
+                  schema: *ref_3
                   readOnly: true
                   serializedName: id
                   language: !<!Languages> 
@@ -139,7 +150,7 @@ schemas: !<!Schemas>
                       description: Resource Id
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: *ref_3
+                  schema: *ref_4
                   readOnly: true
                   serializedName: type
                   language: !<!Languages> 
@@ -148,7 +159,7 @@ schemas: !<!Schemas>
                       description: Resource Type
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: *ref_4
+                  schema: *ref_5
                   serializedName: tags
                   language: !<!Languages> 
                     default:
@@ -156,7 +167,7 @@ schemas: !<!Schemas>
                       description: Dictionary of <string>
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: *ref_5
+                  schema: *ref_6
                   serializedName: location
                   language: !<!Languages> 
                     default:
@@ -164,7 +175,7 @@ schemas: !<!Schemas>
                       description: Resource Location
                   protocol: !<!Protocols> {}
                 - !<!Property> 
-                  schema: *ref_6
+                  schema: *ref_7
                   readOnly: true
                   serializedName: name
                   language: !<!Languages> 
@@ -186,10 +197,10 @@ schemas: !<!Schemas>
                   namespace: ''
               protocol: !<!Protocols> {}
           immediate:
-            - *ref_7
+            - *ref_8
         properties:
           - !<!Property> 
-            schema: *ref_8
+            schema: *ref_9
             flattenedNames:
               - properties
               - pname
@@ -200,7 +211,7 @@ schemas: !<!Schemas>
                 description: ''
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: *ref_9
+            schema: *ref_10
             flattenedNames:
               - properties
               - lsize
@@ -211,7 +222,7 @@ schemas: !<!Schemas>
                 description: ''
             protocol: !<!Protocols> {}
           - !<!Property> 
-            schema: *ref_10
+            schema: *ref_11
             flattenedNames:
               - properties
               - provisioningState
@@ -237,24 +248,24 @@ schemas: !<!Schemas>
           name: DictionaryOfFlattenedProduct
           description: Dictionary of <FlattenedProduct>
       protocol: !<!Protocols> {}
-    - !<!DictionarySchema> &ref_12
+    - !<!DictionarySchema> &ref_13
       type: dictionary
-      elementType: *ref_1
+      elementType: *ref_2
       language: !<!Languages> 
         default:
           name: ResourceCollectionDictionaryofresources
           description: Dictionary of <FlattenedProduct>
       protocol: !<!Protocols> {}
   objects:
-    - *ref_7
-    - !<!ObjectSchema> &ref_18
+    - *ref_8
+    - !<!ObjectSchema> &ref_19
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
       properties:
         - !<!Property> 
-          schema: *ref_9
+          schema: *ref_10
           serializedName: status
           language: !<!Languages> 
             default:
@@ -262,7 +273,7 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: *ref_11
+          schema: *ref_12
           serializedName: message
           language: !<!Languages> 
             default:
@@ -279,15 +290,15 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - *ref_1
-    - !<!ObjectSchema> &ref_22
+    - *ref_2
+    - !<!ObjectSchema> &ref_23
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
       properties:
         - !<!Property> 
-          schema: *ref_1
+          schema: *ref_2
           serializedName: productresource
           language: !<!Languages> 
             default:
@@ -295,12 +306,12 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: !<!ArraySchema> &ref_13
+          schema: !<!ArraySchema> &ref_14
             type: array
             apiVersions:
               - !<!ApiVersion> 
                 version: 1.0.0
-            elementType: *ref_1
+            elementType: *ref_2
             language: !<!Languages> 
               default:
                 name: ResourceCollectionArrayofresources
@@ -313,7 +324,7 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: *ref_12
+          schema: *ref_13
           serializedName: dictionaryofresources
           language: !<!Languages> 
             default:
@@ -337,27 +348,27 @@ schemas: !<!Schemas>
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-      elementType: *ref_7
+      elementType: *ref_8
       language: !<!Languages> 
         default:
           name: ArrayOfResource
           description: Array of Resource
       protocol: !<!Protocols> {}
-    - !<!ArraySchema> &ref_19
+    - !<!ArraySchema> &ref_20
       type: array
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
-      elementType: *ref_1
+      elementType: *ref_2
       language: !<!Languages> 
         default:
           name: ArrayOfFlattenedProduct
           description: Array of FlattenedProduct
       protocol: !<!Protocols> {}
-    - *ref_13
+    - *ref_14
 globalParameters:
   - !<!Parameter> &ref_15
-    schema: *ref_14
+    schema: *ref_0
     clientDefaultValue: 'http://localhost:3000'
     implementation: Client
     origin: 'modelerfour:synthesized/host'
@@ -385,7 +396,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_17
+              - !<!Parameter> &ref_18
                 schema: *ref_16
                 implementation: Method
                 required: false
@@ -397,8 +408,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_17
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_17
+              - *ref_18
             language: !<!Languages> 
               default:
                 name: ''
@@ -424,7 +448,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_18
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
@@ -449,6 +473,21 @@ operationGroups:
           - *ref_15
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_17
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -461,7 +500,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_19
+            schema: *ref_20
             language: !<!Languages> 
               default:
                 name: ''
@@ -475,7 +514,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_18
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
@@ -501,8 +540,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_21
-                schema: *ref_20
+              - !<!Parameter> &ref_22
+                schema: *ref_21
                 implementation: Method
                 required: false
                 language: !<!Languages> 
@@ -513,8 +552,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_17
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_21
+              - *ref_22
             language: !<!Languages> 
               default:
                 name: ''
@@ -540,7 +592,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_18
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
@@ -565,6 +617,21 @@ operationGroups:
           - *ref_15
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_17
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -577,7 +644,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_20
+            schema: *ref_21
             language: !<!Languages> 
               default:
                 name: ''
@@ -591,7 +658,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_18
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
@@ -617,8 +684,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_23
-                schema: *ref_22
+              - !<!Parameter> &ref_24
+                schema: *ref_23
                 implementation: Method
                 required: false
                 language: !<!Languages> 
@@ -629,8 +696,21 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
+              - !<!Parameter> 
+                schema: *ref_17
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
             signatureParameters:
-              - *ref_23
+              - *ref_24
             language: !<!Languages> 
               default:
                 name: ''
@@ -656,7 +736,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_18
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
@@ -681,6 +761,21 @@ operationGroups:
           - *ref_15
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_17
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -693,7 +788,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_22
+            schema: *ref_23
             language: !<!Languages> 
               default:
                 name: ''
@@ -707,7 +802,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_18
+            schema: *ref_19
             language: !<!Languages> 
               default:
                 name: ''
