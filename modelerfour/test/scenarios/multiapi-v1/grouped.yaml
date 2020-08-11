@@ -73,8 +73,18 @@ schemas: !<!Schemas>
           name: ApiVersion-1.0.0
           description: Api Version (1.0.0)
       protocol: !<!Protocols> {}
+    - !<!ConstantSchema> &ref_8
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_10
+    - !<!ObjectSchema> &ref_11
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -146,7 +156,7 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_4
-          - !<!Parameter> &ref_8
+          - !<!Parameter> &ref_9
             schema: *ref_5
             implementation: Method
             required: true
@@ -158,7 +168,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_9
+          - !<!Parameter> &ref_10
             schema: *ref_6
             implementation: Method
             language: !<!Languages> 
@@ -172,6 +182,21 @@ operationGroups:
           - *ref_7
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_8
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -182,8 +207,8 @@ operationGroups:
                 method: put
                 uri: '{$host}'
         signatureParameters:
-          - *ref_8
           - *ref_9
+          - *ref_10
         responses:
           - !<!Response> 
             language: !<!Languages> 
@@ -196,7 +221,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_10
+            schema: *ref_11
             language: !<!Languages> 
               default:
                 name: ''
@@ -232,6 +257,21 @@ operationGroups:
           - *ref_7
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_8
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -254,7 +294,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_10
+            schema: *ref_11
             language: !<!Languages> 
               default:
                 name: ''

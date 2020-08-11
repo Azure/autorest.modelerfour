@@ -71,8 +71,18 @@ schemas: !<!Schemas>
           name: ApiVersion-2014-04-01-preview
           description: Api Version (2014-04-01-preview)
       protocol: !<!Protocols> {}
+    - !<!ConstantSchema> &ref_8
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_8
+    - !<!ObjectSchema> &ref_9
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -104,7 +114,7 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - !<!ObjectSchema> &ref_9
+    - !<!ObjectSchema> &ref_10
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -137,7 +147,7 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
 globalParameters:
-  - !<!Parameter> &ref_10
+  - !<!Parameter> &ref_11
     schema: *ref_5
     implementation: Client
     required: true
@@ -151,7 +161,7 @@ globalParameters:
     protocol: !<!Protocols> 
       http: !<!HttpParameter> 
         in: path
-  - !<!Parameter> &ref_11
+  - !<!Parameter> &ref_12
     schema: *ref_0
     clientDefaultValue: 'https://management.azure.com'
     implementation: Client
@@ -167,7 +177,7 @@ globalParameters:
     protocol: !<!Protocols> 
       http: !<!HttpParameter> 
         in: uri
-  - !<!Parameter> &ref_12
+  - !<!Parameter> &ref_13
     schema: *ref_6
     implementation: Client
     origin: 'modelerfour:synthesized/api-version'
@@ -189,8 +199,8 @@ operationGroups:
           - !<!ApiVersion> 
             version: 2014-04-01-preview
         parameters:
+          - *ref_12
           - *ref_11
-          - *ref_10
           - !<!Parameter> &ref_7
             schema: *ref_5
             implementation: Method
@@ -203,9 +213,24 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: path
-          - *ref_12
+          - *ref_13
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_8
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -219,7 +244,7 @@ operationGroups:
           - *ref_7
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_8
+            schema: *ref_9
             language: !<!Languages> 
               default:
                 name: ''
@@ -233,7 +258,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !<!SchemaResponse> 
-            schema: *ref_9
+            schema: *ref_10
             language: !<!Languages> 
               default:
                 name: ''

@@ -4,7 +4,7 @@ info: !<!Info>
   title: custom-baseUrl-paging
 schemas: !<!Schemas> 
   numbers:
-    - !<!NumberSchema> &ref_0
+    - !<!NumberSchema> &ref_1
       type: integer
       precision: 32
       language: !<!Languages> 
@@ -13,14 +13,14 @@ schemas: !<!Schemas>
           description: ''
       protocol: !<!Protocols> {}
   strings:
-    - !<!StringSchema> &ref_7
+    - !<!StringSchema> &ref_0
       type: string
       language: !<!Languages> 
         default:
           name: String
           description: simple string
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_1
+    - !<!StringSchema> &ref_2
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -30,7 +30,7 @@ schemas: !<!Schemas>
           name: ProductPropertiesName
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_2
+    - !<!StringSchema> &ref_3
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -40,7 +40,7 @@ schemas: !<!Schemas>
           name: ProductResultNextLink
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_12
+    - !<!StringSchema> &ref_13
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -61,7 +61,7 @@ schemas: !<!Schemas>
           name: String
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_5
+    - !<!StringSchema> &ref_6
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -71,34 +71,45 @@ schemas: !<!Schemas>
           name: ErrorMessage
           description: ''
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_9
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_10
+    - !<!ObjectSchema> &ref_11
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: 1.0.0
       properties:
         - !<!Property> 
-          schema: !<!ArraySchema> &ref_6
+          schema: !<!ArraySchema> &ref_7
             type: array
             apiVersions:
               - !<!ApiVersion> 
                 version: 1.0.0
-            elementType: !<!ObjectSchema> &ref_3
+            elementType: !<!ObjectSchema> &ref_4
               type: object
               apiVersions:
                 - !<!ApiVersion> 
                   version: 1.0.0
               properties:
                 - !<!Property> 
-                  schema: !<!ObjectSchema> &ref_4
+                  schema: !<!ObjectSchema> &ref_5
                     type: object
                     apiVersions:
                       - !<!ApiVersion> 
                         version: 1.0.0
                     properties:
                       - !<!Property> 
-                        schema: *ref_0
+                        schema: *ref_1
                         serializedName: id
                         language: !<!Languages> 
                           default:
@@ -106,7 +117,7 @@ schemas: !<!Schemas>
                             description: ''
                         protocol: !<!Protocols> {}
                       - !<!Property> 
-                        schema: *ref_1
+                        schema: *ref_2
                         serializedName: name
                         language: !<!Languages> 
                           default:
@@ -151,7 +162,7 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: *ref_2
+          schema: *ref_3
           serializedName: nextLink
           language: !<!Languages> 
             default:
@@ -168,8 +179,8 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - *ref_3
     - *ref_4
+    - *ref_5
     - !<!ObjectSchema> 
       type: object
       apiVersions:
@@ -177,7 +188,7 @@ schemas: !<!Schemas>
           version: 1.0.0
       properties:
         - !<!Property> 
-          schema: *ref_0
+          schema: *ref_1
           serializedName: status
           language: !<!Languages> 
             default:
@@ -185,7 +196,7 @@ schemas: !<!Schemas>
               description: ''
           protocol: !<!Protocols> {}
         - !<!Property> 
-          schema: *ref_5
+          schema: *ref_6
           serializedName: message
           language: !<!Languages> 
             default:
@@ -199,10 +210,10 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
   arrays:
-    - *ref_6
+    - *ref_7
 globalParameters:
   - !<!Parameter> &ref_8
-    schema: *ref_7
+    schema: *ref_0
     clientDefaultValue: host
     implementation: Client
     required: true
@@ -230,8 +241,8 @@ operationGroups:
           - !<!ApiVersion> 
             version: 1.0.0
         parameters:
-          - !<!Parameter> &ref_9
-            schema: *ref_7
+          - !<!Parameter> &ref_10
+            schema: *ref_0
             implementation: Method
             required: true
             extensions:
@@ -251,6 +262,21 @@ operationGroups:
           - *ref_8
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -261,10 +287,10 @@ operationGroups:
                 method: get
                 uri: 'http://{accountName}{host}'
         signatureParameters:
-          - *ref_9
+          - *ref_10
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_10
+            schema: *ref_11
             language: !<!Languages> 
               default:
                 name: ''
@@ -303,8 +329,8 @@ operationGroups:
           - !<!ApiVersion> 
             version: 1.0.0
         parameters:
-          - !<!Parameter> &ref_11
-            schema: *ref_7
+          - !<!Parameter> &ref_12
+            schema: *ref_0
             implementation: Method
             required: true
             extensions:
@@ -324,6 +350,21 @@ operationGroups:
           - *ref_8
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -334,10 +375,10 @@ operationGroups:
                 method: get
                 uri: 'http://{accountName}{host}'
         signatureParameters:
-          - *ref_11
+          - *ref_12
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_10
+            schema: *ref_11
             language: !<!Languages> 
               default:
                 name: ''
@@ -373,13 +414,13 @@ operationGroups:
               itemName: values
               member: GetPagesPartialUrlOperationNext
               nextLinkName: nextLink
-              nextLinkOperation: !<!Operation> &ref_15
+              nextLinkOperation: !<!Operation> &ref_16
                 apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
                 parameters:
-                  - !<!Parameter> &ref_13
-                    schema: *ref_7
+                  - !<!Parameter> &ref_14
+                    schema: *ref_0
                     implementation: Method
                     required: true
                     extensions:
@@ -397,8 +438,8 @@ operationGroups:
                       http: !<!HttpParameter> 
                         in: uri
                   - *ref_8
-                  - !<!Parameter> &ref_14
-                    schema: *ref_12
+                  - !<!Parameter> &ref_15
+                    schema: *ref_13
                     implementation: Method
                     required: true
                     extensions:
@@ -413,6 +454,21 @@ operationGroups:
                         in: path
                 requests:
                   - !<!Request> 
+                    parameters:
+                      - !<!Parameter> 
+                        schema: *ref_9
+                        implementation: Method
+                        origin: 'modelerfour:synthesized/accept'
+                        required: true
+                        language: !<!Languages> 
+                          default:
+                            name: Accept
+                            description: Accept header
+                            serializedName: Accept
+                        protocol: !<!Protocols> 
+                          http: !<!HttpParameter> 
+                            in: header
+                    signatureParameters: []
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -423,11 +479,11 @@ operationGroups:
                         method: get
                         uri: 'http://{accountName}{host}'
                 signatureParameters:
-                  - *ref_13
                   - *ref_14
+                  - *ref_15
                 responses:
                   - !<!SchemaResponse> 
-                    schema: *ref_10
+                    schema: *ref_11
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -463,10 +519,10 @@ operationGroups:
                       itemName: values
                       member: GetPagesPartialUrlOperationNext
                       nextLinkName: nextLink
-                      nextLinkOperation: *ref_15
+                      nextLinkOperation: *ref_16
                 protocol: !<!Protocols> {}
         protocol: !<!Protocols> {}
-      - *ref_15
+      - *ref_16
     language: !<!Languages> 
       default:
         name: Paging

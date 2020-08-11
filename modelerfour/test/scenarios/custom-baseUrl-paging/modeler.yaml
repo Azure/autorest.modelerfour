@@ -40,7 +40,7 @@ schemas: !<!Schemas>
           name: ProductResult-nextLink
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_12
+    - !<!StringSchema> &ref_13
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -71,8 +71,19 @@ schemas: !<!Schemas>
           name: Error-message
           description: ''
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_9
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_7
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_9
+    - !<!ObjectSchema> &ref_10
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -201,7 +212,7 @@ schemas: !<!Schemas>
   arrays:
     - *ref_6
 globalParameters:
-  - !<!Parameter> &ref_11
+  - !<!Parameter> &ref_12
     schema: *ref_7
     clientDefaultValue: host
     implementation: Client
@@ -248,9 +259,24 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: uri
-          - *ref_11
+          - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -264,7 +290,7 @@ operationGroups:
           - *ref_8
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_9
+            schema: *ref_10
             language: !<!Languages> 
               default:
                 name: ''
@@ -303,7 +329,7 @@ operationGroups:
           - !<!ApiVersion> 
             version: 1.0.0
         parameters:
-          - !<!Parameter> &ref_15
+          - !<!Parameter> &ref_16
             schema: *ref_7
             implementation: Method
             required: true
@@ -321,9 +347,24 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: uri
-          - *ref_11
+          - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_9
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -334,10 +375,10 @@ operationGroups:
                 method: get
                 uri: 'http://{accountName}{host}'
         signatureParameters:
-          - *ref_15
+          - *ref_16
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_9
+            schema: *ref_10
             language: !<!Languages> 
               default:
                 name: ''
@@ -373,12 +414,12 @@ operationGroups:
               itemName: values
               member: getPagesPartialUrlOperationNext
               nextLinkName: nextLink
-              nextLinkOperation: !<!Operation> &ref_10
+              nextLinkOperation: !<!Operation> &ref_11
                 apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
                 parameters:
-                  - !<!Parameter> &ref_13
+                  - !<!Parameter> &ref_14
                     schema: *ref_7
                     implementation: Method
                     required: true
@@ -396,9 +437,9 @@ operationGroups:
                     protocol: !<!Protocols> 
                       http: !<!HttpParameter> 
                         in: uri
-                  - *ref_11
-                  - !<!Parameter> &ref_14
-                    schema: *ref_12
+                  - *ref_12
+                  - !<!Parameter> &ref_15
+                    schema: *ref_13
                     implementation: Method
                     required: true
                     extensions:
@@ -413,6 +454,21 @@ operationGroups:
                         in: path
                 requests:
                   - !<!Request> 
+                    parameters:
+                      - !<!Parameter> 
+                        schema: *ref_9
+                        implementation: Method
+                        origin: 'modelerfour:synthesized/accept'
+                        required: true
+                        language: !<!Languages> 
+                          default:
+                            name: accept
+                            description: Accept header
+                            serializedName: Accept
+                        protocol: !<!Protocols> 
+                          http: !<!HttpParameter> 
+                            in: header
+                    signatureParameters: []
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -423,11 +479,11 @@ operationGroups:
                         method: get
                         uri: 'http://{accountName}{host}'
                 signatureParameters:
-                  - *ref_13
                   - *ref_14
+                  - *ref_15
                 responses:
                   - !<!SchemaResponse> 
-                    schema: *ref_9
+                    schema: *ref_10
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -463,10 +519,10 @@ operationGroups:
                       itemName: values
                       member: getPagesPartialUrlOperationNext
                       nextLinkName: nextLink
-                      nextLinkOperation: *ref_10
+                      nextLinkOperation: *ref_11
                 protocol: !<!Protocols> {}
         protocol: !<!Protocols> {}
-      - *ref_10
+      - *ref_11
     language: !<!Languages> 
       default:
         name: Paging

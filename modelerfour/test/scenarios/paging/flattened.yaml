@@ -12,7 +12,7 @@ schemas: !<!Schemas>
           name: integer
           description: ''
       protocol: !<!Protocols> {}
-    - !<!NumberSchema> &ref_16
+    - !<!NumberSchema> &ref_17
       type: integer
       apiVersions:
         - !<!ApiVersion> 
@@ -23,7 +23,7 @@ schemas: !<!Schemas>
           name: integer
           description: ''
       protocol: !<!Protocols> {}
-    - !<!NumberSchema> &ref_17
+    - !<!NumberSchema> &ref_18
       type: integer
       apiVersions:
         - !<!ApiVersion> 
@@ -73,7 +73,7 @@ schemas: !<!Schemas>
           name: ProductResult-nextLink
           description: ''
       protocol: !<!Protocols> {}
-    - !<!StringSchema> &ref_15
+    - !<!StringSchema> &ref_16
       type: string
       apiVersions:
         - !<!ApiVersion> 
@@ -172,8 +172,19 @@ schemas: !<!Schemas>
           name: OperationResult-status
           description: The status of the request
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_13
+      type: constant
+      value: !<!ConstantValue> 
+        value: application/json
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json'
+      protocol: !<!Protocols> {}
   objects:
-    - !<!ObjectSchema> &ref_13
+    - !<!ObjectSchema> &ref_14
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -271,7 +282,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - *ref_4
     - *ref_5
-    - !<!ObjectSchema> &ref_14
+    - !<!ObjectSchema> &ref_15
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -313,7 +324,7 @@ schemas: !<!Schemas>
           description: ''
           namespace: ''
       protocol: !<!Protocols> {}
-    - !<!ObjectSchema> &ref_26
+    - !<!ObjectSchema> &ref_27
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -408,6 +419,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -420,7 +446,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_13
+            schema: *ref_14
             language: !<!Languages> 
               default:
                 name: ''
@@ -460,6 +486,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -472,7 +513,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -514,6 +555,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -526,7 +582,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -566,28 +622,14 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_12
-          - !<!Parameter> &ref_18
-            schema: *ref_15
+          - !<!Parameter> &ref_19
+            schema: *ref_16
             implementation: Method
             language: !<!Languages> 
               default:
                 name: client-request-id
                 description: ''
                 serializedName: client-request-id
-            protocol: !<!Protocols> 
-              http: !<!HttpParameter> 
-                in: header
-          - !<!Parameter> &ref_19
-            schema: *ref_16
-            implementation: Method
-            extensions:
-              x-ms-parameter-grouping: &ref_21
-                postfix: Options
-            language: !<!Languages> 
-              default:
-                name: maxresults
-                description: Sets the maximum number of items to return in the response.
-                serializedName: maxresults
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: header
@@ -599,6 +641,20 @@ operationGroups:
                 postfix: Options
             language: !<!Languages> 
               default:
+                name: maxresults
+                description: Sets the maximum number of items to return in the response.
+                serializedName: maxresults
+            protocol: !<!Protocols> 
+              http: !<!HttpParameter> 
+                in: header
+          - !<!Parameter> &ref_21
+            schema: *ref_18
+            implementation: Method
+            extensions:
+              x-ms-parameter-grouping: &ref_23
+                postfix: Options
+            language: !<!Languages> 
+              default:
                 name: timeout
                 description: 'Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.'
                 serializedName: timeout
@@ -607,6 +663,21 @@ operationGroups:
                 in: header
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -617,12 +688,12 @@ operationGroups:
                 method: get
                 uri: '{$host}'
         signatureParameters:
-          - *ref_18
           - *ref_19
           - *ref_20
+          - *ref_21
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -662,27 +733,14 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_12
-          - !<!Parameter> &ref_23
-            schema: *ref_15
+          - !<!Parameter> &ref_24
+            schema: *ref_16
             implementation: Method
             language: !<!Languages> 
               default:
                 name: client-request-id
                 description: ''
                 serializedName: client-request-id
-            protocol: !<!Protocols> 
-              http: !<!HttpParameter> 
-                in: header
-          - !<!Parameter> &ref_24
-            schema: *ref_16
-            implementation: Method
-            extensions:
-              x-ms-parameter-grouping: *ref_21
-            language: !<!Languages> 
-              default:
-                name: maxresults
-                description: Sets the maximum number of items to return in the response.
-                serializedName: maxresults
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: header
@@ -693,6 +751,19 @@ operationGroups:
               x-ms-parameter-grouping: *ref_22
             language: !<!Languages> 
               default:
+                name: maxresults
+                description: Sets the maximum number of items to return in the response.
+                serializedName: maxresults
+            protocol: !<!Protocols> 
+              http: !<!HttpParameter> 
+                in: header
+          - !<!Parameter> &ref_26
+            schema: *ref_18
+            implementation: Method
+            extensions:
+              x-ms-parameter-grouping: *ref_23
+            language: !<!Languages> 
+              default:
                 name: timeout
                 description: 'Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.'
                 serializedName: timeout
@@ -701,6 +772,21 @@ operationGroups:
                 in: header
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -711,12 +797,12 @@ operationGroups:
                 method: get
                 uri: '{$host}'
         signatureParameters:
-          - *ref_23
           - *ref_24
           - *ref_25
+          - *ref_26
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -756,8 +842,8 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_12
-          - !<!Parameter> &ref_27
-            schema: *ref_15
+          - !<!Parameter> &ref_28
+            schema: *ref_16
             implementation: Method
             language: !<!Languages> 
               default:
@@ -767,11 +853,11 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: header
-          - !<!Parameter> &ref_28
-            schema: *ref_16
+          - !<!Parameter> &ref_29
+            schema: *ref_17
             implementation: Method
             extensions:
-              x-ms-parameter-grouping: *ref_21
+              x-ms-parameter-grouping: *ref_22
             language: !<!Languages> 
               default:
                 name: maxresults
@@ -780,8 +866,8 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: header
-          - !<!Parameter> &ref_29
-            schema: *ref_16
+          - !<!Parameter> &ref_30
+            schema: *ref_17
             implementation: Method
             required: true
             extensions:
@@ -795,11 +881,11 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: path
-          - !<!Parameter> &ref_30
-            schema: *ref_17
+          - !<!Parameter> &ref_31
+            schema: *ref_18
             implementation: Method
             extensions:
-              x-ms-parameter-grouping: *ref_22
+              x-ms-parameter-grouping: *ref_23
             language: !<!Languages> 
               default:
                 name: timeout
@@ -810,6 +896,21 @@ operationGroups:
                 in: header
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -820,13 +921,13 @@ operationGroups:
                 method: get
                 uri: '{$host}'
         signatureParameters:
-          - *ref_27
           - *ref_28
           - *ref_29
           - *ref_30
+          - *ref_31
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -868,6 +969,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -880,7 +996,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -922,6 +1038,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -934,7 +1065,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -976,6 +1107,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -988,7 +1134,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -1030,6 +1176,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -1042,7 +1203,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -1084,6 +1245,21 @@ operationGroups:
           - *ref_12
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -1096,7 +1272,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -1136,8 +1312,8 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_12
-          - !<!Parameter> &ref_31
-            schema: *ref_15
+          - !<!Parameter> &ref_32
+            schema: *ref_16
             implementation: Method
             required: true
             language: !<!Languages> 
@@ -1148,8 +1324,8 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_32
-            schema: *ref_15
+          - !<!Parameter> &ref_33
+            schema: *ref_16
             implementation: Method
             required: true
             language: !<!Languages> 
@@ -1162,6 +1338,21 @@ operationGroups:
                 in: path
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -1172,11 +1363,11 @@ operationGroups:
                 method: get
                 uri: '{$host}'
         signatureParameters:
-          - *ref_31
           - *ref_32
+          - *ref_33
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1212,14 +1403,14 @@ operationGroups:
               itemName: values
               member: nextFragment
               nextLinkName: odata.nextLink
-              nextLinkOperation: !<!Operation> &ref_36
+              nextLinkOperation: !<!Operation> &ref_37
                 apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
                 parameters:
                   - *ref_12
-                  - !<!Parameter> &ref_33
-                    schema: *ref_15
+                  - !<!Parameter> &ref_34
+                    schema: *ref_16
                     implementation: Method
                     required: true
                     language: !<!Languages> 
@@ -1230,8 +1421,8 @@ operationGroups:
                     protocol: !<!Protocols> 
                       http: !<!HttpParameter> 
                         in: query
-                  - !<!Parameter> &ref_34
-                    schema: *ref_15
+                  - !<!Parameter> &ref_35
+                    schema: *ref_16
                     implementation: Method
                     required: true
                     language: !<!Languages> 
@@ -1242,8 +1433,8 @@ operationGroups:
                     protocol: !<!Protocols> 
                       http: !<!HttpParameter> 
                         in: path
-                  - !<!Parameter> &ref_35
-                    schema: *ref_15
+                  - !<!Parameter> &ref_36
+                    schema: *ref_16
                     implementation: Method
                     required: true
                     extensions:
@@ -1258,6 +1449,21 @@ operationGroups:
                         in: path
                 requests:
                   - !<!Request> 
+                    parameters:
+                      - !<!Parameter> 
+                        schema: *ref_13
+                        implementation: Method
+                        origin: 'modelerfour:synthesized/accept'
+                        required: true
+                        language: !<!Languages> 
+                          default:
+                            name: accept
+                            description: Accept header
+                            serializedName: Accept
+                        protocol: !<!Protocols> 
+                          http: !<!HttpParameter> 
+                            in: header
+                    signatureParameters: []
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -1268,12 +1474,12 @@ operationGroups:
                         method: get
                         uri: '{$host}'
                 signatureParameters:
-                  - *ref_33
                   - *ref_34
                   - *ref_35
+                  - *ref_36
                 responses:
                   - !<!SchemaResponse> 
-                    schema: *ref_26
+                    schema: *ref_27
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -1309,7 +1515,7 @@ operationGroups:
                       itemName: values
                       member: nextFragment
                       nextLinkName: odata.nextLink
-                      nextLinkOperation: *ref_36
+                      nextLinkOperation: *ref_37
                 protocol: !<!Protocols> {}
         protocol: !<!Protocols> {}
       - !<!Operation> 
@@ -1318,12 +1524,12 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_12
-          - !<!Parameter> &ref_37
-            schema: *ref_15
+          - !<!Parameter> &ref_38
+            schema: *ref_16
             implementation: Method
             required: true
             extensions:
-              x-ms-parameter-grouping: &ref_39
+              x-ms-parameter-grouping: &ref_40
                 name: custom-parameter-group
             language: !<!Languages> 
               default:
@@ -1333,12 +1539,12 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_38
-            schema: *ref_15
+          - !<!Parameter> &ref_39
+            schema: *ref_16
             implementation: Method
             required: true
             extensions:
-              x-ms-parameter-grouping: &ref_40
+              x-ms-parameter-grouping: &ref_41
                 name: custom-parameter-group
             language: !<!Languages> 
               default:
@@ -1350,6 +1556,21 @@ operationGroups:
                 in: path
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -1360,11 +1581,11 @@ operationGroups:
                 method: get
                 uri: '{$host}'
         signatureParameters:
-          - *ref_37
           - *ref_38
+          - *ref_39
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_26
+            schema: *ref_27
             language: !<!Languages> 
               default:
                 name: ''
@@ -1400,18 +1621,18 @@ operationGroups:
               itemName: values
               member: nextFragmentWithGrouping
               nextLinkName: odata.nextLink
-              nextLinkOperation: !<!Operation> &ref_44
+              nextLinkOperation: !<!Operation> &ref_45
                 apiVersions:
                   - !<!ApiVersion> 
                     version: 1.0.0
                 parameters:
                   - *ref_12
-                  - !<!Parameter> &ref_41
-                    schema: *ref_15
+                  - !<!Parameter> &ref_42
+                    schema: *ref_16
                     implementation: Method
                     required: true
                     extensions:
-                      x-ms-parameter-grouping: *ref_39
+                      x-ms-parameter-grouping: *ref_40
                     language: !<!Languages> 
                       default:
                         name: api_version
@@ -1420,12 +1641,12 @@ operationGroups:
                     protocol: !<!Protocols> 
                       http: !<!HttpParameter> 
                         in: query
-                  - !<!Parameter> &ref_42
-                    schema: *ref_15
+                  - !<!Parameter> &ref_43
+                    schema: *ref_16
                     implementation: Method
                     required: true
                     extensions:
-                      x-ms-parameter-grouping: *ref_40
+                      x-ms-parameter-grouping: *ref_41
                     language: !<!Languages> 
                       default:
                         name: tenant
@@ -1434,8 +1655,8 @@ operationGroups:
                     protocol: !<!Protocols> 
                       http: !<!HttpParameter> 
                         in: path
-                  - !<!Parameter> &ref_43
-                    schema: *ref_15
+                  - !<!Parameter> &ref_44
+                    schema: *ref_16
                     implementation: Method
                     required: true
                     extensions:
@@ -1450,6 +1671,21 @@ operationGroups:
                         in: path
                 requests:
                   - !<!Request> 
+                    parameters:
+                      - !<!Parameter> 
+                        schema: *ref_13
+                        implementation: Method
+                        origin: 'modelerfour:synthesized/accept'
+                        required: true
+                        language: !<!Languages> 
+                          default:
+                            name: accept
+                            description: Accept header
+                            serializedName: Accept
+                        protocol: !<!Protocols> 
+                          http: !<!HttpParameter> 
+                            in: header
+                    signatureParameters: []
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -1460,12 +1696,12 @@ operationGroups:
                         method: get
                         uri: '{$host}'
                 signatureParameters:
-                  - *ref_41
                   - *ref_42
                   - *ref_43
+                  - *ref_44
                 responses:
                   - !<!SchemaResponse> 
-                    schema: *ref_26
+                    schema: *ref_27
                     language: !<!Languages> 
                       default:
                         name: ''
@@ -1501,7 +1737,7 @@ operationGroups:
                       itemName: values
                       member: nextFragmentWithGrouping
                       nextLinkName: odata.nextLink
-                      nextLinkOperation: *ref_44
+                      nextLinkOperation: *ref_45
                 protocol: !<!Protocols> {}
         protocol: !<!Protocols> {}
       - !<!Operation> 
@@ -1510,27 +1746,14 @@ operationGroups:
             version: 1.0.0
         parameters:
           - *ref_12
-          - !<!Parameter> &ref_45
-            schema: *ref_15
+          - !<!Parameter> &ref_46
+            schema: *ref_16
             implementation: Method
             language: !<!Languages> 
               default:
                 name: client-request-id
                 description: ''
                 serializedName: client-request-id
-            protocol: !<!Protocols> 
-              http: !<!HttpParameter> 
-                in: header
-          - !<!Parameter> &ref_46
-            schema: *ref_16
-            implementation: Method
-            extensions:
-              x-ms-parameter-grouping: *ref_21
-            language: !<!Languages> 
-              default:
-                name: maxresults
-                description: Sets the maximum number of items to return in the response.
-                serializedName: maxresults
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: header
@@ -1541,6 +1764,19 @@ operationGroups:
               x-ms-parameter-grouping: *ref_22
             language: !<!Languages> 
               default:
+                name: maxresults
+                description: Sets the maximum number of items to return in the response.
+                serializedName: maxresults
+            protocol: !<!Protocols> 
+              http: !<!HttpParameter> 
+                in: header
+          - !<!Parameter> &ref_48
+            schema: *ref_18
+            implementation: Method
+            extensions:
+              x-ms-parameter-grouping: *ref_23
+            language: !<!Languages> 
+              default:
                 name: timeout
                 description: 'Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.'
                 serializedName: timeout
@@ -1549,6 +1785,21 @@ operationGroups:
                 in: header
         requests:
           - !<!Request> 
+            parameters:
+              - !<!Parameter> 
+                schema: *ref_13
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+            signatureParameters: []
             language: !<!Languages> 
               default:
                 name: ''
@@ -1559,12 +1810,12 @@ operationGroups:
                 method: post
                 uri: '{$host}'
         signatureParameters:
-          - *ref_45
           - *ref_46
           - *ref_47
+          - *ref_48
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_14
+            schema: *ref_15
             language: !<!Languages> 
               default:
                 name: ''
@@ -1599,8 +1850,8 @@ operationGroups:
               itemName: values
               nextLinkName: nextLink
         protocol: !<!Protocols> {}
-      - *ref_36
-      - *ref_44
+      - *ref_37
+      - *ref_45
     language: !<!Languages> 
       default:
         name: Paging

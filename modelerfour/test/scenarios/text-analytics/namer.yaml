@@ -677,6 +677,17 @@ schemas: !<!Schemas>
           name: SentenceSentimentValue
           description: The predicted Sentiment for the sentence.
       protocol: !<!Protocols> {}
+  constants:
+    - !<!ConstantSchema> &ref_98
+      type: constant
+      value: !<!ConstantValue> 
+        value: 'application/json, text/json'
+      valueType: *ref_0
+      language: !<!Languages> 
+        default:
+          name: Accept
+          description: 'Accept: application/json, text/json'
+      protocol: !<!Protocols> {}
   dictionaries:
     - !<!DictionarySchema> &ref_21
       type: dictionary
@@ -693,7 +704,7 @@ schemas: !<!Schemas>
         - !<!ApiVersion> 
           version: v3.0-preview.1
       properties:
-        - !<!Property> &ref_99
+        - !<!Property> &ref_100
           schema: !<!ArraySchema> &ref_75
             type: array
             apiVersions:
@@ -765,7 +776,7 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
     - *ref_5
-    - !<!ObjectSchema> &ref_103
+    - !<!ObjectSchema> &ref_104
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -1214,7 +1225,7 @@ schemas: !<!Schemas>
     - *ref_24
     - *ref_23
     - *ref_34
-    - !<!ObjectSchema> &ref_112
+    - !<!ObjectSchema> &ref_113
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -1471,7 +1482,7 @@ schemas: !<!Schemas>
     - *ref_46
     - *ref_47
     - *ref_48
-    - !<!ObjectSchema> &ref_117
+    - !<!ObjectSchema> &ref_118
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -1596,13 +1607,13 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
     - *ref_52
-    - !<!ObjectSchema> &ref_118
+    - !<!ObjectSchema> &ref_119
       type: object
       apiVersions:
         - !<!ApiVersion> 
           version: v3.0-preview.1
       properties:
-        - !<!Property> &ref_120
+        - !<!Property> &ref_121
           schema: !<!ArraySchema> &ref_87
             type: array
             apiVersions:
@@ -1674,7 +1685,7 @@ schemas: !<!Schemas>
           namespace: ''
       protocol: !<!Protocols> {}
     - *ref_56
-    - !<!ObjectSchema> &ref_124
+    - !<!ObjectSchema> &ref_125
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -1842,7 +1853,7 @@ schemas: !<!Schemas>
       protocol: !<!Protocols> {}
     - *ref_62
     - *ref_63
-    - !<!ObjectSchema> &ref_129
+    - !<!ObjectSchema> &ref_130
       type: object
       apiVersions:
         - !<!ApiVersion> 
@@ -2150,7 +2161,7 @@ operationGroups:
             version: v3.0-preview.1
         parameters:
           - *ref_95
-          - !<!Parameter> &ref_101
+          - !<!Parameter> &ref_102
             schema: *ref_1
             implementation: Method
             language: !<!Languages> 
@@ -2161,7 +2172,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_102
+          - !<!Parameter> &ref_103
             schema: *ref_96
             implementation: Method
             language: !<!Languages> 
@@ -2175,7 +2186,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_98
+              - !<!Parameter> &ref_99
                 schema: *ref_97
                 flattened: true
                 implementation: Method
@@ -2188,20 +2199,33 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_100
+              - !<!Parameter> 
+                schema: *ref_98
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_101
                 schema: *ref_75
                 implementation: Method
-                originalParameter: *ref_98
+                originalParameter: *ref_99
                 pathToProperty: []
                 required: true
-                targetProperty: *ref_99
+                targetProperty: *ref_100
                 language: !<!Languages> 
                   default:
                     name: documents
                     description: The set of documents to process as part of this batch.
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_100
+              - *ref_101
             language: !<!Languages> 
               default:
                 name: ''
@@ -2216,11 +2240,11 @@ operationGroups:
                   - text/json
                 uri: '{Endpoint}/text/analytics/v3.0-preview.1'
         signatureParameters:
-          - *ref_101
           - *ref_102
+          - *ref_103
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_103
+            schema: *ref_104
             language: !<!Languages> 
               default:
                 name: ''
@@ -2319,7 +2343,7 @@ operationGroups:
             version: v3.0-preview.1
         parameters:
           - *ref_95
-          - !<!Parameter> &ref_106
+          - !<!Parameter> &ref_107
             schema: *ref_1
             implementation: Method
             language: !<!Languages> 
@@ -2330,7 +2354,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_107
+          - !<!Parameter> &ref_108
             schema: *ref_96
             implementation: Method
             language: !<!Languages> 
@@ -2344,7 +2368,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_104
+              - !<!Parameter> &ref_105
                 schema: *ref_97
                 flattened: true
                 implementation: Method
@@ -2357,20 +2381,33 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_105
+              - !<!Parameter> 
+                schema: *ref_98
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_106
                 schema: *ref_75
                 implementation: Method
-                originalParameter: *ref_104
+                originalParameter: *ref_105
                 pathToProperty: []
                 required: true
-                targetProperty: *ref_99
+                targetProperty: *ref_100
                 language: !<!Languages> 
                   default:
                     name: documents
                     description: The set of documents to process as part of this batch.
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_105
+              - *ref_106
             language: !<!Languages> 
               default:
                 name: ''
@@ -2385,11 +2422,11 @@ operationGroups:
                   - text/json
                 uri: '{Endpoint}/text/analytics/v3.0-preview.1'
         signatureParameters:
-          - *ref_106
           - *ref_107
+          - *ref_108
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_103
+            schema: *ref_104
             language: !<!Languages> 
               default:
                 name: ''
@@ -2479,7 +2516,7 @@ operationGroups:
             version: v3.0-preview.1
         parameters:
           - *ref_95
-          - !<!Parameter> &ref_110
+          - !<!Parameter> &ref_111
             schema: *ref_1
             implementation: Method
             language: !<!Languages> 
@@ -2490,7 +2527,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_111
+          - !<!Parameter> &ref_112
             schema: *ref_96
             implementation: Method
             language: !<!Languages> 
@@ -2504,7 +2541,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_108
+              - !<!Parameter> &ref_109
                 schema: *ref_97
                 flattened: true
                 implementation: Method
@@ -2517,20 +2554,33 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_109
+              - !<!Parameter> 
+                schema: *ref_98
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_110
                 schema: *ref_75
                 implementation: Method
-                originalParameter: *ref_108
+                originalParameter: *ref_109
                 pathToProperty: []
                 required: true
-                targetProperty: *ref_99
+                targetProperty: *ref_100
                 language: !<!Languages> 
                   default:
                     name: documents
                     description: The set of documents to process as part of this batch.
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_109
+              - *ref_110
             language: !<!Languages> 
               default:
                 name: ''
@@ -2545,11 +2595,11 @@ operationGroups:
                   - text/json
                 uri: '{Endpoint}/text/analytics/v3.0-preview.1'
         signatureParameters:
-          - *ref_110
           - *ref_111
+          - *ref_112
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_112
+            schema: *ref_113
             language: !<!Languages> 
               default:
                 name: ''
@@ -2649,7 +2699,7 @@ operationGroups:
             version: v3.0-preview.1
         parameters:
           - *ref_95
-          - !<!Parameter> &ref_115
+          - !<!Parameter> &ref_116
             schema: *ref_1
             implementation: Method
             language: !<!Languages> 
@@ -2660,7 +2710,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_116
+          - !<!Parameter> &ref_117
             schema: *ref_96
             implementation: Method
             language: !<!Languages> 
@@ -2674,7 +2724,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_113
+              - !<!Parameter> &ref_114
                 schema: *ref_97
                 flattened: true
                 implementation: Method
@@ -2687,20 +2737,33 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_114
+              - !<!Parameter> 
+                schema: *ref_98
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_115
                 schema: *ref_75
                 implementation: Method
-                originalParameter: *ref_113
+                originalParameter: *ref_114
                 pathToProperty: []
                 required: true
-                targetProperty: *ref_99
+                targetProperty: *ref_100
                 language: !<!Languages> 
                   default:
                     name: documents
                     description: The set of documents to process as part of this batch.
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_114
+              - *ref_115
             language: !<!Languages> 
               default:
                 name: ''
@@ -2715,11 +2778,11 @@ operationGroups:
                   - text/json
                 uri: '{Endpoint}/text/analytics/v3.0-preview.1'
         signatureParameters:
-          - *ref_115
           - *ref_116
+          - *ref_117
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_117
+            schema: *ref_118
             language: !<!Languages> 
               default:
                 name: ''
@@ -2795,7 +2858,7 @@ operationGroups:
             version: v3.0-preview.1
         parameters:
           - *ref_95
-          - !<!Parameter> &ref_122
+          - !<!Parameter> &ref_123
             schema: *ref_1
             implementation: Method
             language: !<!Languages> 
@@ -2806,7 +2869,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_123
+          - !<!Parameter> &ref_124
             schema: *ref_96
             implementation: Method
             language: !<!Languages> 
@@ -2820,8 +2883,8 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_119
-                schema: *ref_118
+              - !<!Parameter> &ref_120
+                schema: *ref_119
                 flattened: true
                 implementation: Method
                 required: true
@@ -2833,20 +2896,33 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_121
+              - !<!Parameter> 
+                schema: *ref_98
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_122
                 schema: *ref_87
                 implementation: Method
-                originalParameter: *ref_119
+                originalParameter: *ref_120
                 pathToProperty: []
                 required: true
-                targetProperty: *ref_120
+                targetProperty: *ref_121
                 language: !<!Languages> 
                   default:
                     name: documents
                     description: ''
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_121
+              - *ref_122
             language: !<!Languages> 
               default:
                 name: ''
@@ -2861,11 +2937,11 @@ operationGroups:
                   - text/json
                 uri: '{Endpoint}/text/analytics/v3.0-preview.1'
         signatureParameters:
-          - *ref_122
           - *ref_123
+          - *ref_124
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_124
+            schema: *ref_125
             language: !<!Languages> 
               default:
                 name: ''
@@ -2944,7 +3020,7 @@ operationGroups:
             version: v3.0-preview.1
         parameters:
           - *ref_95
-          - !<!Parameter> &ref_127
+          - !<!Parameter> &ref_128
             schema: *ref_1
             implementation: Method
             language: !<!Languages> 
@@ -2955,7 +3031,7 @@ operationGroups:
             protocol: !<!Protocols> 
               http: !<!HttpParameter> 
                 in: query
-          - !<!Parameter> &ref_128
+          - !<!Parameter> &ref_129
             schema: *ref_96
             implementation: Method
             language: !<!Languages> 
@@ -2969,7 +3045,7 @@ operationGroups:
         requests:
           - !<!Request> 
             parameters:
-              - !<!Parameter> &ref_125
+              - !<!Parameter> &ref_126
                 schema: *ref_97
                 flattened: true
                 implementation: Method
@@ -2982,20 +3058,33 @@ operationGroups:
                   http: !<!HttpParameter> 
                     in: body
                     style: json
-              - !<!VirtualParameter> &ref_126
+              - !<!Parameter> 
+                schema: *ref_98
+                implementation: Method
+                origin: 'modelerfour:synthesized/accept'
+                required: true
+                language: !<!Languages> 
+                  default:
+                    name: Accept
+                    description: Accept header
+                    serializedName: Accept
+                protocol: !<!Protocols> 
+                  http: !<!HttpParameter> 
+                    in: header
+              - !<!VirtualParameter> &ref_127
                 schema: *ref_75
                 implementation: Method
-                originalParameter: *ref_125
+                originalParameter: *ref_126
                 pathToProperty: []
                 required: true
-                targetProperty: *ref_99
+                targetProperty: *ref_100
                 language: !<!Languages> 
                   default:
                     name: documents
                     description: The set of documents to process as part of this batch.
                 protocol: !<!Protocols> {}
             signatureParameters:
-              - *ref_126
+              - *ref_127
             language: !<!Languages> 
               default:
                 name: ''
@@ -3010,11 +3099,11 @@ operationGroups:
                   - text/json
                 uri: '{Endpoint}/text/analytics/v3.0-preview.1'
         signatureParameters:
-          - *ref_127
           - *ref_128
+          - *ref_129
         responses:
           - !<!SchemaResponse> 
-            schema: *ref_129
+            schema: *ref_130
             language: !<!Languages> 
               default:
                 name: ''
