@@ -47,9 +47,9 @@ const cfg = {
   "payload-flattening-threshold": 2
 };
 
-async function runModeler(spec: any): Promise<CodeModel> {
+async function runModeler(spec: any, config: any = cfg): Promise<CodeModel> {
   const modelerErrors: any[] = [];
-  const session = await createTestSession(cfg, spec, modelerErrors);
+  const session = await createTestSession(config, spec, modelerErrors);
   const modeler = await new ModelerFour(session).init();
 
   assert.equal(modelerErrors.length, 0);
@@ -813,6 +813,89 @@ class Modeler {
     assert.strictEqual(
       (<ConstantSchema>acceptParam!.schema).value.value,
       "application/json, application/xml"
+    );
+  }
+
+  @test
+  async "always-seal-x-ms-enum configuration produces SealedChoiceSchema for all x-ms-enums"() {
+    const spec = createTestSpec();
+
+    addSchema(spec, "ModelAsString", {
+      type: "string",
+      enum: ["Apple", "Orange"],
+      "x-ms-enum": {
+        modelAsString: true
+      }
+    });
+
+    addSchema(spec, "ShouldBeSealed", {
+      type: "string",
+      enum: ["Apple", "Orange"],
+      "x-ms-enum": {
+        modelAsString: false
+      }
+    });
+
+    addSchema(spec, "SingleValueEnum", {
+      type: "string",
+      enum: ["Apple"],
+      "x-ms-enum": {
+        modelAsString: false
+      }
+    });
+
+    const codeModelWithoutSetting = await runModeler(spec, {
+      modelerfour: {
+        "always-seal-x-ms-enums": false
+      }
+    });
+
+    assertSchema(
+      "ModelAsString",
+      codeModelWithoutSetting.schemas.choices,
+      s => s.choiceType.type,
+      "string"
+    );
+
+    assertSchema(
+      "ShouldBeSealed",
+      codeModelWithoutSetting.schemas.sealedChoices,
+      s => s.choiceType.type,
+      "string"
+    );
+
+    assertSchema(
+      "SingleValueEnum",
+      codeModelWithoutSetting.schemas.constants,
+      s => s.valueType.type,
+      "string"
+    );
+
+    const codeModelWithSetting = await runModeler(spec, {
+      modelerfour: {
+        "always-seal-x-ms-enums": true
+      }
+    });
+
+    assertSchema(
+      "ModelAsString",
+      codeModelWithSetting.schemas.sealedChoices,
+      s => s.choiceType.type,
+      "string"
+    );
+
+    assertSchema(
+      "ShouldBeSealed",
+      codeModelWithSetting.schemas.sealedChoices,
+      s => s.choiceType.type,
+      "string"
+    );
+
+    assertSchema(
+      "SingleValueEnum",
+      codeModelWithSetting.schemas.sealedChoices,
+      s => s.choiceType.type,
+      "string"
     );
   }
 }
