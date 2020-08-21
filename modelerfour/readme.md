@@ -3,6 +3,8 @@
 ## Changelog:
 #### 4.15.x
   - Schemas with `x-ms-enum`'s `modelAsString` set to `true` will now be represented as `ChoiceSchema` even with a single value.
+  - `Accept` headers are now automatically added to operations having responses with content types
+  - Added `always-seal-x-ms-enum` settings to always create `SealedChoiceSchema` when an `x-ms-enum` is encountered
 
 #### 4.14.x
   - added `exception` SchemaContext for `usage` when used as an exception response
@@ -176,6 +178,11 @@ modelerfour:
   # always create the content-type parameter for binary requests 
   # when it's only one possible value, make it a constant.
   always-create-content-type-parameter: true
+
+  # always create SealedChoiceSchema for x-ms-enum schemas no matter
+  # what the settings are.  This can be used to smooth migration from
+  # remodeler to modelerfour.
+  always-seal-x-ms-enum: false|true
 
   # customization of the identifier normalization and naming provided by the prenamer.
   # pascal|pascalcase - MultiWordIdentifier 
