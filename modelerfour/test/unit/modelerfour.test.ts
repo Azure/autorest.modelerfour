@@ -2,7 +2,6 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
 import * as assert from "assert";
 import { suite, test } from "mocha-typescript";
 import { ModelerFour } from "../../modeler/modelerfour";
@@ -17,15 +16,11 @@ import {
 } from "./unitTestUtil";
 import {
   CodeModel,
-  Schema,
-  SchemaUsage,
-  ObjectSchema,
-  OperationGroup,
-  Operation,
   Parameter,
   SchemaResponse,
   ConstantSchema
 } from "@azure-tools/codemodel";
+import { ParameterLocation } from "@azure-tools/openapi";
 
 const cfg = {
   modelerfour: {
@@ -786,7 +781,7 @@ class Modeler {
 
     addOperation(spec, "/accept", {
       post: {
-        operationId: "hasAcceptHeader",
+        operationId: "receivesAcceptHeader",
         description: "Receives an Accept header.",
         parameters: [],
         responses: responses(
@@ -800,20 +795,64 @@ class Modeler {
       }
     });
 
+    addOperation(spec, "/hasAccept", {
+      post: {
+        operationId: "hasAcceptHeader",
+        description: "Already has an Accept header.",
+        parameters: [
+          {
+            name: "Accept",
+            description: "Existing Accept header",
+            in: "header",
+            required: true,
+            schema: {
+              type: "string"
+            }
+          }
+        ],
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          }),
+          response(400, "application/xml", {
+            type: "string"
+          })
+        )
+      }
+    });
+
     const codeModel = await runModeler(spec);
+
+    const receivesAcceptHeader = findByName(
+      "receivesAcceptHeader",
+      codeModel.operationGroups[0].operations
+    );
+
+    const acceptParam = receivesAcceptHeader?.requests?.[0].parameters?.[0];
+    assert.strictEqual(acceptParam!.language.default.serializedName, "Accept");
+    assert.strictEqual(acceptParam!.schema.type, "constant");
+    assert.strictEqual(acceptParam!.origin, "modelerfour:synthesized/accept");
+    assert.strictEqual(
+      (<ConstantSchema>acceptParam!.schema).value.value,
+      "application/json, application/xml"
+    );
 
     const hasAcceptHeader = findByName(
       "hasAcceptHeader",
       codeModel.operationGroups[0].operations
     );
 
-    const acceptParam = hasAcceptHeader?.requests?.[0].parameters?.[0];
-    assert.strictEqual(acceptParam!.language.default.serializedName, "Accept");
-    assert.strictEqual(acceptParam!.schema.type, "constant");
+    // Make sure that no Accept parameters were added to a request
+    assert.strictEqual(hasAcceptHeader!.requests?.length, 1);
+    assert.strictEqual(hasAcceptHeader!.requests?.[0].parameters, undefined);
+
+    // Make sure the original Accept parameter is there
+    const existingAcceptParam = hasAcceptHeader?.parameters?.[1];
     assert.strictEqual(
-      (<ConstantSchema>acceptParam!.schema).value.value,
-      "application/json, application/xml"
+      existingAcceptParam!.language.default.serializedName,
+      "Accept"
     );
+    assert.strictEqual(existingAcceptParam!.origin, undefined);
   }
 
   @test

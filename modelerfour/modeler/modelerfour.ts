@@ -1682,26 +1682,39 @@ export class ModelerFour {
       }
     }
 
+    function isAcceptHeaderParam(p: Parameter): boolean {
+      return p.protocol.http?.in === ParameterLocation.Header
+        && p.language.default.serializedName === "Accept";
+    }
+
     // Synthesize an 'Accept' header based on the media types in this
-    // operation and add it to all requests
+    // operation and add it to all requests.  Before adding the header,
+    // make sure there isn't an existing Accept parameter.
     const mediaTypes = Array.from(acceptTypes);
     if (acceptTypes.size > 0) {
       const acceptSchema = this.getAcceptParameterSchema(mediaTypes);
-      for (const request of values(operation.requests)) {
-        request.addParameter(new Parameter('accept', 'Accept header', acceptSchema, {
-          implementation: ImplementationLocation.Method,
-          required: true,
-          origin: 'modelerfour:synthesized/accept',
-          protocol: {
-            http: new HttpParameter(ParameterLocation.Header)
-          },
-          language: {
-            default: {
-              serializedName: 'Accept'
-            }
-          },
-        }));
-      }
+      if (!values(operation.parameters).first(isAcceptHeaderParam)) {
+        for (const request of values(operation.requests)) {
+          if (values(request.parameters).first(isAcceptHeaderParam)) {
+            // Already has an accept parameter, move on to the next.
+            continue;
+          };
+
+          request.addParameter(new Parameter('accept', 'Accept header', acceptSchema, {
+            implementation: ImplementationLocation.Method,
+            required: true,
+            origin: 'modelerfour:synthesized/accept',
+            protocol: {
+              http: new HttpParameter(ParameterLocation.Header)
+            },
+            language: {
+              default: {
+                serializedName: 'Accept'
+              }
+            },
+          }));
+        }
+      };
     }
   }
 
