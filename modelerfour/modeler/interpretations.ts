@@ -152,14 +152,15 @@ export class Interpretations {
   }
 
   isApiVersionParameter(parameter: OpenAPI.Parameter): boolean {
-    if (parameter.in !== ParameterLocation.Query) {
-      return false;
+    // Always let x-ms-api-version override the check
+    if (parameter['x-ms-api-version'] !== undefined) {
+      return !!parameter['x-ms-api-version'] === true;
     }
-    if (parameter['x-ms-api-version'] === false) {
-      return false;
-    }
-    return !!(parameter['x-ms-api-version'] === true || apiVersionParameterNames.find(each => each === parameter.name.toLowerCase()));
+
+    // It's an api-version parameter if it's a query param with an expected name
+    return parameter.in === ParameterLocation.Query && !!apiVersionParameterNames.find(each => each === parameter.name.toLowerCase());
   }
+
   getEnumChoices(schema: OpenAPI.Schema): Array<ChoiceValue> {
     if (schema && schema.enum) {
       const xmse = <XMSEnum>schema['x-ms-enum'];
