@@ -937,4 +937,160 @@ class Modeler {
       "string"
     );
   }
+
+  @test
+  async "allows header parameters with 'x-ms-api-version: true' to become full api-version parameters"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/api-version-header", {
+      get: {
+        operationId: "apiVersionHeader",
+        description: "Has an api-version header.",
+        parameters: [
+          {
+            name: "api-version",
+            in: "header",
+            required: true,
+            "x-ms-api-version": true,
+            schema: {
+              type: "string"
+            }
+          }
+        ],
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    addOperation(spec, "/non-api-version-header", {
+      get: {
+        operationId: "nonApiVersionHeader",
+        description: "Is not an api-version header.",
+        parameters: [
+          {
+            name: "api-version",
+            in: "header",
+            required: true,
+            schema: {
+              type: "string"
+            }
+          }
+        ],
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    addOperation(spec, "/api-version-query", {
+      get: {
+        operationId: "apiVersionQuery",
+        description: "Has an api-version query param.",
+        parameters: [
+          {
+            name: "api-version",
+            in: "query",
+            required: true,
+            schema: {
+              type: "string"
+            }
+          }
+        ],
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    addOperation(spec, "/non-api-version-query", {
+      get: {
+        operationId: "nonApiVersionQuery",
+        description:
+          "An api-version query param that is explicitly not a client api-version.",
+        parameters: [
+          {
+            name: "api-version",
+            in: "query",
+            required: true,
+            "x-ms-api-version": false,
+            schema: {
+              type: "string"
+            }
+          }
+        ],
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    const apiVersionHeader = findByName(
+      "apiVersionHeader",
+      codeModel.operationGroups[0].operations
+    );
+
+    const apiVersionHeaderParam = apiVersionHeader?.parameters?.[1];
+    assert.strictEqual(
+      apiVersionHeaderParam!.language.default.serializedName,
+      "api-version"
+    );
+    assert.strictEqual(apiVersionHeaderParam!.implementation, "Client");
+    assert.strictEqual(
+      apiVersionHeaderParam!.origin,
+      "modelerfour:synthesized/api-version"
+    );
+
+    const nonApiVersionHeader = findByName(
+      "nonApiVersionHeader",
+      codeModel.operationGroups[0].operations
+    );
+
+    const nonApiVersionHeaderParam = nonApiVersionHeader?.parameters?.[1];
+    assert.strictEqual(
+      nonApiVersionHeaderParam!.language.default.serializedName,
+      "api-version"
+    );
+    assert.strictEqual(nonApiVersionHeaderParam!.implementation, "Method");
+    assert.strictEqual(nonApiVersionHeaderParam!.origin, undefined);
+
+    const apiVersionQuery = findByName(
+      "apiVersionQuery",
+      codeModel.operationGroups[0].operations
+    );
+
+    const apiVersionQueryParam = apiVersionQuery?.parameters?.[1];
+    assert.strictEqual(
+      apiVersionQueryParam!.language.default.serializedName,
+      "api-version"
+    );
+    assert.strictEqual(apiVersionQueryParam!.implementation, "Client");
+    assert.strictEqual(
+      apiVersionQueryParam!.origin,
+      "modelerfour:synthesized/api-version"
+    );
+
+    const nonApiVersionQuery = findByName(
+      "nonApiVersionQuery",
+      codeModel.operationGroups[0].operations
+    );
+
+    const nonApiVersionQueryParam = nonApiVersionQuery?.parameters?.[1];
+    assert.strictEqual(
+      nonApiVersionQueryParam!.language.default.serializedName,
+      "api-version"
+    );
+    assert.strictEqual(nonApiVersionQueryParam!.implementation, "Method");
+    assert.strictEqual(nonApiVersionQueryParam!.origin, undefined);
+  }
 }
