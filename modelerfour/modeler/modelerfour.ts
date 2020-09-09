@@ -1577,6 +1577,7 @@ export class ModelerFour {
             const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
             hsch.language.default.header = header;
             headers.push(new HttpHeader(header, hsch, {
+              extensions: this.interpret.getExtensionProperties(hh),
               language: {
                 default: {
                   name: hh['x-ms-client-name'] || header,
@@ -1608,6 +1609,7 @@ export class ModelerFour {
               const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
               hsch.language.default.header = header;
               headers.push(new HttpHeader(header, hsch, {
+              extensions: this.interpret.getExtensionProperties(hh),
                 language: {
                   default: {
                     name: hh['x-ms-client-name'] || header,
