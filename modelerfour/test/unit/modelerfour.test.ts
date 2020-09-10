@@ -1093,4 +1093,56 @@ class Modeler {
     assert.strictEqual(nonApiVersionQueryParam!.implementation, "Method");
     assert.strictEqual(nonApiVersionQueryParam!.origin, undefined);
   }
+
+  @test
+  async "propagates extensions to response header definitions"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/headerWithExtension", {
+      post: {
+        operationId: "hasHeaderWithExtension",
+        description: "Has x-ms-header-collection-prefix on header",
+        parameters: [],
+        responses: responses(
+          response(
+            200,
+            "application/json",
+            {
+              type: "string"
+            },
+            "Response with a header extension.",
+            {
+              headers: {
+                "x-named-header": {
+                  "x-ms-client-name": "HeaderWithExtension",
+                  "x-ms-header-collection-prefix": "x-ms-meta",
+                  schema: {
+                    type: "string"
+                  }
+                }
+              }
+            }
+          )
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+    const hasHeaderWithExtension = findByName(
+      "hasHeaderWithExtension",
+      codeModel.operationGroups[0].operations
+    );
+
+    const headerWithExtension = hasHeaderWithExtension?.responses?.[0].protocol
+      .http!.headers[0];
+    assert.strictEqual(
+      headerWithExtension.language.default.name,
+      "HeaderWithExtension"
+    );
+    assert.strictEqual(
+      headerWithExtension.extensions["x-ms-header-collection-prefix"],
+      "x-ms-meta"
+    );
+  }
 }
