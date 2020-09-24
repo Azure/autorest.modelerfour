@@ -1145,4 +1145,40 @@ class Modeler {
       "x-ms-meta"
     );
   }
+
+  async "allows text/plain responses when schema type is 'string'"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/text", {
+      post: {
+        operationId: "textBody",
+        description: "Responds with a plain text string.",
+        parameters: [],
+        responses: responses(
+          response(200, "text/plain", {
+            type: "string"
+          }),
+          response(201, "text/plain; charset=utf-8", {
+            type: "string"
+          }),
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec);
+
+
+    const textBody = findByName(
+      "textBody",
+      codeModel.operationGroups[0].operations
+    );
+
+    const responseNoCharset = textBody?.responses?.[0] as SchemaResponse;
+    const responseWithCharset = textBody?.responses?.[1] as SchemaResponse;
+
+    assert.strictEqual(responseNoCharset.protocol.http?.knownMediaType, "text");
+    assert.strictEqual(responseNoCharset.schema?.type, "string");
+    assert.strictEqual(responseWithCharset.protocol.http?.knownMediaType, "text");
+    assert.strictEqual(responseWithCharset.schema?.type, "string");
+  }
 }

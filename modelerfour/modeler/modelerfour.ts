@@ -1021,9 +1021,10 @@ export class ModelerFour {
               if (!fmt.schema.instance) {
                 // if we don't have a schema at all, should we infer a binary schema anyway? 
                 // dunno.
-
               }
-              if (!this.interpret.isBinarySchema(fmt.schema.instance)) {
+
+              if (!(knownMediaType === KnownMediaType.Text && fmt.schema.instance?.type === JsonType.String)
+                  && !this.interpret.isBinarySchema(fmt.schema.instance)) {
                 // bad combo, remove.
                 mediaTypeGroups.delete(knownMediaType);
                 continue;
