@@ -75,6 +75,7 @@ export class ModelerFour {
   private apiVersionFilter!: Array<string>;
   private schemaCache = new ProcessingCache((schema: OpenAPI.Schema, name: string) => this.processSchemaImpl(schema, name));
   private options: Dictionary<any> = {};
+  private uniqueNames: Dictionary<any> = {};
 
   constructor(protected session: Session<oai3>) {
     this.input = session.model;// shadow(session.model, filename);
@@ -1042,6 +1043,17 @@ export class ModelerFour {
     return mediaTypeGroups;
   }
 
+  getUniqueName(baseName: string): string {
+    let nameCount = this.uniqueNames[baseName];
+    if (typeof(nameCount) == 'number') {
+      this.uniqueNames[baseName] = nameCount++;
+      return `${baseName}${nameCount}`;
+    } else {
+      this.uniqueNames[baseName] = 0;
+      return baseName;
+    }
+  }
+
   getContentTypeParameterSchema(http: HttpWithBodyRequest, alwaysConstant = false) {
     if (http.mediaTypes.length === 1 || alwaysConstant) {
       return this.codeModel.schemas.add(
@@ -1056,7 +1068,10 @@ export class ModelerFour {
 
     // look for a sealed choice schema with that set of choices
     return this.codeModel.schemas.sealedChoices?.find(each => JSON.stringify(each.choices) === check) || this.codeModel.schemas.add(
-      new SealedChoiceSchema('ContentType', 'Content type for upload', { choiceType: this.stringSchema, choices })
+      new SealedChoiceSchema(
+        this.getUniqueName('ContentType'),
+        'Content type for upload',
+        { choiceType: this.stringSchema, choices })
     );
   }
 
@@ -1067,7 +1082,9 @@ export class ModelerFour {
         each.language.default.name === "Accept"
         && each.value.value === acceptTypes) ||
       this.codeModel.schemas.add(
-        new ConstantSchema('Accept', `Accept: ${acceptTypes}`, {
+        new ConstantSchema(
+          this.getUniqueName('Accept'),
+          `Accept: ${acceptTypes}`, {
           valueType: this.stringSchema,
           value: new ConstantValue(acceptTypes)
         }));

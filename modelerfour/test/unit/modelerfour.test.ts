@@ -18,7 +18,8 @@ import {
   CodeModel,
   Parameter,
   SchemaResponse,
-  ConstantSchema
+  ConstantSchema,
+  SealedChoiceSchema
 } from "@azure-tools/codemodel";
 import { ParameterLocation } from "@azure-tools/openapi";
 
@@ -1180,5 +1181,124 @@ class Modeler {
     assert.strictEqual(responseNoCharset.schema?.type, "string");
     assert.strictEqual(responseWithCharset.protocol.http?.knownMediaType, "text");
     assert.strictEqual(responseWithCharset.schema?.type, "string");
+  }
+
+
+  @test
+  async "ensures unique names for synthesized schemas like ContentType and Accept"() {
+    const spec = createTestSpec();
+
+    addOperation(spec, "/accept", {
+      post: {
+        operationId: "receivesAcceptHeader",
+        description: "Receives an Accept header.",
+        parameters: [],
+        requestBody: {
+          description: "File details",
+          required: true,
+          content: {
+            "image/png": {
+              schema: {
+                type: "string",
+                format: "binary"
+              }
+            },
+            "image/tiff": {
+              schema: {
+                type: "string",
+                format: "binary"
+              }
+            }
+          }
+        },
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          }),
+          response(400, "application/xml", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    addOperation(spec, "/accept1", {
+      post: {
+        operationId: "accept1",
+        parameters: [],
+        requestBody: {
+          description: "File details",
+          required: true,
+          content: {
+            "image/png": {
+              schema: {
+                type: "string",
+                format: "binary"
+              }
+            },
+            "image/bmp": {
+              schema: {
+                type: "string",
+                format: "binary"
+              }
+            }
+          }
+        },
+        responses: responses(
+          response(200, "application/json", {
+            type: "string"
+          }),
+          response(400, "text/plain", {
+            type: "string"
+          })
+        )
+      }
+    });
+
+    const codeModel = await runModeler(spec, {
+      modelerfour: {
+        "always-create-content-type-parameter": true
+      }
+    });
+
+    const acceptSchema = findByName(
+      "Accept",
+      codeModel.schemas.constants
+    );
+    assert.strictEqual(
+      (<ConstantSchema>acceptSchema).value.value,
+      "application/json, application/xml"
+    );
+
+    const accept1Schema = findByName(
+      "Accept1",
+      codeModel.schemas.constants
+    );
+    assert.strictEqual(
+      (<ConstantSchema>accept1Schema).value.value,
+      "application/json, text/plain"
+    );
+
+    const contentTypeSchema = findByName(
+      "ContentType",
+      codeModel.schemas.sealedChoices
+    );
+    assert.strictEqual(
+      (<SealedChoiceSchema>contentTypeSchema).choices[0].value,
+      "image/png"
+    );
+    assert.strictEqual(
+      (<SealedChoiceSchema>contentTypeSchema).choices[1].value,
+      "image/tiff"
+    );
+    const choices = (<SealedChoiceSchema>contentTypeSchema).choices.map(c => c.value).sort();
+    assert.deepEqual(choices, ["image/png", "image/tiff"]);
+
+    const contentType1Schema = findByName(
+      "ContentType1",
+      codeModel.schemas.sealedChoices
+    );
+    const choices1 = (<SealedChoiceSchema>contentType1Schema).choices.map(c => c.value).sort();
+    assert.deepEqual(choices1, ["image/bmp", "image/png"]);
   }
 }
