@@ -2,7 +2,9 @@
 
 This repository contains the code for the autorest v3 modeler.
 
+## Issues moved to Azure/autorest!
 
+If you'd like to file an issue on the modeler, please do so at the [Azure/autorest](https://github.com/Azure/autorest/issues/new) repo.
 
 ----
 
