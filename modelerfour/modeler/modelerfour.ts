@@ -1760,7 +1760,9 @@ export class ModelerFour {
             throw new Error(`Operation '${operationGroup.language.default.name}/${operation.language.default.name}' must have a media type.`);
           }
       }
+
       const kmtBinary = groupedMediaTypes.get(KnownMediaType.Binary);
+      
       if (kmtBinary) {
         // handle binary
         this.processBinary(KnownMediaType.Binary, kmtBinary, operation, requestBody);
@@ -1771,7 +1773,21 @@ export class ModelerFour {
       }
       const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
       if (kmtJSON) {
-        this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody);
+        if ([...kmtJSON.values()].find((x) => x.schema.instance?.format == "binary")) {
+          this.processBinary(
+            KnownMediaType.Binary,
+            kmtJSON,
+            operation,
+            requestBody
+          );
+        } else {
+          this.processSerializedObject(
+            KnownMediaType.Json,
+            kmtJSON,
+            operation,
+            requestBody
+          );
+        }
       }
       const kmtXML = groupedMediaTypes.get(KnownMediaType.Xml);
       if (kmtXML && !kmtJSON) {
