@@ -4,54 +4,37 @@ import { values, clone } from "@azure-tools/linq";
 import { Model } from "@azure-tools/openapi";
 import { codeModelSchema } from "@azure-tools/codemodel";
 
-export async function createTestSession(
-  config: any,
-  openApiModel: any,
-  messageList: any[]
-) {
+export async function createTestSession(config: any, openApiModel: any, messageList: Array<any>) {
   const openApiText = JSON.stringify(openApiModel);
   const ii = [
     {
       model: openApiModel as Model,
       filename: "openapi-3.json",
-      content: openApiText
-    }
+      content: openApiText,
+    },
   ];
 
   return await startSession<Model>(
     {
       ReadFile: async (filename: string): Promise<string> =>
-        (
-          values(ii).first(each => each.filename === filename) ||
-          fail(`missing input '${filename}'`)
-        ).content,
+        (values(ii).first((each) => each.filename === filename) || fail(`missing input '${filename}'`)).content,
       GetValue: async (key: string): Promise<any> => {
         if (!key) {
           return config;
         }
         return config[key];
       },
-      ListInputs: async (artifactType?: string): Promise<Array<string>> =>
-        ii.map(each => each.filename),
+      ListInputs: async (artifactType?: string): Promise<Array<string>> => ii.map((each) => each.filename),
 
       ProtectFiles: async (path: string): Promise<void> => {
         // test
       },
-      WriteFile: (
-        filename: string,
-        content: string,
-        sourceMap?: any,
-        artifactType?: string
-      ): void => {
+      WriteFile: (filename: string, content: string, sourceMap?: any, artifactType?: string): void => {
         // test
       },
       Message: (message: any): void => {
         // test
-        if (
-          message.Channel === "warning" ||
-          message.Channel === "error" ||
-          message.Channel === "verbose"
-        ) {
+        if (message.Channel === "warning" || message.Channel === "error" || message.Channel === "verbose") {
           if (message.Channel === "error") {
             messageList.push(message);
           }
@@ -60,10 +43,10 @@ export async function createTestSession(
       UpdateConfigurationFile: (filename: string, content: string): void => {
         // test
       },
-      GetConfigurationFile: async (filename: string): Promise<string> => ""
+      GetConfigurationFile: async (filename: string): Promise<string> => "",
     },
     {},
-    codeModelSchema
+    codeModelSchema,
   );
 }
 
@@ -71,30 +54,27 @@ export function response(
   code: number | "default",
   contentType: string,
   schema: any,
-  description: string = "The response.",
-  extraProperties?: any
+  description = "The response.",
+  extraProperties?: any,
 ) {
   return {
     [code]: {
       description,
       content: {
         [contentType]: {
-          schema
-        }
+          schema,
+        },
       },
-      ...extraProperties
-    }
+      ...extraProperties,
+    },
   };
 }
 
-export function responses(...responses: any[]) {
-  return responses.reduce(
-    (responsesDict, response) => Object.assign(responsesDict, response),
-    {}
-  );
+export function responses(...responses: Array<any>) {
+  return responses.reduce((responsesDict, response) => Object.assign(responsesDict, response), {});
 }
 
-export function properties(...properties: any[]) {
+export function properties(...properties: Array<any>) {
   // TODO: Accept string or property object
 }
 
@@ -105,44 +85,36 @@ export const InitialTestSpec = {
     contact: {
       name: "Microsoft Corporation",
       url: "https://microsoft.com",
-      email: "devnull@microsoft.com"
+      email: "devnull@microsoft.com",
     },
     license: "MIT",
-    version: "1.0"
+    version: "1.0",
   },
   paths: {},
   components: {
-    schemas: {}
-  }
+    schemas: {},
+  },
 };
 
 export type TestSpecCustomizer = (spec: any) => any;
 
-export function createTestSpec(...customizers: TestSpecCustomizer[]): any {
-  return customizers.reduce<any>(
-    (spec: any, customizer: TestSpecCustomizer) => {
-      return customizer(spec);
-    },
-    clone(InitialTestSpec)
-  );
+export function createTestSpec(...customizers: Array<TestSpecCustomizer>): any {
+  return customizers.reduce<any>((spec: any, customizer: TestSpecCustomizer) => {
+    return customizer(spec);
+  }, clone(InitialTestSpec));
 }
 
 export function addOperation(
   spec: any,
   path: string,
   operationDict: any,
-  metadata: any = { apiVersions: ["1.0.0"] }
+  metadata: any = { apiVersions: ["1.0.0"] },
 ): void {
   operationDict = { ...operationDict, ...{ "x-ms-metadata": metadata } };
   spec.paths[path] = operationDict;
 }
 
-export function addSchema(
-  spec: any,
-  name: string,
-  schemaDict: any,
-  metadata: any = { apiVersions: ["1.0.0"] }
-): void {
+export function addSchema(spec: any, name: string, schemaDict: any, metadata: any = { apiVersions: ["1.0.0"] }): void {
   schemaDict = { ...schemaDict, ...{ "x-ms-metadata": metadata } };
   spec.components.schemas[name] = schemaDict;
 }

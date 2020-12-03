@@ -3,33 +3,33 @@ trigger: none
 pr: none
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '12.x'
-  displayName: 'Install Node.js'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "12.x"
+    displayName: "Install Node.js"
 
-- script: |
-    npm install -g npm
-    npm cache clear --force
+  - script: |
+      npm install -g npm
+      npm cache clear --force
 
-    npx @microsoft/rush update
-    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
-    npx @microsoft/rush rebuild
-    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
+      npx @microsoft/rush update
+      rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
+      npx @microsoft/rush rebuild
+      rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
 
-  displayName: 'Build Modelerfour'
+    displayName: "Build Modelerfour"
 
-- script: |
-    npm install -g autorest
-    git clone --no-tags --depth=1 https://github.com/Azure/azure-rest-api-specs
-    node .scripts/run-benchmark.js ./azure-rest-api-specs ./output
-  displayName: Benchmark Azure REST API Specs
+  - script: |
+      npm install -g autorest
+      git clone --no-tags --depth=1 https://github.com/Azure/azure-rest-api-specs
+      node .scripts/run-benchmark.js ./azure-rest-api-specs ./output
+    displayName: Benchmark Azure REST API Specs
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(System.DefaultWorkingDirectory)/output'
-    artifactName: benchmark-output
-  displayName: 'Upload Results'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: "$(System.DefaultWorkingDirectory)/output"
+      artifactName: benchmark-output
+    displayName: "Upload Results"

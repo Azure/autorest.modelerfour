@@ -12,39 +12,33 @@ import {
   addOperation,
   response,
   InitialTestSpec,
-  responses
+  responses,
 } from "./unitTestUtil";
-import {
-  CodeModel,
-  Parameter,
-  SchemaResponse,
-  ConstantSchema,
-  SealedChoiceSchema
-} from "@azure-tools/codemodel";
+import { CodeModel, Parameter, SchemaResponse, ConstantSchema, SealedChoiceSchema } from "@azure-tools/codemodel";
 import { ParameterLocation } from "@azure-tools/openapi";
 
 const cfg = {
-  modelerfour: {
+  "modelerfour": {
     "flatten-models": true,
     "flatten-payloads": true,
     "group-parameters": true,
     "resolve-schema-name-collisons": true,
     "additional-checks": true,
     //'always-create-content-type-parameter': true,
-    naming: {
+    "naming": {
       override: {
         $host: "$host",
-        cmyk: "CMYK"
+        cmyk: "CMYK",
       },
       local: "_ + camel",
-      constantParameter: "pascal"
-    }
+      constantParameter: "pascal",
+    },
   },
-  "payload-flattening-threshold": 2
+  "payload-flattening-threshold": 2,
 };
 
 async function runModeler(spec: any, config: any = cfg): Promise<CodeModel> {
-  const modelerErrors: any[] = [];
+  const modelerErrors: Array<any> = [];
   const session = await createTestSession(config, spec, modelerErrors);
   const modeler = await new ModelerFour(session).init();
 
@@ -53,26 +47,17 @@ async function runModeler(spec: any, config: any = cfg): Promise<CodeModel> {
   return modeler.process();
 }
 
-export function findByName<T>(
-  name: string,
-  items: T[] | undefined
-): T | undefined {
-  return (
-    (items && items.find(i => (<any>i).language.default.name === name)) ||
-    undefined
-  );
+export function findByName<T>(name: string, items: Array<T> | undefined): T | undefined {
+  return (items && items.find((i) => (<any>i).language.default.name === name)) || undefined;
 }
 
 function assertSchema(
   schemaName: string,
-  schemaList: any[] | undefined,
+  schemaList: Array<any> | undefined,
   accessor: (schema: any) => any,
-  expected: any
+  expected: any,
 ) {
-  assert(
-    schemaList,
-    `Schema list was empty when searching for schema: ${schemaName}`
-  );
+  assert(schemaList, `Schema list was empty when searching for schema: ${schemaName}`);
 
   // We've already asserted, but make the compiler happy
   if (schemaList) {
@@ -91,22 +76,10 @@ class Modeler {
 
     assert.strictEqual(codeModel.info.title, InitialTestSpec.info.title);
     assert.strictEqual(codeModel.info.license, InitialTestSpec.info.license);
-    assert.strictEqual(
-      codeModel.info.description,
-      InitialTestSpec.info.description
-    );
-    assert.strictEqual(
-      codeModel.info.contact?.name,
-      InitialTestSpec.info.contact.name
-    );
-    assert.strictEqual(
-      codeModel.info.contact?.url,
-      InitialTestSpec.info.contact.url
-    );
-    assert.strictEqual(
-      codeModel.info.contact?.email,
-      InitialTestSpec.info.contact.email
-    );
+    assert.strictEqual(codeModel.info.description, InitialTestSpec.info.description);
+    assert.strictEqual(codeModel.info.contact?.name, InitialTestSpec.info.contact.name);
+    assert.strictEqual(codeModel.info.contact?.url, InitialTestSpec.info.contact.url);
+    assert.strictEqual(codeModel.info.contact?.email, InitialTestSpec.info.contact.email);
   }
 
   @test
@@ -116,9 +89,9 @@ class Modeler {
       properties: {
         "prop-one": {
           type: "integer",
-          format: "int32"
-        }
-      }
+          format: "int32",
+        },
+      },
     };
 
     const spec = createTestSpec();
@@ -129,10 +102,10 @@ class Modeler {
         arrayProperty: {
           type: "array",
           items: {
-            $ref: "#/components/schemas/ElementSchema"
-          }
-        }
-      }
+            $ref: "#/components/schemas/ElementSchema",
+          },
+        },
+      },
     });
     addSchema(spec, "OutputItem", {
       type: "object",
@@ -140,35 +113,35 @@ class Modeler {
         dictionaryProperty: {
           properties: {
             foo: {
-              $ref: "#/components/schemas/ElementSchema"
-            }
-          }
-        }
-      }
+              $ref: "#/components/schemas/ElementSchema",
+            },
+          },
+        },
+      },
     });
     addSchema(spec, "InputOutput", {
       type: "object",
       properties: {
         property: {
-          $ref: "#/components/schemas/ObjectProperty"
-        }
-      }
+          $ref: "#/components/schemas/ObjectProperty",
+        },
+      },
     });
     addSchema(spec, "ObjectProperty", {
       type: "object",
       properties: {
         foo: {
-          type: "string"
-        }
-      }
+          type: "string",
+        },
+      },
     });
     addSchema(spec, "ElementSchema", {
       type: "object",
       properties: {
         foo: {
-          type: "string"
-        }
-      }
+          type: "string",
+        },
+      },
     });
 
     addOperation(spec, "/test", {
@@ -178,13 +151,13 @@ class Modeler {
           response(200, "application/json", {
             type: "array",
             items: {
-              $ref: "#/components/schemas/OutputItem"
-            }
+              $ref: "#/components/schemas/OutputItem",
+            },
           }),
           response(202, "application/xml", {
-            $ref: "#/components/schemas/InputOutput"
-          })
-        )
+            $ref: "#/components/schemas/InputOutput",
+          }),
+        ),
       },
       post: {
         description: "Post it.",
@@ -195,8 +168,8 @@ class Modeler {
             description: "Input parameter",
             required: true,
             schema: {
-              $ref: "#/components/schemas/Input"
-            }
+              $ref: "#/components/schemas/Input",
+            },
           },
           {
             name: "inputOutputParam",
@@ -204,47 +177,30 @@ class Modeler {
             description: "Input parameter",
             required: true,
             schema: {
-              $ref: "#/components/schemas/InputOutput"
-            }
-          }
-        ]
-      }
+              $ref: "#/components/schemas/InputOutput",
+            },
+          },
+        ],
+      },
     });
 
     const codeModel = await runModeler(spec);
 
     // Ensure that usage gets propagated to schemas in request parameters
-    assertSchema("Input", codeModel.schemas.objects, s => s.usage, ["input"]);
+    assertSchema("Input", codeModel.schemas.objects, (s) => s.usage, ["input"]);
 
     // Ensure that usage gets propagated to properties in response schemas
-    assertSchema("OutputItem", codeModel.schemas.objects, s => s.usage, [
-      "output"
-    ]);
+    assertSchema("OutputItem", codeModel.schemas.objects, (s) => s.usage, ["output"]);
 
     // Ensure that usage gets propagated to schemas used in both request and response
-    assertSchema(
-      "InputOutput",
-      codeModel.schemas.objects,
-      s => s.usage.sort(),
-      ["input", "output"]
-    );
+    assertSchema("InputOutput", codeModel.schemas.objects, (s) => s.usage.sort(), ["input", "output"]);
 
     // Ensure that usage gets propagated to schems on object properties
-    assertSchema(
-      "ObjectProperty",
-      codeModel.schemas.objects,
-      s => s.usage.sort(),
-      ["input", "output"]
-    );
+    assertSchema("ObjectProperty", codeModel.schemas.objects, (s) => s.usage.sort(), ["input", "output"]);
 
     // Ensure that usage gets propagated to schemas used as elements of
     // arrays and dictionary property values
-    assertSchema(
-      "ElementSchema",
-      codeModel.schemas.objects,
-      s => s.usage.sort(),
-      ["input", "output"]
-    );
+    assertSchema("ElementSchema", codeModel.schemas.objects, (s) => s.usage.sort(), ["input", "output"]);
   }
 
   @test
@@ -253,26 +209,26 @@ class Modeler {
 
     addSchema(spec, "Int16", {
       type: "integer",
-      format: "int16"
+      format: "int16",
     });
 
     addSchema(spec, "Goose", {
       type: "integer",
-      format: "goose"
+      format: "goose",
     });
 
     addSchema(spec, "Int64", {
       type: "integer",
-      format: "int64"
+      format: "int64",
     });
 
     const codeModel = await runModeler(spec);
 
-    assertSchema("Int16", codeModel.schemas.numbers, s => s.precision, 32);
-    assertSchema("Goose", codeModel.schemas.numbers, s => s.precision, 32);
+    assertSchema("Int16", codeModel.schemas.numbers, (s) => s.precision, 32);
+    assertSchema("Goose", codeModel.schemas.numbers, (s) => s.precision, 32);
 
     // Make sure a legitimate format is detected correctly
-    assertSchema("Int64", codeModel.schemas.numbers, s => s.precision, 64);
+    assertSchema("Int64", codeModel.schemas.numbers, (s) => s.precision, 64);
   }
 
   @test
@@ -281,32 +237,22 @@ class Modeler {
 
     addSchema(spec, "ShouldBeConstant", {
       type: "string",
-      enum: ["html_strip"]
+      enum: ["html_strip"],
     });
 
     addSchema(spec, "ShouldBeChoice", {
-      type: "string",
-      enum: ["html_strip"],
+      "type": "string",
+      "enum": ["html_strip"],
       "x-ms-enum": {
-        modelAsString: true
-      }
+        modelAsString: true,
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    assertSchema(
-      "ShouldBeConstant",
-      codeModel.schemas.constants,
-      s => s.value.value,
-      "html_strip"
-    );
+    assertSchema("ShouldBeConstant", codeModel.schemas.constants, (s) => s.value.value, "html_strip");
 
-    assertSchema(
-      "ShouldBeChoice",
-      codeModel.schemas.choices,
-      s => s.choices[0].value,
-      "html_strip"
-    );
+    assertSchema("ShouldBeChoice", codeModel.schemas.choices, (s) => s.choices[0].value, "html_strip");
   }
 
   @test
@@ -318,9 +264,9 @@ class Modeler {
       nullable: true,
       properties: {
         iIsHere: {
-          type: "boolean"
-        }
-      }
+          type: "boolean",
+        },
+      },
     });
 
     addSchema(spec, "NotNullable", {
@@ -328,46 +274,46 @@ class Modeler {
       nullable: true,
       properties: {
         iIsHere: {
-          type: "boolean"
-        }
-      }
+          type: "boolean",
+        },
+      },
     });
 
     addSchema(spec, "NullableArrayElement", {
       type: "array",
       items: {
         nullable: true,
-        $ref: "#/components/schemas/NotNullable"
-      }
+        $ref: "#/components/schemas/NotNullable",
+      },
     });
 
     addSchema(spec, "NullableArrayElementSchema", {
       type: "array",
       items: {
-        $ref: "#/components/schemas/WannaBeNullable"
-      }
+        $ref: "#/components/schemas/WannaBeNullable",
+      },
     });
 
     addSchema(spec, "NullableDictionaryElement", {
       additionalProperties: {
         nullable: true,
-        $ref: "#/components/schemas/NotNullable"
-      }
+        $ref: "#/components/schemas/NotNullable",
+      },
     });
 
     addSchema(spec, "NullableDictionaryElementSchema", {
       additionalProperties: {
-        $ref: "#/components/schemas/WannaBeNullable"
-      }
+        $ref: "#/components/schemas/WannaBeNullable",
+      },
     });
 
     addSchema(spec, "NullableProperty", {
       type: "object",
       properties: {
         willBeNullable: {
-          $ref: "#/components/schemas/WannaBeNullable"
-        }
-      }
+          $ref: "#/components/schemas/WannaBeNullable",
+        },
+      },
     });
 
     addOperation(spec, "/test", {
@@ -380,9 +326,9 @@ class Modeler {
             description: "Input parameter",
             required: true,
             schema: {
-              $ref: "#/components/schemas/WannaBeNullable"
-            }
-          }
+              $ref: "#/components/schemas/WannaBeNullable",
+            },
+          },
         ],
         responses: {
           "200": {
@@ -390,51 +336,26 @@ class Modeler {
               "application/json": {
                 schema: {
                   type: "string",
-                  nullable: true
-                }
-              }
-            }
-          }
-        }
-      }
+                  nullable: true,
+                },
+              },
+            },
+          },
+        },
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    assertSchema(
-      "NullableArrayElement",
-      codeModel.schemas.arrays,
-      s => s.nullableItems,
-      true
-    );
+    assertSchema("NullableArrayElement", codeModel.schemas.arrays, (s) => s.nullableItems, true);
 
-    assertSchema(
-      "NullableArrayElementSchema",
-      codeModel.schemas.arrays,
-      s => s.nullableItems,
-      true
-    );
+    assertSchema("NullableArrayElementSchema", codeModel.schemas.arrays, (s) => s.nullableItems, true);
 
-    assertSchema(
-      "NullableDictionaryElement",
-      codeModel.schemas.dictionaries,
-      s => s.nullableItems,
-      true
-    );
+    assertSchema("NullableDictionaryElement", codeModel.schemas.dictionaries, (s) => s.nullableItems, true);
 
-    assertSchema(
-      "NullableDictionaryElementSchema",
-      codeModel.schemas.dictionaries,
-      s => s.nullableItems,
-      true
-    );
+    assertSchema("NullableDictionaryElementSchema", codeModel.schemas.dictionaries, (s) => s.nullableItems, true);
 
-    assertSchema(
-      "NullableProperty",
-      codeModel.schemas.objects,
-      s => s.properties[0].nullable,
-      true
-    );
+    assertSchema("NullableProperty", codeModel.schemas.objects, (s) => s.properties[0].nullable, true);
 
     // $host param comes first then the parameter we're looking for
     const operation = codeModel.operationGroups[0].operations[0];
@@ -454,11 +375,11 @@ class Modeler {
       nullable: true,
       properties: {
         hasDefaultValue: {
-          type: "boolean",
-          required: true,
-          "x-ms-client-default": true
-        }
-      }
+          "type": "boolean",
+          "required": true,
+          "x-ms-client-default": true,
+        },
+      },
     });
 
     addOperation(spec, "/test", {
@@ -466,31 +387,31 @@ class Modeler {
         operationId: "postIt",
         description: "Post it.",
         requestBody: {
-          in: "body",
-          description: "Input parameter",
-          required: true,
+          "in": "body",
+          "description": "Input parameter",
+          "required": true,
           "x-ms-client-default": "Bodied",
           "x-ms-requestBody-name": "defaultedBodyParam",
-          content: {
+          "content": {
             "application/json": {
               schema: {
-                type: "string"
-              }
-            }
-          }
+                type: "string",
+              },
+            },
+          },
         },
         parameters: [
           {
-            name: "defaultedQueryParam",
-            in: "query",
-            description: "Input parameter",
+            "name": "defaultedQueryParam",
+            "in": "query",
+            "description": "Input parameter",
             "x-ms-client-default": 42,
-            schema: {
-              type: "number"
-            }
-          }
-        ]
-      }
+            "schema": {
+              type: "number",
+            },
+          },
+        ],
+      },
     });
 
     addOperation(spec, "/memes", {
@@ -498,51 +419,40 @@ class Modeler {
         operationId: "postMeme",
         description: "Gimmie ur memes.",
         requestBody: {
-          description: "Input parameter",
-          required: true,
+          "description": "Input parameter",
+          "required": true,
           "x-ms-requestBody-name": "defaultedBodyMeme",
           "x-ms-client-default": "meme.jpg",
-          content: {
+          "content": {
             "image/jpeg": {
               schema: {
                 type: "string",
-                format: "binary"
-              }
-            }
-          }
-        }
-      }
+                format: "binary",
+              },
+            },
+          },
+        },
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    assertSchema(
-      "HasClientDefault",
-      codeModel.schemas.objects,
-      s => s.properties[0].clientDefaultValue,
-      true
-    );
+    assertSchema("HasClientDefault", codeModel.schemas.objects, (s) => s.properties[0].clientDefaultValue, true);
 
-    const postIt = findByName(
-      "postIt",
-      codeModel.operationGroups[0].operations
-    );
+    const postIt = findByName("postIt", codeModel.operationGroups[0].operations);
     const bodyParam = findByName<Parameter | undefined>(
       "defaultedBodyParam",
-      <Parameter[] | undefined>postIt!.requests?.[0].parameters
+      <Array<Parameter> | undefined>postIt!.requests?.[0].parameters,
     );
     assert.strictEqual(bodyParam?.clientDefaultValue, "Bodied");
 
     const queryParam = findByName("defaultedQueryParam", postIt!.parameters);
     assert.strictEqual(queryParam!.clientDefaultValue, 42);
 
-    const postMeme = findByName(
-      "postMeme",
-      codeModel.operationGroups[0].operations
-    );
+    const postMeme = findByName("postMeme", codeModel.operationGroups[0].operations);
     const memeBodyParam = findByName<Parameter | undefined>(
       "defaultedBodyMeme",
-      <Parameter[] | undefined>postMeme!.requests?.[0].parameters
+      <Array<Parameter> | undefined>postMeme!.requests?.[0].parameters,
     );
     assert.strictEqual(memeBodyParam?.clientDefaultValue, "meme.jpg");
   }
@@ -564,9 +474,9 @@ class Modeler {
             schema: {
               type: "array",
               items: {
-                type: "string"
-              }
-            }
+                type: "string",
+              },
+            },
           },
           {
             name: "nonExplodedParam",
@@ -575,12 +485,12 @@ class Modeler {
             schema: {
               type: "array",
               items: {
-                type: "string"
-              }
-            }
-          }
-        ]
-      }
+                type: "string",
+              },
+            },
+          },
+        ],
+      },
     });
 
     const codeModel = await runModeler(spec);
@@ -606,7 +516,7 @@ class Modeler {
             200,
             "application/json",
             {
-              type: "string"
+              type: "string",
             },
             "Response with a named header.",
             {
@@ -614,41 +524,34 @@ class Modeler {
                 "x-named-header": {
                   "x-ms-client-name": "NamedHeader",
                   // No description on purpose
-                  schema: {
-                    type: "string"
-                  }
+                  "schema": {
+                    type: "string",
+                  },
                 },
                 "x-unnamed-header": {
                   description: "Header with no client name",
                   schema: {
-                    type: "string"
-                  }
-                }
-              }
-            }
-          )
-        )
-      }
+                    type: "string",
+                  },
+                },
+              },
+            },
+          ),
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    const namedHeaders = findByName(
-      "namedHeaders",
-      codeModel.operationGroups[0].operations
-    );
+    const namedHeaders = findByName("namedHeaders", codeModel.operationGroups[0].operations);
 
     const namedHeader = namedHeaders?.responses?.[0].protocol.http!.headers[0];
     assert.strictEqual(namedHeader.language.default.name, "NamedHeader");
     assert.strictEqual(namedHeader.language.default.description, "");
 
-    const unnamedHeader = namedHeaders?.responses?.[0].protocol.http!
-      .headers[1];
+    const unnamedHeader = namedHeaders?.responses?.[0].protocol.http!.headers[1];
     assert.strictEqual(unnamedHeader.language.default.name, "x-unnamed-header");
-    assert.strictEqual(
-      unnamedHeader.language.default.description,
-      "Header with no client name"
-    );
+    assert.strictEqual(unnamedHeader.language.default.description, "Header with no client name");
   }
 
   @test
@@ -661,20 +564,15 @@ class Modeler {
         message: {
           type: "string",
           xml: {
-            "x-ms-text": true
-          }
-        }
-      }
+            "x-ms-text": true,
+          },
+        },
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    assertSchema(
-      "HasOnlyText",
-      codeModel.schemas.objects,
-      o => o.properties[0].schema.serialization.xml.text,
-      true
-    );
+    assertSchema("HasOnlyText", codeModel.schemas.objects, (o) => o.properties[0].schema.serialization.xml.text, true);
 
     addSchema(spec, "HasTextAndAttribute", {
       type: "object",
@@ -683,16 +581,16 @@ class Modeler {
           type: "string",
           xml: {
             "x-ms-text": true,
-            attribute: true
-          }
-        }
-      }
+            "attribute": true,
+          },
+        },
+      },
     });
 
     // Should throw when both 'text' and 'attribute' are true
     await assert.rejects(
       () => runModeler(spec),
-      /XML serialization for a schema cannot be in both 'text' and 'attribute'$/
+      /XML serialization for a schema cannot be in both 'text' and 'attribute'$/,
     );
   }
 
@@ -703,13 +601,13 @@ class Modeler {
       properties: {
         fileContent: {
           type: "string",
-          format: "binary"
+          format: "binary",
         },
         fileName: {
-          type: "string"
-        }
+          type: "string",
+        },
       },
-      required: ["fileContent"]
+      required: ["fileContent"],
     };
 
     const spec = createTestSpec();
@@ -719,13 +617,13 @@ class Modeler {
       properties: {
         fileContent: {
           type: "string",
-          format: "binary"
+          format: "binary",
         },
         fileName: {
-          type: "string"
-        }
+          type: "string",
+        },
       },
-      required: ["fileContent"]
+      required: ["fileContent"],
     });
 
     addOperation(spec, "/upload-file", {
@@ -742,31 +640,28 @@ class Modeler {
                 properties: {
                   fileContent: {
                     type: "string",
-                    format: "binary"
+                    format: "binary",
                   },
                   fileName: {
-                    type: "string"
-                  }
+                    type: "string",
+                  },
                 },
-                required: ["fileContent"]
-              }
-            }
-          }
+                required: ["fileContent"],
+              },
+            },
+          },
         },
         responses: responses(
           response(200, "application/json", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    const uploadFile = findByName(
-      "uploadFile",
-      codeModel.operationGroups[0].operations
-    );
+    const uploadFile = findByName("uploadFile", codeModel.operationGroups[0].operations);
 
     const fileContentParam = uploadFile?.requests?.[0].parameters?.[0];
     assert.strictEqual(fileContentParam?.language.default.name, "fileContent");
@@ -787,13 +682,13 @@ class Modeler {
         parameters: [],
         responses: responses(
           response(200, "application/json", {
-            type: "string"
+            type: "string",
           }),
           response(400, "application/xml", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     addOperation(spec, "/hasAccept", {
@@ -807,41 +702,32 @@ class Modeler {
             in: "header",
             required: true,
             schema: {
-              type: "string"
-            }
-          }
+              type: "string",
+            },
+          },
         ],
         responses: responses(
           response(200, "application/json", {
-            type: "string"
+            type: "string",
           }),
           response(400, "application/xml", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    const receivesAcceptHeader = findByName(
-      "receivesAcceptHeader",
-      codeModel.operationGroups[0].operations
-    );
+    const receivesAcceptHeader = findByName("receivesAcceptHeader", codeModel.operationGroups[0].operations);
 
     const acceptParam = receivesAcceptHeader?.requests?.[0].parameters?.[0];
     assert.strictEqual(acceptParam!.language.default.serializedName, "Accept");
     assert.strictEqual(acceptParam!.schema.type, "constant");
     assert.strictEqual(acceptParam!.origin, "modelerfour:synthesized/accept");
-    assert.strictEqual(
-      (<ConstantSchema>acceptParam!.schema).value.value,
-      "application/json, application/xml"
-    );
+    assert.strictEqual((<ConstantSchema>acceptParam!.schema).value.value, "application/json, application/xml");
 
-    const hasAcceptHeader = findByName(
-      "hasAcceptHeader",
-      codeModel.operationGroups[0].operations
-    );
+    const hasAcceptHeader = findByName("hasAcceptHeader", codeModel.operationGroups[0].operations);
 
     // Make sure that no Accept parameters were added to a request
     assert.strictEqual(hasAcceptHeader!.requests?.length, 1);
@@ -849,10 +735,7 @@ class Modeler {
 
     // Make sure the original Accept parameter is there
     const existingAcceptParam = hasAcceptHeader?.parameters?.[1];
-    assert.strictEqual(
-      existingAcceptParam!.language.default.serializedName,
-      "Accept"
-    );
+    assert.strictEqual(existingAcceptParam!.language.default.serializedName, "Accept");
     assert.strictEqual(existingAcceptParam!.origin, undefined);
   }
 
@@ -861,82 +744,52 @@ class Modeler {
     const spec = createTestSpec();
 
     addSchema(spec, "ModelAsString", {
-      type: "string",
-      enum: ["Apple", "Orange"],
+      "type": "string",
+      "enum": ["Apple", "Orange"],
       "x-ms-enum": {
-        modelAsString: true
-      }
+        modelAsString: true,
+      },
     });
 
     addSchema(spec, "ShouldBeSealed", {
-      type: "string",
-      enum: ["Apple", "Orange"],
+      "type": "string",
+      "enum": ["Apple", "Orange"],
       "x-ms-enum": {
-        modelAsString: false
-      }
+        modelAsString: false,
+      },
     });
 
     addSchema(spec, "SingleValueEnum", {
-      type: "string",
-      enum: ["Apple"],
+      "type": "string",
+      "enum": ["Apple"],
       "x-ms-enum": {
-        modelAsString: false
-      }
+        modelAsString: false,
+      },
     });
 
     const codeModelWithoutSetting = await runModeler(spec, {
       modelerfour: {
-        "always-seal-x-ms-enums": false
-      }
+        "always-seal-x-ms-enums": false,
+      },
     });
 
-    assertSchema(
-      "ModelAsString",
-      codeModelWithoutSetting.schemas.choices,
-      s => s.choiceType.type,
-      "string"
-    );
+    assertSchema("ModelAsString", codeModelWithoutSetting.schemas.choices, (s) => s.choiceType.type, "string");
 
-    assertSchema(
-      "ShouldBeSealed",
-      codeModelWithoutSetting.schemas.sealedChoices,
-      s => s.choiceType.type,
-      "string"
-    );
+    assertSchema("ShouldBeSealed", codeModelWithoutSetting.schemas.sealedChoices, (s) => s.choiceType.type, "string");
 
-    assertSchema(
-      "SingleValueEnum",
-      codeModelWithoutSetting.schemas.constants,
-      s => s.valueType.type,
-      "string"
-    );
+    assertSchema("SingleValueEnum", codeModelWithoutSetting.schemas.constants, (s) => s.valueType.type, "string");
 
     const codeModelWithSetting = await runModeler(spec, {
       modelerfour: {
-        "always-seal-x-ms-enums": true
-      }
+        "always-seal-x-ms-enums": true,
+      },
     });
 
-    assertSchema(
-      "ModelAsString",
-      codeModelWithSetting.schemas.sealedChoices,
-      s => s.choiceType.type,
-      "string"
-    );
+    assertSchema("ModelAsString", codeModelWithSetting.schemas.sealedChoices, (s) => s.choiceType.type, "string");
 
-    assertSchema(
-      "ShouldBeSealed",
-      codeModelWithSetting.schemas.sealedChoices,
-      s => s.choiceType.type,
-      "string"
-    );
+    assertSchema("ShouldBeSealed", codeModelWithSetting.schemas.sealedChoices, (s) => s.choiceType.type, "string");
 
-    assertSchema(
-      "SingleValueEnum",
-      codeModelWithSetting.schemas.sealedChoices,
-      s => s.choiceType.type,
-      "string"
-    );
+    assertSchema("SingleValueEnum", codeModelWithSetting.schemas.sealedChoices, (s) => s.choiceType.type, "string");
   }
 
   @test
@@ -949,21 +802,21 @@ class Modeler {
         description: "Has an api-version header.",
         parameters: [
           {
-            name: "api-version",
-            in: "header",
-            required: true,
+            "name": "api-version",
+            "in": "header",
+            "required": true,
             "x-ms-api-version": true,
-            schema: {
-              type: "string"
-            }
-          }
+            "schema": {
+              type: "string",
+            },
+          },
         ],
         responses: responses(
           response(200, "application/json", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     addOperation(spec, "/non-api-version-header", {
@@ -976,16 +829,16 @@ class Modeler {
             in: "header",
             required: true,
             schema: {
-              type: "string"
-            }
-          }
+              type: "string",
+            },
+          },
         ],
         responses: responses(
           response(200, "application/json", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     addOperation(spec, "/api-version-query", {
@@ -998,99 +851,68 @@ class Modeler {
             in: "query",
             required: true,
             schema: {
-              type: "string"
-            }
-          }
+              type: "string",
+            },
+          },
         ],
         responses: responses(
           response(200, "application/json", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     addOperation(spec, "/non-api-version-query", {
       get: {
         operationId: "nonApiVersionQuery",
-        description:
-          "An api-version query param that is explicitly not a client api-version.",
+        description: "An api-version query param that is explicitly not a client api-version.",
         parameters: [
           {
-            name: "api-version",
-            in: "query",
-            required: true,
+            "name": "api-version",
+            "in": "query",
+            "required": true,
             "x-ms-api-version": false,
-            schema: {
-              type: "string"
-            }
-          }
+            "schema": {
+              type: "string",
+            },
+          },
         ],
         responses: responses(
           response(200, "application/json", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    const apiVersionHeader = findByName(
-      "apiVersionHeader",
-      codeModel.operationGroups[0].operations
-    );
+    const apiVersionHeader = findByName("apiVersionHeader", codeModel.operationGroups[0].operations);
 
     const apiVersionHeaderParam = apiVersionHeader?.parameters?.[1];
-    assert.strictEqual(
-      apiVersionHeaderParam!.language.default.serializedName,
-      "api-version"
-    );
+    assert.strictEqual(apiVersionHeaderParam!.language.default.serializedName, "api-version");
     assert.strictEqual(apiVersionHeaderParam!.implementation, "Client");
-    assert.strictEqual(
-      apiVersionHeaderParam!.origin,
-      "modelerfour:synthesized/api-version"
-    );
+    assert.strictEqual(apiVersionHeaderParam!.origin, "modelerfour:synthesized/api-version");
 
-    const nonApiVersionHeader = findByName(
-      "nonApiVersionHeader",
-      codeModel.operationGroups[0].operations
-    );
+    const nonApiVersionHeader = findByName("nonApiVersionHeader", codeModel.operationGroups[0].operations);
 
     const nonApiVersionHeaderParam = nonApiVersionHeader?.parameters?.[1];
-    assert.strictEqual(
-      nonApiVersionHeaderParam!.language.default.serializedName,
-      "api-version"
-    );
+    assert.strictEqual(nonApiVersionHeaderParam!.language.default.serializedName, "api-version");
     assert.strictEqual(nonApiVersionHeaderParam!.implementation, "Method");
     assert.strictEqual(nonApiVersionHeaderParam!.origin, undefined);
 
-    const apiVersionQuery = findByName(
-      "apiVersionQuery",
-      codeModel.operationGroups[0].operations
-    );
+    const apiVersionQuery = findByName("apiVersionQuery", codeModel.operationGroups[0].operations);
 
     const apiVersionQueryParam = apiVersionQuery?.parameters?.[1];
-    assert.strictEqual(
-      apiVersionQueryParam!.language.default.serializedName,
-      "api-version"
-    );
+    assert.strictEqual(apiVersionQueryParam!.language.default.serializedName, "api-version");
     assert.strictEqual(apiVersionQueryParam!.implementation, "Client");
-    assert.strictEqual(
-      apiVersionQueryParam!.origin,
-      "modelerfour:synthesized/api-version"
-    );
+    assert.strictEqual(apiVersionQueryParam!.origin, "modelerfour:synthesized/api-version");
 
-    const nonApiVersionQuery = findByName(
-      "nonApiVersionQuery",
-      codeModel.operationGroups[0].operations
-    );
+    const nonApiVersionQuery = findByName("nonApiVersionQuery", codeModel.operationGroups[0].operations);
 
     const nonApiVersionQueryParam = nonApiVersionQuery?.parameters?.[1];
-    assert.strictEqual(
-      nonApiVersionQueryParam!.language.default.serializedName,
-      "api-version"
-    );
+    assert.strictEqual(nonApiVersionQueryParam!.language.default.serializedName, "api-version");
     assert.strictEqual(nonApiVersionQueryParam!.implementation, "Method");
     assert.strictEqual(nonApiVersionQueryParam!.origin, undefined);
   }
@@ -1109,7 +931,7 @@ class Modeler {
             200,
             "application/json",
             {
-              type: "string"
+              type: "string",
             },
             "Response with a header extension.",
             {
@@ -1117,34 +939,24 @@ class Modeler {
                 "x-named-header": {
                   "x-ms-client-name": "HeaderWithExtension",
                   "x-ms-header-collection-prefix": "x-ms-meta",
-                  schema: {
-                    type: "string"
-                  }
-                }
-              }
-            }
-          )
-        )
-      }
+                  "schema": {
+                    type: "string",
+                  },
+                },
+              },
+            },
+          ),
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-    const hasHeaderWithExtension = findByName(
-      "hasHeaderWithExtension",
-      codeModel.operationGroups[0].operations
-    );
+    const hasHeaderWithExtension = findByName("hasHeaderWithExtension", codeModel.operationGroups[0].operations);
 
-    const headerWithExtension = hasHeaderWithExtension?.responses?.[0].protocol
-      .http!.headers[0];
-    assert.strictEqual(
-      headerWithExtension.language.default.name,
-      "HeaderWithExtension"
-    );
-    assert.strictEqual(
-      headerWithExtension.extensions["x-ms-header-collection-prefix"],
-      "x-ms-meta"
-    );
+    const headerWithExtension = hasHeaderWithExtension?.responses?.[0].protocol.http!.headers[0];
+    assert.strictEqual(headerWithExtension.language.default.name, "HeaderWithExtension");
+    assert.strictEqual(headerWithExtension.extensions["x-ms-header-collection-prefix"], "x-ms-meta");
   }
 
   async "allows text/plain responses when schema type is 'string'"() {
@@ -1157,22 +969,18 @@ class Modeler {
         parameters: [],
         responses: responses(
           response(200, "text/plain", {
-            type: "string"
+            type: "string",
           }),
           response(201, "text/plain; charset=utf-8", {
-            type: "string"
+            type: "string",
           }),
-        )
-      }
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec);
 
-
-    const textBody = findByName(
-      "textBody",
-      codeModel.operationGroups[0].operations
-    );
+    const textBody = findByName("textBody", codeModel.operationGroups[0].operations);
 
     const responseNoCharset = textBody?.responses?.[0] as SchemaResponse;
     const responseWithCharset = textBody?.responses?.[1] as SchemaResponse;
@@ -1182,7 +990,6 @@ class Modeler {
     assert.strictEqual(responseWithCharset.protocol.http?.knownMediaType, "text");
     assert.strictEqual(responseWithCharset.schema?.type, "string");
   }
-
 
   @test
   async "ensures unique names for synthesized schemas like ContentType and Accept"() {
@@ -1200,26 +1007,26 @@ class Modeler {
             "image/png": {
               schema: {
                 type: "string",
-                format: "binary"
-              }
+                format: "binary",
+              },
             },
             "image/tiff": {
               schema: {
                 type: "string",
-                format: "binary"
-              }
-            }
-          }
+                format: "binary",
+              },
+            },
+          },
         },
         responses: responses(
           response(200, "application/json", {
-            type: "string"
+            type: "string",
           }),
           response(400, "application/xml", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     addOperation(spec, "/accept1", {
@@ -1233,72 +1040,48 @@ class Modeler {
             "image/png": {
               schema: {
                 type: "string",
-                format: "binary"
-              }
+                format: "binary",
+              },
             },
             "image/bmp": {
               schema: {
                 type: "string",
-                format: "binary"
-              }
-            }
-          }
+                format: "binary",
+              },
+            },
+          },
         },
         responses: responses(
           response(200, "application/json", {
-            type: "string"
+            type: "string",
           }),
           response(400, "text/plain", {
-            type: "string"
-          })
-        )
-      }
+            type: "string",
+          }),
+        ),
+      },
     });
 
     const codeModel = await runModeler(spec, {
       modelerfour: {
-        "always-create-content-type-parameter": true
-      }
+        "always-create-content-type-parameter": true,
+      },
     });
 
-    const acceptSchema = findByName(
-      "Accept",
-      codeModel.schemas.constants
-    );
-    assert.strictEqual(
-      (<ConstantSchema>acceptSchema).value.value,
-      "application/json, application/xml"
-    );
+    const acceptSchema = findByName("Accept", codeModel.schemas.constants);
+    assert.strictEqual((<ConstantSchema>acceptSchema).value.value, "application/json, application/xml");
 
-    const accept1Schema = findByName(
-      "Accept1",
-      codeModel.schemas.constants
-    );
-    assert.strictEqual(
-      (<ConstantSchema>accept1Schema).value.value,
-      "application/json, text/plain"
-    );
+    const accept1Schema = findByName("Accept1", codeModel.schemas.constants);
+    assert.strictEqual((<ConstantSchema>accept1Schema).value.value, "application/json, text/plain");
 
-    const contentTypeSchema = findByName(
-      "ContentType",
-      codeModel.schemas.sealedChoices
-    );
-    assert.strictEqual(
-      (<SealedChoiceSchema>contentTypeSchema).choices[0].value,
-      "image/png"
-    );
-    assert.strictEqual(
-      (<SealedChoiceSchema>contentTypeSchema).choices[1].value,
-      "image/tiff"
-    );
-    const choices = (<SealedChoiceSchema>contentTypeSchema).choices.map(c => c.value).sort();
+    const contentTypeSchema = findByName("ContentType", codeModel.schemas.sealedChoices);
+    assert.strictEqual((<SealedChoiceSchema>contentTypeSchema).choices[0].value, "image/png");
+    assert.strictEqual((<SealedChoiceSchema>contentTypeSchema).choices[1].value, "image/tiff");
+    const choices = (<SealedChoiceSchema>contentTypeSchema).choices.map((c) => c.value).sort();
     assert.deepEqual(choices, ["image/png", "image/tiff"]);
 
-    const contentType1Schema = findByName(
-      "ContentType1",
-      codeModel.schemas.sealedChoices
-    );
-    const choices1 = (<SealedChoiceSchema>contentType1Schema).choices.map(c => c.value).sort();
+    const contentType1Schema = findByName("ContentType1", codeModel.schemas.sealedChoices);
+    const choices1 = (<SealedChoiceSchema>contentType1Schema).choices.map((c) => c.value).sort();
     assert.deepEqual(choices1, ["image/bmp", "image/png"]);
   }
 }

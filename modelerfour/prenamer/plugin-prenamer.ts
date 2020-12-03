@@ -3,17 +3,17 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { serialize } from '@azure-tools/codegen';
-import { Host, startSession } from '@azure-tools/autorest-extension-base';
-import { codeModelSchema, CodeModel } from '@azure-tools/codemodel';
-import { PreNamer } from './prenamer';
+import { serialize } from "@azure-tools/codegen";
+import { Host, startSession } from "@azure-tools/autorest-extension-base";
+import { codeModelSchema, CodeModel } from "@azure-tools/codemodel";
+import { PreNamer } from "./prenamer";
 
 export async function processRequest(host: Host) {
-  const debug = await host.GetValue('debug') || false;
+  const debug = (await host.GetValue("debug")) || false;
 
   try {
     const session = await startSession<CodeModel>(host, {}, codeModelSchema);
-    const options = <any>await session.getValue('modelerfour', {});
+    const options = <any>await session.getValue("modelerfour", {});
 
     // process
     const plugin = await new PreNamer(session).init();
@@ -22,11 +22,11 @@ export async function processRequest(host: Host) {
     const result = plugin.process();
 
     // output the model to the pipeline
-    if (options['emit-yaml-tags'] !== false) {
-      host.WriteFile('code-model-v4.yaml', serialize(result, codeModelSchema), undefined, 'code-model-v4');
+    if (options["emit-yaml-tags"] !== false) {
+      host.WriteFile("code-model-v4.yaml", serialize(result, codeModelSchema), undefined, "code-model-v4");
     }
-    if (options['emit-yaml-tags'] !== true) {
-      host.WriteFile('code-model-v4-no-tags.yaml', serialize(result), undefined, 'code-model-v4-no-tags');
+    if (options["emit-yaml-tags"] !== true) {
+      host.WriteFile("code-model-v4-no-tags.yaml", serialize(result), undefined, "code-model-v4-no-tags");
     }
   } catch (E) {
     if (debug) {

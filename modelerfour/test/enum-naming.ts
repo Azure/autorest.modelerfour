@@ -3,10 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { suite, test } from 'mocha-typescript';
-import * as assert from 'assert';
+import { suite, test } from "mocha-typescript";
+import * as assert from "assert";
 
-@suite class TestEnumNameInterpretation {
-
-
-}
+@suite
+class TestEnumNameInterpretation {}

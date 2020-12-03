@@ -9,7 +9,7 @@ import {
   Schema,
   PropertyDetails,
   JsonType,
-  StringFormat
+  StringFormat,
 } from "@azure-tools/openapi";
 import {
   createTestSession,
@@ -18,7 +18,7 @@ import {
   addOperation,
   response,
   InitialTestSpec,
-  responses
+  responses,
 } from "./unitTestUtil";
 
 class PreCheckerClient {
@@ -29,7 +29,7 @@ class PreCheckerClient {
   }
 
   static async create(spec: any): Promise<PreCheckerClient> {
-    const precheckerErrors: any[] = [];
+    const precheckerErrors: Array<any> = [];
     const session = await createTestSession({}, spec, precheckerErrors);
     const prechecker = await new QualityPreChecker(session).init();
 
@@ -52,35 +52,29 @@ class PreChecker {
       nullable: true,
       properties: {
         hack: {
-          type: "boolean"
-        }
-      }
+          type: "boolean",
+        },
+      },
     });
 
     addSchema(spec, "ChildSchema", {
       type: "object",
-      allOf: [
-        { type: "object" },
-        { $ref: "#/components/schemas/ParentSchema" }
-      ],
+      allOf: [{ type: "object" }, { $ref: "#/components/schemas/ParentSchema" }],
       properties: {
         childOfHack: {
-          type: "integer"
-        }
-      }
+          type: "integer",
+        },
+      },
     });
 
     const client = await PreCheckerClient.create(spec);
     const model = client.result;
 
-    const childSchemaRef =
-      model.components?.schemas && model.components?.schemas["ChildSchema"];
+    const childSchemaRef = model.components?.schemas && model.components?.schemas["ChildSchema"];
     if (childSchemaRef) {
       const childSchema = client.resolve<Schema>(childSchemaRef);
       assert.strictEqual(childSchema.instance.allOf?.length, 1);
-      const parent = client.resolve(
-        childSchema.instance.allOf && childSchema.instance.allOf[0]
-      );
+      const parent = client.resolve(childSchema.instance.allOf && childSchema.instance.allOf[0]);
       assert.strictEqual(parent.name, "ParentSchema");
     } else {
       assert.fail("No 'ChildSchema' found!");
