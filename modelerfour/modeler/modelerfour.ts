@@ -1112,7 +1112,6 @@ export class ModelerFour {
             );
             return this.processIntegerSchema(name, schema);
         }
-        break;
 
       case JsonType.Number:
         switch (schema.format) {
@@ -1328,7 +1327,7 @@ export class ModelerFour {
     );
   }
 
-  getAcceptParameterSchema(mediaTypes: string[]) {
+  getAcceptParameterSchema(mediaTypes: Array<string>) {
     const acceptTypes = mediaTypes.join(", ");
     return (
       this.codeModel.schemas.constants?.find(
@@ -1713,7 +1712,7 @@ export class ModelerFour {
           );
         }
         const sss = servers.join(",");
-        let choiceSchema =
+        const choiceSchema =
           this.codeModel.schemas.choices?.find(
             (each) => each.choices.map((choice) => choice.value).join(",") === sss,
           ) ||
@@ -2238,11 +2237,14 @@ export class ModelerFour {
     }
     if (this.input.components) {
       for (const { key: name, value: header } of this.resolveDictionary(this.input.components.headers)) {
+        // TODO Figure out if needed
       }
 
       for (const { key: name, value: request } of this.resolveDictionary(this.input.components.requestBodies)) {
+        // TODO Figure out if needed
       }
       for (const { key: name, value: response } of this.resolveDictionary(this.input.components.responses)) {
+        // TODO Figure out if needed
       }
       for (const { key: name, value: schema } of this.resolveDictionary(this.input.components.schemas)) {
         // we don't process binary schemas
