@@ -1,13 +1,13 @@
-import { createTestSession } from "./helper";
-import { ModelerFour } from "../modeler/modelerfour";
+import { createTestSession } from "../utils";
+import { ModelerFour } from "../../modeler/modelerfour";
 import { writeFile, mkdir } from "@azure-tools/async-io";
 import { serialize } from "@azure-tools/codegen";
 import { Model } from "@azure-tools/openapi";
 import { codeModelSchema } from "@azure-tools/codemodel";
-import { PreNamer } from "../prenamer/prenamer";
-import { Flattener } from "../flattener/flattener";
-import { Grouper } from "../grouper/grouper";
-import { Checker } from "../checker/checker";
+import { PreNamer } from "../../prenamer/prenamer";
+import { Flattener } from "../../flattener/flattener";
+import { Grouper } from "../../grouper/grouper";
+import { Checker } from "../../checker/checker";
 
 const cfg = {
   "modelerfour": {
@@ -46,7 +46,7 @@ describe("Testing rendering specific scenarios", () => {
     const folder = "head";
     const session = await createTestSession<Model>(
       cfg,
-      `${__dirname}/../test/scenarios/${folder}`,
+      `${__dirname}/../../test/scenarios/${folder}`,
       ["openapi-document.json"],
       [],
     );
