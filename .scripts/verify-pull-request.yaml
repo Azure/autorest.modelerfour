@@ -41,6 +41,10 @@ steps:
 
     displayName: "Rush install, build and test"
 
+  - script: npm run test:v2
+    workingDirectory: modelerfour
+    displayName: "Test V2"
+
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: "$(Build.SourcesDirectory)/common/temp/artifacts/packages/autorest-modelerfour-$(artver).tgz"
