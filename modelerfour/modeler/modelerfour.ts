@@ -780,7 +780,7 @@ export class ModelerFour {
       return this.processChoiceSchema(name, schema);
     }
 
-    if (<any>schema.type === 'file' || <any>schema.format === 'file' || <any>schema.format === 'binary') {
+    if (this.isSchemaBinary(schema)) {
       // handle inconsistency in file format handling.
       this.session.hint(
         `'The schema ${schema?.['x-ms-metadata']?.name || name} with 'type: ${schema.type}', format: ${schema.format}' will be treated as a binary blob for binary media types.`,
@@ -1773,7 +1773,7 @@ export class ModelerFour {
       }
       const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
       if (kmtJSON) {
-        if ([...kmtJSON.values()].find((x) => x.schema.instance?.format == "binary")) {
+        if ([...kmtJSON.values()].find((x) => x.schema.instance && this.isSchemaBinary(x.schema.instance))) {
           this.processBinary(
             KnownMediaType.Binary,
             kmtJSON,
@@ -1896,6 +1896,14 @@ export class ModelerFour {
     this.codeModel.schemas.objects?.forEach(o => this.propagateSchemaUsage(o));
 
     return this.codeModel;
+  }
+
+  private isSchemaBinary(schema: OpenAPI.Schema) {
+    return (
+      <any>schema.type === "file" ||
+      <any>schema.format === "file" ||
+      <any>schema.format === "binary"
+    );
   }
 
   private propagateSchemaUsage(schema: Schema): void {
