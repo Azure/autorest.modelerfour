@@ -32,10 +32,7 @@ function executeBenchmark(readmePath) {
 
   fs.mkdirSync(outputPath, { recursive: true });
 
-  const fileStream = fs.openSync(
-    path.join(outputPath, "autorest-output.txt"),
-    "w"
-  );
+  const fileStream = fs.openSync(path.join(outputPath, "autorest-output.txt"), "w");
 
   console.log(relativePath);
 
@@ -53,7 +50,7 @@ function executeBenchmark(readmePath) {
                 --inspector.output-folder="./${outputPath}" \
                 --output-folder="./${outputPath}" \
                 "${readmePath}"`,
-      { stdio: ["inherit", fileStream, fileStream] }
+      { stdio: ["inherit", fileStream, fileStream] },
     );
   } catch (err) {
     result = "failed";
@@ -61,16 +58,14 @@ function executeBenchmark(readmePath) {
   }
 
   const elapsedTime = process.hrtime(startTime);
-  const elapsedSeconds = (elapsedTime[0] + elapsedTime[1] / 1000000000).toFixed(
-    3
-  );
+  const elapsedSeconds = (elapsedTime[0] + elapsedTime[1] / 1000000000).toFixed(3);
   console.log(`  └ ${resultColor}${result} in ${elapsedSeconds}`, "\033[0m\n");
 
   return {
     specPath: readmePath,
     outputPath,
     succeeded: result === "succeeded",
-    time: parseFloat(elapsedSeconds)
+    time: parseFloat(elapsedSeconds),
   };
 }
 
@@ -79,9 +74,7 @@ console.log("");
 
 const readmePaths = getReadmesRecursively(specsPath);
 
-const results = readmePaths
-  .map(executeBenchmark)
-  .sort((a, b) => b.time - a.time);
+const results = readmePaths.map(executeBenchmark).sort((a, b) => b.time - a.time);
 
 let aggregate = results.reduce(
   (totals, result) => {
@@ -89,31 +82,23 @@ let aggregate = results.reduce(
     totals.time += result.time;
     return totals;
   },
-  { time: 0.0, success: 0 }
+  { time: 0.0, success: 0 },
 );
 
-const successPercentage = ((aggregate.success / results.length) * 100).toFixed(
-  2
-);
+const successPercentage = ((aggregate.success / results.length) * 100).toFixed(2);
 
 console.log(
-  `${aggregate.success} out of ${
-    results.length
-  } succeeded (${successPercentage}%), ${aggregate.time.toFixed(
-    3
-  )}s total time\n`
+  `${aggregate.success} out of ${results.length} succeeded (${successPercentage}%), ${aggregate.time.toFixed(
+    3,
+  )}s total time\n`,
 );
 
 const topCount = Math.min(5, results.length);
 console.log(`Top ${topCount} longest runs:\n`);
-results
-  .slice(0, topCount)
-  .forEach(r => console.log(`${r.time}s  ${r.specPath}`));
+results.slice(0, topCount).forEach((r) => console.log(`${r.time}s  ${r.specPath}`));
 
 // Write out aggregate results file
 const resultsFile = fs.writeFileSync(
   path.join(outputBasePath, "autorest-benchmark-results.csv"),
-  results
-    .map(r => `${r.specPath},${r.succeeded ? "succeeded" : "failed"},${r.time}`)
-    .join("\n")
+  results.map((r) => `${r.specPath},${r.succeeded ? "succeeded" : "failed"},${r.time}`).join("\n"),
 );
