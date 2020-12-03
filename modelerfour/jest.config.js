@@ -14,9 +14,10 @@ const config = {
   modulePathIgnorePatterns: ["<rootDir>/sdk"],
   globals: {
     "ts-jest": {
-      tsConfig: "tsconfig.json",
+      tsconfig: "tsconfig.json",
     },
   },
+  setupFilesAfterEnv: ["<rootDir>/testv2/setupJest.ts"],
   testMatch: ["<rootDir>/testv2/**/*.test.ts"],
   verbose: true,
   testEnvironment: "node",
