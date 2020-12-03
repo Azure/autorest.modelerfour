@@ -13,8 +13,8 @@
   "scripts": {
     "start": "node --max_old_space_size=4096 ./entrypoints/main.js",
     "debug": "node --max_old_space_size=4096 --inspect-brk=localhost:9229 ./entrypoints/main.js",
-    "eslint-fix": "eslint  . --fix --ext .ts",
-    "eslint": "eslint  . --ext .ts",
+    "fix": "eslint  . --fix --ext .ts",
+    "lint": "eslint  . --ext .ts --max-warnings=0",
     "static-link": "static-link --no-node-modules --debug",
     "watch": "tsc -p . --watch",
     "build": "tsc -p .",
@@ -80,5 +80,8 @@
       "recursive-diff": "~1.0.6"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "prettier": "~2.2.1",
+    "eslint-plugin-prettier": "~3.2.0"
+  }
 }
