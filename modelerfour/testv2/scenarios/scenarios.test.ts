@@ -1,13 +1,9 @@
 import { createTestSession } from "../utils";
 import { ModelerFour } from "../../modeler/modelerfour";
-import { writeFile, mkdir } from "@azure-tools/async-io";
+import { readdirSync } from "fs";
 import { serialize } from "@azure-tools/codegen";
 import { Model } from "@azure-tools/openapi";
 import { codeModelSchema } from "@azure-tools/codemodel";
-import { PreNamer } from "../../prenamer/prenamer";
-import { Flattener } from "../../flattener/flattener";
-import { Grouper } from "../../grouper/grouper";
-import { Checker } from "../../checker/checker";
 
 const cfg = {
   "modelerfour": {
@@ -41,24 +37,21 @@ const cfg = {
   "payload-flattening-threshold": 2,
 };
 
+const inputsFolder = `${__dirname}/inputs/`;
+const expectedFolder = `${__dirname}/expected/`;
+
 describe("Testing rendering specific scenarios", () => {
-  it("works", async () => {
-    const folder = "head";
-    const session = await createTestSession<Model>(
-      cfg,
-      `${__dirname}/../../test/scenarios/${folder}`,
-      ["openapi-document.json"],
-      [],
-    );
+  const folders = readdirSync(inputsFolder);
 
-    // process OAI model
-    const modeler = await new ModelerFour(session).init();
+  for (const folder of folders) {
+    it(`generate model for '${folder}'`, async () => {
+      const session = await createTestSession<Model>(cfg, `${inputsFolder}/${folder}`, ["openapi-document.json"], []);
 
-    // go!
-    const codeModel = await modeler.process();
+      const modeler = await new ModelerFour(session).init();
+      const codeModel = modeler.process();
 
-    const yaml = serialize(codeModel, codeModelSchema);
-
-    expect(yaml).toMatchRawFileSnapshot("__snapshots__/head/modeler.yaml");
-  });
+      const yaml = serialize(codeModel, codeModelSchema);
+      expect(yaml).toMatchRawFileSnapshot(`${expectedFolder}/head/modeler.yaml`);
+    });
+  }
 });
