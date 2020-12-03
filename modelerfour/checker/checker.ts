@@ -49,7 +49,7 @@ export class Checker {
   }
 
   checkSchemas() {
-    const allSchemas = values(<Dictionary<Schema[]>>(<any>this.codeModel.schemas))
+    const allSchemas = values(<Dictionary<Array<Schema>>>(<any>this.codeModel.schemas))
       .selectMany((schemas) => (Array.isArray(schemas) ? values(schemas) : []))
       .toArray();
 
@@ -57,7 +57,7 @@ export class Checker {
       this.session.warning(`Schema Missing Name '${JSON.stringify(each)}'.`, []);
     }
 
-    const types = values(<Schema[]>this.codeModel.schemas.objects)
+    const types = values(<Array<Schema>>this.codeModel.schemas.objects)
       .concat(values(this.codeModel.schemas.groups))
       .concat(values(this.codeModel.schemas.choices))
       .concat(values(this.codeModel.schemas.sealedChoices))

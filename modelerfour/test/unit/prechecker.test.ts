@@ -29,7 +29,7 @@ class PreCheckerClient {
   }
 
   static async create(spec: any): Promise<PreCheckerClient> {
-    const precheckerErrors: any[] = [];
+    const precheckerErrors: Array<any> = [];
     const session = await createTestSession({}, spec, precheckerErrors);
     const prechecker = await new QualityPreChecker(session).init();
 

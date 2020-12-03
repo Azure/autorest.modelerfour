@@ -38,7 +38,7 @@ const cfg = {
 };
 
 async function runModeler(spec: any, config: any = cfg): Promise<CodeModel> {
-  const modelerErrors: any[] = [];
+  const modelerErrors: Array<any> = [];
   const session = await createTestSession(config, spec, modelerErrors);
   const modeler = await new ModelerFour(session).init();
 
@@ -47,13 +47,13 @@ async function runModeler(spec: any, config: any = cfg): Promise<CodeModel> {
   return modeler.process();
 }
 
-export function findByName<T>(name: string, items: T[] | undefined): T | undefined {
+export function findByName<T>(name: string, items: Array<T> | undefined): T | undefined {
   return (items && items.find((i) => (<any>i).language.default.name === name)) || undefined;
 }
 
 function assertSchema(
   schemaName: string,
-  schemaList: any[] | undefined,
+  schemaList: Array<any> | undefined,
   accessor: (schema: any) => any,
   expected: any,
 ) {
@@ -442,7 +442,7 @@ class Modeler {
     const postIt = findByName("postIt", codeModel.operationGroups[0].operations);
     const bodyParam = findByName<Parameter | undefined>(
       "defaultedBodyParam",
-      <Parameter[] | undefined>postIt!.requests?.[0].parameters,
+      <Array<Parameter> | undefined>postIt!.requests?.[0].parameters,
     );
     assert.strictEqual(bodyParam?.clientDefaultValue, "Bodied");
 
@@ -452,7 +452,7 @@ class Modeler {
     const postMeme = findByName("postMeme", codeModel.operationGroups[0].operations);
     const memeBodyParam = findByName<Parameter | undefined>(
       "defaultedBodyMeme",
-      <Parameter[] | undefined>postMeme!.requests?.[0].parameters,
+      <Array<Parameter> | undefined>postMeme!.requests?.[0].parameters,
     );
     assert.strictEqual(memeBodyParam?.clientDefaultValue, "meme.jpg");
   }

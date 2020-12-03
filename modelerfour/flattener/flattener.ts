@@ -24,8 +24,8 @@ const hasBeenFlattened = "x-ms-flattened";
 export class Flattener {
   codeModel: CodeModel;
   options: Dictionary<any> = {};
-  threshold: number = 0;
-  recursePayload: boolean = false;
+  threshold = 0;
+  recursePayload = false;
 
   constructor(protected session: Session<CodeModel>) {
     this.codeModel = session.model; // shadow(session.model, filename);

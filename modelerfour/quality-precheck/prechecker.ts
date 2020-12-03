@@ -317,7 +317,7 @@ export class QualityPreChecker {
 
       for (const each of errors) {
         // Allow duplicate schemas if requested
-        if (!!this.options["lenient-model-deduplication"]) {
+        if (this.options["lenient-model-deduplication"]) {
           this.session.warning(each, ["PreCheck", "DuplicateSchema"]);
         } else {
           this.session.error(
@@ -328,7 +328,7 @@ export class QualityPreChecker {
       }
     };
 
-    while (!!innerCheckForDuplicateSchemas()) {
+    while (innerCheckForDuplicateSchemas()) {
       // Loop until the scan is complete
     }
 

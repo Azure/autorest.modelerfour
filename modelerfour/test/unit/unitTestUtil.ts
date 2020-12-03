@@ -4,7 +4,7 @@ import { values, clone } from "@azure-tools/linq";
 import { Model } from "@azure-tools/openapi";
 import { codeModelSchema } from "@azure-tools/codemodel";
 
-export async function createTestSession(config: any, openApiModel: any, messageList: any[]) {
+export async function createTestSession(config: any, openApiModel: any, messageList: Array<any>) {
   const openApiText = JSON.stringify(openApiModel);
   const ii = [
     {
@@ -54,7 +54,7 @@ export function response(
   code: number | "default",
   contentType: string,
   schema: any,
-  description: string = "The response.",
+  description = "The response.",
   extraProperties?: any,
 ) {
   return {
@@ -70,11 +70,11 @@ export function response(
   };
 }
 
-export function responses(...responses: any[]) {
+export function responses(...responses: Array<any>) {
   return responses.reduce((responsesDict, response) => Object.assign(responsesDict, response), {});
 }
 
-export function properties(...properties: any[]) {
+export function properties(...properties: Array<any>) {
   // TODO: Accept string or property object
 }
 
@@ -98,7 +98,7 @@ export const InitialTestSpec = {
 
 export type TestSpecCustomizer = (spec: any) => any;
 
-export function createTestSpec(...customizers: TestSpecCustomizer[]): any {
+export function createTestSpec(...customizers: Array<TestSpecCustomizer>): any {
   return customizers.reduce<any>((spec: any, customizer: TestSpecCustomizer) => {
     return customizer(spec);
   }, clone(InitialTestSpec));
