@@ -6,18 +6,13 @@ import * as path from "path";
 declare global {
   namespace jest {
     interface Matchers<R> {
-      toMatchSpecificSnapshot(snapshotFile: string): CustomMatcherResult;
-      toMatchPayload(payloadName: string): CustomMatcherResult;
+      toMatchRawFileSnapshot(snapshotFile: string): CustomMatcherResult;
     }
   }
 }
 
 function getAbsolutePathToSnapshot(testPath: string, snapshotFile: string) {
   return path.isAbsolute(snapshotFile) ? snapshotFile : path.resolve(path.dirname(testPath), snapshotFile);
-}
-
-function serializeContent(content: object | Array<object>) {
-  return JSON.stringify(content, null, 2);
 }
 
 type Context = jest.MatcherUtils &
@@ -28,15 +23,15 @@ type Context = jest.MatcherUtils &
 /**
  * Helper
  */
-function toMatchPayload(this: Context, received: object | Array<object>, payload: string): jest.CustomMatcherResult {
-  return toMatchSpecificSnapshot.call(this, received, `__snapshots__/api/${payload}.json`);
-}
-
-function toMatchSpecificSnapshot(
+function toMatchRawFileSnapshot(
   this: Context,
   received: object | Array<object>,
   filename: string,
 ): jest.CustomMatcherResult {
+  if (typeof received !== "string") {
+    throw new Error("toMatchRawFileSnapshot is only supported with raw text");
+  }
+
   if (this.isNot) {
     return {
       pass: true, // Will get inverted because of the .not
@@ -45,7 +40,7 @@ function toMatchSpecificSnapshot(
   }
 
   const filepath = getAbsolutePathToSnapshot(this.testPath!, filename);
-  const content = serializeContent(received);
+  const content: string = received;
   const updateSnapshot: "none" | "all" | "new" = (this.snapshotState as any)._updateSnapshot;
 
   const coloredFilename = this.utils.DIM_COLOR(filename);
@@ -110,4 +105,4 @@ function toMatchSpecificSnapshot(
   }
 }
 
-expect.extend({ toMatchSpecificSnapshot, toMatchPayload } as any);
+expect.extend({ toMatchRawFileSnapshot } as any);

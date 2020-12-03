@@ -59,6 +59,6 @@ describe("Testing rendering specific scenarios", () => {
 
     const yaml = serialize(codeModel, codeModelSchema);
 
-    expect(yaml).toMatchSpecificSnapshot("head/modeler.yaml");
+    expect(yaml).toMatchRawFileSnapshot("__snapshots__/head/modeler.yaml");
   });
 });
