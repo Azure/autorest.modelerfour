@@ -45,9 +45,11 @@ describe("Testing rendering specific scenarios", () => {
 
   for (const folder of folders) {
     it(`generate model for '${folder}'`, async () => {
-      const session = await createTestSessionFromFiles<Model>(cfg, `${inputsFolder}/${folder}`, [
+      const { session, errors } = await createTestSessionFromFiles<Model>(cfg, `${inputsFolder}/${folder}`, [
         "openapi-document.json",
       ]);
+
+      expect(errors.length).toBe(0);
 
       const modeler = await new ModelerFour(session).init();
       const codeModel = modeler.process();

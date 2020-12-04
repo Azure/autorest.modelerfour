@@ -1,3 +1,5 @@
+import { clone } from "@azure-tools/linq";
+
 export const InitialTestSpec = Object.freeze({
   info: {
     title: "Test OpenAPI 3 Specification",
@@ -19,9 +21,10 @@ export const InitialTestSpec = Object.freeze({
 export type TestSpecCustomizer = (spec: any) => any;
 
 export function createTestSpec(...customizers: Array<TestSpecCustomizer>): any {
-  return customizers.reduce<any>((spec: any, customizer: TestSpecCustomizer) => customizer(spec), {
-    ...InitialTestSpec,
-  });
+  return customizers.reduce<any>(
+    (spec: any, customizer: TestSpecCustomizer) => customizer(spec),
+    clone(InitialTestSpec),
+  );
 }
 
 export function addOperation(

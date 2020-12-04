@@ -10,8 +10,9 @@ class PreCheckerClient {
   }
 
   static async create(spec: Model): Promise<PreCheckerClient> {
-    const session = await createTestSessionFromModel<Model>({}, spec);
+    const { session, errors } = await createTestSessionFromModel<Model>({}, spec);
     const prechecker = await new QualityPreChecker(session).init();
+    expect(errors.length).toBe(0);
 
     return new PreCheckerClient(prechecker.input, prechecker.process());
   }
