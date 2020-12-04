@@ -242,7 +242,6 @@ export class ModelerFour {
 
   async init() {
     this.options = await this.session.getValue("modelerfour", {});
-
     // grab override-client-name
     const newTitle = await this.session.getValue("override-client-name", "");
     if (newTitle) {
@@ -1361,7 +1360,8 @@ export class ModelerFour {
         http,
       },
     });
-
+    this.session.log(`Options ${JSON.stringify(this.options)}`, {});
+    this.session.log(`Accept-param ${this.options["always-create-accept-parameter"]}`, {});
     if (this.options[`always-create-content-type-parameter`] === true || http.mediaTypes.length > 1) {
       const scs = this.getContentTypeParameterSchema(http);
 
