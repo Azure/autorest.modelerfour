@@ -16,6 +16,7 @@ import { Host, startSession } from "@azure-tools/autorest-extension-base";
 import { Interpretations } from "../modeler/interpretations";
 
 import { getDiff } from "recursive-diff";
+import { ModelerFourOptions } from "../modeler/modelerfour-options";
 
 export async function processRequest(host: Host) {
   const debug = (await host.GetValue("debug")) || false;
@@ -57,7 +58,7 @@ export async function processRequest(host: Host) {
 
 export class QualityPreChecker {
   input: oai3;
-  options: Dictionary<any> = {};
+  options: ModelerFourOptions = {};
   protected interpret: Interpretations;
 
   constructor(protected session: Session<oai3>) {

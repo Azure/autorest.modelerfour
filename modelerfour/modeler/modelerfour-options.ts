@@ -13,4 +13,42 @@ export interface ModelerFourOptions {
   "always-create-accept-parameter"?: boolean;
 
   "always-seal-x-ms-enums"?: boolean;
+
+  "flatten-models"?: boolean;
+
+  "flatten-payloads"?: boolean;
+
+  "keep-unused-flattened-models"?: boolean;
+
+  "multiple-request-parameter-flattening"?: boolean;
+
+  "group-parameters"?: boolean;
+
+  "additional-checks"?: boolean;
+
+  "lenient-model-deduplication"?: boolean;
+
+  "naming"?: ModelerFourNamingOptions;
+
+  "prenamer"?: boolean;
+
+  "resolve-schema-name-collisons"?: boolean;
+}
+
+export interface ModelerFourNamingOptions {
+  "preserve-uppercase-max-length"?: number;
+  "parameter"?: string;
+  "property"?: string;
+  "operation"?: string;
+  "operationGroup"?: string;
+  "header"?: string;
+  "choice"?: string;
+  "choiceValue"?: string;
+  "constant"?: string;
+  "constantParameter"?: string;
+  "client"?: string;
+  "type"?: string;
+  "global"?: string;
+  "local"?: string;
+  "override"?: any;
 }

@@ -15,6 +15,7 @@ import {
 } from "@azure-tools/codemodel";
 import { Session } from "@azure-tools/autorest-extension-base";
 import { values, items, length, Dictionary, refCount, clone } from "@azure-tools/linq";
+import { ModelerFourOptions } from "../modeler/modelerfour-options";
 
 const xmsThreshold = "x-ms-payload-flattening-threshold";
 const xmsFlatten = "x-ms-client-flatten";
@@ -23,7 +24,7 @@ const hasBeenFlattened = "x-ms-flattened";
 
 export class Flattener {
   codeModel: CodeModel;
-  options: Dictionary<any> = {};
+  options: ModelerFourOptions = {};
   threshold = 0;
   recursePayload = false;
 

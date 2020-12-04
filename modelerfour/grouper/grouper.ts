@@ -18,14 +18,14 @@ import {
 import { Session } from "@azure-tools/autorest-extension-base";
 import { values, items, length, Dictionary, refCount, clone } from "@azure-tools/linq";
 import { pascalCase, camelCase } from "@azure-tools/codegen";
+import { ModelerFourOptions } from "../modeler/modelerfour-options";
 
 const mergeReponseHeaders = "merge-response-headers";
-const enableParameterGrouping = "group-parameters";
 const xmsParameterGrouping = "x-ms-parameter-grouping";
 
 export class Grouper {
   codeModel: CodeModel;
-  options: Dictionary<any> = {};
+  options: ModelerFourOptions = {};
   groups: Dictionary<GroupSchema> = {};
 
   constructor(protected session: Session<CodeModel>) {
@@ -39,7 +39,7 @@ export class Grouper {
   }
 
   process() {
-    if (this.options[enableParameterGrouping] === true) {
+    if (this.options["group-parameters"] === true) {
       for (const group of this.codeModel.operationGroups) {
         for (const operation of group.operations) {
           for (const request of values(operation.requests)) {
