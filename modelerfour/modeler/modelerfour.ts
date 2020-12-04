@@ -75,6 +75,7 @@ import {
 import { Session, Channel } from "@azure-tools/autorest-extension-base";
 import { Interpretations, XMSEnum } from "./interpretations";
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from "@azure-tools/codegen";
+import { ModelerFourOptions } from "./modelerfour-options";
 
 /** adds only if the item is not in the collection already
  *
@@ -145,7 +146,7 @@ export class ModelerFour {
   private schemaCache = new ProcessingCache((schema: OpenAPI.Schema, name: string) =>
     this.processSchemaImpl(schema, name),
   );
-  private options: Dictionary<any> = {};
+  private options: ModelerFourOptions = {};
   private uniqueNames: Dictionary<any> = {};
 
   constructor(protected session: Session<oai3>) {
@@ -2078,7 +2079,7 @@ export class ModelerFour {
     // operation and add it to all requests.  Before adding the header,
     // make sure there isn't an existing Accept parameter.
     const mediaTypes = Array.from(acceptTypes);
-    if (acceptTypes.size > 0) {
+    if (this.options["always-create-accept-parameter"] === true && acceptTypes.size > 0) {
       const acceptSchema = this.getAcceptParameterSchema(mediaTypes);
       if (!values(operation.parameters).first(isAcceptHeaderParam)) {
         for (const request of values(operation.requests)) {
@@ -2144,7 +2145,7 @@ export class ModelerFour {
       }
 
       const kmtBinary = groupedMediaTypes.get(KnownMediaType.Binary);
-      
+
       if (kmtBinary) {
         // handle binary
         this.processBinary(KnownMediaType.Binary, kmtBinary, operation, requestBody);
@@ -2156,19 +2157,9 @@ export class ModelerFour {
       const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
       if (kmtJSON) {
         if ([...kmtJSON.values()].find((x) => x.schema.instance && this.isSchemaBinary(x.schema.instance))) {
-          this.processBinary(
-            KnownMediaType.Binary,
-            kmtJSON,
-            operation,
-            requestBody
-          );
+          this.processBinary(KnownMediaType.Binary, kmtJSON, operation, requestBody);
         } else {
-          this.processSerializedObject(
-            KnownMediaType.Json,
-            kmtJSON,
-            operation,
-            requestBody
-          );
+          this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody);
         }
       }
       const kmtXML = groupedMediaTypes.get(KnownMediaType.Xml);
@@ -2285,11 +2276,7 @@ export class ModelerFour {
   }
 
   private isSchemaBinary(schema: OpenAPI.Schema) {
-    return (
-      <any>schema.type === "file" ||
-      <any>schema.format === "file" ||
-      <any>schema.format === "binary"
-    );
+    return <any>schema.type === "file" || <any>schema.format === "file" || <any>schema.format === "binary";
   }
 
   private propagateSchemaUsage(schema: Schema): void {
