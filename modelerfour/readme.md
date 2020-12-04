@@ -179,6 +179,9 @@ modelerfour:
   # when it's only one possible value, make it a constant.
   always-create-content-type-parameter: true
 
+   # always create the Accept parameter
+  always-create-accept-parameter: true
+
   # always create SealedChoiceSchema for x-ms-enum schemas no matter
   # what the settings are.  This can be used to smooth migration from
   # remodeler to modelerfour.
