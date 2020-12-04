@@ -2144,7 +2144,7 @@ export class ModelerFour {
       }
 
       const kmtBinary = groupedMediaTypes.get(KnownMediaType.Binary);
-      
+
       if (kmtBinary) {
         // handle binary
         this.processBinary(KnownMediaType.Binary, kmtBinary, operation, requestBody);
@@ -2156,19 +2156,9 @@ export class ModelerFour {
       const kmtJSON = groupedMediaTypes.get(KnownMediaType.Json);
       if (kmtJSON) {
         if ([...kmtJSON.values()].find((x) => x.schema.instance && this.isSchemaBinary(x.schema.instance))) {
-          this.processBinary(
-            KnownMediaType.Binary,
-            kmtJSON,
-            operation,
-            requestBody
-          );
+          this.processBinary(KnownMediaType.Binary, kmtJSON, operation, requestBody);
         } else {
-          this.processSerializedObject(
-            KnownMediaType.Json,
-            kmtJSON,
-            operation,
-            requestBody
-          );
+          this.processSerializedObject(KnownMediaType.Json, kmtJSON, operation, requestBody);
         }
       }
       const kmtXML = groupedMediaTypes.get(KnownMediaType.Xml);
@@ -2285,11 +2275,7 @@ export class ModelerFour {
   }
 
   private isSchemaBinary(schema: OpenAPI.Schema) {
-    return (
-      <any>schema.type === "file" ||
-      <any>schema.format === "file" ||
-      <any>schema.format === "binary"
-    );
+    return <any>schema.type === "file" || <any>schema.format === "file" || <any>schema.format === "binary";
   }
 
   private propagateSchemaUsage(schema: Schema): void {
