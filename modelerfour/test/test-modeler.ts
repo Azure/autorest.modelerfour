@@ -263,6 +263,7 @@ class Process {
           "group-parameters": true,
           "resolve-schema-name-collisons": true,
           "additional-checks": true,
+          "always-create-accept-parameter": true,
           //'always-create-content-type-parameter': true,
           "naming": {
             override: {

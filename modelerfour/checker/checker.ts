@@ -15,10 +15,11 @@ import {
 } from "@azure-tools/codemodel";
 import { Session } from "@azure-tools/autorest-extension-base";
 import { values, items, length, Dictionary, refCount, clone } from "@azure-tools/linq";
+import { ModelerFourOptions } from "../modeler/modelerfour-options";
 
 export class Checker {
   codeModel: CodeModel;
-  options: Dictionary<any> = {};
+  options: ModelerFourOptions = {};
 
   constructor(protected session: Session<CodeModel>) {
     this.codeModel = session.model; // shadow(session.model, filename);

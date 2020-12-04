@@ -177,7 +177,10 @@ modelerfour:
 
   # always create the content-type parameter for binary requests 
   # when it's only one possible value, make it a constant.
-  always-create-content-type-parameter: true
+  always-create-content-type-parameter: false|true
+
+  # always create the Accept parameter
+  always-create-accept-parameter: true|false
 
   # always create SealedChoiceSchema for x-ms-enum schemas no matter
   # what the settings are.  This can be used to smooth migration from
@@ -215,6 +218,11 @@ modelerfour:
 ```
 ~~~
 
+Default options:
+```yaml
+modelerfour:
+  always-create-accept-parameter: true
+```
 
 #### ModelerFour
 

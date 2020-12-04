@@ -75,6 +75,7 @@ import {
 import { Session, Channel } from "@azure-tools/autorest-extension-base";
 import { Interpretations, XMSEnum } from "./interpretations";
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from "@azure-tools/codegen";
+import { ModelerFourOptions } from "./modelerfour-options";
 
 /** adds only if the item is not in the collection already
  *
@@ -145,7 +146,7 @@ export class ModelerFour {
   private schemaCache = new ProcessingCache((schema: OpenAPI.Schema, name: string) =>
     this.processSchemaImpl(schema, name),
   );
-  private options: Dictionary<any> = {};
+  private options: ModelerFourOptions = {};
   private uniqueNames: Dictionary<any> = {};
 
   constructor(protected session: Session<oai3>) {
@@ -241,7 +242,6 @@ export class ModelerFour {
 
   async init() {
     this.options = await this.session.getValue("modelerfour", {});
-
     // grab override-client-name
     const newTitle = await this.session.getValue("override-client-name", "");
     if (newTitle) {
@@ -1360,7 +1360,8 @@ export class ModelerFour {
         http,
       },
     });
-
+    this.session.log(`Options ${JSON.stringify(this.options)}`, {});
+    this.session.log(`Accept-param ${this.options["always-create-accept-parameter"]}`, {});
     if (this.options[`always-create-content-type-parameter`] === true || http.mediaTypes.length > 1) {
       const scs = this.getContentTypeParameterSchema(http);
 
@@ -2078,7 +2079,7 @@ export class ModelerFour {
     // operation and add it to all requests.  Before adding the header,
     // make sure there isn't an existing Accept parameter.
     const mediaTypes = Array.from(acceptTypes);
-    if (acceptTypes.size > 0) {
+    if (this.options["always-create-accept-parameter"] === true && acceptTypes.size > 0) {
       const acceptSchema = this.getAcceptParameterSchema(mediaTypes);
       if (!values(operation.parameters).first(isAcceptHeaderParam)) {
         for (const request of values(operation.requests)) {

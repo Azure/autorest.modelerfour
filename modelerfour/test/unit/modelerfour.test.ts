@@ -15,29 +15,32 @@ import {
   responses,
 } from "./unitTestUtil";
 import { CodeModel, Parameter, SchemaResponse, ConstantSchema, SealedChoiceSchema } from "@azure-tools/codemodel";
-import { ParameterLocation } from "@azure-tools/openapi";
+import { ModelerFourOptions } from "../../modeler/modelerfour-options";
+
+const modelerfourOptions: ModelerFourOptions = {
+  "flatten-models": true,
+  "flatten-payloads": true,
+  "group-parameters": true,
+  "resolve-schema-name-collisons": true,
+  "additional-checks": true,
+  "always-create-accept-parameter": true,
+  //'always-create-content-type-parameter': true,
+  "naming": {
+    override: {
+      $host: "$host",
+      cmyk: "CMYK",
+    },
+    local: "_ + camel",
+    constantParameter: "pascal",
+  },
+};
 
 const cfg = {
-  "modelerfour": {
-    "flatten-models": true,
-    "flatten-payloads": true,
-    "group-parameters": true,
-    "resolve-schema-name-collisons": true,
-    "additional-checks": true,
-    //'always-create-content-type-parameter': true,
-    "naming": {
-      override: {
-        $host: "$host",
-        cmyk: "CMYK",
-      },
-      local: "_ + camel",
-      constantParameter: "pascal",
-    },
-  },
+  "modelerfour": modelerfourOptions,
   "payload-flattening-threshold": 2,
 };
 
-async function runModeler(spec: any, config: any = cfg): Promise<CodeModel> {
+async function runModeler(spec: any, config: { modelerfour: ModelerFourOptions } = cfg): Promise<CodeModel> {
   const modelerErrors: Array<any> = [];
   const session = await createTestSession(config, spec, modelerErrors);
   const modeler = await new ModelerFour(session).init();
@@ -1065,6 +1068,7 @@ class Modeler {
     const codeModel = await runModeler(spec, {
       modelerfour: {
         "always-create-content-type-parameter": true,
+        "always-create-accept-parameter": true,
       },
     });
 

@@ -27,6 +27,7 @@ import {
   Styler,
   pascalCase,
 } from "@azure-tools/codegen";
+import { ModelerFourOptions } from "../modeler/modelerfour-options";
 
 function getNameOptions(typeName: string, components: Array<string>) {
   const result = new Set<string>();
@@ -133,7 +134,7 @@ function deduplicateSchemaName(
 
 export class PreNamer {
   codeModel: CodeModel;
-  options: Dictionary<any> = {};
+  options: ModelerFourOptions = {};
   format = {
     parameter: Style.camel,
     property: Style.camel,
