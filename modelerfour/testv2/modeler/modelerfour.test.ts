@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 import { ModelerFour } from "../../modeler/modelerfour";
 import { CodeModel, Parameter, SchemaResponse, ConstantSchema, SealedChoiceSchema } from "@azure-tools/codemodel";
 import { ModelerFourOptions } from "../../modeler/modelerfour-options";
