@@ -23,8 +23,6 @@ steps:
       rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
       npx @microsoft/rush rebuild
       rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
-      npx @microsoft/rush test
-      rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi
 
       # check to see if any files changed after the test run.
       git status
@@ -41,9 +39,13 @@ steps:
 
     displayName: "Rush install, build and test"
 
-  - script: npm run test:v2:ci
+  - script: npm run test:ci
     workingDirectory: modelerfour
-    displayName: "Test V2"
+    displayName: "Tests"
+
+  - script: npm run lint
+    workingDirectory: modelerfour
+    displayName: "Lint"
 
   - task: PublishPipelineArtifact@1
     inputs:

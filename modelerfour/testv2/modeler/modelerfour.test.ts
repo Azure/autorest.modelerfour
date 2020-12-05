@@ -2,20 +2,19 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as assert from "assert";
-import { suite, test } from "mocha-typescript";
 import { ModelerFour } from "../../modeler/modelerfour";
-import {
-  createTestSession,
-  createTestSpec,
-  addSchema,
-  addOperation,
-  response,
-  InitialTestSpec,
-  responses,
-} from "./unitTestUtil";
 import { CodeModel, Parameter, SchemaResponse, ConstantSchema, SealedChoiceSchema } from "@azure-tools/codemodel";
 import { ModelerFourOptions } from "../../modeler/modelerfour-options";
+import {
+  addOperation,
+  addSchema,
+  createTestSessionFromModel,
+  createTestSpec,
+  InitialTestSpec,
+  response,
+  responses,
+} from "../utils";
+import { Model } from "@azure-tools/openapi";
 
 const modelerfourOptions: ModelerFourOptions = {
   "flatten-models": true,
@@ -41,11 +40,10 @@ const cfg = {
 };
 
 async function runModeler(spec: any, config: { modelerfour: ModelerFourOptions } = cfg): Promise<CodeModel> {
-  const modelerErrors: Array<any> = [];
-  const session = await createTestSession(config, spec, modelerErrors);
+  const { session, errors } = await createTestSessionFromModel<Model>(config, spec);
   const modeler = await new ModelerFour(session).init();
 
-  assert.equal(modelerErrors.length, 0);
+  expect(errors.length).toBe(0);
 
   return modeler.process();
 }
@@ -60,33 +58,30 @@ function assertSchema(
   accessor: (schema: any) => any,
   expected: any,
 ) {
-  assert(schemaList, `Schema list was empty when searching for schema: ${schemaName}`);
+  expect(schemaList).not.toBeFalsy();
 
   // We've already asserted, but make the compiler happy
   if (schemaList) {
     const schema = findByName(schemaName, schemaList);
-    assert(schema, `Could not find schema in code model: ${schemaName}`);
-    assert.deepEqual(accessor(schema), expected);
+    expect(schema).not.toBeFalsy();
+    expect(accessor(schema)).toEqual(expected);
   }
 }
 
-@suite
-class Modeler {
-  @test
-  async "preserves 'info' metadata"() {
+describe("Modeler", () => {
+  it("preserves 'info' metadata", async () => {
     const spec = createTestSpec();
     const codeModel = await runModeler(spec);
 
-    assert.strictEqual(codeModel.info.title, InitialTestSpec.info.title);
-    assert.strictEqual(codeModel.info.license, InitialTestSpec.info.license);
-    assert.strictEqual(codeModel.info.description, InitialTestSpec.info.description);
-    assert.strictEqual(codeModel.info.contact?.name, InitialTestSpec.info.contact.name);
-    assert.strictEqual(codeModel.info.contact?.url, InitialTestSpec.info.contact.url);
-    assert.strictEqual(codeModel.info.contact?.email, InitialTestSpec.info.contact.email);
-  }
+    expect(codeModel.info.title).toEqual(InitialTestSpec.info.title);
+    expect(codeModel.info.license).toEqual(InitialTestSpec.info.license);
+    expect(codeModel.info.description).toEqual(InitialTestSpec.info.description);
+    expect(codeModel.info.contact?.name).toEqual(InitialTestSpec.info.contact.name);
+    expect(codeModel.info.contact?.url).toEqual(InitialTestSpec.info.contact.url);
+    expect(codeModel.info.contact?.email).toEqual(InitialTestSpec.info.contact.email);
+  });
 
-  @test
-  async "tracks schema usage"() {
+  it("tracks schema usage", async () => {
     const testSchema = {
       type: "object",
       properties: {
@@ -204,10 +199,9 @@ class Modeler {
     // Ensure that usage gets propagated to schemas used as elements of
     // arrays and dictionary property values
     assertSchema("ElementSchema", codeModel.schemas.objects, (s) => s.usage.sort(), ["input", "output"]);
-  }
+  });
 
-  @test
-  async "allows integer schemas with unexpected 'format'"() {
+  it("allows integer schemas with unexpected 'format'", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "Int16", {
@@ -232,10 +226,9 @@ class Modeler {
 
     // Make sure a legitimate format is detected correctly
     assertSchema("Int64", codeModel.schemas.numbers, (s) => s.precision, 64);
-  }
+  });
 
-  @test
-  async "modelAsString=true creates ChoiceSchema for single-value enum"() {
+  it("modelAsString=true creates ChoiceSchema for single-value enum", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "ShouldBeConstant", {
@@ -256,10 +249,9 @@ class Modeler {
     assertSchema("ShouldBeConstant", codeModel.schemas.constants, (s) => s.value.value, "html_strip");
 
     assertSchema("ShouldBeChoice", codeModel.schemas.choices, (s) => s.choices[0].value, "html_strip");
-  }
+  });
 
-  @test
-  async "propagates 'nullable' to properties, parameters, collections, and responses"() {
+  it("propagates 'nullable' to properties, parameters, collections, and responses", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "WannaBeNullable", {
@@ -365,12 +357,11 @@ class Modeler {
     const param = operation.parameters![1];
 
     const response: SchemaResponse = <SchemaResponse>operation.responses![0];
-    assert.strictEqual(param.nullable, true);
-    assert.strictEqual(response.nullable, true);
-  }
+    expect(param.nullable).toEqual(true);
+    expect(response.nullable).toEqual(true);
+  });
 
-  @test
-  async "propagates clientDefaultValue from x-ms-client-default"() {
+  it("propagates clientDefaultValue from x-ms-client-default", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "HasClientDefault", {
@@ -447,21 +438,20 @@ class Modeler {
       "defaultedBodyParam",
       <Array<Parameter> | undefined>postIt!.requests?.[0].parameters,
     );
-    assert.strictEqual(bodyParam?.clientDefaultValue, "Bodied");
+    expect(bodyParam?.clientDefaultValue).toEqual("Bodied");
 
     const queryParam = findByName("defaultedQueryParam", postIt!.parameters);
-    assert.strictEqual(queryParam!.clientDefaultValue, 42);
+    expect(queryParam!.clientDefaultValue).toEqual(42);
 
     const postMeme = findByName("postMeme", codeModel.operationGroups[0].operations);
     const memeBodyParam = findByName<Parameter | undefined>(
       "defaultedBodyMeme",
       <Array<Parameter> | undefined>postMeme!.requests?.[0].parameters,
     );
-    assert.strictEqual(memeBodyParam?.clientDefaultValue, "meme.jpg");
-  }
+    expect(memeBodyParam?.clientDefaultValue).toEqual("meme.jpg");
+  });
 
-  @test
-  async "propagates parameter 'expand' value"() {
+  it("propagates parameter 'expand' value", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/test", {
@@ -500,13 +490,12 @@ class Modeler {
 
     const getIt = findByName("getIt", codeModel.operationGroups[0].operations);
     const explodedParam = findByName("explodedParam", getIt!.parameters);
-    assert.strictEqual(explodedParam!.protocol.http!.explode, true);
+    expect(explodedParam!.protocol.http!.explode).toBe(true);
     const nonExplodedParam = findByName("nonExplodedParam", getIt!.parameters);
-    assert.strictEqual(nonExplodedParam!.protocol.http!.explode, undefined);
-  }
+    expect(nonExplodedParam!.protocol.http!.explode).toBe(undefined);
+  });
 
-  @test
-  async "stores header name and description in HttpHeader language field"() {
+  it("stores header name and description in HttpHeader language field", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/header", {
@@ -549,16 +538,15 @@ class Modeler {
     const namedHeaders = findByName("namedHeaders", codeModel.operationGroups[0].operations);
 
     const namedHeader = namedHeaders?.responses?.[0].protocol.http!.headers[0];
-    assert.strictEqual(namedHeader.language.default.name, "NamedHeader");
-    assert.strictEqual(namedHeader.language.default.description, "");
+    expect(namedHeader.language.default.name).toEqual("NamedHeader");
+    expect(namedHeader.language.default.description).toEqual("");
 
     const unnamedHeader = namedHeaders?.responses?.[0].protocol.http!.headers[1];
-    assert.strictEqual(unnamedHeader.language.default.name, "x-unnamed-header");
-    assert.strictEqual(unnamedHeader.language.default.description, "Header with no client name");
-  }
+    expect(unnamedHeader.language.default.name).toEqual("x-unnamed-header");
+    expect(unnamedHeader.language.default.description).toEqual("Header with no client name");
+  });
 
-  @test
-  async "x-ms-text extension in xml object will be moved to 'text' property"() {
+  it("x-ms-text extension in xml object will be moved to 'text' property", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "HasOnlyText", {
@@ -591,14 +579,12 @@ class Modeler {
     });
 
     // Should throw when both 'text' and 'attribute' are true
-    await assert.rejects(
-      () => runModeler(spec),
+    await expect(() => runModeler(spec)).rejects.toThrow(
       /XML serialization for a schema cannot be in both 'text' and 'attribute'$/,
     );
-  }
+  });
 
-  @test
-  async "converts multipart/form-data schema to operation parameters"() {
+  it("converts multipart/form-data schema to operation parameters", async () => {
     const multiPartSchema = {
       type: "object",
       properties: {
@@ -667,15 +653,14 @@ class Modeler {
     const uploadFile = findByName("uploadFile", codeModel.operationGroups[0].operations);
 
     const fileContentParam = uploadFile?.requests?.[0].parameters?.[0];
-    assert.strictEqual(fileContentParam?.language.default.name, "fileContent");
-    assert.strictEqual(fileContentParam?.required, true);
+    expect(fileContentParam?.language.default.name).toEqual("fileContent");
+    expect(fileContentParam?.required).toEqual(true);
     const fileNameParam = uploadFile?.requests?.[0].parameters?.[1];
-    assert.strictEqual(fileNameParam?.language.default.name, "fileName");
-    assert.strictEqual(fileNameParam?.required, undefined);
-  }
+    expect(fileNameParam?.language.default.name).toEqual("fileName");
+    expect(fileNameParam?.required).toEqual(undefined);
+  });
 
-  @test
-  async "synthesizes accept header based on response media types"() {
+  it("synthesizes accept header based on response media types", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/accept", {
@@ -725,25 +710,24 @@ class Modeler {
     const receivesAcceptHeader = findByName("receivesAcceptHeader", codeModel.operationGroups[0].operations);
 
     const acceptParam = receivesAcceptHeader?.requests?.[0].parameters?.[0];
-    assert.strictEqual(acceptParam!.language.default.serializedName, "Accept");
-    assert.strictEqual(acceptParam!.schema.type, "constant");
-    assert.strictEqual(acceptParam!.origin, "modelerfour:synthesized/accept");
-    assert.strictEqual((<ConstantSchema>acceptParam!.schema).value.value, "application/json, application/xml");
+    expect(acceptParam!.language.default.serializedName).toEqual("Accept");
+    expect(acceptParam!.schema.type).toEqual("constant");
+    expect(acceptParam!.origin).toEqual("modelerfour:synthesized/accept");
+    expect((<ConstantSchema>acceptParam!.schema).value.value).toEqual("application/json, application/xml");
 
     const hasAcceptHeader = findByName("hasAcceptHeader", codeModel.operationGroups[0].operations);
 
     // Make sure that no Accept parameters were added to a request
-    assert.strictEqual(hasAcceptHeader!.requests?.length, 1);
-    assert.strictEqual(hasAcceptHeader!.requests?.[0].parameters, undefined);
+    expect(hasAcceptHeader!.requests?.length).toEqual(1);
+    expect(hasAcceptHeader!.requests?.[0].parameters).toEqual(undefined);
 
     // Make sure the original Accept parameter is there
     const existingAcceptParam = hasAcceptHeader?.parameters?.[1];
-    assert.strictEqual(existingAcceptParam!.language.default.serializedName, "Accept");
-    assert.strictEqual(existingAcceptParam!.origin, undefined);
-  }
+    expect(existingAcceptParam!.language.default.serializedName).toEqual("Accept");
+    expect(existingAcceptParam!.origin).toEqual(undefined);
+  });
 
-  @test
-  async "always-seal-x-ms-enum configuration produces SealedChoiceSchema for all x-ms-enums"() {
+  it("always-seal-x-ms-enum configuration produces SealedChoiceSchema for all x-ms-enums", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "ModelAsString", {
@@ -793,10 +777,9 @@ class Modeler {
     assertSchema("ShouldBeSealed", codeModelWithSetting.schemas.sealedChoices, (s) => s.choiceType.type, "string");
 
     assertSchema("SingleValueEnum", codeModelWithSetting.schemas.sealedChoices, (s) => s.choiceType.type, "string");
-  }
+  });
 
-  @test
-  async "allows header parameters with 'x-ms-api-version: true' to become full api-version parameters"() {
+  it("allows header parameters with 'x-ms-api-version: true' to become full api-version parameters", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/api-version-header", {
@@ -894,34 +877,33 @@ class Modeler {
     const apiVersionHeader = findByName("apiVersionHeader", codeModel.operationGroups[0].operations);
 
     const apiVersionHeaderParam = apiVersionHeader?.parameters?.[1];
-    assert.strictEqual(apiVersionHeaderParam!.language.default.serializedName, "api-version");
-    assert.strictEqual(apiVersionHeaderParam!.implementation, "Client");
-    assert.strictEqual(apiVersionHeaderParam!.origin, "modelerfour:synthesized/api-version");
+    expect(apiVersionHeaderParam!.language.default.serializedName).toEqual("api-version");
+    expect(apiVersionHeaderParam!.implementation).toEqual("Client");
+    expect(apiVersionHeaderParam!.origin).toEqual("modelerfour:synthesized/api-version");
 
     const nonApiVersionHeader = findByName("nonApiVersionHeader", codeModel.operationGroups[0].operations);
 
     const nonApiVersionHeaderParam = nonApiVersionHeader?.parameters?.[1];
-    assert.strictEqual(nonApiVersionHeaderParam!.language.default.serializedName, "api-version");
-    assert.strictEqual(nonApiVersionHeaderParam!.implementation, "Method");
-    assert.strictEqual(nonApiVersionHeaderParam!.origin, undefined);
+    expect(nonApiVersionHeaderParam!.language.default.serializedName).toEqual("api-version");
+    expect(nonApiVersionHeaderParam!.implementation).toEqual("Method");
+    expect(nonApiVersionHeaderParam!.origin).toEqual(undefined);
 
     const apiVersionQuery = findByName("apiVersionQuery", codeModel.operationGroups[0].operations);
 
     const apiVersionQueryParam = apiVersionQuery?.parameters?.[1];
-    assert.strictEqual(apiVersionQueryParam!.language.default.serializedName, "api-version");
-    assert.strictEqual(apiVersionQueryParam!.implementation, "Client");
-    assert.strictEqual(apiVersionQueryParam!.origin, "modelerfour:synthesized/api-version");
+    expect(apiVersionQueryParam!.language.default.serializedName).toEqual("api-version");
+    expect(apiVersionQueryParam!.implementation).toEqual("Client");
+    expect(apiVersionQueryParam!.origin).toEqual("modelerfour:synthesized/api-version");
 
     const nonApiVersionQuery = findByName("nonApiVersionQuery", codeModel.operationGroups[0].operations);
 
     const nonApiVersionQueryParam = nonApiVersionQuery?.parameters?.[1];
-    assert.strictEqual(nonApiVersionQueryParam!.language.default.serializedName, "api-version");
-    assert.strictEqual(nonApiVersionQueryParam!.implementation, "Method");
-    assert.strictEqual(nonApiVersionQueryParam!.origin, undefined);
-  }
+    expect(nonApiVersionQueryParam!.language.default.serializedName).toEqual("api-version");
+    expect(nonApiVersionQueryParam!.implementation).toEqual("Method");
+    expect(nonApiVersionQueryParam!.origin).toEqual(undefined);
+  });
 
-  @test
-  async "propagates extensions to response header definitions"() {
+  it("propagates extensions to response header definitions", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/headerWithExtension", {
@@ -958,11 +940,11 @@ class Modeler {
     const hasHeaderWithExtension = findByName("hasHeaderWithExtension", codeModel.operationGroups[0].operations);
 
     const headerWithExtension = hasHeaderWithExtension?.responses?.[0].protocol.http!.headers[0];
-    assert.strictEqual(headerWithExtension.language.default.name, "HeaderWithExtension");
-    assert.strictEqual(headerWithExtension.extensions["x-ms-header-collection-prefix"], "x-ms-meta");
-  }
+    expect(headerWithExtension.language.default.name).toEqual("HeaderWithExtension");
+    expect(headerWithExtension.extensions["x-ms-header-collection-prefix"]).toEqual("x-ms-meta");
+  });
 
-  async "allows text/plain responses when schema type is 'string'"() {
+  it("allows text/plain responses when schema type is 'string'", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/text", {
@@ -988,14 +970,13 @@ class Modeler {
     const responseNoCharset = textBody?.responses?.[0] as SchemaResponse;
     const responseWithCharset = textBody?.responses?.[1] as SchemaResponse;
 
-    assert.strictEqual(responseNoCharset.protocol.http?.knownMediaType, "text");
-    assert.strictEqual(responseNoCharset.schema?.type, "string");
-    assert.strictEqual(responseWithCharset.protocol.http?.knownMediaType, "text");
-    assert.strictEqual(responseWithCharset.schema?.type, "string");
-  }
+    expect(responseNoCharset.protocol.http?.knownMediaType).toEqual("text");
+    expect(responseNoCharset.schema?.type).toEqual("string");
+    expect(responseWithCharset.protocol.http?.knownMediaType).toEqual("text");
+    expect(responseWithCharset.schema?.type).toEqual("string");
+  });
 
-  @test
-  async "ensures unique names for synthesized schemas like ContentType and Accept"() {
+  it("ensures unique names for synthesized schemas like ContentType and Accept", async () => {
     const spec = createTestSpec();
 
     addOperation(spec, "/accept", {
@@ -1073,19 +1054,19 @@ class Modeler {
     });
 
     const acceptSchema = findByName("Accept", codeModel.schemas.constants);
-    assert.strictEqual((<ConstantSchema>acceptSchema).value.value, "application/json, application/xml");
+    expect((<ConstantSchema>acceptSchema).value.value).toEqual("application/json, application/xml");
 
     const accept1Schema = findByName("Accept1", codeModel.schemas.constants);
-    assert.strictEqual((<ConstantSchema>accept1Schema).value.value, "application/json, text/plain");
+    expect((<ConstantSchema>accept1Schema).value.value).toEqual("application/json, text/plain");
 
     const contentTypeSchema = findByName("ContentType", codeModel.schemas.sealedChoices);
-    assert.strictEqual((<SealedChoiceSchema>contentTypeSchema).choices[0].value, "image/png");
-    assert.strictEqual((<SealedChoiceSchema>contentTypeSchema).choices[1].value, "image/tiff");
+    expect((<SealedChoiceSchema>contentTypeSchema).choices[0].value).toEqual("image/png");
+    expect((<SealedChoiceSchema>contentTypeSchema).choices[1].value).toEqual("image/tiff");
     const choices = (<SealedChoiceSchema>contentTypeSchema).choices.map((c) => c.value).sort();
-    assert.deepEqual(choices, ["image/png", "image/tiff"]);
+    expect(choices).toEqual(["image/png", "image/tiff"]);
 
     const contentType1Schema = findByName("ContentType1", codeModel.schemas.sealedChoices);
     const choices1 = (<SealedChoiceSchema>contentType1Schema).choices.map((c) => c.value).sort();
-    assert.deepEqual(choices1, ["image/bmp", "image/png"]);
-  }
-}
+    expect(choices1).toEqual(["image/bmp", "image/png"]);
+  });
+});

@@ -1,4 +1,4 @@
-import { createTestSession } from "../utils";
+import { createTestSessionFromFiles } from "../utils";
 import { ModelerFour } from "../../modeler/modelerfour";
 import { readdirSync } from "fs";
 import { serialize } from "@azure-tools/codegen";
@@ -45,7 +45,11 @@ describe("Testing rendering specific scenarios", () => {
 
   for (const folder of folders) {
     it(`generate model for '${folder}'`, async () => {
-      const session = await createTestSession<Model>(cfg, `${inputsFolder}/${folder}`, ["openapi-document.json"]);
+      const { session, errors } = await createTestSessionFromFiles<Model>(cfg, `${inputsFolder}/${folder}`, [
+        "openapi-document.json",
+      ]);
+
+      expect(errors.length).toBe(0);
 
       const modeler = await new ModelerFour(session).init();
       const codeModel = modeler.process();

@@ -1,25 +1,6 @@
-import * as assert from "assert";
-import { suite, test } from "mocha-typescript";
+import { addSchema, createTestSessionFromModel, createTestSpec } from "../utils";
 import { QualityPreChecker } from "../../quality-precheck/prechecker";
-import {
-  Model,
-  Refable,
-  Dereferenced,
-  dereference,
-  Schema,
-  PropertyDetails,
-  JsonType,
-  StringFormat,
-} from "@azure-tools/openapi";
-import {
-  createTestSession,
-  createTestSpec,
-  addSchema,
-  addOperation,
-  response,
-  InitialTestSpec,
-  responses,
-} from "./unitTestUtil";
+import { Model, Refable, Dereferenced, dereference, Schema } from "@azure-tools/openapi";
 
 class PreCheckerClient {
   private constructor(private input: Model, public result: Model) {}
@@ -28,23 +9,17 @@ class PreCheckerClient {
     return dereference(this.input, item);
   }
 
-  static async create(spec: any): Promise<PreCheckerClient> {
-    const precheckerErrors: Array<any> = [];
-    const session = await createTestSession({}, spec, precheckerErrors);
+  static async create(spec: Model): Promise<PreCheckerClient> {
+    const { session, errors } = await createTestSessionFromModel<Model>({}, spec);
     const prechecker = await new QualityPreChecker(session).init();
+    expect(errors.length).toBe(0);
 
-    const client = new PreCheckerClient(prechecker.input, prechecker.process());
-
-    assert.equal(precheckerErrors.length, 0);
-
-    return client;
+    return new PreCheckerClient(prechecker.input, prechecker.process());
   }
 }
 
-@suite
-class PreChecker {
-  @test
-  async "removes empty object schemas from allOf list when other parents are present"() {
+describe("Prechecker", () => {
+  it("removes empty object schemas from allOf list when other parents are present", async () => {
     const spec = createTestSpec();
 
     addSchema(spec, "ParentSchema", {
@@ -73,11 +48,11 @@ class PreChecker {
     const childSchemaRef = model.components?.schemas && model.components?.schemas["ChildSchema"];
     if (childSchemaRef) {
       const childSchema = client.resolve<Schema>(childSchemaRef);
-      assert.strictEqual(childSchema.instance.allOf?.length, 1);
+      expect(childSchema.instance.allOf?.length).toEqual(1);
       const parent = client.resolve(childSchema.instance.allOf && childSchema.instance.allOf[0]);
-      assert.strictEqual(parent.name, "ParentSchema");
+      expect(parent.name).toEqual("ParentSchema");
     } else {
-      assert.fail("No 'ChildSchema' found!");
+      fail("No 'ChildSchema' found!");
     }
-  }
-}
+  });
+});
