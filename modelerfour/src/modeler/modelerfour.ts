@@ -1944,11 +1944,14 @@ export class ModelerFour {
       const knownMediaTypes = this.filterMediaTypes(response.content);
 
       if (length(knownMediaTypes) === 0) {
+        this.session.log(`Desc here 2, ${response.description}`, {});
         // it has no actual response *payload*
         // so we just want to create a simple response .
         const rsp = new Response({
           extensions: this.interpret.getExtensionProperties(response),
         });
+        rsp.language.default.description = response.description;
+
         const headers = new Array<HttpHeader>();
         for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
           this.use(hh.schema, (n, sch) => {
