@@ -17,8 +17,8 @@ const config = {
       tsconfig: "tsconfig.json",
     },
   },
-  setupFilesAfterEnv: ["<rootDir>/testv2/setupJest.ts"],
-  testMatch: ["<rootDir>/testv2/**/*.test.ts"],
+  setupFilesAfterEnv: ["<rootDir>/test/setupJest.ts"],
+  testMatch: ["<rootDir>/test/**/*.test.ts"],
   verbose: true,
   testEnvironment: "node",
 };
