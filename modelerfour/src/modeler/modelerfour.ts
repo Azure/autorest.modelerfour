@@ -2009,6 +2009,7 @@ export class ModelerFour {
             const rsp = new BinaryResponse({
               extensions: this.interpret.getExtensionProperties(response),
             });
+            rsp.language.default.description = response.description;
             rsp.protocol.http = SetType(HttpBinaryResponse, {
               statusCodes: [responseCode],
               knownMediaType: knownMediaType,
@@ -2055,6 +2056,7 @@ export class ModelerFour {
               extensions: this.interpret.getExtensionProperties(response),
               nullable: schema.nullable,
             });
+            rsp.language.default.description = response.description;
 
             rsp.protocol.http = SetType(HttpResponse, {
               statusCodes: [responseCode],
