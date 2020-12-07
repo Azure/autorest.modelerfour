@@ -1,5 +1,5 @@
 import { createTestSessionFromFiles } from "../utils";
-import { ModelerFour } from "../../modeler/modelerfour";
+import { ModelerFour } from "../../src/modeler/modelerfour";
 import { readdirSync } from "fs";
 import { serialize } from "@azure-tools/codegen";
 import { Model } from "@azure-tools/openapi";

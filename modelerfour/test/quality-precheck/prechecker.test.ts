@@ -1,5 +1,5 @@
 import { addSchema, createTestSessionFromModel, createTestSpec } from "../utils";
-import { QualityPreChecker } from "../../quality-precheck/prechecker";
+import { QualityPreChecker } from "../../src/quality-precheck/prechecker";
 import { Model, Refable, Dereferenced, dereference, Schema } from "@azure-tools/openapi";
 
 class PreCheckerClient {

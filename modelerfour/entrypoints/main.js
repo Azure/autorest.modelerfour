@@ -8,7 +8,7 @@ try {
   ) {
     require(`${__dirname}/../dist/static-loader.js`).load(`${__dirname}/../dist/static_modules.fs`);
   }
-  require(`${__dirname}/../dist/main.js`);
+  require(`${__dirname}/../dist/src/main.js`);
 } catch (e) {
   console.error(e);
 }
