@@ -1,6 +1,6 @@
 # Changelog for ModelerFour
 
-#### [NEXT]
+#### 4.16.0 _(unreleased)_
   - **Fix** Missing description in responses. ([PR 370](https://github.com/Azure/autorest.modelerfour/pull/370))
   - **Feature** Added new flag `always-create-accept-parameter` to enable/disable accept param auto generation. ([PR 366](https://github.com/Azure/autorest.modelerfour/pull/366))
   - **Fix** Allow request with body being a file and `application/json` content-type. ([PR 363](https://github.com/Azure/autorest.modelerfour/pull/363))
