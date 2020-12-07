@@ -1069,4 +1069,47 @@ describe("Modeler", () => {
     const choices1 = (<SealedChoiceSchema>contentType1Schema).choices.map((c) => c.value).sort();
     expect(choices1).toEqual(["image/bmp", "image/png"]);
   });
+
+  describe("Responses", () => {
+    it("include the response description for no content response", async () => {
+      const spec = createTestSpec();
+      addOperation(spec, "/test", {
+        get: {
+          responses: {
+            "204": {
+              description: "Foo bar test description",
+            },
+          },
+        },
+      });
+
+      const codeModel = await runModeler(spec);
+
+      const value = codeModel.operationGroups[0]?.operations[0]?.responses?.[0];
+      expect(value).not.toBeNull();
+      expect(value?.language.default.description).toEqual("Foo bar test description");
+    });
+
+    it("include the response description for no schema response", async () => {
+      const spec = createTestSpec();
+      addOperation(spec, "/test", {
+        get: {
+          responses: {
+            "200": {
+              description: "Foo bar test description",
+              content: {
+                "application/json": { schema: { type: "object" } },
+              },
+            },
+          },
+        },
+      });
+
+      const codeModel = await runModeler(spec);
+
+      const value = codeModel.operationGroups[0]?.operations[0]?.responses?.[0];
+      expect(value).not.toBeNull();
+      expect(value?.language.default.description).toEqual("Foo bar test description");
+    });
+  });
 });

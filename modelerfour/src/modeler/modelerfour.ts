@@ -1949,6 +1949,8 @@ export class ModelerFour {
         const rsp = new Response({
           extensions: this.interpret.getExtensionProperties(response),
         });
+        rsp.language.default.description = response.description;
+
         const headers = new Array<HttpHeader>();
         for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
           this.use(hh.schema, (n, sch) => {
@@ -2007,6 +2009,7 @@ export class ModelerFour {
             const rsp = new BinaryResponse({
               extensions: this.interpret.getExtensionProperties(response),
             });
+            rsp.language.default.description = response.description;
             rsp.protocol.http = SetType(HttpBinaryResponse, {
               statusCodes: [responseCode],
               knownMediaType: knownMediaType,
@@ -2053,6 +2056,7 @@ export class ModelerFour {
               extensions: this.interpret.getExtensionProperties(response),
               nullable: schema.nullable,
             });
+            rsp.language.default.description = response.description;
 
             rsp.protocol.http = SetType(HttpResponse, {
               statusCodes: [responseCode],
