@@ -1944,7 +1944,6 @@ export class ModelerFour {
       const knownMediaTypes = this.filterMediaTypes(response.content);
 
       if (length(knownMediaTypes) === 0) {
-        this.session.log(`Desc here 2, ${response.description}`, {});
         // it has no actual response *payload*
         // so we just want to create a simple response .
         const rsp = new Response({
