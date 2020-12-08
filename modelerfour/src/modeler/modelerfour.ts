@@ -1004,7 +1004,7 @@ export class ModelerFour {
           this.session.warning(
             `The schema '${
               schema?.["x-ms-metadata"]?.name || name
-            }' with an undefined type and decalared properties is a bit ambigious. This has been auto-corrected to 'type:object'`,
+            }' with an undefined type and declared properties is a bit ambigious. This has been auto-corrected to 'type:object'`,
             ["Modeler", "MissingType"],
             schema,
           );
