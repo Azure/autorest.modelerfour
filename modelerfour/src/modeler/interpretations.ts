@@ -190,10 +190,16 @@ export class Interpretations {
     }
     return [];
   }
+
   isEmptyObject(schema: OpenAPI.Schema): boolean {
+    const hasAdditionalProps =
+      typeof schema.additionalProperties === "boolean"
+        ? schema.additionalProperties
+        : length(schema.additionalProperties) !== 0;
     return (
       schema.type === JsonType.Object &&
       length(schema.allOf) + length(schema.anyOf) + length(schema.oneOf) + length(schema.properties) === 0 &&
+      !hasAdditionalProps &&
       !schema.discriminator
     );
   }
