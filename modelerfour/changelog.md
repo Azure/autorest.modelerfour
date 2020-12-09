@@ -4,6 +4,7 @@
   - **Fix** Missing description in responses. ([PR 370](https://github.com/Azure/autorest.modelerfour/pull/370))
   - **Feature** Added new flag `always-create-accept-parameter` to enable/disable accept param auto generation. ([PR 366](https://github.com/Azure/autorest.modelerfour/pull/366))
   - **Fix** Allow request with body being a file and `application/json` content-type. ([PR 363](https://github.com/Azure/autorest.modelerfour/pull/363))
+  - **Fix** Dictionaries of dictionaries not being modeled as such(`dict[str, object]` instead of `dict[str, dict[str, str]]`). ([PR 372](https://github.com/Azure/autorest.modelerfour/pull/372))
 
 #### 4.15.x
   - Schemas with `x-ms-enum`'s `modelAsString` set to `true` will now be represented as `ChoiceSchema` even with a single value.
