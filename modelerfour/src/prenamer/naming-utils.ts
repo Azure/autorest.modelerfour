@@ -21,12 +21,22 @@ export function getNameOptions(typeName: string, components: Array<string>) {
 }
 
 interface SetNameOptions {
-  removeDuplicates: boolean;
+  /**
+   * Remove consecutive duplicate words in the name.
+   * @example "FooBarBarSomething" -> "FooBarSomething"
+   */
+  removeDuplicates?: boolean;
+
+  /**
+   * Set containing the list of names already used in the given scope.
+   */
+  existingNames?: Set<string>;
 }
 
-const setNameDefaultOptions: SetNameOptions = {
+const setNameDefaultOptions: Required<SetNameOptions> = Object.freeze({
   removeDuplicates: true,
-};
+  existingNames: new Set<string>(),
+});
 
 export function setName(
   thing: { language: Languages },
@@ -50,11 +60,17 @@ export function setNameAllowEmpty(
 ) {
   options = { ...setNameDefaultOptions, ...options };
 
-  thing.language.default.name = styler(
+  const newName = styler(
     defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
     options.removeDuplicates,
     overrides,
   );
+
+  // Check if the new name is not yet taken.
+  if (newName && !options.existingNames?.has(newName)) {
+    options.existingNames?.add(newName);
+    thing.language.default.name = newName;
+  }
 }
 
 export function isUnassigned(value: string) {
