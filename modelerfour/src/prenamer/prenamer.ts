@@ -8,93 +8,16 @@ import {
   Languages,
   SchemaType,
   Schema,
-  ChoiceSchema,
-  SealedChoiceSchema,
-  GroupSchema,
   ImplementationLocation,
   Operation,
   Request,
   Response,
 } from "@azure-tools/codemodel";
 import { Session } from "@azure-tools/autorest-extension-base";
-import { values, length, Dictionary, when, items } from "@azure-tools/linq";
-import {
-  removeSequentialDuplicates,
-  fixLeadingNumber,
-  deconstruct,
-  selectName,
-  Style,
-  Styler,
-  pascalCase,
-} from "@azure-tools/codegen";
+import { values, length, Dictionary, items } from "@azure-tools/linq";
+import { selectName, Style, Styler } from "@azure-tools/codegen";
 import { ModelerFourOptions } from "../modeler/modelerfour-options";
-
-function getNameOptions(typeName: string, components: Array<string>) {
-  const result = new Set<string>();
-
-  // add a variant for each incrementally inclusive parent naming scheme.
-  for (let i = 0; i < length(components); i++) {
-    const subset = Style.pascal([...removeSequentialDuplicates(components.slice(-1 * i, length(components)))]);
-    result.add(subset);
-  }
-
-  // add a second-to-last-ditch option as <typename>.<name>
-  result.add(
-    Style.pascal([
-      ...removeSequentialDuplicates([...fixLeadingNumber(deconstruct(typeName)), ...deconstruct(components.last)]),
-    ]),
-  );
-  return [...result.values()];
-}
-
-function isUnassigned(value: string) {
-  return !value || value.indexOf("·") > -1;
-}
-
-interface SetNameOptions {
-  removeDuplicates: boolean;
-}
-
-function setName(
-  thing: { language: Languages },
-  styler: Styler,
-  defaultValue: string,
-  overrides: Dictionary<string>,
-  options?: SetNameOptions,
-) {
-  options = {
-    removeDuplicates: true,
-    ...options,
-  };
-
-  thing.language.default.name = styler(
-    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-    options.removeDuplicates,
-    overrides,
-  );
-  if (!thing.language.default.name) {
-    throw new Error("Name is empty!");
-  }
-}
-
-function setNameAllowEmpty(
-  thing: { language: Languages },
-  styler: Styler,
-  defaultValue: string,
-  overrides: Dictionary<string>,
-  options?: SetNameOptions,
-) {
-  options = {
-    removeDuplicates: true,
-    ...options,
-  };
-
-  thing.language.default.name = styler(
-    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-    options.removeDuplicates,
-    overrides,
-  );
-}
+import { getNameOptions, isUnassigned, setName, setNameAllowEmpty } from "./naming-utils";
 
 /*
  * This function checks the `schemaNames` set for a proposed name for the
@@ -180,10 +103,6 @@ export class PreNamer {
       override: naming.override || {},
     };
     return this;
-  }
-
-  isUnassigned(value: string) {
-    return !value || value.indexOf("·") > -1;
   }
 
   process() {
@@ -293,7 +212,7 @@ export class PreNamer {
 
     for (const schema of values(this.codeModel.schemas.arrays)) {
       setName(schema, this.format.type, `ArrayOf${schema.elementType.language.default.name}`, this.format.override);
-      if (this.isUnassigned(schema.language.default.description)) {
+      if (isUnassigned(schema.language.default.description)) {
         schema.language.default.description = `Array of ${schema.elementType.language.default.name}`;
       }
     }
