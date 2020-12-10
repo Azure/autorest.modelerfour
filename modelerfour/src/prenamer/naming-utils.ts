@@ -33,9 +33,8 @@ interface SetNameOptions {
   existingNames?: Set<string>;
 }
 
-const setNameDefaultOptions: Required<SetNameOptions> = Object.freeze({
+const setNameDefaultOptions: SetNameOptions = Object.freeze({
   removeDuplicates: true,
-  existingNames: new Set<string>(),
 });
 
 export function setName(
