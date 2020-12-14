@@ -55,4 +55,32 @@ describe("Prechecker", () => {
       fail("No 'ChildSchema' found!");
     }
   });
+
+  it("remove the sibling schema with the $ref", async () => {
+    const spec = createTestSpec();
+
+    addSchema(spec, "SiblingSchema", {
+      $ref: "#/components/schemas/MainSchema"
+    });
+
+    addSchema(spec, "MainSchema", {
+      type: "object",
+      "x-ms-client-name": "MainSchema",
+      properties: {
+        name: {
+          type: "string",
+        },
+      },
+    });
+
+    const client = await PreCheckerClient.create(spec);
+    const model = client.result;
+    const schemas = model.components!.schemas!;
+    expect(schemas["SiblingSchema"]).toBeUndefined();
+    expect(schemas["MainSchema"]).not.toBeUndefined();
+
+    console.error(schemas["MainSchema"]);
+    const mainSchema: Schema = schemas["MainSchema"] as any;
+    expect(mainSchema.properties?.name.type).toEqual("string");
+  });
 });
