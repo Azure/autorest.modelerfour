@@ -8,93 +8,20 @@ import {
   Languages,
   SchemaType,
   Schema,
-  ChoiceSchema,
-  SealedChoiceSchema,
-  GroupSchema,
   ImplementationLocation,
   Operation,
   Request,
   Response,
+  ChoiceSchema,
+  StringSchema,
+  SealedChoiceSchema,
+  PrimitiveSchema,
 } from "@azure-tools/codemodel";
 import { Session } from "@azure-tools/autorest-extension-base";
-import { values, length, Dictionary, when, items } from "@azure-tools/linq";
-import {
-  removeSequentialDuplicates,
-  fixLeadingNumber,
-  deconstruct,
-  selectName,
-  Style,
-  Styler,
-  pascalCase,
-} from "@azure-tools/codegen";
+import { values, length, Dictionary, items } from "@azure-tools/linq";
+import { selectName, Style, Styler } from "@azure-tools/codegen";
 import { ModelerFourOptions } from "../modeler/modelerfour-options";
-
-function getNameOptions(typeName: string, components: Array<string>) {
-  const result = new Set<string>();
-
-  // add a variant for each incrementally inclusive parent naming scheme.
-  for (let i = 0; i < length(components); i++) {
-    const subset = Style.pascal([...removeSequentialDuplicates(components.slice(-1 * i, length(components)))]);
-    result.add(subset);
-  }
-
-  // add a second-to-last-ditch option as <typename>.<name>
-  result.add(
-    Style.pascal([
-      ...removeSequentialDuplicates([...fixLeadingNumber(deconstruct(typeName)), ...deconstruct(components.last)]),
-    ]),
-  );
-  return [...result.values()];
-}
-
-function isUnassigned(value: string) {
-  return !value || value.indexOf("·") > -1;
-}
-
-interface SetNameOptions {
-  removeDuplicates: boolean;
-}
-
-function setName(
-  thing: { language: Languages },
-  styler: Styler,
-  defaultValue: string,
-  overrides: Dictionary<string>,
-  options?: SetNameOptions,
-) {
-  options = {
-    removeDuplicates: true,
-    ...options,
-  };
-
-  thing.language.default.name = styler(
-    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-    options.removeDuplicates,
-    overrides,
-  );
-  if (!thing.language.default.name) {
-    throw new Error("Name is empty!");
-  }
-}
-
-function setNameAllowEmpty(
-  thing: { language: Languages },
-  styler: Styler,
-  defaultValue: string,
-  overrides: Dictionary<string>,
-  options?: SetNameOptions,
-) {
-  options = {
-    removeDuplicates: true,
-    ...options,
-  };
-
-  thing.language.default.name = styler(
-    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-    options.removeDuplicates,
-    overrides,
-  );
-}
+import { getNameOptions, isUnassigned, setName, setNameAllowEmpty } from "./naming-utils";
 
 /*
  * This function checks the `schemaNames` set for a proposed name for the
@@ -182,10 +109,6 @@ export class PreNamer {
     return this;
   }
 
-  isUnassigned(value: string) {
-    return !value || value.indexOf("·") > -1;
-  }
-
   process() {
     if (this.options["prenamer"] === false) {
       return this.codeModel;
@@ -194,33 +117,13 @@ export class PreNamer {
     const deduplicateSchemaNames =
       !!this.options["lenient-model-deduplication"] || !!this.options["resolve-schema-name-collisons"];
 
+    const existingNames = getGlobalScopeNames(this.codeModel);
+
     // choice
-    const choiceSchemaNames = new Set<string>();
-    for (const schema of values(this.codeModel.schemas.choices)) {
-      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override);
-
-      if (deduplicateSchemaNames) {
-        deduplicateSchemaName(schema, choiceSchemaNames, this.session);
-      }
-
-      for (const choice of values(schema.choices)) {
-        setName(choice, this.format.choiceValue, "", this.format.override, { removeDuplicates: false });
-      }
-    }
+    this.processChoiceNames(this.codeModel.schemas.choices, existingNames, deduplicateSchemaNames);
 
     // sealed choice
-    const sealedChoiceSchemaNames = new Set<string>();
-    for (const schema of values(this.codeModel.schemas.sealedChoices)) {
-      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override);
-
-      if (deduplicateSchemaNames) {
-        deduplicateSchemaName(schema, sealedChoiceSchemaNames, this.session);
-      }
-
-      for (const choice of values(schema.choices)) {
-        setName(choice, this.format.choiceValue, "", this.format.override, { removeDuplicates: false });
-      }
-    }
+    this.processChoiceNames(this.codeModel.schemas.sealedChoices, existingNames, deduplicateSchemaNames);
 
     // constant
     for (const schema of values(this.codeModel.schemas.constants)) {
@@ -293,14 +196,14 @@ export class PreNamer {
 
     for (const schema of values(this.codeModel.schemas.arrays)) {
       setName(schema, this.format.type, `ArrayOf${schema.elementType.language.default.name}`, this.format.override);
-      if (this.isUnassigned(schema.language.default.description)) {
+      if (isUnassigned(schema.language.default.description)) {
         schema.language.default.description = `Array of ${schema.elementType.language.default.name}`;
       }
     }
 
     const objectSchemaNames = new Set<string>();
     for (const schema of values(this.codeModel.schemas.objects)) {
-      setName(schema, this.format.type, "", this.format.override);
+      setName(schema, this.format.type, "", this.format.override, { existingNames });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(
@@ -318,7 +221,7 @@ export class PreNamer {
 
     const groupSchemaNames = new Set<string>();
     for (const schema of values(this.codeModel.schemas.groups)) {
-      setName(schema, this.format.type, "", this.format.override);
+      setName(schema, this.format.type, "", this.format.override, { existingNames });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(
@@ -379,6 +282,25 @@ export class PreNamer {
     this.fixParameterCollisions();
 
     return this.codeModel;
+  }
+
+  private processChoiceNames(
+    choices: Array<ChoiceSchema | SealedChoiceSchema> | undefined,
+    existingNames: Set<string>,
+    deduplicateSchemaNames: boolean,
+  ) {
+    const choiceSchemaNames = new Set<string>();
+    for (const schema of values(choices)) {
+      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override, { existingNames });
+
+      if (deduplicateSchemaNames) {
+        deduplicateSchemaName(schema, choiceSchemaNames, this.session);
+      }
+
+      for (const choice of values(schema.choices)) {
+        setName(choice, this.format.choiceValue, "", this.format.override, { removeDuplicates: false });
+      }
+    }
   }
 
   private setParameterNames(parameterContainer: Operation | Request) {
@@ -481,3 +403,25 @@ export class PreNamer {
     }
   }
 }
+
+/**
+ * Returns a new set containing all the names in the global scopes for the given CodeModel.
+ * This correspond to the names of
+ * - Enums/Choices
+ * - Objects/Models
+ * - Groups
+ * - SealedChoices
+ * @param codeModel CodeModel
+ */
+const getGlobalScopeNames = (codeModel: CodeModel): Set<string> => {
+  return new Set(
+    [
+      ...(codeModel.schemas.choices ?? []),
+      ...(codeModel.schemas.objects ?? []),
+      ...(codeModel.schemas.groups ?? []),
+      ...(codeModel.schemas.sealedChoices ?? []),
+    ]
+      .map((x) => x.language.default.name)
+      .filter((x) => !isUnassigned(x)),
+  );
+};
