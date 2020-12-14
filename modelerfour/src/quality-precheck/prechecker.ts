@@ -313,7 +313,6 @@ export class QualityPreChecker {
 
   private removeDuplicateSchemas(name: string, schema1: DereferencedSchema, schema2: DereferencedSchema) {
     const { keep: schemaToKeep, remove: schemaToRemove} = this.findSchemaToRemove(schema1, schema2);
-    console.error("Found duplicate schemas", schemaToRemove.key);
     delete this.input.components!.schemas![schemaToRemove.key];
     const text = JSON.stringify(this.input);
     this.input = JSON.parse(
