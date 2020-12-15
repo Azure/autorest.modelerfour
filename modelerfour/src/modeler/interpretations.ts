@@ -306,23 +306,16 @@ export class Interpretations {
 
     // synthesize from tags.
     if (original.tags && length(original.tags) > 0) {
-      switch (length(original.tags)) {
-        case 0:
-          break;
-        case 1:
-          this.session.warning(
-            `Generating 'operationId' for '${httpMethod}' operation on path '${path}' `,
-            ["Interpretations"],
-            original,
-          );
-          return this.splitOpId(`${original.tags[0]}`);
-      }
+      const newOperationId = length(original.tags) === 1 
+        ? `${original.tags[0]}`
+        : `${original.tags[0]}_${original.tags[1]}`;
+      
       this.session.warning(
-        `Generating 'operationId' for '${httpMethod}' operation on path '${path}' `,
+        `Generating 'operationId' to '${newOperationId}' for '${httpMethod}' operation on path '${path}' `,
         ["Interpretations"],
         original,
       );
-      return this.splitOpId(`${original.tags[0]}_${original.tags[1]}`);
+      return this.splitOpId(newOperationId);
     }
     this.session.error(
       `NEED 'operationId' for '${httpMethod}' operation on path '${path}' `,
