@@ -56,6 +56,11 @@ export async function processRequest(host: Host) {
   }
 }
 
+interface DereferencedSchema {
+  key: string;
+  value: Dereferenced<Schema>;
+}
+
 export class QualityPreChecker {
   input: oai3;
   options: ModelerFourOptions = {};
@@ -63,7 +68,6 @@ export class QualityPreChecker {
 
   constructor(protected session: Session<oai3>) {
     this.input = session.model; // shadow(session.model, filename);
-
     this.interpret = new Interpretations(session);
   }
 
@@ -244,48 +248,7 @@ export class QualityPreChecker {
               // found two schemas that are indeed the same.
               // stop, find all the $refs to the second one, and rewrite them to go to the first one.
               // then go back and start again.
-
-              delete this.input.components.schemas[schemas[1].key];
-              const text = JSON.stringify(this.input);
-              this.input = JSON.parse(
-                text.replace(
-                  new RegExp(`"\\#\\/components\\/schemas\\/${schemas[1].key}"`, "g"),
-                  `"#/components/schemas/${schemas[0].key}"`,
-                ),
-              );
-
-              // update metadata to match
-              if (this.input?.components?.schemas?.[schemas[0].key]) {
-                const primarySchema = this.resolve(this.input.components.schemas[schemas[0].key]);
-                const primaryMetadata = primarySchema.instance["x-ms-metadata"];
-                const secondaryMetadata = schemas[1].value.instance["x-ms-metadata"];
-
-                if (primaryMetadata && secondaryMetadata) {
-                  primaryMetadata.apiVersions = [
-                    ...new Set<string>([
-                      ...(primaryMetadata.apiVersions || []),
-                      ...(secondaryMetadata.apiVersions || []),
-                    ]),
-                  ];
-                  primaryMetadata.filename = [
-                    ...new Set<string>([...(primaryMetadata.filename || []), ...(secondaryMetadata.filename || [])]),
-                  ];
-                  primaryMetadata.originalLocations = [
-                    ...new Set<string>([
-                      ...(primaryMetadata.originalLocations || []),
-                      ...(secondaryMetadata.originalLocations || []),
-                    ]),
-                  ];
-                  primaryMetadata["x-ms-secondary-file"] = !(
-                    !primaryMetadata["x-ms-secondary-file"] || !secondaryMetadata["x-ms-secondary-file"]
-                  );
-                }
-              }
-              this.session.verbose(
-                `Schema ${name} has multiple identical declarations, reducing to just one - removing ${schemas[1].key} `,
-                ["PreCheck", "ReducingSchema"],
-              );
-
+              this.removeDuplicateSchemas(name, schemas[0], schemas[1]);
               // Restart the scan now that the duplicate has been removed
               return true;
             }
@@ -334,6 +297,60 @@ export class QualityPreChecker {
     }
 
     return undefined;
+  }
+
+  private findSchemaToRemove(
+    schema1: DereferencedSchema,
+    schema2: DereferencedSchema,
+  ): { keep: DereferencedSchema; remove: DereferencedSchema } {
+    const schema1Ref = this.input.components?.schemas?.[schema1.key].$ref;
+    // If schema1 is pointing to schema2 then we should delete schema1
+    if (schema1Ref && schema1Ref === `#/components/schemas/${schema2.key}`) {
+      return { remove: schema1, keep: schema2 };
+    }
+    return { remove: schema2, keep: schema1 };
+  }
+
+  private removeDuplicateSchemas(name: string, schema1: DereferencedSchema, schema2: DereferencedSchema) {
+    const { keep: schemaToKeep, remove: schemaToRemove} = this.findSchemaToRemove(schema1, schema2);
+    delete this.input.components!.schemas![schemaToRemove.key];
+    const text = JSON.stringify(this.input);
+    this.input = JSON.parse(
+      text.replace(
+        new RegExp(`"\\#\\/components\\/schemas\\/${schemaToRemove.key}"`, "g"),
+        `"#/components/schemas/${schemaToKeep.key}"`,
+      ),
+    );
+
+    // update metadata to match
+    if (this.input?.components?.schemas?.[schemaToKeep.key]) {
+      const primarySchema = this.resolve(this.input.components.schemas[schemaToKeep.key]);
+      const primaryMetadata = primarySchema.instance["x-ms-metadata"];
+      const secondaryMetadata = schemaToRemove.value.instance["x-ms-metadata"];
+
+      if (primaryMetadata && secondaryMetadata) {
+        primaryMetadata.apiVersions = [
+          ...new Set<string>([...(primaryMetadata.apiVersions || []), ...(secondaryMetadata.apiVersions || [])]),
+        ];
+        primaryMetadata.filename = [
+          ...new Set<string>([...(primaryMetadata.filename || []), ...(secondaryMetadata.filename || [])]),
+        ];
+        primaryMetadata.originalLocations = [
+          ...new Set<string>([
+            ...(primaryMetadata.originalLocations || []),
+            ...(secondaryMetadata.originalLocations || []),
+          ]),
+        ];
+        primaryMetadata["x-ms-secondary-file"] = !(
+          !primaryMetadata["x-ms-secondary-file"] || !secondaryMetadata["x-ms-secondary-file"]
+        );
+      }
+    }
+    
+    this.session.verbose(
+      `Schema ${name} has multiple identical declarations, reducing to just one - removing: ${schemaToRemove.key}, keeping: ${schemaToKeep.key}`,
+      ["PreCheck", "ReducingSchema"],
+    );
   }
 
   fixUpSchemasThatUseAllOfInsteadOfJustRef() {
