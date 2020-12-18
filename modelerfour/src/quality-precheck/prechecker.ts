@@ -312,7 +312,7 @@ export class QualityPreChecker {
   }
 
   private removeDuplicateSchemas(name: string, schema1: DereferencedSchema, schema2: DereferencedSchema) {
-    const { keep: schemaToKeep, remove: schemaToRemove} = this.findSchemaToRemove(schema1, schema2);
+    const { keep: schemaToKeep, remove: schemaToRemove } = this.findSchemaToRemove(schema1, schema2);
     delete this.input.components!.schemas![schemaToRemove.key];
     const text = JSON.stringify(this.input);
     this.input = JSON.parse(
@@ -346,7 +346,7 @@ export class QualityPreChecker {
         );
       }
     }
-    
+
     this.session.verbose(
       `Schema ${name} has multiple identical declarations, reducing to just one - removing: ${schemaToRemove.key}, keeping: ${schemaToKeep.key}`,
       ["PreCheck", "ReducingSchema"],
@@ -510,7 +510,9 @@ export class QualityPreChecker {
   }
 
   process() {
-    //this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
+    if (this.options["remove-unused-intermediate-parent-types"]) {
+      this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
+    }
 
     this.fixUpObjectsWithoutType();
 

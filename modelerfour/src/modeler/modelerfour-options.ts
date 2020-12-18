@@ -33,6 +33,12 @@ export interface ModelerFourOptions {
   "prenamer"?: boolean;
 
   "resolve-schema-name-collisons"?: boolean;
+
+  /**
+   * In the case where there is inheritance `Model > Parent > GrandParent` and Parent is empty,
+   * remove the Parent class and change the reference `Model > GrandParent`.
+   */
+  "remove-unused-intermediate-parent-types"?: boolean;
 }
 
 export interface ModelerFourNamingOptions {
