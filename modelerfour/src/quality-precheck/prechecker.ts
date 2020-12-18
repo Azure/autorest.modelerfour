@@ -510,7 +510,7 @@ export class QualityPreChecker {
   }
 
   process() {
-    //this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
+    this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
 
     this.fixUpObjectsWithoutType();
 
