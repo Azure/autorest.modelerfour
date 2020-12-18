@@ -69,6 +69,18 @@ export function setNameAllowEmpty(
   if (newName && !options.existingNames?.has(newName)) {
     options.existingNames?.add(newName);
     thing.language.default.name = newName;
+  } else if (options.removeDuplicates) {
+    // If asked to remove duplicates, try formatting without
+    const newNameWithDuplicates = styler(
+      defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
+      false,
+      overrides,
+    );
+    console.error("New name", newNameWithDuplicates);
+    if (newNameWithDuplicates && !options.existingNames?.has(newNameWithDuplicates)) {
+      options.existingNames?.add(newNameWithDuplicates);
+      thing.language.default.name = newNameWithDuplicates;
+    }
   }
 }
 
