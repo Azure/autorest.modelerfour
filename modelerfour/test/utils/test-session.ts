@@ -40,7 +40,7 @@ export async function createTestSessionFromFiles<TInputModel>(
 
 export async function createTestSessionFromModel<TInputModel>(
   config: any,
-  model: Model,
+  model: any,
 ): Promise<TestSession<TInputModel>> {
   return createTestSession(config, [
     {

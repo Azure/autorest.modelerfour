@@ -59,29 +59,23 @@ export function setNameAllowEmpty(
 ) {
   options = { ...setNameDefaultOptions, ...options };
 
-  const newName = styler(
-    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-    options.removeDuplicates,
-    overrides,
-  );
+  const initialName =
+    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name;
+  const namingOptions = [
+    ...(options.removeDuplicates ? [styler(initialName, true, overrides)] : []),
+    styler(initialName, false, overrides),
+    initialName,
+  ];
 
-  // Check if the new name is not yet taken.
-  if (newName && !options.existingNames?.has(newName)) {
-    options.existingNames?.add(newName);
-    thing.language.default.name = newName;
-  } else if (options.removeDuplicates) {
-    // If asked to remove duplicates, try formatting without
-    const newNameWithDuplicates = styler(
-      defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-      false,
-      overrides,
-    );
-    console.error("New name", newNameWithDuplicates);
-    if (newNameWithDuplicates && !options.existingNames?.has(newNameWithDuplicates)) {
-      options.existingNames?.add(newNameWithDuplicates);
-      thing.language.default.name = newNameWithDuplicates;
+  for(const newName of namingOptions) {
+    // Check if the new name is not yet taken.
+    if (newName && !options.existingNames?.has(newName)) {
+      options.existingNames?.add(newName);
+      thing.language.default.name = newName;
+      return;
     }
   }
+  // We didn't find a compatible name. Ignoring the renaming silently.
 }
 
 export function isUnassigned(value: string) {
