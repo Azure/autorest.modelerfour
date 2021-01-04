@@ -2179,13 +2179,6 @@ export class ModelerFour {
       }
       const kmtMultipart = groupedMediaTypes.get(KnownMediaType.Multipart);
       if (kmtMultipart) {
-        if (kmtCount !== 1) {
-          throw new Error(
-            `Requests with 'multipart/formdata' can not be combined in a single operation with other media types ${keys(
-              requestBody.instance.content,
-            ).toArray()} `,
-          );
-        }
         // create multipart form upload for this.
         this.processSerializedObject(KnownMediaType.Multipart, kmtMultipart, operation, requestBody);
       }
