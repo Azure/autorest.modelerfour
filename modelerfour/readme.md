@@ -93,7 +93,7 @@ modelerfour:
   # In the case where a type only definition is to inherit another type remove it.
   # e.g. ChildSchema: {allOf: [ParentSchema]}. 
   # In this case ChildSchema will be removed and all reference to it will be updated to point to ParentSchema
-  remove-empty-child-types: false|true
+  remove-empty-child-schemas: false|true
 
   # customization of the identifier normalization and naming provided by the prenamer.
   # pascal|pascalcase - MultiWordIdentifier 

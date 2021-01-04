@@ -39,7 +39,7 @@ export interface ModelerFourOptions {
    * @example ChildSchema: {allOf: [ParentSchema]}. 
    * In this case ChildSchema will be removed and all reference to it will be updated to point to ParentSchema
    */
-  "remove-empty-child-types"?: boolean;
+  "remove-empty-child-schemas"?: boolean;
 }
 
 export interface ModelerFourNamingOptions {

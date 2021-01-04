@@ -508,7 +508,7 @@ export class QualityPreChecker {
   }
 
   process() {
-    if (this.options["remove-empty-child-types"]) {
+    if (this.options["remove-empty-child-schemas"]) {
       this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
     }
 

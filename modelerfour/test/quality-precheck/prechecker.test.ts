@@ -120,7 +120,7 @@ describe("Prechecker", () => {
 
     it("Remove the child type and points reference to it to its parent", async () => {
       const client = await PreCheckerClient.create(spec, {
-        "remove-empty-child-types": true,
+        "remove-empty-child-schemas": true,
       });
       const schemas = client.result.components!.schemas!;
       expect(schemas["ChildSchema"]).toBeUndefined();
