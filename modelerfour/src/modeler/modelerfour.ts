@@ -1720,6 +1720,7 @@ export class ModelerFour {
           this.codeModel.schemas.add(
             new ChoiceSchema("host-options", "choices for server host", {
               choices: servers.map((each) => new ChoiceValue(each.url, `host: ${each.url}`, each.url)),
+              choiceType: this.stringSchema,
             }),
           );
 
