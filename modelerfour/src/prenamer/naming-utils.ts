@@ -59,17 +59,23 @@ export function setNameAllowEmpty(
 ) {
   options = { ...setNameDefaultOptions, ...options };
 
-  const newName = styler(
-    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name,
-    options.removeDuplicates,
-    overrides,
-  );
+  const initialName =
+    defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name;
+  const namingOptions = [
+    ...(options.removeDuplicates ? [styler(initialName, true, overrides)] : []),
+    styler(initialName, false, overrides),
+    initialName,
+  ];
 
-  // Check if the new name is not yet taken.
-  if (newName && !options.existingNames?.has(newName)) {
-    options.existingNames?.add(newName);
-    thing.language.default.name = newName;
+  for(const newName of namingOptions) {
+    // Check if the new name is not yet taken.
+    if (newName && !options.existingNames?.has(newName)) {
+      options.existingNames?.add(newName);
+      thing.language.default.name = newName;
+      return;
+    }
   }
+  // We didn't find a compatible name. Ignoring the renaming silently.
 }
 
 export function isUnassigned(value: string) {
