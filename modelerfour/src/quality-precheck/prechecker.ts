@@ -312,7 +312,7 @@ export class QualityPreChecker {
   }
 
   private removeDuplicateSchemas(name: string, schema1: DereferencedSchema, schema2: DereferencedSchema) {
-    const { keep: schemaToKeep, remove: schemaToRemove} = this.findSchemaToRemove(schema1, schema2);
+    const { keep: schemaToKeep, remove: schemaToRemove } = this.findSchemaToRemove(schema1, schema2);
     delete this.input.components!.schemas![schemaToRemove.key];
     const text = JSON.stringify(this.input);
     this.input = JSON.parse(
@@ -346,7 +346,7 @@ export class QualityPreChecker {
         );
       }
     }
-    
+
     this.session.verbose(
       `Schema ${name} has multiple identical declarations, reducing to just one - removing: ${schemaToRemove.key}, keeping: ${schemaToKeep.key}`,
       ["PreCheck", "ReducingSchema"],
@@ -377,9 +377,9 @@ export class QualityPreChecker {
             this.input = JSON.parse(
               text.replace(new RegExp(`"\\#\\/components\\/schemas\\/${key}"`, "g"), `"${$ref}"`),
             );
-            const location = schema["x-ms-metadata"].originalLocations[0].replace(/^.*\//, "");
+            const location = schema["x-ms-metadata"].originalLocations?.[0]?.replace(/^.*\//, "");
+            delete this.input.components?.schemas?.[key];
             if (schema["x-internal-autorest-anonymous-schema"]) {
-              delete schemas[key];
               this.session.warning(
                 `An anonymous inline schema for property '${location.replace(
                   /-/g,
@@ -388,8 +388,6 @@ export class QualityPreChecker {
                 ["PreCheck", "AllOfWhenYouMeantRef"],
               );
             } else {
-              // NOTE: Disabled removing of non-anonymous schema for now until
-              // it has been discussed in Azure/autorest.modelerfour#278
               this.session.warning(
                 `Schema '${location}' is using an 'allOf' instead of a $ref. This creates a wasteful anonymous type when generating code.`,
                 ["PreCheck", "AllOfWhenYouMeantRef"],
@@ -510,7 +508,9 @@ export class QualityPreChecker {
   }
 
   process() {
-    this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
+    if (this.options["remove-empty-child-schemas"]) {
+      this.fixUpSchemasThatUseAllOfInsteadOfJustRef();
+    }
 
     this.fixUpObjectsWithoutType();
 
