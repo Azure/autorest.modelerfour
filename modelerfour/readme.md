@@ -92,7 +92,7 @@ modelerfour:
 
   # In the case where there is inheritance `Model > Parent > GrandParent` and Parent is empty,
   # remove the Parent class and change the reference `Model > GrandParent`.
-  remove-unused-intermediate-parent-types: false|true
+  remove-empty-child-types: false|true
 
   # customization of the identifier normalization and naming provided by the prenamer.
   # pascal|pascalcase - MultiWordIdentifier 

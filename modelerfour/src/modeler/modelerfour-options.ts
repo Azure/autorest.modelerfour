@@ -35,10 +35,11 @@ export interface ModelerFourOptions {
   "resolve-schema-name-collisons"?: boolean;
 
   /**
-   * In the case where there is inheritance `Model > Parent > GrandParent` and Parent is empty,
-   * remove the Parent class and change the reference `Model > GrandParent`.
+   * In the case where a type only definition is to inherit another type remove it.
+   * @example ChildSchema: {allOf: [ParentSchema]}. 
+   * In this case ChildSchema will be removed and all reference to it will be updated to point to ParentSchema
    */
-  "remove-unused-intermediate-parent-types"?: boolean;
+  "remove-empty-child-types"?: boolean;
 }
 
 export interface ModelerFourNamingOptions {
