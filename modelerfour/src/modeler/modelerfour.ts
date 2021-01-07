@@ -77,6 +77,8 @@ import { Interpretations, XMSEnum } from "./interpretations";
 import { fail, minimum, pascalCase, knownMediaType, KnownMediaType } from "@azure-tools/codegen";
 import { ModelerFourOptions } from "./modelerfour-options";
 
+// Hackety hack!  This is an arbitrary change to kick off a test build.
+
 /** adds only if the item is not in the collection already
  *
  * @note  While this isn't very efficient, it doesn't disturb the original
@@ -1002,9 +1004,8 @@ export class ModelerFour {
           // but we're going to warn them anyway.
 
           this.session.warning(
-            `The schema '${
-              schema?.["x-ms-metadata"]?.name || name
-            }' with an undefined type and declared properties is a bit ambigious. This has been auto-corrected to 'type:object'`,
+            `The schema '${schema?.["x-ms-metadata"]?.name ||
+              name}' with an undefined type and declared properties is a bit ambigious. This has been auto-corrected to 'type:object'`,
             ["Modeler", "MissingType"],
             schema,
           );
@@ -1016,9 +1017,8 @@ export class ModelerFour {
           // this looks like it's going to be a dictionary
           // we'll mark it as object and let the processObjectSchema sort it out.
           this.session.warning(
-            `The schema '${
-              schema?.["x-ms-metadata"]?.name || name
-            }' with an undefined type and additionalProperties is a bit ambigious. This has been auto-corrected to 'type:object'`,
+            `The schema '${schema?.["x-ms-metadata"]?.name ||
+              name}' with an undefined type and additionalProperties is a bit ambigious. This has been auto-corrected to 'type:object'`,
             ["Modeler"],
             schema,
           );
@@ -1030,9 +1030,8 @@ export class ModelerFour {
           // if the model has properties, then we're going to assume they meant to say JsonType.object
           // but we're going to warn them anyway.
           this.session.warning(
-            `The schema '${
-              schema?.["x-ms-metadata"]?.name || name
-            }' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`,
+            `The schema '${schema?.["x-ms-metadata"]?.name ||
+              name}' with an undefined type and 'allOf'/'anyOf'/'oneOf' is a bit ambigious. This has been auto-corrected to 'type:object'`,
             ["Modeler", "MissingType"],
             schema,
           );
@@ -1044,9 +1043,8 @@ export class ModelerFour {
           // no type info at all!?
           // const err = `The schema '${name}' has no type or format information whatsoever. ${this.location(schema)}`;
           this.session.warning(
-            `The schema '${
-              schema?.["x-ms-metadata"]?.name || name
-            }' has no type or format information whatsoever. ${this.location(schema)}`,
+            `The schema '${schema?.["x-ms-metadata"]?.name ||
+              name}' has no type or format information whatsoever. ${this.location(schema)}`,
             ["Modeler", "MissingType"],
             schema,
           );
