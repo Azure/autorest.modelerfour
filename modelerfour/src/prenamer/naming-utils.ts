@@ -31,6 +31,11 @@ interface SetNameOptions {
    * Set containing the list of names already used in the given scope.
    */
   existingNames?: Set<string>;
+
+  /**
+   * If it should allow duplicate models.(Later in the pipeline duplicate models will be deduplicated.)
+   */
+  lenientModelDeduplication?: boolean;
 }
 
 const setNameDefaultOptions: SetNameOptions = Object.freeze({
@@ -61,21 +66,27 @@ export function setNameAllowEmpty(
 
   const initialName =
     defaultValue && isUnassigned(thing.language.default.name) ? defaultValue : thing.language.default.name;
+
   const namingOptions = [
     ...(options.removeDuplicates ? [styler(initialName, true, overrides)] : []),
     styler(initialName, false, overrides),
-    initialName,
   ];
 
-  for(const newName of namingOptions) {
-    // Check if the new name is not yet taken.
-    if (newName && !options.existingNames?.has(newName)) {
+  for (const newName of namingOptions) {
+    // Check if the new name is not yet taken or lenientModelDeduplication is enabled then we don't care about duplicates.
+    if (newName && (!options.existingNames?.has(newName) || options.lenientModelDeduplication)) {
       options.existingNames?.add(newName);
       thing.language.default.name = newName;
       return;
     }
   }
-  // We didn't find a compatible name. Ignoring the renaming silently.
+  
+  if (initialName != "") {
+    const namingOptionsStr = namingOptions.join(",");
+    throw new Error(
+      `Couldn't style name '${initialName}'. All of the following naming possibilities created duplicate names: [${namingOptionsStr}]. You can try using 'modelerfour.lenient-model-deduplication' to allow such duplicates.`,
+    );
+  } 
 }
 
 export function isUnassigned(value: string) {
