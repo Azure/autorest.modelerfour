@@ -80,7 +80,7 @@ export function setNameAllowEmpty(
     }
   }
 
-  throw new Error(`Couldn't style name '${initialName}'. It result in duplicate names, tried: [${namingOptions.join(",")}]. You can try using 'modelerfour.lenient-model-deduplication' to allow such duplicates.`);
+  throw new Error(`Couldn't style name '${initialName}'. All of the following naming possibilities created duplicate names: [${namingOptions.join(",")}]. You can try using 'modelerfour.lenient-model-deduplication' to allow such duplicates.`);
 }
 
 export function isUnassigned(value: string) {
