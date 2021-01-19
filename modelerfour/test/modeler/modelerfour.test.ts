@@ -969,7 +969,6 @@ describe("Modeler", () => {
     });
 
     it("changes the type of the response header to be Dictionary<originalType>", async () => {
-
       const headerWithExtension = hasHeaderWithExtension.responses?.[0].protocol.http!.headers[0];
       expect(headerWithExtension.schema.type).toEqual("dictionary");
       expect(headerWithExtension.schema.elementType.type).toEqual("string");
