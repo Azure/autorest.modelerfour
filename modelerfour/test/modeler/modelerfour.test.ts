@@ -911,7 +911,7 @@ describe("Modeler", () => {
     expect(nonApiVersionQueryParam!.origin).toEqual(undefined);
   });
 
-  fdescribe("x-ms-header-collection-prefix headers", () => {
+  describe("x-ms-header-collection-prefix headers", () => {
     let spec: any;
     let hasHeaderWithExtension: Operation;
 
