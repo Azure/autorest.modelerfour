@@ -203,7 +203,7 @@ export class PreNamer {
 
     const objectSchemaNames = new Set<string>();
     for (const schema of values(this.codeModel.schemas.objects)) {
-      setName(schema, this.format.type, "", this.format.override, { existingNames });
+      setName(schema, this.format.type, "", this.format.override, { existingNames, lenientModelDeduplication: this.options["lenient-model-deduplication"] });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(
@@ -221,7 +221,10 @@ export class PreNamer {
 
     const groupSchemaNames = new Set<string>();
     for (const schema of values(this.codeModel.schemas.groups)) {
-      setName(schema, this.format.type, "", this.format.override, { existingNames });
+      setName(schema, this.format.type, "", this.format.override, {
+        existingNames,
+        lenientModelDeduplication: this.options["lenient-model-deduplication"],
+      });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(
@@ -291,7 +294,10 @@ export class PreNamer {
   ) {
     const choiceSchemaNames = new Set<string>();
     for (const schema of values(choices)) {
-      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override, { existingNames });
+      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override, {
+        existingNames,
+        lenientModelDeduplication: this.options["lenient-model-deduplication"],
+      });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(schema, choiceSchemaNames, this.session);
