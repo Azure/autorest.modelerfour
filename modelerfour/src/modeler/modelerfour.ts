@@ -1887,10 +1887,18 @@ export class ModelerFour {
               return operation.addParameter(p);
             }
           }
-          const parameterSchema = this.processSchema(name || "", schema);
+          let parameterSchema = this.processSchema(name || "", schema);
 
           // Track the usage of this schema as an input with media type
           this.trackSchemaUsage(parameterSchema, { usage: [SchemaContext.Input] });
+
+          if (parameter.in === ParameterLocation.Header && "x-ms-header-collection-prefix" in parameter) {
+            parameterSchema = new DictionarySchema(
+              parameterSchema.language.default.name,
+              parameterSchema.language.default.description,
+              parameterSchema,
+            );
+          }
 
           /* regular, everyday parameter */
           const newParam = operation.addParameter(
@@ -1952,24 +1960,7 @@ export class ModelerFour {
         });
         rsp.language.default.description = response.description;
 
-        const headers = new Array<HttpHeader>();
-        for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
-          this.use(hh.schema, (n, sch) => {
-            const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
-            hsch.language.default.header = header;
-            headers.push(
-              new HttpHeader(header, hsch, {
-                extensions: this.interpret.getExtensionProperties(hh),
-                language: {
-                  default: {
-                    name: hh["x-ms-client-name"] || header,
-                    description: this.interpret.getDescription("", hh),
-                  },
-                },
-              }),
-            );
-          });
-        }
+        const headers = this.processResponseHeaders(response.headers);
         rsp.protocol.http = SetType(HttpResponse, {
           statusCodes: [responseCode],
           headers: headers.length ? headers : undefined,
@@ -1986,24 +1977,7 @@ export class ModelerFour {
             acceptTypes.add(mediaType);
           }
 
-          const headers = new Array<HttpHeader>();
-          for (const { key: header, value: hh } of this.resolveDictionary(response.headers)) {
-            this.use(hh.schema, (n, sch) => {
-              const hsch = this.processSchema(this.interpret.getName(header, sch), sch);
-              hsch.language.default.header = header;
-              headers.push(
-                new HttpHeader(header, hsch, {
-                  extensions: this.interpret.getExtensionProperties(hh),
-                  language: {
-                    default: {
-                      name: hh["x-ms-client-name"] || header,
-                      description: this.interpret.getDescription("", hh),
-                    },
-                  },
-                }),
-              );
-            });
-          }
+          const headers = this.processResponseHeaders(response.headers);
 
           if (knownMediaType === KnownMediaType.Binary) {
             // binary response needs different response type.
@@ -2111,6 +2085,32 @@ export class ModelerFour {
         }
       }
     }
+  }
+
+  private processResponseHeaders(responseHeaders: Dictionary<Refable<OpenAPI.Header>> | undefined): HttpHeader[] {
+    const headers: HttpHeader[] = [];
+    for (const { key: headerName, value: header } of this.resolveDictionary(responseHeaders)) {
+      this.use(header.schema, (_name, sch) => {
+        let hsch = this.processSchema(this.interpret.getName(headerName, sch), sch);
+        if ("x-ms-header-collection-prefix" in header) {
+          hsch = new DictionarySchema(hsch.language.default.name, hsch.language.default.description, hsch);
+        }
+
+        hsch.language.default.header = headerName;
+        headers.push(
+          new HttpHeader(headerName, hsch, {
+            extensions: this.interpret.getExtensionProperties(header),
+            language: {
+              default: {
+                name: header["x-ms-client-name"] || headerName,
+                description: this.interpret.getDescription("", header),
+              },
+            },
+          }),
+        );
+      });
+    }
+    return headers;
   }
 
   processRequestBody(
