@@ -71,7 +71,6 @@ export function setNameAllowEmpty(
     styler(initialName, false, overrides),
   ];
 
-  console.error("Finding name", initialName, namingOptions);
   for (const newName of namingOptions) {
     // Check if the new name is not yet taken or lenientModelDeduplication is enabled then we don't care about duplicates.
     if ((newName && !options.existingNames?.has(newName)) || options.lenientModelDeduplication) {
@@ -80,7 +79,8 @@ export function setNameAllowEmpty(
       return;
     }
   }
-  throw new Error(`Couldn't style name '${initialName}'. Seems like there is duplicates. Tried: [${namingOptions.join(",")}]`);
+
+  throw new Error(`Couldn't style name '${initialName}'. It result in duplicate names, tried: [${namingOptions.join(",")}]. You can try using 'modelerfour.lenient-model-deduplication' to allow such duplicates.`);
 }
 
 export function isUnassigned(value: string) {
