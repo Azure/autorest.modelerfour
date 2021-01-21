@@ -1892,6 +1892,7 @@ export class ModelerFour {
 
           // Track the usage of this schema as an input with media type
           this.trackSchemaUsage(parameterSchema, { usage: [SchemaContext.Input] });
+          
           /* regular, everyday parameter */
           const newParam = operation.addParameter(
             new Parameter(preferredName, this.interpret.getDescription("", parameter), parameterSchema, {
@@ -2122,7 +2123,6 @@ export class ModelerFour {
     baseUri: string,
   ) {
     const requestBody = this.resolve(httpOperation.requestBody);
-    console.error("Process body", requestBody);
     if (requestBody.instance) {
       const groupedMediaTypes = this.groupMediaTypes(requestBody.instance.content);
       const kmtCount = groupedMediaTypes.size;
