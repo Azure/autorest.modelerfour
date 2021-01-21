@@ -1892,7 +1892,7 @@ export class ModelerFour {
 
           // Track the usage of this schema as an input with media type
           this.trackSchemaUsage(parameterSchema, { usage: [SchemaContext.Input] });
-          
+
           /* regular, everyday parameter */
           const newParam = operation.addParameter(
             new Parameter(preferredName, this.interpret.getDescription("", parameter), parameterSchema, {
