@@ -117,7 +117,7 @@ export class PreNamer {
     const deduplicateSchemaNames =
       !!this.options["lenient-model-deduplication"] || !!this.options["resolve-schema-name-collisons"];
 
-    const existingNames = getGlobalScopeNames(this.codeModel);
+    const existingNames = new Set<string>();
 
     // choice
     this.processChoiceNames(this.codeModel.schemas.choices, existingNames, deduplicateSchemaNames);
@@ -203,7 +203,7 @@ export class PreNamer {
 
     const objectSchemaNames = new Set<string>();
     for (const schema of values(this.codeModel.schemas.objects)) {
-      setName(schema, this.format.type, "", this.format.override, { existingNames });
+      setName(schema, this.format.type, "", this.format.override, { existingNames, lenientModelDeduplication: this.options["lenient-model-deduplication"] });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(
@@ -221,7 +221,10 @@ export class PreNamer {
 
     const groupSchemaNames = new Set<string>();
     for (const schema of values(this.codeModel.schemas.groups)) {
-      setName(schema, this.format.type, "", this.format.override, { existingNames });
+      setName(schema, this.format.type, "", this.format.override, {
+        existingNames,
+        lenientModelDeduplication: this.options["lenient-model-deduplication"],
+      });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(
@@ -291,7 +294,10 @@ export class PreNamer {
   ) {
     const choiceSchemaNames = new Set<string>();
     for (const schema of values(choices)) {
-      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override, { existingNames });
+      setName(schema, this.format.choice, `Enum${this.enum++}`, this.format.override, {
+        existingNames,
+        lenientModelDeduplication: this.options["lenient-model-deduplication"],
+      });
 
       if (deduplicateSchemaNames) {
         deduplicateSchemaName(schema, choiceSchemaNames, this.session);
@@ -403,25 +409,3 @@ export class PreNamer {
     }
   }
 }
-
-/**
- * Returns a new set containing all the names in the global scopes for the given CodeModel.
- * This correspond to the names of
- * - Enums/Choices
- * - Objects/Models
- * - Groups
- * - SealedChoices
- * @param codeModel CodeModel
- */
-const getGlobalScopeNames = (codeModel: CodeModel): Set<string> => {
-  return new Set(
-    [
-      ...(codeModel.schemas.choices ?? []),
-      ...(codeModel.schemas.objects ?? []),
-      ...(codeModel.schemas.groups ?? []),
-      ...(codeModel.schemas.sealedChoices ?? []),
-    ]
-      .map((x) => x.language.default.name)
-      .filter((x) => !isUnassigned(x)),
-  );
-};

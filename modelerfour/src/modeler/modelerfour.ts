@@ -1402,7 +1402,7 @@ export class ModelerFour {
           }),
         },
         implementation: ImplementationLocation.Method,
-        required: true,
+        required: body.instance?.required,
         nullable: requestSchema?.instance?.nullable,
         clientDefaultValue: this.interpret.getClientDefault(body?.instance || {}, {}),
       }),
@@ -1862,6 +1862,7 @@ export class ModelerFour {
       .select((each) => dereference(this.input, each))
       .select((pp) => {
         const parameter = pp.instance;
+
         this.use(parameter.schema, (name, schema) => {
           if (this.apiVersionMode !== "none" && this.interpret.isApiVersionParameter(parameter)) {
             return this.processApiVersionParameter(parameter, operation, pathItem);
