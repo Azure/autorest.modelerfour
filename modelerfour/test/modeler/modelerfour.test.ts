@@ -2,15 +2,15 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import { Parameter, SchemaResponse, ConstantSchema, SealedChoiceSchema } from "@azure-tools/codemodel";
 import {
-  addOperation,
-  addSchema,
-  createTestSpec,
-  InitialTestSpec,
-  response,
-  responses,
-} from "../utils";
+  Parameter,
+  SchemaResponse,
+  ConstantSchema,
+  SealedChoiceSchema,
+  DictionarySchema,
+  Operation,
+} from "@azure-tools/codemodel";
+import { addOperation, addSchema, createTestSpec, InitialTestSpec, response, responses } from "../utils";
 import { runModeler } from "./modelerfour-utils";
 
 export function findByName<T>(name: string, items: Array<T> | undefined): T | undefined {
@@ -868,45 +868,80 @@ describe("Modeler", () => {
     expect(nonApiVersionQueryParam!.origin).toEqual(undefined);
   });
 
-  it("propagates extensions to response header definitions", async () => {
-    const spec = createTestSpec();
+  describe("x-ms-header-collection-prefix headers", () => {
+    let spec: any;
+    let hasHeaderWithExtension: Operation;
 
-    addOperation(spec, "/headerWithExtension", {
-      post: {
-        operationId: "hasHeaderWithExtension",
-        description: "Has x-ms-header-collection-prefix on header",
-        parameters: [],
-        responses: responses(
-          response(
-            200,
-            "application/json",
+    beforeEach(async () => {
+      spec = createTestSpec();
+
+      addOperation(spec, "/headerWithExtension", {
+        post: {
+          operationId: "hasHeaderWithExtension",
+          description: "Has x-ms-header-collection-prefix on header",
+          parameters: [
             {
-              type: "string",
+              "name": "x-ms-req-meta",
+              "x-ms-client-name": "RequestHeaderWithExtension",
+              "in": "header",
+              "schema": {
+                type: "string",
+              },
+              "x-ms-parameter-location": "method",
+              "x-ms-header-collection-prefix": "x-ms-req-meta",
             },
-            "Response with a header extension.",
-            {
-              headers: {
-                "x-named-header": {
-                  "x-ms-client-name": "HeaderWithExtension",
-                  "x-ms-header-collection-prefix": "x-ms-meta",
-                  "schema": {
-                    type: "string",
+          ],
+          responses: responses(
+            response(
+              200,
+              "application/json",
+              {
+                type: "string",
+              },
+              "Response with a header extension.",
+              {
+                headers: {
+                  "x-named-header": {
+                    "x-ms-client-name": "HeaderWithExtension",
+                    "x-ms-header-collection-prefix": "x-ms-res-meta",
+                    "schema": {
+                      type: "string",
+                    },
                   },
                 },
               },
-            },
+            ),
           ),
-        ),
-      },
+        },
+      });
+      const codeModel = await runModeler(spec);
+      hasHeaderWithExtension = findByName("hasHeaderWithExtension", codeModel.operationGroups[0].operations)!;
+      expect(hasHeaderWithExtension).not.toBeNull();
     });
 
-    const codeModel = await runModeler(spec);
+    it("propagates extensions to response header definitions", async () => {
+      const headerWithExtension = hasHeaderWithExtension.responses?.[0].protocol.http!.headers[0];
+      expect(headerWithExtension.language.default.name).toEqual("HeaderWithExtension");
+      expect(headerWithExtension.extensions["x-ms-header-collection-prefix"]).toEqual("x-ms-res-meta");
+    });
 
-    const hasHeaderWithExtension = findByName("hasHeaderWithExtension", codeModel.operationGroups[0].operations);
+    it("changes the type of the response header to be Dictionary<originalType>", async () => {
+      const headerWithExtension = hasHeaderWithExtension.responses?.[0].protocol.http!.headers[0];
+      expect(headerWithExtension.schema.type).toEqual("dictionary");
+      expect(headerWithExtension.schema.elementType.type).toEqual("string");
+    });
 
-    const headerWithExtension = hasHeaderWithExtension?.responses?.[0].protocol.http!.headers[0];
-    expect(headerWithExtension.language.default.name).toEqual("HeaderWithExtension");
-    expect(headerWithExtension.extensions["x-ms-header-collection-prefix"]).toEqual("x-ms-meta");
+    it("propagates extensions to request header definitions", async () => {
+      const headerWithExtension = hasHeaderWithExtension.parameters?.[1];
+      expect(headerWithExtension?.language.default.name).toEqual("RequestHeaderWithExtension");
+      expect(headerWithExtension?.extensions?.["x-ms-header-collection-prefix"]).toEqual("x-ms-req-meta");
+    });
+
+    it("changes the type of the request header to be Dictionary<originalType>", async () => {
+      const headerWithExtension = hasHeaderWithExtension.parameters?.[1];
+      expect(headerWithExtension?.schema.type).toEqual("dictionary");
+      expect((headerWithExtension?.schema as DictionarySchema).elementType.type).toEqual("string");
+    });
   });
 
   it("allows text/plain responses when schema type is 'string'", async () => {
