@@ -1,6 +1,6 @@
 ## Project moved to Azure/autorest!
 
-[Azure/autorest](https://github.com/Azure/autorest/issues/new) repo.
+[Azure/autorest](https://github.com/Azure/autorest/tree/master/packages/extensions/modelerfour) repo.
 
 ----
 
