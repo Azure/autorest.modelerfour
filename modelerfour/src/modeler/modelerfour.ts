@@ -651,7 +651,7 @@ export class ModelerFour {
     name = (xmse && xmse.name) || this.interpret.getName(name, schema);
 
     const alwaysSeal = this.options[`always-seal-x-ms-enums`] === true;
-    const sealed = xmse && (alwaysSeal || !xmse.modelAsString);
+    const sealed = alwaysSeal || !(xmse && xmse.modelAsString);
 
     // model as string forces it to be a choice/enum.
     if (!alwaysSeal && xmse?.modelAsString !== true && (length(schema.enum) === 1 || length(xmse?.values) === 1)) {
